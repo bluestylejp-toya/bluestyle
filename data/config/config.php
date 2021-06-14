@@ -1,0 +1,22 @@
+<?php
+define('ECCUBE_INSTALL', 'ON');
+define('HTTP_URL', 'http://localhost:8080/');
+define('HTTPS_URL', 'http://localhost:8080/');
+define('ROOT_URLPATH', '/');
+define('DOMAIN_NAME', '');
+define('DB_TYPE', 'mysqli');
+define('DB_USER', 'chain');
+define('DB_PASSWORD', 'UgEbkrHp');
+define('DB_SERVER', 'mysql');
+define('DB_NAME', 'chain');
+define('DB_PORT', FALSE);
+define('ADMIN_DIR', 'chainadmin/');
+define('ADMIN_FORCE_SSL', FALSE);
+define('ADMIN_ALLOW_HOSTS', 'a:0:{}');
+define('AUTH_MAGIC', 'coutraistosaisialeweathaidouiamaefrujouv');
+define('PASSWORD_HASH_ALGOS', 'sha256');
+define('MAIL_BACKEND', 'mail');
+define('SMTP_HOST', '');
+define('SMTP_PORT', '');
+define('SMTP_USER', '');
+define('SMTP_PASSWORD', '');

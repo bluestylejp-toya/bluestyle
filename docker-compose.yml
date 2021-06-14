@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  web:
+    container_name: web
+    build: ./dockerbuild
+    ports:
+      - 8080:80
+    links:
+      - db
+    volumes:
+      - ./html:/var/www/html
+      - ./data:/var/www/data
+    depends_on:
+      - db
+
+  db:
+    container_name: mysql
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3307:3306
+    volumes:
+      - ./dockerbuild/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=chain
+      - MYSQL_USER=chain
+      - MYSQL_PASSWORD=UgEbkrHp
+
+  mailcatcher:
+    container_name: mailcatcher
+    image: schickling/mailcatcher
+    ports:
+      - "1090:1080"
+      - "1035:1025"
