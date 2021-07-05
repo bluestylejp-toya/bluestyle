@@ -237,6 +237,16 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $this->doAddFavorite($objCustomer);
                 break;
 
+            case 'add_favorite_ajax':
+                $this->doAddFavorite($objCustomer);
+                echo json_encode(['registered' => true]);
+                exit;
+
+            case 'del_favorite_ajax':
+                $this->doAddFavorite($objCustomer, false);
+                echo json_encode(['registered' => false]);
+                exit;
+
             case 'add_favorite_sphone':
                 $this->doAddFavoriteSphone($objCustomer);
                 break;
@@ -513,6 +523,15 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $objErr->arrErr['add_favorite'.$favorite_product_id] = '※ この商品は既にお気に入りに追加されています。<br />';
             }
             break;
+
+        case 'add_favorite_ajax':
+            $objErr = new SC_CheckError_Ex();
+            break;
+
+        case 'del_favorite_ajax':
+            $objErr = new SC_CheckError_Ex();
+            break;
+
         default:
             // 入力データを渡す。
             $arrRet =  $objFormParam->getHashArray();
@@ -611,6 +630,17 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         }
     }
 
+    /*
+     * お気に入り商品解除
+     * @return void
+     */
+    public function unregisterFavoriteProduct($product_id, $customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ?', [$product_id, $customer_id]);
+    }
+
     /**
      * Add product(s) into the cart.
      *
@@ -643,17 +673,24 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      * @param  SC_Customer $objCustomer
      * @return void
      */
-    public function doAddFavorite(SC_Customer &$objCustomer)
+    public function doAddFavorite(SC_Customer &$objCustomer, $register = true)
     {
         // ログイン中のユーザが商品をお気に入りにいれる処理
         if ($objCustomer->isLoginSuccess() === true && $this->objFormParam->getValue('favorite_product_id') > 0) {
             $this->arrErr = $this->lfCheckError($this->mode, $this->objFormParam);
             if (count($this->arrErr) == 0) {
-                if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
-                    SC_Response_Ex::actionExit(); 
+                // 登録
+                if ($register) {
+                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
+                        SC_Response_Ex::actionExit(); 
+                    }
+                    $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
+                    $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite', array($this));
                 }
-                $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
-                $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite', array($this));
+                // 削除
+                else {
+                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'));
+                }
             }
         }
     }

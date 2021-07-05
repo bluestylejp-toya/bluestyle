@@ -56,6 +56,9 @@ class LC_Page_Products_List extends LC_Page_Ex
     /** ランダム文字列 **/
     public $tpl_rnd = '';
 
+    /** @var bool ログイン状態かどうか */
+    public $tpl_login;
+
     /**
      * Page を初期化する.
      *
@@ -94,6 +97,12 @@ class LC_Page_Products_List extends LC_Page_Ex
         //決済処理中ステータスのロールバック
         $objPurchase = new SC_Helper_Purchase_Ex();
         $objPurchase->cancelPendingOrder(PENDING_ORDER_CANCEL_FLAG);
+
+        // 会員クラス
+        $objCustomer = new SC_Customer_Ex();
+
+        // ログイン判定
+        $this->tpl_login = $objCustomer->isLoginSuccess() === true;
 
         $objProduct = new SC_Product_Ex();
         // パラメーター管理クラス
@@ -247,7 +256,13 @@ class LC_Page_Products_List extends LC_Page_Ex
         $arrProductId = $objProduct->findProductIdsOrder($objQuery, array_merge($searchCondition['arrval'], $arrOrderVal));
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
-        $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId);
+
+        $addCols = [];
+        if ($this->tpl_login) {
+            $addCols[] = "(CASE WHEN EXISTS (SELECT * FROM dtb_customer_favorite_products WHERE product_id = alldtl.product_id) THEN 1 ELSE 0 END) AS registered_favorite";
+        }
+
+        $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId, $addCols);
 
         // 規格を設定
         $objProduct->setProductsClassByProductIds($arrProductId);
