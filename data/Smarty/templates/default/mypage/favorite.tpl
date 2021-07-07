@@ -55,7 +55,7 @@
                     <tr>
                         <th class="alignC">削除</th>
                         <th class="alignC">商品画像</th>
-                        <th class="alignC">商品名</th>
+                        <th class="alignC">商品名 / お気に入り総数</th>
                         <th class="alignC"><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)</th>
                     </tr>
                     <!--{section name=cnt loop=$arrFavorite}-->
@@ -72,6 +72,7 @@
                             <td>
                                 <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->">
                                     <!--{$arrFavorite[cnt].name|h}--></a>
+                                <div><!--{$arrFavorite[cnt].count_of_favorite|n2s|h}--> 件</div>
                             </td>
                             <td class="alignR sale_price">
                                 <span class="price">
