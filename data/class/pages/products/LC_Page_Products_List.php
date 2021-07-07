@@ -99,10 +99,10 @@ class LC_Page_Products_List extends LC_Page_Ex
         $objPurchase->cancelPendingOrder(PENDING_ORDER_CANCEL_FLAG);
 
         // 会員クラス
-        $objCustomer = new SC_Customer_Ex();
+        $this->objCustomer = new SC_Customer_Ex();
 
         // ログイン判定
-        $this->tpl_login = $objCustomer->isLoginSuccess() === true;
+        $this->tpl_login = $this->objCustomer->isLoginSuccess() === true;
 
         $objProduct = new SC_Product_Ex();
         // パラメーター管理クラス
@@ -259,7 +259,8 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $addCols = [];
         if ($this->tpl_login) {
-            $addCols[] = "(CASE WHEN EXISTS (SELECT * FROM dtb_customer_favorite_products WHERE product_id = alldtl.product_id) THEN 1 ELSE 0 END) AS registered_favorite";
+            $customer_id = $this->objCustomer->getValue('customer_id');
+            $addCols[] = "(CASE WHEN EXISTS (SELECT * FROM dtb_customer_favorite_products WHERE product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . ") THEN 1 ELSE 0 END) AS registered_favorite";
         }
 
         $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId, $addCols);
