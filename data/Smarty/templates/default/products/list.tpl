@@ -252,7 +252,7 @@
 
                     <!--{* お気に入り登録 *}-->
                     <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
-                        <div class="favorite_btn <!--{if $arrProduct.registered_favorite}-->registered_favorite<!--{/if}-->">
+                        <div class="favorite_area <!--{if $arrProduct.registered_favorite}-->registered_favorite<!--{/if}-->">
                             <div class="for_registered">
                                 <a href="javascript:" data-product_id="<!--{$arrProduct.product_id|h}-->">
                                     お気に入り解除する</a>
@@ -284,23 +284,23 @@
 </div>
 
 <style>
-.favorite_btn .for_registered {
+.favorite_area .for_registered {
     display: none;
 }
-.favorite_btn .for_unregistered {
+.favorite_area .for_unregistered {
     display: initial;
 }
-.favorite_btn.registered_favorite .for_registered {
+.favorite_area.registered_favorite .for_registered {
     display: initial;
 }
-.favorite_btn.registered_favorite .for_unregistered {
+.favorite_area.registered_favorite .for_unregistered {
     display: none;
 }
 </style>
 
 <script>
-$(".favorite_btn a").on('click', function(){
-    let $closest = $(this).closest('.favorite_btn');
+$(".favorite_area a").on('click', function(){
+    let $closest = $(this).closest('.favorite_area');
     let postData = {
         mode: $closest.hasClass('registered_favorite') ? 'del_favorite_ajax' : 'add_favorite_ajax',
         product_id: $(this).data('product_id'),

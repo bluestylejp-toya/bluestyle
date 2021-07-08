@@ -239,13 +239,15 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
             case 'add_favorite_ajax':
                 $this->doAddFavorite($objCustomer);
-                echo json_encode(['registered' => true]);
-                exit;
+                SC_Response_Ex::json([
+                    'registered' => true,
+                ]);
 
             case 'del_favorite_ajax':
                 $this->doAddFavorite($objCustomer, false);
-                echo json_encode(['registered' => false]);
-                exit;
+                SC_Response_Ex::json([
+                    'registered' => false,
+                ]);
 
             case 'add_favorite_sphone':
                 $this->doAddFavoriteSphone($objCustomer);
