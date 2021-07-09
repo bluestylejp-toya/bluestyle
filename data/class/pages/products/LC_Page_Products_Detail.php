@@ -241,13 +241,17 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $this->doAddFavorite($objCustomer);
                 SC_Response_Ex::json([
                     'registered' => true,
+                    'count_of_favorite' => SC_Product_Ex::countFavoriteByProductId($this->objFormParam->getValue('favorite_product_id')),
                 ]);
+                break;
 
             case 'del_favorite_ajax':
                 $this->doAddFavorite($objCustomer, false);
                 SC_Response_Ex::json([
                     'registered' => false,
+                    'count_of_favorite' => SC_Product_Ex::countFavoriteByProductId($this->objFormParam->getValue('favorite_product_id')),
                 ]);
+                break;
 
             case 'add_favorite_sphone':
                 $this->doAddFavoriteSphone($objCustomer);

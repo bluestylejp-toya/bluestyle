@@ -758,4 +758,11 @@ __EOS__;
         }
         return false;
     }
+
+    public static function countFavoriteByProductId($product_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        return $objQuery->count('dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
+    }
 }

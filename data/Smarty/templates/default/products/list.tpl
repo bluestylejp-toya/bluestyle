@@ -250,9 +250,9 @@
                     </div>
                     <!--▲買い物カゴ-->
 
-                    <!--{* お気に入り登録 *}-->
-                    <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
-                        <div class="favorite_area <!--{if $arrProduct.registered_favorite}-->registered_favorite<!--{/if}-->">
+                    <div class="favorite_area <!--{if $arrProduct.registered_favorite}-->registered_favorite<!--{/if}-->">
+                        <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
+                            <!--{* お気に入り登録・解除 *}-->
                             <div class="for_registered">
                                 <a href="javascript:" data-product_id="<!--{$arrProduct.product_id|h}-->">
                                     お気に入り解除する</a>
@@ -261,8 +261,12 @@
                                 <a href="javascript:" data-product_id="<!--{$arrProduct.product_id|h}-->">
                                     お気に入り登録する</a>
                             </div>
+                        <!--{/if}-->
+                        <!--{* お気に入り件数 *}-->
+                        <div class="count_of_favorite">
+                            <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span> 件
                         </div>
-                    <!--{/if}-->
+                    </div>
                 </div>
             </div>
         </form>
@@ -320,6 +324,7 @@ $(".favorite_area a").on('click', function(){
             else if (data.registered === false) {
                 $closest.removeClass('registered_favorite');
             }
+            $closest.find('.count_of_favorite .num').text(data.count_of_favorite);
         })
     ;
 });
