@@ -24,7 +24,7 @@ define('MODULE_DIR', "downloads/module/");
 /** ダウンロードモジュール保存ディレクトリ */
 define('MODULE_REALDIR', DATA_REALDIR . MODULE_DIR);
 /** DBセッションの有効期限(秒) */
-define('MAX_LIFETIME', 7200);
+define('MAX_LIFETIME', 7776000);
 /** マスターデータキャッシュディレクトリ */
 define('MASTER_DATA_REALDIR', DATA_REALDIR . "cache/");
 /** アップデート管理用ファイル格納場所 */
@@ -488,3 +488,4 @@ define('PENDING_ORDER_CANCEL_FLAG', true);
 define('API_ENABLE_FLAG', false);
 /** UTF-8依存文字が入力された際に表示する文字(Unicode値の整数 デフォルト: ?) */
 define('SUBSTITUTE_CHAR', 63);
+

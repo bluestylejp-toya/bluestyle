@@ -47,7 +47,7 @@ class SC_SessionFactory_UseCookie extends SC_SessionFactory_Ex
         // (session.auto_start などで)セッションが開始されていた場合に備えて閉じる。(FIXME: 保存する必要はない。破棄で良い。)
         session_write_close();
         $params = array(
-            'lifetime' => 0,
+            'lifetime' => MAX_LIFETIME,
             'path' => ROOT_URLPATH,
             'domain' => DOMAIN_NAME,
             'secure' => $this->getSecureOption(),
@@ -72,7 +72,8 @@ class SC_SessionFactory_UseCookie extends SC_SessionFactory_Ex
         session_start();
         if (session_id() !== '') {
             // SameSite=None を未サポートの UA 向けに 互換用 cookie を発行する. secure option 必須
-            setcookie('legacy-'.session_name(), session_id(), $params['lifetime'], $params['path'], $params['domain'], true, true);
+            $expires = $params['lifetime'] == 0 ? 0 : time() + $params['lifetime'];
+            setcookie('legacy-'.session_name(), session_id(), $expires, $params['path'], $params['domain'], true, true);
         }
     }
 
