@@ -106,10 +106,6 @@ function func_return(){
                 <td><!--{$arrForm.tel01|h}--> - <!--{$arrForm.tel02|h}--> - <!--{$arrForm.tel03|h}--></td>
             </tr>
             <tr>
-                <th>FAX</th>
-                <td><!--{if strlen($arrForm.fax01) > 0}--><!--{$arrForm.fax01|h}--> - <!--{$arrForm.fax02|h}--> - <!--{$arrForm.fax03|h}--><!--{else}-->未登録<!--{/if}--></td>
-            </tr>
-            <tr>
                 <th>性別</th>
                 <td><!--{$arrSex[$arrForm.sex]|h}--></td>
             </tr>

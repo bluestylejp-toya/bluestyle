@@ -413,9 +413,6 @@ class SC_Helper_Customer
         $objFormParam->addParam('お電話番号1', $prefix . 'tel01', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お電話番号2', $prefix . 'tel02', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お電話番号3', $prefix . 'tel03', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('FAX番号1', $prefix . 'fax01', TEL_ITEM_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('FAX番号2', $prefix . 'fax02', TEL_ITEM_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('FAX番号3', $prefix . 'fax03', TEL_ITEM_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
     }
 
     /**
@@ -530,7 +527,6 @@ class SC_Helper_Customer
         $objErr->arrErr = $objFormParam->checkError();
 
         $objErr->doFunc(array('電話番号', $prefix . 'tel01', $prefix . 'tel02', $prefix . 'tel03'), array('TEL_CHECK'));
-        $objErr->doFunc(array('FAX番号', $prefix . 'fax01', $prefix . 'fax02', $prefix . 'fax03'), array('TEL_CHECK'));
         $objErr->doFunc(array('郵便番号', $prefix . 'zip01', $prefix . 'zip02'), array('ALL_EXIST_CHECK'));
 
         return $objErr;

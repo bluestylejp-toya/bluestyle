@@ -87,19 +87,6 @@
             <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}--> - <!--{$arrForm[$key3].value|h}-->
         </td>
     </tr>
-    <tr>
-        <th>FAX</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`fax01"}-->
-            <!--{assign var=key2 value="`$prefix`fax02"}-->
-            <!--{assign var=key3 value="`$prefix`fax03"}-->
-            <!--{if strlen($arrForm[$key1].value) > 0 && strlen($arrForm[$key2].value) > 0 && strlen($arrForm[$key3].value) > 0}-->
-                <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}--> - <!--{$arrForm[$key3].value|h}-->
-            <!--{else}-->
-                未登録
-            <!--{/if}-->
-        </td>
-    </tr>
     <!--{if $flgFields > 1}-->
         <tr>
             <th>メールアドレス</th>

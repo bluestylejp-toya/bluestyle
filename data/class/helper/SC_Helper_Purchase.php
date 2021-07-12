@@ -35,9 +35,9 @@ class SC_Helper_Purchase
 {
 
     public $arrShippingKey = array(
-        'name01', 'name02', 'kana01', 'kana02', 'company_name',
+        'name01', 'name02', 'kana01', 'kana02',
         'sex', 'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
-        'tel01', 'tel02', 'tel03', 'fax01', 'fax02', 'fax03',
+        'tel01', 'tel02', 'tel03',
     );
 
     /**
@@ -484,9 +484,9 @@ class SC_Helper_Purchase
      * @return void
      */
     public function copyFromCustomer(&$dest, &$objCustomer, $prefix = 'order',
-        $keys = array('name01', 'name02', 'kana01', 'kana02', 'company_name',
+        $keys = array('name01', 'name02', 'kana01', 'kana02',
             'sex', 'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
-            'tel01', 'tel02', 'tel03', 'fax01', 'fax02', 'fax03',
+            'tel01', 'tel02', 'tel03',
             'job', 'birth', 'email',
         )
     ) {

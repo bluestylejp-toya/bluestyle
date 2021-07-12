@@ -203,14 +203,6 @@
                         <td><!--{$arrForm.order_tel01}-->-<!--{$arrForm.order_tel02}-->-<!--{$arrForm.order_tel03}--></td>
                     </tr>
                     <tr>
-                        <th scope="row">FAX番号</th>
-                        <td>
-                            <!--{if $arrForm.order_fax01 > 0}-->
-                                <!--{$arrForm.order_fax01}-->-<!--{$arrForm.order_fax02}-->-<!--{$arrForm.order_fax03}-->
-                            <!--{/if}-->
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row">メールアドレス</th>
                         <td><!--{$arrForm.order_email|h}--></td>
                     </tr>
@@ -305,14 +297,6 @@
                         <tr>
                             <th scope="row">電話番号</th>
                             <td><!--{$shippingItem.shipping_tel01}-->-<!--{$shippingItem.shipping_tel02}-->-<!--{$shippingItem.shipping_tel03}--></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">FAX番号</th>
-                            <td>
-                                <!--{if $shippingItem.shipping_fax01 > 0}-->
-                                    <!--{$shippingItem.shipping_fax01}-->-<!--{$shippingItem.shipping_fax02}-->-<!--{$shippingItem.shipping_fax03}-->
-                                <!--{/if}-->
-                            </td>
                         </tr>
                         <!--{if $cartKey != $smarty.const.PRODUCT_TYPE_DOWNLOAD}-->
                             <tr>
