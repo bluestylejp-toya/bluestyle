@@ -39,6 +39,8 @@ class LC_Page_Mypage_Change extends LC_Page_AbstractMypage_Ex
      */
     public function init()
     {
+        $objPayment = new SC_Helper_Payment_Ex();
+
         parent::init();
         $this->tpl_subtitle = '会員登録内容変更(入力ページ)';
         $this->tpl_mypageno = 'change';
@@ -48,6 +50,7 @@ class LC_Page_Mypage_Change extends LC_Page_AbstractMypage_Ex
         $this->arrPref      = $masterData->getMasterData('mtb_pref');
         $this->arrCountry   = $masterData->getMasterData('mtb_country');
         $this->arrSex       = $masterData->getMasterData('mtb_sex');
+        $this->arrPayment   = $objPayment->getPaymentMethods();
         $this->httpCacheControl('nocache');
 
         // 生年月日選択肢の取得

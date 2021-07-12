@@ -189,7 +189,7 @@
                 <td>
                     <!--{assign var=key1 value="`$prefix`password"}-->
                     <!--{if $arrErr[$key1]}-->
-                        <div class="attention"><!--{$arrErr[$key1]}-->}--></div>
+                        <div class="attention"><!--{$arrErr[$key1]}--></div>
                     <!--{/if}-->
                     <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->" class="box120" />
                     <p><span class="attention mini">半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字でお願いします。（記号可）</span></p>
@@ -210,6 +210,16 @@
                     </select>
                     <br />
                     答え：<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: active;" class="box260" />
+                </td>
+            </tr>
+            <tr>
+                <th>お支払い方法<span class="attention">※</span></th>
+                <td>
+                    <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
+                    <select class="top" name="<!--{$key1|h}-->" <!--{if $arrErr[$key1]}--><!--{sfSetErrorStyle}--><!--{/if}-->>
+                        <option value="" selected="selected">選択してください</option>
+                        <!--{html_options options=$arrPayment selected=$arrForm[$key1].value}-->
+                    </select>
                 </td>
             </tr>
         <!--{/if}-->

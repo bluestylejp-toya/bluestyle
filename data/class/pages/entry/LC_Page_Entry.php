@@ -38,12 +38,15 @@ class LC_Page_Entry extends LC_Page_Ex
      */
     public function init()
     {
+        $objPayment = new SC_Helper_Payment_Ex();
+
         parent::init();
         $masterData         = new SC_DB_MasterData_Ex();
         $this->arrPref      = $masterData->getMasterData('mtb_pref');
         $this->arrReminder  = $masterData->getMasterData('mtb_reminder');
         $this->arrCountry   = $masterData->getMasterData('mtb_country');
         $this->arrSex       = $masterData->getMasterData('mtb_sex');
+        $this->arrPayment   = $objPayment->getPaymentMethods();
 
         // 生年月日選択肢の取得
         $objDate            = new SC_Date_Ex(BIRTH_YEAR, date('Y'));

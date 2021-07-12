@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.25, for Linux (x86_64)
 --
--- Host: localhost    Database: eccube_base
+-- Host: localhost    Database: chain
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -686,6 +686,7 @@ CREATE TABLE `dtb_customer` (
   `del_flg` smallint NOT NULL DEFAULT '0',
   `mobile_phone_id` text,
   `mailmaga_flg` smallint DEFAULT NULL,
+  `default_payment_id` smallint DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
   KEY `dtb_customer_mobile_phone_id_key` (`mobile_phone_id`(255))
@@ -3581,4 +3582,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-13  1:47:41
+-- Dump completed on 2021-07-12 10:43:43

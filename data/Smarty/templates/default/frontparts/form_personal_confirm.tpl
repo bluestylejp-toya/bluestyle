@@ -144,6 +144,14 @@
                     答え：<!--{$arrForm[$key2].value|h}-->
                 </td>
             </tr>
+            <tr>
+                <th>お支払い方法</th>
+                <td>
+                    <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
+                    <!--{assign var="default_payment_id" value=$arrForm[$key1].value}-->
+                    <!--{$arrPayment[$default_payment_id]|h}-->
+                </td>
+            </tr>
         <!--{/if}-->
     <!--{/if}-->
 <!--{/strip}-->
