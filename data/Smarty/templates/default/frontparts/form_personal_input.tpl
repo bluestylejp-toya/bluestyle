@@ -49,16 +49,6 @@
             メイ&nbsp;<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: active;" class="box120" />
         </td>
     </tr>
-    <tr>
-        <th>会社名</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`company_name"}-->
-            <!--{if $arrErr[$key1]}-->
-                <div class="attention"><!--{$arrErr[$key1]}--></div>
-            <!--{/if}-->
-            <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: active;" class="box300" />&nbsp;
-        </td>
-    </tr>
     <!--{assign var=key1 value="`$prefix`zip01"}-->
     <!--{assign var=key2 value="`$prefix`zip02"}-->
     <!--{assign var=key3 value="`$prefix`pref"}-->

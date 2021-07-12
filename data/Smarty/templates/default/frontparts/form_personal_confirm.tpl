@@ -43,13 +43,6 @@
             <!--{$arrForm[$key2].value|h}-->
         </td>
     </tr>
-    <tr>
-        <th>会社名</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`company_name"}-->
-            <!--{$arrForm[$key1].value|h}-->
-        </td>
-    </tr>
     <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
     <tr>
         <th>国</th>

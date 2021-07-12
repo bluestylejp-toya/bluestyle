@@ -75,10 +75,6 @@ function func_return(){
                 <th>お名前(フリガナ)</th>
                 <td><!--{$arrForm.kana01|h}--><!--{$arrForm.kana02|h}-->　様</td>
             </tr>
-            <tr>
-                <th>会社名</th>
-                <td><!--{$arrForm.company_name|h}--></td>
-            </tr>
             <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
             <tr>
                 <th>国</th>

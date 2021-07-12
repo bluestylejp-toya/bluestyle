@@ -70,9 +70,6 @@
 　ご注文者情報
 ************************************************
 　お名前　：<!--{$arrOrder.order_name01}--> <!--{$arrOrder.order_name02}-->　様
-<!--{if $arrOrder.order_company_name != ""}-->
-　会社名　：<!--{$arrOrder.order_company_name}-->
-<!--{/if}-->
 <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
 　国　　　：<!--{$arrCountry[$arrOrder.order_country_id]}-->
 　ZIPCODE ：<!--{$arrOrder.order_zipcode}-->
@@ -93,9 +90,6 @@
 ◎お届け先<!--{if count($arrShipping) > 1}--><!--{$smarty.foreach.shipping.iteration}--><!--{/if}-->
 
 　お名前　：<!--{$shipping.shipping_name01}--> <!--{$shipping.shipping_name02}-->　様
-<!--{if $shipping.shipping_company_name != ""}-->
-　会社名　：<!--{$shipping.shipping_company_name}-->
-<!--{/if}-->
 <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
 　国　　　：<!--{$arrCountry[$shipping.shipping_country_id]}-->
 　ZIPCODE ：<!--{$shipping.shipping_zipcode}-->

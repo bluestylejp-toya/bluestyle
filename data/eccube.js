@@ -323,7 +323,6 @@ require( "slick-carousel/slick/slick-theme.css" );
         "shipping_tel01",
         "shipping_tel02",
         "shipping_tel03",
-        "shipping_company_name",
         "shipping_country_id",
         "shipping_zipcode",
         "shipping_fax01",

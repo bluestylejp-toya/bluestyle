@@ -180,10 +180,6 @@
                         <th scope="row">お名前(フリガナ)</th>
                         <td><!--{$arrForm.order_kana01|h}--> <!--{$arrForm.order_kana02|h}--></td>
                     </tr>
-                    <tr>
-                        <th scope="row">会社名</th>
-                        <td><!--{$arrForm.order_company_name|h}--></td>
-                    </tr>
                     <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
                     <tr>
                         <th scope="row">国</th>
@@ -287,10 +283,6 @@
                         <tr>
                             <th scope="row">お名前(フリガナ)</th>
                             <td><!--{$shippingItem.shipping_kana01|h}--> <!--{$shippingItem.shipping_kana02|h}--></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">会社名</th>
-                            <td><!--{$shippingItem.shipping_company_name|h}--></td>
                         </tr>
                         <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
                         <tr>
