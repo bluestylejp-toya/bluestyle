@@ -144,14 +144,6 @@
                     答え：<!--{$arrForm[$key2].value|h}-->
                 </td>
             </tr>
-            <tr>
-                <th>メールマガジン送付について</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`mailmaga_flg"}-->
-                    <!--{assign var="mailmaga_flg_id" value=$arrForm[$key1].value}-->
-                    <!--{$arrMAILMAGATYPE[$mailmaga_flg_id]|h}-->
-                </td>
-            </tr>
         <!--{/if}-->
     <!--{/if}-->
 <!--{/strip}-->

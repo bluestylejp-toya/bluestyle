@@ -125,10 +125,6 @@ function func_return(){
                 </td>
             </tr>
             <tr>
-                <th>メールマガジン</th>
-                <td><!--{$arrMailMagazineType[$arrForm.mailmaga_flg]|h}--></td>
-            </tr>
-            <tr>
                 <th>SHOP用メモ</th>
                 <td><!--{$arrForm.note|h|nl2br|default:"未登録"}--></td>
             </tr>

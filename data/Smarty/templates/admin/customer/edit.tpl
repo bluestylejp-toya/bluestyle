@@ -211,15 +211,6 @@
                 </td>
             </tr>
             <tr>
-                <th>メールマガジン<span class="attention"> *</span></th>
-                <td>
-                    <span class="attention"><!--{$arrErr.mailmaga_flg}--></span>
-                    <span <!--{if $arrErr.mailmaga_flg != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
-                        <!--{html_radios name="mailmaga_flg" options=$arrMailMagazineType separator=" " selected=$arrForm.mailmaga_flg}-->
-                    </span>
-                </td>
-            </tr>
-            <tr>
                 <th>SHOP用メモ</th>
                 <td>
                     <span class="attention"><!--{$arrErr.note}--></span>

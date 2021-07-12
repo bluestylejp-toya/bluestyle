@@ -221,18 +221,6 @@
                     答え：<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: active;" class="box260" />
                 </td>
             </tr>
-            <tr>
-                <th>メールマガジン送付について<span class="attention">※</span></th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`mailmaga_flg"}-->
-                    <!--{if $arrErr[$key1]}-->
-                        <div class="attention"><!--{$arrErr[$key1]}--></div>
-                    <!--{/if}-->
-                    <span style="<!--{$arrErr[$key1]|sfGetErrorColor}-->">
-                        <!--{html_radios name=$key1 options=$arrMAILMAGATYPE selected=$arrForm[$key1].value separator='<br />'}-->
-                    </span>
-                </td>
-            </tr>
         <!--{/if}-->
     <!--{/if}-->
 <!--{/strip}-->
