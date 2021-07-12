@@ -246,10 +246,6 @@ class SC_Helper_Customer
 
         $arrForm    = $ret[0];
 
-        // 確認項目に複製
-        $arrForm['email02'] = $arrForm['email'];
-        $arrForm['email_mobile02'] = $arrForm['email_mobile'];
-
         // 誕生日を年月日に分ける
         if (isset($arrForm['birth'])) {
             $birth = explode(' ', $arrForm['birth']);
@@ -258,7 +254,6 @@ class SC_Helper_Customer
 
         if ($mask_flg) {
             $arrForm['password']          = DEFAULT_PASSWORD;
-            $arrForm['password02']        = DEFAULT_PASSWORD;
             $arrForm['reminder_answer']   = DEFAULT_PASSWORD;
         }
 
@@ -373,7 +368,6 @@ class SC_Helper_Customer
         SC_Helper_Customer_Ex::sfCustomerRegisterParam($objFormParam, false, true);
         if (SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE) {
             $objFormParam->addParam('携帯メールアドレス', 'email_mobile', null, 'a', array('NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
-            $objFormParam->addParam('携帯メールアドレス(確認)', 'email_mobile02', null, 'a', array('NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'), '', false);
         } else {
             $objFormParam->addParam('携帯メールアドレス', 'email_mobile', null, 'a', array('EXIST_CHECK', 'NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
             $objFormParam->addParam('メールアドレス', 'email', null, 'a', array('NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK'));
@@ -436,10 +430,6 @@ class SC_Helper_Customer
 
         if (SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE) {
             $objFormParam->addParam('メールアドレス', $prefix . 'email', null, 'a', array('NO_SPTAB', 'EXIST_CHECK', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK'));
-            $objFormParam->addParam('パスワード(確認)', $prefix . 'password02', PASSWORD_MAX_LEN, '', array('EXIST_CHECK', 'SPTAB_CHECK', 'PASSWORD_CHAR_CHECK'), '', false);
-            if (!$isAdmin) {
-                $objFormParam->addParam('メールアドレス(確認)', $prefix . 'email02', null, 'a', array('NO_SPTAB', 'EXIST_CHECK', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK'), '', false);
-            }
         } else {
             if (!$is_mypage) {
                 $objFormParam->addParam('メールアドレス', $prefix . 'email', null, 'a', array('EXIST_CHECK', 'EMAIL_CHECK', 'NO_SPTAB', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
@@ -486,7 +476,6 @@ class SC_Helper_Customer
     public function sfCustomerMypageErrorCheck(&$objFormParam, $isAdmin = false)
     {
         $objFormParam->toLower('email_mobile');
-        $objFormParam->toLower('email_mobile02');
 
         $objErr = SC_Helper_Customer_Ex::sfCustomerCommonErrorCheck($objFormParam);
         $objErr = SC_Helper_Customer_Ex::sfCustomerRegisterErrorCheck($objErr, $isAdmin);
@@ -494,7 +483,6 @@ class SC_Helper_Customer
         if (isset($objErr->arrErr['password'])
             && $objFormParam->getValue('password') == DEFAULT_PASSWORD) {
             unset($objErr->arrErr['password']);
-            unset($objErr->arrErr['password02']);
         }
         if (isset($objErr->arrErr['reminder_answer'])
                 && $objFormParam->getValue('reminder_answer') == DEFAULT_PASSWORD) {
@@ -516,7 +504,6 @@ class SC_Helper_Customer
     {
         $objFormParam->convParam();
         $objFormParam->toLower($prefix . 'email');
-        $objFormParam->toLower($prefix . 'email02');
         $arrParams = $objFormParam->getHashArray();
 
         // 入力データを渡す。
@@ -540,13 +527,6 @@ class SC_Helper_Customer
     {
         $objErr->doFunc(array('生年月日', 'year', 'month', 'day'), array('CHECK_BIRTHDAY'));
         $objErr->doFunc(array('パスワード', 'password', PASSWORD_MIN_LEN, PASSWORD_MAX_LEN), array('NUM_RANGE_CHECK'));
-
-        if (SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE) {
-            if (!$isAdmin) {
-                $objErr->doFunc(array('メールアドレス', 'メールアドレス(確認)', 'email', 'email02'), array('EQUAL_CHECK'));
-            }
-            $objErr->doFunc(array('パスワード', 'パスワード(確認)', 'password', 'password02'), array('EQUAL_CHECK'));
-        }
 
         if (!$isAdmin) {
             // 現会員の判定 → 現会員もしくは仮登録中は、メアド一意が前提になってるので同じメアドで登録不可

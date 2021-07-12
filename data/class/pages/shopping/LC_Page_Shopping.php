@@ -275,7 +275,6 @@ class LC_Page_Shopping extends LC_Page_Ex
         // 不要なパラメーターの削除
         // XXX: 共通化したことをうまく使えば、以前あった購入同時会員登録も復活出来そうですが
         $objFormParam->removeParam('order_password');
-        $objFormParam->removeParam('order_password02');
         $objFormParam->removeParam('order_reminder');
         $objFormParam->removeParam('order_reminder_answer');
 
@@ -410,7 +409,6 @@ class LC_Page_Shopping extends LC_Page_Ex
 
         // 複数項目チェック
         $objErr->doFunc(array('生年月日', 'order_year', 'order_month', 'order_day'), array('CHECK_BIRTHDAY'));
-        $objErr->doFunc(array('メールアドレス', 'メールアドレス（確認）', 'order_email', 'order_email02'), array('EQUAL_CHECK'));
 
         return $objErr->arrErr;
     }
@@ -451,7 +449,6 @@ class LC_Page_Shopping extends LC_Page_Ex
                 $objFormParam->setParam($arrShippingTemp[0]);
             }
         }
-        $objFormParam->setValue('order_email02', $arrOrderTemp['order_email']);
         $objFormParam->setDBDate($arrOrderTemp['order_birth'], 'order_year', 'order_month', 'order_day');
     }
 

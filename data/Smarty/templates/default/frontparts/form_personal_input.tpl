@@ -131,13 +131,10 @@
             <th>メールアドレス<span class="attention">※</span></th>
             <td>
                 <!--{assign var=key1 value="`$prefix`email"}-->
-                <!--{assign var=key2 value="`$prefix`email02"}-->
-                <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
+                <!--{if $arrErr[$key1]}-->
+                    <div class="attention"><!--{$arrErr[$key1]}--></div>
                 <!--{/if}-->
-                <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="box300 top" /><br />
-                <input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" style="<!--{$arrErr[$key1]|cat:$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: disabled;" class="box300"  onPaste="return false;"/><br />
-                <span class="attention mini">確認のため2度入力してください。</span>
+                <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="box300 top" />
             </td>
         </tr>
         <!--{if $emailMobile}-->
@@ -145,13 +142,10 @@
                 <th>携帯メールアドレス</th>
                 <td>
                     <!--{assign var=key1 value="`$prefix`email_mobile"}-->
-                    <!--{assign var=key2 value="`$prefix`email_mobile02"}-->
-                    <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
+                    <!--{if $arrErr[$key1]}-->
+                    <div class="attention"><!--{$arrErr[$key1]}--></div>
                     <!--{/if}-->
-                    <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" class="box300 top" /><br />
-                    <input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" style="<!--{$arrErr[$key1]|cat:$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: disabled;" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" class="box300" onPaste="return false;"/><br />
-                    <span class="attention mini">確認のため2度入力してください。</span>
+                    <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" class="box300 top" />
                 </td>
             </tr>
         <!--{/if}-->
@@ -194,14 +188,11 @@
                 </th>
                 <td>
                     <!--{assign var=key1 value="`$prefix`password"}-->
-                    <!--{assign var=key2 value="`$prefix`password02"}-->
-                    <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                        <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
+                    <!--{if $arrErr[$key1]}-->
+                        <div class="attention"><!--{$arrErr[$key1]}-->}--></div>
                     <!--{/if}-->
                     <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->" class="box120" />
                     <p><span class="attention mini">半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字でお願いします。（記号可）</span></p>
-                    <input type="password" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key1]|cat:$arrErr[$key2]|sfGetErrorColor}-->" class="box120" />
-                    <p><span class="attention mini">確認のために2度入力してください。</span></p>
                 </td>
             </tr>
             <tr>
