@@ -233,19 +233,6 @@
                 </td>
             </tr>
             <tr>
-                <th>職業</th>
-                <td>
-                    <!--{assign var=key1 value="order_job"}-->
-                    <span class="attention"><!--{$arrErr[$key1]}--></span>
-                    <span style="<!--{$arrErr[$key1]|sfGetErrorColor}-->">
-                    <select name="<!--{$key1}-->">
-	                    <option value="" selected="selected">選択してください</option>
-	                    <!--{html_options options=$arrJob selected=$arrForm[$key1].value}-->
-                    </select>
-                    </span>
-                </td>
-            </tr>
-            <tr>
                 <th>生年月日</th>
                 <td>
                     <!--{assign var=key1 value="order_birth_year"}-->

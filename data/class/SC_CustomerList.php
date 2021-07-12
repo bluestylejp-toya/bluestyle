@@ -101,21 +101,6 @@ class SC_CustomerList extends SC_SelectSql_Ex
             }
         }
 
-        // 職業
-        if (!isset($this->arrSql['search_job'])) $this->arrSql['search_job'] = '';
-        if (is_array($this->arrSql['search_job'])) {
-            if (in_array('不明', $this->arrSql['search_job'])) {
-                $arrJobVal = $this->setItemTermWithNull($this->arrSql['search_job'], 'job');
-            } else {
-                $arrJobVal = $this->setItemTerm($this->arrSql['search_job'], 'job');
-            }
-            if (is_array($arrJobVal)) {
-                foreach ($arrJobVal as $data) {
-                    $this->arrVal[] = $data;
-                }
-            }
-        }
-
         // E-MAIL
         if (!isset($this->arrSql['search_email'])) $this->arrSql['search_email'] = '';
         if (strlen($this->arrSql['search_email']) > 0) {

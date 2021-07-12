@@ -117,14 +117,6 @@
             </td>
         </tr>
         <tr>
-            <th>職業</th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`job"}-->
-                <!--{assign var="job_id" value=$arrForm[$key1].value}-->
-                <!--{$arrJob[$job_id]|default:"未登録"|h}-->
-            </td>
-        </tr>
-        <tr>
             <th>生年月日</th>
             <td>
                 <!--{assign var=key1 value="`$prefix`year"}-->

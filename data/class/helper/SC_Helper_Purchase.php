@@ -487,7 +487,7 @@ class SC_Helper_Purchase
         $keys = array('name01', 'name02', 'kana01', 'kana02',
             'sex', 'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
             'tel01', 'tel02', 'tel03',
-            'job', 'birth', 'email',
+            'birth', 'email',
         )
     ) {
         if ($objCustomer->isLoginSuccess(true)) {

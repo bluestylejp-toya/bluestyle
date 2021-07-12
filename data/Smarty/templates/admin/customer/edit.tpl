@@ -171,16 +171,6 @@
                 </td>
             </tr>
             <tr>
-                <th>ご職業</th>
-                <td>
-                    <span class="attention"><!--{$arrErr.job}--></span>
-                    <select name="job" <!--{if $arrErr.job != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> >
-                    <option value="" selected="selected">選択してください</option>
-                    <!--{html_options options=$arrJob selected=$arrForm.job}-->
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <th>生年月日</th>
                 <td>
                     <span class="attention"><!--{$arrErr.year}--></span>

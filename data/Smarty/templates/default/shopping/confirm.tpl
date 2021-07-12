@@ -211,10 +211,6 @@
                         <td><!--{$arrSex[$arrForm.order_sex]|h}--></td>
                     </tr>
                     <tr>
-                        <th scope="row">職業</th>
-                        <td><!--{$arrJob[$arrForm.order_job]|default:'(未登録)'|h}--></td>
-                    </tr>
-                    <tr>
                         <th scope="row">生年月日</th>
                         <td>
                             <!--{$arrForm.order_birth|regex_replace:"/ .+/":""|regex_replace:"/-/":"/"|default:'(未登録)'|h}-->

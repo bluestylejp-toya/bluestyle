@@ -110,10 +110,6 @@ function func_return(){
                 <td><!--{$arrSex[$arrForm.sex]|h}--></td>
             </tr>
             <tr>
-                <th>ご職業</th>
-                <td><!--{$arrJob[$arrForm.job]|default:"未登録"|h}--></td>
-            </tr>
-            <tr>
                 <th>生年月日</th>
                 <td><!--{if strlen($arrForm.year) > 0 && strlen($arrForm.month) > 0 && strlen($arrForm.day) > 0}--><!--{$arrForm.year|h}-->年<!--{$arrForm.month|h}-->月<!--{$arrForm.day|h}-->日<!--{else}-->未登録<!--{/if}--></td>
             </tr>
