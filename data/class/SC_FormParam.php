@@ -407,6 +407,8 @@ class SC_FormParam
             $formParamList[$key]['length'] = $this->length[$index];
             // 入力値
             $formParamList[$key]['value'] = $this->getValue($key);
+            // 入力必須
+            $formParamList[$key]['require'] = in_array('EXIST_CHECK', $this->arrCheck[$index], true);
         }
 
         return $formParamList;

@@ -1071,6 +1071,9 @@ CREATE TABLE `dtb_customer` (
   `mobile_phone_id` text,
   `mailmaga_flg` smallint DEFAULT NULL,
   `default_payment_id` smallint DEFAULT NULL,
+  `nickname` text,
+  `self_introduction` text,
+  `hobbies` text,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
   KEY `dtb_customer_mobile_phone_id_key` (`mobile_phone_id`(255))
