@@ -195,6 +195,11 @@
                         </a>
                     </div>
 
+                    <dl class="pref">
+                        <dt> 出品者の都道府県</dt>
+                        <dd><!--{$arrPref[$arrProduct.pref]|h}--></dd>
+                    </dl>
+
                     <!--▼買い物カゴ-->
                     <div class="cart_area clearfix">
                         <!--{if $tpl_stock_find[$id]}-->

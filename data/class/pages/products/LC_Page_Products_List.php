@@ -70,6 +70,7 @@ class LC_Page_Products_List extends LC_Page_Ex
         $this->arrSTATUS_IMAGE      = $masterData->getMasterData('mtb_status_image');
         $this->arrDELIVERYDATE      = $masterData->getMasterData('mtb_delivery_date');
         $this->arrPRODUCTLISTMAX    = $masterData->getMasterData('mtb_product_list_max');
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
     }
 
     /**

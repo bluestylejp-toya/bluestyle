@@ -144,6 +144,7 @@ class SC_Product
             ,status
             ,del_flg
             ,update_date
+            ,pref
 __EOS__;
         $res = $objQuery->select($col, $this->alldtlSQL('', $product_ids));
 

@@ -281,6 +281,7 @@ class SC_DB_DBFactory
                     ,T4.point_rate
                     ,T4.deliv_fee
                     ,dtb_maker.name AS maker_name
+                    ,(SELECT pref FROM dtb_customer WHERE customer_id = dtb_products.customer_id) AS pref
                 FROM $dtb_products_table
                     INNER JOIN (
                         SELECT product_id
