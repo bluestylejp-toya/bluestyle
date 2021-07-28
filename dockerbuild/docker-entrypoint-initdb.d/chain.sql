@@ -2097,6 +2097,7 @@ CREATE TABLE `dtb_products` (
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` timestamp NOT NULL,
   `deliv_date_id` int DEFAULT NULL,
+  `customer_id` int NOT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2107,7 +2108,7 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2),(2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3),(3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,0),(2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,0),(3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,0);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3580,4 +3581,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-15  8:07:38
+-- Dump completed on 2021-07-24  0:32:28
