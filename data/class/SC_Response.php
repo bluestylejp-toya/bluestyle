@@ -373,4 +373,12 @@ class SC_Response
     protected static function exitWrapper() {
         exit;
     }
+
+    public static function json($data, $encode = true, $exit = true) {
+        header('Content-Type: application/json; charset=UTF-8');
+        echo $encode ? json_encode($data) : $data;
+        if ($exit) {
+            self::actionExit();
+        }
+    }
 }

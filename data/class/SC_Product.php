@@ -119,8 +119,12 @@ class SC_Product
      * @param array $product_ids 商品IDの配列
      * @return array    商品一覧の配列
      */
-    public function lists(&$objQuery, $product_ids = array())
+    public function lists(&$objQuery, $product_ids = array(), $addCols = [])
     {
+        if (!is_array($addCols)) {
+            throw new Exception;
+        }
+
         $col = <<< __EOS__
              product_id
             ,product_code_min
@@ -144,7 +148,13 @@ class SC_Product
             ,status
             ,del_flg
             ,update_date
+            ,pref
 __EOS__;
+
+        if (!empty($addCols)) {
+            $col .= ', ' . implode(', ', $addCols);
+        }
+
         $res = $objQuery->select($col, $this->alldtlSQL('', $product_ids));
 
         return $res;
@@ -161,7 +171,7 @@ __EOS__;
      * @param  array    $arrProductId 商品ID
      * @return array    商品一覧の配列 (キー: 商品ID)
      */
-    public function getListByProductIds(&$objQuery, $arrProductId = array())
+    public function getListByProductIds(&$objQuery, $arrProductId = array(), $addCols = [])
     {
         if (empty($arrProductId)) {
             return array();
@@ -176,7 +186,7 @@ __EOS__;
             // product_id の配列を生成ておく
             array_merge($arrProductId, $arrProductId, $arrProductId)
         );
-        $arrProducts = $this->lists($objQuery, $arrProductId);
+        $arrProducts = $this->lists($objQuery, $arrProductId, $addCols);
 
         // 配列のキーを商品IDに
         $arrProducts = SC_Utils_Ex::makeArrayIDToKey('product_id', $arrProducts);
@@ -748,5 +758,12 @@ __EOS__;
             return true;
         }
         return false;
+    }
+
+    public static function countFavoriteByProductId($product_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        return $objQuery->count('dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
     }
 }

@@ -195,6 +195,11 @@
                         </a>
                     </div>
 
+                    <dl class="pref">
+                        <dt> 出品者の都道府県</dt>
+                        <dd><!--{$arrPref[$arrProduct.pref]|h}--></dd>
+                    </dl>
+
                     <!--▼買い物カゴ-->
                     <div class="cart_area clearfix">
                         <!--{if $tpl_stock_find[$id]}-->
@@ -249,6 +254,24 @@
                         <!--{/if}-->
                     </div>
                     <!--▲買い物カゴ-->
+
+                    <div class="favorite_area <!--{if $arrProduct.registered_favorite}-->registered_favorite<!--{/if}-->">
+                        <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
+                            <!--{* お気に入り登録・解除 *}-->
+                            <div class="for_registered">
+                                <a href="javascript:" data-product_id="<!--{$arrProduct.product_id|h}-->">
+                                    お気に入り解除する</a>
+                            </div>
+                            <div class="for_unregistered">
+                                <a href="javascript:" data-product_id="<!--{$arrProduct.product_id|h}-->">
+                                    お気に入り登録する</a>
+                            </div>
+                        <!--{/if}-->
+                        <!--{* お気に入り件数 *}-->
+                        <div class="count_of_favorite">
+                            <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span> 件
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -268,3 +291,46 @@
     <!--{/foreach}-->
 
 </div>
+
+<style>
+.favorite_area .for_registered {
+    display: none;
+}
+.favorite_area .for_unregistered {
+    display: initial;
+}
+.favorite_area.registered_favorite .for_registered {
+    display: initial;
+}
+.favorite_area.registered_favorite .for_unregistered {
+    display: none;
+}
+</style>
+
+<script>
+$(".favorite_area a").on('click', function(){
+    let $closest = $(this).closest('.favorite_area');
+    let postData = {
+        mode: $closest.hasClass('registered_favorite') ? 'del_favorite_ajax' : 'add_favorite_ajax',
+        product_id: $(this).data('product_id'),
+        favorite_product_id: $(this).data('product_id'),
+        <!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->: <!--{$transactionid|@json_encode}-->,
+    };
+    $.ajax({
+        url: "detail.php",
+        method: 'POST',
+        data: postData,
+        dataType: 'json',
+    })
+        .done(function(data, textStatus, jqXHR) {
+            if (data.registered === true) {
+                $closest.addClass('registered_favorite');
+            }
+            else if (data.registered === false) {
+                $closest.removeClass('registered_favorite');
+            }
+            $closest.find('.count_of_favorite .num').text(data.count_of_favorite);
+        })
+    ;
+});
+</script>
