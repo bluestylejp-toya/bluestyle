@@ -206,10 +206,6 @@
                         <th class="alignL">お名前(フリガナ)</th>
                         <td><!--{$shippingItem.shipping_kana01|h}-->&nbsp;<!--{$shippingItem.shipping_kana02|h}--></td>
                     </tr>
-                    <tr>
-                        <th class="alignL">会社名</th>
-                        <td><!--{$shippingItem.shipping_company_name|h}--></td>
-                    </tr>
                     <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
                     <tr>
                         <th class="alignL">国</th>
@@ -231,14 +227,6 @@
                     <tr>
                         <th class="alignL">電話番号</th>
                         <td><!--{$shippingItem.shipping_tel01}-->-<!--{$shippingItem.shipping_tel02}-->-<!--{$shippingItem.shipping_tel03}--></td>
-                    </tr>
-                    <tr>
-                        <th class="alignL">FAX番号</th>
-                        <td>
-                            <!--{if $shippingItem.shipping_fax01 > 0}-->
-                                <!--{$shippingItem.shipping_fax01}-->-<!--{$shippingItem.shipping_fax02}-->-<!--{$shippingItem.shipping_fax03}-->
-                            <!--{/if}-->
-                        </td>
                     </tr>
                     <tr>
                         <th class="alignL">お届け日</th>

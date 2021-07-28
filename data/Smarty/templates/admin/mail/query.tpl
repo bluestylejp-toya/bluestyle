@@ -92,17 +92,6 @@ self.moveTo(20,20);self.focus();
                 <td><!--{$arrSearchData.search_tel|default:"(未指定)"|h}--></td>
             </tr>
             <tr>
-                <th>職業</th>
-                <td>
-                <!--{assign var=key value="search_job"}-->
-                <!--{if is_array($arrSearchData[$key])}-->
-                    <!--{foreach item=item from=$arrSearchData[$key]}-->
-                        <!--{$arrJob[$item]|h}-->　
-                    <!--{/foreach}-->
-                <!--{else}-->(未指定)<!--{/if}-->
-                </td>
-            </tr>
-            <tr>
                 <th>購入金額</th>
                 <td>
                     <!--{if $arrSearchData.search_buy_total_from == null}-->(未指定)<!--{else}--><!--{$arrSearchData.search_buy_total_from|h}-->円<!--{/if}--> ～

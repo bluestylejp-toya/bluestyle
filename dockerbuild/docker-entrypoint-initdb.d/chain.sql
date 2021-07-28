@@ -686,6 +686,7 @@ CREATE TABLE `dtb_customer` (
   `del_flg` smallint NOT NULL DEFAULT '0',
   `mobile_phone_id` text,
   `mailmaga_flg` smallint DEFAULT NULL,
+  `default_payment_id` smallint DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
   KEY `dtb_customer_mobile_phone_id_key` (`mobile_phone_id`(255))
@@ -3581,4 +3582,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-15 10:27:18
+-- Dump completed on 2021-07-12 10:43:43

@@ -101,21 +101,6 @@ class SC_CustomerList extends SC_SelectSql_Ex
             }
         }
 
-        // 職業
-        if (!isset($this->arrSql['search_job'])) $this->arrSql['search_job'] = '';
-        if (is_array($this->arrSql['search_job'])) {
-            if (in_array('不明', $this->arrSql['search_job'])) {
-                $arrJobVal = $this->setItemTermWithNull($this->arrSql['search_job'], 'job');
-            } else {
-                $arrJobVal = $this->setItemTerm($this->arrSql['search_job'], 'job');
-            }
-            if (is_array($arrJobVal)) {
-                foreach ($arrJobVal as $data) {
-                    $this->arrVal[] = $data;
-                }
-            }
-        }
-
         // E-MAIL
         if (!isset($this->arrSql['search_email'])) $this->arrSql['search_email'] = '';
         if (strlen($this->arrSql['search_email']) > 0) {
@@ -171,24 +156,6 @@ class SC_CustomerList extends SC_SelectSql_Ex
                 $this->arrVal[] = $searchemail_mobile;
             }
             $this->setWhere($sql_where);
-        }
-
-        // メールマガジンの場合
-        if ($mode == 'customer') {
-            // メルマガ受け取りの選択項目がフォームに存在する場合
-            if (isset($this->arrSql['search_htmlmail'])) {
-                $this->setWhere('status = 2');
-                if (SC_Utils_Ex::sfIsInt($this->arrSql['search_htmlmail'])) {
-                    // メルマガ拒否している会員も含む場合は、条件を付加しない
-                    if ($this->arrSql['search_htmlmail'] != 99) {
-                        $this->setWhere('mailmaga_flg = ?');
-                        $this->arrVal[] = $this->arrSql['search_htmlmail'];
-                    }
-                } else {
-                    //　メルマガ購読拒否は省く
-                    $this->setWhere('mailmaga_flg <> 3');
-                }
-            }
         }
 
         // 配信メールアドレス種別
@@ -338,7 +305,7 @@ class SC_CustomerList extends SC_SelectSql_Ex
      */
     public function getList()
     {
-        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,sex,email,email_mobile,tel01,tel02,tel03,pref,status,update_date,mailmaga_flg FROM dtb_customer ';
+        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,sex,email,email_mobile,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
 
         return $this->getSql(2);
     }

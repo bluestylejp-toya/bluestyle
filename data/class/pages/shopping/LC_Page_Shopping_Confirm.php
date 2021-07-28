@@ -45,8 +45,6 @@ class LC_Page_Shopping_Confirm extends LC_Page_Ex
         $this->arrPref = $masterData->getMasterData('mtb_pref');
         $this->arrCountry = $masterData->getMasterData('mtb_country');
         $this->arrSex = $masterData->getMasterData('mtb_sex');
-        $this->arrJob = $masterData->getMasterData('mtb_job');
-        $this->arrMAILMAGATYPE = $masterData->getMasterData('mtb_mail_magazine_type');
         $this->arrReminder = $masterData->getMasterData('mtb_reminder');
         $this->arrDeliv = SC_Helper_Delivery_Ex::getIDValueList('service_name');
         $this->httpCacheControl('nocache');

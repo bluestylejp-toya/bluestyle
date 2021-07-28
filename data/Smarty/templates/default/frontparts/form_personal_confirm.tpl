@@ -43,13 +43,6 @@
             <!--{$arrForm[$key2].value|h}-->
         </td>
     </tr>
-    <tr>
-        <th>会社名</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`company_name"}-->
-            <!--{$arrForm[$key1].value|h}-->
-        </td>
-    </tr>
     <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
     <tr>
         <th>国</th>
@@ -94,19 +87,6 @@
             <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}--> - <!--{$arrForm[$key3].value|h}-->
         </td>
     </tr>
-    <tr>
-        <th>FAX</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`fax01"}-->
-            <!--{assign var=key2 value="`$prefix`fax02"}-->
-            <!--{assign var=key3 value="`$prefix`fax03"}-->
-            <!--{if strlen($arrForm[$key1].value) > 0 && strlen($arrForm[$key2].value) > 0 && strlen($arrForm[$key3].value) > 0}-->
-                <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}--> - <!--{$arrForm[$key3].value|h}-->
-            <!--{else}-->
-                未登録
-            <!--{/if}-->
-        </td>
-    </tr>
     <!--{if $flgFields > 1}-->
         <tr>
             <th>メールアドレス</th>
@@ -134,14 +114,6 @@
                 <!--{assign var=key1 value="`$prefix`sex"}-->
                 <!--{assign var="sex_id" value=$arrForm[$key1].value}-->
                 <!--{$arrSex[$sex_id]|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>職業</th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`job"}-->
-                <!--{assign var="job_id" value=$arrForm[$key1].value}-->
-                <!--{$arrJob[$job_id]|default:"未登録"|h}-->
             </td>
         </tr>
         <tr>
@@ -173,11 +145,11 @@
                 </td>
             </tr>
             <tr>
-                <th>メールマガジン送付について</th>
+                <th>お支払い方法</th>
                 <td>
-                    <!--{assign var=key1 value="`$prefix`mailmaga_flg"}-->
-                    <!--{assign var="mailmaga_flg_id" value=$arrForm[$key1].value}-->
-                    <!--{$arrMAILMAGATYPE[$mailmaga_flg_id]|h}-->
+                    <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
+                    <!--{assign var="default_payment_id" value=$arrForm[$key1].value}-->
+                    <!--{$arrPayment[$default_payment_id]|h}-->
                 </td>
             </tr>
         <!--{/if}-->

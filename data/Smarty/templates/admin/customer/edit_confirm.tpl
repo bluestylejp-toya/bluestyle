@@ -75,10 +75,6 @@ function func_return(){
                 <th>お名前(フリガナ)</th>
                 <td><!--{$arrForm.kana01|h}--><!--{$arrForm.kana02|h}-->　様</td>
             </tr>
-            <tr>
-                <th>会社名</th>
-                <td><!--{$arrForm.company_name|h}--></td>
-            </tr>
             <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
             <tr>
                 <th>国</th>
@@ -110,16 +106,8 @@ function func_return(){
                 <td><!--{$arrForm.tel01|h}--> - <!--{$arrForm.tel02|h}--> - <!--{$arrForm.tel03|h}--></td>
             </tr>
             <tr>
-                <th>FAX</th>
-                <td><!--{if strlen($arrForm.fax01) > 0}--><!--{$arrForm.fax01|h}--> - <!--{$arrForm.fax02|h}--> - <!--{$arrForm.fax03|h}--><!--{else}-->未登録<!--{/if}--></td>
-            </tr>
-            <tr>
                 <th>性別</th>
                 <td><!--{$arrSex[$arrForm.sex]|h}--></td>
-            </tr>
-            <tr>
-                <th>ご職業</th>
-                <td><!--{$arrJob[$arrForm.job]|default:"未登録"|h}--></td>
             </tr>
             <tr>
                 <th>生年月日</th>
@@ -135,10 +123,6 @@ function func_return(){
                     質問： <!--{$arrReminder[$arrForm.reminder]|h}--><br />
                     答え： <!--{$smarty.const.DEFAULT_PASSWORD}-->
                 </td>
-            </tr>
-            <tr>
-                <th>メールマガジン</th>
-                <td><!--{$arrMailMagazineType[$arrForm.mailmaga_flg]|h}--></td>
             </tr>
             <tr>
                 <th>SHOP用メモ</th>

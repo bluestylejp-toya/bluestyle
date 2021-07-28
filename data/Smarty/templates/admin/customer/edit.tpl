@@ -98,13 +98,6 @@
                     <input type="text" name="kana01" value="<!--{$arrForm.kana01|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.kana01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />&nbsp;&nbsp;<input type="text" name="kana02" value="<!--{$arrForm.kana02|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.kana02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
                 </td>
             </tr>
-            <tr>
-                <th>会社名</th>
-                <td>
-                    <span class="attention"><!--{$arrErr.company_name}--></span>
-                    <input type="text" name="company_name" value="<!--{$arrForm.company_name|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.company_name != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
-            </tr>
             <!--{if !$smarty.const.FORM_COUNTRY_ENABLE}-->
             <input type="hidden" name="country_id" value="<!--{$smarty.const.DEFAULT_COUNTRY_ID}-->" />
             <!--{else}-->
@@ -169,29 +162,12 @@
                 </td>
             </tr>
             <tr>
-                <th>FAX</th>
-                <td>
-                    <span class="attention"><!--{$arrErr.fax01}--><!--{$arrErr.fax02}--><!--{$arrErr.fax03}--></span>
-                    <input type="text" name="fax01" value="<!--{$arrForm.fax01|h}-->" maxlength="<!--{$smarty.const.TEL_ITEM_LEN}-->" size="6" class="box6" <!--{if $arrErr.fax01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /> - <input type="text" name="fax02" value="<!--{$arrForm.fax02|h}-->" maxlength="<!--{$smarty.const.TEL_ITEM_LEN}-->" size="6" class="box6" <!--{if $arrErr.fax01 != "" || $arrErr.fax02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /> - <input type="text" name="fax03" value="<!--{$arrForm.fax03|h}-->" maxlength="<!--{$smarty.const.TEL_ITEM_LEN}-->" size="6" class="box6" <!--{if $arrErr.fax01 != "" || $arrErr.fax03 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
-            </tr>
-            <tr>
                 <th>性別<span class="attention"> *</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.sex}--></span>
                     <span <!--{if $arrErr.sex != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
                         <!--{html_radios name="sex" options=$arrSex separator=" " selected=$arrForm.sex}-->
                     </span>
-                </td>
-            </tr>
-            <tr>
-                <th>ご職業</th>
-                <td>
-                    <span class="attention"><!--{$arrErr.job}--></span>
-                    <select name="job" <!--{if $arrErr.job != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> >
-                    <option value="" selected="selected">選択してください</option>
-                    <!--{html_options options=$arrJob selected=$arrForm.job}-->
-                    </select>
                 </td>
             </tr>
             <tr>
@@ -215,10 +191,8 @@
             <tr>
                 <th>パスワード<span class="attention"> *</span></th>
                 <td>
-                    <span class="attention"><!--{$arrErr.password}--><!--{$arrErr.password02}--></span>
-                    <input type="password" name="password" value="<!--{$arrForm.password|h}-->" size="30" class="box30" <!--{if $arrErr.password != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />　半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字（記号可）<br />
-                    <input type="password" name="password02" value="<!--{$arrForm.password02|h}-->" size="30" class="box30" <!--{if $arrErr.password02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                    <p><span class="attention mini">確認のために2度入力してください。</span></p>
+                    <span class="attention"><!--{$arrErr.password}--></span>
+                    <input type="password" name="password" value="<!--{$arrForm.password|h}-->" size="30" class="box30" <!--{if $arrErr.password != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />　半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字（記号可）
                 </td>
             </tr>
             <tr>
@@ -232,15 +206,6 @@
                     </select><br />
                     答え：
                     <input type="text" name="reminder_answer" value="<!--{$arrForm.reminder_answer|h}-->" size="30" class="box30" <!--{if $arrErr.reminder_answer != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
-            </tr>
-            <tr>
-                <th>メールマガジン<span class="attention"> *</span></th>
-                <td>
-                    <span class="attention"><!--{$arrErr.mailmaga_flg}--></span>
-                    <span <!--{if $arrErr.mailmaga_flg != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
-                        <!--{html_radios name="mailmaga_flg" options=$arrMailMagazineType separator=" " selected=$arrForm.mailmaga_flg}-->
-                    </span>
                 </td>
             </tr>
             <tr>

@@ -92,29 +92,6 @@
     ）
 <!--{/if}-->
 
-<!--{if $arrForm.page.value == "job"}-->
-    <strong>職業別集計</strong>&nbsp;（
-    <span class="over">全体</span>
-    ）
-    <!--{*（
-    <!--{if $smarty.post.type == 'all' || $smarty.post.type == ''}-->
-        <span class="over">全体</span>&nbsp;
-    <!--{else}-->
-        <a href="?" onclick="document.form1.mode.value='search'; return eccube.setValueAndSubmit('form1', 'type', 'all');">全体</a>&nbsp;
-    <!--{/if}-->
-    <!--{if $smarty.post.type == 'member'}-->
-        <span class="over">会員</span>&nbsp;
-    <!--{else}-->
-        <a href="?" onclick="document.form1.mode.value='search'; return eccube.setValueAndSubmit('form1', 'type', 'member');">会員</a>&nbsp;
-    <!--{/if}-->
-    <!--{if $smarty.post.type == 'nonmember'}-->
-        <span class="over">非会員</span>&nbsp;
-    <!--{else}-->
-        <a href="?" onclick="document.form1.mode.value='search'; return eccube.setValueAndSubmit('form1', 'type', 'nonmember');">非会員</a>&nbsp;
-    <!--{/if}-->
-    ）*}-->
-<!--{/if}-->
-
 <!--{if $arrForm.page.value == "member"}-->
     <strong>会員別集計</strong>
 <!--{/if}-->

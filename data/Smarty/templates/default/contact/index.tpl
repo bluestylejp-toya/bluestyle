@@ -99,14 +99,8 @@
                 <tr>
                     <th>メールアドレス<span class="attention">※</span></th>
                     <td>
-                        <span class="attention"><!--{$arrErr.email}--><!--{$arrErr.email02}--></span>
-                        <input type="text" class="box380 top" name="email" value="<!--{$arrForm.email.value|default:$arrData.email|h}-->" style="<!--{$arrErr.email|sfGetErrorColor}-->; ime-mode: disabled;" /><br />
-                        <!--{* ログインしていれば入力済みにする *}-->
-                        <!--{if $smarty.session.customer}-->
-                        <!--{assign var=email02 value=$arrData.email}-->
-                        <!--{/if}-->
-                        <input type="text" class="box380" name="email02" value="<!--{$arrForm.email02.value|default:$email02|h}-->" style="<!--{$arrErr.email02|sfGetErrorColor}-->; ime-mode: disabled;" /><br />
-                        <p class="mini"><span class="attention">確認のため2度入力してください。</span></p>
+                        <span class="attention"><!--{$arrErr.email}--></span>
+                        <input type="text" class="box380 top" name="email" value="<!--{$arrForm.email.value|default:$arrData.email|h}-->" style="<!--{$arrErr.email|sfGetErrorColor}-->; ime-mode: disabled;" />
                     </td>
                 </tr>
                 <tr>

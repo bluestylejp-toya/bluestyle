@@ -180,10 +180,6 @@
                         <th scope="row">お名前(フリガナ)</th>
                         <td><!--{$arrForm.order_kana01|h}--> <!--{$arrForm.order_kana02|h}--></td>
                     </tr>
-                    <tr>
-                        <th scope="row">会社名</th>
-                        <td><!--{$arrForm.order_company_name|h}--></td>
-                    </tr>
                     <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
                     <tr>
                         <th scope="row">国</th>
@@ -207,24 +203,12 @@
                         <td><!--{$arrForm.order_tel01}-->-<!--{$arrForm.order_tel02}-->-<!--{$arrForm.order_tel03}--></td>
                     </tr>
                     <tr>
-                        <th scope="row">FAX番号</th>
-                        <td>
-                            <!--{if $arrForm.order_fax01 > 0}-->
-                                <!--{$arrForm.order_fax01}-->-<!--{$arrForm.order_fax02}-->-<!--{$arrForm.order_fax03}-->
-                            <!--{/if}-->
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row">メールアドレス</th>
                         <td><!--{$arrForm.order_email|h}--></td>
                     </tr>
                     <tr>
                         <th scope="row">性別</th>
                         <td><!--{$arrSex[$arrForm.order_sex]|h}--></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">職業</th>
-                        <td><!--{$arrJob[$arrForm.order_job]|default:'(未登録)'|h}--></td>
                     </tr>
                     <tr>
                         <th scope="row">生年月日</th>
@@ -288,10 +272,6 @@
                             <th scope="row">お名前(フリガナ)</th>
                             <td><!--{$shippingItem.shipping_kana01|h}--> <!--{$shippingItem.shipping_kana02|h}--></td>
                         </tr>
-                        <tr>
-                            <th scope="row">会社名</th>
-                            <td><!--{$shippingItem.shipping_company_name|h}--></td>
-                        </tr>
                         <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
                         <tr>
                             <th scope="row">国</th>
@@ -313,14 +293,6 @@
                         <tr>
                             <th scope="row">電話番号</th>
                             <td><!--{$shippingItem.shipping_tel01}-->-<!--{$shippingItem.shipping_tel02}-->-<!--{$shippingItem.shipping_tel03}--></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">FAX番号</th>
-                            <td>
-                                <!--{if $shippingItem.shipping_fax01 > 0}-->
-                                    <!--{$shippingItem.shipping_fax01}-->-<!--{$shippingItem.shipping_fax02}-->-<!--{$shippingItem.shipping_fax03}-->
-                                <!--{/if}-->
-                            </td>
                         </tr>
                         <!--{if $cartKey != $smarty.const.PRODUCT_TYPE_DOWNLOAD}-->
                             <tr>

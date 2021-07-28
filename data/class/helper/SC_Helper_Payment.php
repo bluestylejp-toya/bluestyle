@@ -71,6 +71,23 @@ class SC_Helper_Payment
     }
 
     /**
+     * お支払方法名称を配列で取得する。
+     *
+     * @param  boolean $has_deleted 削除された支払方法も含む場合 true; 初期値 false
+     * @return array
+     */
+    public function getPaymentMethods($has_deleted = false)
+    {
+        $arrReturn = [];
+        $arrPaymentList = $this->getList($has_deleted);
+        foreach ($arrPaymentList as $arrPayment) {
+            $arrReturn[$arrPayment['payment_id']] = $arrPayment['payment_method'];
+        }
+
+        return $arrReturn;
+    }
+
+    /**
      * 購入金額に応じた支払方法を取得する.
      *
      * @param  integer $total 購入金額

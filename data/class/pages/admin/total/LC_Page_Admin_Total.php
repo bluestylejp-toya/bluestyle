@@ -50,7 +50,6 @@ class LC_Page_Admin_Total extends LC_Page_Admin_Ex
         $masterData                 = new SC_DB_MasterData_Ex();
         $this->arrWDAY              = $masterData->getMasterData('mtb_wday');
         $this->arrSex               = $masterData->getMasterData('mtb_sex');
-        $this->arrJob               = $masterData->getMasterData('mtb_job');
 
         // 登録・更新日検索用
         $objDate                    = new SC_Date_Ex();
@@ -65,7 +64,6 @@ class LC_Page_Admin_Total extends LC_Page_Admin_Ex
         $this->arrTitle['term']     = '期間別集計';
         $this->arrTitle['products'] = '商品別集計';
         $this->arrTitle['age']      = '年代別集計';
-        $this->arrTitle['job']      = '職業別集計';
         $this->arrTitle['member']   = '会員別集計';
 
         // 月度集計のkey名
@@ -603,43 +601,6 @@ __EOS__;
         return array($arrTotalResults, $tpl_image);
     }
 
-    /** 職業別集計 **/
-    public function lfGetOrderJob($type, $sdate, $edate)
-    {
-        $objQuery = SC_Query_Ex::getSingletonInstance();
-        list($where, $arrWhereVal) = $this->lfGetWhereMember('dtb_order.create_date', $sdate, $edate, $type);
-
-        $col = <<< __EOS__
-            job,
-            COUNT(order_id) AS order_count,
-            SUM(total) AS total,
-            AVG(total) AS total_average
-__EOS__;
-
-        $from   = 'dtb_order JOIN dtb_customer ON dtb_order.customer_id = dtb_customer.customer_id';
-
-        $where .= ' AND dtb_order.del_flg = 0 AND dtb_order.status <> ?';
-        $arrWhereVal[] = ORDER_CANCEL;
-
-        $objQuery->setGroupBy('job');
-        $objQuery->setOrder('total DESC');
-        $arrTotalResults = $objQuery->select($col, $from, $where, $arrWhereVal);
-
-        foreach ($arrTotalResults as $key => $value) {
-            $arrResult =& $arrTotalResults[$key];
-            $job_key = $arrResult['job'];
-            if ($job_key != '') {
-                $arrResult['job_name'] = $this->arrJob[$job_key];
-            } else {
-                $arrResult['job_name'] = '未回答';
-            }
-
-        }
-        $tpl_image     = $this->lfGetGraphPie($arrTotalResults, 'job_name', 'job_' . $type, '(売上比率)', $sdate, $edate);
-
-        return array($arrTotalResults, $tpl_image);
-    }
-
     /** 年代別集計 **/
     public function lfGetOrderAge($type, $sdate, $edate)
     {
@@ -868,21 +829,6 @@ __EOS__;
                     'products_count',
                     'price',
                     'total',
-                );
-                break;
-            // 職業別集計
-            case 'job':
-                $arrTitleCol = array(
-                    '職業',
-                    '購入件数',
-                    '購入合計',
-                    '購入平均',
-                );
-                $arrDataCol = array(
-                    'job_name',
-                    'order_count',
-                    'total',
-                    'total_average',
                 );
                 break;
             // 会員別集計

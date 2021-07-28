@@ -105,12 +105,6 @@
         <input type="text" name="<!--{$key}-->" maxlength="<!--{$arrForm[$key].length}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60" /></td>
 </tr>
 <tr>
-    <th>職業</th>
-    <td colspan="3">
-        <!--{assign var=key value="search_job"}-->
-        <!--{html_checkboxes name=$key options=$arrJob separator="&nbsp;" selected=$arrForm[$key].value}--></td>
-</tr>
-<tr>
     <th>購入金額</th>
     <td>
         <!--{assign var=key1 value="search_buy_total_from"}-->
