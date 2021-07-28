@@ -778,7 +778,7 @@ CREATE TABLE `dtb_deliv` (
 
 LOCK TABLES `dtb_deliv` WRITE;
 /*!40000 ALTER TABLE `dtb_deliv` DISABLE KEYS */;
-INSERT INTO `dtb_deliv` VALUES (1,1,'サンプル業者','サンプル業者',NULL,NULL,2,1,0,2,'2021-01-13 01:40:21','2021-01-13 01:40:21'),(2,2,'配送無し(ダウンロード商品用)','なし',NULL,NULL,1,1,0,2,'2021-01-13 01:40:21','2021-01-13 01:40:21');
+INSERT INTO `dtb_deliv` VALUES (1,1,'ネコポス','ネコポス',NULL,NULL,2,1,0,2,'2021-01-13 01:40:21','2021-07-15 08:01:59'),(2,2,'配送無し(ダウンロード商品用)','なし',NULL,NULL,1,1,0,2,'2021-01-13 01:40:21','2021-01-13 01:40:21');
 /*!40000 ALTER TABLE `dtb_deliv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -827,7 +827,7 @@ CREATE TABLE `dtb_delivfee` (
 
 LOCK TABLES `dtb_delivfee` WRITE;
 /*!40000 ALTER TABLE `dtb_delivfee` DISABLE KEYS */;
-INSERT INTO `dtb_delivfee` VALUES (1,1,1000,1),(1,2,1000,2),(1,3,1000,3),(1,4,1000,4),(1,5,1000,5),(1,6,1000,6),(1,7,1000,7),(1,8,1000,8),(1,9,1000,9),(1,10,1000,10),(1,11,1000,11),(1,12,1000,12),(1,13,1000,13),(1,14,1000,14),(1,15,1000,15),(1,16,1000,16),(1,17,1000,17),(1,18,1000,18),(1,19,1000,19),(1,20,1000,20),(1,21,1000,21),(1,22,1000,22),(1,23,1000,23),(1,24,1000,24),(1,25,1000,25),(1,26,1000,26),(1,27,1000,27),(1,28,1000,28),(1,29,1000,29),(1,30,1000,30),(1,31,1000,31),(1,32,1000,32),(1,33,1000,33),(1,34,1000,34),(1,35,1000,35),(1,36,1000,36),(1,37,1000,37),(1,38,1000,38),(1,39,1000,39),(1,40,1000,40),(1,41,1000,41),(1,42,1000,42),(1,43,1000,43),(1,44,1000,44),(1,45,1000,45),(1,46,1000,46),(1,47,1000,47),(2,1,0,1),(2,2,0,2),(2,3,0,3),(2,4,0,4),(2,5,0,5),(2,6,0,6),(2,7,0,7),(2,8,0,8),(2,9,0,9),(2,10,0,10),(2,11,0,11),(2,12,0,12),(2,13,0,13),(2,14,0,14),(2,15,0,15),(2,16,0,16),(2,17,0,17),(2,18,0,18),(2,19,0,19),(2,20,0,20),(2,21,0,21),(2,22,0,22),(2,23,0,23),(2,24,0,24),(2,25,0,25),(2,26,0,26),(2,27,0,27),(2,28,0,28),(2,29,0,29),(2,30,0,30),(2,31,0,31),(2,32,0,32),(2,33,0,33),(2,34,0,34),(2,35,0,35),(2,36,0,36),(2,37,0,37),(2,38,0,38),(2,39,0,39),(2,40,0,40),(2,41,0,41),(2,42,0,42),(2,43,0,43),(2,44,0,44),(2,45,0,45),(2,46,0,46),(2,47,0,47);
+INSERT INTO `dtb_delivfee` VALUES (1,1,350,1),(1,2,350,2),(1,3,350,3),(1,4,350,4),(1,5,350,5),(1,6,350,6),(1,7,350,7),(1,8,350,8),(1,9,350,9),(1,10,350,10),(1,11,350,11),(1,12,350,12),(1,13,350,13),(1,14,350,14),(1,15,350,15),(1,16,350,16),(1,17,350,17),(1,18,350,18),(1,19,350,19),(1,20,350,20),(1,21,350,21),(1,22,350,22),(1,23,350,23),(1,24,350,24),(1,25,350,25),(1,26,350,26),(1,27,350,27),(1,28,350,28),(1,29,350,29),(1,30,350,30),(1,31,350,31),(1,32,350,32),(1,33,350,33),(1,34,350,34),(1,35,350,35),(1,36,350,36),(1,37,350,37),(1,38,350,38),(1,39,350,39),(1,40,350,40),(1,41,350,41),(1,42,350,42),(1,43,350,43),(1,44,350,44),(1,45,350,45),(1,46,350,46),(1,47,350,47),(2,1,0,1),(2,2,0,2),(2,3,0,3),(2,4,0,4),(2,5,0,5),(2,6,0,6),(2,7,0,7),(2,8,0,8),(2,9,0,9),(2,10,0,10),(2,11,0,11),(2,12,0,12),(2,13,0,13),(2,14,0,14),(2,15,0,15),(2,16,0,16),(2,17,0,17),(2,18,0,18),(2,19,0,19),(2,20,0,20),(2,21,0,21),(2,22,0,22),(2,23,0,23),(2,24,0,24),(2,25,0,25),(2,26,0,26),(2,27,0,27),(2,28,0,28),(2,29,0,29),(2,30,0,30),(2,31,0,31),(2,32,0,32),(2,33,0,33),(2,34,0,34),(2,35,0,35),(2,36,0,36),(2,37,0,37),(2,38,0,38),(2,39,0,39),(2,40,0,40),(2,41,0,41),(2,42,0,42),(2,43,0,43),(2,44,0,44),(2,45,0,45),(2,46,0,46),(2,47,0,47);
 /*!40000 ALTER TABLE `dtb_delivfee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -852,7 +852,6 @@ CREATE TABLE `dtb_delivtime` (
 
 LOCK TABLES `dtb_delivtime` WRITE;
 /*!40000 ALTER TABLE `dtb_delivtime` DISABLE KEYS */;
-INSERT INTO `dtb_delivtime` VALUES (1,1,'午前'),(1,2,'午後');
 /*!40000 ALTER TABLE `dtb_delivtime` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2098,6 +2097,7 @@ CREATE TABLE `dtb_products` (
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` timestamp NOT NULL,
   `deliv_date_id` int DEFAULT NULL,
+  `customer_id` int NOT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2108,7 +2108,7 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2),(2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3),(3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,0),(2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,0),(3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,0);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
