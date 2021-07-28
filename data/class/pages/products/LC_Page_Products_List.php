@@ -258,7 +258,7 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $addCols = ["(SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = alldtl.product_id AND dtb_customer.del_flg = 0) AS count_of_favorite"];
+        $addCols = ['count_of_favorite'];
         if ($this->tpl_login) {
             $customer_id = $this->objCustomer->getValue('customer_id');
             $addCols[] = "(CASE WHEN EXISTS (SELECT * FROM dtb_customer_favorite_products WHERE product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . ") THEN 1 ELSE 0 END) AS registered_favorite";

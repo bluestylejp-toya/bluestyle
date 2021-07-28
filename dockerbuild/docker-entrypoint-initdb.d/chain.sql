@@ -338,6 +338,7 @@ INSERT INTO `dtb_bloc` VALUES (10,6,'ログイン','login.tpl','login','2021-01-
 INSERT INTO `dtb_bloc` VALUES (10,7,'おすすめ商品','recommend.tpl','recommend','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/recommend.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,8,'カレンダー','calendar.tpl','calendar','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/calendar.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,9,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (10,10,'新着アイテム','new_item.tpl','new_item','2021-07-28 00:00:00','2021-07-28 00:00:00','frontparts/bloc/new_item.php',0,NULL);
 /*!40000 ALTER TABLE `dtb_bloc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,6 +469,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,3,6,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,3,8,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,4,5,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,4,7,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,10,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
@@ -2743,9 +2745,9 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,0);
-INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,0);
-INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,0);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1);
+INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1);
+INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2788,18 +2790,9 @@ CREATE TABLE `dtb_products_class` (
 
 LOCK TABLES `dtb_products_class` WRITE;
 /*!40000 ALTER TABLE `dtb_products_class` DISABLE KEYS */;
-INSERT INTO `dtb_products_class` VALUES (0,1,0,0,1,'ice-01',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1);
-INSERT INTO `dtb_products_class` VALUES (1,1,3,6,1,'ice-01',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (2,1,3,5,1,'ice-02',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (3,1,3,4,1,'ice-03',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (4,1,2,6,1,'ice-04',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (5,1,2,5,1,'ice-05',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (6,1,2,4,1,'ice-06',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (7,1,1,6,1,'ice-07',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (8,1,1,5,1,'ice-08',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (9,1,1,4,1,'ice-09',NULL,1,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
+INSERT INTO `dtb_products_class` VALUES (0,1,0,0,1,'ice-01',1,0,NULL,1000,933,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (10,2,0,0,1,'nabe-01',100,0,5,1700,1650,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (11,3,0,0,2,'recipe-01',NULL,1,NULL,NULL,100,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23','おなべレシピ.pdf','recipe_onabe.pdf',0);
+INSERT INTO `dtb_products_class` VALUES (11,3,0,0,2,'recipe-01',0,0,NULL,NULL,100,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23','おなべレシピ.pdf','recipe_onabe.pdf',0);
 /*!40000 ALTER TABLE `dtb_products_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3041,7 +3034,6 @@ CREATE TABLE `dtb_session` (
 
 LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
-INSERT INTO `dtb_session` VALUES ('58b36bbcb09041e69ffa22ea25e66a49','cart|a:0:{}prev_url|s:72:\"/eccubebaseadmin/?transactionid=4a63db52a690db984e2e21119c3f3a8e94dcf728\";login_name|s:9:\"管理者\";last_login|s:19:\"2021-01-13 10:41:20\";transactionid|s:40:\"4a63db52a690db984e2e21119c3f3a8e94dcf728\";','2021-01-13 01:41:20','2021-01-13 01:41:37');
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4964,4 +4956,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-28  7:13:29
+-- Dump completed on 2021-07-28 15:55:30
