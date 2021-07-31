@@ -2404,6 +2404,8 @@ INSERT INTO `dtb_pagelayout` VALUES (10,25,'商品購入/お支払方法・お�
 INSERT INTO `dtb_pagelayout` VALUES (10,26,'商品購入/ご入力内容のご確認','shopping/confirm.php','shopping/confirm',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,27,'商品購入/ご注文完了','shopping/complete.php','shopping/complete',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,28,'プライバシーポリシー','guide/privacy.php','guide/privacy',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集','mypage/profile.php','mypage/profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
