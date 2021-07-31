@@ -2406,6 +2406,7 @@ INSERT INTO `dtb_pagelayout` VALUES (10,27,'商品購入/ご注文完了','shopp
 INSERT INTO `dtb_pagelayout` VALUES (10,28,'プライバシーポリシー','guide/privacy.php','guide/privacy',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集','mypage/profile.php','mypage/profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,31,'MYページ/アイテム登録','mypage/item_edit.php','mypage/item_edit',1,1,2,NULL,NULL,NULL,NULL,'2021-07-31 00:00:00','2021-07-31 00:00:00','noindex');
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2732,6 +2733,22 @@ CREATE TABLE `dtb_products` (
   `sub_comment6` mediumtext,
   `sub_image6` text,
   `sub_large_image6` text,
+  `sub_title7` text,
+  `sub_comment7` mediumtext,
+  `sub_image7` text,
+  `sub_large_image7` text,
+  `sub_title8` text,
+  `sub_comment8` mediumtext,
+  `sub_image8` text,
+  `sub_large_image8` text,
+  `sub_title9` text,
+  `sub_comment9` mediumtext,
+  `sub_image9` text,
+  `sub_large_image9` text,
+  `sub_title10` text,
+  `sub_comment10` mediumtext,
+  `sub_image10` text,
+  `sub_large_image10` text,
   `del_flg` smallint NOT NULL DEFAULT '0',
   `creator_id` int NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2748,9 +2765,9 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,0);
-INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,0);
-INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,0);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,'暑い夏にどうぞ。','ice130.jpg','冷たいものはいかがですか?','ice260.jpg','ice500.jpg',NULL,'<b>おいしいよ<b>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1);
+INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,'一人用からあります。','nabe130.jpg','たまには鍋でもどうでしょう。','nabe260.jpg','nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1);
+INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,'あの、秘伝のお鍋レシピです。','recipe130.jpg','<b>この商品はダウンロード商品です</b><br />自分でチャレンジしてみたい方に。','recipe260.jpg','recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3563,7 +3580,7 @@ INSERT INTO `mtb_constants` VALUES ('PRICE_LEN','8',197,'金額桁数');
 INSERT INTO `mtb_constants` VALUES ('PRODUCT_TYPE_DOWNLOAD','2',901,'ダウンロード商品');
 INSERT INTO `mtb_constants` VALUES ('PRODUCT_TYPE_NORMAL','1',900,'通常商品');
 INSERT INTO `mtb_constants` VALUES ('PRODUCTS_TOTAL_MAX','15',55,'商品集計で何位まで表示するか');
-INSERT INTO `mtb_constants` VALUES ('PRODUCTSUB_MAX','5',185,'商品サブ情報最大数');
+INSERT INTO `mtb_constants` VALUES ('PRODUCTSUB_MAX','9',185,'商品サブ情報最大数');
 INSERT INTO `mtb_constants` VALUES ('RECOMMEND_NUM','8',269,'おすすめ商品表示数');
 INSERT INTO `mtb_constants` VALUES ('RECOMMEND_PRODUCT_MAX','6',268,'関連商品表示数');
 INSERT INTO `mtb_constants` VALUES ('RELEASE_YEAR','2005',84,'本システムの稼働開始年');
@@ -4778,11 +4795,11 @@ CREATE TABLE `mtb_status` (
 
 LOCK TABLES `mtb_status` WRITE;
 /*!40000 ALTER TABLE `mtb_status` DISABLE KEYS */;
-INSERT INTO `mtb_status` VALUES (1,'NEW',0);
-INSERT INTO `mtb_status` VALUES (2,'残りわずか',1);
-INSERT INTO `mtb_status` VALUES (3,'ポイント２倍',2);
-INSERT INTO `mtb_status` VALUES (4,'オススメ',3);
-INSERT INTO `mtb_status` VALUES (5,'限定品',4);
+INSERT INTO `mtb_status` VALUES (1,'とても良い',0);
+INSERT INTO `mtb_status` VALUES (2,'良い',1);
+INSERT INTO `mtb_status` VALUES (3,'まあまあ',2);
+INSERT INTO `mtb_status` VALUES (4,'悪い',3);
+INSERT INTO `mtb_status` VALUES (5,'とても悪い',4);
 /*!40000 ALTER TABLE `mtb_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4807,11 +4824,6 @@ CREATE TABLE `mtb_status_image` (
 
 LOCK TABLES `mtb_status_image` WRITE;
 /*!40000 ALTER TABLE `mtb_status_image` DISABLE KEYS */;
-INSERT INTO `mtb_status_image` VALUES (1,'img/icon/ico_01.gif',0);
-INSERT INTO `mtb_status_image` VALUES (2,'img/icon/ico_02.gif',1);
-INSERT INTO `mtb_status_image` VALUES (3,'img/icon/ico_03.gif',2);
-INSERT INTO `mtb_status_image` VALUES (4,'img/icon/ico_04.gif',3);
-INSERT INTO `mtb_status_image` VALUES (5,'img/icon/ico_05.gif',4);
 /*!40000 ALTER TABLE `mtb_status_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4969,4 +4981,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-28  7:13:29
+-- Dump completed on 2021-08-01  0:44:13

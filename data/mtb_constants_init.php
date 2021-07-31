@@ -24,7 +24,7 @@ define('MODULE_DIR', "downloads/module/");
 /** ダウンロードモジュール保存ディレクトリ */
 define('MODULE_REALDIR', DATA_REALDIR . MODULE_DIR);
 /** DBセッションの有効期限(秒) */
-define('MAX_LIFETIME', 7200);
+define('MAX_LIFETIME', 7776000);
 /** マスターデータキャッシュディレクトリ */
 define('MASTER_DATA_REALDIR', DATA_REALDIR . "cache/");
 /** アップデート管理用ファイル格納場所 */
@@ -218,7 +218,7 @@ define('SEARCH_PMAX', 10);
 /** ページ番号の最大表示数量 */
 define('NAVI_PMAX', 4);
 /** 商品サブ情報最大数 */
-define('PRODUCTSUB_MAX', 5);
+define('PRODUCTSUB_MAX', 9);
 /** お届け時間の最大表示数 */
 define('DELIVTIME_MAX', 16);
 /** 配送料金の最大表示数 */
@@ -488,3 +488,4 @@ define('PENDING_ORDER_CANCEL_FLAG', true);
 define('API_ENABLE_FLAG', false);
 /** UTF-8依存文字が入力された際に表示する文字(Unicode値の整数 デフォルト: ?) */
 define('SUBSTITUTE_CHAR', 63);
+
