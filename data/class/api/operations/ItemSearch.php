@@ -69,7 +69,7 @@ class API_ItemSearch extends SC_Api_Abstract_Ex
                 $arrProducts = $this->setStatusDataTo($arrProducts, $arrSTATUS, $arrSTATUS_IMAGE);
                 SC_Product_Ex::setPriceTaxTo($arrProducts);
                 foreach ($arrProducts as $key=>$val) {
-                    $arrProducts[$key]['main_list_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_list_image']);
+                    $arrProducts[$key]['main_large_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_large_image']);
                 }
 
                 $arrData = array();

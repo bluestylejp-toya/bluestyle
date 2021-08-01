@@ -82,11 +82,8 @@
                 <!--{foreach from=$arrCartItems item=item}-->
                     <tr>
                         <td class="alignC">
-                            <a
-                                <!--{if $item.productsClass.main_image|strlen >= 1}--> href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_image|sfNoImageMainList|h}-->" class="expansion" target="_blank"
-                                <!--{/if}-->
-                            >
-                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$item.productsClass.name|h}-->" /></a>
+                            <a href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_large_image|sfNoImageMainList|h}-->" class="expansion" target="_blank">
+                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_large_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$item.productsClass.name|h}-->" /></a>
                         </td>
                         <td>
                             <ul>
@@ -237,11 +234,8 @@
                         <!--{foreach item=item from=$shippingItem.shipment_item}-->
                             <tr>
                                 <td class="alignC">
-                                    <a
-                                        <!--{if $item.productsClass.main_image|strlen >= 1}--> href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_image|sfNoImageMainList|h}-->" class="expansion" target="_blank"
-                                        <!--{/if}-->
-                                    >
-                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$item.productsClass.name|h}-->" /></a>
+                                    <a href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_large_image|sfNoImageMainList|h}-->" class="expansion" target="_blank">
+                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_large_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$item.productsClass.name|h}-->" /></a>
                                 </td>
                                 <td><!--{* 商品名 *}--><strong><!--{$item.productsClass.name|h}--></strong><br />
                                     <!--{if $item.productsClass.classcategory_name1 != ""}-->

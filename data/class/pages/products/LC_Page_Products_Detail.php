@@ -310,8 +310,8 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $this->productStatus = $objProduct->getProductStatus(array($product_id));
 
         // 画像ファイル指定がない場合の置換処理
-        $this->arrProduct['main_image']
-            = SC_Utils_Ex::sfNoImageMain($this->arrProduct['main_image']);
+        $this->arrProduct['main_large_image']
+            = SC_Utils_Ex::sfNoImageMain($this->arrProduct['main_large_image']);
 
         $this->subImageFlag = $this->lfSetFile($this->objUpFile, $this->arrProduct, $this->arrFile);
         //レビュー情報の取得
@@ -360,9 +360,10 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      */
     public function lfInitFile(SC_UploadFile $objUpFile)
     {
-        $objUpFile->addFile('詳細-メイン画像', 'main_image', array('jpg'), IMAGE_SIZE);
+        $objUpFile->addFile('画像(1)', 'main_large_image', array('jpg'), IMAGE_SIZE);
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
-            $objUpFile->addFile("詳細-サブ画像$cnt", "sub_image$cnt", array('jpg'), IMAGE_SIZE);
+            $num = $cnt + 1;
+            $objUpFile->addFile("画像({$num})", "sub_large_image$cnt", array('jpg'), IMAGE_SIZE);
         }
 
         return $objUpFile;
@@ -596,7 +597,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         // サブ画像の有無を判定
         $subImageFlag = false;
         for ($i = 1; $i <= PRODUCTSUB_MAX; $i++) {
-            if ($arrFile['sub_image' . $i]['filepath'] != '') {
+            if ($arrFile['sub_large_image' . $i]['filepath'] != '') {
                 $subImageFlag = true;
             }
         }

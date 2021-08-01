@@ -512,7 +512,7 @@ class LC_Page_Products_List extends LC_Page_Ex
                 $arrJson[$key] = $val;
             } else {
                 // 一覧メイン画像の指定が無い商品のための処理
-                $val['main_list_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_list_image']);
+                $val['main_large_image'] = SC_Utils_Ex::sfNoImageMain($val['main_large_image']);
 
                 // JSON用に並び順を維持するために配列に入れ直す
                 $arrJson[] = $val;

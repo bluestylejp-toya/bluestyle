@@ -86,7 +86,7 @@ class LC_Page_Mypage_Favorite extends LC_Page_AbstractMypage_Ex
 
                 // 一覧メイン画像の指定が無い商品のための処理
                 foreach ($this->arrFavorite as $key => $val) {
-                    $this->arrFavorite[$key]['main_list_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_list_image']);
+                    $this->arrFavorite[$key]['main_large_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_large_image']);
                 }
 
                 echo SC_Utils_Ex::jsonEncode($this->arrFavorite);

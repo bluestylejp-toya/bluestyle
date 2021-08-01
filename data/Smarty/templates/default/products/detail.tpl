@@ -37,31 +37,25 @@
         <div id="detailarea" class="clearfix">
             <div id="detailphotobloc">
                 <div class="photo">
-                    <!--{assign var=key value="main_image"}-->
+                    <!--{assign var=key value="main_large_image"}-->
                     <!--★画像★-->
-                    <!--{if $arrProduct.main_large_image|strlen >= 1}-->
-                        <a
-                            href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|h}-->"
-                            class="expansion"
-                            target="_blank"
-                        >
-                    <!--{/if}-->
+                    <a
+                        href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|h}-->"
+                        class="expansion"
+                        target="_blank"
+                    >
                         <img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="picture" />
-                    <!--{if $arrProduct.main_large_image|strlen >= 1}-->
-                        </a>
-                    <!--{/if}-->
+                    </a>
                 </div>
-                <!--{if $arrProduct.main_large_image|strlen >= 1}-->
-                    <span class="mini">
-                            <!--★拡大する★-->
-                            <a
-                                href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|h}-->"
-                                class="expansion"
-                                target="_blank"
-                            >
-                                画像を拡大する</a>
-                    </span>
-                <!--{/if}-->
+                <span class="mini">
+                    <!--★拡大する★-->
+                    <a
+                        href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|h}-->"
+                        class="expansion"
+                        target="_blank"
+                    >
+                        画像を拡大する</a>
+                </span>
             </div>
 
             <div id="detailrightbloc">
@@ -284,7 +278,7 @@
     <!--▼サブコメント-->
     <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
         <!--{assign var=key value="sub_title`$smarty.section.cnt.index+1`"}-->
-        <!--{assign var=ikey value="sub_image`$smarty.section.cnt.index+1`"}-->
+        <!--{assign var=ikey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
         <!--{if $arrProduct[$key] != "" or $arrProduct[$ikey]|strlen >= 1}-->
             <div class="sub_area clearfix">
                 <h3><!--★サブタイトル★--><!--{$arrProduct[$key]|h}--></h3>
@@ -355,7 +349,7 @@
                 <div class="product_item">
                     <div class="productImage">
                         <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrItem.product_id|u}-->">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrItem.main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrItem.name|h}-->" /></a>
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrItem.main_large_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrItem.name|h}-->" /></a>
                     </div>
                     <!--{assign var=price02_min value="`$arrItem.price02_min_inctax`"}-->
                     <!--{assign var=price02_max value="`$arrItem.price02_max_inctax`"}-->
