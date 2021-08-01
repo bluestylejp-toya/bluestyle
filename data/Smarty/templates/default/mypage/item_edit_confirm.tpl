@@ -64,7 +64,7 @@
                     <tr>
                         <th>詳細-メインコメント</th>
                         <td>
-                            <!--{$arrForm.main_comment|h}-->
+                            <!--{$arrForm.main_comment|h|nl2br}-->
                         </td>
                     </tr>
                     <tr>

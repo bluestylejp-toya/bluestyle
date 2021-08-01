@@ -38,9 +38,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     /** 商品ステータス */
     public $arrSTATUS;
 
-    /** 商品ステータス画像 */
-    public $arrSTATUS_IMAGE;
-
     /** 発送予定日 */
     public $arrDELIVERYDATE;
 
@@ -135,7 +132,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         parent::init();
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
-        $this->arrSTATUS_IMAGE = $masterData->getMasterData('mtb_status_image');
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
 

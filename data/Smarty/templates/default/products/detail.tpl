@@ -64,9 +64,7 @@
                 <!--{if !empty($ps)}-->
                     <ul class="status_icon clearfix">
                         <!--{foreach from=$ps item=status}-->
-                        <li>
-                            <img src="<!--{$TPL_URLPATH}--><!--{$arrSTATUS_IMAGE[$status]}-->" width="60" height="17" alt="<!--{$arrSTATUS[$status]}-->" id="icon<!--{$status}-->" />
-                        </li>
+                            <li class="product_status<!--{$status|h}-->"><!--{$arrSTATUS[$status]|h}--></li>
                         <!--{/foreach}-->
                     </ul>
                 <!--{/if}-->
@@ -171,7 +169,7 @@
                 </dl>
 
                 <!--★詳細メインコメント★-->
-                <div class="main_comment"><!--{$arrProduct.main_comment|nl2br_html}--></div>
+                <div class="main_comment"><!--{$arrProduct.main_comment|h|nl2br}--></div>
 
                 <!--▼買い物カゴ-->
                 <div class="cart_area clearfix">
