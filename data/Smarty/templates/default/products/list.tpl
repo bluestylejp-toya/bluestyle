@@ -290,45 +290,6 @@
 
 </div>
 
-<style>
-.favorite_area .for_registered {
-    display: none;
-}
-.favorite_area .for_unregistered {
-    display: initial;
-}
-.favorite_area.registered_favorite .for_registered {
-    display: initial;
-}
-.favorite_area.registered_favorite .for_unregistered {
-    display: none;
-}
-</style>
-
 <script>
-$(".favorite_area a").on('click', function(){
-    let $closest = $(this).closest('.favorite_area');
-    let postData = {
-        mode: $closest.hasClass('registered_favorite') ? 'del_favorite_ajax' : 'add_favorite_ajax',
-        product_id: $(this).data('product_id'),
-        favorite_product_id: $(this).data('product_id'),
-        <!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->: <!--{$transactionid|@json_encode}-->,
-    };
-    $.ajax({
-        url: "detail.php",
-        method: 'POST',
-        data: postData,
-        dataType: 'json',
-    })
-        .done(function(data, textStatus, jqXHR) {
-            if (data.registered === true) {
-                $closest.addClass('registered_favorite');
-            }
-            else if (data.registered === false) {
-                $closest.removeClass('registered_favorite');
-            }
-            $closest.find('.count_of_favorite .num').text(data.count_of_favorite);
-        })
-    ;
-});
+$('#undercolumn .favorite_area a').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
 </script>

@@ -338,6 +338,7 @@ INSERT INTO `dtb_bloc` VALUES (10,6,'ログイン','login.tpl','login','2021-01-
 INSERT INTO `dtb_bloc` VALUES (10,7,'おすすめ商品','recommend.tpl','recommend','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/recommend.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,8,'カレンダー','calendar.tpl','calendar','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/calendar.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,9,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (10,10,'新着アイテム','new_item.tpl','new_item','2021-07-28 00:00:00','2021-07-28 00:00:00','frontparts/bloc/new_item.php',0,NULL);
 /*!40000 ALTER TABLE `dtb_bloc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,6 +469,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,3,6,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,3,8,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,4,5,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,4,7,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,10,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);

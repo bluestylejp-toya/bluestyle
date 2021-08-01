@@ -607,3 +607,37 @@ require( "slick-carousel/slick/slick-theme.css" );
     }
   } );
 } )( window );
+
+(function ($) {
+  $.fn.init_favorite_area = function(transaction_id_name, transaction_id) {
+    this.each(function() {
+      $(this).on('click', function(){
+        let $closest = $(this).closest('.favorite_area');
+        let postData = {
+          mode: $closest.hasClass('registered_favorite') ? 'del_favorite_ajax' : 'add_favorite_ajax',
+          product_id: $(this).data('product_id'),
+          favorite_product_id: $(this).data('product_id'),
+        };
+        postData[transaction_id_name] = transaction_id;
+        $.ajax({
+          url: "/products/detail.php",
+          method: 'POST',
+          data: postData,
+          dataType: 'json',
+        })
+          .done(function(data, textStatus, jqXHR) {
+              if (data.registered === true) {
+                  $closest.addClass('registered_favorite');
+              }
+              else if (data.registered === false) {
+                  $closest.removeClass('registered_favorite');
+              }
+              $closest.find('.count_of_favorite .num').text(data.count_of_favorite);
+          })
+        ;
+      });
+    });
+
+    return this;
+  };
+}(jQuery));

@@ -46,6 +46,20 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>出品中アイテム</th>
+                    <td>
+                        <ui>
+                            <!--{foreach from=$arrMyProducts item=arrProduct}-->
+                                <li>
+                                    <ul>
+                                        <li><!--{$arrProduct.name|h}--></li>
+                                    </ul>
+                                </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
                     <th>都道府県</th>
                     <td><!--{$arrPref[$tpl_pref_id]|h}--></td>
                 </tr>
