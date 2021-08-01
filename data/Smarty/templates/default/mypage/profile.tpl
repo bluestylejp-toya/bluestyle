@@ -48,12 +48,26 @@
                 <tr>
                     <th>出品中アイテム</th>
                     <td>
-                        <ui>
+                        <ul>
                             <!--{foreach from=$arrMyProducts item=arrProduct}-->
                                 <li>
-                                    <ul>
-                                        <li><!--{$arrProduct.name|h}--></li>
-                                    </ul>
+                                    <div><!--{$arrProduct.name|h}--></div>
+                                    <div><a href="item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|u|h}-->">編集</a></div>
+                                    <dl>
+                                        <dt>「リクエスト（欲しい）」の数</dt>
+                                        <dd><!--{$arrProduct.count_of_favorite|n2s|h}--></dd>
+                                    </dl>
+                                    <div>
+                                        <!--{* メイン画像 *}-->
+                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
+                                        <!--{* サブ画像 *}-->
+                                        <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
+                                            <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
+                                            <!--{if strlen($arrProduct[$key]) >= 1}-->
+                                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct[$key]|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(<!--{$smarty.section.cnt.iteration+1|h}-->)" />
+                                            <!--{/if}-->
+                                        <!--{/section}-->
+                                    </div>
                                 </li>
                             <!--{/foreach}-->
                         </ul>
