@@ -171,6 +171,11 @@
                 <!--★詳細メインコメント★-->
                 <div class="main_comment"><!--{$arrProduct.main_comment|h|nl2br}--></div>
 
+                <dl>
+                    <dt>タグ</dt>
+                    <dd><!--{$arrProduct.comment3|h}--></dd>
+                </dl>
+
                 <!--▼買い物カゴ-->
                 <div class="cart_area clearfix">
                     <input type="hidden" name="mode" value="cart" />
