@@ -62,12 +62,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>詳細-メインコメント</th>
-                        <td>
-                            <!--{$arrForm.main_comment|h|nl2br}-->
-                        </td>
-                    </tr>
-                    <tr>
                         <th>詳細-メイン拡大画像</th>
                         <td>
                             <!--{assign var=key value="main_large_image"}-->

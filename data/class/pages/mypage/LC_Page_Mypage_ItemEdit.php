@@ -212,7 +212,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $objFormParam->addParam('商品ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('発送日目安', 'deliv_date_id', INT_LEN, 'n', array('NUM_CHECK'));
         $objFormParam->addParam('検索ワード', 'comment3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('詳細-メインコメント', 'main_comment', LLTEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('save_main_large_image', 'save_main_large_image', '', '', array());
         $objFormParam->addParam('temp_main_large_image', 'temp_main_large_image', '', '', array());
 
@@ -535,7 +534,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
         // 配列の添字を定義
         $checkArray = array('name', 'status',
-                            'main_comment',
                             'comment2', 'comment3',
                             'comment4', 'comment5', 'comment6',
                             'deliv_date_id');
@@ -544,7 +542,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         // INSERTする値を作成する。
         $sqlval['name'] = $arrList['name'];
         $sqlval['status'] = $arrList['status'];
-        $sqlval['main_comment'] = $arrList['main_comment'];
         $sqlval['comment2'] = $arrList['comment2'];
         $sqlval['comment3'] = $arrList['comment3'];
         $sqlval['comment4'] = $arrList['comment4'];

@@ -76,14 +76,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>詳細-メインコメント<span class="attention">*</span></th>
-                            <td>
-                                <span class="attention"><!--{$arrErr.main_comment}--></span>
-                                <textarea name="main_comment" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{if $arrErr.main_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_comment.value|h}--></textarea><br />
-                                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
-                            </td>
-                        </tr>
-                        <tr>
                             <!--{assign var=key value="main_large_image"}-->
                             <th>画像(1)<br />[<!--{$smarty.const.LARGE_IMAGE_WIDTH}-->×<!--{$smarty.const.LARGE_IMAGE_HEIGHT}-->]</th>
                             <td>
