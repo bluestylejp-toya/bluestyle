@@ -74,7 +74,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                     $this->tpl_mainpage = 'mypage/item_edit_confirm.tpl';
                     $this->tpl_subtitle = 'アイテム登録(確認ページ)';
                     $this->arrCatList = $this->lfGetCategoryList_Edit();
-                    $this->arrForm = $this->lfSetViewParam_ConfirmPage($objUpFile, $arrForm);
+                    $this->lfSetViewParam_ConfirmPage($objUpFile, $objFormParam);
                 } else {
                     // 入力画面表示設定
                     $this->lfSetViewParam_InputPage($objUpFile, $objFormParam);
@@ -84,7 +84,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             case 'complete':
                 // パラメーター初期化, 取得
                 $this->lfInitFormParam($objFormParam, $_POST);
-                $arrForm = $this->lfGetFormParam_Complete($objFormParam);
+                $arrForm = $objFormParam->getHashArray();
                 // エラーチェック
                 $this->arrErr = $this->lfCheckError_Edit($objFormParam, $objUpFile, $arrForm);
                 if (count($this->arrErr) == 0) {
@@ -206,12 +206,11 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     public function lfInitFormParam(&$objFormParam, $arrPost)
     {
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('商品名', 'name', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('商品カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('公開・非公開', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), DEFAULT_PRODUCT_DISP);
-        $objFormParam->addParam('商品ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('発送日目安', 'deliv_date_id', INT_LEN, 'n', array('NUM_CHECK'));
-        $objFormParam->addParam('検索ワード', 'comment3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('タイトル', 'name', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('公開ステータス', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), DEFAULT_PRODUCT_DISP);
+        $objFormParam->addParam('状態ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('タグ', 'comment3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('save_main_large_image', 'save_main_large_image', '', '', array());
         $objFormParam->addParam('temp_main_large_image', 'temp_main_large_image', '', '', array());
 
@@ -297,22 +296,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     }
 
     /**
-     * フォームパラメーター取得
-     * - 登録モード
-     *
-     * @param  SC_FormParam_Ex $objFormParam SC_FormParamインスタンス
-     * @return array  フォームパラメーター配列
-     */
-    public function lfGetFormParam_Complete(&$objFormParam)
-    {
-        $arrForm = $objFormParam->getHashArray();
-        $arrForm['category_id'] = SC_Utils_Ex::jsonDecode($arrForm['category_id']);
-        $objFormParam->setValue('category_id', $arrForm['category_id']);
-
-        return $arrForm;
-    }
-
-    /**
      * 表示用フォームパラメーター取得
      * - 入力画面
      *
@@ -328,7 +311,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         list($this->arrCatVal, $this->arrCatOut) = $objDb->sfGetLevelCatList(false);
 
         $arrForm = $objFormParam->getHashArray();
-        $this->tpl_json_category_id = !empty($arrForm['category_id']) ? SC_Utils_Ex::jsonEncode($arrForm['category_id']) : SC_Utils_Ex::jsonEncode(array());
 
         // アップロードファイル情報取得(Hidden用)
         $this->arrHidden = $objUpFile->getHiddenFileList();
@@ -344,19 +326,15 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
      * - 確認画面
      *
      * @param  SC_UploadFile_Ex $objUpFile   SC_UploadFileインスタンス
-     * @param  array  $arrForm     フォーム入力パラメーター配列
+     * @param  SC_FormParam_Ex $objFormParam SC_FormParamインスタンス
      * @return array  表示用フォームパラメーター配列
      */
-    public function lfSetViewParam_ConfirmPage(&$objUpFile, &$arrForm)
+    public function lfSetViewParam_ConfirmPage(&$objUpFile, &$objFormParam)
     {
-        // カテゴリ表示用
-        $arrForm['arrCategoryId'] = $arrForm['category_id'];
-        // hidden に渡す値は serialize する
-        $arrForm['category_id'] = SC_Utils_Ex::jsonEncode($arrForm['category_id']);
-        // 画像ファイル用データ取得
-        $arrForm['arrFile'] = $objUpFile->getFormFileList();
+        // 画像ファイル表示用データ取得
+        $this->arrFile = $objUpFile->getFormFileList();
 
-        return $arrForm;
+        $this->arrForm = $objFormParam->getFormParamList();
     }
 
     /**
@@ -485,7 +463,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $table = 'dtb_product_categories';
         $where = 'product_id = ?';
         $objQuery->setOption('');
-        $arrProduct['category_id'] = $objQuery->getCol($col, $table, $where, array($product_id));
+        $arrProduct['category_id'] = $objQuery->get($col, $table, $where, array($product_id));
 
         // 商品規格ID取得
         $arrProduct['product_class_id'] = SC_Utils_Ex::sfGetProductClassId($product_id, '0', '0');
@@ -533,21 +511,14 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $customer_id = $this->objCustomer->getValue('customer_id');
 
         // 配列の添字を定義
-        $checkArray = array('name', 'status',
-                            'comment2', 'comment3',
-                            'comment4', 'comment5', 'comment6',
-                            'deliv_date_id');
-        $arrList = SC_Utils_Ex::arrayDefineIndexes($arrList, $checkArray);
+        $checkArray = array();
+        $sqlval = [
+            'name' => $arrList['name'],
+            'status' => $arrList['status'],
+            'comment3' => $arrList['comment3'],
+        ];
 
         // INSERTする値を作成する。
-        $sqlval['name'] = $arrList['name'];
-        $sqlval['status'] = $arrList['status'];
-        $sqlval['comment2'] = $arrList['comment2'];
-        $sqlval['comment3'] = $arrList['comment3'];
-        $sqlval['comment4'] = $arrList['comment4'];
-        $sqlval['comment5'] = $arrList['comment5'];
-        $sqlval['comment6'] = $arrList['comment6'];
-        $sqlval['deliv_date_id'] = $arrList['deliv_date_id'];
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
         $arrRet = $objUpFile->getDBFileList();
         $sqlval = array_merge($sqlval, $arrRet);
@@ -567,7 +538,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             $arrList['product_id'] = $product_id;
 
             // カテゴリを更新
-            $objDb->updateProductCategories($arrList['category_id'], $product_id);
+            $objDb->updateProductCategories([$arrList['category_id']], $product_id);
 
         // 更新
         } else {
@@ -593,15 +564,15 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             $objQuery->update('dtb_products', $sqlval, $where, array($product_id, $customer_id));
 
             // カテゴリを更新
-            $objDb->updateProductCategories($arrList['category_id'], $product_id);
+            $objDb->updateProductCategories([$arrList['category_id']], $product_id);
         }
 
         // 規格なし商品（商品規格テーブルの更新）
-        $arrList['product_class_id'] = $this->lfInsertDummyProductClass($arrList);
+        $this->lfInsertDummyProductClass($arrList);
 
         // 商品ステータス設定
         $objProduct = new SC_Product_Ex();
-        $objProduct->setProductStatus($product_id, $arrList['product_status']);
+        $objProduct->setProductStatus($product_id, [$arrList['product_status']]);
 
         $objQuery->commit();
 

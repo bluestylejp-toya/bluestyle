@@ -10,78 +10,71 @@
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="mode" value="complete" />
             <!--{foreach key=key item=item from=$arrForm}-->
-                <!--{if $key == 'product_status'}-->
-                    <!--{foreach item=statusVal from=$item}-->
-                        <input type="hidden" name="<!--{$key}-->[]" value="<!--{$statusVal|h}-->" />
-                    <!--{/foreach}-->
-                <!--{elseif $key == 'arrCategoryId'}-->
-                    <!--{* nop *}-->
-                <!--{elseif $key == 'arrFile'}-->
-                    <!--{* nop *}-->
+                <!--{if is_array($item.value)}-->
+                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item.value|@json_encode|h}-->" />
                 <!--{else}-->
-                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item|h}-->" />
+                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item.value|h}-->" />
                 <!--{/if}-->
             <!--{/foreach}-->
             <div id="products" class="contents-main">
 
                 <table>
                     <tr>
-                        <th>商品名</th>
+                        <!--{assign var=key value="name"}-->
+                        <th><!--{$arrForm[$key].disp_name|h}--></th>
                         <td>
-                            <!--{$arrForm.name|h}-->
+                            <!--{$arrForm.name.value|h}-->
                         </td>
                     </tr>
                     <tr>
-                        <th>商品カテゴリ</th>
+                        <!--{assign var=key value="category_id"}-->
+                        <th><!--{$arrForm[$key].disp_name|h}--></th>
                         <td>
-                            <!--{section name=cnt loop=$arrForm.arrCategoryId}-->
-                                <!--{assign var=key value=$arrForm.arrCategoryId[cnt]}-->
-                                <!--{$arrCatList[$key]|sfTrim}--><br />
-                            <!--{/section}-->
+                            <!--{$arrCatList[$arrForm.category_id.value]|sfTrim}-->
                         </td>
                     </tr>
                     <tr>
-                        <th>公開・非公開</th>
+                        <!--{assign var=key value="status"}-->
+                        <th><!--{$arrForm[$key].disp_name|h}--></th>
                         <td>
-                            <!--{$arrDISP[$arrForm.status]|h}-->
+                            <!--{$arrDISP[$arrForm.status.value]|h}-->
                         </td>
                     </tr>
                     <tr>
-                        <th>商品ステータス</th>
+                        <!--{assign var=key value="product_status"}-->
+                        <th><!--{$arrForm[$key].disp_name|h}--></th>
                         <td>
-                            <!--{foreach from=$arrForm.product_status item=status}-->
+                            <!--{foreach from=$arrForm.product_status.value item=status}-->
                                 <!--{$arrSTATUS[$status]|h}-->
                             <!--{/foreach}-->
                         </td>
                     </tr>
-
                     <tr>
-                        <th>検索ワード</th>
+                        <!--{assign var=key value="comment3"}-->
+                        <th><!--{$arrForm[$key].disp_name|h}--></th>
                         <td>
-                            <!--{$arrForm.comment3|h}-->
+                            <!--{$arrForm.comment3.value|h}-->
                         </td>
                     </tr>
                     <tr>
-                        <th>詳細-メイン拡大画像</th>
+                        <!--{assign var=key value="main_large_image"}-->
+                        <th><!--{$arrFile[$key].disp_name|h}--></th>
                         <td>
-                            <!--{assign var=key value="main_large_image"}-->
-                            <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                                <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" /><br />
+                            <!--{if $arrFile[$key].filepath != ""}-->
+                                <img src="<!--{$arrFile[$key].filepath}-->" alt="" /><br />
                             <!--{/if}-->
                         </td>
                     </tr>
                     <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
-                        <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
                         <tr>
-                            <th>詳細-サブ拡大画像（<!--{$smarty.section.cnt.iteration}-->）</th>
+                            <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
+                            <th><!--{$arrFile[$key].disp_name|h}--></th>
                             <td>
-                                <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                                <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                                    <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" /><br />
+                                <!--{if $arrFile[$key].filepath != ""}-->
+                                    <img src="<!--{$arrFile[$key].filepath}-->" alt="" /><br />
                                 <!--{/if}-->
                             </td>
                         </tr>
-                        <!--▲商品<!--{$smarty.section.cnt.iteration}-->-->
                     <!--{/section}-->
                 </table>
 
