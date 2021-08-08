@@ -719,8 +719,8 @@ class SC_Helper_Customer
      */
     public function sfCustomerProfileParam(&$objFormParam)
     {
-        $objFormParam->addParam('ニックネーム', 'nickname', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('紹介文', 'self_introduction', LTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('趣味', 'hobbies', LTEXT_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('ニックネーム', 'nickname', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
+        $objFormParam->addParam('紹介文', 'self_introduction', LTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
+        $objFormParam->addParam('趣味', 'hobbies', LTEXT_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
     }
 }
