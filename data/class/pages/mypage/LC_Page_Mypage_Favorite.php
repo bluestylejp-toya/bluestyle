@@ -145,7 +145,7 @@ class LC_Page_Mypage_Favorite extends LC_Page_AbstractMypage_Ex
         $where = $this->lfMakeWhere('', $arrProductId);
         $where .= ' AND del_flg = 0';
         $objQuery->setWhere($where, $arrProductId);
-        $addCols = ["(SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = alldtl.product_id AND dtb_customer.del_flg = 0) AS count_of_favorite"];
+        $addCols = ['count_of_favorite'];
         $arrProducts = $objProduct->lists($objQuery, [], $addCols);
 
         //取得している並び順で並び替え

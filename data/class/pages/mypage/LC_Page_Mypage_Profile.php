@@ -92,6 +92,7 @@ class LC_Page_Mypage_Profile extends LC_Page_AbstractMypage_Ex
                 break;
         }
         $this->arrForm = $objFormParam->getFormParamList();
+        $this->arrMyProducts = $this->getMyProducts($customer_id);
 
         $this->tpl_pref_id = $objCustomer->getValue('pref');
     }
@@ -126,5 +127,30 @@ class LC_Page_Mypage_Profile extends LC_Page_AbstractMypage_Ex
         $arrErr = $objFormParam->checkError();
 
         return $arrErr;
+    }
+
+    /**
+     * 指定された会員の商品を取得する
+     *
+     * @return array
+     */
+    public function getMyProducts($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objProduct = new SC_Product_Ex();
+
+        // [仕様] 非公開商品も表示する。
+        $objQuery->setWhere('alldtl.customer_id = ?', [$customer_id]);
+        $objQuery->andWhere('alldtl.del_flg = 0');
+        $objQuery->setOrder('alldtl.product_id DESC');
+        $objQuery->setLimit(10);
+
+        $addCols = ['count_of_favorite'];
+        for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
+            $addCols[] = 'sub_large_image' . $cnt;
+        }
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        return $arrProducts;
     }
 }
