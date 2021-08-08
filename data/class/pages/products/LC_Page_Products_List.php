@@ -70,7 +70,6 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $masterData                 = new SC_DB_MasterData_Ex();
         $this->arrSTATUS            = $masterData->getMasterData('mtb_status');
-        $this->arrSTATUS_IMAGE      = $masterData->getMasterData('mtb_status_image');
         $this->arrDELIVERYDATE      = $masterData->getMasterData('mtb_delivery_date');
         $this->arrPRODUCTLISTMAX    = $masterData->getMasterData('mtb_product_list_max');
         $this->arrPref = $masterData->getMasterData('mtb_pref');
@@ -503,7 +502,7 @@ class LC_Page_Products_List extends LC_Page_Ex
      */
     public function doJson()
     {
-        $this->arrProducts = $this->setStatusDataTo($this->arrProducts, $this->arrSTATUS, $this->arrSTATUS_IMAGE);
+        $this->arrProducts = $this->setStatusDataTo($this->arrProducts, $this->arrSTATUS, []);
         SC_Product_Ex::setPriceTaxTo($this->arrProducts);
 
         $arrJson = array();
@@ -512,7 +511,7 @@ class LC_Page_Products_List extends LC_Page_Ex
                 $arrJson[$key] = $val;
             } else {
                 // 一覧メイン画像の指定が無い商品のための処理
-                $val['main_list_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_list_image']);
+                $val['main_large_image'] = SC_Utils_Ex::sfNoImageMain($val['main_large_image']);
 
                 // JSON用に並び順を維持するために配列に入れ直す
                 $arrJson[] = $val;

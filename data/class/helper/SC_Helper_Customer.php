@@ -709,4 +709,18 @@ class SC_Helper_Customer
 
         return true;
     }
+
+    /**
+     * プロフィール編集フォーム初期化
+     *
+     * @param SC_FormParam $objFormParam SC_FormParam インスタンス
+     * @access public
+     * @return void
+     */
+    public function sfCustomerProfileParam(&$objFormParam)
+    {
+        $objFormParam->addParam('ニックネーム', 'nickname', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('紹介文', 'self_introduction', LTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('趣味', 'hobbies', LTEXT_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+    }
 }

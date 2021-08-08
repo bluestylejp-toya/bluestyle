@@ -59,11 +59,8 @@
                     <!--{assign var=index value=$smarty.section.line.index}-->
                     <tr>
                         <td class="alignC">
-                            <a
-                                <!--{if $arrForm.main_image[$index]|strlen >= 1}--> href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.main_image.value[$index]|sfNoImageMainList|h}-->" class="expansion" target="_blank"
-                                <!--{/if}-->
-                            >
-                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.main_list_image.value[$index]|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrForm.name.value[$index]|h}-->" /></a>
+                            <a href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.main_large_image.value[$index]|sfNoImageMainList|h}-->" class="expansion" target="_blank">
+                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.main_large_image.value[$index]|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrForm.name.value[$index]|h}-->" /></a>
                         </td>
                         <td><!--{* 商品名 *}--><strong><!--{$arrForm.name.value[$index]|h}--></strong><br />
                             <!--{if $arrForm.classcategory_name1.value[$index] != ""}-->
@@ -95,9 +92,7 @@
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
                             <!--{assign var=key value="classcategory_name2"}-->
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
-                            <!--{assign var=key value="main_image"}-->
-                            <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
-                            <!--{assign var=key value="main_list_image"}-->
+                            <!--{assign var=key value="main_large_image"}-->
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
                             <!--{assign var=key value="price"}-->
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />

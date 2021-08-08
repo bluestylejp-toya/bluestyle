@@ -135,18 +135,6 @@ class LC_Page_Rss_Products extends LC_Page_Ex
         // 値の整形
         foreach (array_keys($arrProduct) as $key) {
             // 画像ファイルのURLセット
-            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_list_image'])) {
-                $dir = IMAGE_SAVE_RSS_URL;
-            } else {
-                $dir = IMAGE_TEMP_RSS_URL;
-            }
-            $arrProduct[$key]['main_list_image'] = $dir . $arrProduct[$key]['main_list_image'];
-            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_image'])) {
-                $dir = IMAGE_SAVE_RSS_URL;
-            } else {
-                $dir = IMAGE_TEMP_RSS_URL;
-            }
-            $arrProduct[$key]['main_image'] = $dir . $arrProduct[$key]['main_image'];
             if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_large_image'])) {
                 $dir = IMAGE_SAVE_RSS_URL;
             } else {
@@ -196,18 +184,6 @@ class LC_Page_Rss_Products extends LC_Page_Ex
         // 値の整形
         foreach (array_keys($arrProduct) as $key) {
             // 画像ファイルのURLセット
-            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_list_image'])) {
-                $dir = IMAGE_SAVE_RSS_URL;
-            } else {
-                $dir = IMAGE_TEMP_RSS_URL;
-            }
-            $arrProduct[$key]['main_list_image'] = $dir . $arrProduct[$key]['main_list_image'];
-            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_image'])) {
-                $dir = IMAGE_SAVE_RSS_URL;
-            } else {
-                $dir = IMAGE_TEMP_RSS_URL;
-            }
-            $arrProduct[$key]['main_image'] = $dir . $arrProduct[$key]['main_image'];
             if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_large_image'])) {
                 $dir = IMAGE_SAVE_RSS_URL;
             } else {

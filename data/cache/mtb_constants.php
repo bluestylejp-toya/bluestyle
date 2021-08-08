@@ -218,7 +218,7 @@ define('SEARCH_PMAX', 10);
 /** ページ番号の最大表示数量 */
 define('NAVI_PMAX', 4);
 /** 商品サブ情報最大数 */
-define('PRODUCTSUB_MAX', 5);
+define('PRODUCTSUB_MAX', 9);
 /** お届け時間の最大表示数 */
 define('DELIVTIME_MAX', 16);
 /** 配送料金の最大表示数 */

@@ -150,7 +150,7 @@
                 <div class="listphoto">
                     <!--★画像★-->
                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->">
-                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_list_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" class="picture" /></a>
+                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" class="picture" /></a>
                 </div>
 
                 <div class="listrightbloc">
@@ -158,9 +158,7 @@
                     <!--{if !empty($productStatus[$id])}-->
                         <ul class="status_icon clearfix">
                             <!--{foreach from=$productStatus[$id] item=status}-->
-                                <li>
-                                    <img src="<!--{$TPL_URLPATH}--><!--{$arrSTATUS_IMAGE[$status]}-->" width="60" height="17" alt="<!--{$arrSTATUS[$status]}-->"/>
-                                </li>
+                                <li class="product_status<!--{$status|h}-->"><!--{$arrSTATUS[$status]|h}--></li>
                             <!--{/foreach}-->
                         </ul>
                     <!--{/if}-->

@@ -55,10 +55,10 @@ class LC_Page_AbstractMypage extends LC_Page_Ex
     {
         parent::process();
         // ログインチェック
-        $objCustomer = new SC_Customer_Ex();
+        $this->objCustomer = new SC_Customer_Ex();
 
         // ログインしていない場合は必ずログインページを表示する
-        if ($objCustomer->isLoginSuccess(true) === false) {
+        if ($this->objCustomer->isLoginSuccess(true) === false) {
             // クッキー管理クラス
             $objCookie = new SC_Cookie_Ex();
             // クッキー判定(メールアドレスをクッキーに保存しているか）
@@ -76,16 +76,16 @@ class LC_Page_AbstractMypage extends LC_Page_Ex
 
             // 携帯端末IDが一致する会員が存在するかどうかをチェックする。
             if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
-                $this->tpl_valid_phone_id = $objCustomer->checkMobilePhoneId();
+                $this->tpl_valid_phone_id = $this->objCustomer->checkMobilePhoneId();
             }
             $this->tpl_title        = 'MYページ(ログイン)';
             $this->tpl_mainpage     = 'mypage/login.tpl';
         } else {
             //マイページ会員情報表示用共通処理
             $this->tpl_login     = true;
-            $this->CustomerName1 = $objCustomer->getValue('name01');
-            $this->CustomerName2 = $objCustomer->getValue('name02');
-            $this->CustomerPoint = $objCustomer->getValue('point');
+            $this->CustomerName1 = $this->objCustomer->getValue('name01');
+            $this->CustomerName2 = $this->objCustomer->getValue('name02');
+            $this->CustomerPoint = $this->objCustomer->getValue('point');
             $this->action();
         }
 

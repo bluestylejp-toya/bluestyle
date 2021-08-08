@@ -1,0 +1,34 @@
+<!--{strip}-->
+    <dl>
+        <dt>ニックネーム</dt>
+        <dd><!--{$arrCustomer.nickname|h}--></dd>
+    </dl>
+    <dl>
+        <dt>紹介文</dt>
+        <dd><!--{$arrCustomer.self_introduction|h|nl2br}--></dd>
+    </dl>
+    <dl>
+        <dt>画像</dt>
+        <dd><!--{* 未実装 *}--></dd>
+    </dl>
+    <dl>
+        <dt>趣味</dt>
+        <dd><!--{$arrCustomer.hobbies|h}--></dd>
+    </dl>
+    <dl>
+        <dt>出品中アイテム</dt>
+        <dd><!--{* 未実装 *}--></dd>
+    </dl>
+    <dl>
+        <dt>都道府県</dt>
+        <dd><!--{$arrPref[$arrCustomer.pref]|h}--></dd>
+    </dl>
+    <dl>
+        <dt>リクエストを押しているアイテム</dt>
+        <dd>
+            <ul>
+                <li></li>
+            </ul>
+        </dd>
+    </dl>
+<!--{/strip}-->

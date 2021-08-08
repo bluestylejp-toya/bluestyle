@@ -45,7 +45,6 @@ class API_ItemSearch extends SC_Api_Abstract_Ex
         if (!$this->isParamError()) {
             $masterData                 = new SC_DB_MasterData_Ex();
             $arrSTATUS            = $masterData->getMasterData('mtb_status');
-            $arrSTATUS_IMAGE      = $masterData->getMasterData('mtb_status_image');
 
             $objProduct = new SC_Product_Ex();
             $arrSearchData = array(
@@ -66,10 +65,10 @@ class API_ItemSearch extends SC_Api_Abstract_Ex
             $arrProducts = $this->getProductsList($arrSearchCondition, $disp_number, $objNavi->start_row, $linemax, $objProduct);
 
             if (!SC_Utils_Ex::isBlank($arrProducts)) {
-                $arrProducts = $this->setStatusDataTo($arrProducts, $arrSTATUS, $arrSTATUS_IMAGE);
+                $arrProducts = $this->setStatusDataTo($arrProducts, $arrSTATUS, []);
                 SC_Product_Ex::setPriceTaxTo($arrProducts);
                 foreach ($arrProducts as $key=>$val) {
-                    $arrProducts[$key]['main_list_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_list_image']);
+                    $arrProducts[$key]['main_large_image'] = SC_Utils_Ex::sfNoImageMainList($val['main_large_image']);
                 }
 
                 $arrData = array();
