@@ -24,6 +24,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
 
         $this->httpCacheControl('nocache');
+
+        $this->image_ymd_dir = date('Y/m/d/');
     }
 
     /**
@@ -388,13 +390,17 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $arrImageKey = array();
         foreach ($arrTempFile as $key => $temp_file) {
             if ($temp_file) {
-                $objImage->moveTempImage($temp_file, $objUpFile->save_dir);
+                $save_dir = $objUpFile->save_dir . $this->image_ymd_dir;
+                if (!SC_Utils_Ex::recursiveMkdir($save_dir)) {
+                    throw new Exception;
+                }
+                $objImage->moveTempImage($temp_file, $save_dir);
                 $arrImageKey[] = $arrKeyName[$key];
                 if (!empty($arrSaveFile[$key])
                     && !$this->lfHasSameProductImage($product_id, $arrImageKey, $arrSaveFile[$key], $objUpFile)
                     && !in_array($temp_file, $arrSaveFile)
                 ) {
-                    $objImage->deleteImage($arrSaveFile[$key], $objUpFile->save_dir);
+                    $objImage->deleteImage($arrSaveFile[$key], $save_dir);
                 }
             }
         }
@@ -520,7 +526,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
         // INSERTする値を作成する。
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
-        $arrRet = $objUpFile->getDBFileList();
+        $arrRet = $objUpFile->getDBFileList($this->image_ymd_dir);
         $sqlval = array_merge($sqlval, $arrRet);
 
         $objQuery->begin();

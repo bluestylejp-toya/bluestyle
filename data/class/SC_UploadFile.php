@@ -413,13 +413,13 @@ class SC_UploadFile
     }
 
     // DB保存用のファイル名配列を返す
-    public function getDBFileList()
+    public function getDBFileList($dir_new = '')
     {
         $cnt = 0;
         $dbFileList = array();
         foreach ($this->keyname as $val) {
             if (isset($this->temp_file[$cnt]) && $this->temp_file[$cnt] != '') {
-                $dbFileList[$val] = $this->temp_file[$cnt];
+                $dbFileList[$val] = $dir_new . $this->temp_file[$cnt];
             } else {
                 $dbFileList[$val] = isset($this->save_file[$cnt]) ? $this->save_file[$cnt] : '';
             }
