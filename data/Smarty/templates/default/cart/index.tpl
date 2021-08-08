@@ -104,8 +104,8 @@
                                     <td class="alignC"><a href="?" onclick="eccube.fnFormModeSubmit('form<!--{$key|h}-->', 'cartDelete', 'cart_no', '<!--{$item.cart_no|h}-->'); return false;">削除</a>
                                     </td>
                                     <td class="alignC">
-                                        <a class="expansion" target="_blank" href="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$item.productsClass.main_large_image|sfNoImageMainList|h}-->">
-                                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.main_large_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$item.productsClass.name|h}-->" />
+                                        <a class="expansion" target="_blank" href="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$item.productsClass.sub_large_image1|sfNoImageMainList|h}-->">
+                                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.productsClass.sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$item.productsClass.name|h}-->" />
                                         </a>
                                     </td>
                                     <td><!--{* 商品名 *}--><strong><!--{$item.productsClass.name|h}--></strong>

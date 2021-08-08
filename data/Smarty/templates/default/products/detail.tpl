@@ -37,10 +37,10 @@
         <div id="detailarea" class="clearfix">
             <div id="detailphotobloc">
                 <div class="photo">
-                    <!--{assign var=key value="main_large_image"}-->
+                    <!--{assign var=key value="sub_large_image1"}-->
                     <!--★画像★-->
                     <a
-                        href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|h}-->"
+                        href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->"
                         class="expansion"
                         target="_blank"
                     >
@@ -50,7 +50,7 @@
                 <span class="mini">
                     <!--★拡大する★-->
                     <a
-                        href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_large_image|h}-->"
+                        href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->"
                         class="expansion"
                         target="_blank"
                     >
@@ -352,7 +352,7 @@
                 <div class="product_item">
                     <div class="productImage">
                         <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrItem.product_id|u}-->">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrItem.main_large_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrItem.name|h}-->" /></a>
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrItem.sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrItem.name|h}-->" /></a>
                     </div>
                     <!--{assign var=price02_min value="`$arrItem.price02_min_inctax`"}-->
                     <!--{assign var=price02_max value="`$arrItem.price02_max_inctax`"}-->

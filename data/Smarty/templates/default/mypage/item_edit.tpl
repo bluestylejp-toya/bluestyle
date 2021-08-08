@@ -63,18 +63,6 @@
                                 <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
                             </td>
                         </tr>
-                        <tr>
-                            <!--{assign var=key value="main_large_image"}-->
-                            <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
-                                [<!--{$smarty.const.LARGE_IMAGE_WIDTH}-->×<!--{$smarty.const.LARGE_IMAGE_HEIGHT}-->]</th>
-                            <td>
-                                <span class="attention"><!--{$arrErr[$key]}--></span>
-                                <div class="preview" style="<!--{if strlen($arrFile[$key].filepath) == 0}-->display: none;<!--{/if}-->">
-                                    <img src="<!--{$arrFile[$key].filepath}-->" alt="" />　<a href="" onclick="eccube.setModeAndSubmit('delete_image', 'image_key', '<!--{$key}-->'); return false;">[画像の取り消し]</a>
-                                </div>
-                                <input form='image_form' type="file" name="<!--{$key}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
-                            </td>
-                        </tr>
                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                             <tr>
                                 <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->

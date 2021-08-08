@@ -213,8 +213,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $objFormParam->addParam('公開ステータス', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), DEFAULT_PRODUCT_DISP);
         $objFormParam->addParam('状態ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('タグ', 'comment3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
-        $objFormParam->addParam('save_main_large_image', 'save_main_large_image', '', '', array());
-        $objFormParam->addParam('temp_main_large_image', 'temp_main_large_image', '', '', array());
 
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
             $objFormParam->addParam('save_sub_large_image' . $cnt, 'save_sub_large_image' . $cnt, '', '', array());
@@ -248,10 +246,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
      */
     public function lfInitFile(&$objUpFile)
     {
-        $objUpFile->addFile('画像(1)', 'main_large_image', array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT);
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
-            $num = $cnt + 1;
-            $objUpFile->addFile("画像({$num})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
+            $objUpFile->addFile("画像({$cnt})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
         }
     }
 
