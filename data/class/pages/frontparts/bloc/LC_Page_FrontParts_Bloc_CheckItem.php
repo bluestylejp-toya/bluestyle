@@ -59,9 +59,32 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
         $this->arrCheckItems = $this->getCheckItem();
 
         // 商品詳細ページアクセス時には閲覧商品に追加
-        if (isset($_GET['product_id']) && self::CheckProductId($_GET['product_id'])) {
-            self::setCookie($_GET['product_id']);
+        if (isset($_GET['product_id'])) {
+            // 商品IDフォーマットチェック
+            $objFormParam_PreEdit = new SC_FormParam_Ex();
+            $this->lfCheckProductId($objFormParam_PreEdit, $_REQUEST);
+            // エラーチェック
+            $this->arrErr = $objFormParam_PreEdit->checkError();
+            if (count($this->arrErr) > 0) {
+                trigger_error('商品IDが不正です', E_USER_ERROR);
+            }
+            self::setCookie($objFormParam_PreEdit->getValue('product_id'));
         }
+    }
+
+    /**
+     * パラメーター情報の初期化
+     * - 編集/複製モード
+     *
+     * @param  SC_FormParam_Ex $objFormParam SC_FormParamインスタンス
+     * @param  array $arrPost $_POSTデータ
+     * @return void
+     */
+    public function lfCheckProductId(&$objFormParam, $arrPost)
+    {
+        $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->setParam($arrPost);
+        $objFormParam->convParam();
     }
 
     /**
@@ -99,22 +122,6 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
         }
         return $arrCheckItemList;
 
-    }
-
-    /**
-     * 商品IDのフォーマットチェック
-     * @param $product_id チェック対象の商品ID
-     * @return boolean チェック結果
-     */
-    private function checkProductId($product_id)
-    {
-        if (!SC_Utils_Ex::sfIsInt($product_id)
-            || SC_Utils_Ex::sfIsZeroFilling($product_id)
-            || !SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', array(1, $product_id), 'status = ?')
-        ) {
-            return false;
-        }
-        return true;
     }
 
     /**
