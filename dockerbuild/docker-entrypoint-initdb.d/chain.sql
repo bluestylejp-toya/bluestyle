@@ -339,6 +339,7 @@ INSERT INTO `dtb_bloc` VALUES (10,7,'おすすめ商品','recommend.tpl','recomm
 INSERT INTO `dtb_bloc` VALUES (10,8,'カレンダー','calendar.tpl','calendar','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/calendar.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,9,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,10,'新着アイテム','new_item.tpl','new_item','2021-07-28 00:00:00','2021-07-28 00:00:00','frontparts/bloc/new_item.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (10,11,'閲覧履歴','check_item.tpl','check_item','2021-08-08 00:00:00','2021-08-08 00:00:00','frontparts/bloc/check_item.php',0,NULL);
 /*!40000 ALTER TABLE `dtb_bloc` ENABLE KEYS */;
 UNLOCK TABLES;
 
