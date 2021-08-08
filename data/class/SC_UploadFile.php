@@ -369,9 +369,9 @@ class SC_UploadFile
                     // ファイル縦幅
                     $arrRet[$val]['height'] = $this->height[$cnt];
                 }
-                // 表示名
-                $arrRet[$val]['disp_name'] = $this->disp_name[$cnt];
             }
+            // 表示名
+            $arrRet[$val]['disp_name'] = $this->disp_name[$cnt];
             $cnt++;
         }
 
