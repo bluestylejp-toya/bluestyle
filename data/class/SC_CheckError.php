@@ -40,6 +40,10 @@ class SC_CheckError
             $this->arrParam = $_POST;
         }
 
+        // 禁止ワード
+        $masterData = new SC_DB_MasterData_Ex();
+        $this->arrNgWord = $masterData->getMasterData('mtb_ngword');
+
     }
 
     /**
@@ -1805,6 +1809,32 @@ class SC_CheckError
         $exists = $objQuery->exists('mtb_pref', 'id = ?', array($pref_id));
         if (!$exists) {
             $this->arrErr[$key] = '※ ' . $disp . 'が不正な値です。<br />';
+        }
+    }
+
+    /**
+     * 禁止ワードが含まれているかチェックする
+     *
+     * @param  array $value value[0] = 項目名 value[1] = 判定対象
+     * @return void
+     */
+    public function NGWORD_CHECK($value)
+    {
+        $disp_name = $value[0];
+        $keyname = $value[1];
+
+        if (isset($this->arrErr[$keyname])) {
+            return;
+        }
+
+        $this->createParam($value);
+
+        $input_var = $this->arrParam[$keyname];
+
+        foreach($this->arrNgWord as $ngWork){
+            if (preg_match("/$ngWork/i", $input_var)) {
+                $this->arrErr[$keyname] = "※ 禁止ワード「{$ngWork}」が含まれています。<br />";
+            }
         }
     }
 }
