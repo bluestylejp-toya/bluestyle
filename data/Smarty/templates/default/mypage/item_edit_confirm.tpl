@@ -66,6 +66,13 @@
                                 <!--{/if}-->
                             </td>
                         </tr>
+                        <tr>
+                            <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
+                            <th><!--{$arrForm[$key].disp_name|h}--></th>
+                            <td>
+                                <!--{$arrForm[$key].value|h}-->
+                            </td>
+                        </tr>
                     <!--{/section}-->
                 </table>
 

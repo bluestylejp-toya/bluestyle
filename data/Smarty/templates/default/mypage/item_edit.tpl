@@ -65,7 +65,7 @@
                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                             <tr>
                                 <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                                <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
+                                <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrFile[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
                                     [<!--{$smarty.const.LARGE_SUBIMAGE_WIDTH|h}-->×<!--{$smarty.const.LARGE_SUBIMAGE_HEIGHT|h}-->]</th>
                                 <td>
                                     <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -73,6 +73,15 @@
                                         <img src="<!--{$arrFile[$key].filepath|h}-->" alt="" />　<a href="javascript:" class="delete_image">[画像の取り消し]</a>
                                     </div>
                                     <input type="file" name="<!--{$key|h}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
+                                <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--></th>
+                                <td>
+                                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                                    <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                    <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
                                 </td>
                             </tr>
                         <!--{/section}-->

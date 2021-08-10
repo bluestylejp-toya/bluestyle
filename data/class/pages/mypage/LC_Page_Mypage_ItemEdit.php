@@ -195,6 +195,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $objFormParam->addParam('タグ', 'comment3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
 
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
+            $objFormParam->addParam("キャプション({$cnt})", 'sub_title' . $cnt, STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('save_sub_large_image' . $cnt, 'save_sub_large_image' . $cnt, '', '', array());
             $objFormParam->addParam('temp_sub_large_image' . $cnt, 'temp_sub_large_image' . $cnt, '', '', array());
         }
@@ -499,6 +500,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             'status' => $arrList['status'],
             'comment3' => $arrList['comment3'],
         ];
+
+        for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
+            $sqlval['sub_title'.$cnt] = $arrList['sub_title'.$cnt];
+        }
 
         // INSERTする値を作成する。
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
