@@ -112,6 +112,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
             // 画像のアップロード (Ajax)
             case 'upload_image_ajax':
+            case 'delete_image_ajax':
                 // パラメーター初期化
                 $this->lfInitFormParam_UploadImage($objFormParam);
                 $this->lfInitFormParam($objFormParam, $_POST);
@@ -119,12 +120,18 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
                 $image_key = $arrForm['image_key'];
 
-                // ファイルを一時ディレクトリにアップロード
-                $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
-                if (strlen($error) >= 1) {
-                    SC_Response_Ex::json([
-                        'error' => $error,
-                    ]);
+                if ($mode === 'upload_image_ajax') {
+                    // ファイルを一時ディレクトリにアップロード
+                    $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
+                    if (strlen($error) >= 1) {
+                        SC_Response_Ex::json([
+                            'error' => $error,
+                        ]);
+                    }
+                }
+                elseif ($mode === 'delete_image_ajax') {
+                    // ファイル削除
+                    $this->lfDeleteTempFile($objUpFile, $image_key);
                 }
 
                 // アップロードファイル情報取得(Hidden用)
@@ -137,33 +144,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                     'arrHidden' => $arrHidden,
                     'arrFile' => $arrFile,
                 ]);
-                break;
-
-            // 画像のアップロード
-            case 'upload_image':
-            case 'delete_image':
-                // パラメーター初期化
-                $this->lfInitFormParam_UploadImage($objFormParam);
-                $this->lfInitFormParam($objFormParam, $_POST);
-                $arrForm = $objFormParam->getHashArray();
-
-                switch ($mode) {
-                    case 'upload_image':
-                        // ファイルを一時ディレクトリにアップロード
-                        $this->arrErr[$arrForm['image_key']] = $objUpFile->makeTempFile($arrForm['image_key'], IMAGE_RENAME);
-                        break;
-                    case 'delete_image':
-                        // ファイル削除
-                        $this->lfDeleteTempFile($objUpFile, $arrForm['image_key']);
-                        break;
-                    default:
-                        break;
-                }
-
-                // 入力画面表示設定
-                $this->lfSetViewParam_InputPage($objUpFile, $objFormParam);
-                // ページonload時のJavaScript設定
-                $this->tpl_onload = $this->getAnchorHash($arrForm['image_key']);
                 break;
 
             // 確認ページからの戻り

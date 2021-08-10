@@ -71,9 +71,9 @@
                                 <td>
                                     <span class="attention"><!--{$arrErr[$key]}--></span>
                                     <div class="preview" style="<!--{if strlen($arrFile[$key].filepath) == 0}-->display: none;<!--{/if}-->">
-                                        <img src="<!--{$arrFile[$key].filepath}-->" alt="" />　<a href="" onclick="eccube.setModeAndSubmit('delete_image', 'image_key', '<!--{$key}-->'); return false;">[画像の取り消し]</a>
+                                        <img src="<!--{$arrFile[$key].filepath}-->" alt="" />　<a href="javascript:" class="delete_image">[画像の取り消し]</a>
                                     </div>
-                                    <input form='image_form' type="file" name="<!--{$key}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                    <input type="file" name="<!--{$key}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
                                 </td>
                             </tr>
                         <!--{/section}-->
@@ -86,8 +86,6 @@
             </form>
         </div>
     </div>
-    <!--{* 画像は Ajax で送信する。form1 送信時に無駄に再送しないため、フォームを分ける。 *}-->
-    <form id="image_form"></form>
 <!--{/strip}-->
 
 <script type="text/javascript">
@@ -98,42 +96,72 @@
 <!--{/if}-->
 
 $(function(){
-    $('input[type=file]').on('change', function(){
+    $('input[type="file"]').on('change', function(){
         if (this.files.length != 1) {
             throw this;
         }
-        var formData = new FormData();
-        formData.append(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
+        let $closest = $(this).closest('td');
+        let formData = new FormData($('#form1').get(0));
         formData.append('mode', 'upload_image_ajax');
         formData.append('image_key', this.name);
-        formData.append(this.name, this.files[0]);
 
         $.ajax({
             type: 'POST',
-            contentType: false,
-            processData: false,
             url: '?',
             data: formData,
+            contentType: false,
+            processData: false,
             dataType: 'json',
         })
-            .done((data, textStatus, jqXHR) => {
-                if ('error' in data) {
-                    alert(data.error);
-                    return;
-                }
-                Object.keys(data.arrHidden).forEach((key) => {
-                    let $input = $('#form1 input[name="' + key + '"]');
-                    if ($input.length == 0) {
-                        $input = $('<input type="hidden">').attr('name', key);
-                        $('#form1').append($input);
-                    }
-                    $input.val(data.arrHidden[key]);
-                });
-                let $preview = $(this).closest('td').find('.preview');
-                $preview.find('img').attr('src', data.arrFile.filepath);
-                $preview.show();
-            })
+            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        ;
+
+        $(this).val(null);
+    });
+
+    $('a.delete_image').on('click', function(){
+        let $closest = $(this).closest('td');
+        let image_key = $closest.find('input[type="file"]').attr('name');
+        let formData = new FormData($('#form1').get(0));
+        formData.append('mode', 'delete_image_ajax');
+        formData.append('image_key', image_key);
+
+        $.ajax({
+            type: 'POST',
+            url: '?',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+        })
+            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
         ;
     });
+
+    function ajax_done(data, textStatus, jqXHR, $closest) {
+        if ('error' in data) {
+            alert(data.error);
+            return;
+        }
+        $('#form1 input[type="hidden"][name^="temp_"]').remove();
+        $('#form1 input[type="hidden"][name^="save_"]').remove();
+        Object.keys(data.arrHidden).forEach((key) => {
+            let $input = $('#form1 input[name="' + key + '"]');
+            if ($input.length == 0) {
+                $input = $('<input type="hidden">').attr('name', key);
+                $('#form1').append($input);
+            }
+            $input.val(data.arrHidden[key]);
+        });
+        let $preview = $closest.find('.preview');
+        if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
+            $preview.find('img').attr('src', data.arrFile.filepath);
+            $preview.show();
+        }
+        else {
+            $preview.find('img').attr('src', null);
+            $preview.hide();
+        }
+    }
 });
 </script>
