@@ -4331,6 +4331,30 @@ INSERT INTO `mtb_mobile_domain` VALUES (11,'au.com',10);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mtb_ngword`
+--
+
+DROP TABLE IF EXISTS `mtb_ngword`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mtb_ngword` (
+  `id` smallint NOT NULL,
+  `name` text,
+  `RANK` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mtb_ngword`
+--
+
+LOCK TABLES `mtb_ngword` WRITE;
+/*!40000 ALTER TABLE `mtb_ngword` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mtb_ngword` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `mtb_order_status`
 --
 
@@ -4968,23 +4992,6 @@ LOCK TABLES `mtb_zip` WRITE;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-
---
--- Table structure for table `mtb_ngword`
---
-
-DROP TABLE IF EXISTS `mtb_ngword`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `mtb_ngword` (
-    `id` smallint NOT NULL,
-    `name` text,
-    `RANK` smallint NOT NULL DEFAULT '0',
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -4993,4 +5000,4 @@ CREATE TABLE `mtb_ngword` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-01  2:07:03
+-- Dump completed on 2021-08-10  8:51:00
