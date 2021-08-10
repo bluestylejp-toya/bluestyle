@@ -595,20 +595,4 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         }
         return $sqlval['product_class_id'];
     }
-
-    /**
-     * アンカーハッシュ文字列を取得する
-     * アンカーキーをサニタイジングする
-     *
-     * @param  string $anchor_key フォーム入力パラメーターで受け取ったアンカーキー
-     * @return <type>
-     */
-    public function getAnchorHash($anchor_key)
-    {
-        if ($anchor_key != '') {
-            return "location.hash='#" . htmlspecialchars($anchor_key) . "'";
-        } else {
-            return '';
-        }
-    }
 }

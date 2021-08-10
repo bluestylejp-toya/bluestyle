@@ -9,14 +9,13 @@
                 入力後、一番下の「確認ページへ」ボタンをクリックしてください。</p>
 
             <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
-                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME|h}-->" value="<!--{$transactionid|h}-->" />
                 <input type="hidden" name="mode" value="edit" />
                 <input type="hidden" name="image_key" value="" />
                 <input type="hidden" name="product_id" value="<!--{$arrForm.product_id.value|h}-->" />
                 <input type="hidden" name="product_class_id" value="<!--{$arrForm.product_class_id.value|h}-->" /><!--{* ★脆弱性懸念 *}-->
-                <input type="hidden" name="anchor_key" value="" />
                 <!--{foreach key=key item=item from=$arrHidden}-->
-                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item|h}-->" />
+                    <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item|h}-->" />
                 <!--{/foreach}-->
                 <div id="products" class="contents-main">
                     <table class="form">
@@ -25,8 +24,8 @@
                             <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--></th>
                             <td>
                                 <span class="attention"><!--{$arrErr.name}--></span>
-                                <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
-                                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                                <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN|h}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN|h}-->文字)</span>
                             </td>
                         </tr>
                         <tr>
@@ -59,21 +58,21 @@
                             <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />※複数の場合は、カンマ( , )区切りで入力して下さい</th>
                             <td>
                                 <span class="attention"><!--{$arrErr.comment3}--></span>
-                                <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
-                                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+                                <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN|h}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
+                                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN|h}-->文字)</span>
                             </td>
                         </tr>
                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                             <tr>
                                 <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
                                 <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
-                                    [<!--{$smarty.const.LARGE_SUBIMAGE_WIDTH}-->×<!--{$smarty.const.LARGE_SUBIMAGE_HEIGHT}-->]</th>
+                                    [<!--{$smarty.const.LARGE_SUBIMAGE_WIDTH|h}-->×<!--{$smarty.const.LARGE_SUBIMAGE_HEIGHT|h}-->]</th>
                                 <td>
                                     <span class="attention"><!--{$arrErr[$key]}--></span>
                                     <div class="preview" style="<!--{if strlen($arrFile[$key].filepath) == 0}-->display: none;<!--{/if}-->">
-                                        <img src="<!--{$arrFile[$key].filepath}-->" alt="" />　<a href="javascript:" class="delete_image">[画像の取り消し]</a>
+                                        <img src="<!--{$arrFile[$key].filepath|h}-->" alt="" />　<a href="javascript:" class="delete_image">[画像の取り消し]</a>
                                     </div>
-                                    <input type="file" name="<!--{$key}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                    <input type="file" name="<!--{$key|h}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
                                 </td>
                             </tr>
                         <!--{/section}-->
