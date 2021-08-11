@@ -24,8 +24,8 @@
                             <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--></th>
                             <td>
                                 <span class="attention"><!--{$arrErr.name}--></span>
-                                <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN|h}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
-                                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN|h}-->文字)</span>
+                                <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                                <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
                             </td>
                         </tr>
                         <tr>
@@ -58,8 +58,8 @@
                             <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />※複数の場合は、カンマ( , )区切りで入力して下さい</th>
                             <td>
                                 <span class="attention"><!--{$arrErr.comment3}--></span>
-                                <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN|h}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
-                                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN|h}-->文字)</span>
+                                <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
+                                <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
                             </td>
                         </tr>
                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
