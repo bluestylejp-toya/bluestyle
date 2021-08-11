@@ -527,6 +527,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             // カテゴリを更新
             $objDb->updateProductCategories([$arrList['category_id']], $product_id);
 
+            $arrList['stock_unlimited'] = UNLIMITED_FLG_LIMITED;
+            $arrList['stock'] = 1;
         // 更新
         } else {
             $product_id = $arrList['product_id'];
@@ -578,13 +580,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $objDb = new SC_Helper_DB_Ex();
 
         // 配列の添字を定義
-        $checkArray = array('product_class_id', 'product_id');
+        $checkArray = array('product_class_id', 'product_id', 'stock_unlimited', 'stock');
         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $checkArray);
-        $sqlval = SC_Utils_Ex::arrayDefineIndexes($sqlval, $checkArray);
 
         $sqlval['product_type_id'] = DEFAULT_PRODUCT_DOWN;
-        $sqlval['stock_unlimited'] = UNLIMITED_FLG_LIMITED;
-        $sqlval['stock'] = 1;
         $sqlval['creator_id'] = strlen($_SESSION['member_id']) >= 1 ? $_SESSION['member_id'] : '0';
 
         if (strlen($sqlval['product_class_id']) == 0) {
