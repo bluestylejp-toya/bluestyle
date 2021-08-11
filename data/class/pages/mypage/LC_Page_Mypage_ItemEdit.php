@@ -59,6 +59,9 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                 // 商品データ取得
                 $arrForm = $this->lfGetFormParam_PreEdit($objUpFile, $product_id);
 
+                // 会員の整合を確認
+                $this->checkCustomer($arrForm['customer_id']);
+
                 // パラメーター初期化
                 $this->lfInitFormParam($objFormParam, $arrForm);
                 // ページ表示用パラメーター設定
@@ -512,7 +515,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
         $objQuery->begin();
 
-        // 新規登録(複製時を含む)
+        $product_id = null;
+        // 新規登録
         if ($arrList['product_id'] == '') {
             $product_id = $objQuery->nextVal('dtb_products_product_id');
             $sqlval['product_id'] = $product_id;
@@ -523,17 +527,20 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             $objQuery->insert('dtb_products', $sqlval);
 
             $arrList['product_id'] = $product_id;
-
-            // カテゴリを更新
-            $objDb->updateProductCategories([$arrList['category_id']], $product_id);
-
             $arrList['stock_unlimited'] = UNLIMITED_FLG_LIMITED;
             $arrList['stock'] = 1;
+        }
         // 更新
-        } else {
+        else {
             $product_id = $arrList['product_id'];
+
+            // 現状の商品情報を取得
+            $arrRet = $this->lfGetProductData_FromDB($product_id);
+
+            // 会員の整合を確認
+            $this->checkCustomer($arrRet['customer_id']);
+
             // 削除要求のあった既存ファイルの削除
-            $arrRet = $this->lfGetProductData_FromDB($arrList['product_id']);
             // TODO: SC_UploadFile::deleteDBFileの画像削除条件見直し要
             $objImage = new SC_Image_Ex($objUpFile->temp_dir);
             $arrKeyName = $objUpFile->keyname;
@@ -542,7 +549,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             foreach ($arrKeyName as $key => $keyname) {
                 if ($arrRet[$keyname] && !$arrSaveFile[$key]) {
                     $arrImageKey[] = $keyname;
-                    $has_same_image = $this->lfHasSameProductImage($arrList['product_id'], $arrImageKey, $arrRet[$keyname], $objUpFile);
+                    $has_same_image = $this->lfHasSameProductImage($product_id, $arrImageKey, $arrRet[$keyname], $objUpFile);
                     if (!$has_same_image) {
                         $objImage->deleteImage($arrRet[$keyname], $objUpFile->save_dir);
                     }
@@ -551,10 +558,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             // UPDATEの実行
             $where = 'product_id = ? AND customer_id = ?';
             $objQuery->update('dtb_products', $sqlval, $where, array($product_id, $customer_id));
-
-            // カテゴリを更新
-            $objDb->updateProductCategories([$arrList['category_id']], $product_id);
         }
+
+        // カテゴリを更新
+        $objDb->updateProductCategories([$arrList['category_id']], $product_id);
 
         // 規格なし商品（商品規格テーブルの更新）
         $this->lfInsertDummyProductClass($arrList);
@@ -598,5 +605,16 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             $objQuery->update('dtb_products_class', $sqlval, 'product_class_id = ?', array($sqlval['product_class_id']));
         }
         return $sqlval['product_class_id'];
+    }
+
+    /**
+     * 会員の整合を確認
+     */
+    function checkCustomer($product_customer_id)
+    {
+        $login_customer_id = $this->objCustomer->getValue('customer_id');
+        if ($product_customer_id != $login_customer_id) {
+            SC_Utils_Ex::sfDispSiteError(CUSTOMER_ERROR);
+        }
     }
 }
