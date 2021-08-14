@@ -141,7 +141,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                 $arrHidden = $objUpFile->getHiddenFileList();
 
                 // 画像ファイル表示用データ取得
-                $arrFile = $objUpFile->getFormFileList()[$image_key];
+                $arrFile = (array)$objUpFile->getFormFileList()[$image_key];
 
                 SC_Response_Ex::json([
                     'arrHidden' => $arrHidden,

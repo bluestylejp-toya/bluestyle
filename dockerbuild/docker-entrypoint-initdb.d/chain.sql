@@ -1079,6 +1079,7 @@ CREATE TABLE `dtb_customer` (
   `nickname` text,
   `self_introduction` text,
   `hobbies` text,
+  `profile_image` text,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
   KEY `dtb_customer_mobile_phone_id_key` (`mobile_phone_id`(255))
@@ -5000,4 +5001,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-10  9:03:10
+-- Dump completed on 2021-08-14 10:37:28

@@ -10,7 +10,9 @@
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="mode" value="confirm" />
-            <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id.value|h}-->" />
+            <!--{foreach key=key item=item from=$arrHidden}-->
+                <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item|h}-->" />
+            <!--{/foreach}-->
             <table summary="プロフィール編集 " class="delivname">
                 <col width="30%" />
                 <col width="70%" />
@@ -33,6 +35,20 @@
                         <!--{/if}-->
                         <textarea name="<!--{$key1|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->" cols="70" rows="8" class="txtarea" wrap="hard"><!--{"\n"}--><!--{$arrForm[$key1].value|h}--></textarea>
                         <p class="attention"> (<!--{$arrForm[$key1].length}-->文字まで)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <!--{assign var=key1 value="profile_image"}-->
+                    <th><!--{$arrFile[$key1].disp_name|h}--><!--{if $arrFile[$key1].require}--><!--{$require_mark}--><!--{/if}--><br />
+                        [<!--{$smarty.const.LARGE_SUBIMAGE_WIDTH|h}-->×<!--{$smarty.const.LARGE_SUBIMAGE_HEIGHT|h}-->]</th>
+                    <td>
+                        <!--{if $arrErr[$key1]}-->
+                            <div class="attention"><!--{$arrErr[$key1]}--></div>
+                        <!--{/if}-->
+                        <div class="preview" style="<!--{if strlen($arrFile[$key1].filepath) == 0}-->display: none;<!--{/if}-->">
+                            <img src="<!--{$arrFile[$key1].filepath|h}-->" alt="" />　<a href="javascript:" class="delete_image">[画像の取り消し]</a>
+                        </div>
+                        <input type="file" name="<!--{$key1|h}-->" size="40" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->"/>
                     </td>
                 </tr>
                 <tr>
@@ -88,10 +104,80 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
 <!--{if $smarty.request.completeed}-->
-    <script>
     $(function(){
         alert('登録しました。');
     });
-    </script>
 <!--{/if}-->
+
+$(function(){
+    $('input[type="file"]').on('change', function(){
+        if (this.files.length != 1) {
+            throw this;
+        }
+        let $closest = $(this).closest('td');
+        let formData = new FormData($('#form1').get(0));
+        formData.append('mode', 'upload_image_ajax');
+        formData.append('image_key', this.name);
+
+        $.ajax({
+            type: 'POST',
+            url: '?',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+        })
+            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        ;
+
+        $(this).val(null);
+    });
+
+    $('a.delete_image').on('click', function(){
+        let $closest = $(this).closest('td');
+        let image_key = $closest.find('input[type="file"]').attr('name');
+        let formData = new FormData($('#form1').get(0));
+        formData.append('mode', 'delete_image_ajax');
+        formData.append('image_key', image_key);
+
+        $.ajax({
+            type: 'POST',
+            url: '?',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+        })
+            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        ;
+    });
+
+    function ajax_done(data, textStatus, jqXHR, $closest) {
+        if ('error' in data) {
+            alert(data.error);
+            return;
+        }
+        $('#form1 input[type="hidden"][name^="temp_"]').remove();
+        $('#form1 input[type="hidden"][name^="save_"]').remove();
+        Object.keys(data.arrHidden).forEach((key) => {
+            let $input = $('#form1 input[name="' + key + '"]');
+            if ($input.length == 0) {
+                $input = $('<input type="hidden">').attr('name', key);
+                $('#form1').append($input);
+            }
+            $input.val(data.arrHidden[key]);
+        });
+        let $preview = $closest.find('.preview');
+        if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
+            $preview.find('img').attr('src', data.arrFile.filepath);
+            $preview.show();
+        }
+        else {
+            $preview.find('img').attr('src', null);
+            $preview.hide();
+        }
+    }
+});
+</script>
