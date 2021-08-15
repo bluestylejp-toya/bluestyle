@@ -130,6 +130,7 @@ $(function(){
             dataType: 'json',
         })
             .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+            .fail(ajax_fail)
         ;
 
         $(this).val(null);
@@ -151,6 +152,7 @@ $(function(){
             dataType: 'json',
         })
             .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+            .fail(ajax_fail)
         ;
     });
 
@@ -178,6 +180,10 @@ $(function(){
             $preview.find('img').attr('src', null);
             $preview.hide();
         }
+    }
+
+    function ajax_fail(jqXHR, textStatus, errorThrown) {
+        alert('失敗しました。');
     }
 });
 </script>
