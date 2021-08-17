@@ -555,6 +555,15 @@ INSERT INTO `dtb_blocposition` VALUES (10,27,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,28,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,28,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,28,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,29,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,29,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,29,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,31,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,31,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,31,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,32,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,32,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,32,1,3,1,0);
 /*!40000 ALTER TABLE `dtb_blocposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2413,6 +2422,7 @@ INSERT INTO `dtb_pagelayout` VALUES (10,28,'プライバシーポリシー','gui
 INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集','mypage/profile.php','mypage/profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,31,'MYページ/アイテム登録','mypage/item_edit.php','mypage/item_edit',1,1,2,NULL,NULL,NULL,NULL,'2021-07-31 00:00:00','2021-07-31 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,32,'MYページ/出品中アイテム一覧','mypage/item-list.php','mypage/item-list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
