@@ -12,8 +12,10 @@ composer.phar
 /html/plugin/*
 /html/install/temp/*
 /html/upload/save_image/*
+/html/upload/save_profile_image/*
 /html/upload/temp_image/*
 /html/upload/temp_plugin/*
+/html/upload/temp_profile_image/*
 /html/template/*
 !/html/template/admin
 !/html/template/default
@@ -23,3 +25,4 @@ composer.phar
 /ctests/_output/*
 /reports/*
 .idea
+!.gitkeep
