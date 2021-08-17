@@ -9,14 +9,13 @@
                 入力後、一番下の「確認ページへ」ボタンをクリックしてください。</p>
 
             <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
-                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME|h}-->" value="<!--{$transactionid|h}-->" />
                 <input type="hidden" name="mode" value="edit" />
                 <input type="hidden" name="image_key" value="" />
                 <input type="hidden" name="product_id" value="<!--{$arrForm.product_id.value|h}-->" />
                 <input type="hidden" name="product_class_id" value="<!--{$arrForm.product_class_id.value|h}-->" /><!--{* ★脆弱性懸念 *}-->
-                <input type="hidden" name="anchor_key" value="" />
                 <!--{foreach key=key item=item from=$arrHidden}-->
-                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item|h}-->" />
+                    <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item|h}-->" />
                 <!--{/foreach}-->
                 <div id="products" class="contents-main">
                     <table class="form">
@@ -25,8 +24,8 @@
                             <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--></th>
                             <td>
                                 <span class="attention"><!--{$arrErr.name}--></span>
-                                <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
-                                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                                <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                                <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
                             </td>
                         </tr>
                         <tr>
@@ -59,33 +58,30 @@
                             <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />※複数の場合は、カンマ( , )区切りで入力して下さい</th>
                             <td>
                                 <span class="attention"><!--{$arrErr.comment3}--></span>
-                                <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
-                                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!--{assign var=key value="main_large_image"}-->
-                            <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
-                                [<!--{$smarty.const.LARGE_IMAGE_WIDTH}-->×<!--{$smarty.const.LARGE_IMAGE_HEIGHT}-->]</th>
-                            <td>
-                                <span class="attention"><!--{$arrErr[$key]}--></span>
-                                <div class="preview" style="<!--{if strlen($arrFile[$key].filepath) == 0}-->display: none;<!--{/if}-->">
-                                    <img src="<!--{$arrFile[$key].filepath}-->" alt="" />　<a href="" onclick="eccube.setModeAndSubmit('delete_image', 'image_key', '<!--{$key}-->'); return false;">[画像の取り消し]</a>
-                                </div>
-                                <input form='image_form' type="file" name="<!--{$key}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
+                                <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
+                                <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
                             </td>
                         </tr>
                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                             <tr>
                                 <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                                <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
-                                    [<!--{$smarty.const.LARGE_SUBIMAGE_WIDTH}-->×<!--{$smarty.const.LARGE_SUBIMAGE_HEIGHT}-->]</th>
+                                <th><!--{$arrFile[$key].disp_name|h}--><!--{if $arrFile[$key].require}--><!--{$require_mark}--><!--{/if}--><br />
+                                    [<!--{$smarty.const.LARGE_SUBIMAGE_WIDTH|h}-->×<!--{$smarty.const.LARGE_SUBIMAGE_HEIGHT|h}-->]</th>
                                 <td>
                                     <span class="attention"><!--{$arrErr[$key]}--></span>
                                     <div class="preview" style="<!--{if strlen($arrFile[$key].filepath) == 0}-->display: none;<!--{/if}-->">
-                                        <img src="<!--{$arrFile[$key].filepath}-->" alt="" />　<a href="" onclick="eccube.setModeAndSubmit('delete_image', 'image_key', '<!--{$key}-->'); return false;">[画像の取り消し]</a>
+                                        <img src="<!--{$arrFile[$key].filepath|h}-->" alt="" />　<a href="javascript:" class="delete_image">[画像の取り消し]</a>
                                     </div>
-                                    <input form='image_form' type="file" name="<!--{$key}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                    <input type="file" name="<!--{$key|h}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
+                                <th><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--></th>
+                                <td>
+                                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                                    <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
+                                    <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
                                 </td>
                             </tr>
                         <!--{/section}-->
@@ -98,8 +94,6 @@
             </form>
         </div>
     </div>
-    <!--{* 画像は Ajax で送信する。form1 送信時に無駄に再送しないため、フォームを分ける。 *}-->
-    <form id="image_form"></form>
 <!--{/strip}-->
 
 <script type="text/javascript">
@@ -110,42 +104,78 @@
 <!--{/if}-->
 
 $(function(){
-    $('input[type=file]').on('change', function(){
+    $('input[type="file"]').on('change', function(){
         if (this.files.length != 1) {
             throw this;
         }
-        var formData = new FormData();
-        formData.append(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
+        let $closest = $(this).closest('td');
+        let formData = new FormData($('#form1').get(0));
         formData.append('mode', 'upload_image_ajax');
         formData.append('image_key', this.name);
-        formData.append(this.name, this.files[0]);
 
         $.ajax({
             type: 'POST',
-            contentType: false,
-            processData: false,
             url: '?',
             data: formData,
+            contentType: false,
+            processData: false,
             dataType: 'json',
         })
-            .done((data, textStatus, jqXHR) => {
-                if ('error' in data) {
-                    alert(data.error);
-                    return;
-                }
-                Object.keys(data.arrHidden).forEach((key) => {
-                    let $input = $('#form1 input[name="' + key + '"]');
-                    if ($input.length == 0) {
-                        $input = $('<input type="hidden">').attr('name', key);
-                        $('#form1').append($input);
-                    }
-                    $input.val(data.arrHidden[key]);
-                });
-                let $preview = $(this).closest('td').find('.preview');
-                $preview.find('img').attr('src', data.arrFile.filepath);
-                $preview.show();
-            })
+            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+            .fail(ajax_fail)
+        ;
+
+        $(this).val(null);
+    });
+
+    $('a.delete_image').on('click', function(){
+        let $closest = $(this).closest('td');
+        let image_key = $closest.find('input[type="file"]').attr('name');
+        let formData = new FormData($('#form1').get(0));
+        formData.append('mode', 'delete_image_ajax');
+        formData.append('image_key', image_key);
+
+        $.ajax({
+            type: 'POST',
+            url: '?',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+        })
+            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+            .fail(ajax_fail)
         ;
     });
+
+    function ajax_done(data, textStatus, jqXHR, $closest) {
+        if ('error' in data) {
+            alert(data.error);
+            return;
+        }
+        $('#form1 input[type="hidden"][name^="temp_"]').remove();
+        $('#form1 input[type="hidden"][name^="save_"]').remove();
+        Object.keys(data.arrHidden).forEach((key) => {
+            let $input = $('#form1 input[name="' + key + '"]');
+            if ($input.length == 0) {
+                $input = $('<input type="hidden">').attr('name', key);
+                $('#form1').append($input);
+            }
+            $input.val(data.arrHidden[key]);
+        });
+        let $preview = $closest.find('.preview');
+        if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
+            $preview.find('img').attr('src', data.arrFile.filepath);
+            $preview.show();
+        }
+        else {
+            $preview.find('img').attr('src', null);
+            $preview.hide();
+        }
+    }
+
+    function ajax_fail(jqXHR, textStatus, errorThrown) {
+        alert('失敗しました。');
+    }
 });
 </script>

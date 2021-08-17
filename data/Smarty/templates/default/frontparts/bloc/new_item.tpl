@@ -7,7 +7,7 @@
                     <!--{foreach from=$arrNewItems item=arrProduct name="new_items"}-->
                         <div class="product_item clearfix">
                             <div class="productImage">
-                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.main_list_image|sfNoImageMainList|h}-->" style="max-width: 80px;max-height: 80px;" alt="<!--{$arrProduct.name|h}-->" />
+                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 80px;max-height: 80px;" alt="<!--{$arrProduct.name|h}-->" />
                             </div>
                             <div class="productContents">
                                 <h3>

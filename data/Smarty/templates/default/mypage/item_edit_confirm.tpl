@@ -56,15 +56,6 @@
                             <!--{$arrForm.comment3.value|h}-->
                         </td>
                     </tr>
-                    <tr>
-                        <!--{assign var=key value="main_large_image"}-->
-                        <th><!--{$arrFile[$key].disp_name|h}--></th>
-                        <td>
-                            <!--{if $arrFile[$key].filepath != ""}-->
-                                <img src="<!--{$arrFile[$key].filepath}-->" alt="" /><br />
-                            <!--{/if}-->
-                        </td>
-                    </tr>
                     <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                         <tr>
                             <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
@@ -73,6 +64,13 @@
                                 <!--{if $arrFile[$key].filepath != ""}-->
                                     <img src="<!--{$arrFile[$key].filepath}-->" alt="" /><br />
                                 <!--{/if}-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
+                            <th><!--{$arrForm[$key].disp_name|h}--></th>
+                            <td>
+                                <!--{$arrForm[$key].value|h}-->
                             </td>
                         </tr>
                     <!--{/section}-->

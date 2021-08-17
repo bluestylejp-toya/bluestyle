@@ -555,6 +555,15 @@ INSERT INTO `dtb_blocposition` VALUES (10,27,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,28,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,28,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,28,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,29,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,29,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,29,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,31,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,31,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,31,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,32,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,32,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,32,1,3,1,0);
 /*!40000 ALTER TABLE `dtb_blocposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1079,6 +1088,7 @@ CREATE TABLE `dtb_customer` (
   `nickname` text,
   `self_introduction` text,
   `hobbies` text,
+  `profile_image` text,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
   KEY `dtb_customer_mobile_phone_id_key` (`mobile_phone_id`(255))
@@ -2412,6 +2422,7 @@ INSERT INTO `dtb_pagelayout` VALUES (10,28,'プライバシーポリシー','gui
 INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集','mypage/profile.php','mypage/profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,31,'MYページ/アイテム登録','mypage/item_edit.php','mypage/item_edit',1,1,2,NULL,NULL,NULL,NULL,'2021-07-31 00:00:00','2021-07-31 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,32,'MYページ/出品中アイテム一覧','mypage/item-list.php','mypage/item-list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2770,9 +2781,9 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1);
-INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1);
-INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'',NULL,NULL,NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1);
+INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'',NULL,NULL,NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1);
+INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4331,6 +4342,30 @@ INSERT INTO `mtb_mobile_domain` VALUES (11,'au.com',10);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mtb_ngword`
+--
+
+DROP TABLE IF EXISTS `mtb_ngword`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mtb_ngword` (
+  `id` smallint NOT NULL,
+  `name` text,
+  `RANK` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mtb_ngword`
+--
+
+LOCK TABLES `mtb_ngword` WRITE;
+/*!40000 ALTER TABLE `mtb_ngword` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mtb_ngword` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `mtb_order_status`
 --
 
@@ -4968,23 +5003,6 @@ LOCK TABLES `mtb_zip` WRITE;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-
---
--- Table structure for table `mtb_ngword`
---
-
-DROP TABLE IF EXISTS `mtb_ngword`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `mtb_ngword` (
-    `id` smallint NOT NULL,
-    `name` text,
-    `RANK` smallint NOT NULL DEFAULT '0',
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -4993,4 +5011,4 @@ CREATE TABLE `mtb_ngword` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-01  2:07:03
+-- Dump completed on 2021-08-14 10:37:28

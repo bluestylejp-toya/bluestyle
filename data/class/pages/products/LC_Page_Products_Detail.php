@@ -305,10 +305,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         // 商品ステータスを取得
         $this->productStatus = $objProduct->getProductStatus(array($product_id));
 
-        // 画像ファイル指定がない場合の置換処理
-        $this->arrProduct['main_large_image']
-            = SC_Utils_Ex::sfNoImageMain($this->arrProduct['main_large_image']);
-
         $this->subImageFlag = $this->lfSetFile($this->objUpFile, $this->arrProduct, $this->arrFile);
         //レビュー情報の取得
         $this->arrReview = $this->lfGetReviewData($product_id);
@@ -356,10 +352,8 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      */
     public function lfInitFile(SC_UploadFile $objUpFile)
     {
-        $objUpFile->addFile('画像(1)', 'main_large_image', array('jpg'), IMAGE_SIZE);
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
-            $num = $cnt + 1;
-            $objUpFile->addFile("画像({$num})", "sub_large_image$cnt", array('jpg'), IMAGE_SIZE);
+            $objUpFile->addFile("画像({$cnt})", "sub_large_image$cnt", array('jpg'), IMAGE_SIZE);
         }
 
         return $objUpFile;

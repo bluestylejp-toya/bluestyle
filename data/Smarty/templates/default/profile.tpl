@@ -7,10 +7,12 @@
         <dt>紹介文</dt>
         <dd><!--{$arrCustomer.self_introduction|h|nl2br}--></dd>
     </dl>
-    <dl>
-        <dt>画像</dt>
-        <dd>【未対応 CHAIN-29 実装待ち】</dd>
-    </dl>
+    <!--{if strlen($arrCustomer.profile_image) >= 1}-->
+        <dl>
+            <dt>画像</dt>
+            <dd><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrCustomer.profile_image|h}-->"></dd>
+        </dl>
+    <!--{/if}-->
     <dl>
         <dt>趣味</dt>
         <dd><!--{$arrCustomer.hobbies|h}--></dd>
@@ -31,7 +33,7 @@
                             <dd><!--{$arrProduct.count_of_favorite|n2s|h}--></dd>
                         </dl>
                         <div>
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
                         </div>
                         <dl>
                             <dt>在庫数</dt>
@@ -62,7 +64,7 @@
                             <dd><!--{$arrProduct.count_of_favorite|n2s|h}--></dd>
                         </dl>
                         <div>
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
                         </div>
                     </li>
                 <!--{/foreach}-->

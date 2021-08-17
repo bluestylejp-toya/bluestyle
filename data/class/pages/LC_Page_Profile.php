@@ -39,6 +39,9 @@ class LC_Page_Profile extends LC_Page_Ex
         $this->arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($customer_id);
         $this->arrCustomerProducts = $this->getCustomerProducts($customer_id);
         $this->arrFavoriteProducts = $this->getFavoriteProducts($customer_id);
+
+        $masterData = new SC_DB_MasterData_Ex();
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
     }
 
     /**
