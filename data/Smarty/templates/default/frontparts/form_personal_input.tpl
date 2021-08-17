@@ -138,18 +138,6 @@
             </td>
         </tr>
         <tr>
-            <th>性別<span class="attention">※</span></th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`sex"}-->
-                <!--{if $arrErr[$key1]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--></div>
-                <!--{/if}-->
-                <span style="<!--{$arrErr[$key1]|sfGetErrorColor}-->">
-                    <!--{html_radios name=$key1 options=$arrSex selected=$arrForm[$key1].value separator='<br />'}-->
-                </span>
-            </td>
-        </tr>
-        <tr>
             <th>生年月日</th>
             <td>
                 <!--{assign var=key1 value="`$prefix`year"}-->

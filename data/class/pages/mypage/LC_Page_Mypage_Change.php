@@ -49,7 +49,6 @@ class LC_Page_Mypage_Change extends LC_Page_AbstractMypage_Ex
         $this->arrReminder  = $masterData->getMasterData('mtb_reminder');
         $this->arrPref      = $masterData->getMasterData('mtb_pref');
         $this->arrCountry   = $masterData->getMasterData('mtb_country');
-        $this->arrSex       = $masterData->getMasterData('mtb_sex');
         $this->arrPayment   = $objPayment->getPaymentMethods();
         $this->httpCacheControl('nocache');
 

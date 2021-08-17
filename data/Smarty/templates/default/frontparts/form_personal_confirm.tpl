@@ -96,14 +96,6 @@
             </td>
         </tr>
         <tr>
-            <th>性別</th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`sex"}-->
-                <!--{assign var="sex_id" value=$arrForm[$key1].value}-->
-                <!--{$arrSex[$sex_id]|h}-->
-            </td>
-        </tr>
-        <tr>
             <th>生年月日</th>
             <td>
                 <!--{assign var=key1 value="`$prefix`year"}-->

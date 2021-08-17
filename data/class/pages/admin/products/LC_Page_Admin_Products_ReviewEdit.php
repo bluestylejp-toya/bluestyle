@@ -50,7 +50,6 @@ class LC_Page_Admin_Products_ReviewEdit extends LC_Page_Admin_Products_Review
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
         $this->tpl_maintitle = '商品管理';
         $this->tpl_subtitle = 'レビュー管理';
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
     }
 
     /**
@@ -119,7 +118,6 @@ class LC_Page_Admin_Products_ReviewEdit extends LC_Page_Admin_Products_Review
         $objFormParam->addParam('レビュー表示', 'status', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('投稿者名', 'reviewer_name', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('投稿者URL', 'reviewer_url', URL_LEN, 'KVCa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('性別', 'sex', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('おすすめレベル', 'recommend_level', INT_LEN, 'n', array('SELECT_CHECK'));
         $objFormParam->addParam('タイトル', 'title', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('コメント', 'comment', LTEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
@@ -134,7 +132,7 @@ class LC_Page_Admin_Products_ReviewEdit extends LC_Page_Admin_Products_Review
     public function lfGetReviewData($review_id)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
-        $select='review_id, A.product_id, reviewer_name, sex, recommend_level, ';
+        $select='review_id, A.product_id, reviewer_name, recommend_level, ';
         $select.='reviewer_url, title, comment, A.status, A.create_date, A.update_date, name';
         $from = 'dtb_review AS A LEFT JOIN dtb_products AS B ON A.product_id = B.product_id ';
         $where = 'A.del_flg = 0 AND B.del_flg = 0 AND review_id = ? ';

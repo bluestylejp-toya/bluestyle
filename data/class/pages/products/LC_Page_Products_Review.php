@@ -35,9 +35,6 @@ class LC_Page_Products_Review extends LC_Page_Ex
     /** おすすめレベル */
     public $arrRECOMMEND;
 
-    /** 性別 */
-    public $arrSex;
-
     /** 入力禁止URL */
     public $arrReviewDenyURL;
 
@@ -53,7 +50,6 @@ class LC_Page_Products_Review extends LC_Page_Ex
 
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
         $this->arrReviewDenyURL = $masterData->getMasterData('mtb_review_deny_url');
         $this->tpl_mainpage = 'products/review.tpl';
         $this->httpCacheControl('nocache');
@@ -136,7 +132,6 @@ class LC_Page_Products_Review extends LC_Page_Ex
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK','EXIST_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('投稿者名', 'reviewer_name', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('投稿者URL', 'reviewer_url', MTEXT_LEN, 'a', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'URL_CHECK'));
-        $objFormParam->addParam('性別', 'sex', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('おすすめレベル', 'recommend_level', INT_LEN, 'n', array('EXIST_CHECK', 'SELECT_CHECK'));
         $objFormParam->addParam('タイトル', 'title', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('コメント', 'comment', LTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));

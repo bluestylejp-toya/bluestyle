@@ -56,17 +56,6 @@ self.moveTo(20,20);self.focus();
                 <td><!--{$arrSearchData.search_kana|default:"(未指定)"|h}--></td>
             </tr>
             <tr>
-                <th>性別</th>
-                <td>
-                <!--{assign var=key value="search_sex"}-->
-                <!--{if is_array($arrSearchData[$key])}-->
-                    <!--{foreach item=item from=$arrSearchData[$key]}-->
-                        <!--{$arrSex[$item]|h}-->　
-                    <!--{/foreach}-->
-                <!--{else}-->(未指定)<!--{/if}-->
-                </td>
-            </tr>
-            <tr>
                 <th>誕生月</th>
                 <td><!--{if $arrSearchData.search_birth_month}--><!--{$arrSearchData.search_birth_month|h}-->月<!--{else}-->(未指定)<!--{/if}--></td>
             </tr>

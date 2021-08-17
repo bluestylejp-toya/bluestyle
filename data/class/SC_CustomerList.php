@@ -92,15 +92,6 @@ class SC_CustomerList extends SC_SelectSql_Ex
             $this->arrVal[] = str_replace('-', '', $searchTel);
         }
 
-        // 性別
-        if (!isset($this->arrSql['search_sex'])) $this->arrSql['search_sex'] = '';
-        if (is_array($this->arrSql['search_sex'])) {
-            $arrSexVal = $this->setItemTerm($this->arrSql['search_sex'], 'sex');
-            foreach ($arrSexVal as $data) {
-                $this->arrVal[] = $data;
-            }
-        }
-
         // E-MAIL
         if (!isset($this->arrSql['search_email'])) $this->arrSql['search_email'] = '';
         if (strlen($this->arrSql['search_email']) > 0) {
@@ -251,7 +242,7 @@ class SC_CustomerList extends SC_SelectSql_Ex
      */
     public function getList()
     {
-        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,sex,email,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
+        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
 
         return $this->getSql(2);
     }

@@ -223,16 +223,6 @@
                 </td>
             </tr>
             <tr>
-                <th>性別</th>
-                <td>
-                    <!--{assign var=key1 value="order_sex"}-->
-                    <span class="attention"><!--{$arrErr[$key1]}--></span>
-                    <span style="<!--{$arrErr[$key1]|sfGetErrorColor}-->">
-                    <!--{html_radios name=$key1 options=$arrSex selected=$arrForm[$key1].value}-->
-                    </span>
-                </td>
-            </tr>
-            <tr>
                 <th>生年月日</th>
                 <td>
                     <!--{assign var=key1 value="order_birth_year"}-->

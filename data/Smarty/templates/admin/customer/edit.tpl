@@ -155,15 +155,6 @@
                 </td>
             </tr>
             <tr>
-                <th>性別<span class="attention"> *</span></th>
-                <td>
-                    <span class="attention"><!--{$arrErr.sex}--></span>
-                    <span <!--{if $arrErr.sex != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
-                        <!--{html_radios name="sex" options=$arrSex separator=" " selected=$arrForm.sex}-->
-                    </span>
-                </td>
-            </tr>
-            <tr>
                 <th>生年月日</th>
                 <td>
                     <span class="attention"><!--{$arrErr.year}--></span>

@@ -29,11 +29,6 @@
     </td>
 </tr>
 <tr>
-    <th>性別</th>
-    <td>
-        <!--{assign var=key value="search_sex"}-->
-        <!--{html_checkboxes name=$key options=$arrSex separator="&nbsp;" selected=$arrForm[$key].value}-->
-    </td>
     <th>誕生月</th>
     <td>
         <!--{assign var=key value="search_birth_month"}-->

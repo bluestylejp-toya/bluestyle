@@ -48,13 +48,6 @@
                 <td><span class="attention"><!--{$arrErr.reviewer_url}--></span><input type="text" name="reviewer_url" value="<!--{$arrForm.reviewer_url|h}-->" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" style="<!--{$arrErr.reviewer_url|sfGetErrorColor}-->" class="box350" /></td>
             </tr>
             <tr>
-                <th>性別</th>
-                <td>
-                    <input type="radio" name="sex" id="man" value="1" <!--{if $arrForm.sex eq 1}--> checked="checked"<!--{/if}--> /><label for="man">男性</label>&nbsp;
-                    <input type="radio" name="sex" id="woman" value="2" <!--{if $arrForm.sex eq 2}--> checked="checked"<!--{/if}--> /><label for="woman">女性</label>
-                </td>
-            </tr>
-            <tr>
                 <th>おすすめレベル<span class="attention">※</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.recommend_level}--></span>

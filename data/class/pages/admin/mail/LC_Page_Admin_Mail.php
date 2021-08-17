@@ -49,7 +49,6 @@ class LC_Page_Admin_Mail extends LC_Page_Admin_Ex
 
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrPref = $masterData->getMasterData('mtb_pref');
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
         $this->arrPageRows = $masterData->getMasterData('mtb_page_max');
         $this->arrHtmlmail = array('' => 'HTML+TEXT',  1 => 'HTML', 2 => 'TEXT', 99 => '全員（メルマガ拒否している会員も含む）');
         $this->arrMailType = $masterData->getMasterData('mtb_mail_type');
