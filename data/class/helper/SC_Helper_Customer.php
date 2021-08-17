@@ -74,26 +74,6 @@ class SC_Helper_Customer
 
             $arrData['password'] = SC_Utils_Ex::sfGetHashString($arrData['password'], $salt);
         }
-        //-- 秘密の質問の更新がある場合は暗号化
-        if ($arrData['reminder_answer'] == DEFAULT_PASSWORD or $arrData['reminder_answer'] == '') {
-            //更新しない
-            unset($arrData['reminder_answer']);
-
-            // 旧バージョン(2.11未満)からの移行を考慮
-            if ($old_version_flag && $is_password_updated) {
-                // パスワードが更新される場合は、平文になっている秘密の質問を暗号化する
-                $reminder_answer = $objQuery->get('reminder_answer', 'dtb_customer', 'customer_id = ? ', array($customer_id));
-                $arrData['reminder_answer'] = SC_Utils_Ex::sfGetHashString($reminder_answer, $salt);
-            }
-        } else {
-            // 旧バージョン(2.11未満)からの移行を考慮
-            if ($old_version_flag && !$is_password_updated) {
-                // パスワードが更新されない場合は、平文のままにする
-                unset($arrData['salt']);
-            } else {
-                $arrData['reminder_answer'] = SC_Utils_Ex::sfGetHashString($arrData['reminder_answer'], $salt);
-            }
-        }
 
         //デフォルト国IDを追加
         if (FORM_COUNTRY_ENABLE == false) {
@@ -254,7 +234,6 @@ class SC_Helper_Customer
 
         if ($mask_flg) {
             $arrForm['password']          = DEFAULT_PASSWORD;
-            $arrForm['reminder_answer']   = DEFAULT_PASSWORD;
         }
 
         return $arrForm;
@@ -417,8 +396,6 @@ class SC_Helper_Customer
     public function sfCustomerRegisterParam(&$objFormParam, $isAdmin = false, $is_mypage = false, $prefix = '')
     {
         $objFormParam->addParam('パスワード', $prefix . 'password', PASSWORD_MAX_LEN, '', array('EXIST_CHECK', 'SPTAB_CHECK', 'PASSWORD_CHAR_CHECK'));
-        $objFormParam->addParam('パスワード確認用の質問の答え', $prefix . 'reminder_answer', STEXT_LEN, '', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('パスワード確認用の質問', $prefix . 'reminder', STEXT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('年', $prefix . 'year', 4, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
         $objFormParam->addParam('月', $prefix . 'month', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
         $objFormParam->addParam('日', $prefix . 'day', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
@@ -477,10 +454,6 @@ class SC_Helper_Customer
         if (isset($objErr->arrErr['password'])
             && $objFormParam->getValue('password') == DEFAULT_PASSWORD) {
             unset($objErr->arrErr['password']);
-        }
-        if (isset($objErr->arrErr['reminder_answer'])
-                && $objFormParam->getValue('reminder_answer') == DEFAULT_PASSWORD) {
-            unset($objErr->arrErr['reminder_answer']);
         }
 
         return $objErr->arrErr;

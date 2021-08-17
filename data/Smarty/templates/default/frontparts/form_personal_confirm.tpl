@@ -114,16 +114,6 @@
                 <td><!--{$passlen}--></td>
             </tr>
             <tr>
-                <th>パスワードを忘れた時のヒント</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`reminder"}-->
-                    <!--{assign var=key2 value="`$prefix`reminder_answer"}-->
-                    <!--{assign var="reminder_id" value=$arrForm[$key1].value}-->
-                    質問：<!--{$arrReminder[$reminder_id]|h}--><br />
-                    答え：<!--{$arrForm[$key2].value|h}-->
-                </td>
-            </tr>
-            <tr>
                 <th>お支払い方法</th>
                 <td>
                     <!--{assign var=key1 value="`$prefix`default_payment_id"}-->

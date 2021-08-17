@@ -46,7 +46,6 @@ class LC_Page_Mypage_Change extends LC_Page_AbstractMypage_Ex
         $this->tpl_mypageno = 'change';
 
         $masterData         = new SC_DB_MasterData_Ex();
-        $this->arrReminder  = $masterData->getMasterData('mtb_reminder');
         $this->arrPref      = $masterData->getMasterData('mtb_pref');
         $this->arrCountry   = $masterData->getMasterData('mtb_country');
         $this->arrPayment   = $objPayment->getPaymentMethods();
