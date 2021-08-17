@@ -339,6 +339,9 @@ class LC_Page_Products_List extends LC_Page_Ex
     {
         $objQuery   = SC_Query_Ex::getSingletonInstance();
         $arrSearch  = array('category' => '指定なし', 'maker' => '指定なし', 'name' => '指定なし');
+        $arrSearch['pref'] = '指定なし';
+        $arrSearch['product_status'] = '指定なし';
+
         // カテゴリ検索条件
         if ($arrSearchData['category_id'] > 0) {
             $arrSearch['category']  = $objQuery->get('category_name', 'dtb_category', 'category_id = ?', array($arrSearchData['category_id']));
@@ -354,6 +357,24 @@ class LC_Page_Products_List extends LC_Page_Ex
         // 商品名検索条件
         if (strlen($arrSearchData['name']) > 0) {
             $arrSearch['name']      = $arrSearchData['name'];
+        }
+
+        // 出品者の都道府県
+        if (!empty($arrSearchData['pref_id'])) {
+            $arrSelectedName = [];
+            foreach ($arrSearchData['pref_id'] as $id) {
+                $arrSelectedName[] = $this->arrPref[$id];
+            }
+            $arrSearch['pref'] = implode('、', $arrSelectedName);
+        }
+
+        // 商品の状態
+        if (!empty($arrSearchData['product_status'])) {
+            $arrSelectedName = [];
+            foreach ($arrSearchData['product_status'] as $id) {
+                $arrSelectedName[] = $this->arrSTATUS[$id];
+            }
+            $arrSearch['product_status'] = implode('、', $arrSelectedName);
         }
 
         return $arrSearch;
