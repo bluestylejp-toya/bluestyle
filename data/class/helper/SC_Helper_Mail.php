@@ -395,11 +395,7 @@ class SC_Helper_Mail
             $CONF['email01']        // Bcc
         );
         // 宛先の設定
-        if ($is_mobile) {
-            $to_addr = $arrCustomerData['email_mobile'];
-        } else {
-            $to_addr = $arrCustomerData['email'];
-        }
+        $to_addr = $arrCustomerData['email'];
         $objMail->setTo($to_addr, $arrCustomerData['name01'] . $arrCustomerData['name02'] .' 様');
 
         $objMail->sendMail();

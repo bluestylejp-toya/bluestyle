@@ -148,13 +148,6 @@
                 </td>
             </tr>
             <tr>
-                <th>携帯メールアドレス</th>
-                <td>
-                    <span class="attention"><!--{$arrErr.email_mobile}--></span>
-                    <input type="text" name="email_mobile" value="<!--{$arrForm.email_mobile|h}-->" size="60" class="box60" <!--{if $arrErr.email_mobile != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
-            </tr>
-            <tr>
                 <th>電話番号<span class="attention"> *</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.tel01}--><!--{$arrErr.tel02}--><!--{$arrErr.tel03}--></span>

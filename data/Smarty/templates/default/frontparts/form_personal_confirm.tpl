@@ -95,19 +95,6 @@
                 <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
             </td>
         </tr>
-        <!--{if $emailMobile}-->
-            <tr>
-                <th>携帯メールアドレス</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`email_mobile"}-->
-                    <!--{if strlen($arrForm[$key1].value) > 0}-->
-                        <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
-                    <!--{else}-->
-                        未登録
-                    <!--{/if}-->
-                </td>
-            </tr>
-        <!--{/if}-->
         <tr>
             <th>性別</th>
             <td>

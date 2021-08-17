@@ -98,10 +98,6 @@ function func_return(){
                 <td><!--{$arrForm.email|h}--></td>
             </tr>
             <tr>
-                <th>携帯メールアドレス</th>
-                <td><!--{$arrForm.email_mobile|h}--></td>
-            </tr>
-            <tr>
                 <th>お電話番号</th>
                 <td><!--{$arrForm.tel01|h}--> - <!--{$arrForm.tel02|h}--> - <!--{$arrForm.tel03|h}--></td>
             </tr>

@@ -40,13 +40,6 @@
                 <span class="attention">「全員（メルマガ拒否している会員も含む） 」を選択される場合は、メンテナンス告知など、運用関連の配信のみとして下さい。</span>
             </td>
         </tr>
-        <tr>
-            <th>配信メールアドレス種別</th>
-            <td colspan="3">
-                <!--{assign var=key value="search_mail_type"}-->
-                <!--{html_radios name=$key options=$arrMailType separator="<br />" selected=$arrForm[$key].value|default:1}-->
-            </td>
-        </tr>
     </table>
     <!--{* 検索条件設定テーブルここまで *}-->
 

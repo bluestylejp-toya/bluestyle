@@ -91,13 +91,6 @@
     </td>
 </tr>
 <tr>
-    <th>携帯メールアドレス</th>
-    <td colspan="3">
-        <!--{assign var=key value="search_email_mobile"}-->
-        <!--{if $arrErr[$key]}--><span class="attention"><!--{$arrErr[$key]}--></span><!--{/if}-->
-        <input type="text" name="<!--{$key}-->" maxlength="<!--{$arrForm[$key].length}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60" <!--{if $arrErr[$key]}--><!--{sfSetErrorStyle}--><!--{/if}-->/></td>
-</tr>
-<tr>
     <th>電話番号</th>
     <td colspan="3">
         <!--{assign var=key value="search_tel"}-->

@@ -135,14 +135,8 @@ class LC_Page_Shopping extends LC_Page_Ex
                         $objCookie->setCookie('login_email', '');
                     }
 
-                    // モバイルサイトで携帯アドレスの登録が無い場合、携帯アドレス登録ページへ遷移
-                    if (SC_Display_Ex::detectDevice() == DEVICE_TYPE_MOBILE) {
-                        if (!$objCustomer->hasValue('email_mobile')) {
-                            SC_Response_Ex::sendRedirectFromUrlPath('entry/email_mobile.php');
-                            SC_Response_Ex::actionExit();
-                        }
                     // スマートフォンの場合はログイン成功を返す
-                    } elseif (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
+                    if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
                         echo SC_Utils_Ex::jsonEncode(array('success' =>
                                                      $this->getNextLocation($this->cartKey, $this->tpl_uniqid,
                                                                             $objCustomer, $objPurchase,

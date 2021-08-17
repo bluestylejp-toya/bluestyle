@@ -129,60 +129,6 @@ class SC_CustomerList extends SC_SelectSql_Ex
             $this->setWhere($sql_where);
         }
 
-        // E-MAIL(mobile)
-        if (!isset($this->arrSql['search_email_mobile'])) $this->arrSql['search_email_mobile'] = '';
-
-        if (strlen($this->arrSql['search_email_mobile']) > 0) {
-            //カンマ区切りで複数の条件指定可能に
-            $this->arrSql['search_email_mobile'] = explode(',', $this->arrSql['search_email_mobile']);
-            $sql_where = '';
-            foreach ($this->arrSql['search_email_mobile'] as $val) {
-                $val = trim($val);
-                //検索条件を含まない
-                if ($this->arrSql['not_email_mobileinc'] == '1') {
-                    if ($sql_where == '') {
-                        $sql_where .= 'dtb_customer.email_mobile NOT ILIKE ? ';
-                    } else {
-                        $sql_where .= 'AND dtb_customer.email_mobile NOT ILIKE ? ';
-                    }
-                } else {
-                    if ($sql_where == '') {
-                        $sql_where .= 'dtb_customer.email_mobile ILIKE ? ';
-                    } else {
-                        $sql_where .= 'OR dtb_customer.email_mobile ILIKE ? ';
-                    }
-                }
-                $searchemail_mobile = $this->addSearchStr($val);
-                $this->arrVal[] = $searchemail_mobile;
-            }
-            $this->setWhere($sql_where);
-        }
-
-        // 配信メールアドレス種別
-        if ($mode == 'customer') {
-            if (isset($this->arrSql['search_mail_type'])) {
-                $sqlEmailMobileIsEmpty = "(dtb_customer.email_mobile IS NULL OR dtb_customer.email_mobile = '')";
-                switch ($this->arrSql['search_mail_type']) {
-                    // PCメールアドレス
-                    case 1:
-                        $this->setWhere("(dtb_customer.email <> dtb_customer.email_mobile OR $sqlEmailMobileIsEmpty)");
-                        break;
-                    // 携帯メールアドレス
-                    case 2:
-                        $this->setWhere("NOT $sqlEmailMobileIsEmpty");
-                        break;
-                    // PCメールアドレス (携帯メールアドレスを登録している会員は除外)
-                    case 3:
-                        $this->setWhere($sqlEmailMobileIsEmpty);
-                        break;
-                    // 携帯メールアドレス (PCメールアドレスを登録している会員は除外)
-                    case 4:
-                        $this->setWhere('dtb_customer.email = dtb_customer.email_mobile');
-                        break;
-                }
-            }
-        }
-
         // 購入金額指定
         if (!isset($this->arrSql['search_buy_total_from'])) $this->arrSql['search_buy_total_from'] = '';
         if (!isset($this->arrSql['search_buy_total_to'])) $this->arrSql['search_buy_total_to'] = '';
@@ -305,7 +251,7 @@ class SC_CustomerList extends SC_SelectSql_Ex
      */
     public function getList()
     {
-        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,sex,email,email_mobile,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
+        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,sex,email,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
 
         return $this->getSql(2);
     }

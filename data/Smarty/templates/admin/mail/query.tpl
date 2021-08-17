@@ -84,10 +84,6 @@ self.moveTo(20,20);self.focus();
                 <td><!--{$arrSearchData.search_email|default:"(未指定)"|h}--></td>
             </tr>
             <tr>
-                <th>携帯メールアドレス</th>
-                <td><!--{$arrSearchData.search_email_mobile|default:"(未指定)"|h}--></td>
-            </tr>
-            <tr>
                 <th>電話番号</th>
                 <td><!--{$arrSearchData.search_tel|default:"(未指定)"|h}--></td>
             </tr>
@@ -144,10 +140,6 @@ self.moveTo(20,20);self.focus();
             <tr>
                 <th>配信形式</th>
                 <td><!--{$arrHtmlmail[$arrSearchData.search_htmlmail]|default:"(未指定)"|h}--></td>
-            </tr>
-            <tr>
-                <th>配信メールアドレス種別</th>
-                <td><!--{$arrMailType[$arrSearchData.search_mail_type]|default:"(未指定)"|h}--></td>
             </tr>
         </table>
 

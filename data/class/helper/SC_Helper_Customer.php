@@ -343,7 +343,6 @@ class SC_Helper_Customer
         SC_Helper_Customer_Ex::sfCustomerRegisterParam($objFormParam, $isAdmin);
         if ($isAdmin) {
             $objFormParam->addParam('会員ID', 'customer_id', INT_LEN, 'n', array('NUM_CHECK'));
-            $objFormParam->addParam('携帯メールアドレス', 'email_mobile', null, 'a', array('NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
             $objFormParam->addParam('会員状態', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('SHOP用メモ', 'note', LTEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
             $objFormParam->addParam('所持ポイント', 'point', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK'), 0);
@@ -366,10 +365,7 @@ class SC_Helper_Customer
     {
         SC_Helper_Customer_Ex::sfCustomerCommonParam($objFormParam);
         SC_Helper_Customer_Ex::sfCustomerRegisterParam($objFormParam, false, true);
-        if (SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE) {
-            $objFormParam->addParam('携帯メールアドレス', 'email_mobile', null, 'a', array('NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
-        } else {
-            $objFormParam->addParam('携帯メールアドレス', 'email_mobile', null, 'a', array('EXIST_CHECK', 'NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
+        if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
             $objFormParam->addParam('メールアドレス', 'email', null, 'a', array('NO_SPTAB', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK'));
         }
     }
@@ -476,8 +472,6 @@ class SC_Helper_Customer
      */
     public function sfCustomerMypageErrorCheck(&$objFormParam, $isAdmin = false)
     {
-        $objFormParam->toLower('email_mobile');
-
         $objErr = SC_Helper_Customer_Ex::sfCustomerCommonErrorCheck($objFormParam);
         $objErr = SC_Helper_Customer_Ex::sfCustomerRegisterErrorCheck($objErr, $isAdmin);
 
@@ -532,7 +526,6 @@ class SC_Helper_Customer
         if (!$isAdmin) {
             // 現会員の判定 → 現会員もしくは仮登録中は、メアド一意が前提になってるので同じメアドで登録不可
             $objErr->doFunc(array('メールアドレス', 'email'), array('CHECK_REGIST_CUSTOMER_EMAIL'));
-            $objErr->doFunc(array('携帯メールアドレス', 'email_mobile'), array('CHECK_REGIST_CUSTOMER_EMAIL', 'MOBILE_EMAIL_CHECK'));
         }
 
         return $objErr;
@@ -560,7 +553,6 @@ class SC_Helper_Customer
         $objFormParam->addParam('誕生日(終了日)', 'search_b_end_day', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('誕生月', 'search_birth_month', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('メールアドレス', 'search_email', MTEXT_LEN, 'a', array('SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('携帯メールアドレス', 'search_email_mobile', MTEXT_LEN, 'a', array('SPTAB_CHECK', 'EMAIL_CHAR_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('電話番号', 'search_tel', TEL_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('購入金額(開始)', 'search_buy_total_from', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('購入金額(終了)', 'search_buy_total_to', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));

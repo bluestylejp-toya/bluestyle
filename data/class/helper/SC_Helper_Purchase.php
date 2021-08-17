@@ -497,17 +497,6 @@ class SC_Helper_Purchase
                 }
             }
 
-            if ((SC_Display_Ex::detectDevice() == DEVICE_TYPE_MOBILE)
-                && in_array('email', $keys)
-            ) {
-                $email_mobile = $objCustomer->getValue('email_mobile');
-                if (empty($email_mobile)) {
-                    $dest[$prefix . '_email'] = $objCustomer->getValue('email');
-                } else {
-                    $dest[$prefix . '_email'] = $email_mobile;
-                }
-            }
-
             $dest['customer_id'] = $objCustomer->getValue('customer_id');
             $dest['update_date'] = 'CURRENT_TIMESTAMP';
         }

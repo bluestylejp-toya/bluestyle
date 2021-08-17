@@ -137,18 +137,6 @@
                 <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="box300 top" />
             </td>
         </tr>
-        <!--{if $emailMobile}-->
-            <tr>
-                <th>携帯メールアドレス</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`email_mobile"}-->
-                    <!--{if $arrErr[$key1]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--></div>
-                    <!--{/if}-->
-                    <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" class="box300 top" />
-                </td>
-            </tr>
-        <!--{/if}-->
         <tr>
             <th>性別<span class="attention">※</span></th>
             <td>
