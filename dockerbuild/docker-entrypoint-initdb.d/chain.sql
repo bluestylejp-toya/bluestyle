@@ -3586,7 +3586,7 @@ INSERT INTO `mtb_constants` VALUES ('PRICE_LEN','8',197,'金額桁数');
 INSERT INTO `mtb_constants` VALUES ('PRODUCT_TYPE_DOWNLOAD','2',901,'ダウンロード商品');
 INSERT INTO `mtb_constants` VALUES ('PRODUCT_TYPE_NORMAL','1',900,'通常商品');
 INSERT INTO `mtb_constants` VALUES ('PRODUCTS_TOTAL_MAX','15',55,'商品集計で何位まで表示するか');
-INSERT INTO `mtb_constants` VALUES ('PRODUCTSUB_MAX','9',185,'商品サブ情報最大数');
+INSERT INTO `mtb_constants` VALUES ('PRODUCTSUB_MAX','10',185,'商品サブ情報最大数');
 INSERT INTO `mtb_constants` VALUES ('RECOMMEND_NUM','8',269,'おすすめ商品表示数');
 INSERT INTO `mtb_constants` VALUES ('RECOMMEND_PRODUCT_MAX','6',268,'関連商品表示数');
 INSERT INTO `mtb_constants` VALUES ('RELEASE_YEAR','2005',84,'本システムの稼働開始年');
@@ -5011,4 +5011,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-14 10:37:28
+-- Dump completed on 2021-08-17 17:12:19
