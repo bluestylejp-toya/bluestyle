@@ -476,6 +476,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,2,1,4,4,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,3,1,0);
@@ -5008,4 +5009,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-19  8:39:21
+-- Dump completed on 2021-08-18  3:57:03

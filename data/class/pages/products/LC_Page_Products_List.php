@@ -127,7 +127,9 @@ class LC_Page_Products_List extends LC_Page_Ex
         $this->arrSearchData = array(
             'category_id'   => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
             'maker_id'      => intval($this->arrForm['maker_id']),
-            'name'          => $this->arrForm['name']
+            'name'          => $this->arrForm['name'],
+            'pref_id'       => $this->normalizePrefId($_REQUEST['pref_id']),
+            'product_status'    => $this->normalizeProductStatus($_REQUEST['product_status']),
         );
         $this->orderby = $this->arrForm['orderby'];
 
@@ -409,9 +411,30 @@ class LC_Page_Products_List extends LC_Page_Ex
         // 分割したキーワードを一つずつwhere文に追加
         foreach ($names as $val) {
             if (strlen($val) > 0) {
-                $searchCondition['where']    .= ' AND ( alldtl.name ILIKE ? OR alldtl.comment3 ILIKE ?) ';
+                $searchCondition['where']    .= ' AND ( alldtl.name ILIKE ? OR alldtl.comment3 ILIKE ?';
                 $searchCondition['arrval'][]  = "%$val%";
                 $searchCondition['arrval'][]  = "%$val%";
+                // カテゴリー
+                $searchCondition['where'] .= <<< __EOS__
+ OR EXISTS(
+    SELECT *
+    FROM dtb_product_categories
+    WHERE product_id = alldtl.product_id
+        AND EXISTS(
+            SELECT *
+            FROM dtb_category
+            WHERE category_id = dtb_product_categories.category_id
+                AND category_name LIKE ?
+        )
+)
+__EOS__;
+                $searchCondition['arrval'][] = "%$val%";
+                // キャプション
+                for ($i = 1; $i <= PRODUCTSUB_MAX; $i++) {
+                    $searchCondition['where'] .= " OR alldtl.sub_title{$i} ILIKE ?";
+                    $searchCondition['arrval'][] = "%$val%";
+                }
+                $searchCondition['where'] .= ')';
             }
         }
 
@@ -419,6 +442,18 @@ class LC_Page_Products_List extends LC_Page_Ex
         if ($arrSearchData['maker_id']) {
             $searchCondition['where']   .= ' AND alldtl.maker_id = ? ';
             $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+        }
+
+        // 出品者の都道府県
+        if (!empty($arrSearchData['pref_id'])) {
+            $searchCondition['where'] .= ' AND EXISTS(SELECT * FROM dtb_customer WHERE customer_id = alldtl.customer_id AND pref IN (' . SC_Utils_Ex::repeatStrWithSeparator('?', count($arrSearchData['pref_id'])) . '))';
+            $searchCondition['arrval'] = array_merge($searchCondition['arrval'], $arrSearchData['pref_id']);
+        }
+
+        // 商品の状態
+        if (!empty($arrSearchData['product_status'])) {
+            $searchCondition['where'] .= ' AND EXISTS(SELECT * FROM dtb_product_status WHERE product_id = alldtl.product_id AND product_status_id IN (' . SC_Utils_Ex::repeatStrWithSeparator('?', count($arrSearchData['product_status'])) . '))';
+            $searchCondition['arrval'] = array_merge($searchCondition['arrval'], $arrSearchData['product_status']);
         }
 
         // 在庫無し商品の非表示
@@ -598,5 +633,45 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $this->tpl_javascript   .= 'function fnOnLoad() {' . $js_fnOnLoad . '}';
         $this->tpl_onload       .= 'fnOnLoad(); ';
+    }
+
+    /**
+     * 選択されている都道府県IDを正規化する
+     *
+     * @param mixed $input
+     * @return array
+     */
+    public function normalizePrefId($input)
+    {
+        if (is_array($input)) {
+            return array_intersect($input, array_keys($this->arrPref));
+        }
+        elseif (is_scalar($input)) {
+            if (in_array($input, $this->arrPref)) {
+                return [$input];
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * 選択されている商品ステータスIDを正規化する
+     *
+     * @param mixed $input
+     * @return array
+     */
+    public function normalizeProductStatus($input)
+    {
+        if (is_array($input)) {
+            return array_intersect($input, array_keys($this->arrSTATUS));
+        }
+        elseif (is_scalar($input)) {
+            if (in_array($input, $this->arrSTATUS)) {
+                return [$input];
+            }
+        }
+
+        return [];
     }
 }
