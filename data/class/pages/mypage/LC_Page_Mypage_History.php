@@ -182,8 +182,8 @@ class LC_Page_Mypage_History extends LC_Page_AbstractMypage_Ex
         $i = 0;
         foreach ($arrOrderDetails as $arrOrderDetail) {
             $objQuery = SC_Query_Ex::getSingletonInstance();
-            $arrProduct = $objQuery->select('main_large_image', 'dtb_products', 'product_id = ?', array($arrOrderDetail['product_id']));
-            $arrOrderDetails[$i]['main_large_image'] = $arrProduct[0]['main_large_image'];
+            $arrProduct = $objQuery->select('sub_large_image1', 'dtb_products', 'product_id = ?', array($arrOrderDetail['product_id']));
+            $arrOrderDetails[$i]['sub_large_image1'] = $arrProduct[0]['sub_large_image1'];
             $i++;
         }
 

@@ -330,7 +330,7 @@ class SC_CartSession
             'name'                => true,
             'price02'             => true,
             'point_rate'          => true,
-            'main_large_image'    => true,
+            'sub_large_image1'    => true,
             'product_code'        => true,
             'stock'               => true,
             'stock_unlimited'     => true,

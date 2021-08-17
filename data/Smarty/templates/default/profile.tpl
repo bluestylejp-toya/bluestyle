@@ -31,7 +31,7 @@
                             <dd><!--{$arrProduct.count_of_favorite|n2s|h}--></dd>
                         </dl>
                         <div>
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
                         </div>
                         <dl>
                             <dt>在庫数</dt>
@@ -62,7 +62,7 @@
                             <dd><!--{$arrProduct.count_of_favorite|n2s|h}--></dd>
                         </dl>
                         <div>
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
                         </div>
                     </li>
                 <!--{/foreach}-->

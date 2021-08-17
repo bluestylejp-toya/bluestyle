@@ -59,8 +59,8 @@
                     <!--{assign var=index value=$smarty.section.line.index}-->
                     <tr>
                         <td class="alignC">
-                            <a href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.main_large_image.value[$index]|sfNoImageMainList|h}-->" class="expansion" target="_blank">
-                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.main_large_image.value[$index]|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrForm.name.value[$index]|h}-->" /></a>
+                            <a href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.sub_large_image1.value[$index]|sfNoImageMainList|h}-->" class="expansion" target="_blank">
+                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.sub_large_image1.value[$index]|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrForm.name.value[$index]|h}-->" /></a>
                         </td>
                         <td><!--{* 商品名 *}--><strong><!--{$arrForm.name.value[$index]|h}--></strong><br />
                             <!--{if $arrForm.classcategory_name1.value[$index] != ""}-->
@@ -92,7 +92,7 @@
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
                             <!--{assign var=key value="classcategory_name2"}-->
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
-                            <!--{assign var=key value="main_large_image"}-->
+                            <!--{assign var=key value="sub_large_image1"}-->
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
                             <!--{assign var=key value="price"}-->
                             <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />

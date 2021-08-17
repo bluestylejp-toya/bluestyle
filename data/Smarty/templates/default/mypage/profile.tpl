@@ -59,7 +59,7 @@
                                     </dl>
                                     <div>
                                         <!--{* メイン画像 *}-->
-                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.main_large_image|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
+                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}--> 画像(1)" />
                                         <!--{* サブ画像 *}-->
                                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                                             <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->

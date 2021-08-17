@@ -24,6 +24,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
 
         $this->httpCacheControl('nocache');
+
+        $this->image_ymd_dir = date('Y/m/d/');
     }
 
     /**
@@ -56,6 +58,9 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                 $product_id = $objFormParam_PreEdit->getValue('product_id');
                 // 商品データ取得
                 $arrForm = $this->lfGetFormParam_PreEdit($objUpFile, $product_id);
+
+                // 会員の整合を確認
+                $this->checkCustomer($arrForm['customer_id']);
 
                 // パラメーター初期化
                 $this->lfInitFormParam($objFormParam, $arrForm);
@@ -110,6 +115,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
             // 画像のアップロード (Ajax)
             case 'upload_image_ajax':
+            case 'delete_image_ajax':
                 // パラメーター初期化
                 $this->lfInitFormParam_UploadImage($objFormParam);
                 $this->lfInitFormParam($objFormParam, $_POST);
@@ -117,12 +123,18 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
                 $image_key = $arrForm['image_key'];
 
-                // ファイルを一時ディレクトリにアップロード
-                $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
-                if (strlen($error) >= 1) {
-                    SC_Response_Ex::json([
-                        'error' => $error,
-                    ]);
+                if ($mode === 'upload_image_ajax') {
+                    // ファイルを一時ディレクトリにアップロード
+                    $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
+                    if (strlen($error) >= 1) {
+                        SC_Response_Ex::json([
+                            'error' => $error,
+                        ]);
+                    }
+                }
+                elseif ($mode === 'delete_image_ajax') {
+                    // ファイル削除
+                    $this->lfDeleteTempFile($objUpFile, $image_key);
                 }
 
                 // アップロードファイル情報取得(Hidden用)
@@ -135,33 +147,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                     'arrHidden' => $arrHidden,
                     'arrFile' => $arrFile,
                 ]);
-                break;
-
-            // 画像のアップロード
-            case 'upload_image':
-            case 'delete_image':
-                // パラメーター初期化
-                $this->lfInitFormParam_UploadImage($objFormParam);
-                $this->lfInitFormParam($objFormParam, $_POST);
-                $arrForm = $objFormParam->getHashArray();
-
-                switch ($mode) {
-                    case 'upload_image':
-                        // ファイルを一時ディレクトリにアップロード
-                        $this->arrErr[$arrForm['image_key']] = $objUpFile->makeTempFile($arrForm['image_key'], IMAGE_RENAME);
-                        break;
-                    case 'delete_image':
-                        // ファイル削除
-                        $this->lfDeleteTempFile($objUpFile, $arrForm['image_key']);
-                        break;
-                    default:
-                        break;
-                }
-
-                // 入力画面表示設定
-                $this->lfSetViewParam_InputPage($objUpFile, $objFormParam);
-                // ページonload時のJavaScript設定
-                $this->tpl_onload = $this->getAnchorHash($arrForm['image_key']);
                 break;
 
             // 確認ページからの戻り
@@ -206,15 +191,14 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     public function lfInitFormParam(&$objFormParam, $arrPost)
     {
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('タイトル', 'name', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
+        $objFormParam->addParam('タイトル', 'name', LTEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
         $objFormParam->addParam('カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('公開ステータス', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), DEFAULT_PRODUCT_DISP);
         $objFormParam->addParam('状態ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('タグ', 'comment3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
-        $objFormParam->addParam('save_main_large_image', 'save_main_large_image', '', '', array());
-        $objFormParam->addParam('temp_main_large_image', 'temp_main_large_image', '', '', array());
+        $objFormParam->addParam('タグ', 'comment3', LTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
 
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
+            $objFormParam->addParam("キャプション({$cnt})", 'sub_title' . $cnt, STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('save_sub_large_image' . $cnt, 'save_sub_large_image' . $cnt, '', '', array());
             $objFormParam->addParam('temp_sub_large_image' . $cnt, 'temp_sub_large_image' . $cnt, '', '', array());
         }
@@ -246,10 +230,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
      */
     public function lfInitFile(&$objUpFile)
     {
-        $objUpFile->addFile('画像(1)', 'main_large_image', array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT);
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
-            $num = $cnt + 1;
-            $objUpFile->addFile("画像({$num})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
+            $objUpFile->addFile("画像({$cnt})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
         }
     }
 
@@ -388,13 +370,17 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $arrImageKey = array();
         foreach ($arrTempFile as $key => $temp_file) {
             if ($temp_file) {
-                $objImage->moveTempImage($temp_file, $objUpFile->save_dir);
+                $save_dir = $objUpFile->save_dir . $this->image_ymd_dir;
+                if (!SC_Utils_Ex::recursiveMkdir($save_dir)) {
+                    throw new Exception;
+                }
+                $objImage->moveTempImage($temp_file, $save_dir);
                 $arrImageKey[] = $arrKeyName[$key];
                 if (!empty($arrSaveFile[$key])
                     && !$this->lfHasSameProductImage($product_id, $arrImageKey, $arrSaveFile[$key], $objUpFile)
                     && !in_array($temp_file, $arrSaveFile)
                 ) {
-                    $objImage->deleteImage($arrSaveFile[$key], $objUpFile->save_dir);
+                    $objImage->deleteImage($arrSaveFile[$key], $save_dir);
                 }
             }
         }
@@ -518,14 +504,19 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             'comment3' => $arrList['comment3'],
         ];
 
+        for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
+            $sqlval['sub_title'.$cnt] = $arrList['sub_title'.$cnt];
+        }
+
         // INSERTする値を作成する。
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
-        $arrRet = $objUpFile->getDBFileList();
+        $arrRet = $objUpFile->getDBFileList($this->image_ymd_dir);
         $sqlval = array_merge($sqlval, $arrRet);
 
         $objQuery->begin();
 
-        // 新規登録(複製時を含む)
+        $product_id = null;
+        // 新規登録
         if ($arrList['product_id'] == '') {
             $product_id = $objQuery->nextVal('dtb_products_product_id');
             $sqlval['product_id'] = $product_id;
@@ -536,15 +527,20 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             $objQuery->insert('dtb_products', $sqlval);
 
             $arrList['product_id'] = $product_id;
-
-            // カテゴリを更新
-            $objDb->updateProductCategories([$arrList['category_id']], $product_id);
-
+            $arrList['stock_unlimited'] = UNLIMITED_FLG_LIMITED;
+            $arrList['stock'] = 1;
+        }
         // 更新
-        } else {
+        else {
             $product_id = $arrList['product_id'];
+
+            // 現状の商品情報を取得
+            $arrRet = $this->lfGetProductData_FromDB($product_id);
+
+            // 会員の整合を確認
+            $this->checkCustomer($arrRet['customer_id']);
+
             // 削除要求のあった既存ファイルの削除
-            $arrRet = $this->lfGetProductData_FromDB($arrList['product_id']);
             // TODO: SC_UploadFile::deleteDBFileの画像削除条件見直し要
             $objImage = new SC_Image_Ex($objUpFile->temp_dir);
             $arrKeyName = $objUpFile->keyname;
@@ -553,7 +549,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             foreach ($arrKeyName as $key => $keyname) {
                 if ($arrRet[$keyname] && !$arrSaveFile[$key]) {
                     $arrImageKey[] = $keyname;
-                    $has_same_image = $this->lfHasSameProductImage($arrList['product_id'], $arrImageKey, $arrRet[$keyname], $objUpFile);
+                    $has_same_image = $this->lfHasSameProductImage($product_id, $arrImageKey, $arrRet[$keyname], $objUpFile);
                     if (!$has_same_image) {
                         $objImage->deleteImage($arrRet[$keyname], $objUpFile->save_dir);
                     }
@@ -562,10 +558,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             // UPDATEの実行
             $where = 'product_id = ? AND customer_id = ?';
             $objQuery->update('dtb_products', $sqlval, $where, array($product_id, $customer_id));
-
-            // カテゴリを更新
-            $objDb->updateProductCategories([$arrList['category_id']], $product_id);
         }
+
+        // カテゴリを更新
+        $objDb->updateProductCategories([$arrList['category_id']], $product_id);
 
         // 規格なし商品（商品規格テーブルの更新）
         $this->lfInsertDummyProductClass($arrList);
@@ -591,13 +587,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $objDb = new SC_Helper_DB_Ex();
 
         // 配列の添字を定義
-        $checkArray = array('product_class_id', 'product_id');
+        $checkArray = array('product_class_id', 'product_id', 'stock_unlimited', 'stock');
         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $checkArray);
-        $sqlval = SC_Utils_Ex::arrayDefineIndexes($sqlval, $checkArray);
 
         $sqlval['product_type_id'] = DEFAULT_PRODUCT_DOWN;
-        $sqlval['stock_unlimited'] = UNLIMITED_FLG_LIMITED;
-        $sqlval['stock'] = 1;
         $sqlval['creator_id'] = strlen($_SESSION['member_id']) >= 1 ? $_SESSION['member_id'] : '0';
 
         if (strlen($sqlval['product_class_id']) == 0) {
@@ -615,18 +608,13 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     }
 
     /**
-     * アンカーハッシュ文字列を取得する
-     * アンカーキーをサニタイジングする
-     *
-     * @param  string $anchor_key フォーム入力パラメーターで受け取ったアンカーキー
-     * @return <type>
+     * 会員の整合を確認
      */
-    public function getAnchorHash($anchor_key)
+    function checkCustomer($product_customer_id)
     {
-        if ($anchor_key != '') {
-            return "location.hash='#" . htmlspecialchars($anchor_key) . "'";
-        } else {
-            return '';
+        $login_customer_id = $this->objCustomer->getValue('customer_id');
+        if ($product_customer_id != $login_customer_id) {
+            SC_Utils_Ex::sfDispSiteError(CUSTOMER_ERROR);
         }
     }
 }

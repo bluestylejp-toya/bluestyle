@@ -135,12 +135,12 @@ class LC_Page_Rss_Products extends LC_Page_Ex
         // 値の整形
         foreach (array_keys($arrProduct) as $key) {
             // 画像ファイルのURLセット
-            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_large_image'])) {
+            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['sub_large_image1'])) {
                 $dir = IMAGE_SAVE_RSS_URL;
             } else {
                 $dir = IMAGE_TEMP_RSS_URL;
             }
-            $arrProduct[$key]['main_large_image'] = $dir . $arrProduct[$key]['main_large_image'];
+            $arrProduct[$key]['sub_large_image1'] = $dir . $arrProduct[$key]['sub_large_image1'];
             // ポイント計算
             $arrProduct[$key]['point'] = SC_Utils_Ex::sfPrePoint(
                 $arrProduct[$key]['price02'],
@@ -184,12 +184,12 @@ class LC_Page_Rss_Products extends LC_Page_Ex
         // 値の整形
         foreach (array_keys($arrProduct) as $key) {
             // 画像ファイルのURLセット
-            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['main_large_image'])) {
+            if (file_exists(IMAGE_SAVE_REALDIR . $arrProduct[$key]['sub_large_image1'])) {
                 $dir = IMAGE_SAVE_RSS_URL;
             } else {
                 $dir = IMAGE_TEMP_RSS_URL;
             }
-            $arrProduct[$key]['main_large_image'] = $dir . $arrProduct[$key]['main_large_image'];
+            $arrProduct[$key]['sub_large_image1'] = $dir . $arrProduct[$key]['sub_large_image1'];
             // ポイント計算
             $arrProduct[$key]['point_max'] = SC_Utils_Ex::sfPrePoint(
                 $arrProduct[$key]['price02_max'],
