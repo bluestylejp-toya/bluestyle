@@ -36,6 +36,12 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     {
         $objFormParam = new SC_FormParam_Ex();
 
+        $customer_id = $this->objCustomer->getValue('customer_id');
+        $ok = SC_Helper_Customer_Ex::checkCompletedInputCustomerData($customer_id);
+        if (!$ok) {
+            SC_Response_Ex::sendRedirect('./change.php', ['message' => '会員登録内容が不足しているため、会員登録内容変更ページへ移動します']);
+        }
+
         // アップロードファイル情報の初期化
         $objUpFile = new SC_UploadFile_Ex(IMAGE_TEMP_REALDIR, IMAGE_SAVE_REALDIR);
         $this->lfInitFile($objUpFile);

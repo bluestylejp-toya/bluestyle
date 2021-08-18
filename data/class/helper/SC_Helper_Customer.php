@@ -318,9 +318,9 @@ class SC_Helper_Customer
      */
     public function sfCustomerEntryParam(&$objFormParam, $isAdmin = false)
     {
-        SC_Helper_Customer_Ex::sfCustomerCommonParam($objFormParam);
         SC_Helper_Customer_Ex::sfCustomerRegisterParam($objFormParam, $isAdmin);
         if ($isAdmin) {
+            SC_Helper_Customer_Ex::sfCustomerCommonParam($objFormParam);
             $objFormParam->addParam('会員ID', 'customer_id', INT_LEN, 'n', array('NUM_CHECK'));
             $objFormParam->addParam('会員状態', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('SHOP用メモ', 'note', LTEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
@@ -396,17 +396,17 @@ class SC_Helper_Customer
     public function sfCustomerRegisterParam(&$objFormParam, $isAdmin = false, $is_mypage = false, $prefix = '')
     {
         $objFormParam->addParam('パスワード', $prefix . 'password', PASSWORD_MAX_LEN, '', array('EXIST_CHECK', 'SPTAB_CHECK', 'PASSWORD_CHAR_CHECK'));
-        $objFormParam->addParam('年', $prefix . 'year', 4, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
-        $objFormParam->addParam('月', $prefix . 'month', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
-        $objFormParam->addParam('日', $prefix . 'day', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
-        $objFormParam->addParam('お支払い方法', $prefix . 'default_payment_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-
-        if (SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE) {
-            $objFormParam->addParam('メールアドレス', $prefix . 'email', null, 'a', array('NO_SPTAB', 'EXIST_CHECK', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK'));
-        } else {
-            if (!$is_mypage) {
-                $objFormParam->addParam('メールアドレス', $prefix . 'email', null, 'a', array('EXIST_CHECK', 'EMAIL_CHECK', 'NO_SPTAB', 'EMAIL_CHAR_CHECK', 'MOBILE_EMAIL_CHECK'));
-            }
+        $objFormParam->addParam('メールアドレス', $prefix . 'email', null, 'a', array('NO_SPTAB', 'EXIST_CHECK', 'EMAIL_CHECK', 'SPTAB_CHECK', 'EMAIL_CHAR_CHECK'));
+        // 新規登録
+        if (!$isAdmin && !$is_mypage) {
+            $objFormParam->addParam('ニックネーム', 'nickname', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
+        }
+        // 管理画面、MYページ
+        if ($isAdmin || $is_mypage) {
+            $objFormParam->addParam('年', $prefix . 'year', 4, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
+            $objFormParam->addParam('月', $prefix . 'month', 2, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
+            $objFormParam->addParam('日', $prefix . 'day', 2, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
+            $objFormParam->addParam('お支払い方法', $prefix . 'default_payment_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         }
     }
 
@@ -685,5 +685,27 @@ class SC_Helper_Customer
         $objFormParam->addParam('ニックネーム', 'nickname', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
         $objFormParam->addParam('紹介文', 'self_introduction', LTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
         $objFormParam->addParam('趣味', 'hobbies', LTEXT_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
+    }
+
+    public static function checkCompletedInputCustomerData($customer_id)
+    {
+        $arrData = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($customer_id, 'del_flg = 0');
+
+        if (strlen($arrData['name01']) == 0) return false;
+        if (strlen($arrData['name02']) == 0) return false;
+        if (strlen($arrData['kana01']) == 0) return false;
+        if (strlen($arrData['kana02']) == 0) return false;
+        if (strlen($arrData['zip01']) == 0) return false;
+        if (strlen($arrData['zip02']) == 0) return false;
+        if (strlen($arrData['pref']) == 0) return false;
+        if (strlen($arrData['addr01']) == 0) return false;
+        if (strlen($arrData['addr02']) == 0) return false;
+        if (strlen($arrData['tel01']) == 0) return false;
+        if (strlen($arrData['tel02']) == 0) return false;
+        if (strlen($arrData['tel03']) == 0) return false;
+        if (strlen($arrData['birth']) == 0) return false;
+        if (strlen($arrData['default_payment_id']) == 0) return false;
+        
+        return true;
     }
 }
