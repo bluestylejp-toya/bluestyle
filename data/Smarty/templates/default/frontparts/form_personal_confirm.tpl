@@ -95,27 +95,6 @@
                 <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
             </td>
         </tr>
-        <!--{if $emailMobile}-->
-            <tr>
-                <th>携帯メールアドレス</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`email_mobile"}-->
-                    <!--{if strlen($arrForm[$key1].value) > 0}-->
-                        <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
-                    <!--{else}-->
-                        未登録
-                    <!--{/if}-->
-                </td>
-            </tr>
-        <!--{/if}-->
-        <tr>
-            <th>性別</th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`sex"}-->
-                <!--{assign var="sex_id" value=$arrForm[$key1].value}-->
-                <!--{$arrSex[$sex_id]|h}-->
-            </td>
-        </tr>
         <tr>
             <th>生年月日</th>
             <td>
@@ -133,16 +112,6 @@
             <tr>
                 <th>希望するパスワード</th>
                 <td><!--{$passlen}--></td>
-            </tr>
-            <tr>
-                <th>パスワードを忘れた時のヒント</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`reminder"}-->
-                    <!--{assign var=key2 value="`$prefix`reminder_answer"}-->
-                    <!--{assign var="reminder_id" value=$arrForm[$key1].value}-->
-                    質問：<!--{$arrReminder[$reminder_id]|h}--><br />
-                    答え：<!--{$arrForm[$key2].value|h}-->
-                </td>
             </tr>
             <tr>
                 <th>お支払い方法</th>

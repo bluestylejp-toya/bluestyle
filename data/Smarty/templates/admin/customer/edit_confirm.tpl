@@ -98,16 +98,8 @@ function func_return(){
                 <td><!--{$arrForm.email|h}--></td>
             </tr>
             <tr>
-                <th>携帯メールアドレス</th>
-                <td><!--{$arrForm.email_mobile|h}--></td>
-            </tr>
-            <tr>
                 <th>お電話番号</th>
                 <td><!--{$arrForm.tel01|h}--> - <!--{$arrForm.tel02|h}--> - <!--{$arrForm.tel03|h}--></td>
-            </tr>
-            <tr>
-                <th>性別</th>
-                <td><!--{$arrSex[$arrForm.sex]|h}--></td>
             </tr>
             <tr>
                 <th>生年月日</th>
@@ -116,13 +108,6 @@ function func_return(){
             <tr>
                 <th>パスワード</th>
                 <td><!--{$smarty.const.DEFAULT_PASSWORD}--></td>
-            </tr>
-            <tr>
-                <th>パスワードを忘れたときのヒント</th>
-                <td>
-                    質問： <!--{$arrReminder[$arrForm.reminder]|h}--><br />
-                    答え： <!--{$smarty.const.DEFAULT_PASSWORD}-->
-                </td>
             </tr>
             <tr>
                 <th>SHOP用メモ</th>

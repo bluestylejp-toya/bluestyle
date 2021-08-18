@@ -49,7 +49,6 @@ class LC_Page_Admin_Customer extends LC_Page_Admin_Ex
 
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrPref = $masterData->getMasterData('mtb_pref');
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
         $this->arrPageMax = $masterData->getMasterData('mtb_page_max');
         $this->arrStatus = $masterData->getMasterData('mtb_customer_status');
         $this->arrMagazineType = $masterData->getMasterData('mtb_magazine_type');

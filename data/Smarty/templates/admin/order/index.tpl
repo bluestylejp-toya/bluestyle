@@ -200,14 +200,6 @@
                 </td>
             </tr>
             <tr>
-                <th>性別</th>
-                <td colspan="3">
-                <!--{assign var=key value="search_order_sex"}-->
-                <span class="attention"><!--{$arrErr[$key]}--></span>
-                <!--{html_checkboxes name="$key" options=$arrSex selected=$arrForm[$key].value}-->
-                </td>
-            </tr>
-            <tr>
                 <th>支払方法</th>
                 <td colspan="3">
                 <!--{assign var=key value="search_payment_id"}-->

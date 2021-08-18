@@ -36,7 +36,7 @@ class SC_Helper_Purchase
 
     public $arrShippingKey = array(
         'name01', 'name02', 'kana01', 'kana02',
-        'sex', 'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
+        'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
         'tel01', 'tel02', 'tel03',
     );
 
@@ -485,7 +485,7 @@ class SC_Helper_Purchase
      */
     public function copyFromCustomer(&$dest, &$objCustomer, $prefix = 'order',
         $keys = array('name01', 'name02', 'kana01', 'kana02',
-            'sex', 'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
+            'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
             'tel01', 'tel02', 'tel03',
             'birth', 'email',
         )
@@ -494,17 +494,6 @@ class SC_Helper_Purchase
             foreach ($keys as $key) {
                 if (in_array($key, $keys)) {
                     $dest[$prefix . '_' . $key] = $objCustomer->getValue($key);
-                }
-            }
-
-            if ((SC_Display_Ex::detectDevice() == DEVICE_TYPE_MOBILE)
-                && in_array('email', $keys)
-            ) {
-                $email_mobile = $objCustomer->getValue('email_mobile');
-                if (empty($email_mobile)) {
-                    $dest[$prefix . '_email'] = $objCustomer->getValue('email');
-                } else {
-                    $dest[$prefix . '_email'] = $email_mobile;
                 }
             }
 
@@ -767,7 +756,7 @@ class SC_Helper_Purchase
 
         // 不要な変数を unset
         $unsets = array('mailmaga_flg', 'deliv_check', 'point_check', 'password',
-                        'reminder', 'reminder_answer', 'mail_flag', 'session');
+                        'mail_flag', 'session');
         foreach ($unsets as $unset) {
             unset($orderParams[$unset]);
         }

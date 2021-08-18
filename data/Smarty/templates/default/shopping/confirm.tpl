@@ -204,10 +204,6 @@
                         <td><!--{$arrForm.order_email|h}--></td>
                     </tr>
                     <tr>
-                        <th scope="row">性別</th>
-                        <td><!--{$arrSex[$arrForm.order_sex]|h}--></td>
-                    </tr>
-                    <tr>
                         <th scope="row">生年月日</th>
                         <td>
                             <!--{$arrForm.order_birth|regex_replace:"/ .+/":""|regex_replace:"/-/":"/"|default:'(未登録)'|h}-->
