@@ -25,69 +25,71 @@
 <!--{strip}-->
     <col width="30%" />
     <col width="70%" />
-    <tr>
-        <th>お名前</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`name01"}-->
-            <!--{assign var=key2 value="`$prefix`name02"}-->
-            <!--{$arrForm[$key1].value|h}-->&nbsp;
-            <!--{$arrForm[$key2].value|h}-->
-        </td>
-    </tr>
-    <tr>
-        <th>お名前(フリガナ)</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`kana01"}-->
-            <!--{assign var=key2 value="`$prefix`kana02"}-->
-            <!--{$arrForm[$key1].value|h}-->&nbsp;
-            <!--{$arrForm[$key2].value|h}-->
-        </td>
-    </tr>
-    <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
-    <tr>
-        <th>国</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`country_id"}-->
-            <!--{assign var="country_id" value=$arrForm[$key1].value}-->
-            <!--{$arrCountry[$country_id]|h}-->
-        </td>
-    </tr>
-    <tr>
-        <th>ZIP CODE</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`zipcode"}-->
-            <!--{$arrForm[$key1].value|h}-->
-        </td>
-    </tr>
+    <!--{if $flgFields != 93}-->
+        <tr>
+            <th>お名前</th>
+            <td>
+                <!--{assign var=key1 value="`$prefix`name01"}-->
+                <!--{assign var=key2 value="`$prefix`name02"}-->
+                <!--{$arrForm[$key1].value|h}-->&nbsp;
+                <!--{$arrForm[$key2].value|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>お名前(フリガナ)</th>
+            <td>
+                <!--{assign var=key1 value="`$prefix`kana01"}-->
+                <!--{assign var=key2 value="`$prefix`kana02"}-->
+                <!--{$arrForm[$key1].value|h}-->&nbsp;
+                <!--{$arrForm[$key2].value|h}-->
+            </td>
+        </tr>
+        <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
+            <tr>
+                <th>国</th>
+                <td>
+                    <!--{assign var=key1 value="`$prefix`country_id"}-->
+                    <!--{assign var="country_id" value=$arrForm[$key1].value}-->
+                    <!--{$arrCountry[$country_id]|h}-->
+                </td>
+            </tr>
+            <tr>
+                <th>ZIP CODE</th>
+                <td>
+                    <!--{assign var=key1 value="`$prefix`zipcode"}-->
+                    <!--{$arrForm[$key1].value|h}-->
+                </td>
+            </tr>
+        <!--{/if}-->
+        <tr>
+            <th>郵便番号</th>
+            <td>
+                <!--{assign var=key1 value="`$prefix`zip01"}-->
+                <!--{assign var=key2 value="`$prefix`zip02"}-->
+                〒 <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>住所</th>
+            <td>
+                <!--{assign var=key1 value="`$prefix`pref"}-->
+                <!--{assign var=key2 value="`$prefix`addr01"}-->
+                <!--{assign var=key3 value="`$prefix`addr02"}-->
+                <!--{assign var="pref_id" value=$arrForm[$key1].value}-->
+                <!--{$arrPref[$pref_id]|h}--><!--{$arrForm[$key2].value|h}--><!--{$arrForm[$key3].value|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>電話番号</th>
+            <td>
+                <!--{assign var=key1 value="`$prefix`tel01"}-->
+                <!--{assign var=key2 value="`$prefix`tel02"}-->
+                <!--{assign var=key3 value="`$prefix`tel03"}-->
+                <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}--> - <!--{$arrForm[$key3].value|h}-->
+            </td>
+        </tr>
     <!--{/if}-->
-    <tr>
-        <th>郵便番号</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`zip01"}-->
-            <!--{assign var=key2 value="`$prefix`zip02"}-->
-            〒 <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}-->
-        </td>
-    </tr>
-    <tr>
-        <th>住所</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`pref"}-->
-            <!--{assign var=key2 value="`$prefix`addr01"}-->
-            <!--{assign var=key3 value="`$prefix`addr02"}-->
-            <!--{assign var="pref_id" value=$arrForm[$key1].value}-->
-            <!--{$arrPref[$pref_id]|h}--><!--{$arrForm[$key2].value|h}--><!--{$arrForm[$key3].value|h}-->
-        </td>
-    </tr>
-    <tr>
-        <th>電話番号</th>
-        <td>
-            <!--{assign var=key1 value="`$prefix`tel01"}-->
-            <!--{assign var=key2 value="`$prefix`tel02"}-->
-            <!--{assign var=key3 value="`$prefix`tel03"}-->
-            <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}--> - <!--{$arrForm[$key3].value|h}-->
-        </td>
-    </tr>
-    <!--{if $flgFields > 1}-->
+    <!--{if $flgFields != 1}-->
         <tr>
             <th>メールアドレス</th>
             <td>
@@ -95,27 +97,8 @@
                 <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
             </td>
         </tr>
-        <!--{if $emailMobile}-->
-            <tr>
-                <th>携帯メールアドレス</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`email_mobile"}-->
-                    <!--{if strlen($arrForm[$key1].value) > 0}-->
-                        <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
-                    <!--{else}-->
-                        未登録
-                    <!--{/if}-->
-                </td>
-            </tr>
-        <!--{/if}-->
-        <tr>
-            <th>性別</th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`sex"}-->
-                <!--{assign var="sex_id" value=$arrForm[$key1].value}-->
-                <!--{$arrSex[$sex_id]|h}-->
-            </td>
-        </tr>
+    <!--{/if}-->
+    <!--{if $flgFields == 2 || $flgFields == 3}-->
         <tr>
             <th>生年月日</th>
             <td>
@@ -129,29 +112,30 @@
                 <!--{/if}-->
             </td>
         </tr>
-        <!--{if $flgFields > 2}-->
-            <tr>
-                <th>希望するパスワード</th>
-                <td><!--{$passlen}--></td>
-            </tr>
-            <tr>
-                <th>パスワードを忘れた時のヒント</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`reminder"}-->
-                    <!--{assign var=key2 value="`$prefix`reminder_answer"}-->
-                    <!--{assign var="reminder_id" value=$arrForm[$key1].value}-->
-                    質問：<!--{$arrReminder[$reminder_id]|h}--><br />
-                    答え：<!--{$arrForm[$key2].value|h}-->
-                </td>
-            </tr>
-            <tr>
-                <th>お支払い方法</th>
-                <td>
-                    <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
-                    <!--{assign var="default_payment_id" value=$arrForm[$key1].value}-->
-                    <!--{$arrPayment[$default_payment_id]|h}-->
-                </td>
-            </tr>
-        <!--{/if}-->
+    <!--{/if}-->
+    <!--{if $flgFields == 3 || $flgFields == 93}-->
+        <tr>
+            <th>希望するパスワード</th>
+            <td><!--{$passlen}--></td>
+        </tr>
+    <!--{/if}-->
+    <!--{if $flgFields == 3}-->
+        <tr>
+            <th>お支払い方法</th>
+            <td>
+                <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
+                <!--{assign var="default_payment_id" value=$arrForm[$key1].value}-->
+                <!--{$arrPayment[$default_payment_id]|h}-->
+            </td>
+        </tr>
+    <!--{/if}-->
+    <!--{if $flgFields == 93}-->
+        <tr>
+            <!--{assign var=key1 value="nickname"}-->
+            <th><!--{$arrForm[$key1].disp_name|h}--></th>
+            <td>
+                <!--{$arrForm[$key1].value|h}-->
+            </td>
+        </tr>
     <!--{/if}-->
 <!--{/strip}-->

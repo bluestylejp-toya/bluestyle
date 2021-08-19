@@ -367,6 +367,7 @@ class SC_Helper_Mail
         $objMailText->assign('CONF', $CONF);
         $objMailText->assign('name01', $arrCustomerData['name01']);
         $objMailText->assign('name02', $arrCustomerData['name02']);
+        $objMailText->assign('nickname', $arrCustomerData['nickname']);
         $objMailText->assign('uniqid', $arrCustomerData['secret_key']);
         $objMailText->assignobj($arrCustomerData);
         $objMailText->assignobj($this);
@@ -395,12 +396,8 @@ class SC_Helper_Mail
             $CONF['email01']        // Bcc
         );
         // 宛先の設定
-        if ($is_mobile) {
-            $to_addr = $arrCustomerData['email_mobile'];
-        } else {
-            $to_addr = $arrCustomerData['email'];
-        }
-        $objMail->setTo($to_addr, $arrCustomerData['name01'] . $arrCustomerData['name02'] .' 様');
+        $to_addr = $arrCustomerData['email'];
+        $objMail->setTo($to_addr, $arrCustomerData['nickname'] .' 様');
 
         $objMail->sendMail();
 

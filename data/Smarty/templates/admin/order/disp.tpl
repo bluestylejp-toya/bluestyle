@@ -83,10 +83,6 @@
             <td><!--{$arrForm.order_tel01.value|h}--> - <!--{$arrForm.order_tel02.value|h}--> - <!--{$arrForm.order_tel03.value|h}--></td>
         </tr>
         <tr>
-            <th>性別</th>
-            <td><!--{$arrSex[$arrForm.order_sex.value]|h}--></td>
-        </tr>
-        <tr>
             <th>生年月日</th>
             <td>
                 <!--{assign var=key1 value="order_birth_year"}-->

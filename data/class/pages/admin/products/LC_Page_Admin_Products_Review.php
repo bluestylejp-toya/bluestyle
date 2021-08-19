@@ -50,7 +50,6 @@ class LC_Page_Admin_Products_Review extends LC_Page_Admin_Ex
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrPageMax = $masterData->getMasterData('mtb_page_max');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
 
         $objDate = new SC_Date_Ex();
         // 登録・更新検索開始年
@@ -183,17 +182,7 @@ class LC_Page_Admin_Products_Review extends LC_Page_Admin_Ex
         $arrHidden = array();
         foreach ($arrForm AS $key=>$val) {
             if (preg_match('/^search_/', $key)) {
-                switch ($key) {
-                    case 'search_sex':
-                        $arrHidden[$key] = SC_Utils_Ex::sfMergeParamCheckBoxes($val);
-                        if (!is_array($val)) {
-                            $arrForm[$key] = explode('-', $val);
-                        }
-                        break;
-                    default:
-                        $arrHidden[$key] = $val;
-                        break;
-                }
+                $arrHidden[$key] = $val;
             }
         }
 
@@ -212,7 +201,6 @@ class LC_Page_Admin_Products_Review extends LC_Page_Admin_Ex
         $objFormParam->addParam('投稿者URL', 'search_reviewer_url', STEXT_LEN, 'KVas', array('MAX_LENGTH_CHECK'), '', false);
         $objFormParam->addParam('商品名', 'search_name', STEXT_LEN, 'KVas', array('MAX_LENGTH_CHECK'), '', false);
         $objFormParam->addParam('商品コード', 'search_product_code', STEXT_LEN, 'KVas', array('MAX_LENGTH_CHECK'), '', false);
-        $objFormParam->addParam('性別', 'search_sex', INT_LEN, 'n', array('MAX_LENGTH_CHECK'), '', false);
         $objFormParam->addParam('おすすめレベル', 'search_recommend_level', INT_LEN, 'n', array('MAX_LENGTH_CHECK'), '', false);
         $objFormParam->addParam('投稿年', 'search_startyear', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'), '', false);
         $objFormParam->addParam('投稿月', 'search_startmonth', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'), '', false);
@@ -276,28 +264,6 @@ class LC_Page_Admin_Products_Review extends LC_Page_Admin_Ex
                     $val = preg_replace('/ /', '%', $val);
                     $where.= ' AND A.product_id IN (SELECT product_id FROM dtb_products_class WHERE product_code LIKE ?)';
                     $arrWhereVal[] = "%$val%";
-                    break;
-
-                case 'search_sex':
-                    $tmp_where = '';
-                    //$val=配列の中身,$element=各キーの値(1,2)
-                    if (is_array($val)) {
-                        foreach ($val as $element) {
-                            if ($element != '') {
-                                if ($tmp_where == '') {
-                                    $tmp_where .= ' AND (sex = ?';
-                                } else {
-                                    $tmp_where .= ' OR sex = ?';
-                                }
-                                $arrWhereVal[] = $element;
-                            }
-                        }
-                        if ($tmp_where != '') {
-                            $tmp_where .= ')';
-                            $where .= " $tmp_where ";
-                        }
-                    }
-
                     break;
 
                 case 'search_recommend_level':
@@ -367,7 +333,7 @@ class LC_Page_Admin_Products_Review extends LC_Page_Admin_Ex
         $objQuery->setOrder($order);
         //検索結果の取得
         //レビュー情報のカラムの取得
-        $col = 'review_id, A.product_id, reviewer_name, sex, recommend_level, ';
+        $col = 'review_id, A.product_id, reviewer_name, recommend_level, ';
         $col .= 'reviewer_url, title, comment, A.status, A.create_date, A.update_date, name';
         $from = 'dtb_review AS A LEFT JOIN dtb_products AS B ON A.product_id = B.product_id ';
         $arrReview = $objQuery->select($col, $from, $where, $arrWhereVal);

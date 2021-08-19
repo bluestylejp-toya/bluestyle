@@ -49,7 +49,6 @@ class LC_Page_Admin_Total extends LC_Page_Admin_Ex
 
         $masterData                 = new SC_DB_MasterData_Ex();
         $this->arrWDAY              = $masterData->getMasterData('mtb_wday');
-        $this->arrSex               = $masterData->getMasterData('mtb_sex');
 
         // 登録・更新日検索用
         $objDate                    = new SC_Date_Ex();
@@ -556,12 +555,7 @@ __EOS__;
 
         foreach ($arrTotalResults as $key => $value) {
             $arrResult =& $arrTotalResults[$key];
-            $member_key = $arrResult['order_sex'];
-            if ($member_key != '') {
-                $arrResult['member_name'] = (($arrResult['member']) ? '会員' : '非会員') . $this->arrSex[$member_key];
-            } else {
-                $arrResult['member_name'] = '未回答';
-            }
+            $arrResult['member_name'] = (($arrResult['member']) ? '会員' : '非会員');
         }
 
         $tpl_image = $this->lfGetGraphPie($arrTotalResults, 'member_name', 'member', '(売上比率)', $sdate, $edate);

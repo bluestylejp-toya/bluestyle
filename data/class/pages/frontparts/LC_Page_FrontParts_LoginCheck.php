@@ -117,23 +117,6 @@ class LC_Page_FrontParts_LoginCheck extends LC_Page_Ex
                 if (count($arrErr) == 0) {
                     // ログイン処理
                     if ($objCustomer->doLogin($arrForm['login_email'], $arrForm['login_pass'])) {
-                        if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
-                            // ログインが成功した場合は携帯端末IDを保存する。
-                            $objCustomer->updateMobilePhoneId();
-
-                            /*
-                             * email がモバイルドメインでは無く,
-                             * 携帯メールアドレスが登録されていない場合
-                             */
-                            $objMobile = new SC_Helper_Mobile_Ex();
-                            if (!$objMobile->gfIsMobileMailAddress($objCustomer->getValue('email'))) {
-                                if (!$objCustomer->hasValue('email_mobile')) {
-                                    SC_Response_Ex::sendRedirectFromUrlPath('entry/email_mobile.php');
-                                    SC_Response_Ex::actionExit();
-                                }
-                            }
-                        }
-
                         // --- ログインに成功した場合
                         if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
                             echo SC_Utils_Ex::jsonEncode(array('success' => $url));

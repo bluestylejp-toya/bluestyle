@@ -44,7 +44,6 @@ class LC_Page_Shopping extends LC_Page_Ex
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrPref = $masterData->getMasterData('mtb_pref');
         $this->arrCountry = $masterData->getMasterData('mtb_country');
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
         $this->tpl_onload = 'eccube.toggleDeliveryForm();';
 
         $objDate = new SC_Date_Ex(BIRTH_YEAR, date('Y'));
@@ -135,14 +134,8 @@ class LC_Page_Shopping extends LC_Page_Ex
                         $objCookie->setCookie('login_email', '');
                     }
 
-                    // モバイルサイトで携帯アドレスの登録が無い場合、携帯アドレス登録ページへ遷移
-                    if (SC_Display_Ex::detectDevice() == DEVICE_TYPE_MOBILE) {
-                        if (!$objCustomer->hasValue('email_mobile')) {
-                            SC_Response_Ex::sendRedirectFromUrlPath('entry/email_mobile.php');
-                            SC_Response_Ex::actionExit();
-                        }
                     // スマートフォンの場合はログイン成功を返す
-                    } elseif (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
+                    if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
                         echo SC_Utils_Ex::jsonEncode(array('success' =>
                                                      $this->getNextLocation($this->cartKey, $this->tpl_uniqid,
                                                                             $objCustomer, $objPurchase,
@@ -275,8 +268,6 @@ class LC_Page_Shopping extends LC_Page_Ex
         // 不要なパラメーターの削除
         // XXX: 共通化したことをうまく使えば、以前あった購入同時会員登録も復活出来そうですが
         $objFormParam->removeParam('order_password');
-        $objFormParam->removeParam('order_reminder');
-        $objFormParam->removeParam('order_reminder_answer');
 
         $objFormParam->addParam('別のお届け先', 'deliv_check', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
 

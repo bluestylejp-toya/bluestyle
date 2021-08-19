@@ -43,9 +43,7 @@ class LC_Page_Entry extends LC_Page_Ex
         parent::init();
         $masterData         = new SC_DB_MasterData_Ex();
         $this->arrPref      = $masterData->getMasterData('mtb_pref');
-        $this->arrReminder  = $masterData->getMasterData('mtb_reminder');
         $this->arrCountry   = $masterData->getMasterData('mtb_country');
-        $this->arrSex       = $masterData->getMasterData('mtb_sex');
         $this->arrPayment   = $objPayment->getPaymentMethods();
 
         // 生年月日選択肢の取得
@@ -178,8 +176,6 @@ class LC_Page_Entry extends LC_Page_Ex
      * 会員登録に必要なSQLパラメーターの配列を生成する.
      *
      * フォームに入力された情報を元に, SQLパラメーターの配列を生成する.
-     * モバイル端末の場合は, email を email_mobile にコピーし,
-     * mobile_phone_id に携帯端末IDを格納する.
      *
      * @param SC_FormParam $objFormParam
      * @access private
@@ -206,13 +202,6 @@ class LC_Page_Entry extends LC_Page_Ex
         $CONF = SC_Helper_DB_Ex::sfGetBasisData();
         $arrResults['point'] = $CONF['welcome_point'];
 
-        if (SC_Display_Ex::detectDevice() == DEVICE_TYPE_MOBILE) {
-            // 携帯メールアドレス
-            $arrResults['email_mobile']     = $arrResults['email'];
-            // PHONE_IDを取り出す
-            $arrResults['mobile_phone_id']  =  SC_MobileUserAgent_Ex::getId();
-        }
-
         return $arrResults;
     }
 
@@ -231,6 +220,7 @@ class LC_Page_Entry extends LC_Page_Ex
         $objMailText->assign('CONF', $CONF);
         $objMailText->assign('name01', $arrForm['name01']);
         $objMailText->assign('name02', $arrForm['name02']);
+        $objMailText->assign('nickname', $arrForm['nickname']);
         $objMailText->assign('uniqid', $uniqid);
         $objMailText->assignobj($this);
 
@@ -260,7 +250,7 @@ class LC_Page_Entry extends LC_Page_Ex
         );
         // 宛先の設定
         $objMail->setTo($arrForm['email'],
-                        $arrForm['name01'] . $arrForm['name02'] .' 様');
+                        $arrForm['nickname'] .' 様');
 
         $objMail->sendMail();
     }

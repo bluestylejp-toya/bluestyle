@@ -43,19 +43,6 @@
                 <td><input type="text" name="search_product_code" value="<!--{$arrForm.search_product_code|h}-->" size="30" class="box30" /></td>
             </tr>
             <tr>
-                <th>性別</th>
-                <!--{assign var=key value=search_sex}-->
-                <td><!--{html_checkboxes name="$key" options=$arrSex selected=$arrForm[$key]}--></td>
-                <th>おすすめレベル</th>
-                <td>
-                    <!--{assign var=key value=search_recommend_level}-->
-                    <select name="<!--{$key}-->">
-                        <option value="" selected="selected">選択してください</option>
-                        <!--{html_options options=$arrRECOMMEND selected=$arrForm[$key].value}-->
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <th>投稿日</th>
                 <td colspan="3">
                     <!--{if $arrErr.search_startyear || $arrErr.search_endyear}-->

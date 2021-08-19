@@ -68,10 +68,6 @@
                 </td>
             </tr>
             <tr>
-                <th>性別</th>
-                <td><!--{html_radios_ex name="sex" options=$arrSex selected=$arrForm.sex}--></td>
-            </tr>
-            <tr>
                 <th>おすすめレベル <span class="attention">*</span></th>
                 <td>
                     <!--{assign var=key value="recommend_level"}-->

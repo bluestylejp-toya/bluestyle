@@ -50,7 +50,6 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrORDERSTATUS = $masterData->getMasterData('mtb_order_status');
         $this->arrORDERSTATUS_COLOR = $masterData->getMasterData('mtb_order_status_color');
-        $this->arrSex = $masterData->getMasterData('mtb_sex');
         $this->arrPageMax = $masterData->getMasterData('mtb_page_max');
 
         $objDate = new SC_Date_Ex();
@@ -189,7 +188,6 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
         $objFormParam->addParam('対応状況', 'search_order_status', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('注文者 お名前', 'search_order_name', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
         $objFormParam->addParam('注文者 お名前(フリガナ)', 'search_order_kana', STEXT_LEN, 'KVCa', array('KANA_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('性別', 'search_order_sex', INT_LEN, 'n', array('MAX_LENGTH_CHECK'));
         $objFormParam->addParam('年齢1', 'search_age1', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('年齢2', 'search_age2', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('メールアドレス', 'search_order_email', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
@@ -292,24 +290,6 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
             case 'search_order_id2':
                 $where .= ' AND order_id <= ?';
                 $arrValues[] = sprintf('%d', $objFormParam->getValue($key));
-                break;
-            case 'search_order_sex':
-                $tmp_where = '';
-                foreach ($objFormParam->getValue($key) as $element) {
-                    if ($element != '') {
-                        if (SC_Utils_Ex::isBlank($tmp_where)) {
-                            $tmp_where .= ' AND (order_sex = ?';
-                        } else {
-                            $tmp_where .= ' OR order_sex = ?';
-                        }
-                        $arrValues[] = $element;
-                    }
-                }
-
-                if (!SC_Utils_Ex::isBlank($tmp_where)) {
-                    $tmp_where .= ')';
-                    $where .= " $tmp_where ";
-                }
                 break;
             case 'search_order_tel':
                 $where .= ' AND (' . $dbFactory->concatColumn(array('order_tel01', 'order_tel02', 'order_tel03')) . ' LIKE ?)';

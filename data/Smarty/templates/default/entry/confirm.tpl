@@ -33,7 +33,7 @@
             <!--{/foreach}-->
 
             <table summary="入力内容確認">
-                <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=false prefix=""}-->
+                <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=93 emailMobile=false prefix=""}-->
             </table>
 
             <div class="btn_area">

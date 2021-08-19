@@ -148,26 +148,10 @@
                 </td>
             </tr>
             <tr>
-                <th>携帯メールアドレス</th>
-                <td>
-                    <span class="attention"><!--{$arrErr.email_mobile}--></span>
-                    <input type="text" name="email_mobile" value="<!--{$arrForm.email_mobile|h}-->" size="60" class="box60" <!--{if $arrErr.email_mobile != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
-            </tr>
-            <tr>
                 <th>電話番号<span class="attention"> *</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.tel01}--><!--{$arrErr.tel02}--><!--{$arrErr.tel03}--></span>
                     <input type="text" name="tel01" value="<!--{$arrForm.tel01|h}-->" maxlength="<!--{$smarty.const.TEL_ITEM_LEN}-->" size="6" class="box6" <!--{if $arrErr.tel01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /> - <input type="text" name="tel02" value="<!--{$arrForm.tel02|h}-->" maxlength="<!--{$smarty.const.TEL_ITEM_LEN}-->" size="6" class="box6" <!--{if $arrErr.tel01 != "" || $arrErr.tel02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /> - <input type="text" name="tel03" value="<!--{$arrForm.tel03|h}-->" maxlength="<!--{$smarty.const.TEL_ITEM_LEN}-->" size="6" class="box6" <!--{if $arrErr.tel01 != "" || $arrErr.tel03 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
-            </tr>
-            <tr>
-                <th>性別<span class="attention"> *</span></th>
-                <td>
-                    <span class="attention"><!--{$arrErr.sex}--></span>
-                    <span <!--{if $arrErr.sex != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
-                        <!--{html_radios name="sex" options=$arrSex separator=" " selected=$arrForm.sex}-->
-                    </span>
                 </td>
             </tr>
             <tr>
@@ -193,19 +177,6 @@
                 <td>
                     <span class="attention"><!--{$arrErr.password}--></span>
                     <input type="password" name="password" value="<!--{$arrForm.password|h}-->" size="30" class="box30" <!--{if $arrErr.password != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />　半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字（記号可）
-                </td>
-            </tr>
-            <tr>
-                <th>パスワードを忘れたときのヒント<span class="attention"> *</span></th>
-                <td>
-                    <span class="attention"><!--{$arrErr.reminder}--><!--{$arrErr.reminder_answer}--></span>
-                    質問：
-                    <select class="top" name="reminder" <!--{if $arrErr.reminder != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> >
-                        <option value="" selected="selected">選択してください</option>
-                        <!--{html_options options=$arrReminder selected=$arrForm.reminder}-->
-                    </select><br />
-                    答え：
-                    <input type="text" name="reminder_answer" value="<!--{$arrForm.reminder_answer|h}-->" size="30" class="box30" <!--{if $arrErr.reminder_answer != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
                 </td>
             </tr>
             <tr>
