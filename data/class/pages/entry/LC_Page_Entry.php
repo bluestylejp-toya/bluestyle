@@ -220,6 +220,7 @@ class LC_Page_Entry extends LC_Page_Ex
         $objMailText->assign('CONF', $CONF);
         $objMailText->assign('name01', $arrForm['name01']);
         $objMailText->assign('name02', $arrForm['name02']);
+        $objMailText->assign('nickname', $arrForm['nickname']);
         $objMailText->assign('uniqid', $uniqid);
         $objMailText->assignobj($this);
 
@@ -249,7 +250,7 @@ class LC_Page_Entry extends LC_Page_Ex
         );
         // 宛先の設定
         $objMail->setTo($arrForm['email'],
-                        $arrForm['name01'] . $arrForm['name02'] .' 様');
+                        $arrForm['nickname'] .' 様');
 
         $objMail->sendMail();
     }

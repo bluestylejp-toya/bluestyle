@@ -47,3 +47,11 @@
         </form>
     </div>
 </div>
+
+<script>
+<!--{if strlen($smarty.request.message) >= 1}-->
+    $(function(){
+        alert(<!--{$smarty.request.message|@json_encode}-->);
+    });
+<!--{/if}-->
+</script>
