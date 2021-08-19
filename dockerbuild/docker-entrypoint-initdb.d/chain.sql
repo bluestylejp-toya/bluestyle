@@ -3490,7 +3490,7 @@ INSERT INTO `mtb_constants` VALUES ('IMAGE_RENAME','true',525,'画像リネー�
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_REALDIR','HTML_REALDIR . \"upload/save_image/\"',151,'画像保存先');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_RSS_URL','HTTP_URL . \"upload/save_image/\"',155,'RSS用画像保存先URL');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_URLPATH','ROOT_URLPATH . \"upload/save_image/\"',153,'画像保存先URL');
-INSERT INTO `mtb_constants` VALUES ('IMAGE_SIZE','1000',126,'画像サイズ制限(KB)');
+INSERT INTO `mtb_constants` VALUES ('IMAGE_SIZE','10240',126,'画像サイズ制限(KB)');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_REALDIR','HTML_REALDIR . \"upload/temp_image/\"',150,'画像一時保存');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_RSS_URL','HTTP_URL . \"upload/temp_image/\"',154,'RSS用画像一時保存URL');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_URLPATH','ROOT_URLPATH . \"upload/temp_image/\"',152,'画像一時保存URL');
