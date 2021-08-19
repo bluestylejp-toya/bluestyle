@@ -162,6 +162,7 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
         $objMailText->assign('CONF', $CONF);
         $objMailText->assign('name01', $arrCustomerData['name01']);
         $objMailText->assign('name02', $arrCustomerData['name02']);
+        $objMailText->assign('nickname', $arrCustomerData['nickname']);
         $objMailText->assignobj($this);
 
         $objHelperMail  = new SC_Helper_Mail_Ex();
@@ -182,7 +183,7 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
             $CONF['email04'],       // Errors_to
             $CONF['email01']        // Bcc
         );
-        $objMail->setTo($arrCustomerData['email'], $arrCustomerData['name01'] . $arrCustomerData['name02'] .' 様');
+        $objMail->setTo($arrCustomerData['email'], $arrCustomerData['nickname'] .' 様');
 
         $objMail->sendMail();
     }

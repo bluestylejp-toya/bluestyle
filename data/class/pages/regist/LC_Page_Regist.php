@@ -153,6 +153,7 @@ class LC_Page_Regist extends LC_Page_Ex
         $objMailText->assign('CONF', $CONF);
         $objMailText->assign('name01', $data['name01']);
         $objMailText->assign('name02', $data['name02']);
+        $objMailText->assign('nickname', $data['nickname']);
         $toCustomerMail = $objMailText->fetch('mail_templates/customer_regist_mail.tpl');
         $subject = $objHelperMail->sfMakesubject('会員登録が完了しました。');
         $objMail = new SC_SendMail_Ex();
@@ -168,7 +169,7 @@ class LC_Page_Regist extends LC_Page_Ex
                             $CONF['email04']            // Errors_to
         );
         // 宛先の設定
-        $name = $data['name01'] . $data['name02'] .' 様';
+        $name = $data['nickname'] .' 様';
         $objMail->setTo($data['email'], $name);
         $objMail->sendMail();
     }

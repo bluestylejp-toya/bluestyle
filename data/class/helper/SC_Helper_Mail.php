@@ -367,6 +367,7 @@ class SC_Helper_Mail
         $objMailText->assign('CONF', $CONF);
         $objMailText->assign('name01', $arrCustomerData['name01']);
         $objMailText->assign('name02', $arrCustomerData['name02']);
+        $objMailText->assign('nickname', $arrCustomerData['nickname']);
         $objMailText->assign('uniqid', $arrCustomerData['secret_key']);
         $objMailText->assignobj($arrCustomerData);
         $objMailText->assignobj($this);
@@ -396,7 +397,7 @@ class SC_Helper_Mail
         );
         // 宛先の設定
         $to_addr = $arrCustomerData['email'];
-        $objMail->setTo($to_addr, $arrCustomerData['name01'] . $arrCustomerData['name02'] .' 様');
+        $objMail->setTo($to_addr, $arrCustomerData['nickname'] .' 様');
 
         $objMail->sendMail();
 
