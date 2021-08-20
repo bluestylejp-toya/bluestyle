@@ -1,0 +1,28 @@
+$red:   #DD2A00;
+$brown: #251510;
+$beige: #F5F4F2;
+$font-color: #272727;
+$gray: #C6C6C6;
+
+$w: 100;
+$header-heigt: 85px;
+
+$spwidth: 769px;
+$tbwidth: 768px;
+$pcwidth: 1060px;
+$unit: 15px;
+
+$breakpoints: (
+  'sm': 'screen and (min-width: 400px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 1020px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+$breakpoints-d: (
+  'sm': 'screen and (max-width: 401px)',
+  'md': 'screen and (max-width: 769px)',
+  'lg': 'screen and (max-width: 1021px)',
+  'xl': 'screen and (max-width: 1201px)',
+) !default;
+

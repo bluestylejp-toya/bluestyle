@@ -8,6 +8,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
     "css-loader": "^3.2.0",
+    "gulp": "^4.0.2",
     "jquery": "3",
     "jquery-colorbox": "^1.6.4",
     "jquery-easing": "^0.0.1",
@@ -25,14 +26,36 @@
     "babel-loader": "7",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.27.5",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "del": "^4.1.1",
     "eslint": "^6.6.0",
     "eslint-config-jquery": "^2.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "fs": "^0.0.1-security",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-load-plugins": "^2.0.7",
+    "gulp-notify": "^4.0.0",
+    "gulp-order": "^1.2.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sass-partials-imported": "^1.0.7",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "minimist": "^1.2.5",
+    "node-sass": "^6.0.1",
+    "run-sequence": "^2.2.1",
+    "sass": "^1.38.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
-    "lint:javascript": "eslint --fix data/*.js"
+    "lint:javascript": "eslint --fix data/*.js",
+    "dev": "gulp",
+    "prod": "gulp --env production",
+    "start": "gulp"
   }
 }

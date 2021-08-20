@@ -1,0 +1,13 @@
+//mediaquery
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+//mediaquery
+@mixin mqd($breakpoint: md) {
+  @media #{map-get($breakpoints-d, $breakpoint)} {
+    @content;
+  }
+}

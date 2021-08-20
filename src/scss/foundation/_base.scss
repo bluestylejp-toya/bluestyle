@@ -1,0 +1,25 @@
+html {
+    font-family: 'Helvetica', 'Noto Sans JP', sans-serif;
+    font-size: 62.5%;
+    color: $font-color;
+}
+body {
+    font-size: 1.6rem;
+
+    &.is-hidden {
+        overflow: hidden;
+    }
+}
+main {
+    line-height: 1.8;
+    padding-top: $header-heigt;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+  font-size: 1.5rem;
+}
