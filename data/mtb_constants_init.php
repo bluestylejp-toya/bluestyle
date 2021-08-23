@@ -144,7 +144,7 @@ define('FILE_SIZE', 10000);
 /** アップできるテンプレートファイル制限(KB) */
 define('TEMPLATE_SIZE', 10000);
 /** カテゴリの最大階層 */
-define('LEVEL_MAX', 5);
+define('LEVEL_MAX', 2);
 /** 最大カテゴリ登録数 */
 define('CATEGORY_MAX', 1000);
 /** 管理機能タイトル */
