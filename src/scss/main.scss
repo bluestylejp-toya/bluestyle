@@ -1,7 +1,9 @@
+@use 'sass:math';
 @import 'foundation',
-'layout';
+        'layout';
 
 //Object
 @import 'object/component',
         'object/project',
         'object/utility';
+

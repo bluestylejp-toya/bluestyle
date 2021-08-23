@@ -42,6 +42,9 @@
 <!--{/if}-->
 <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
 <link rel="icon" type="image/vnd.microsoft.icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/main.css" media="all" />
 <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->js/main.js" differ/>
 <!--{if $tpl_page_class_name === "LC_Page_Products_Detail"}-->

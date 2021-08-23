@@ -1,18 +1,14 @@
 html {
-    font-family: 'Helvetica', 'Noto Sans JP', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     font-size: 62.5%;
-    color: $font-color;
+
 }
 body {
-    font-size: 1.6rem;
-
-    &.is-hidden {
-        overflow: hidden;
-    }
+    color: $font-color;
+    @include font('body');
 }
 main {
     line-height: 1.8;
-    padding-top: $header-heigt;
 }
 
 img {

@@ -1,0 +1,5 @@
+.l-section {
+    &:not(:last-child) {
+        margin-bottom: $unit*3;
+    }
+}

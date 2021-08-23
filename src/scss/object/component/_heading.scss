@@ -1,0 +1,7 @@
+.c-heading {
+    &--md {
+        @include font('h4');
+        text-align: center;
+        margin-bottom: $unit*2;
+    }
+}

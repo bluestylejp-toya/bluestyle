@@ -21,26 +21,22 @@ var envSettings = {
   },
 };
 var isProduction = options.env === "production" ? true : false;
-console.log("[build env]", options.env, "[is production]", isProduction);
+console.log("[is production]", isProduction);
 
 // コンパイル設定
 var bsOpenBrowser = false; //BS初期化時にブラウザを自動で開くかどうか
-var sass = require("gulp-sass")(require("sass"));
+var scss = require("gulp-sass")(require("sass"));
 
 // 共通パス設定
 var paths = {
   srcDir: "src/",
-  rootDir: "data/Smarty/templates/",
-  cmnDir: "public/assets/",
+  rootDir: "data/Smarty/templates/default/",
 };
 
 // 関連ファイルパス設定
 var src = {
   scss: paths.srcDir + "scss/**/*.scss",
   js: paths.srcDir + "js/**/*.js",
-  ejs: paths.srcDir + "ejs/**/*.ejs",
-  img: paths.srcDir + "images/**/*.+(jpg|png|gif|svg|ico)",
-  icon: paths.srcDir + "icon/**/*.svg",
 };
 
 var dest = {
@@ -60,8 +56,7 @@ var prefixBrowsers = [
   "bb >= 10",
 ];
 
-//WPを使う場合のパス設定
-var files = [paths.rootDir + "*.tpl", paths.rootDir + "**/*.tpl"];
+var templateFiles = [paths.rootDir + "*.tpl", paths.rootDir + "**/*.tpl"];
 
 // browserSync初期化
 gulp.task("bs-init", function () {
@@ -69,13 +64,6 @@ gulp.task("bs-init", function () {
     proxy: "http://localhost:8080",
     open: "external",
     reloadDelay: 1000,
-  });
-});
-
-// browserSync php初期設定
-gulp.task("bs-init-usephp", function () {
-  bs.init({
-    proxy: "localhost:3306", //127.0.0.1:8000
     open: bsOpenBrowser,
   });
 });
@@ -88,12 +76,12 @@ gulp.task("bs-reload", function () {
 // SASS -> CSS
 var sassOption = isProduction ? { outputStyle: "compressed" } : {};
 gulp.task("sass", function (done) {
-  return gulp
+  gulp
     .src(src.scss)
-    .pipe($.cached("sass"))
+    // .pipe($.cached("sass"))
     .pipe($.sassPartialsImported(paths.srcDir + "scss/"))
     .pipe($.if(!isProduction, $.sourcemaps.init()))
-    .pipe(sass({ outputStyle: "compressed" }))
+    .pipe(scss({ outputStyle: "compressed" }))
     .on("error", errNotify())
     .pipe(
       $.autoprefixer({
@@ -123,10 +111,9 @@ gulp.task("jsmin", function (done) {
 
 // ファイルの監視
 gulp.task("watch", function () {
-  gulp.watch(files, gulp.task("bs-reload"));
-
   gulp.watch(src.scss, gulp.task("sass"));
   gulp.watch(src.js, gulp.task("jsmin"));
+  gulp.watch(templateFiles, gulp.task("bs-reload"));
 });
 
 // エラー通知

@@ -1,0 +1,39 @@
+.c-btn {
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include font('button');
+    border: 1px solid transparent;
+    text-decoration: none;
+
+
+    &:hover {
+        transition: $btn-animation;
+        text-decoration: none;
+    }
+
+    &--primary {
+        $primary: map-get($brand-colors, 'primary');
+        background:  map-get($primary, 'default');
+        border-color:  map-get($primary, 'default');
+        color: $white;
+
+        &:hover {
+            border-color:  map-get($primary, 'dark');
+            background:  map-get($primary, 'dark');
+        }
+
+        &--outline {
+            background: $white;
+            color:  map-get( $primary, 'default');
+            border-color: map-get( $primary, 'default');
+            &:hover {
+                background:  map-get($primary, 'dark');
+                border-color:  map-get($primary, 'dark');
+                color: $white;
+            }
+        }
+    }
+}
