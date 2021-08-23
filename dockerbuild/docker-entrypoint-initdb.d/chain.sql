@@ -3436,7 +3436,7 @@ INSERT INTO `mtb_constants` VALUES ('CREDIT_NO_LEN','4',207,'クレジットカ�
 INSERT INTO `mtb_constants` VALUES ('CSV_LINE_MAX','10000',128,'CSVアップロード1行あたりの最大文字数');
 INSERT INTO `mtb_constants` VALUES ('CSV_SIZE','2000',127,'CSVサイズ制限(KB)');
 INSERT INTO `mtb_constants` VALUES ('CSV_TEMP_REALDIR','DATA_REALDIR . \"upload/csv/\"',156,'エンコードCSVの一時保存先');
-INSERT INTO `mtb_constants` VALUES ('CUSTOMER_CONFIRM_MAIL','false',75,'会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員)');
+INSERT INTO `mtb_constants` VALUES ('CUSTOMER_CONFIRM_MAIL','true',75,'会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員)');
 INSERT INTO `mtb_constants` VALUES ('CUSTOMER_LOG_REALFILE','DATA_REALDIR . \"logs/customer.log\"',143,'会員ログイン ログファイル');
 INSERT INTO `mtb_constants` VALUES ('CV_PAYMENT_LIMIT','14',275,'支払期限 (*モジュールで使用)');
 INSERT INTO `mtb_constants` VALUES ('DB_LOG_REALFILE','DATA_REALDIR . \"logs/db.log\"',147,'DBログファイル');
