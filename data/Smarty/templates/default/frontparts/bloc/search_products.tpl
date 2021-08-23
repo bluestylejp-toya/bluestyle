@@ -37,19 +37,31 @@
                         </select>
                         </dd>
                     </dl>
+                    <!--{if $arrMakerList}-->
+                        <dl class="formlist">
+                            <dt>メーカーから選ぶ</dt>
+                            <dd><select name="maker_id" class="box145">
+                                <option label="全てのメーカー" value="">全てのメーカー</option>
+                                <!--{html_options options=$arrMakerList selected=$maker_id}-->
+                            </select>
+                            </dd>
+                        </dl>
+                    <!--{/if}-->
                     <dl class="formlist">
-                        <!--{if $arrMakerList}-->
-                        <dt>メーカーから選ぶ</dt>
-                        <dd><select name="maker_id" class="box145">
-                            <option label="全てのメーカー" value="">全てのメーカー</option>
-                            <!--{html_options options=$arrMakerList selected=$maker_id}-->
-                        </select>
+                        <dt>商品名を入力</dt>
+                        <dd><input type="text" name="name" class="box140" maxlength="50" value="<!--{$smarty.get.name|h}-->" /></dd>
+                    </dl>
+                    <dl class="formlist">
+                        <dt>出品者の都道府県</dt>
+                        <dd>
+                            <!--{html_checkboxes options=$arrPref selected=$arrSearchData.pref_id name="pref_id"}-->
                         </dd>
                     </dl>
                     <dl class="formlist">
-                        <!--{/if}-->
-                        <dt>商品名を入力</dt>
-                        <dd><input type="text" name="name" class="box140" maxlength="50" value="<!--{$smarty.get.name|h}-->" /></dd>
+                        <dt>商品の状態</dt>
+                        <dd>
+                            <!--{html_checkboxes options=$arrStatus selected=$arrSearchData.product_status name="product_status"}-->
+                        </dd>
                     </dl>
                     <p class="btn">
                         <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_bloc_search.jpg" alt="検索" name="search" />
