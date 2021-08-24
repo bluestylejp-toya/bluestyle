@@ -24,10 +24,13 @@
 <body class="<!--{$tpl_page_class_name|h}-->">
   <!--{$GLOBAL_ERR}-->
   <div class="l-wrapper">
+  <!--{if $smarty.server.PHP_SELF == "/index.php"}-->
+        <!--{if $tpl_login != true}-->
+        <!--{/if}-->
+    <!--{else}-->
     <header class="l-header">
       <!--{* ▼HeaderHeaderTop COLUMN*}-->
       <!--{if !empty($arrPageLayout.HeaderTopNavi)}-->
-      <div id="headertopcolumn">
         <!--{* ▼上ナビ *}-->
         <!--{foreach key=HeaderTopNaviKey item=HeaderTopNaviItem from=$arrPageLayout.HeaderTopNavi}-->
         <!-- ▼<!--{$HeaderTopNaviItem.bloc_name}-->
@@ -41,7 +44,6 @@
         -->
         <!--{/foreach}-->
         <!--{* ▲上ナビ *}-->
-      </div>
       <!--{/if}-->
       <!--{* ▲HeaderHeaderTop COLUMN*}-->
       <!--{* ▼HEADER *}-->
@@ -50,6 +52,7 @@
       <!--{/if}-->
       <!--{* ▲HEADER *}-->
     </header>
+    <!--{/if}-->
     <main class="l-main">
       <!--{* ▼TOP COLUMN*}-->
       <!--{if !empty($arrPageLayout.TopNavi)}-->

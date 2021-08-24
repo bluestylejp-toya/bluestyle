@@ -17,17 +17,21 @@ $border-color: #C4C8D0;
 $font-color: #{map-get($gray, 6)};
 $black: #{map-get($gray, 6)};
 $blue: #{map-get(map-get($brand-colors, primary), default)};
+$red: #{map-get(map-get($brand-colors, red), default)};
+$green: #{map-get(map-get($brand-colors, secondary), default)};
+$yellow: #{map-get(map-get($brand-colors, tertiary), default)};
 $white: #{map-get($gray, 1)};
 
 
 // size
-$footer-nav-height: 57px;
 
-$container: 768px;
 // 単位
 $unit: 8px;
 $horizontal-gap: $unit * 3;
 $button-height: 48px;
+$header-height: 50px;
+$footer-nav-height: 57px;
+$container: 768px;
 
 $breakpoints: (
   'sm': 'screen and (min-width: 400px)',

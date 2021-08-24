@@ -22,16 +22,12 @@
 
 <!--▼HEADER-->
 <!--{strip}-->
-<!--{if $smarty.server.PHP_SELF == "/index.php"}-->
-<!--{if $tpl_login != true}-->
-<!--{/if}-->
-<!--{else}-->
-<header>
-  <nav class="l-header-nav">
-    <a href="" aria-label="戻る"></a>
-    <h1><!--{$tpl_title|h}--></h1>
-  </nav>
-</header>
-<!--{/if}-->
+
+<div class="l-header__inner">
+  <a href="" aria-label="戻る" class="c-btn--header-nav"></a>
+  <h1 class="c-header-title">
+    <!--{$tpl_title|h}--><!--{$tpl_title|h}--><!--{$tpl_title|h}--><!--{$tpl_title|h}--><!--{$tpl_title|h}-->
+  </h1>
+</div>
 <!--{/strip}-->
 <!--▲HEADER-->

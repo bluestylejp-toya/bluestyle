@@ -1,0 +1,12 @@
+//color
+.u-color {
+    &--red {
+        color: $red;
+    }
+}
+//weight
+.u-weight {
+    &--bold {
+        font-weight: 500;
+    }
+}

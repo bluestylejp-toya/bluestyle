@@ -1,0 +1,13 @@
+.l-header {
+
+    &__inner {
+        position: relative;
+        margin: 0 auto;
+        padding: 0 56px;
+        align-items: center;
+        max-width: $container;
+        display: flex;
+        justify-content: center;
+        height: $header-height;
+    }
+}

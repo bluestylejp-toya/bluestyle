@@ -1,7 +1,18 @@
+// 見出し
 .c-heading {
     &--md {
         @include font('h4');
         text-align: center;
         margin-bottom: $unit*2;
     }
+}
+
+// headerタイトル
+.c-header-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: map-get($gray, 5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
