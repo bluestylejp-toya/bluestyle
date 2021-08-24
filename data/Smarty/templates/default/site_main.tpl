@@ -71,7 +71,7 @@
       <!--{/if}-->
       <!--{* ▲TOP COLUMN*}-->
         <!--{* ▼CENTER COLUMN *}-->
-        <div id="main_column" <!--{**}-->
+        <div <!--{**}-->
             class="colnum<!--{$tpl_column_num|h}-->
                 <!--{if $tpl_column_num == 2}-->
                     <!--{" "}--><!--{if empty($arrPageLayout.LeftNavi)}-->left<!--{else}-->right<!--{/if}-->
