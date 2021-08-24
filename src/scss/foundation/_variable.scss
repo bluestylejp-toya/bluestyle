@@ -2,7 +2,7 @@
 Colors
 */
 $gradient-color: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
-$gray: (1: '#FFFFFF', 2:'#EAECEE', 3:'#9DA4B0', 4:'#757f89',5: '#475462',6: '#000000');
+$gray: (1: #FFFFFF, 2:#EAECEE, 3:#9DA4B0, 4:#757f89,5: #475462,6: #000000);
 
 @debug map-get($gray, 1);
 $brand-colors: (
@@ -16,16 +16,18 @@ $brand-colors: (
 $border-color: #C4C8D0;
 $font-color: #{map-get($gray, 6)};
 $black: #{map-get($gray, 6)};
+$blue: #{map-get(map-get($brand-colors, primary), default)};
 $white: #{map-get($gray, 1)};
 
 
 // size
-$header-heigt: 85px;
+$footer-nav-height: 57px;
 
 $container: 768px;
 // 単位
 $unit: 8px;
 $horizontal-gap: $unit * 3;
+$button-height: 48px;
 
 $breakpoints: (
   'sm': 'screen and (min-width: 400px)',

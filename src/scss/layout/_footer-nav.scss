@@ -1,0 +1,23 @@
+.l-footer-nav {
+    position: fixed;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $white;
+    width: 100%;
+    border-top: 1px rgba(#000,
+.12) solid;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        padding: $unit $horizontal-gap;
+        height:$footer-nav-height;
+    }
+
+    &__item {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+    }
+}

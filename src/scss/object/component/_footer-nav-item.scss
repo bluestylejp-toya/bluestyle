@@ -1,0 +1,42 @@
+%footer-nav-item {
+    color: map-get($gray, 3);
+    height: 100%;
+
+    &.is-current {
+        color: $blue;
+        font-weight: bold;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        height: 25px;
+        width: 25px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+@mixin footer-icon($box, $path){
+    &::before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="#{$box}"><path fill="%239DA4B0" fill-rule="evenodd" d="#{$path}"/></svg>');
+    }
+    &.is-current {
+        &::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="#{$box}"><path fill="%23009FCF" fill-rule="evenodd" d="#{$path}"/></svg>');
+        }
+    }
+
+}
+.c-footer-nav-item {
+    &--search {
+        @extend %footer-nav-item;
+
+        @include footer-icon('0 0 17.49 17.49', 'M11.71,11h.79l5,5L16,17.49l-5-5v-.79l-.27-.28a6.51,6.51,0,1,1,.7-.7ZM2,6.5A4.5,4.5,0,1,0,6.5,2,4.49,4.49,0,0,0,2,6.5Z');
+    }
+
+    &--listing {
+        @extend %footer-nav-item;
+        @include footer-icon('0 0 20 18', 'M18,2H14.83L13,0H7L5.17,2H2A2,2,0,0,0,0,4V16a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V4A2,2,0,0,0,18,2ZM10,13a3,3,0,1,0-3-3A3,3,0,0,0,10,13ZM5,10a5,5,0,1,0,5-5A5,5,0,0,0,5,10Z');
+    }
+}

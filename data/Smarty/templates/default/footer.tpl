@@ -22,5 +22,23 @@
 
 <!--▼FOOTER-->
 <!--{strip}-->
+<nav class="l-footer-nav">
+  <ul class="l-footer-nav__inner">
+    <li class="l-footer-nav__item">
+      <a href="" class="c-footer-nav-item--search is-current">探す</a>
+    </li>
+    <li class="l-footer-nav__item">
+      <a href="" class="c-footer-nav-item--listing">出品</a>
+    </li>
+    <!--{if $tpl_login === true}-->
+    <li class="l-footer-nav__item">
+      <a href="" class="c-footer-nav-item--mypage">マイページ</a>
+    </li>
+    <li class="l-footer-nav__item">
+      <a href="" class="c-footer-nav-item--other">探す</a>
+    </li>
+    <!--{/if}-->
+  </ul>
+</nav>
 <!--{/strip}-->
 <!--▲FOOTER-->
