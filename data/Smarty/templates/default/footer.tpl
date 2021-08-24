@@ -31,12 +31,12 @@
       <a href="" class="c-footer-nav-item--listing">出品</a>
     </li>
     <!--{if $tpl_login === true}-->
-    <li class="l-footer-nav__item">
-      <a href="" class="c-footer-nav-item--mypage">マイページ</a>
-    </li>
-    <li class="l-footer-nav__item">
-      <a href="" class="c-footer-nav-item--other">探す</a>
-    </li>
+        <li class="l-footer-nav__item">
+            <a href="" class="c-footer-nav-item--mypage">マイページ</a>
+        </li>
+        <li class="l-footer-nav__item">
+            <a href="" class="c-footer-nav-item--other">その他</a>
+        </li>
     <!--{/if}-->
   </ul>
 </nav>

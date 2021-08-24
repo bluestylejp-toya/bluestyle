@@ -11,12 +11,11 @@
     &__inner {
         display: flex;
         justify-content: space-between;
-        padding: $unit $horizontal-gap;
+        padding: $unit $unit+$horizontal-gap;
         height:$footer-nav-height;
     }
 
     &__item {
-        width: 25%;
         display: flex;
         justify-content: center;
     }
