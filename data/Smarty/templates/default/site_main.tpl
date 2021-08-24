@@ -70,6 +70,48 @@
       </div>
       <!--{/if}-->
       <!--{* ▲TOP COLUMN*}-->
+        <!--{* ▼CENTER COLUMN *}-->
+        <div id="main_column" <!--{**}-->
+            class="colnum<!--{$tpl_column_num|h}-->
+                <!--{if $tpl_column_num == 2}-->
+                    <!--{" "}--><!--{if empty($arrPageLayout.LeftNavi)}-->left<!--{else}-->right<!--{/if}-->
+                <!--{/if}-->
+            "
+        >
+            <!--{* ▼メイン上部 *}-->
+            <!--{if !empty($arrPageLayout.MainHead)}-->
+                <!--{foreach key=MainHeadKey item=MainHeadItem from=$arrPageLayout.MainHead}-->
+                    <!-- ▼<!--{$MainHeadItem.bloc_name}--> -->
+                    <!--{if $MainHeadItem.php_path != ""}-->
+                        <!--{include_php_ex file=$MainHeadItem.php_path items=$MainHeadItem}-->
+                    <!--{else}-->
+                        <!--{include file=$MainHeadItem.tpl_path items=$MainHeadItem}-->
+                    <!--{/if}-->
+                    <!-- ▲<!--{$MainHeadItem.bloc_name}--> -->
+                <!--{/foreach}-->
+            <!--{/if}-->
+            <!--{* ▲メイン上部 *}-->
+
+            <!-- ▼メイン -->
+            <!--{include file=$tpl_mainpage}-->
+            <!-- ▲メイン -->
+
+            <!--{* ▼メイン下部 *}-->
+            <!--{if !empty($arrPageLayout.MainFoot)}-->
+                <!--{foreach key=MainFootKey item=MainFootItem from=$arrPageLayout.MainFoot}-->
+                    <!-- ▼<!--{$MainFootItem.bloc_name}--> -->
+                    <!--{if $MainFootItem.php_path != ""}-->
+                        <!--{include_php_ex file=$MainFootItem.php_path items=$MainFootItem}-->
+                    <!--{else}-->
+                        <!--{include file=$MainFootItem.tpl_path items=$MainFootItem}-->
+                    <!--{/if}-->
+                    <!-- ▲<!--{$MainFootItem.bloc_name}--> -->
+                <!--{/foreach}-->
+            <!--{/if}-->
+            <!--{* ▲メイン下部 *}-->
+        </div>
+        <!--{* ▲CENTER COLUMN *}-->
+
 
       <!--{* ▼BOTTOM COLUMN*}-->
       <!--{if !empty($arrPageLayout.BottomNavi)}-->
