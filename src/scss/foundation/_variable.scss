@@ -1,6 +1,7 @@
 /*
 Colors
 */
+$border-color: #C4C8D0;
 $gradient-color: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
 $gray: (1: #FFFFFF, 2:#EAECEE, 3:#9DA4B0, 4:#757f89,5: #475462,6: #000000);
 
@@ -13,7 +14,6 @@ $brand-colors: (
     red: (default: #FD0000, dark: #FD0000),
     gradient: (default: $gradient-color, dark: $gradient-color),
 );
-$border-color: #C4C8D0;
 $border-color-light: #{map-get($gray, 2)};
 $font-color: #{map-get($gray, 6)};
 $black: #{map-get($gray, 6)};

@@ -1,6 +1,6 @@
 %c-btn {
     height: $button-height;
-    border-radius: 5px;
+    border-radius: $unit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +14,17 @@
     &:hover {
         transition: $btn-animation;
         text-decoration: none;
+    }
+
+    &--default {
+        @extend %c-btn;
+        border-color: $border-color;
+        background: $white;
+        color: $black;
+
+         &:hover {
+            background:  map-get($gray, 3);
+        }
     }
 
     &--primary {

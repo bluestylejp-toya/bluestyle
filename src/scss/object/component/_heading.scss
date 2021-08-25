@@ -1,4 +1,7 @@
 // 見出し
+%heading {
+    color: map-get($gray, 5);
+}
 .c-heading {
     &--md {
         @include font('h4');
@@ -6,9 +9,15 @@
         margin-bottom: $unit*2;
     }
     &--form-title {
-        color: map-get($gray, 5);
+        @extend %heading;
         font-weight: 700;
         margin-bottom: math.div($unit, 2);
+    }
+    &--subtitle {
+        @extend %heading;
+        @include font('sub-title-bold');
+        text-align: center;
+        margin-bottom: $unit*2;
     }
 }
 

@@ -2,7 +2,7 @@
  * This file is part of EC-CUBE
  * トップページログイン前用のブロック
  *}-->
-<!--{if $tpl_login !== true}-->
+<!--{if !$tpl_login}-->
 <section class="p-hero-signin">
   <h1 class="p-hero-signin__head">
     <svg

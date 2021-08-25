@@ -30,7 +30,7 @@
     <li class="l-footer-nav__item">
       <a href="" class="c-footer-nav-item--listing">出品</a>
     </li>
-    <!--{if $tpl_login === true}-->
+    <!--{if $tpl_login}-->
         <li class="l-footer-nav__item">
             <a href="" class="c-footer-nav-item--mypage">マイページ</a>
         </li>

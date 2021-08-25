@@ -66,18 +66,16 @@
                 <input type="password" name="<!--{$key}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="c-form-parts" />
             </dd>
         </dl>
-        <button type="button" name="log" id="log" class="c-btn--primary u-mb--2">ログイン</button>
-        <p>
-            <small>※メールアドレス・パスワードを忘れた方は、お手数ですが<a href="<!--{$smarty.const.ROOT_URLPATH}-->contact/<!--{$smarty.const.DIR_INDEX_PATH}-->">お問い合わせ</a>ください。</small>
-        </p>
+        <button name="log" id="log" class="c-btn--primary u-mb--2">ログイン</button>
     </form>
 </div>
-
-
-    <div class="login_area">
-        <h2>まだアカウント登録されていないお客様</h2>
-        <p class="u-mb--2">会員登録をすると便利なMyページをご利用いただけます。<br />
-            また、ログインするだけで、毎回お名前や住所などを入力することなくスムーズにお買い物をお楽しみいただけます。
-        </p>
-        <a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn--primary--outline">アカウント登録をする</a>
-    </div>
+<section class="u-mb--4">
+	<h2 class="c-heading--subtitle u-mb--4">メールアドレス・パスワードを忘れた方は</h2>
+	<p class="u-mb--4">お手数ですが、サポートまでお問い合わせください</p>
+	<p><a href="<!--{$smarty.const.ROOT_URLPATH}-->contact/<!--{$smarty.const.DIR_INDEX_PATH}-->" class="c-btn--default">お問い合わせ</a></p>
+</section>
+<hr class="u-mb--4">
+<section>
+    <h2 class="c-heading--subtitle u-mb--4">メールアドレス・パスワードを忘れた方は</h2>
+	<a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn--default">アカウント登録をする</a>
+</section>

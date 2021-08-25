@@ -17,3 +17,7 @@ a:not([class]) {
   color: $blue;
   text-decoration: underline;
 }
+
+hr {
+    border-color: $border-color;
+}
