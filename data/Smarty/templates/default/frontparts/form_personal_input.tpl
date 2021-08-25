@@ -36,28 +36,26 @@ $flgFields について
     <!--{if $flgFields != 93}-->
         <tr>
             <th>お名前<!--{$require_mark}--></th>
-            <td>
+        <dd class="u-mb--2">
                 <!--{assign var=key1 value="`$prefix`name01"}-->
                 <!--{assign var=key2 value="`$prefix`name02"}-->
                 <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
+                    <p><small class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></small></p>
                 <!--{/if}-->
                 姓&nbsp;<input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: active;" class="box120" />&nbsp;
                 名&nbsp;<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: active;" class="box120" />
-            </td>
-        </tr>
+        </dd>
         <tr>
             <th>お名前(フリガナ)<!--{if !$smarty.const.FORM_COUNTRY_ENABLE}--><!--{$require_mark}--><!--{/if}--></th>
-            <td>
+        <dd class="u-mb--2">
                 <!--{assign var=key1 value="`$prefix`kana01"}-->
                 <!--{assign var=key2 value="`$prefix`kana02"}-->
                 <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
+                    <p><small class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></small></p>
                 <!--{/if}-->
                 セイ&nbsp;<input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: active;" class="box120" />&nbsp;
                 メイ&nbsp;<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: active;" class="box120" />
-            </td>
-        </tr>
+        </dd>
         <!--{assign var=key1 value="`$prefix`zip01"}-->
         <!--{assign var=key2 value="`$prefix`zip02"}-->
         <!--{assign var=key3 value="`$prefix`pref"}-->
@@ -70,31 +68,29 @@ $flgFields について
         <!--{else}-->
             <tr>
                 <th>国<!--{$require_mark}--></th>
-                <td>
+            <dd class="u-mb--2">
                     <!--{if $arrErr[$key6]}-->
-                        <div class="attention"><!--{$arrErr[$key6]}--></div>
+                        <p><small class="attention"><!--{$arrErr[$key6]}--></small></p>
                     <!--{/if}-->
                     <select name="<!--{$key6}-->" style="<!--{$arrErr[$key6]|sfGetErrorColor}-->">
                             <option value="" selected="selected">国を選択</option>
                             <!--{html_options options=$arrCountry selected=$arrForm[$key6].value|default:$smarty.const.DEFAULT_COUNTRY_ID}-->
                     </select>
-                </td>
-            </tr>
-            <tr>
+            </dd>
+                <tr>
                 <th>ZIP CODE</th>
-                <td>
+            <dd class="u-mb--2">
                     <!--{if $arrErr[$key7]}-->
-                        <div class="attention"><!--{$arrErr[$key7]}--></div>
+                        <p><small class="attention"><!--{$arrErr[$key7]}--></small></p>
                     <!--{/if}-->
                     <input type="text" name="<!--{$key7}-->" value="<!--{$arrForm[$key7].value|h}-->" maxlength="<!--{$arrForm[$key7].length}-->" class="box120" style="<!--{$arrErr[$key7]|sfGetErrorColor}-->; ime-mode: disabled;" />
-                </td>
-            </tr>
-        <!--{/if}-->
+            </dd>
+            <!--{/if}-->
         <tr>
             <th>郵便番号<!--{if !$smarty.const.FORM_COUNTRY_ENABLE}--><!--{$require_mark}--><!--{/if}--></th>
-            <td>
+        <dd class="u-mb--2">
                 <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
+                    <p><small class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></small></p>
                 <!--{/if}-->
                 <p class="top">〒&nbsp;<input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="box60" />&nbsp;-&nbsp;<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: disabled;" class="box60" />&nbsp;
                 <a href="https://www.post.japanpost.jp/zipcode/" target="_blank"><span class="mini">郵便番号検索</span></a>
@@ -104,13 +100,12 @@ $flgFields について
                         <img src="<!--{$TPL_URLPATH}-->img/button/btn_address_input.jpg" alt="住所自動入力" /></a>
                     &nbsp;<span class="mini">郵便番号を入力後、クリックしてください。</span>
                 </p>
-            </td>
-        </tr>
+        </dd>
         <tr>
             <th>住所<!--{$require_mark}--></th>
-            <td>
+        <dd class="u-mb--2">
                 <!--{if $arrErr[$key3] || $arrErr[$key4] || $arrErr[$key5]}-->
-                    <div class="attention"><!--{$arrErr[$key3]}--><!--{$arrErr[$key4]}--><!--{$arrErr[$key5]}--></div>
+                    <p><small class="attention"><!--{$arrErr[$key3]}--><!--{$arrErr[$key4]}--><!--{$arrErr[$key5]}--></small></p>
                 <!--{/if}-->
                 <select name="<!--{$key3}-->" style="<!--{$arrErr[$key3]|sfGetErrorColor}-->">
                         <option value="" selected="selected">都道府県を選択</option>
@@ -121,32 +116,28 @@ $flgFields について
                 <p class="top"><input type="text" name="<!--{$key5}-->" value="<!--{$arrForm[$key5].value|h}-->" class="box300" style="<!--{$arrErr[$key5]|sfGetErrorColor}-->; ime-mode: active;" /><br />
                     <!--{$smarty.const.SAMPLE_ADDRESS2}--></p>
                 <p class="mini"><span class="attention">住所は2つに分けてご記入ください。マンション名は必ず記入してください。</span></p>
-            </td>
-        </tr>
+        </dd>
         <tr>
             <th>電話番号<!--{$require_mark}--></th>
-            <td>
+        <dd class="u-mb--2">
                 <!--{assign var=key1 value="`$prefix`tel01"}-->
                 <!--{assign var=key2 value="`$prefix`tel02"}-->
                 <!--{assign var=key3 value="`$prefix`tel03"}-->
                 <!--{if $arrErr[$key1] || $arrErr[$key2] || $arrErr[$key3]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--><!--{$arrErr[$key3]}--></div>
+                    <p><small class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--><!--{$arrErr[$key3]}--></small></p>
                 <!--{/if}-->
                 <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="box60" />&nbsp;-&nbsp;<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: disabled;" class="box60" />&nbsp;-&nbsp;<input type="text" name="<!--{$key3}-->" value="<!--{$arrForm[$key3].value|h}-->" maxlength="<!--{$arrForm[$key3].length}-->" style="<!--{$arrErr[$key3]|sfGetErrorColor}-->; ime-mode: disabled;" class="box60" />
-            </td>
-        </tr>
+        </dd>
     <!--{/if}-->
     <!--{if $flgFields != 1}-->
-        <tr>
-            <th>メールアドレス<!--{$require_mark}--></th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`email"}-->
-                <!--{if $arrErr[$key1]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--></div>
-                <!--{/if}-->
-                <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="box300 top" />
-            </td>
-        </tr>
+        <dt class="c-heading--form-title">メールアドレス<!--{$require_mark}--></dt>
+        <dd class="u-mb--2">
+            <!--{assign var=key1 value="`$prefix`email"}-->
+            <!--{if $arrErr[$key1]}-->
+                <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
+            <!--{/if}-->
+            <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="c-form-parts" />
+        </dd>
     <!--{/if}-->
     <!--{if $flgFields == 2 || $flgFields == 3}-->
         <tr>
@@ -154,10 +145,10 @@ $flgFields について
             <!--{assign var=key2 value="`$prefix`month"}-->
             <!--{assign var=key3 value="`$prefix`day"}-->
             <th>生年月日<!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></th>
-            <td>
+        <dd class="u-mb--2">
                 <!--{assign var=errBirth value="`$arrErr.$key1``$arrErr.$key2``$arrErr.$key3`"}-->
                 <!--{if $errBirth}-->
-                    <div class="attention"><!--{$errBirth}--></div>
+                    <p><small class="attention"><!--{$errBirth}--></small></p>
                 <!--{/if}-->
                 <select name="<!--{$key1}-->" style="<!--{$errBirth|sfGetErrorColor}-->">
                     <!--{html_options options=$arrYear selected=$arrForm[$key1].value|default:''}-->
@@ -168,45 +159,38 @@ $flgFields について
                 <select name="<!--{$key3}-->" style="<!--{$errBirth|sfGetErrorColor}-->">
                     <!--{html_options options=$arrDay selected=$arrForm[$key3].value|default:''}-->
                 </select>日
-            </td>
-        </tr>
+        </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
-        <tr>
-            <th>希望するパスワード<!--{$require_mark}--><br />
-            </th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`password"}-->
-                <!--{if $arrErr[$key1]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--></div>
-                <!--{/if}-->
-                <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->" class="box120" />
-                <p><span class="attention mini">半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字でお願いします。（記号可）</span></p>
-            </td>
-        </tr>
+        <dt class="c-heading--form-title">パスワード<!--{$require_mark}--></dt>
+        <dd class="u-mb--2">
+            <!--{assign var=key1 value="`$prefix`password"}-->
+            <!--{if $arrErr[$key1]}-->
+                <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
+            <!--{/if}-->
+            <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->" class="u-mb--1 c-form-parts" />
+            <p ><small>半角英数字<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->文字でお願いします。（記号可）</small></p>
+        </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
-        <tr>
-            <th>お支払い方法<!--{$require_mark}--></th>
-            <td>
-                <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
-                <select class="top" name="<!--{$key1|h}-->" <!--{if $arrErr[$key1]}--><!--{sfSetErrorStyle}--><!--{/if}-->>
-                    <option value="" selected="selected">選択してください</option>
-                    <!--{html_options options=$arrPayment selected=$arrForm[$key1].value}-->
-                </select>
-            </td>
-        </tr>
+        <dt class="c-heading--form-title">お支払い方法<!--{$require_mark}--></dt>
+        <dd class="u-mb--2">
+            <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
+            <select class="top" name="<!--{$key1|h}-->" <!--{if $arrErr[$key1]}--><!--{sfSetErrorStyle}--><!--{/if}-->>
+                <option value="" selected="selected">選択してください</option>
+                <!--{html_options options=$arrPayment selected=$arrForm[$key1].value}-->
+            </select>
+        </dd>
     <!--{/if}-->
     <!--{if $flgFields == 93}-->
-        <tr>
-            <!--{assign var=key1 value="nickname"}-->
-            <th><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></th>
-            <td>
-                <!--{if $arrErr[$key1]}-->
-                    <div class="attention"><!--{$arrErr[$key1]}--></div>
-                <!--{/if}-->
-                <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: active;" class="box120" />
-            </td>
-        </tr>
+        <!--{assign var=key1 value="nickname"}-->
+        <dt class="c-heading--form-title"><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
+        <dd class="u-mb--2">
+            <!--{if $arrErr[$key1]}-->
+                <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
+            <!--{/if}-->
+            <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active;<!--{$arrErr[$key1]|sfGetErrorColor}-->; " class="c-form-parts" />
+        </dd>
+
     <!--{/if}-->
 <!--{/strip}-->

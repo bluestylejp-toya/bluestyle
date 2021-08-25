@@ -20,29 +20,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<div id="undercolumn">
-    <div id="undercolumn_entry">
-        <h2 class="title"><!--{$tpl_title|h}--></h2>
-        <!--{if $smarty.const.CUSTOMER_CONFIRM_MAIL}-->
-            <p>ご登録されますと、まずは仮会員となります。<br />
-                入力されたメールアドレスに、ご連絡が届きますので、本会員になった上でお買い物をお楽しみください。</p>
-        <!--{/if}-->
-        <form name="form1" id="form1" method="post" action="?">
-            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-            <input type="hidden" name="mode" value="confirm" />
 
-            <table summary="会員登録フォーム">
-            <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=93 emailMobile=false prefix=""}-->
-            </table>
+<!--{if $smarty.const.CUSTOMER_CONFIRM_MAIL}-->
+    <p>ご登録されますと、まずは仮会員となります。<br />
+        入力されたメールアドレスに、ご連絡が届きますので、本会員になった上でお買い物をお楽しみください。</p>
+<!--{/if}-->
+<form name="form1" id="form1" method="post" action="?">
+    <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+    <input type="hidden" name="mode" value="confirm" />
 
-            <div class="btn_area">
-                <ul>
-                    <li>
-                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_confirm.jpg" alt="確認ページへ" name="confirm" id="confirm" />
-                    </li>
-                </ul>
-            </div>
+    <dl class="u-mb--4">
+    <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=93 emailMobile=false prefix=""}-->
+    </dl>
 
-        </form>
-    </div>
-</div>
+    <button name="confirm" id="confirm" class="c-btn--primary">アカウントを作成する</button>
+
+</form>

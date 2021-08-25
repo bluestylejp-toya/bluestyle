@@ -22,7 +22,6 @@
 
 <div id="undercolumn">
     <div id="undercolumn_entry">
-        <h2 class="title"><!--{$tpl_title|h}--></h2>
         <div id="complete_area">
             <p class="message">本登録が完了いたしました。<br />
                 それではショッピングをお楽しみください。</p>

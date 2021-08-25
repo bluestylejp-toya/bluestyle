@@ -7,11 +7,10 @@
     @include font('button');
     border: 1px solid transparent;
     text-decoration: none;
+    width: 100%;
 }
 
 .c-btn {
-
-
     &:hover {
         transition: $btn-animation;
         text-decoration: none;

@@ -1,0 +1,13 @@
+.c-form-parts {
+    width: 100%;
+    padding: $unit;
+    border-radius: $unit;
+    border: 1px solid $border-color-light;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.attention {
+    color: $red;
+    font-size: 1rem;
+}

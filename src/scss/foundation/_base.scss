@@ -7,9 +7,6 @@ body {
     color: $font-color;
     @include font('body');
 }
-main {
-    line-height: 1.8;
-}
 
 img {
     max-width: 100%;
