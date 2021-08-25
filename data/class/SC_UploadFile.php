@@ -115,7 +115,7 @@ class SC_UploadFile
                     // HEIF 対応 (JPEG 変換)
                     if (in_array('jpg', $this->arrExt[$cnt])
                         && class_exists('Imagick')
-                        && preg_match('/^(.*)(\.(heic|heif))$/', $_FILES[$keyname]['name'], $arrMatche)) {
+                        && preg_match('/^(.*)(\.(heic|heif))$/i', $_FILES[$keyname]['name'], $arrMatche)) {
                         $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
                         $im = new Imagick();
                         try {
@@ -136,6 +136,11 @@ class SC_UploadFile
                             $im->clear();
                             $im->destroy();
                         }
+                    }
+                    // Safari on iOS の拡張子が .jpeg なので .jpg に書き換える
+                    if (in_array('jpg', $this->arrExt[$cnt])
+                        && preg_match('/^(.*)(\.jpeg)$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+                        $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
                     }
                     // 拡張子チェック
                     $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->arrExt[$cnt]), array('FILE_EXT_CHECK'));
