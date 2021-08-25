@@ -26,7 +26,7 @@
 <div class="l-header__inner">
   <a href="" aria-label="戻る" class="c-btn--header-nav"></a>
   <h1 class="c-header-title">
-    <!--{$tpl_title|h}--><!--{$tpl_title|h}--><!--{$tpl_title|h}--><!--{$tpl_title|h}--><!--{$tpl_title|h}-->
+    <!--{$tpl_title|h}-->
   </h1>
 </div>
 <!--{/strip}-->
