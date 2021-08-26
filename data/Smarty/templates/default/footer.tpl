@@ -29,7 +29,7 @@
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search is-current">探す</a>
         </li>
         <li class="l-footer-nav__item">
-        <a href="" class="c-footer-nav-item--listing">出品</a>
+        <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/edit.php" class="c-footer-nav-item--listing">出品</a>
         </li>
         <li class="l-footer-nav__item">
             <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-footer-nav-item--mypage">マイページ</a>
