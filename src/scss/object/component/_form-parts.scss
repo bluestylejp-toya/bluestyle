@@ -6,6 +6,10 @@
     font-size: 16px;
     line-height: 1;
 
+    &.--error {
+        background: $yellow-light;
+    }
+
     &--checkbox {
         display: none;
         & + label {
@@ -54,9 +58,11 @@
         align-items: center;
         justify-content: center;
         background:  map-get($gray-set, 2);
+
         &__box {
             width: calc(100% - 20px);
         }
+
         &__btn {
             width: 20px;
             height: 20px;

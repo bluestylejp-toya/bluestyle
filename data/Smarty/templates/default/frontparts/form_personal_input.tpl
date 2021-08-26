@@ -133,7 +133,7 @@ $flgFields について
         <dt class="c-heading--form-title">メールアドレス<!--{$require_mark}--></dt>
         <dd class="u-mb--2">
             <!--{assign var=key1 value="`$prefix`email"}-->
-            <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->; ime-mode: disabled;" class="c-form-parts" placeholder="〇〇文字以上の半角英数字"/>
+            <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="ime-mode: disabled;" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="〇〇文字以上の半角英数字"/>
             <!--{if $arrErr[$key1]}-->
                 <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
             <!--{/if}-->
@@ -165,7 +165,7 @@ $flgFields について
         <dt class="c-heading--form-title">パスワード<!--{$require_mark}--></dt>
         <dd class="u-mb--2">
             <!--{assign var=key1 value="`$prefix`password"}-->
-            <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->" class="c-form-parts" placeholder="<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->の半角英数字"/>
+            <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->の半角英数字"/>
             <!--{if $arrErr[$key1]}-->
                 <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
             <!--{/if}-->
@@ -185,7 +185,7 @@ $flgFields について
         <!--{assign var=key1 value="nickname"}-->
         <dt class="c-heading--form-title"><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
         <dd class="u-mb--2">
-            <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active;<!--{$arrErr[$key1]|sfGetErrorColor}-->; " class="c-form-parts" placeholder="Chain内のユーザ名"/>
+            <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="Chain内のユーザ名"/>
             <!--{if $arrErr[$key1]}-->
                 <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
             <!--{/if}-->
