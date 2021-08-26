@@ -2,7 +2,7 @@
 
     &__inner {
         position: relative;
-        margin: 0 auto;
+        margin: 0 #{-$unit*3} $unit*2;
         padding: 0 56px;
         align-items: center;
         max-width: $container;

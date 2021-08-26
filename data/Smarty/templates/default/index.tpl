@@ -21,8 +21,8 @@
  *}-->
 
 <!--{strip}-->
-<section class="p-hero-signin">
-  <h1 class="p-hero-signin__head">
+<section class="c-hero">
+  <h1 class="c-hero__head c-logo">
     <svg
       width="110"
       height="53"
@@ -37,24 +37,24 @@
       />
     </svg>
   </h1>
-  <div class="p-hero-signin__main">
-    <h2 class="p-hero-signin__main__heading">
+  <div class="c-hero__main">
+    <h2 class="c-hero__main__heading">
       欲しいものは交換で！<br />みんなで連鎖マーケット
     </h2>
     <p class="u-color--gray">
       ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
     </p>
   </div>
-  <div class="p-hero-signin__foot">
+  <div class="c-hero__foot">
     <a
       href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php"
-      class="c-btn c-btn--primary p-hero-signin__foot__btn"
+      class="c-btn c-btn--primary c-hero__foot__btn"
       ontouchstart=""
       >新規会員登録</a
     >
     <a
       href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php"
-      class="c-btn c-btn--primary--outline p-hero-signin__foot__btn"
+      class="c-btn c-btn--primary--outline c-hero__foot__btn"
       ontouchstart=""
       >ログインする</a
     >

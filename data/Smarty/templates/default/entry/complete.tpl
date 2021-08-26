@@ -32,7 +32,7 @@
 
             <!-- LINE友達追加ボタン -->
             <div class="btn_area">
-                <a href="https://lin.ee/NGSPD7f"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+                <a href="https://lin.ee/NGSPD7f" class="c-btn--line"><img src="<!--{$TPL_URLPATH}-->img/icon/icon-line.svg">友だち追加</a>
             </div>
 
             <div class="shop_information">

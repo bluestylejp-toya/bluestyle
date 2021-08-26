@@ -20,8 +20,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<div id="undercolumn" class="l-section">
-  <div class="l-section">
+<section>
+    <header class="l-header__inner">
+        <a href="<!--{$smarty.const.TOP_URL}-->" aria-label="戻る" class="c-btn--header-nav"></a>
+        <p class="c-header-title">ご利用規約</p>
+    </header>
     <p class="u-color--red u-weight--bold">
       【重要】 会員登録をされる前に、下記ご利用規約をよくお読みください。
     </p>
@@ -57,4 +60,4 @@
 <!--{"\n"}--><!--{$tpl_kiyaku_text|h}--></textarea
     >
   </form>
-</div>
+</seciton>

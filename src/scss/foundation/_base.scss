@@ -21,3 +21,14 @@ a:not([class]) {
 hr {
     border-color: $border-color;
 }
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: $gray;
+}
+::placeholder{ /* Others */
+  color:  $gray;
+}
+
+small {
+    font-size: 1rem;
+}

@@ -1,6 +1,6 @@
 // 見出し
 %heading {
-    color: map-get($gray, 5);
+    color: map-get($gray-set, 5);
 }
 .c-heading {
     &--md {
@@ -25,7 +25,7 @@
 .c-header-title {
     font-size: 1.6rem;
     font-weight: 700;
-    color: map-get($gray, 5);
+    color: $gray;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

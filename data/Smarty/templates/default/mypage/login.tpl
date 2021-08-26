@@ -23,7 +23,7 @@
 *}-->
 
 <div class="u-mb--4">
-    <h1 class="p-hero-signin__head">
+    <h1 class="c-hero__head">
         <svg
         width="110"
         height="53"

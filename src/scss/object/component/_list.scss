@@ -1,0 +1,15 @@
+.c-list {
+    &--dot {
+        li {
+            margin-left: 1em;
+            text-indent: -1em;
+
+            &::before {
+                display: inline-block;
+                width: 1em;
+                text-indent: 0;
+                content: '・';
+            }
+        }
+    }
+}

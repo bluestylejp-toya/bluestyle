@@ -4,7 +4,7 @@
         color: $red;
     }
     &--gray {
-        color: map-get($gray, 5);
+        color: $gray;
     }
 }
 //weight
