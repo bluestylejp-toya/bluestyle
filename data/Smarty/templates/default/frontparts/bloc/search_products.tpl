@@ -24,7 +24,7 @@
     <!--検索フォーム-->
     <form name="search_form" id="search_form" method="get" action="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="text" name="name" class="c-form-parts--search" maxlength="50" value="<!--{$smarty.get.name|h}-->" placeholder="キーワードから探す"/>
+        <div class="c-form-parts--search"><input type="text" name="name" class="c-form-parts--search__box" maxlength="50" value="<!--{$smarty.get.name|h}-->" placeholder="キーワードから探す"/><button class="c-form-parts--search__btn"></button></div>
         <!--<dl class="formlist">
             <dt>カテゴリーから探す</dt>
             <dd><input type="hidden" name="mode" value="search" />
@@ -47,5 +47,8 @@
             <!--{/if}-->
         </dl>-->
     </form>
-
+    <script>
+    const search = document.querySelector("[name=name]");
+    search.oninput = function(e){console.log("input : "+e.target.value)};
+    </script>
 <!--{/strip}-->
