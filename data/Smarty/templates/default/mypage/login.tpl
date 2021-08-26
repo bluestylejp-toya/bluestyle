@@ -75,7 +75,7 @@
 </div>
 <section class="u-mb--4">
 	<h2 class="c-heading--subtitle u-mb--4">メールアドレス・パスワードを忘れた方は</h2>
-	<p class="u-mb--4">お手数ですが、サポートまでお問い合わせください</p>
+	<p class="u-mb--4 u-color--gray">お手数ですが、サポートまでお問い合わせください</p>
 	<p><a href="<!--{$smarty.const.ROOT_URLPATH}-->contact/<!--{$smarty.const.DIR_INDEX_PATH}-->" class="c-btn--default">お問い合わせ</a></p>
 </section>
 <hr class="u-mb--4">
