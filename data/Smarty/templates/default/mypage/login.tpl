@@ -23,7 +23,11 @@
 *}-->
 
 <div class="u-mb--4">
-    <h1 class="c-hero__head">
+    <div class="l-header__inner u-mb--4">
+        <a href="<!--{$smarty.const.TOP_URL}-->" aria-label="戻る" class="c-btn--header-nav"></a>
+        <p class="c-header-title">ログイン</p>
+    </div>
+    <h1 class="c-logo u-mb--4">
         <svg
         width="110"
         height="53"
@@ -50,10 +54,10 @@
                 <!--{if $arrErr[$key]}-->
                 <span class="attention"><!--{$arrErr[$key]}--></span>
                 <!--{/if}-->
-                <input type="text" name="<!--{$key}-->" value="<!--{$tpl_login_email|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->; ime-mode: disabled;" class="c-form-parts" />
+                <input type="text" name="<!--{$key}-->" value="<!--{$tpl_login_email|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->; ime-mode: disabled;" class="c-form-parts u-mb--1" />
                 <p class="login_memory">
                     <!--{assign var=key value="login_memory"}-->
-                    <input type="checkbox" name="<!--{$key}-->" value="1"<!--{$tpl_login_memory|sfGetChecked:1}--> id="login_memory" />
+                    <input type="checkbox" name="<!--{$key}-->" value="1"<!--{$tpl_login_memory|sfGetChecked:1}--> id="login_memory" class="c-form-parts--checkbox"/>
                     <label for="login_memory">メールアドレスを記憶させる</label>
                 </p>
             </dd>

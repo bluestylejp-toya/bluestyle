@@ -5,6 +5,45 @@
     border: 1px solid $border-color-light;
     font-size: 16px;
     line-height: 1;
+
+    &--checkbox {
+        display: none;
+        & + label {
+            padding-left:$unit*3;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 18px;
+                height: 18px;
+                left: 2px;
+                top: 2px;
+                border-radius: 3px;
+                border: 2px solid $blue;
+                background: $white;
+            }
+            &::after {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 6px;
+                height: 10px;
+                left: 8px;
+                top: 5px;
+                transform: rotate(45deg);
+                border-bottom: 2px solid $white;
+                border-right: 2px solid $white;
+            }
+        }
+
+        &:checked + label {
+             &::before {
+                background: $blue;
+            }
+        }
+    }
 }
 
 .attention {
