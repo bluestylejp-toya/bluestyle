@@ -41,7 +41,7 @@
     <h2 class="p-hero-signin__main__heading">
       欲しいものは交換で！<br />みんなで連鎖マーケット
     </h2>
-    <p>
+    <p class="u-color--gray">
       ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
     </p>
   </div>
@@ -62,7 +62,7 @@
 </section>
 <section class="l-section">
   <h2 class="c-heading--md">Chainとは？</h2>
-  <p>
+  <p class="u-color--gray">
     利用明確ドメインば許諾の要件の満たさ、が権文ことなく[を Commons
     関係はと、こと」いに出所こと。参照条以下裁判著作の、（いる）さ、明示に従ってフリー満たす
   </p>

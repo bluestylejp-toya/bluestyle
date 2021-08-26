@@ -3,6 +3,9 @@
     &--red {
         color: $red;
     }
+    &--gray {
+        color: map-get($gray, 5);
+    }
 }
 //weight
 .u-weight {

@@ -1,0 +1,17 @@
+.l-item-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 math.div($unit, 2)*-1  #{-$unit};
+
+    & > * {
+        width: calc(33.333% - #{$unit});
+        margin:0 math.div($unit, 2) $unit;
+        border-radius: $unit;
+        overflow: hidden;
+
+        * {
+            display: block;
+            width: 100%;
+        }
+    }
+}
