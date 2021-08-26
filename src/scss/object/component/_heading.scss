@@ -12,6 +12,14 @@
         @extend %heading;
         font-weight: 700;
         margin-bottom: math.div($unit, 2);
+
+        .attention {
+            margin-left: math.div($unit, 2);
+            display: inline-block;
+            &::after {
+                content: '必須';
+            }
+        }
     }
     &--subtitle {
         @extend %heading;
@@ -29,4 +37,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+
 }
