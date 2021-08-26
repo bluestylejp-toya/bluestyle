@@ -25,7 +25,7 @@
     <!--{if $send}-->
     <section>
     <div class="c-entry-kv">
-        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-send-mail.png" class="" />
+        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-send-mail.png" decoding="async" loading="lazy"/>
     </div>
     <h1 class="c-heading--md u-color--gray">登録情報を送信しました！</h1>
     <p class="u-mb--4 u-color--gray">
@@ -52,7 +52,7 @@
         <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
     </div>
     <div class="c-entry-kv">
-        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-complete.png" class="" />
+        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-complete.png" class="" decoding="async" loading="lazy"/>
     </div>
     <h1 class="c-heading--md u-color--gray u-mb--4">
         おめでとうございます！<br />登録完了しました

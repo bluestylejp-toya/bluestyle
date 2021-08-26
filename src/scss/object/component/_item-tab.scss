@@ -1,0 +1,28 @@
+.c-item-tab {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+    margin: 0 #{$unit*-3} $unit*3;
+
+    &__item {
+        width: 33.333%;
+        height: $unit*7;
+        &.--current {
+            color: $blue;
+            border-bottom: 4px solid $blue;
+        }
+    }
+    a,strong {
+        font-weight: 700;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    a {
+        text-decoration: none;
+        color: map-get($gray-set, 3);
+    }
+}
