@@ -12,4 +12,25 @@
             }
         }
     }
+
+    &--order {
+        counter-reset: num;
+        li {
+            counter-increment: num;
+            margin-left: 1.5em;
+            text-indent: -1.5em;
+            margin-bottom: $unit;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &::before {
+                display: inline-block;
+                width: 1.5em;
+                text-indent: 0;
+                content: counter(num)'.';
+            }
+        }
+    }
 }
