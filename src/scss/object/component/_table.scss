@@ -1,0 +1,16 @@
+.c-table {
+    display: block;
+
+    tbody,thead,th,td,tr {
+        display: block;
+    }
+    tr {
+        border-bottom: 1px solid $border-color-light;
+        padding: $unit $unit*3 $unit;
+    }
+    th {
+        @include font('subtitle-bold');
+        color: $gray;
+        margin-bottom: math.div($unit, 2);
+    }
+}
