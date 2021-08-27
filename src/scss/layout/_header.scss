@@ -10,4 +10,12 @@
         justify-content: center;
         height: $header-height;
     }
+
+    &--item {
+        left: 0;
+        position: fixed;
+        background: $white;
+        width: 100%;
+        z-index: 300;
+    }
 }

@@ -50,7 +50,7 @@
     }
 
     &--search {
-        margin: $unit #{-$unit} 0;
+        margin: $unit $unit*2;
         padding: 0 $unit*2;
         height: $unit*4;
         border-radius: 100px;
@@ -60,6 +60,7 @@
         background:  map-get($gray-set, 2);
 
         &__box {
+            line-height: $unit*3;
             width: calc(100% - 20px);
         }
 

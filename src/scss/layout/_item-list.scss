@@ -14,4 +14,11 @@
             width: 100%;
         }
     }
+
+    &--detail {
+        li {
+            padding: $unit 0;
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
 }

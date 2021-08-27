@@ -641,3 +641,29 @@ require( "slick-carousel/slick/slick-theme.css" );
     return this;
   };
 }(jQuery));
+
+(function ($) {
+  $.fn.del_favorite_area = function (transaction_id_name, transaction_id) {
+    this.each(function () {
+      $(this).on("click", function () {
+        let $parent = $(this).parent(".favorite_area");
+        let postData = {
+          mode: "del_favorite_ajax",
+          product_id: $(this).data("product_id"),
+          favorite_product_id: $(this).data("product_id"),
+        };
+        postData[transaction_id_name] = transaction_id;
+        $.ajax({
+          url: "/products/detail.php",
+          method: "POST",
+          data: postData,
+          dataType: "json",
+        }).done(function (data, textStatus, jqXHR) {
+          $parent.remove();
+        });
+      });
+    });
+
+    return this;
+  };
+})(jQuery);
