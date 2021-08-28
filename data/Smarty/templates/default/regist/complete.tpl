@@ -21,7 +21,7 @@
     *}-->
 
     <!-- 分岐する -->
-    <!--{$send=true}-->
+    <!--{$send=false}-->
     <!--{if $send}-->
     <section>
     <div class="c-entry-kv">
