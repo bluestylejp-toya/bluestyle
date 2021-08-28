@@ -21,9 +21,10 @@
     *}-->
 
     <!-- 分岐する -->
-    <!--{$send=false}-->
-    <!--{if $send}-->
-    <section>
+
+
+
+<section>
     <div class="c-entry-kv">
         <img src="<!--{$TPL_URLPATH}-->img/entry/entry-send-mail.png" decoding="async" loading="lazy"/>
     </div>
@@ -46,21 +47,4 @@
         <li>メールの配信に時間がかかる場合があります。数分待ってから再度届いているかご確認ください。</li>
         <li>登録にご使用のメールアドレス xxxxxxxxxxx@xxxx.xxx が正しいかどうかご確認ください。正しくない場合は、改めてご登録ください。</li>
     </ul>
-    <!--{else}-->
-    <div class="l-header__inner u-mb--0">
-        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
-        <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
-    </div>
-    <div class="c-entry-kv">
-        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-complete.png" class="" decoding="async" loading="lazy"/>
-    </div>
-    <h1 class="c-heading--md u-color--gray u-mb--4">
-        おめでとうございます！<br />登録完了しました
-    </h1>
-    <p>
-        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary"
-        >ホームへ</a
-        >
-    </p>
-    <!--{/if}-->
-    </section>
+</section>
