@@ -15,13 +15,8 @@
             height: 100px;
             display: block;
         }
-
-        label {
-            width: 100px;
-            height: 100px;
-            display: block;
-        }
-
+    }
+    label {
         &::before {
             position: absolute;
             left: 3px;
