@@ -141,28 +141,7 @@
         <!--{assign var=id value=$arrProduct.product_id}-->
         <!--{assign var=arrErr value=$arrProduct.arrErr}-->
         <!--▼商品-->
-            <!--{if $tpl_subtitle == "検索結果"}-->
-                <li class="c-item">
-                    <!--★画像★-->
-                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->" class="c-item__img"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy"/></a>
-                    <div class="c-item__main">
-                        <p class="c-item__title"><!--{$arrProduct.name|h}--></p>
-                        <div class="favorite_area <!--{if $arrProduct.registered_favorite}-->registered_favorite<!--{/if}-->">
-                        <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
-                            <!--{* お気に入り登録・解除 *}-->
 
-                            <div class="btn--regist" data-product_id="<!--{$arrProduct.product_id|h}-->">
-                                <span class="count_of_favorite">
-                                    <span class="num c-item__request"><!--{$arrProduct.count_of_favorite|h}--></span>
-                                </span>
-                            </div>
-                        <!--{/if}-->
-                        <!--{* お気に入り件数 *}-->
-
-                    </div>
-                    </div>
-                </li>
-                <!--{else}-->
                 <li class="c-item--default">
 
                     <div  class="c-item--default__img"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy"/>
@@ -172,9 +151,8 @@
                             <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
                         <!--{/if}-->
                     </div>
-                    <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|h}--></a></p>
+                    <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></a></p>
                 </li>
-            <!--{/if}-->
         <!--{if $smarty.foreach.arrProducts.last}-->
         </ul>
             <!--▼ページナビ(下部)-->

@@ -85,14 +85,14 @@ $pointer: 1;
       transform: translate(0, 0);
     }
     80% {
-      transform: translate(#{nth($points, $pointer)}px, #{nth($points, $pointer + 1)}px);
+      transform: translate(#{nth($points, $pointer)*2}px, #{nth($points, $pointer + 1)*2}px);
     }
     90% {
-      transform: translate(#{nth($points, $pointer)}px, #{nth($points, $pointer + 1)}px);
+      transform: translate(#{nth($points, $pointer)*2}px, #{nth($points, $pointer + 1)*2}px);
     }
     100% {
       opacity: 1;
-      transform: translate(#{nth($points, $pointer)}px, #{nth($points, $pointer + 1)}px);
+      transform: translate(#{nth($points, $pointer)*2}px, #{nth($points, $pointer + 1)*2}px);
     }
   }
   $pointer: $pointer + 2;
