@@ -38,6 +38,10 @@
             margin-bottom: $unit*2;
         }
         dt {
+            .attention {
+                display: inline-block;
+                margin-left: $unit;
+            }
             margin-bottom: math.div($unit, 2);
             @include font('sub-title-bold');
             color: $gray;
