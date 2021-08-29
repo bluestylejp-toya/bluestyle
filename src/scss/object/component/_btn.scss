@@ -91,4 +91,66 @@
         height: $unit*3;
         background: url('data:image/svg+xml;utf8,<svg width="13" height="20" viewBox="0 0 13 20" xmlns="http://www.w3.org/2000/svg"><path d="M12.51 1.8701L10.73 0.100098L0.839966 10.0001L10.74 19.9001L12.51 18.1301L4.37997 10.0001L12.51 1.8701Z" fill="%239DA4B0"/></svg>') center / 10px auto  no-repeat;
     }
+
+    &--request {
+        padding-top: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        color: $white;
+        background: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        justify-content: center;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 10px;
+        font-weight: 700;
+        position: relative;
+
+
+        svg {
+            width: 70px;
+            top: calc(50% - 5px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+
+            .heart{
+                fill: $white;
+                transform-origin: 250px 250px;
+            }
+
+            .particleLayer {
+                opacity: 0;
+            }
+        }
+
+        &.--active {
+            animation: press .3s forwards;
+
+
+            .heart {
+                animation: heartAnime .5s;
+            }
+            .particleLayer {
+                animation: particleLayerAnime .8s;
+
+                @for $index from 1 through 14 {
+                    circle:nth-child(#{$index}) {
+                        animation: particleAnimate#{$index} .8s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes press {
+    50% {
+        transform: scale(.9) translateY(-2px);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
 }

@@ -126,7 +126,7 @@ class SC_PageNavi
 
             $this->arrPagenavi['arrPageno'] = array();
             $page_number = '';
-			$page_number .= "<strong>$this->now_page</strong>";
+            $page_number .= "<strong>$this->now_page</strong>";
 
             if ($before && $next) {
                 $this->strnavi = $before .(($display_number) ? $page_number : ' | ') .$next;

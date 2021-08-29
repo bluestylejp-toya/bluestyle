@@ -5,7 +5,6 @@ $border-color: #C4C8D0;
 $gradient-color: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
 $gray-set: (1: #FFFFFF, 2:#EAECEE, 3:#9DA4B0, 4:#757f89,5: #475462,6: #000000);
 
-@debug map-get($gray-set, 1);
 $brand-colors: (
     default: (default: map-get($gray-set, 0), dark: map-get($gray-set, 2)),
     primary: (default: #009fcf, dark: #2A7DA7),
@@ -19,6 +18,7 @@ $font-color: #{map-get($gray-set, 6)};
 $black: #{map-get($gray-set, 6)};
 $gray: #{map-get($gray-set, 5)};
 $blue: #{map-get(map-get($brand-colors, primary), default)};
+$blue-dark: #{map-get(map-get($brand-colors, primary), dark)};
 $red: #{map-get(map-get($brand-colors, red), default)};
 $green: #{map-get(map-get($brand-colors, secondary), default)};
 $yellow: #{map-get(map-get($brand-colors, tertiary), default)};

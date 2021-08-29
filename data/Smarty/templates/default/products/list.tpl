@@ -193,6 +193,5 @@
 </div>
 <script>
 $('.favorite_area .btn--regist').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
-$('.favorite_area .c-item--default__request').del_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
 
 </script>

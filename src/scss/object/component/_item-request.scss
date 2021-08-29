@@ -1,0 +1,48 @@
+.c-item-request {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    position: relative;
+    padding-left: 23px;
+    color: $gray;
+
+    .icon {
+        position: absolute;
+        width: 40px;
+        left: -10px;
+
+        .heart{
+            fill: $gray;
+            transform-origin: 250px 250px;
+        }
+
+        .particleLayer {
+            opacity: 0;
+        }
+    }
+
+    &.--active {
+        color: $blue-dark;
+        .heart {
+            animation: heartAnime .5s;
+            fill: $blue-dark;
+        }
+        // .particleLayer {
+        //     animation: particleLayerAnime .8s;
+
+        //     @for $index from 1 through 14 {
+        //         circle:nth-child(#{$index}) {
+        //             animation: particleAnimate#{$index} .8s;
+        //         }
+        //     }
+        // }
+    }
+}
+
+.favorite_area.registered_favorite .c-item-request{
+     color: $blue-dark;
+    .heart {
+        fill: $blue-dark;
+    }
+}

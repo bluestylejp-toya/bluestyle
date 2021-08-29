@@ -3,6 +3,11 @@
     color: map-get($gray-set, 5);
 }
 .c-heading {
+    &--lg {
+        @include font('h4');
+        font-weight: 700;
+        margin-bottom: $unit*3;
+    }
     &--md {
         @include font('h4');
         text-align: center;
