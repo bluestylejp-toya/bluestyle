@@ -54,6 +54,28 @@
     </header>
     <!--{/if}-->
     <main class="l-main">
+        <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
+        <!--{if $smarty.server.PHP_SELF==$list}-->
+        <div class="l-header--item">
+            <!--{include file="frontparts/bloc/search_products.tpl"}-->
+            <!--{if $tpl_subtitle !== '検索結果'}-->
+            <ul class="c-item-tab">
+                <li class="c-item-tab__item --current">
+                    <strong class="">新着</strong>
+                </li>
+                <li class="c-item-tab__item">
+                    <a href="javascript:fnChangeOrderby('price');">ファストChain</a>
+                </li>
+                <li class="c-item-tab__item">
+                    <a href="">閲覧履歴</a>
+                </li>
+            </ul>
+            <!--{/if}-->
+        </div>
+        <!--{/if}-->
+
+        <!--{if $smarty.server.PHP_SELF==$list}-->
+        <!--{/if}-->
       <!--{* ▼TOP COLUMN*}-->
       <!--{if !empty($arrPageLayout.TopNavi)}-->
       <div id="topcolumn">
@@ -70,9 +92,9 @@
         -->
         <!--{/foreach}-->
         <!--{* ▲上ナビ *}-->
-      </div>
-      <!--{/if}-->
-      <!--{* ▲TOP COLUMN*}-->
+        </div>
+        <!--{/if}-->
+        <!--{* ▲TOP COLUMN*}-->
         <!--{* ▼CENTER COLUMN *}-->
         <div <!--{**}-->
             class="colnum<!--{$tpl_column_num|h}-->

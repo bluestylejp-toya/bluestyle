@@ -61,31 +61,6 @@
     }
 //]]></script>
 <div class="p-item-list">
-    <!--{if $tpl_subtitle != '検索結果'}-->
-    <ul class="c-item-tab --sticky">
-        <!--{if $orderby != "date"}-->
-            <li class="c-item-tab__item">
-                <a href="javascript:fnChangeOrderby('date');">新着</a>
-            </li>
-        <!--{else}-->
-            <li class="c-item-tab__item --current">
-                <strong class="">新着</strong>
-            </li>
-        <!--{/if}-->
-        <!--{if $orderby != 'price'}-->
-            <li class="c-item-tab__item">
-                <a href="javascript:fnChangeOrderby('price');">ファストChain</a>
-            </li>
-        <!--{else}-->
-            <li class="c-item-tab__item --current">
-                <strong>ファストChain</strong>
-            </li>
-        <!--{/if}-->
-            <li class="c-item-tab__item">
-                <a href="">閲覧履歴</a>
-            </li>
-    </ul>
-    <!--{/if}-->
     <form name="form1" id="form1" method="get" action="?">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="mode" value="<!--{$mode|h}-->" />
@@ -135,7 +110,7 @@
                 <!--▲件数-->
             <!--{/if}-->
 
-            <ul class="l-item-list<!--{if $tpl_subtitle == "検索結果"}-->--detail<!--{/if}-->">
+            <ul class="l-item-list">
         <!--{/if}-->
 
         <!--{assign var=id value=$arrProduct.product_id}-->

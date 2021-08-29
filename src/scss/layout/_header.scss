@@ -12,10 +12,15 @@
     }
 
     &--item {
+        padding-top: $unit;
+        padding-bottom: $unit;
+        margin-left: -#{$unit*3};
+        margin-right: -#{$unit*3};
+        margin-bottom:  $unit*3;
         left: 0;
-        position: fixed;
+        position: sticky;
+        top: 0;
         background: $white;
-        width: 100%;
         z-index: 300;
     }
 }
