@@ -39,13 +39,8 @@
         <div class="c-item-kv p-item-detail__kv">
             <!--{assign var=key value="sub_large_image1"}-->
             <!--★画像★-->
-            <a
-                href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->"
-                class="expansion"
-                target="_blank"
-            >
-                <img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" />
-            </a>
+
+            <div data-modal_src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->" data-modal_caption="<!--{$arrProduct.name|h}-->"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
             <!--★お気に入り登録★-->
             <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
 
@@ -128,11 +123,11 @@
                             <!--{if $arrProduct[$ikey]|strlen >= 1}-->
                                 <li>
                                     <!--{if $arrProduct[$lkey]|strlen >= 1}-->
-                                        <a href="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct[$lkey]|h}-->" class="expansion" target="_blank" class="c-item-photo">
+                                        <div data-modal_src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct[$lkey]|h}-->" data-modal_caption="<!--{$arrProduct[$key]|h}-->">
                                     <!--{/if}-->
                                     <img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" />
                                     <!--{if $arrProduct[$lkey]|strlen >= 1}-->
-                                        </a>
+                                        </div>
                                     <!--{/if}-->
                                 </li>
                             <!--{/if}-->
@@ -167,9 +162,56 @@
         </dl>
     </div>
     <div class="c-modal">
-        <figure>
-        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->" alt="">
-        <figcaption></figcaption>
+       <button class="c-modal__close-btn">close</button>
+        <figure class="c-modal__img">
+            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->" alt="">
+                <figcaption class="c-modal__caption">テストテストテストテストテストテストテストテストテストテストテストテスト</figcaption>
         </figure>
+        <ul class="c-modal__controll">
+            <li class="c-modal__controll__prev"><svg width="11" height="17" viewBox="0 0 11 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5363 2.23303L8.65625 0.353027L0.65625 8.35303L8.65625 16.353L10.5363 14.473L4.42958 8.35303L10.5363 2.23303Z" fill="#000000"/></svg></li><li class="c-modal__controll__next"><svg width="11" height="17" viewBox="0 0 11 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.32238 0.353027L0.442383 2.23303L6.54905 8.35303L0.442383 14.473L2.32238 16.353L10.3224 8.35303L2.32238 0.353027Z" fill="#000000"/></svg></li>
+        </ul>
     </div>
+    <div class="c-modal__bg"></div>
 </section>
+<script>
+    const imageSrc = document.querySelectorAll('[data-modal_src]');
+    const modalImage = document.querySelector('.c-modal__img img');
+    const body = document.querySelector('body');
+    const modal = document.querySelector('.c-modal')
+    const modalCaption = document.querySelector('.c-modal__caption');
+    const modalCloseBtn = document.querySelector('.c-modal__close-btn');
+    const modalPrevBtn = document.querySelector('.c-modal__controll__prev');
+    const modalNextBtn = document.querySelector('.c-modal__controll__next');
+    const modalBg = document.querySelector('.c-modal__bg');
+    let imagesArr = [];
+    imageSrc.forEach((item, index) => {
+        imagesArr.push({'src': item.getAttribute('data-modal_src'), 'caption': item.getAttribute('data-modal_caption')});
+
+        item.addEventListener('click', () =>{
+            modal.classList.add('--active')
+            body.classList.add('--overflow-hidden');
+            modalImage.src = imagesArr[index].src;
+            modalCaption.textContent = imagesArr[index].caption;
+            let num = index;
+
+            modalNextBtn.addEventListener('click', () =>{
+                num = (num == (imagesArr.length - 1) ? 0 : num + 1);
+                modalImage.src = imagesArr[num].src;
+                modalCaption.textContent = imagesArr[num].caption;
+            })
+            modalPrevBtn.addEventListener('click', () =>{
+                num = (num == 0 ? imagesArr.length - 1 : 0);
+                modalImage.src = imagesArr[num].src;
+                modalCaption.textContent = imagesArr[num].caption;
+            })
+            modalCloseBtn.addEventListener('click', () =>{
+                modal.classList.remove('--active')
+                body.classList.remove('--overflow-hidden');
+            })
+            modalBg.addEventListener('click', () =>{
+                modal.classList.remove('--active')
+                body.classList.remove('--overflow-hidden');
+            })
+        })
+    });
+</script>

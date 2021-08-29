@@ -6,6 +6,10 @@ html {
 body {
     color: $font-color;
     @include font('body');
+
+    &.--overflow-hidden {
+        overflow: hidden;
+    }
 }
 
 img {
