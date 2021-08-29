@@ -659,6 +659,9 @@ class SC_Helper_Customer
      */
     public static function delete($customer_id)
     {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objDb = new SC_Helper_DB_Ex();
+
         $arrData = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($customer_id, 'del_flg = 0');
         if (SC_Utils_Ex::isBlank($arrData)) {
             //対象となるデータが見つからない。
@@ -669,6 +672,17 @@ class SC_Helper_Customer
             'del_flg' => '1',
         );
         SC_Helper_Customer_Ex::sfEditCustomerData($arrVal, $customer_id);
+
+        // XXX SC_Helper_Customer_Ex::sfEditCustomerData は内部でトランザクション制御しているため、一貫性を保てないリスクがある。https://bluestyle.backlog.jp/view/CHAIN-55#comment-118655699
+        $arrData = [
+            'del_flg' => 1,
+            'withdrawal_flg' => 1,
+        ];
+        $objQuery->update('dtb_products', $arrData, 'customer_id = ? ', array($customer_id));
+
+        // 件数カウントバッチ実行
+        $objDb->sfCountCategory($objQuery);
+        $objDb->sfCountMaker($objQuery);
 
         return true;
     }
