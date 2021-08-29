@@ -34,12 +34,13 @@
         }
     }
     &--dl {
-        display: flex;
         dd {
-
+            margin-bottom: $unit*2;
         }
         dt {
-
+            margin-bottom: math.div($unit, 2);
+            @include font('sub-title-bold');
+            color: $gray;
         }
     }
 }

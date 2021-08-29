@@ -1,0 +1,44 @@
+.c-profile-img {
+    &__inner {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border-radius: 50%;
+        position: relative;
+        background: map-get($gray-set, 3);
+        display: block;
+
+        img {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+
+        label {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+
+        &::before {
+            position: absolute;
+            left: 3px;
+            bottom: 3px;
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: block;
+            background: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="12" fill="%232D3748"/><path fill-rule="evenodd" clip-rule="evenodd" d="M17.8067 7.75329C18.0667 8.01329 18.0667 8.43329 17.8067 8.69329L16.5867 9.91329L14.0867 7.41329L15.3067 6.19329C15.5667 5.93329 15.9867 5.93329 16.2467 6.19329L17.8067 7.75329ZM6 18V15.5L13.3733 8.12662L15.8733 10.6266L8.5 18H6Z" fill="white"/></svg>');
+
+        }
+    }
+
+    &__delete-btn {
+        width: 120px;
+        margin:10px auto 0;
+        display: block;
+        text-align: center;
+    }
+}
