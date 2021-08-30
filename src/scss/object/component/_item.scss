@@ -1,14 +1,20 @@
 .c-item {
     display: flex;
-    padding-right: $unit*7;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 4"><path fill="%239DA4B0" fill-rule="evenodd" d="M2,0A2,2,0,1,0,4,2,2,2,0,0,0,2,0ZM14,0a2,2,0,1,0,2,2A2,2,0,0,0,14,0ZM6,2A2,2,0,1,1,8,4,2,2,0,0,1,6,2Z"/></svg>') center right / 18px auto no-repeat;
     padding: $unit*2 0;
     border-bottom: 1px solid $border-color-light;
+
+    &--has-icon {
+        padding-right: $unit*7;
+        @extend .c-item;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 4"><path fill="%239DA4B0" fill-rule="evenodd" d="M2,0A2,2,0,1,0,4,2,2,2,0,0,0,2,0ZM14,0a2,2,0,1,0,2,2A2,2,0,0,0,14,0ZM6,2A2,2,0,1,1,8,4,2,2,0,0,1,6,2Z"/></svg>') center right / 18px auto no-repeat;
+    }
 
     &__img {
         width: $unit*6;
         border-radius: 4px;
         overflow: hidden;
+        height: $unit*6;
+        object-fit: cover;
     }
     &__main {
         display: flex;
