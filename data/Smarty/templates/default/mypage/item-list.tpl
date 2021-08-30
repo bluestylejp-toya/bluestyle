@@ -11,7 +11,7 @@
 
                 <!--<p><span class="attention"><!--{$tpl_linemax}-->件</span>の出品中アイテムがあります。</p>-->
 
-                <ul class="u-mb--4">
+                <ul>
                     <!--{foreach from=$arrProducts item=$arrProduct}-->
                         <li>
                             <a href="item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|u|h}-->" class="c-item">
