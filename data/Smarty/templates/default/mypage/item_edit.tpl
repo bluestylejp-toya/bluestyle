@@ -45,7 +45,7 @@
                 <!--{assign var=key value="status"}-->
                 <dt class="c-list--dl__left">公開状態</dt>
                 <dd class="c-list--dl__right">
-                    <input type="checkbox"  class="c-form-parts--toggle-btn__hidden" id="status"<!--{if $arrForm.status.value == 1}--> checked<!--{/if}-->>
+                    <input type="checkbox" class="c-form-parts--toggle-btn__hidden" id="status"<!--{if $arrForm.status.value == 1}--> checked<!--{/if}-->>
                     <label for="status" class="c-form-parts--toggle-btn"></label>
                     <input type="hidden" value="<!--{$arrForm.status.value}-->" name="status">
                 </dd>
@@ -68,7 +68,7 @@
             </dl>
             <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
 
-            <ul class="c-drag-list u-mb--4">
+            <ul class="u-mb--4">
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
 
                     <li id="item<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3}--> --hidden<!--{/if}-->">
@@ -110,6 +110,9 @@
         alert('登録しました。');
     });
 <!--{/if}-->
+$('.c-form-parts--toggle-btn__hidden').on('change', function(){
+    $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1)
+})
 $('.c-item__add-image-btn').on('click', function(){
     $next = $('.c-item--edit.--hidden');
     $next.first().fadeIn().removeClass('--hidden').removeAttr('style');

@@ -117,7 +117,13 @@
                 background: rgba(#fff, .4);
                 border-radius: 4px;
             }
-            margin-bottom: $unit*4;
+            margin-bottom: $unit*2;
+        }
+        .c-item__delete-btn {
+            width: 120px;
+
+            display: block;
+            margin: 0 auto $unit*4;
         }
         .c-item__main {
             padding: 0;
