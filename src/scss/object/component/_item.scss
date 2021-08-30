@@ -5,6 +5,10 @@
     padding: $unit*2 0;
     border-bottom: 1px solid $border-color-light;
 
+    &.--no-icon {
+        background: none;
+    }
+
     &__img {
         width: $unit*6;
         border-radius: 4px;
