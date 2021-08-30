@@ -140,6 +140,13 @@
         <!--▲サブコメント-->
         <h2 class="c-heading--lg">商品の情報</h2>
         <dl class="p-item-detail__info">
+        <dt>発送元の地域</dt>
+        <dd>
+            <!--{section name=s loop=$arrRelativeCat[r]}-->
+                <a href="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php?category_id=<!--{$arrRelativeCat[r][s].category_id}-->"><!--{$arrRelativeCat[r][s].category_name|h}--></a>
+                <!--{if !$smarty.section.s.last}--><!--{$smarty.const.SEPA_CATNAVI}--><!--{/if}-->
+            <!--{/section}-->
+        </dd>
         <!--▼商品ステータス-->
         <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
         <!--{if !empty($ps)}-->
@@ -149,6 +156,7 @@
             <!--{/foreach}-->
         <!--{/if}-->
         <!--▲商品ステータス-->
+
         <!--★関連カテゴリ★-->
 
             <dt>カテゴリー</dt>
