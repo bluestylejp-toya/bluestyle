@@ -31,7 +31,6 @@
     }
 //]]></script>
 <section>
-
     <header class="l-header__inner u-mb--0">
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
@@ -41,7 +40,7 @@
             <!--{assign var=key value="sub_large_image1"}-->
             <!--★画像★-->
 
-            <div data-modal_src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->" data-modal_caption="<!--{$arrProduct.name|h}-->"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
+            <div data-img_id="0"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
             <!--★お気に入り登録★-->
             <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
 
@@ -66,18 +65,19 @@
                 </g>
                 <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"/>
                 </svg>
-                欲しい
+                <span class="label">欲しい</span>
                 </button>
                 <script>
                 $('.favorite_area #request').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->).on('click', function(){
+                    $this = $(this);
                     if($('.favorite_area').hasClass('registered_favorite')) {
-                        $(this).removeClass('--active');
+                        $this.removeClass('--active');
                         $('.count_of_favorite').removeClass('--active');
-
                     }else {
-                        $(this).addClass('--active');
+                        $this.addClass('--active');
                         $('.count_of_favorite').addClass('--active');
                     }
+                    $this.children('span').text( $this.children('span').text() == '欲しい' ? '済' : '欲しい' )
                 });
                 </script>
                 <!--{if $arrErr[$add_favorite]}-->
@@ -122,14 +122,8 @@
                             <!--▼サブ画像-->
                             <!--{assign var=lkey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
                             <!--{if $arrProduct[$ikey]|strlen >= 1}-->
-                                <li>
-                                    <!--{if $arrProduct[$lkey]|strlen >= 1}-->
-                                        <div data-modal_src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct[$lkey]|h}-->" data-modal_caption="<!--{$arrProduct[$key]|h}-->">
-                                    <!--{/if}-->
-                                    <img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" />
-                                    <!--{if $arrProduct[$lkey]|strlen >= 1}-->
-                                        </div>
-                                    <!--{/if}-->
+                                <li data-img_id="<!--{$smarty.section.cnt.index}-->">
+                                    <span class="c-square"><img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" /></span>
                                 </li>
                             <!--{/if}-->
                             <!--▲サブ画像-->
@@ -140,6 +134,13 @@
         <!--▲サブコメント-->
         <h2 class="c-heading--lg">商品の情報</h2>
         <dl class="p-item-detail__info">
+        <dt>発送元の地域</dt>
+        <dd>
+            <!--{section name=s loop=$arrRelativeCat[r]}-->
+                <a href="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php?category_id=<!--{$arrRelativeCat[r][s].category_id}-->"><!--{$arrRelativeCat[r][s].category_name|h}--></a>
+                <!--{if !$smarty.section.s.last}--><!--{$smarty.const.SEPA_CATNAVI}--><!--{/if}-->
+            <!--{/section}-->
+        </dd>
         <!--▼商品ステータス-->
         <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
         <!--{if !empty($ps)}-->
@@ -149,6 +150,7 @@
             <!--{/foreach}-->
         <!--{/if}-->
         <!--▲商品ステータス-->
+
         <!--★関連カテゴリ★-->
 
             <dt>カテゴリー</dt>
@@ -164,51 +166,73 @@
     </div>
     <div class="c-modal">
        <button class="c-modal__close-btn">close</button>
-        <figure class="c-modal__img">
-            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|h}-->" alt="">
-                <figcaption class="c-modal__caption">テストテストテストテストテストテストテストテストテストテストテストテスト</figcaption>
-        </figure>
-        <ul class="c-modal__controll">
-            <li class="c-modal__controll__prev"><svg width="11" height="17" viewBox="0 0 11 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5363 2.23303L8.65625 0.353027L0.65625 8.35303L8.65625 16.353L10.5363 14.473L4.42958 8.35303L10.5363 2.23303Z" fill="#000000"/></svg></li><li class="c-modal__controll__next"><svg width="11" height="17" viewBox="0 0 11 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.32238 0.353027L0.442383 2.23303L6.54905 8.35303L0.442383 14.473L2.32238 16.353L10.3224 8.35303L2.32238 0.353027Z" fill="#000000"/></svg></li>
-        </ul>
+        <!-- スライダーのメインコンテナの div 要素 -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- それぞれのスライドの div 要素 -->
+                <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
+                    <!--{assign var=ikey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
+                    <!--{if $arrProduct[$key] != "" or $arrProduct[$ikey]|strlen >= 1}-->
+                        <!--{assign var=tkey value="sub_title`$smarty.section.cnt.index+1`"}-->
+                        <!--{if $arrProduct[$ikey]|strlen >= 1}-->
+                            <li class="swiper-slide">
+                                <figure>
+                                    <img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" class="c-modal__img"/>
+                                    <!--{if $arrProduct[$tkey]}-->
+                                        <figcaption class="c-modal__caption"><!--{$arrProduct[$tkey]|h}--></figcaption>
+                                    <!--{/if}-->
+                                </figure>
+                            </li>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{/section}-->
+            </div>
+
+            <!-- ナビゲーションボタンの div 要素-->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </div>
     <div class="c-modal__bg"></div>
 </section>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-    const imageSrc = document.querySelectorAll('[data-modal_src]');
-    const modalImage = document.querySelector('.c-modal__img img');
+    let mySwiper = new Swiper ('.swiper-container', {
+        // オプション
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+
+        },
+    })
+    const slides = document.querySelectorAll('[data-img_id]');
     const body = document.querySelector('body');
     const modal = document.querySelector('.c-modal')
-    const modalCaption = document.querySelector('.c-modal__caption');
     const modalCloseBtn = document.querySelector('.c-modal__close-btn');
-    const modalPrevBtn = document.querySelector('.c-modal__controll__prev');
-    const modalNextBtn = document.querySelector('.c-modal__controll__next');
     const modalBg = document.querySelector('.c-modal__bg');
     let imagesArr = [];
-    imageSrc.forEach((item, index) => {
-        imagesArr.push({'src': item.getAttribute('data-modal_src'), 'caption': item.getAttribute('data-modal_caption')});
-
+    slides.forEach((item) => {
+        console.log(item)
         item.addEventListener('click', () =>{
             modal.classList.add('--active')
             body.classList.add('--overflow-hidden');
-            modalImage.src = imagesArr[index].src;
-            modalCaption.textContent = imagesArr[index].caption;
-            let num = index;
 
-            modalNextBtn.addEventListener('click', () =>{
-                num = (num == (imagesArr.length - 1) ? 0 : num + 1);
-                modalImage.src = imagesArr[num].src;
-                modalCaption.textContent = imagesArr[num].caption;
-            })
-            modalPrevBtn.addEventListener('click', () =>{
-                num = (num == 0 ? imagesArr.length - 1 : 0);
-                modalImage.src = imagesArr[num].src;
-                modalCaption.textContent = imagesArr[num].caption;
-            })
+            // スライドと同じIDから
+            mySwiper.slideToLoop(item.getAttribute('data-img_id'));
+
             modalCloseBtn.addEventListener('click', () =>{
                 modal.classList.remove('--active')
                 body.classList.remove('--overflow-hidden');
             })
+            modalBg.addEventListener('click', () =>{
+                modal.classList.remove('--active')
+                body.classList.remove('--overflow-hidden');
+            })
+        })
+    });
+</script>
+>>>>>>> CHAIN-75
+)
             modalBg.addEventListener('click', () =>{
                 modal.classList.remove('--active')
                 body.classList.remove('--overflow-hidden');

@@ -5,7 +5,7 @@
     font-size: 1.4rem;
     position: relative;
     padding-left: 23px;
-    color: $gray;
+    color: $blue-dark;
 
     .icon {
         position: absolute;
@@ -13,7 +13,7 @@
         left: -10px;
 
         .heart{
-            fill: $gray;
+            fill: $blue-dark;
             transform-origin: 250px 250px;
         }
 
@@ -23,10 +23,8 @@
     }
 
     &.--active {
-        color: $blue-dark;
         .heart {
             animation: heartAnime .5s;
-            fill: $blue-dark;
         }
         // .particleLayer {
         //     animation: particleLayerAnime .8s;
