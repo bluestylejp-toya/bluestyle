@@ -13,7 +13,18 @@
     border-top-right-radius: 16px;
     z-index: 800;
     background: #fff;
-    transition: .5s;
+    transition: .5s .2s;
+    opacity: 0;
+    overflow: hidden;
+
+    .swiper-container {
+        margin-right: 1px;
+    }
+
+    li {
+        list-style: none;
+        height: 100%;
+    }
 
     &__bg {
         position: fixed;
@@ -27,11 +38,15 @@
     }
 
     &.--active {
+        opacity: 1;
         transform: translateY(0);
         & + .c-modal__bg {
             width: 100%;
             opacity: 1;
             height: 100%;
+        }
+        figure {
+            opacity: 1;
         }
     }
     &__close-btn {
@@ -47,8 +62,19 @@
             content: '×';
         }
     }
+    figure {
+        width: 100%;
+        display: block;
+        height: 100%;
+        opacity: 0;
+        transition: opacity .5s .5s;
+    }
     &__img {
         position: relative;
+        width: 100%;
+        img {
+            width: 100%;
+        }
     }
     &__caption {
         padding: $unit*2 $unit*2 $unit*4;
@@ -84,4 +110,8 @@
          }
     }
 
+    .swiper-button-next:after, .swiper-button-prev:after {
+        color: #ccc;
+        font-size: 20px;
+    }
 }
