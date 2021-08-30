@@ -23,7 +23,7 @@
 *}-->
 <section>
     <header class="l-header__inner u-mb--0">
-        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">アカウント情報</p>
     </header>
 
