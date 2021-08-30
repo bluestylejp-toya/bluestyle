@@ -8,11 +8,6 @@
         margin:0 math.div($unit, 2) $unit;
         border-radius: $unit;
         overflow: hidden;
-
-        * {
-            display: block;
-            width: 100%;
-        }
     }
 
     &--detail {

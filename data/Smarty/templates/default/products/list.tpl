@@ -60,91 +60,111 @@
         cartForm.submit();
     }
 //]]></script>
-<div class="p-item-list">
-    <form name="form1" id="form1" method="get" action="?">
-        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="hidden" name="mode" value="<!--{$mode|h}-->" />
-        <!--{* ▼検索条件 *}-->
-        <input type="hidden" name="category_id" value="<!--{$arrSearchData.category_id|h}-->" />
-        <input type="hidden" name="maker_id" value="<!--{$arrSearchData.maker_id|h}-->" />
-        <input type="hidden" name="name" value="<!--{$arrSearchData.name|h}-->" />
-        <!--{* ▲検索条件 *}-->
-        <!--{* ▼ページナビ関連 *}-->
-        <input type="hidden" name="orderby" value="<!--{$orderby|h}-->" />
-        <input type="hidden" name="disp_number" value="<!--{$disp_number|h}-->" />
-        <input type="hidden" name="pageno" value="<!--{$tpl_pageno|h}-->" />
-        <!--{* ▲ページナビ関連 *}-->
-        <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
-    </form>
-    <!--▼検索条件-->
-    <!--{if $tpl_subtitle == "検索結果"}-->
-        <!--<ul class="pagecond_area">
-            <li><strong>商品カテゴリ：</strong><!--{$arrSearch.category|h}--></li>
-        <!--{if $arrSearch.maker|strlen >= 1}--><li><strong>メーカー：</strong><!--{$arrSearch.maker|h}--></li><!--{/if}-->
-            <li><strong>商品名：</strong><!--{$arrSearch.name|h}--></li>
-        </ul>-->
-    <!--{/if}-->
-    <!--▲検索条件-->
-    <!--▼ページナビ(本文)-->
-    <!--{capture name=page_navi_body}-->
-        <!--<select name="disp_number" onchange="javascript:fnChangeDispNumber(this.value);">
-                <!--{foreach from=$arrPRODUCTLISTMAX item="dispnum" key="num"}-->
-                    <!--{if $num == $disp_number}-->
-                        <option value="<!--{$num}-->" selected="selected" ><!--{$dispnum}--></option>
-                    <!--{else}-->
-                        <option value="<!--{$num}-->" ><!--{$dispnum}--></option>
-                    <!--{/if}-->
-                <!--{/foreach}-->
-            </select>-->
-        <div class="c-pagination"><!--{$tpl_strnavi}--></div>
-    <!--{/capture}-->
-    <!--▲ページナビ(本文)-->
-    <!--{foreach from=$arrProducts item=arrProduct name=arrProducts}-->
 
-        <!--{if $smarty.foreach.arrProducts.first}-->
-            <!--{if $tpl_subtitle == '検索結果'}-->
+<!--{strip}-->
+    <div class="p-item-list">
+        <form name="form1" id="form1" method="get" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <input type="hidden" name="mode" value="<!--{$mode|h}-->" />
+            <!--{* ▼検索条件 *}-->
+            <input type="hidden" name="category_id" value="<!--{$arrSearchData.category_id|h}-->" />
+            <input type="hidden" name="maker_id" value="<!--{$arrSearchData.maker_id|h}-->" />
+            <input type="hidden" name="name" value="<!--{$arrSearchData.name|h}-->" />
+            <!--{* ▲検索条件 *}-->
+            <!--{* ▼ページナビ関連 *}-->
+            <input type="hidden" name="orderby" value="<!--{$orderby|h}-->" />
+            <input type="hidden" name="disp_number" value="<!--{$disp_number|h}-->" />
+            <input type="hidden" name="pageno" value="<!--{$tpl_pageno|h}-->" />
+            <!--{* ▲ページナビ関連 *}-->
+            <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
+        </form>
+
+        <!--▼検索条件-->
+        <!--{if $tpl_subtitle == "検索結果"}-->
+            <!--<ul class="pagecond_area">
+                <li><strong>商品カテゴリ：</strong><!--{$arrSearch.category|h}--></li>
+                <!--{if $arrSearch.maker|strlen >= 1}--><li><strong>メーカー：</strong><!--{$arrSearch.maker|h}--></li><!--{/if}-->
+                <li><strong>商品名：</strong><!--{$arrSearch.name|h}--></li>
+                <li><strong>出品者の都道府県：</strong><!--{$arrSearch.pref|h}--></li>
+                <li><strong>商品の状態：</strong><!--{$arrSearch.product_status|h}--></li>
+            </ul>-->
+        <!--{/if}-->
+        <!--▲検索条件-->
+
+        <!--▼ページナビ(本文)-->
+        <!--{capture name=page_navi_body}-->
+            <div class="pagenumber_area clearfix">
+                <div class="change">
+
+                    <!--<select name="disp_number" onchange="javascript:fnChangeDispNumber(this.value);">
+                        <!--{foreach from=$arrPRODUCTLISTMAX item="dispnum" key="num"}-->
+                            <!--{if $num == $disp_number}-->
+                                <option value="<!--{$num}-->" selected="selected" ><!--{$dispnum}--></option>
+                            <!--{else}-->
+                                <option value="<!--{$num}-->" ><!--{$dispnum}--></option>
+                            <!--{/if}-->
+                        <!--{/foreach}-->
+                    </select>-->
+                </div>
+                <div class="c-pagination"><!--{$tpl_strnavi}--></div>
+            </div>
+        <!--{/capture}-->
+        <!--▲ページナビ(本文)-->
+
+        <!--{foreach from=$arrProducts item=arrProduct name=arrProducts}-->
+
+            <!--{if $smarty.foreach.arrProducts.first}-->
                 <!--▼件数-->
-                <dl class="c-list--dl u-mb--4">
+               <dl class="c-list--dl u-mb--4">
                     <dt>アイテム数：</dt><dd><!--{$tpl_linemax}-->件</dd>
                 </dl>
                 <!--▲件数-->
+
+                <!--▼ページナビ(上部)-->
+                <form name="page_navi_top" id="page_navi_top" action="?">
+                    <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+                </form>
+                <!--▲ページナビ(上部)-->
+                <ul class="l-item-list">
             <!--{/if}-->
 
-            <ul class="l-item-list">
-        <!--{/if}-->
-
-        <!--{assign var=id value=$arrProduct.product_id}-->
-        <!--{assign var=arrErr value=$arrProduct.arrErr}-->
-        <!--▼商品-->
+            <!--{assign var=id value=$arrProduct.product_id}-->
+            <!--{assign var=arrErr value=$arrProduct.arrErr}-->
+            <!--▼商品-->
 
                 <li class="c-item--default">
+                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"  class="c-item--default__img">
 
-                    <div  class="c-item--default__img"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy"/>
+                    <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" /></span>
+
+                    <!--{if $arrProduct.registered_favorite}-->
+
+                        <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
+                    <!--{/if}-->
                     </a>
-                        <!--{if $arrProduct.registered_favorite}-->
-
-                            <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
-                        <!--{/if}-->
-                    </div>
                     <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></a></p>
                 </li>
-        <!--{if $smarty.foreach.arrProducts.last}-->
+            <!--▲商品-->
+
+            <!--{if $smarty.foreach.arrProducts.last}-->
         </ul>
-            <!--▼ページナビ(下部)-->
-            <form name="page_navi_bottom" id="page_navi_bottom" action="?">
-                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-                <!--{if $tpl_linemax > 0}--><!--{$smarty.capture.page_navi_body nofilter}--><!--{/if}-->
-            </form>
-            <!--▲ページナビ(下部)-->
-        <!--{/if}-->
+        <!--▼ページナビ(下部)-->
+        <form name="page_navi_bottom" id="page_navi_bottom" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <!--{if $tpl_linemax > 0}--><!--{$smarty.capture.page_navi_body nofilter}--><!--{/if}-->
+        </form>
+        <!--▲ページナビ(下部)-->
+    <!--{/if}-->
 
     <!--{foreachelse}-->
         <!--{include file="frontparts/search_zero.tpl"}-->
     <!--{/foreach}-->
 
+    </div>
+<!--{strip}-->
 
 </div>
 <script>
-$('.favorite_area .btn--regist').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
+// $('.favorite_area .btn--regist').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
 
 </script>
