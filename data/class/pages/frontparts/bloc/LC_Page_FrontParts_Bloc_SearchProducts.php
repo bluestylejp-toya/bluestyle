@@ -40,6 +40,10 @@ class LC_Page_FrontParts_Bloc_SearchProducts extends LC_Page_FrontParts_Bloc_Ex
     public function init()
     {
         parent::init();
+
+        $masterData = new SC_DB_MasterData_Ex();
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
+        $this->arrStatus = $masterData->getMasterData('mtb_status');
     }
 
     /**
@@ -74,6 +78,11 @@ class LC_Page_FrontParts_Bloc_SearchProducts extends LC_Page_FrontParts_Bloc_Ex
         $this->maker_id = $this->lfGetSelectedMakerId($product_id, $maker_id);
         // メーカー検索用選択リスト
         $this->arrMakerList = $this->lfGetMakerList();
+
+        // 商品一覧画面の場合、選択内容を取得
+        if (is_a($GLOBALS['objPage'], 'LC_Page_Products_List')) {
+            $this->arrSearchData = $GLOBALS['objPage']->arrSearchData;
+        }
     }
 
     /**
