@@ -78,6 +78,8 @@ class LC_Page_Mypage extends LC_Page_AbstractMypage_Ex
 
         $objCustomer = new SC_Customer_Ex();
         $customer_id = $objCustomer->getValue('customer_id');
+        $this->tpl_nickname = $objCustomer->getValue('nickname');
+        $this->tpl_profile_image = $objCustomer->getValue('profile_image');
 
         //ページ送り用
         $this->objNavi = new SC_PageNavi_Ex($_REQUEST['pageno'],
