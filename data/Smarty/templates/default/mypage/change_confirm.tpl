@@ -22,13 +22,11 @@
  */
 *}-->
 
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <!--{include file=$tpl_navi}-->
-    <div id="mycontents_area">
-        <h3><!--{$tpl_subtitle|h}--></h3>
-        <p>下記の内容で送信してもよろしいでしょうか？<br />
-            よろしければ、一番下の「完了ページへ」ボタンをクリックしてください。</p>
+<section>
+    <header class="l-header__inner u-mb--0">
+        <a  href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" aria-label="戻る" class="c-btn--header-nav"></a>
+        <p class="c-header-title">アカウント情報</p>
+    </header>
 
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
@@ -39,21 +37,11 @@
                 <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item.value|h}-->" />
                 <!--{/if}-->
             <!--{/foreach}-->
-            <table summary=" " class="delivname">
+            <dl class="c-list--dl u-mb--4">
                 <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=true prefix=""}-->
-            </table>
-
-            <div class="btn_area">
-                <ul>
-                    <li>
-                        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;">
-                            <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_back.jpg" alt="戻る" /></a>
-                    </li>
-                    <li>
-                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_complete.jpg" alt="送信" name="complete" id="complete" />
-                    </li>
-                </ul>
-            </div>
+            </dl>
+            <p class="u-mb--1"><a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default">戻る</a></p>
+            <p><button name="complete" id="complete" class="c-btn--primary">完了</button></p>
         </form>
-    </div>
-</div>
+
+</section>
