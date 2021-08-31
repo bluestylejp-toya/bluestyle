@@ -22,10 +22,11 @@
  */
 *}-->
 
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <!--{include file=$tpl_navi}-->
-    <div id="mycontents_area">
+<section>
+    <header class="l-header__inner">
+        <a href="<!--{$smarty.const.TOP_URL}-->user_data/other.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <h1 class="c-header-title">お問い合わせ（完了）</h1>
+    </header>
         <h3><!--{$tpl_subtitle|h}--></h3>
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
@@ -46,5 +47,4 @@
                 </div>
             </div>
         </form>
-    </div>
-</div>
+</section>
