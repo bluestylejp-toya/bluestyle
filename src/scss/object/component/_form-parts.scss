@@ -5,6 +5,62 @@
     border: 1px solid $border-color-light;
     font-size: 16px;
     line-height: 1;
+    min-height: 40px;
+
+    &--zip {
+        display: flex;
+        justify-content: space-between;
+        .c-form-parts {
+            display: flex;
+            width: 60%;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            input {
+                width: 25%;
+                ~ input {
+                    width: 40%;
+                }
+            }
+
+        }
+        [class^=c-btn] {
+            width: 35%;
+            font-size: 1rem;
+        }
+    }
+
+    &--select {
+        display: flex;
+        align-items: center;
+        select {
+            display: block;
+            width: 100%;
+        }
+        @extend .c-form-parts;
+        background: url('data:image/svg+xml;utf8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.59 7.70508L6 3.12508L1.41 7.70508L-1.23266e-07 6.29508L6 0.295079L12 6.29508L10.59 7.70508Z" fill="%23515767"/></svg>') center right 15px no-repeat;
+    }
+    &--date {
+        display: flex;
+        align-items: center;
+        select {
+            display: block;
+            margin-right: 4px;
+            & ~ select {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    &--tell {
+        display: flex;
+        text-align: center;
+        justify-content: space-between;
+        @extend .c-form-parts;
+        input {
+            width: 30%;
+        }
+    }
 
     &.--error {
         background: $yellow-light;

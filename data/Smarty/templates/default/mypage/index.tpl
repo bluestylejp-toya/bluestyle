@@ -22,19 +22,23 @@
  */
 *}-->
 
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
+<section>
+    <header class="c-profile-header">
+        <!--{if strlen($tpl_profile_image) >= 1}-->
+            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$tpl_profile_image|h}-->" class="c-profile-header__img">
+        <!--{/if}-->
+        <h1 class="c-profile-header__name"><!--{$tpl_nickname|h}--></h1>
+    </header>
     <!--{if $tpl_navi != ""}-->
         <!--{include file=$tpl_navi}-->
     <!--{else}-->
         <!--{include file="`$smarty.const.TEMPLATE_REALDIR`mypage/navi.tpl"}-->
     <!--{/if}-->
-    <div id="mycontents_area">
+    <!--<div>
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="order_id" value="" />
             <input type="hidden" name="pageno" value="<!--{$objNavi->nowpage}-->" />
-            <h3><!--{$tpl_subtitle|h}--></h3>
 
             <!--{if $objNavi->all_row > 0}-->
 
@@ -76,10 +80,7 @@
                         </tr>
                     <!--{/section}-->
                 </table>
-
-            <!--{else}-->
-                <p>購入履歴はありません。</p>
             <!--{/if}-->
         </form>
-    </div>
-</div>
+    </div>-->
+</section>
