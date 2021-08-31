@@ -1,6 +1,6 @@
-
+<section>
     <header class="l-header__inner">
-        <a href="#" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->user_data/other.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title">ご利用規約</h1>
     </header>
     <p class="u-mb--4">この規約（以下「本利用規約」といいます。）は、株式会社BLUE STYLE（以下「弊社」といいます。）が運営するインターネットサービス「Chain」において、弊社が提供する各種サービス（以下「本サービス」といいます。）の利用の諸条件を定めるものです。</p>
@@ -226,3 +226,4 @@
     <p class="u-mb--2">本規約は、日本語を正文とします。本規約につき、参考のために英語による翻訳文が作成された場合でも、日本語の正文のみが契約としての効力を有するものとし、英訳はいかなる効力も有しないものとします。</p>
     <h3 class="u-mb--2">7. 準拠法及び裁判管轄</h3>
     <p class="u-mb--4">本規約は、日本法に基づき解釈されるものとし、ユーザーと弊社の間で生じた紛争については、その内容に応じて東京簡易裁判所又は東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+</section>
