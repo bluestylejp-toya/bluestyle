@@ -122,6 +122,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     /** @var array エラー情報 */
     public $arrErr;
 
+    // 自分が出品した商品か
+    public $tpl_my_product = false;
+
     /**
      * Page を初期化する.
      *
@@ -316,7 +319,13 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         if ($objCustomer->isLoginSuccess() === true) {
             //お気に入りボタン表示
             $this->tpl_login = true;
-            $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($objCustomer->getValue('customer_id'), $product_id));
+            $customer_id = $objCustomer->getValue('customer_id');
+            if ($this->arrProduct['customer_id'] == $customer_id) {
+                $this->tpl_my_product = true;
+            }
+            else {
+                $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
+            }
         }
     }
 
