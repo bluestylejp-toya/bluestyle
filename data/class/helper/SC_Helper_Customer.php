@@ -42,7 +42,10 @@ class SC_Helper_Customer
     public function sfEditCustomerData($arrData, $customer_id = null)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
-        $objQuery->begin();
+
+        if ($is_out_trans = !$objQuery->inTransaction()) {
+            $objQuery->begin();
+        }
 
         $old_version_flag = false;
 
@@ -97,7 +100,9 @@ class SC_Helper_Customer
             $objQuery->insert('dtb_customer', $arrData);
         }
 
-        $objQuery->commit();
+        if ($is_out_trans) {
+            $objQuery->commit();
+        }
 
         return $customer_id;
     }
@@ -659,16 +664,34 @@ class SC_Helper_Customer
      */
     public static function delete($customer_id)
     {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objDb = new SC_Helper_DB_Ex();
+
         $arrData = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($customer_id, 'del_flg = 0');
         if (SC_Utils_Ex::isBlank($arrData)) {
             //対象となるデータが見つからない。
             return false;
         }
+
+        $objQuery->begin();
+
         // XXXX: 仮会員は物理削除となっていたが論理削除に変更。
         $arrVal = array(
             'del_flg' => '1',
         );
         SC_Helper_Customer_Ex::sfEditCustomerData($arrVal, $customer_id);
+
+        $arrData = [
+            'del_flg' => 1,
+            'withdrawal_flg' => 1,
+        ];
+        $objQuery->update('dtb_products', $arrData, 'customer_id = ? ', array($customer_id));
+
+        $objQuery->commit();
+
+        // 件数カウントバッチ実行
+        $objDb->sfCountCategory($objQuery);
+        $objDb->sfCountMaker($objQuery);
 
         return true;
     }
