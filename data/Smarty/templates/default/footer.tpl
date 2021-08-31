@@ -22,14 +22,30 @@
 
 <!--▼FOOTER-->
 <!--{strip}-->
-    <div id="footer_wrap">
-        <div id="footer" class="clearfix">
-            <div id="pagetop"><a href="#top">このページの先頭へ</a></div>
-            <div id="copyright">Copyright ©
-                &nbsp;<!--{if $smarty.const.RELEASE_YEAR != $smarty.now|date_format:"%Y"}--><!--{$smarty.const.RELEASE_YEAR}-->-<!--{/if}--><!--{$smarty.now|date_format:"%Y"}-->
-                &nbsp;<!--{$arrSiteInfo.shop_name_eng|default:$arrSiteInfo.shop_name|h}--> All rights reserved.
-            </div>
-        </div>
-    </div>
+<nav class="l-footer-nav">
+  <ul class="l-footer-nav__inner">
+    <!--{if $tpl_login}-->
+        <li class="l-footer-nav__item">
+        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search is-current">さがす</a>
+        </li>
+        <li class="l-footer-nav__item">
+        <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item-list.php" class="c-footer-nav-item--listing">出品</a>
+        </li>
+        <li class="l-footer-nav__item">
+            <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-footer-nav-item--mypage">マイページ</a>
+        </li>
+        <li class="l-footer-nav__item">
+            <a href="" class="c-footer-nav-item--other">その他</a>
+        </li>
+    <!--{else}-->
+        <li class="l-footer-nav__item">
+        <a href="<!--{$smarty.const.HTTPS_URL}-->" class="c-footer-nav-item--search is-current">さがす</a>
+        </li>
+        <li class="l-footer-nav__item">
+        <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--listing">出品</a>
+        </li>
+    <!--{/if}-->
+  </ul>
+</nav>
 <!--{/strip}-->
 <!--▲FOOTER-->

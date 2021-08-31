@@ -3,7 +3,7 @@
         <div class="block_outer clearfix">
             <div id="new_item_area">
                 <h2><!--{$blocItems.bloc_name|H}--></h2>
-                <div class="block_body clearfix">
+                <ul class="l-item-list">
                     <!--{foreach from=$arrNewItems item=arrProduct name="new_items"}-->
                         <div class="product_item clearfix">
                             <div class="productImage">

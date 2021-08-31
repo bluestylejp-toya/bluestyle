@@ -1,0 +1,47 @@
+// 見出し
+%heading {
+    color: map-get($gray-set, 5);
+}
+.c-heading {
+    &--lg {
+        @include font('h4');
+        font-weight: 700;
+        margin-bottom: $unit*3;
+    }
+    &--md {
+        @include font('h4');
+        text-align: center;
+        margin-bottom: $unit*2;
+    }
+    &--form-title {
+        @extend %heading;
+        font-weight: 700;
+        margin-bottom: math.div($unit, 2);
+
+        .attention {
+            margin-left: math.div($unit, 2);
+            display: inline-block;
+            &::after {
+                content: '必須';
+            }
+        }
+    }
+    &--subtitle {
+        @extend %heading;
+        @include font('sub-title-bold');
+        text-align: center;
+        margin-bottom: $unit*2;
+    }
+}
+
+// headerタイトル
+.c-header-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+}

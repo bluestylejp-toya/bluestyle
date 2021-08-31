@@ -1,0 +1,10 @@
+.l-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: $container;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: $footer-nav-height;
+}

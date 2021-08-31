@@ -88,18 +88,18 @@ class SC_PageNavi
                 $this->arrPagenavi['before'] = $this->now_page - 1;
                 $urlParamThis = str_replace('#page#', $this->arrPagenavi['before'], $urlParam);
                 $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
-                $before = "<a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['before']}'); return false;\">&lt;&lt;前へ</a> ";
+                $before = "<a href=\"?$urlParamThis\" onclick=\"$func_name(1)); return false;\" class=\"c-pagination__first\"></a><a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['before']}'); return false; \" class=\"c-pagination__newer\"></a> ";
             } else {
-                $this->arrPagenavi['before'] = $this->now_page;
+                $before = "<span class=\"c-pagination__first\"></span><span class=\"c-pagination__newer\"></span> ";
             }
 
             if ($this->now_page < $this->max_page) {
                 $this->arrPagenavi['next'] = $this->now_page + 1;
                 $urlParamThis = str_replace('#page#', $this->arrPagenavi['next'], $urlParam);
                 $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
-                $next = " <a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['next']}'); return false;\">次へ&gt;&gt;</a>";
+                $next = " <a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['next']}'); return false;\" class=\"c-pagination__older\"></a><a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->max_page}'); return false;\" class=\"c-pagination__last\"></a>";
             } else {
-                $this->arrPagenavi['next'] = $this->now_page;
+                $next = " <span class=\"c-pagination__older\"></span><span class=\"c-pagination__last\"></span>";
             }
 
             // 表示する最大ナビ数を決める。
@@ -126,19 +126,7 @@ class SC_PageNavi
 
             $this->arrPagenavi['arrPageno'] = array();
             $page_number = '';
-            for ($i = $disp_min; $i <= $disp_max; $i++) {
-                if ($i == $this->now_page) {
-                    $page_number .= "<strong>$i</strong>";
-                } else {
-                    $urlParamThis = str_replace('#page#', $i, $urlParam);
-                    $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
-                    $page_number .= "<a href=\"?$urlParamThis\" onclick=\"$func_name('$i'); return false;\">$i</a>";
-                }
-
-                $page_number .= ' ';
-
-                $this->arrPagenavi['arrPageno'][$i] = $i;
-            }
+            $page_number .= "<strong>$this->now_page</strong>";
 
             if ($before && $next) {
                 $this->strnavi = $before .(($display_number) ? $page_number : ' | ') .$next;

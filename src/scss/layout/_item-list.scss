@@ -1,0 +1,26 @@
+.l-item-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 math.div($unit, 2)*-1  #{-$unit};
+
+    & > * {
+        width: calc(33.333% - #{$unit});
+        margin:0 math.div($unit, 2) $unit;
+        border-radius: $unit;
+        overflow: hidden;
+
+        * {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &--detail {
+        li {
+            padding: $unit 0;
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
+}

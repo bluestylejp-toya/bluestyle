@@ -20,12 +20,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<div id="undercolumn">
-    <div id="undercolumn_order">
-        <h2 class="title"><!--{$tpl_title|h}--></h2>
-        <table summary="特定商取引に関する法律に基づく表記">
-            <col width="20%" />
-            <col width="80%" />
+<section>
+    <header class="l-header__inner">
+        <a href="#" aria-label="戻る" class="c-btn--header-nav"></a>
+        <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
+    </header>
+    <table class="c-table l-full">
+        <tbody>
             <tr>
                 <th>販売業者</th>
                 <td><!--{$arrOrder.law_company|h}--></td>
@@ -78,6 +79,6 @@
                 <th>返品・交換について</th>
                 <td><!--{$arrOrder.law_term06|h|nl2br}--></td>
             </tr>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>

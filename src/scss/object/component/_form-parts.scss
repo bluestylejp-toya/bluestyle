@@ -1,0 +1,79 @@
+.c-form-parts {
+    width: 100%;
+    padding: $unit;
+    border-radius: $unit;
+    border: 1px solid $border-color-light;
+    font-size: 16px;
+    line-height: 1;
+
+    &.--error {
+        background: $yellow-light;
+    }
+
+    &--checkbox {
+        display: none;
+        & + label {
+            padding-left:$unit*3;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 18px;
+                height: 18px;
+                left: 2px;
+                top: 2px;
+                border-radius: 3px;
+                border: 2px solid $blue;
+                background: $white;
+            }
+            &::after {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 6px;
+                height: 10px;
+                left: 8px;
+                top: 5px;
+                transform: rotate(45deg);
+                border-bottom: 2px solid $white;
+                border-right: 2px solid $white;
+            }
+        }
+
+        &:checked + label {
+             &::before {
+                background: $blue;
+            }
+        }
+    }
+
+    &--search {
+        margin: 0 $unit*2;
+        padding: 0 $unit*2;
+        height: $unit*4;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:  map-get($gray-set, 2);
+
+        &__box {
+            line-height: $unit*3;
+            width: calc(100% - 20px);
+        }
+
+        &__btn {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.71 11H12.5L17.49 16L16 17.49L11 12.5V11.71L10.73 11.43C9.59 12.41 8.11 13 6.5 13C2.91 13 0 10.09 0 6.5C0 2.91 2.91 0 6.5 0C10.09 0 13 2.91 13 6.5C13 8.11 12.41 9.59 11.43 10.73L11.71 11ZM2 6.5C2 8.99 4.01 11 6.5 11C8.99 11 11 8.99 11 6.5C11 4.01 8.99 2 6.5 2C4.01 2 2 4.01 2 6.5Z" fill="%23475462"/></svg>') center / 16px auto  no-repeat;
+        }
+    }
+}
+
+.attention {
+    color: $red;
+    font-size: 1rem;
+}

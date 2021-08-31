@@ -21,53 +21,35 @@
  *}-->
 
 <!--{strip}-->
-    <div class="block_outer">
-        <div id="search_area">
-        <h2><span class="title"><img src="<!--{$TPL_URLPATH}-->img/title/tit_bloc_search.gif" alt="検索条件" /></span></h2>
-            <div class="block_body">
-                <!--検索フォーム-->
-                <form name="search_form" id="search_form" method="get" action="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php">
-                    <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-                    <dl class="formlist">
-                        <dt>商品カテゴリから選ぶ</dt>
-                        <dd><input type="hidden" name="mode" value="search" />
-                        <select name="category_id" class="box145">
-                            <option label="全ての商品" value="">全ての商品</option>
-                            <!--{html_options options=$arrCatList selected=$category_id}-->
-                        </select>
-                        </dd>
-                    </dl>
-                    <!--{if $arrMakerList}-->
-                        <dl class="formlist">
-                            <dt>メーカーから選ぶ</dt>
-                            <dd><select name="maker_id" class="box145">
-                                <option label="全てのメーカー" value="">全てのメーカー</option>
-                                <!--{html_options options=$arrMakerList selected=$maker_id}-->
-                            </select>
-                            </dd>
-                        </dl>
-                    <!--{/if}-->
-                    <dl class="formlist">
-                        <dt>商品名を入力</dt>
-                        <dd><input type="text" name="name" class="box140" maxlength="50" value="<!--{$smarty.get.name|h}-->" /></dd>
-                    </dl>
-                    <dl class="formlist">
-                        <dt>出品者の都道府県</dt>
-                        <dd>
-                            <!--{html_checkboxes options=$arrPref selected=$arrSearchData.pref_id name="pref_id"}-->
-                        </dd>
-                    </dl>
-                    <dl class="formlist">
-                        <dt>商品の状態</dt>
-                        <dd>
-                            <!--{html_checkboxes options=$arrStatus selected=$arrSearchData.product_status name="product_status"}-->
-                        </dd>
-                    </dl>
-                    <p class="btn">
-                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_bloc_search.jpg" alt="検索" name="search" />
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
+    <!--検索フォーム-->
+    <form name="search_form" id="search_form" method="get" action="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php">
+        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+        <div class="c-form-parts--search"><input type="text" name="name" class="c-form-parts--search__box" maxlength="50" value="<!--{$smarty.get.name|h}-->" placeholder="キーワードから探す"/><button class="c-form-parts--search__btn"></button></div>
+        <input type="hidden" name="mode" value="search" />
+        <!--<dl class="formlist">
+            <dt>カテゴリーから探す</dt>
+            <dd>
+            <select name="category_id" class="box145">
+                <option label="全ての商品" value="">全ての商品</option>
+                <!--{html_options options=$arrCatList selected=$category_id}-->
+            </select>
+            </dd>
+        </dl>
+        <dl class="formlist">
+            <!--{if $arrMakerList}-->
+            <dt>出品者の都道府県から探す</dt>
+            <dd><select name="maker_id" class="box145">
+                <option label="全てのメーカー" value="">全てのメーカー</option>
+                <!--{html_options options=$arrMakerList selected=$maker_id}-->
+            </select>
+            </dd>
+        </dl>
+        <dl class="formlist">
+            <!--{/if}-->
+        </dl>-->
+    </form>
+    <script>
+    const search = document.querySelector("[name=name]");
+    search.oninput = function(e){console.log("input : "+e.target.value)};
+    </script>
 <!--{/strip}-->

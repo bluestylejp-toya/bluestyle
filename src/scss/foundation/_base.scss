@@ -1,0 +1,38 @@
+html {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 62.5%;
+
+}
+body {
+    color: $font-color;
+    @include font('body');
+
+    &.--overflow-hidden {
+        overflow: hidden;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a:not([class]) {
+  color: $blue;
+  text-decoration: underline;
+}
+
+hr {
+    border-color: $border-color;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: $gray;
+}
+::placeholder{ /* Others */
+  color:  $gray;
+}
+
+small {
+    font-size: 1rem;
+}

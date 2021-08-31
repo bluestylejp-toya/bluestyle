@@ -1,0 +1,7 @@
+.u-mb {
+    @for $u from 0 to 5 {
+        &--#{$u} {
+            margin-bottom: $u*$unit;
+        }
+    }
+}
