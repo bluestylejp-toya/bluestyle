@@ -134,7 +134,7 @@ define('LARGE_SUBIMAGE_WIDTH', 500);
 /** 拡大サブ画像縦 */
 define('LARGE_SUBIMAGE_HEIGHT', 500);
 /** 画像サイズ制限(KB) */
-define('IMAGE_SIZE', 10240);
+define('IMAGE_SIZE', 1000);
 /** CSVサイズ制限(KB) */
 define('CSV_SIZE', 2000);
 /** CSVアップロード1行あたりの最大文字数 */
@@ -144,7 +144,7 @@ define('FILE_SIZE', 10000);
 /** アップできるテンプレートファイル制限(KB) */
 define('TEMPLATE_SIZE', 10000);
 /** カテゴリの最大階層 */
-define('LEVEL_MAX', 2);
+define('LEVEL_MAX', 5);
 /** 最大カテゴリ登録数 */
 define('CATEGORY_MAX', 1000);
 /** 管理機能タイトル */

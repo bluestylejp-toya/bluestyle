@@ -27,6 +27,17 @@
             background:  map-get($gray-set, 3);
         }
     }
+    &--danger {
+        @extend %c-btn;
+        border-color: $red;
+        background: $red;
+        color: $white;
+
+        &:hover {
+            background: $white;
+            color: $red;
+        }
+    }
 
     &--primary {
         @extend %c-btn;
