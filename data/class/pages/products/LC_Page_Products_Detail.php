@@ -137,6 +137,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
 
         // POST に限定する mode
         $this->arrLimitPostMode[] = 'cart';
@@ -321,6 +322,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         if ($this->tpl_login) {
             $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
         }
+
+        $this->arrProduct['arrCustomer'] = SC_Helper_Customer::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
+        $this->arrProduct['arrCustomerProducts'] = []; // 未実装 https://bluestyle.backlog.jp/view/CHAIN-20#comment-118853329
     }
 
     /**
