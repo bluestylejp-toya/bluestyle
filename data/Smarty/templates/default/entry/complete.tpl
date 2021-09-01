@@ -24,17 +24,50 @@
     <div class="l-header__inner u-mb--0">
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
-    </div>
-    <div class="c-entry-kv">
-        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-complete.png" class="" decoding="async" loading="lazy"/>
-    </div>
-    <h1 class="c-heading--md u-color--gray u-mb--4">
-        おめでとうございます！<br />登録完了しました
-    </h1>
-    <p>
-        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary"
-        >ホームへ</a
-        >
-    </p>
+    <div id="undercolumn">
+        <div id="undercolumn_entry">
+            <h2 class="title"><!--{$tpl_title|h}--></h2>
+            <div id="complete_area">
+                <p class="message">会員登録の受付が完了いたしました。</p>
+                <p>現在<span class="attention">仮会員</span>の状態です。<br />
+                    ご入力いただいたメールアドレス宛てに、ご連絡が届いておりますので、本会員登録になった上でお買い物をお楽しみください。<br />
+                    今後ともご愛顧賜りますようよろしくお願い申し上げます。
+                </p>
+
+                メールアドレス：<!--{$arrCustomer.email|h}-->
+
+                <!-- LINE友達追加ボタン -->
+                <div class="btn_area">
+                    <a href="https://lin.ee/NGSPD7f"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+                </div>
+
+                <div class="shop_information">
+                    <p class="name"><!--{$arrSiteInfo.company_name|h}--></p>
+                    <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}-->
+                        <!--{if $arrSiteInfo.business_hour != ""}-->（受付時間/<!--{$arrSiteInfo.business_hour}-->）<!--{/if}--><br />
+                        E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a>
+                    </p>
+                </div>
+
+                <div class="btn_area">
+                    <ul>
+                        <li>
+                            <a href="<!--{$smarty.const.TOP_URL}-->"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_toppage.jpg" alt="トップページへ" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="c-entry-kv">
+            <img src="<!--{$TPL_URLPATH}-->img/entry/entry-complete.png" class="" decoding="async" loading="lazy"/>
+        </div>
+        <h1 class="c-heading--md u-color--gray u-mb--4">
+            おめでとうございます！<br />登録完了しました
+        </h1>
+        <p>
+            <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary"
+            >ホームへ</a
+            >
+        </p>
 
 </section>

@@ -71,10 +71,10 @@
             <ul class="u-mb--4">
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
 
-                    <li id="item<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3}--> --hidden<!--{/if}-->">
+                    <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
+                    <li id="item<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3 && $arrFile[$key].filepath == ''}--> --hidden<!--{/if}-->">
                         <button class="c-item__back-btn" type="button">詳細写真編集</button>
                         <button class="c-item__sort-btn" type="button"></button>
-                        <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
                         <label class="preview">
                             <img src="<!--{$arrFile[$key].filepath|h}-->" alt="" class="c-item__img"/>
                             <span class="icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8307 0.236328C11.5641 0.236328 12.1641 0.836328 12.1641 1.56966V10.903C12.1641 11.6363 11.5641 12.2363 10.8307 12.2363H1.4974C0.764063 12.2363 0.164062 11.6363 0.164062 10.903V1.56966C0.164062 0.836328 0.764063 0.236328 1.4974 0.236328H10.8307ZM5.4974 9.243L3.83073 7.23633L1.4974 10.2363H10.8307L7.83073 6.23633L5.4974 9.243Z" fill="#475462"/></svg></span>
@@ -116,7 +116,6 @@ $('.c-form-parts--toggle-btn__hidden').on('change', function(){
 $('.c-item__add-image-btn').on('click', function(){
     $next = $('.c-item--edit.--hidden');
     $next.first().fadeIn().removeClass('--hidden').removeAttr('style');
-    console.log($next.length);
     if($next.length === 0 ) {
         $(this).remove();
     }
