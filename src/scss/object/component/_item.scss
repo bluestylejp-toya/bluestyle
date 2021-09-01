@@ -11,6 +11,8 @@
 
     &__img {
         width: $unit*6;
+        height: $unit*6;
+        object-fit: cover;
         border-radius: 4px;
         overflow: hidden;
         &.--hidden {
