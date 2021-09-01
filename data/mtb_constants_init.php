@@ -134,7 +134,7 @@ define('LARGE_SUBIMAGE_WIDTH', 500);
 /** 拡大サブ画像縦 */
 define('LARGE_SUBIMAGE_HEIGHT', 500);
 /** 画像サイズ制限(KB) */
-define('IMAGE_SIZE', 1000);
+define('IMAGE_SIZE', 10240);
 /** CSVサイズ制限(KB) */
 define('CSV_SIZE', 2000);
 /** CSVアップロード1行あたりの最大文字数 */

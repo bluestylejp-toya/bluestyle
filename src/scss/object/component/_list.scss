@@ -34,17 +34,36 @@
         }
     }
     &--dl {
-        dd {
+        display: flex;
+        flex-wrap: wrap;
+        dd:not([class]) {
+            width: 100%;
             margin-bottom: $unit*2;
+        }
+        dt:not([class]) {
+            width: 100%;
+            margin-bottom: math.div($unit, 2);
         }
         dt {
             .attention {
                 display: inline-block;
                 margin-left: $unit;
             }
-            margin-bottom: math.div($unit, 2);
             @include font('sub-title-bold');
             color: $gray;
+        }
+
+        &__left {
+            width: 100px;
+            padding-top: $unit;
+            margin-bottom: $unit*3;
+        }
+        &__right {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: $unit;
+            margin-bottom: $unit*3;
+            width: calc(100% - 100px);
         }
     }
 }

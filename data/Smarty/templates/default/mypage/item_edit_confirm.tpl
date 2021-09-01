@@ -1,88 +1,64 @@
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <!--{include file=$tpl_navi}-->
-    <div id="mycontents_area">
-        <h3><!--{$tpl_subtitle|h}--></h3>
-        <p>下記の内容で送信してもよろしいでしょうか？<br />
-            よろしければ、一番下の「完了ページへ」ボタンをクリックしてください。</p>
-
-        <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
-            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-            <input type="hidden" name="mode" value="complete" />
-            <!--{foreach key=key item=item from=$arrForm}-->
-                <!--{if is_array($item.value)}-->
-                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item.value|@json_encode|h}-->" />
-                <!--{else}-->
-                    <input type="hidden" name="<!--{$key}-->" value="<!--{$item.value|h}-->" />
-                <!--{/if}-->
-            <!--{/foreach}-->
-            <div id="products" class="contents-main">
-
-                <table>
-                    <tr>
+<form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
+    <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+    <input type="hidden" name="mode" value="complete" />
+    <!--{foreach key=key item=item from=$arrForm}-->
+        <!--{if is_array($item.value)}-->
+            <input type="hidden" name="<!--{$key}-->" value="<!--{$item.value|@json_encode|h}-->" />
+        <!--{else}-->
+            <input type="hidden" name="<!--{$key}-->" value="<!--{$item.value|h}-->" />
+        <!--{/if}-->
+    <!--{/foreach}-->
+    <section>
+        <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
+            <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
+                <a onclick="eccube.setModeAndSubmit('confirm_return','',''); return false;" aria-label="戻る" class="c-btn--header-nav"></a>
+                <p class="c-header-title">アイテム編集</p>
+            </header>
+                    <dl class="c-list--dl">
                         <!--{assign var=key value="name"}-->
-                        <th><!--{$arrForm[$key].disp_name|h}--></th>
-                        <td>
+                        <dt><!--{$arrForm[$key].disp_name|h}--></dt>
+                        <dd>
                             <!--{$arrForm.name.value|h}-->
-                        </td>
-                    </tr>
-                    <tr>
+                        </dd>
                         <!--{assign var=key value="category_id"}-->
-                        <th><!--{$arrForm[$key].disp_name|h}--></th>
-                        <td>
+                        <dt><!--{$arrForm[$key].disp_name|h}--></dt>
+                        <dd>
                             <!--{$arrCatList[$arrForm.category_id.value]|sfTrim}-->
-                        </td>
-                    </tr>
-                    <tr>
+                        </dd>
                         <!--{assign var=key value="status"}-->
-                        <th><!--{$arrForm[$key].disp_name|h}--></th>
-                        <td>
+                        <dt><!--{$arrForm[$key].disp_name|h}--></dt>
+                        <dd>
                             <!--{$arrDISP[$arrForm.status.value]|h}-->
-                        </td>
-                    </tr>
-                    <tr>
+                        </dd>
                         <!--{assign var=key value="product_status"}-->
-                        <th><!--{$arrForm[$key].disp_name|h}--></th>
-                        <td>
+                        <dt><!--{$arrForm[$key].disp_name|h}--></dt>
+                        <dd>
                             <!--{foreach from=$arrForm.product_status.value item=status}-->
                                 <!--{$arrSTATUS[$status]|h}-->
                             <!--{/foreach}-->
-                        </td>
-                    </tr>
-                    <tr>
+                        </dd>
                         <!--{assign var=key value="comment3"}-->
-                        <th><!--{$arrForm[$key].disp_name|h}--></th>
-                        <td>
+                        <!--<th><!--{$arrForm[$key].disp_name|h}--></th>
+                        <dd>
                             <!--{$arrForm.comment3.value|h}-->
-                        </td>
-                    </tr>
+                        </dd>-->
+                    </dl>
+                    <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
+                    <ul class="u-mb--4">
                     <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
-                        <tr>
-                            <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                            <th><!--{$arrFile[$key].disp_name|h}--></th>
-                            <td>
-                                <!--{if $arrFile[$key].filepath != ""}-->
-                                    <img src="<!--{$arrFile[$key].filepath}-->" alt="" /><br />
-                                <!--{/if}-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
-                            <th><!--{$arrForm[$key].disp_name|h}--></th>
-                            <td>
-                                <!--{$arrForm[$key].value|h}-->
-                            </td>
-                        </tr>
-                    <!--{/section}-->
-                </table>
 
-                <div class="btn-area">
-                    <ul>
-                        <li><button onclick="eccube.setModeAndSubmit('confirm_return','',''); return false;">前のページに戻る</button></li>
-                        <li><button onclick="document.form1.submit(); return false;">この内容で登録する</button></li>
+                        <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
+                        <!--{if $arrFile[$key].filepath != ""}-->
+                            <li class="c-item --no-icon">
+                                <img src="<!--{$arrFile[$key].filepath}-->" alt="" class="c-item__img"/>
+                                <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
+                                <div class="c-item__main"><!--{$arrForm[$key].value|h}--></div>
+                            </li>
+                        <!--{/if}-->
+                    <!--{/section}-->
                     </ul>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+        <button onclick="eccube.setModeAndSubmit('confirm_return','',''); return false;" class="c-btn--default u-mb--2">前のページに戻る</button>
+        <button onclick="document.form1.submit(); return false;" class="c-btn--primary">この内容で登録する</button>
+
+    <section>
+</form>
