@@ -40,7 +40,7 @@
             <!--{assign var=key value="sub_large_image1"}-->
             <!--★画像★-->
 
-            <div data-img_id="0"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
+            <div data-img_id="0" class="c-item-kv__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
             <!--★お気に入り登録★-->
             <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
 
