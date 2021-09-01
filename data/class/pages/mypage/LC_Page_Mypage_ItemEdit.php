@@ -134,7 +134,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                     $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
                     if (strlen($error) >= 1) {
                         SC_Response_Ex::json([
-                            'error' => $error,
+                            'error' => strip_tags($error),
                         ]);
                     }
                 }

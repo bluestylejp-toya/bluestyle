@@ -110,9 +110,7 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
                 if ($arrRet['del_flg'] == 0 and $arrRet['status'] == 1) {
                     if ($arrRet['stock_unlimited_min'] == 1 or $arrRet['stock_min'] > 0) {
                         // お気に入り件数取得
-                        $arrData = $objQuery->getRow('count(1) as favorite_products_count', 'dtb_customer_favorite_products', 'product_id = ?', array($arrRet['product_id']));
-                        $arrRet['favorite_products_count'] = $arrData['favorite_products_count'];
-
+                        $arrRet['favorite_products_count'] = SC_Product_Ex::countFavoriteByProductId($arrRet['product_id']);
                         $arrCheckItemList[$cnt] = $arrRet;
                         ++$cnt;
                     }

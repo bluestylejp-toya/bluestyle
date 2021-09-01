@@ -31,6 +31,7 @@
     }
 //]]></script>
 <section>
+
     <header class="l-header__inner u-mb--0">
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
@@ -42,7 +43,7 @@
 
             <div data-img_id="0" class="c-item-kv__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
             <!--★お気に入り登録★-->
-            <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true}-->
+            <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
 
                 <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
                 <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">

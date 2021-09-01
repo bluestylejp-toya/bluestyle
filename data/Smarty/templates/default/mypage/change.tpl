@@ -21,37 +21,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 *}-->
+<section>
+    <header class="l-header__inner u-mb--0">
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
+        <p class="c-header-title">アカウント情報</p>
+    </header>
 
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <!--{include file=$tpl_navi}-->
-    <div id="mycontents_area">
-        <h3><!--{$tpl_subtitle|h}--></h3>
-        <p>下記項目にご入力ください。「<span class="attention">※</span>」印は入力必須項目です。<br />
-            入力後、一番下の「確認ページへ」ボタンをクリックしてください。</p>
-
-        <form name="form1" id="form1" method="post" action="?">
-            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-            <input type="hidden" name="mode" value="confirm" />
-            <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id.value|h}-->" />
-            <table summary="会員登録内容変更 " class="delivname">
-                <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=3 emailMobile=true prefix=""}-->
-            </table>
-            <div class="btn_area">
-                <ul>
-                    <li>
-                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_confirm.jpg" alt="確認ページへ" name="refusal" id="refusal" />
-                    </li>
-                </ul>
-            </div>
-        </form>
-    </div>
-</div>
-
+    <form name="form1" id="form1" method="post" action="?">
+        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+        <input type="hidden" name="mode" value="confirm" />
+        <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id.value|h}-->" />
+        <dl class="c-list--dl u-mb--4">
+            <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=3 emailMobile=true prefix=""}-->
+        </dl>
+        <button name="refusal" id="refusal" class="c-btn--primary">確認する</button>
+    </form>
+<section>
 <script>
 <!--{if strlen($smarty.request.message) >= 1}-->
     $(function(){
         alert(<!--{$smarty.request.message|@json_encode}-->);
     });
 <!--{/if}-->
+$('.next_form').on('keyup', function(){
+    console.log($(this).attr('maxlength'))
+    if ($(this).val().length >= $(this).attr('maxlength')) {
+        $(this).next().focus();
+    }
+})
 </script>
