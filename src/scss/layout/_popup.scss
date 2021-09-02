@@ -1,0 +1,35 @@
+.l-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(#000, .2);
+    z-index: 900;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    &:not([data-item_mode=false]){
+        display: flex;
+    }
+
+    ul {
+        background: $white;
+        width: 80%;
+        padding: $unit*3;
+        border-radius: $unit*2;
+        text-align: center;
+
+        li {
+            height: $unit*6;
+            a, button, span {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+            }
+        }
+    }
+}
