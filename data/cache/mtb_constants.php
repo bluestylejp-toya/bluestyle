@@ -82,7 +82,7 @@ define('USE_VERBOSE_LOG', DEBUG_MODE);
 /** 管理ユーザID(メンテナンス用表示されない。) */
 define('ADMIN_ID', "1");
 /** 会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員) */
-define('CUSTOMER_CONFIRM_MAIL', true);
+define('CUSTOMER_CONFIRM_MAIL', false);
 /** ログイン画面フレーム */
 define('LOGIN_FRAME', "login_frame.tpl");
 /** 管理画面フレーム */
@@ -134,7 +134,7 @@ define('LARGE_SUBIMAGE_WIDTH', 500);
 /** 拡大サブ画像縦 */
 define('LARGE_SUBIMAGE_HEIGHT', 500);
 /** 画像サイズ制限(KB) */
-define('IMAGE_SIZE', 1000);
+define('IMAGE_SIZE', 10240);
 /** CSVサイズ制限(KB) */
 define('CSV_SIZE', 2000);
 /** CSVアップロード1行あたりの最大文字数 */
@@ -144,7 +144,7 @@ define('FILE_SIZE', 10000);
 /** アップできるテンプレートファイル制限(KB) */
 define('TEMPLATE_SIZE', 10000);
 /** カテゴリの最大階層 */
-define('LEVEL_MAX', 5);
+define('LEVEL_MAX', 2);
 /** 最大カテゴリ登録数 */
 define('CATEGORY_MAX', 1000);
 /** 管理機能タイトル */
