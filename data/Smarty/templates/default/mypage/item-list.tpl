@@ -14,9 +14,8 @@
                 <ul>
                     <!--{foreach from=$arrProducts item=$arrProduct}-->
                         <li>
-                            <a href="item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|u|h}-->" class="c-item">
+                            <a href="item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|u|h}-->" class="c-item--has-icon">
                                 <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrProduct.name|h}-->"  class="c-item__img"/>
-
 
                                 <div class="c-item__main">
                                     <p class="c-item__title"><!--{$arrProduct.name|h}--><!--{$arrProduct.name|h}--></p>

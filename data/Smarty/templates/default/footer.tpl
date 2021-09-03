@@ -35,7 +35,7 @@
             <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-footer-nav-item--mypage">マイページ</a>
         </li>
         <li class="l-footer-nav__item">
-            <a href="" class="c-footer-nav-item--other">その他</a>
+            <a href="<!--{$smarty.const.HTTPS_URL}-->user_data/other.php" class="c-footer-nav-item--other">その他</a>
         </li>
     <!--{else}-->
         <li class="l-footer-nav__item">
