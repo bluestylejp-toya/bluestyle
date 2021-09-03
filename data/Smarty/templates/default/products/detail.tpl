@@ -35,6 +35,7 @@
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
     </header>
+    <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
     <div class="p-item-detail favorite_area<!--{if $is_favorite}--> registered_favorite<!--{/if}-->">
         <div class="c-item-kv p-item-detail__kv">
             <!--{assign var=key value="sub_large_image1"}-->
@@ -87,7 +88,7 @@
             <!--{/if}-->
         </div>
         <div class="p-item-detail__title">
-            <h1><!--{$arrProduct.name|h}--></h1>
+            <h1><!--{$arrProduct.name|mb_substr:0:30|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 30}-->...<!--{/if}--></h1>
             <p class="c-item-request count_of_favorite">
             <svg class="icon" width="150px" height="150px" viewBox="0 0 500 500">
                 <g class="particleLayer">
@@ -133,7 +134,7 @@
         </div>
         <!--▲サブコメント-->
         <h2 class="c-heading--lg">商品の情報</h2>
-        <dl class="p-item-detail__info">
+        <dl class="p-item-detail__info u-mb--4">
             <dt>発送元の地域</dt>
             <dd>
                 <!--{$arrPref[$arrProduct.pref]|h}-->
@@ -160,26 +161,13 @@
                 </dd>
             <!--{/section}-->
         </dl>
-
-        <dl>
-            <dt>ニックネーム</dt>
-            <dd><!--{$arrProduct.arrCustomer.nickname|h}--></dd>
-        </dl>
-        <dl>
+        <h2 class="c-heading--lg">出品者の情報</h2>
+        <div class="c-profile-header u-mb--2"><!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}--><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->" class="c-profile-header__img"><!--{/if}--><span class="c-profile-header__name"><!--{$arrProduct.arrCustomer.nickname|h}--></span></div>
+        <dl class="p-item-detail__info">
             <dt>紹介文</dt>
             <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>
-        </dl>
-        <!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}-->
-            <dl>
-                <dt>画像</dt>
-                <dd><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->"></dd>
-            </dl>
-        <!--{/if}-->
-        <dl>
             <dt>趣味</dt>
             <dd><!--{$arrProduct.arrCustomer.hobbies|h}--></dd>
-        </dl>
-        <dl>
             <dt>出品中アイテム</dt>
             <dd>
                 <ul>
@@ -206,6 +194,18 @@
                 </ul>
             </dd>
         </dl>
+        <!--通報するボタン-->
+        <button>通報する</button>
+        <div class="l-popup">
+            <div class="l-popup__inner">
+            このアイテムについて通報しますか？
+
+                <button>通報する</button>
+                <button>やめる</button>
+            </div>
+            <div class="l-popup__close">
+            </div>
+        </div>
     </div>
     <div class="c-modal">
        <button class="c-modal__close-btn">close</button>
