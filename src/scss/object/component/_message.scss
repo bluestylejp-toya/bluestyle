@@ -2,6 +2,9 @@
     margin: 0 -#{$unit*3} $unit*3;
     text-align: center;
     padding: $unit $unit*3;
+    &.--hidden {
+        display: none;
+    }
 }
 .c-message {
     &--alert{

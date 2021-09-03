@@ -163,7 +163,7 @@
         </dl>
         <h2 class="c-heading--lg">出品者の情報</h2>
         <div class="c-profile-header u-mb--2"><!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}--><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->" class="c-profile-header__img"><!--{/if}--><span class="c-profile-header__name"><!--{$arrProduct.arrCustomer.nickname|h}--></span></div>
-        <dl class="p-item-detail__info">
+        <dl class="p-item-detail__info u-mb--2">
             <dt>紹介文</dt>
             <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>
             <dt>趣味</dt>
@@ -195,13 +195,12 @@
             </dd>
         </dl>
         <!--通報するボタン-->
-        <button>通報する</button>
-        <div class="l-popup">
+        <p><button type="button" class="c-btn--report">通報する</button></p>
+        <div class="l-popup" data-item_mode="false">
             <div class="l-popup__inner">
-            このアイテムについて通報しますか？
-
-                <button>通報する</button>
-                <button>やめる</button>
+            <p class="u-mb--2">このアイテムについて通報しますか？</p>
+                <button type="button" class="c-btn--tertiary u-mb--2">通報する</button>
+                <button type="button" class="c-btn--default report__undo-btn">やめる</button>
             </div>
             <div class="l-popup__close">
             </div>
@@ -240,6 +239,15 @@
 </section>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+    $('.c-btn--report').on('click', function(){
+        $('.l-popup').attr('data-item_mode', 'report') ;
+        $('body').addClass('--overflow-hidden');
+
+        $('.l-popup .l-popup__close, .report__undo-btn').on('click', function(){
+            $('body').removeClass('--overflow-hidden');
+            $('.l-popup').attr('data-item_mode', 'false') ;
+        })
+    })
     let mySwiper = new Swiper ('.swiper-container', {
         // オプション
         navigation: {

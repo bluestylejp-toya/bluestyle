@@ -11,6 +11,19 @@
     transition: $btn-animation;
 }
 
+%c-btn--small {
+    height: $button-height*.8;
+    border-radius: $unit;
+    display: flex;
+    padding: 0 $unit*2;
+    justify-content: center;
+    align-items: center;
+    @include font('button');
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: $btn-animation;
+}
+
 .c-btn {
     &:hover {
         transition: $btn-animation;
@@ -38,6 +51,16 @@
             color: $red;
         }
     }
+    &--tertiary {
+        @extend %c-btn;
+        $tertiary: map-get($brand-colors, 'tertiary');
+        background: map-get($tertiary, 'default');
+        color: $black;
+
+        &:hover {
+            background: map-get($tertiary, 'dark');
+        }
+    }
 
     &--primary {
         @extend %c-btn;
@@ -62,6 +85,16 @@
                 border-color:  map-get($primary, 'dark');
                 color: $white;
             }
+        }
+    }
+
+    &--report {
+        @extend %c-btn--small;
+        $tertiary: map-get($brand-colors, 'tertiary');
+        background: map-get($tertiary, 'default');
+        color: $black;
+        &:hover {
+            background: map-get($tertiary, 'dark');
         }
     }
 

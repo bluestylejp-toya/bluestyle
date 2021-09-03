@@ -10,10 +10,6 @@
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 4"><path fill="%239DA4B0" fill-rule="evenodd" d="M2,0A2,2,0,1,0,4,2,2,2,0,0,0,2,0ZM14,0a2,2,0,1,0,2,2A2,2,0,0,0,14,0ZM6,2A2,2,0,1,1,8,4,2,2,0,0,1,6,2Z"/></svg>') center right / 18px auto no-repeat;
     }
 
-    &.--no-icon {
-        background: none;
-    }
-
     &__img {
         width: $unit*6;
         height: $unit*6;
@@ -64,6 +60,13 @@
         padding-left: 30px;
         background: none;
         position: relative;
+        background: #fff;
+        transition: transform .2s;
+
+        &.--move {
+            z-index: 100;
+            box-shadow: 0 1px 6px rgba(#000, .15);
+        }
         input[type=file] {
             display: none;
         }
@@ -128,7 +131,6 @@
         }
         .c-item__delete-btn {
             width: 120px;
-
             display: block;
             margin: 0 auto $unit*4;
         }
@@ -139,9 +141,9 @@
         input[type=file] {
             display: none;
         }
-        .c-item__edit-btn,
+        .c-item__controll-btn,
         .c-item__sort-btn {
-            display: none;
+            display: none!important;
         }
         .c-item__img {
             width: 100%;
@@ -171,6 +173,7 @@
         background: map-get($gray-set, 3);
         height: 48px;
         display: block;
+
         span {
             display: none;
         }
@@ -188,12 +191,32 @@
     &__sort-btn {
         left: 0;
         top: 0;
-        width: 30px;
+        width: 50px;
         position: absolute;
         height: 100%;
-        background: url('data:image/svg+xml;utf8,<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.3457 0C1.2457 0 0.345703 0.9 0.345703 2C0.345703 3.1 1.2457 4 2.3457 4C3.4457 4 4.3457 3.1 4.3457 2C4.3457 0.9 3.4457 0 2.3457 0ZM0.345703 8C0.345703 6.9 1.2457 6 2.3457 6C3.4457 6 4.3457 6.9 4.3457 8C4.3457 9.1 3.4457 10 2.3457 10C1.2457 10 0.345703 9.1 0.345703 8ZM2.3457 16C3.4457 16 4.3457 15.1 4.3457 14C4.3457 12.9 3.4457 12 2.3457 12C1.2457 12 0.345703 12.9 0.345703 14C0.345703 15.1 1.2457 16 2.3457 16ZM10.3457 2C10.3457 3.1 9.4457 4 8.3457 4C7.2457 4 6.3457 3.1 6.3457 2C6.3457 0.9 7.2457 0 8.3457 0C9.4457 0 10.3457 0.9 10.3457 2ZM8.3457 6C7.2457 6 6.3457 6.9 6.3457 8C6.3457 9.1 7.2457 10 8.3457 10C9.4457 10 10.3457 9.1 10.3457 8C10.3457 6.9 9.4457 6 8.3457 6ZM6.3457 14C6.3457 12.9 7.2457 12 8.3457 12C9.4457 12 10.3457 12.9 10.3457 14C10.3457 15.1 9.4457 16 8.3457 16C7.2457 16 6.3457 15.1 6.3457 14Z" fill="black" fill-opacity="0.3"/></svg>') center center / 12px auto no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.3457 0C1.2457 0 0.345703 0.9 0.345703 2C0.345703 3.1 1.2457 4 2.3457 4C3.4457 4 4.3457 3.1 4.3457 2C4.3457 0.9 3.4457 0 2.3457 0ZM0.345703 8C0.345703 6.9 1.2457 6 2.3457 6C3.4457 6 4.3457 6.9 4.3457 8C4.3457 9.1 3.4457 10 2.3457 10C1.2457 10 0.345703 9.1 0.345703 8ZM2.3457 16C3.4457 16 4.3457 15.1 4.3457 14C4.3457 12.9 3.4457 12 2.3457 12C1.2457 12 0.345703 12.9 0.345703 14C0.345703 15.1 1.2457 16 2.3457 16ZM10.3457 2C10.3457 3.1 9.4457 4 8.3457 4C7.2457 4 6.3457 3.1 6.3457 2C6.3457 0.9 7.2457 0 8.3457 0C9.4457 0 10.3457 0.9 10.3457 2ZM8.3457 6C7.2457 6 6.3457 6.9 6.3457 8C6.3457 9.1 7.2457 10 8.3457 10C9.4457 10 10.3457 9.1 10.3457 8C10.3457 6.9 9.4457 6 8.3457 6ZM6.3457 14C6.3457 12.9 7.2457 12 8.3457 12C9.4457 12 10.3457 12.9 10.3457 14C10.3457 15.1 9.4457 16 8.3457 16C7.2457 16 6.3457 15.1 6.3457 14Z" fill="black" fill-opacity="0.3"/></svg>') 8px center / 12px auto no-repeat;
+        &.is-pc {
+            background: none;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            padding: 10px 20px 10px 5px;
+            &::before,
+            &::after {
+                width: 10px;
+                height: 10px;
+                content: '';
+                display: block;
+                transform: rotate(45deg);
+                border-top: 2px solid $border-color;
+                border-left: 2px solid $border-color;
+            }
+            &::after {
+                transform: rotate(-135deg);
+            }
+        }
     }
-    &__edit-btn {
+    &__controll-btn {
         right: 0;
         top: 0;
          width: 30px;
