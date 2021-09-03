@@ -5,3 +5,17 @@
         }
     }
 }
+.u-pt {
+    @for $u from 0 to 5 {
+        &--#{$u} {
+            margin-top: $u*$unit;
+        }
+    }
+}
+.u-pb {
+    @for $u from 0 to 5 {
+        &--#{$u} {
+            margin-bottom: $u*$unit;
+        }
+    }
+}

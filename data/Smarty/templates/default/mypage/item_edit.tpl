@@ -6,10 +6,7 @@
                 <p class="c-header-title">アイテム編集</p>
             </header>
         <!--{assign var=key value="status"}-->
-        <!--{if $arrForm.status.value == 2}-->
-            <p class="c-message--alert">このアイテムは公開されていません</p>
-        <!--{/if}-->
-
+        <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}-->">このアイテムは公開されていません</p>
 
         <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME|h}-->" value="<!--{$transactionid|h}-->" />
@@ -106,6 +103,8 @@
                         <a href="javascript:void(0)" class="delete_image" data-item_delete="">画像の削除</a>
                     </li>
                 </ul>
+                <div class="l-popup__close">
+                </div>
             </div>
             <button class="c-btn--default u-mb--4 c-item__add-image-btn" type="button"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>写真を追加</button>
 
@@ -119,74 +118,80 @@
         alert('登録しました。');
     });
 <!--{/if}-->
-$('.c-form-parts--toggle-btn__hidden').on('change', function(){
-    $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1)
-})
-
-//画像の追加ボタン
-$('.c-item__add-image-btn').on('click', function(){
-    $items = $('.c-item--edit.--hidden');
-    $next = $items.first();
-    $id = $next.data('item_id');
-    $caption = $next.find('[name^=sub_title]');
-    $imageFile = $next.find('[name^=sub_large_image]');
-    $image = $next.find('img');
-    $next.removeClass('--hidden').addClass('c-item--modal').removeClass('c-item--edit');
-    $caption .attr('readonly', false);
-    $imageFile.attr('disabled', false);
-    $('body').addClass('--overflow-hidden');
-
-    $('.c-item__back-btn').on('click', function(){
-        if($image == '' && $caption.val() != '') {
-            alert('画像の登録をしてください。');
-        } else {
-            $next.removeClass('c-item--modal').addClass('c-item--edit');
-            $caption.attr('readonly', true);
-            $imageFile.attr('disabled', true);
-            $('body').removeClass('--overflow-hidden');
-        }
+// 公開、非公開
+$(function(){
+    $('.c-form-parts--toggle-btn__hidden').on('change', function(){
+        $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1);
+        $('.c-message--alert').toggleClass('--hidden');
     })
-    if( $items.length === 0 ) {
-        $(this).remove();
-    }
-})
 
-//写真編集
-$('[data-item_id] .c-item__controll-btn').on('click', function(){
-
-    $parent = $(this).closest('[data-item_id]');
-    $caption = $parent.find('[name^=sub_title]');
-    $imageFile = $parent.find('[name^=sub_large_image]');
-    $image = $parent.find('img');
-    $id = $parent.closest('[data-item_id]').data('item_id');
-
-    //削除と編集のポップアップボタンが出現
-    $('.l-popup').attr('data-item_mode', 'edit') ;
-    $('a.delete_image').attr('data-item_delete', $id) ;
-
-    //画像の編集処理
-    $('.image_edit').on('click', function(){
-        $('.l-popup').attr('data-item_mode', 'false') ;
-        $parent.addClass('c-item--modal').removeClass('c-item--edit');
-        $caption.attr('readonly', false);
+    //画像の追加ボタン
+    $('.c-item__add-image-btn').on('click', function(){
+        $items     = $('.c-item--edit.--hidden');
+        $next      = $items.first();
+        $id        = $next.data('item_id');
+        $caption   = $next.find('[name^=sub_title]');
+        $imageFile = $next.find('[name^=sub_large_image]');
+        $image     = $next.find('img');
+        $next.removeClass('--hidden').addClass('c-item--modal').removeClass('c-item--edit');
+        $caption .attr('readonly', false);
         $imageFile.attr('disabled', false);
         $('body').addClass('--overflow-hidden');
 
-        //画像が登録されなかった場合の処理も必要
         $('.c-item__back-btn').on('click', function(){
-            if($image.attr('src') == '' && $caption.val() != '') {
-                // キャプションの登録があって画像がない場合
+            if($image == '' && $caption.val() != '') {
                 alert('画像の登録をしてください。');
             } else {
-                $parent.removeClass('c-item--modal').addClass('c-item--edit');
+                $next.removeClass('c-item--modal').addClass('c-item--edit');
                 $caption.attr('readonly', true);
                 $imageFile.attr('disabled', true);
                 $('body').removeClass('--overflow-hidden');
             }
         })
+        if( $items.length === 0 ) {
+            $(this).remove();
+        }
     })
 
+    //画像編集
+    $('[data-item_id] .c-item__controll-btn').on('click', function(){
+        $parent   = $(this).closest('[data-item_id]');
+        $caption   = $parent.find('[name^=sub_title]');
+        $imageFile = $parent.find('[name^=sub_large_image]');
+        $image     = $parent.find('img');
+        $id        = $parent.closest('[data-item_id]').data('item_id');
 
+        //削除と編集のコントロール・ポップアップ
+        $('.l-popup').attr('data-item_mode', 'edit') ;
+        $('a.delete_image').attr('data-item_delete', $id);
+
+        $('.l-popup .l-popup__close').on('click', function(){
+            $('body').removeClass('--overflow-hidden');
+            $('.l-popup').attr('data-item_mode', 'false') ;
+        })
+
+        //画像の編集処理
+        $('.image_edit').on('click', function(){
+            $('.l-popup').attr('data-item_mode', 'false') ;
+            $parent.addClass('c-item--modal').removeClass('c-item--edit');
+            $caption.attr('readonly', false);
+            $imageFile.attr('disabled', false);
+            $('body').addClass('--overflow-hidden');
+
+            //画像が登録されなかった場合の処理も必要
+            $('.c-item__back-btn').on('click', function(){
+                if($image.attr('src') == '' && $caption.val() != '') {
+                    // キャプションの登録があって画像がない場合
+                    alert('画像の登録をしてください。');
+                } else {
+                    $parent.removeClass('c-item--modal').addClass('c-item--edit');
+                    $caption.attr('readonly', true);
+                    $imageFile.attr('disabled', true);
+                    $('body').removeClass('--overflow-hidden');
+                }
+            })
+        })
+    })
 })
 
 //画像が登録された時の処理
@@ -208,9 +213,8 @@ $(function(){
             processData: false,
             dataType: 'json',
         })
-            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
-            .fail(ajax_fail)
-        ;
+        .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        .fail(ajax_fail);
 
         $(this).val(null);
     });
@@ -258,14 +262,12 @@ $(function(){
         }
         else {
             if($closest.attr('data-item_id') === 1) {
-
                 alert('カバー写真は削除できません。');
             } else {
                 alert('画像を削除しました。');
                 $('.l-popup').attr('data-item_mode', 'false') ;
                 $closest.find('img').attr('src', '');
                 $closest.addClass('--hidden');
-                $closest.find('[name^=sub_title]').val('');
                 $closest.find('span.c-item__img').removeClass('--hidden');
             }
         }
@@ -276,81 +278,74 @@ $(function(){
     }
 });
 
-// ソート機能
-let prev, next, curren, move, pos, id, param, length;
-const changeVal = function (id, dir=1) {
-    $id = id;
-    $subId = id + dir;
-    $('[data-item_id=' + id + '] [name=sub_title' + (id + dir) + ']').attr('name', 'sub_title' + id);
-    $('[data-item_id=' + (id + dir) + '] [name=sub_title' + id + ']').attr('name', 'sub_title' + (id + dir));
-
-    $('input[type=hidden][name^=temp],input[type=hidden][name^=save]').each(function(){
-        item = $(this).attr('name').split('image');
-        itemNum = '';
-        if (item[1] == id) itemNum = $subId
-        if (item[1] == (id + dir)) itemNum = $id
-        console.log(itemNum)
-        if (itemNum !== '') $(this).attr('name', item[0] + 'image' + itemNum)
-    })
-}
 $isPc = (navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i))? 0: 1;
-mousedown = false;
-point = ""
+let mousedown = false,
+    point = "",
+    $this,
+    length,
+    pos,
+    id,
+    current,
+    prev,
+    next,
+    move;
+
 $('[data-item_id] .c-item__sort-btn').each( function(index){
+    if($isPc) {
+        $(this).addClass('is-pc');
+    }
     $(this).on({
          'touchstart': function (event) {
-            $('body').addClass('--overflow-hidden');
-            $this = $(this).parents('.c-item--edit')
-            length = $('[data-item_id]').not('.--hidden').length
-            pos = $this.offset().top;
-            id = parseInt($this.attr('data-item_id'))
+            // 初期化
             current = '';
-            prev = '';
-            next = '';
-            move = ''
+            prev    = '';
+            next    = '';
+            move    = '';
+            $this    = $(this).parents('.c-item--edit')
+            length  = $('[data-item_id]').not('.--hidden').length
+            pos     = $this.offset().top;
+            id      = parseInt($this.attr('data-item_id'))
+
+            $('body').addClass('--overflow-hidden');
         },
         'touchmove': function (event) {
             move = event.touches[0].pageY - pos;
             $this.attr('style', 'transform: translateY('+ (move < 0 ? -50 : 50)+'px)').addClass('--move')
         },
         'touchend': function (event) {
+            current = $this.contents();
             $this.removeAttr('style').removeClass('--move');
-            current      = $this.contents();
+
+            // 入れ替える
             if(move < 0 && id > 1) {
                 prev = $this.prev().contents();
                 $this.prev().append(current)
                 $this.empty().append(prev);
-                // 入れ替える
-                changeVal(id, -1)
             }
             if (move > 0 && length > id) {
                 next = $this.next().contents();
                 $this.next().append(current)
                 $this.empty().append(next)
-                changeVal(id)
             }
             $('body').removeClass('--overflow-hidden');
         },
         'click': function(event) {
             if($isPc) {
-                $this = $(this).parents('.c-item--edit')
-                id = parseInt($this.attr('data-item_id'))
-                length = $('[data-item_id]').not('.--hidden').length
-                current      = $this.contents();
+                $this   = $(this).parents('.c-item--edit')
+                id      = parseInt($this.attr('data-item_id'))
+                length  = $('[data-item_id]').not('.--hidden').length
+                current = $this.contents();
                 if(event.offsetY > 50 && length > id) {
                     next = $this.next().contents();
                     $this.next().append(current)
                     $this.empty().append(next)
-                    changeVal(id)
-                    $this.attr('style', 'transform: translateY('+  50+'px)').addClass('--move')
+                    $this.attr('style', 'transform: translateY('+  70+'px)').addClass('--move')
                 }
                 if(event.offsetY <= 30 && id > 1)  {
                     prev = $this.prev().contents();
                     $this.prev().append(current)
                     $this.empty().append(prev);
-                    // 入れ替える
-                    changeVal(id, -1)
-                    $this.attr('style', 'transform: translateY('+  -50+'px)').addClass('--move')
+                    $this.attr('style', 'transform: translateY('+  -70+'px)').addClass('--move')
                 }
                 setTimeout(function(){
                     $this.removeAttr('style').removeClass('--move')
