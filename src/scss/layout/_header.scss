@@ -23,4 +23,13 @@
         background: $white;
         z-index: 300;
     }
+
+    &--btn {
+        margin: $unit*3 0 $unit*4;
+        *[class^=c-btn] {
+            svg {
+                margin-right: $unit;
+            }
+        }
+    }
 }
