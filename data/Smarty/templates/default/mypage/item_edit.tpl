@@ -122,7 +122,8 @@
 $('.c-form-parts--toggle-btn__hidden').on('change', function(){
     $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1)
 })
-//画像追加ボタン
+
+//画像の追加ボタン
 $('.c-item__add-image-btn').on('click', function(){
     $items = $('.c-item--edit.--hidden');
     $next = $items.first();
@@ -150,17 +151,20 @@ $('.c-item__add-image-btn').on('click', function(){
     }
 })
 
-//写真登録
+//写真編集
 $('[data-item_id] .c-item__controll-btn').on('click', function(){
+
     $parent = $(this).closest('[data-item_id]');
     $caption = $parent.find('[name^=sub_title]');
     $imageFile = $parent.find('[name^=sub_large_image]');
     $image = $parent.find('img');
     $id = $parent.closest('[data-item_id]').data('item_id');
 
+    //削除と編集のポップアップボタンが出現
     $('.l-popup').attr('data-item_mode', 'edit') ;
     $('a.delete_image').attr('data-item_delete', $id) ;
 
+    //画像の編集処理
     $('.image_edit').on('click', function(){
         $('.l-popup').attr('data-item_mode', 'false') ;
         $parent.addClass('c-item--modal').removeClass('c-item--edit');
@@ -168,23 +172,25 @@ $('[data-item_id] .c-item__controll-btn').on('click', function(){
         $imageFile.attr('disabled', false);
         $('body').addClass('--overflow-hidden');
 
+        //画像が登録されなかった場合の処理も必要
         $('.c-item__back-btn').on('click', function(){
-        if($image.attr('src') == '' && $caption.val() != '') {
-            alert('画像の登録をしてください。');
-        } else {
-            $parent.removeClass('c-item--modal').addClass('c-item--edit');
-            $caption.attr('readonly', true);
-            $imageFile.attr('disabled', true);
-            $('body').removeClass('--overflow-hidden');
-        }
+            if($image.attr('src') == '' && $caption.val() != '') {
+                // キャプションの登録があって画像がない場合
+                alert('画像の登録をしてください。');
+            } else {
+                $parent.removeClass('c-item--modal').addClass('c-item--edit');
+                $caption.attr('readonly', true);
+                $imageFile.attr('disabled', true);
+                $('body').removeClass('--overflow-hidden');
+            }
         })
     })
 
 
 })
 
+//画像が登録された時の処理
 $(function(){
-
     $('input[type="file"]').on('change', function(){
         if (this.files.length != 1) {
             throw this;
@@ -209,6 +215,7 @@ $(function(){
         $(this).val(null);
     });
 
+    //画像が削除された時の処理
     $('a.delete_image').on('click', function(){
         let $closest = $('li[data-item_id=' + $(this).attr('data-item_delete') + ']');
         let image_key = $closest.find('input[type="file"]').attr('name');
