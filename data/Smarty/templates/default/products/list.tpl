@@ -62,7 +62,7 @@
 //]]></script>
 
 <!--{strip}-->
-    <div class="p-item-list">
+    <div class="p-item-list --active" data-tab_item="0">
         <form name="form1" id="form1" method="get" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="mode" value="<!--{$mode|h}-->" />

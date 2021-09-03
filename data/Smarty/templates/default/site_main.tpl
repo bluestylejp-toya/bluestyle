@@ -60,22 +60,20 @@
                 <!--{include file="frontparts/bloc/search_products.tpl"}-->
                 <!--{if $tpl_subtitle !== '検索結果'}-->
                 <ul class="c-item-tab">
-                    <li class="c-item-tab__item --current">
-                        <strong class="">新着</strong>
+                    <li class="c-item-tab__item --active" data-tab_nav="0">
+                        <a href="javascript:void(0)">新着</a>
                     </li>
-                    <li class="c-item-tab__item">
-                        <a href="javascript:fnChangeOrderby('price');">ファストChain</a>
-                    </li>
-                    <li class="c-item-tab__item">
-                        <a href="">閲覧履歴</a>
+                    <!--<li class="c-item-tab__item">
+                        <a href="javascript:void(0)">ファストChain</a>
+                    </li>-->
+                    <li class="c-item-tab__item" data-tab_nav="1">
+                        <a href="javascript:void(0)">閲覧履歴</a>
                     </li>
                 </ul>
                 <!--{/if}-->
             </div>
             <!--{/if}-->
 
-            <!--{if $smarty.server.PHP_SELF==$list}-->
-            <!--{/if}-->
         <!--{* ▼TOP COLUMN*}-->
         <!--{if !empty($arrPageLayout.TopNavi)}-->
         <div id="topcolumn">
@@ -96,8 +94,10 @@
             <!--{/if}-->
             <!--{* ▲TOP COLUMN*}-->
             <!--{* ▼CENTER COLUMN *}-->
+            <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
             <div <!--{**}-->
                 class="colnum<!--{$tpl_column_num|h}-->
+
                     <!--{if $tpl_column_num == 2}-->
                         <!--{" "}--><!--{if empty($arrPageLayout.LeftNavi)}-->left<!--{else}-->right<!--{/if}-->
                     <!--{/if}-->
@@ -118,11 +118,14 @@
                 <!--{* ▲メイン上部 *}-->
 
                 <!-- ▼メイン -->
+                <!--{if $smarty.server.PHP_SELF==$list}--><div class="c-item-tab__content --active" data-tab_item="0"><!--{/if}-->
                 <!--{include file=$tpl_mainpage}-->
+                <!--{if $smarty.server.PHP_SELF==$list}--></div><!--{/if}-->
                 <!-- ▲メイン -->
 
                 <!--{* ▼メイン下部 *}-->
                 <!--{if !empty($arrPageLayout.MainFoot)}-->
+                    <!--{if $smarty.server.PHP_SELF==$list}--><div class="c-item-tab__content" data-tab_item="1"><!--{/if}-->
                     <!--{foreach key=MainFootKey item=MainFootItem from=$arrPageLayout.MainFoot}-->
                         <!-- ▼<!--{$MainFootItem.bloc_name}--> -->
                         <!--{if $MainFootItem.php_path != ""}-->
@@ -132,6 +135,7 @@
                         <!--{/if}-->
                         <!-- ▲<!--{$MainFootItem.bloc_name}--> -->
                     <!--{/foreach}-->
+                    <!--{if $smarty.server.PHP_SELF==$list}--></div><!--{/if}-->
                 <!--{/if}-->
                 <!--{* ▲メイン下部 *}-->
             </div>
@@ -185,5 +189,21 @@
         <!--{* ▲FooterBottom COLUMN*}-->
         </footer>
     </div>
+    <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
+        <!--{if $smarty.server.PHP_SELF==$list}-->
+        <script>
+            $(function(){
+                $('[data-tab_nav]').each(function(index){
+                    $(this).on('click', function(){
+                        $('[data-tab_nav]').removeClass('--active');
+                        $('[data-tab_item]').removeClass('--active');
+                        $(this).addClass('--active');
+
+                        $('[data-tab_item=' + $(this).data('tab_nav') + ']').addClass('--active');
+                    })
+                });
+            })
+        </script>
+        <!--{/if}-->
 </body>
 <!--{/strip}-->

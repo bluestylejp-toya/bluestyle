@@ -94,7 +94,7 @@ $flgFields について
                 <!--{/if}-->
         </dd>
         <dt>住所<span class="attention">※必須</span></dt>
-        <dd class="u-mb--2">
+        <dd>
 
             <div class="c-form-parts--select u-mb--1">
                 <select name="<!--{$key3}-->" style="<!--{$arrErr[$key3]|sfGetErrorColor}-->">
@@ -123,8 +123,8 @@ $flgFields について
         </dd>
     <!--{/if}-->
     <!--{if $flgFields != 1}-->
-        <dt class="c-heading--form-title">メールアドレス<!--{$require_mark}--></dt>
-        <dd class="u-mb--2">
+        <dt>メールアドレス<!--{$require_mark}--></dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`email"}-->
             <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="ime-mode: disabled;" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="〇〇文字以上の半角英数字"/>
             <!--{if $arrErr[$key1]}-->

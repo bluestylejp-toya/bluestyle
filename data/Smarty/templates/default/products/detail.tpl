@@ -40,7 +40,7 @@
             <!--{assign var=key value="sub_large_image1"}-->
             <!--★画像★-->
 
-            <div data-img_id="0"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
+            <div data-img_id="0" class="c-item-kv__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="c-item-kv__img" /></div>
             <!--★お気に入り登録★-->
             <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
 
@@ -134,24 +134,21 @@
         <!--▲サブコメント-->
         <h2 class="c-heading--lg">商品の情報</h2>
         <dl class="p-item-detail__info">
-        <dt>発送元の地域</dt>
-        <dd>
-            <!--{section name=s loop=$arrRelativeCat[r]}-->
-                <a href="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php?category_id=<!--{$arrRelativeCat[r][s].category_id}-->"><!--{$arrRelativeCat[r][s].category_name|h}--></a>
-                <!--{if !$smarty.section.s.last}--><!--{$smarty.const.SEPA_CATNAVI}--><!--{/if}-->
-            <!--{/section}-->
-        </dd>
-        <!--▼商品ステータス-->
-        <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
-        <!--{if !empty($ps)}-->
-            <dt>アイテムの状態</dt>
-            <!--{foreach from=$ps item=status}-->
-                <dd class="product_status<!--{$status|h}-->"><!--{$arrSTATUS[$status]|h}--></dd>
-            <!--{/foreach}-->
-        <!--{/if}-->
-        <!--▲商品ステータス-->
+            <dt>発送元の地域</dt>
+            <dd>
+                <!--{$arrPref[$arrProduct.pref]|h}-->
+            </dd>
+            <!--▼商品ステータス-->
+            <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
+            <!--{if !empty($ps)}-->
+                <dt>アイテムの状態</dt>
+                <!--{foreach from=$ps item=status}-->
+                    <dd class="product_status<!--{$status|h}-->"><!--{$arrSTATUS[$status]|h}--></dd>
+                <!--{/foreach}-->
+            <!--{/if}-->
+            <!--▲商品ステータス-->
 
-        <!--★関連カテゴリ★-->
+            <!--★関連カテゴリ★-->
 
             <dt>カテゴリー</dt>
             <!--{section name=r loop=$arrRelativeCat}-->
@@ -162,6 +159,52 @@
                     <!--{/section}-->
                 </dd>
             <!--{/section}-->
+        </dl>
+
+        <dl>
+            <dt>ニックネーム</dt>
+            <dd><!--{$arrProduct.arrCustomer.nickname|h}--></dd>
+        </dl>
+        <dl>
+            <dt>紹介文</dt>
+            <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>
+        </dl>
+        <!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}-->
+            <dl>
+                <dt>画像</dt>
+                <dd><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->"></dd>
+            </dl>
+        <!--{/if}-->
+        <dl>
+            <dt>趣味</dt>
+            <dd><!--{$arrProduct.arrCustomer.hobbies|h}--></dd>
+        </dl>
+        <dl>
+            <dt>出品中アイテム</dt>
+            <dd>
+                <ul>
+                    <!--{foreach from=$arrProduct.arrCustomerProducts item=arrCustomerProduct}-->
+                        <li>
+                            <div>
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH|h}--><!--{$arrCustomerProduct.product_id|u|h}-->">
+                                    <!--{$arrCustomerProduct.name|h}-->
+                                </a>
+                            </div>
+                            <dl>
+                                <dt>「リクエスト（欲しい）」の数</dt>
+                                <dd><!--{$arrCustomerProduct.count_of_favorite|n2s|h}--></dd>
+                            </dl>
+                            <div>
+                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" />
+                            </div>
+                            <dl>
+                                <dt>在庫数</dt>
+                                <dd><!--{$arrCustomerProduct.stock_min|n2s|h}--></dd>
+                            </dl>
+                        </li>
+                    <!--{/foreach}-->
+                </ul>
+            </dd>
         </dl>
     </div>
     <div class="c-modal">
