@@ -37,33 +37,11 @@ class LC_Page_Profile extends LC_Page_Ex
     {
         $customer_id = $_REQUEST['customer_id'];
         $this->arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($customer_id);
-        $this->arrCustomerProducts = $this->getCustomerProducts($customer_id);
+        $this->arrCustomerProducts = SC_Helper_Customer_Ex::getCustomerProducts($customer_id);
         $this->arrFavoriteProducts = $this->getFavoriteProducts($customer_id);
 
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrPref = $masterData->getMasterData('mtb_pref');
-    }
-
-    /**
-     * 指定された会員の商品を取得する
-     *
-     * @return array
-     */
-    public function getCustomerProducts($customer_id)
-    {
-        $objQuery = SC_Query_Ex::getSingletonInstance();
-        $objProduct = new SC_Product_Ex();
-
-        $objQuery->setWhere('alldtl.customer_id = ?', [$customer_id]);
-        $objQuery->andWhere('alldtl.del_flg = 0');
-        $objQuery->andWhere('alldtl.status = 1');
-        $objQuery->setOrder('alldtl.product_id DESC');
-        $objQuery->setLimit(10);
-
-        $addCols = ['count_of_favorite'];
-        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
-
-        return $arrProducts;
     }
 
     /**
