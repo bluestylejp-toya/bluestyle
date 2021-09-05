@@ -25,6 +25,7 @@
 
     &__inner {
         background: $white;
+        max-width: 500px;
         width: 80%;
         padding: $unit*3;
         border-radius: $unit*2;

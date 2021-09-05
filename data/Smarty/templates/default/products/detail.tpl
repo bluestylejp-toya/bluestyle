@@ -236,6 +236,10 @@
         </div>
     </div>
     <div class="c-modal__bg"></div>
+    <button class="c-item__back-btn" type="button">詳細写真編集</button>
+    <div class="c-item__modal">
+
+    </div>
 </section>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
