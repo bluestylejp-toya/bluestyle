@@ -6,10 +6,7 @@
                 <p class="c-header-title">アイテム編集</p>
             </header>
         <!--{assign var=key value="status"}-->
-        <!--{if $arrForm.status.value == 2}-->
-            <p class="c-message--alert">このアイテムは公開されていません</p>
-        <!--{/if}-->
-
+        <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}-->">このアイテムは公開されていません</p>
 
         <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME|h}-->" value="<!--{$transactionid|h}-->" />
@@ -72,21 +69,21 @@
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
 
                     <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                    <li id="item<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3 && $arrFile[$key].filepath == ''}--> --hidden<!--{/if}-->">
+                    <li data-item_id="<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3 && $arrFile[$key].filepath == ''}--> --hidden<!--{/if}-->">
                         <button class="c-item__back-btn" type="button">詳細写真編集</button>
                         <button class="c-item__sort-btn" type="button"></button>
                         <label class="preview">
                             <img src="<!--{$arrFile[$key].filepath|h}-->" alt="" class="c-item__img"/>
                             <span class="icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8307 0.236328C11.5641 0.236328 12.1641 0.836328 12.1641 1.56966V10.903C12.1641 11.6363 11.5641 12.2363 10.8307 12.2363H1.4974C0.764063 12.2363 0.164062 11.6363 0.164062 10.903V1.56966C0.164062 0.836328 0.764063 0.236328 1.4974 0.236328H10.8307ZM5.4974 9.243L3.83073 7.23633L1.4974 10.2363H10.8307L7.83073 6.23633L5.4974 9.243Z" fill="#475462"/></svg></span>
-                            <input type="hidden" name="<!--{$key|h}-->">
 
                             <span class="c-item__img<!--{if $arrFile[$key].filepath }--> --hidden<!--{/if}-->">
-                                <span><!--{if $smarty.section.cnt.iteration == 1}-->カバー<!--{/if}-->画像追加</span>
+                                <span>画像追加</span>
                             </span>
 
                             <input type="file" name="<!--{$key|h}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" disabled/>
                         </label>
-                        <a href="javascript:" class="delete_image c-item__delete-btn">[画像の取り消し]</a>
+
+
                         <div class="c-item__main">
                             <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
                             <h2 class="c-heading-subtitle u-text--left u-color--gray">キャプション</h2>
@@ -94,10 +91,21 @@
                         </div>
                         <!--{assign var=key1 value="sub_large_image`$smarty.section.cnt.iteration`"}-->
                         <!--{assign var=key2 value="sub_title`$smarty.section.cnt.iteration`"}-->
-                        <button class="c-item__edit-btn" type="button" data-id="<!--{$smarty.section.cnt.iteration}-->"></button>
+                        <button class="c-item__controll-btn" type="button" data-id="<!--{$smarty.section.cnt.iteration}-->"></button>
+
                     </li>
                 <!--{/section}-->
             </ul>
+            <div class="l-popup" data-item_mode="false">
+                <ul class="l-popup__inner">
+                    <li><a href="javascript:void(0)" class="image_edit">画像の編集</a></li>
+                    <li>
+                        <a href="javascript:void(0)" class="delete_image" data-item_delete="">画像の削除</a>
+                    </li>
+                </ul>
+                <div class="l-popup__close">
+                </div>
+            </div>
             <button class="c-btn--default u-mb--4 c-item__add-image-btn" type="button"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>写真を追加</button>
 
             <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
@@ -110,36 +118,84 @@
         alert('登録しました。');
     });
 <!--{/if}-->
-$('.c-form-parts--toggle-btn__hidden').on('change', function(){
-    $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1)
-})
-$('.c-item__add-image-btn').on('click', function(){
-    $next = $('.c-item--edit.--hidden');
-    $next.first().fadeIn().removeClass('--hidden').removeAttr('style');
-    if($next.length === 0 ) {
-        $(this).remove();
-    }
-})
-$('.c-item__edit-btn').on('click', function(){
-    $id = $(this).data('id');
-    $('#item' + $id).addClass('c-item--modal').removeClass('c-item--edit');
-    $('[name=sub_title' + $id + ']').attr('readonly', false);
-    $('[name=sub_large_image' + $id + ']').attr('disabled', false);
-    $('body').addClass('--overflow-hidden');
-    $('.c-item__back-btn').on('click', function(){
-        if($('#item' + $id + ' img').attr('src') == '' && $('[name=sub_title' + $id + ']').val() != '') {
-            alert('画像の登録をしてください。');
-        } else {
-            $('#item' + $id).removeClass('c-item--modal').addClass('c-item--edit');
-            $('[name=sub_title' + $id + ']').attr('readonly', true);
-            $('[name=sub_large_image' + $id + ']').attr('disabled', true);
-            $('body').removeClass('--overflow-hidden');
+// 公開、非公開
+$(function(){
+    $('.c-form-parts--toggle-btn__hidden').on('change', function(){
+        $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1);
+        $('.c-message--alert').toggleClass('--hidden');
+    })
+
+    //画像の追加ボタン
+    $('.c-item__add-image-btn').on('click', function(){
+        $items     = $('.c-item--edit.--hidden');
+        $next      = $items.first();
+        $id        = $next.data('item_id');
+        $caption   = $next.find('[name^=sub_title]');
+        $imageFile = $next.find('[name^=sub_large_image]');
+        $image     = $next.find('img');
+        $next.removeClass('--hidden').addClass('c-item--modal').removeClass('c-item--edit');
+        $caption .attr('readonly', false);
+        $imageFile.attr('disabled', false);
+        $('body').addClass('--overflow-hidden');
+
+        $('.c-item__back-btn').on('click', function(){
+            if($image == '' && $caption.val() != '') {
+                alert('画像の登録をしてください。');
+            } else {
+                $next.removeClass('c-item--modal').addClass('c-item--edit');
+                $caption.attr('readonly', true);
+                $imageFile.attr('disabled', true);
+                $('body').removeClass('--overflow-hidden');
+            }
+        })
+        if( $items.length === 0 ) {
+            $(this).remove();
         }
+    })
+
+    //画像編集
+    $('[data-item_id] .c-item__controll-btn').on('click', function(){
+        $parent   = $(this).closest('[data-item_id]');
+        $caption   = $parent.find('[name^=sub_title]');
+        $imageFile = $parent.find('[name^=sub_large_image]');
+        $image     = $parent.find('img');
+        $id        = $parent.closest('[data-item_id]').data('item_id');
+
+        //削除と編集のコントロール・ポップアップ
+        $('.l-popup').attr('data-item_mode', 'edit') ;
+        $('a.delete_image').attr('data-item_delete', $id);
+
+        $('.l-popup .l-popup__close').on('click', function(){
+            $('body').removeClass('--overflow-hidden');
+            $('.l-popup').attr('data-item_mode', 'false') ;
+        })
+
+        //画像の編集処理
+        $('.image_edit').on('click', function(){
+            $('.l-popup').attr('data-item_mode', 'false') ;
+            $parent.addClass('c-item--modal').removeClass('c-item--edit');
+            $caption.attr('readonly', false);
+            $imageFile.attr('disabled', false);
+            $('body').addClass('--overflow-hidden');
+
+            //画像が登録されなかった場合の処理も必要
+            $('.c-item__back-btn').on('click', function(){
+                if($image.attr('src') == '' && $caption.val() != '') {
+                    // キャプションの登録があって画像がない場合
+                    alert('画像の登録をしてください。');
+                } else {
+                    $parent.removeClass('c-item--modal').addClass('c-item--edit');
+                    $caption.attr('readonly', true);
+                    $imageFile.attr('disabled', true);
+                    $('body').removeClass('--overflow-hidden');
+                }
+            })
+        })
     })
 })
 
+//画像が登録された時の処理
 $(function(){
-
     $('input[type="file"]').on('change', function(){
         if (this.files.length != 1) {
             throw this;
@@ -157,15 +213,15 @@ $(function(){
             processData: false,
             dataType: 'json',
         })
-            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
-            .fail(ajax_fail)
-        ;
+        .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        .fail(ajax_fail);
 
         $(this).val(null);
     });
 
+    //画像が削除された時の処理
     $('a.delete_image').on('click', function(){
-        let $closest = $(this).closest('li');
+        let $closest = $('li[data-item_id=' + $(this).attr('data-item_delete') + ']');
         let image_key = $closest.find('input[type="file"]').attr('name');
         let formData = new FormData($('#form1').get(0));
         formData.append('mode', 'delete_image_ajax');
@@ -179,9 +235,8 @@ $(function(){
             processData: false,
             dataType: 'json',
         })
-            .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
-            .fail(ajax_fail)
-        ;
+        .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        .fail(ajax_fail);
     });
 
     function ajax_done(data, textStatus, jqXHR, $closest) {
@@ -199,20 +254,104 @@ $(function(){
             }
             $input.val(data.arrHidden[key]);
         });
-        let $preview = $closest.find('.preview');
+
+
         if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
-            $preview.find('img').attr('src', data.arrFile.filepath);
-            $preview.find('span.c-item__img').addClass('--hidden');
+            $closest.find('img').attr('src', data.arrFile.filepath);
+            $closest.find('span.c-item__img').addClass('--hidden');
         }
         else {
-            alert()
-            $preview.find('img').attr('src', '');
-            $preview.find('span.c-item__img').removeClass('--hidden');
+            if($closest.attr('data-item_id') === 1) {
+                alert('カバー写真は削除できません。');
+            } else {
+                alert('画像を削除しました。');
+                $('.l-popup').attr('data-item_mode', 'false') ;
+                $closest.find('img').attr('src', '');
+                $closest.addClass('--hidden');
+                $closest.find('span.c-item__img').removeClass('--hidden');
+            }
         }
     }
 
     function ajax_fail(jqXHR, textStatus, errorThrown) {
         alert('失敗しました。');
     }
+});
+
+$isPc = (navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i))? 0: 1;
+let mousedown = false,
+    point = "",
+    $this,
+    length,
+    pos,
+    id,
+    current,
+    prev,
+    next,
+    move;
+
+$('[data-item_id] .c-item__sort-btn').each( function(index){
+    if($isPc) {
+        $(this).addClass('is-pc');
+    }
+    $(this).on({
+         'touchstart': function (event) {
+            // 初期化
+            current = '';
+            prev    = '';
+            next    = '';
+            move    = '';
+            $this    = $(this).parents('.c-item--edit')
+            length  = $('[data-item_id]').not('.--hidden').length
+            pos     = $this.offset().top;
+            id      = parseInt($this.attr('data-item_id'))
+
+            $('body').addClass('--overflow-hidden');
+        },
+        'touchmove': function (event) {
+            move = event.touches[0].pageY - pos;
+            $this.attr('style', 'transform: translateY('+ (move < 0 ? -50 : 50)+'px)').addClass('--move')
+        },
+        'touchend': function (event) {
+            current = $this.contents();
+            $this.removeAttr('style').removeClass('--move');
+
+            // 入れ替える
+            if(move < 0 && id > 1) {
+                prev = $this.prev().contents();
+                $this.prev().append(current)
+                $this.empty().append(prev);
+            }
+            if (move > 0 && length > id) {
+                next = $this.next().contents();
+                $this.next().append(current)
+                $this.empty().append(next)
+            }
+            $('body').removeClass('--overflow-hidden');
+        },
+        'click': function(event) {
+            if($isPc) {
+                $this   = $(this).parents('.c-item--edit')
+                id      = parseInt($this.attr('data-item_id'))
+                length  = $('[data-item_id]').not('.--hidden').length
+                current = $this.contents();
+                if(event.offsetY > 50 && length > id) {
+                    next = $this.next().contents();
+                    $this.next().append(current)
+                    $this.empty().append(next)
+                    $this.attr('style', 'transform: translateY('+  70+'px)').addClass('--move')
+                }
+                if(event.offsetY <= 30 && id > 1)  {
+                    prev = $this.prev().contents();
+                    $this.prev().append(current)
+                    $this.empty().append(prev);
+                    $this.attr('style', 'transform: translateY('+  -70+'px)').addClass('--move')
+                }
+                setTimeout(function(){
+                    $this.removeAttr('style').removeClass('--move')
+                }, 300)
+            }
+        }
+    })
 });
 </script>

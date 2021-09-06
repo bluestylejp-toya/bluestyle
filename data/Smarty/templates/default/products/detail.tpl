@@ -35,6 +35,7 @@
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
     </header>
+    <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
     <div class="p-item-detail favorite_area<!--{if $is_favorite}--> registered_favorite<!--{/if}-->">
         <div class="c-item-kv p-item-detail__kv">
             <!--{assign var=key value="sub_large_image1"}-->
@@ -65,21 +66,8 @@
                 </g>
                 <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"/>
                 </svg>
-                <span class="label"><!--{if $is_favorite}-->済<!--{else}-->欲しい<!--{/if}--></span>
+                <span class="label"><!--{if $is_favorite}-->済<!--{else}-->ほしい<!--{/if}--></span>
                 </button>
-                <script>
-                $('.favorite_area #request').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->).on('click', function(){
-                    $this = $(this);
-                    if($('.favorite_area').hasClass('registered_favorite')) {
-                        $this.removeClass('--active');
-                        $('.count_of_favorite').removeClass('--active');
-                    }else {
-                        $this.addClass('--active');
-                        $('.count_of_favorite').addClass('--active');
-                    }
-                    $this.children('span').text( $this.children('span').text() == '欲しい' ? '済' : '欲しい' )
-                });
-                </script>
                 <!--{if $arrErr[$add_favorite]}-->
                     <div class="attention"><!--{$arrErr[$add_favorite]}--></div>
                 <!--{/if}-->
@@ -87,7 +75,7 @@
             <!--{/if}-->
         </div>
         <div class="p-item-detail__title">
-            <h1><!--{$arrProduct.name|h}--></h1>
+            <h1><!--{$arrProduct.name|mb_substr:0:30|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 30}-->...<!--{/if}--></h1>
             <p class="c-item-request count_of_favorite">
             <svg class="icon" width="150px" height="150px" viewBox="0 0 500 500">
                 <g class="particleLayer">
@@ -133,7 +121,7 @@
         </div>
         <!--▲サブコメント-->
         <h2 class="c-heading--lg">商品の情報</h2>
-        <dl class="p-item-detail__info">
+        <dl class="p-item-detail__info u-mb--4">
             <dt>発送元の地域</dt>
             <dd>
                 <!--{$arrPref[$arrProduct.pref]|h}-->
@@ -160,26 +148,13 @@
                 </dd>
             <!--{/section}-->
         </dl>
-
-        <dl>
-            <dt>ニックネーム</dt>
-            <dd><!--{$arrProduct.arrCustomer.nickname|h}--></dd>
-        </dl>
-        <dl>
+        <h2 class="c-heading--lg">出品者の情報</h2>
+        <div class="c-profile-header u-mb--2"><!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}--><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->" class="c-profile-header__img"><!--{/if}--><span class="c-profile-header__name"><!--{$arrProduct.arrCustomer.nickname|h}--></span></div>
+        <dl class="p-item-detail__info u-mb--2">
             <dt>紹介文</dt>
             <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>
-        </dl>
-        <!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}-->
-            <dl>
-                <dt>画像</dt>
-                <dd><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->"></dd>
-            </dl>
-        <!--{/if}-->
-        <dl>
             <dt>趣味</dt>
             <dd><!--{$arrProduct.arrCustomer.hobbies|h}--></dd>
-        </dl>
-        <dl>
             <dt>出品中アイテム</dt>
             <dd>
                 <ul>
@@ -206,9 +181,83 @@
                 </ul>
             </dd>
         </dl>
+        <!--通報するボタン-->
+        <p><button type="button" class="c-btn--report">通報する</button></p>
+        <div class="l-popup" data-item_mode="false">
+            <div class="l-popup__inner">
+                <p class="u-mb--2 report_message"></p>
+                <input type="hidden" name="report_title" value="出品アイテムの違反報告です">
+                <input type="hidden" name="reporter" value="リポートしたユーザーのIDが入るように">
+                <input type="hidden" name="report_url" value="./detail.php?product_id=<!--{$tpl_product_id}-->">
+                <!--/下のJSの「通報の処理」に送信処理を追加願います-->
+                <button type="button" class="c-btn--tertiary u-mb--2 report_submit">通報する</button>
+                <button type="button" class="c-btn--default report_undo-btn">やめる</button>
+            </div>
+            <div class="l-popup__close"></div>
+        </div>
+    </div>
+
+    <!-- 自分のアイテムが決まってない時 -->
+    <div class="c-item--select-my-item --hidden">
+        <button class="c-item__back-btn" type="button">戻る</button>
+        <h2 class="c-heading--md u-text--left">交換するアイテムを選びましょう</h2>
+        <p class="u-mb--4">リクエストするには、マイアイテムから何と交換するかを決める必要があります。</p>
+        <h3 class="c-heading--sm u-mb--1">リクエストするアイテム</h3>
+        <div class="c-item--card--blue u-mb--2">
+           <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy"  class="c-item__img"/></span>
+            <div class="c-item__main">
+                <p><!--{$arrProduct.name|h}--></p>
+                <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+            </div>
+        </div>
+
+        <svg width="68" height="61" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg" class="select-status">
+            <path d="M9.99219 21.3182V40.4266H1.20508L21.9961 59.7303L42.7871 40.4266H34V20.3037H25.2129L46.0039 1L66.7949 20.3037H58.0078V39.4121" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+                <linearGradient id="paint0_linear" x1="1.20508" y1="59.7303" x2="67.308" y2="59.147" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#33CCFF"/>
+                <stop offset="0.45" stop-color="#67CC9D"/>
+                <stop offset="0.83" stop-color="#8FCC51"/>
+                <stop offset="1" stop-color="#9FCC33"/>
+            </linearGradient>
+            </defs>
+        </svg>
+        <p class="c-message--secondary --hidden">リクエストを送信しました</p>
+
+        <!--/自分のアイテムをfor文で出力-->
+        <ul class="u-mb--4">
+            <li class="c-item--card">
+                <label class="c-item--card__radio-button"><input type="radio" name="my_product"><span></span></label>
+                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-item__img"/>
+                <div class="c-item__main">
+                    <p><!--{$arrProduct.name|h}--></p>
+                    <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+                </div>
+                <button type="button" class="c-item--card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
+            </li>
+            <li class="c-item--card">
+                <label class="c-item--card__radio-button"><input type="radio" name="my_product"><span></span></label>
+                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-item__img"/>
+                <div class="c-item__main">
+                    <p><!--{$arrProduct.name|h}--></p>
+                    <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+                </div>
+                <button type="button" class="c-item--card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
+            </li>
+            <li class="c-item--card">
+                <label class="c-item--card__radio-button"><input type="radio" name="my_product"><span></span></label>
+                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-item__img"/>
+                <div class="c-item__main">
+                    <p><!--{$arrProduct.name|h}--></p>
+                    <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+                </div>
+                <button type="button" class="c-item--card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
+            </li>
+        </ul>
+        <button type="button" class="c-btn--primary u-mb--4 request_submit" disabled>決定</button>
     </div>
     <div class="c-modal">
-       <button class="c-modal__close-btn">close</button>
+       <button class="c-modal__close-btn" type="button">close</button>
         <!-- スライダーのメインコンテナの div 要素 -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -236,18 +285,98 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
+    <div class="c-modal--detail">
+        <button class="c-modal__close-btn" type="button">close</button>
+        <div class="c-modal--detail__inner"></div>
+    </div>
     <div class="c-modal__bg"></div>
 </section>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+    //アイテムを選んでいない場合
+    $('.favorite_area #request').on('click', function(){
+        if($('.favorite_area').hasClass('registered_favorite')) {
+            // すでに登録されていた場合の処理
+        } else {
+            $('body').addClass('--overflow-hidden');
+            $('.c-item--select-my-item').removeClass('--hidden');
+            // 自分のアイテムの詳細
+            $('[data-page_url]').on('click', function(){
+                $('.c-modal--detail').addClass('--active').find('.c-modal--detail__inner').load( $(this).attr('data-page_url') +' .p-item-detail');
+                // 詳細確認のモーダル削除
+                $('.c-modal__close-btn, .c-modal__bg').on('click', function(){
+                    $('.c-modal--detail .c-modal--detail__inner').empty();
+                    $('.c-modal--detail').removeClass('--active')
+                })
+            })
+            // ラジオボタン選択
+            $('[name=my_product]').on('change', function(){
+                if($(this).prop("checked")){
+                    $('.request_submit').removeAttr('disabled');
+                    // リクエストボタンクリック後の処理
+                    $('.request_submit').on('click', function(){
+                        $('.select-status').find('path').attr('stroke', 'url(#paint0_linear)')
+                        $('.request_submit').remove();
+                        $('.select-status').next('.c-message--secondary').removeClass('--hidden');
+                        // 送信したら要素ごと削除
+                        setTimeout(function(){
+                            $('.c-item--select-my-item').remove();
+                            $('.favorite_area').addClass('registered_favorite');
+                            $('.favorite_area #request').addClass('--active').children('span').text('済');
+                            $('body').removeClass('--overflow-hidden');
+                        }, 1000)
+                    });
+                }
+            })
+            $('.c-item--select-my-item .c-item__back-btn').on('click', function(){
+                $('.c-item--select-my-item').addClass('--hidden');
+                $('body').removeClass('--overflow-hidden');
+            })
+        }
+    });
+    //アイテムを選んでいる場合
+    // ここら辺をどうだし分けるのかがわからない
+    // $('.favorite_area #request').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->).on('click', function(){
+    //     $this = $(this);
+    //     if($('.favorite_area').hasClass('registered_favorite')) {
+    //         $this.removeClass('--active');
+    //         $('.count_of_favorite').removeClass('--active');
+    //     }else {
+    //         $this.addClass('--active');
+    //         $('.count_of_favorite').addClass('--active');
+    //     }
+    //     $this.children('span').text( $this.children('span').text() == '欲しい' ? '済' : 'ほしい' )
+    // });
+
+    // 通報の処理
+    $('.c-btn--report').on('click', function(){
+        $('.l-popup').attr('data-item_mode', 'report') ;
+        $('body').addClass('--overflow-hidden');
+        $('.report_message').text('このアイテムについて通報しますか？');
+
+        $('.report_submit').on('click', function(){
+
+            //ここに管理者へのajaxの処理をお願いします。
+            // 成功した時の処理
+            $(this).attr('disabled', 'disabled');
+            $('.report_undo-btn').text('閉じる');
+            $('.report_message').text('通報が完了しました');
+            $('.c-btn--report').attr('disabled', 'disabled');
+        })
+
+        $('.l-popup .l-popup__close, .report_undo-btn').on('click', function(){
+            $('body').removeClass('--overflow-hidden');
+            $('.l-popup').attr('data-item_mode', 'false') ;
+        })
+    })
+    // スライドショー
     let mySwiper = new Swiper ('.swiper-container', {
         // オプション
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
-
         },
-    })
+    });
     const slides = document.querySelectorAll('[data-img_id]');
     const body = document.querySelector('body');
     const modal = document.querySelector('.c-modal')
@@ -255,7 +384,6 @@
     const modalBg = document.querySelector('.c-modal__bg');
     let imagesArr = [];
     slides.forEach((item) => {
-        console.log(item)
         item.addEventListener('click', () =>{
             modal.classList.add('--active')
             body.classList.add('--overflow-hidden');

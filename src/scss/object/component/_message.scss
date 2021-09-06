@@ -2,10 +2,25 @@
     margin: 0 -#{$unit*3} $unit*3;
     text-align: center;
     padding: $unit $unit*3;
+    &.--hidden {
+        display: none;
+    }
 }
 .c-message {
     &--alert{
         background: $yellow;
         @extend %message;
+    }
+
+    &--secondary {
+        background: $green;
+        color: $white;
+        @extend %message;
+    }
+
+    &--primary {
+        background: $blue;
+        @extend %message;
+        color: $white;
     }
 }
