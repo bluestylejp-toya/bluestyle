@@ -7,6 +7,13 @@
     line-height: 1;
     min-height: 40px;
 
+    &.--underline {
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-width: 0 0 1px 0;
+    }
+
     &--zip {
         display: flex;
         justify-content: space-between;
@@ -38,7 +45,7 @@
             width: 100%;
         }
         @extend .c-form-parts;
-        background: url('data:image/svg+xml;utf8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.59 7.70508L6 3.12508L1.41 7.70508L-1.23266e-07 6.29508L6 0.295079L12 6.29508L10.59 7.70508Z" fill="%23515767"/></svg>') center right 15px no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.9357 0.589844L6.3457 5.16984L1.7557 0.589844L0.345703 1.99984L6.3457 7.99984L12.3457 1.99984L10.9357 0.589844Z" fill="black" fill-opacity="0.54"/></svg>') center right 15px no-repeat;
     }
     &--date {
         display: flex;
@@ -125,6 +132,42 @@
             height: 20px;
             display: inline-block;
             background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.71 11H12.5L17.49 16L16 17.49L11 12.5V11.71L10.73 11.43C9.59 12.41 8.11 13 6.5 13C2.91 13 0 10.09 0 6.5C0 2.91 2.91 0 6.5 0C10.09 0 13 2.91 13 6.5C13 8.11 12.41 9.59 11.43 10.73L11.71 11ZM2 6.5C2 8.99 4.01 11 6.5 11C8.99 11 11 8.99 11 6.5C11 4.01 8.99 2 6.5 2C4.01 2 2 4.01 2 6.5Z" fill="%23475462"/></svg>') center / 16px auto  no-repeat;
+        }
+    }
+
+    &--toggle-btn {
+        width: 36px;
+        height: 18px;
+        background: rgba(#000, .54);
+        border-radius: 30px;
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            top: 3px;
+            left: 3px;
+            position: absolute;
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: $white;
+            left: 3px;
+            opacity: 0.8;
+            transition: .1s;
+        }
+
+        &__hidden{
+            display: none;
+
+            &:checked {
+                & + * {
+                    &::before {
+                        opacity: 1;
+                        left: 19px;
+                    }
+                }
+            }
         }
     }
 }
