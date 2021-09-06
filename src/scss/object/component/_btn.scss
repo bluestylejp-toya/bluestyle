@@ -9,6 +9,10 @@
     text-decoration: none;
     width: 100%;
     transition: $btn-animation;
+
+    &:disabled {
+        opacity: 0.5;
+    }
 }
 
 %c-btn--small {

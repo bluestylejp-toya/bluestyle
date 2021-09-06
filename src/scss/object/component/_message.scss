@@ -12,6 +12,12 @@
         @extend %message;
     }
 
+    &--secondary {
+        background: $green;
+        color: $white;
+        @extend %message;
+    }
+
     &--primary {
         background: $blue;
         @extend %message;
