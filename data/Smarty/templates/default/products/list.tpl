@@ -140,8 +140,11 @@
                     <!--{if $arrProduct.registered_favorite}-->
 
                         <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
+                    <!--{else if $tpl_my_product}-->
+                        <span class="c-item--default__my-item">出品中</span>
                     <!--{/if}-->
                     </a>
+                    <!--{$tpl_my_product}-->
                     <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></a></p>
                 </li>
             <!--▲商品-->
