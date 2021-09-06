@@ -185,13 +185,15 @@
         <p><button type="button" class="c-btn--report">通報する</button></p>
         <div class="l-popup" data-item_mode="false">
             <div class="l-popup__inner">
-            <p class="u-mb--2">このアイテムについて通報しますか？</p>
-                <button type="button" class="c-btn--tertiary u-mb--2">通報する</button>
-                <button type="button" class="c-btn--default report__undo-btn">やめる</button>
+                <p class="u-mb--2 report_message"></p>
+                <input type="hidden" name="report_title" value="出品アイテムの違反報告です">
+                <input type="hidden" name="reporter" value="リポートしたユーザーのIDが入るように">
+                <input type="hidden" name="report_url" value="./detail.php?product_id=<!--{$tpl_product_id}-->">
+                <!--/下のJSの「通報の処理」に送信処理を追加願います-->
+                <button type="button" class="c-btn--tertiary u-mb--2 report_submit">通報する</button>
+                <button type="button" class="c-btn--default report_undo-btn">やめる</button>
             </div>
-            <div class="l-popup__close">
-
-            </div>
+            <div class="l-popup__close"></div>
         </div>
     </div>
 
@@ -252,10 +254,10 @@
                 <button type="button" class="c-item--card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
             </li>
         </ul>
-        <button type="button" class="c-btn--primary u-mb--4 c-item--select-my-item__send" disabled>決定</button>
+        <button type="button" class="c-btn--primary u-mb--4 request_submit" disabled>決定</button>
     </div>
     <div class="c-modal">
-       <button class="c-modal__close-btn">close</button>
+       <button class="c-modal__close-btn" type="button">close</button>
         <!-- スライダーのメインコンテナの div 要素 -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -284,7 +286,7 @@
         </div>
     </div>
     <div class="c-modal--detail">
-        <button class="c-modal__close-btn">close</button>
+        <button class="c-modal__close-btn" type="button">close</button>
         <div class="c-modal--detail__inner"></div>
     </div>
     <div class="c-modal__bg"></div>
@@ -310,11 +312,11 @@
             // ラジオボタン選択
             $('[name=my_product]').on('change', function(){
                 if($(this).prop("checked")){
-                    $('.c-item--select-my-item__send').removeAttr('disabled');
+                    $('.request_submit').removeAttr('disabled');
                     // リクエストボタンクリック後の処理
-                    $('.c-item--select-my-item__send').on('click', function(){
+                    $('.request_submit').on('click', function(){
                         $('.select-status').find('path').attr('stroke', 'url(#paint0_linear)')
-                        $('.c-item--select-my-item__send').remove();
+                        $('.request_submit').remove();
                         $('.select-status').next('.c-message--secondary').removeClass('--hidden');
                         // 送信したら要素ごと削除
                         setTimeout(function(){
@@ -346,12 +348,23 @@
     //     $this.children('span').text( $this.children('span').text() == '欲しい' ? '済' : 'ほしい' )
     // });
 
-    // 通報
+    // 通報の処理
     $('.c-btn--report').on('click', function(){
         $('.l-popup').attr('data-item_mode', 'report') ;
         $('body').addClass('--overflow-hidden');
+        $('.report_message').text('このアイテムについて通報しますか？');
 
-        $('.l-popup .l-popup__close, .report__undo-btn').on('click', function(){
+        $('.report_submit').on('click', function(){
+
+            //ここに管理者へのajaxの処理をお願いします。
+            // 成功した時の処理
+            $(this).attr('disabled', 'disabled');
+            $('.report_undo-btn').text('閉じる');
+            $('.report_message').text('通報が完了しました');
+            $('.c-btn--report').attr('disabled', 'disabled');
+        })
+
+        $('.l-popup .l-popup__close, .report_undo-btn').on('click', function(){
             $('body').removeClass('--overflow-hidden');
             $('.l-popup').attr('data-item_mode', 'false') ;
         })

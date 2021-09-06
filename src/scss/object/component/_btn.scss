@@ -10,7 +10,8 @@
     width: 100%;
     transition: $btn-animation;
 
-    &:disabled {
+    &:disabled,
+    &[disabled=disabled] {
         opacity: 0.5;
     }
 }
@@ -26,6 +27,11 @@
     border: 1px solid transparent;
     text-decoration: none;
     transition: $btn-animation;
+
+    &:disabled,
+    &[disabled=disabled] {
+        opacity: 0.5;
+    }
 }
 
 .c-btn {
@@ -56,10 +62,11 @@
         }
     }
     &--tertiary {
-        @extend %c-btn;
         $tertiary: map-get($brand-colors, 'tertiary');
         background: map-get($tertiary, 'default');
+        @extend %c-btn;
         color: $black;
+
 
         &:hover {
             background: map-get($tertiary, 'dark');
@@ -97,6 +104,7 @@
         $tertiary: map-get($brand-colors, 'tertiary');
         background: map-get($tertiary, 'default');
         color: $black;
+
         &:hover {
             background: map-get($tertiary, 'dark');
         }
