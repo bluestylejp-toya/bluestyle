@@ -82,5 +82,13 @@
             width: calc(100% - 120px);
             border-bottom: 1px solid map-get($gray-set, 2);
         }
+        dd.full,dt.full {
+            padding-bottom: 0;
+            border-bottom: none;
+            width: 100%;
+        }
+        dd.full {
+            padding-top: 0;
+        }
     }
 }

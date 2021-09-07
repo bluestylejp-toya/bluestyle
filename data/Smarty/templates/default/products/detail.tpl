@@ -142,46 +142,41 @@
                     <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>
                     <dt>趣味</dt>
                     <dd><!--{$arrProduct.arrCustomer.hobbies|h}--></dd>
-                    <dt>出品中アイテム</dt>
-                    <dd>
+                    <dt class="full">出品中アイテム</dt>
+                    <dd class="full">
                         <ul>
+                            <!--{assign var=id value=`$arrProduct.product_id`}-->
                             <!--{foreach from=$arrProduct.arrCustomerProducts item=arrCustomerProduct}-->
-                                <li>
-                                    <div>
-                                        <a href="<!--{$smarty.const.P_DETAIL_URLPATH|h}--><!--{$arrCustomerProduct.product_id|u|h}-->">
-                                            <!--{$arrCustomerProduct.name|h}-->
+                                <!--{if $id != $arrCustomerProduct.product_id}-->
+                                    <li>
+                                        <a href="<!--{$smarty.const.P_DETAIL_URLPATH|h}--><!--{$arrCustomerProduct.product_id|u|h}-->" class="c-item--has-icon">
+                                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+                                            <div class="c-item__main">
+                                                <p class="c-item__title"><!--{$arrCustomerProduct.name|h}--></p>
+                                                <p class="c-item__request"><!--{$arrCustomerProduct.count_of_favorite|n2s|h}--></p>
+                                            </div>
                                         </a>
-                                    </div>
-                                    <dl>
-                                        <dt>「リクエスト（欲しい）」の数</dt>
-                                        <dd><!--{$arrCustomerProduct.count_of_favorite|n2s|h}--></dd>
-                                    </dl>
-                                    <div>
-                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" />
-                                    </div>
-                                    <dl>
-                                        <dt>在庫数</dt>
-                                        <dd><!--{$arrCustomerProduct.stock_min|n2s|h}--></dd>
-                                    </dl>
-                                </li>
+                                    </li>
+                                <!--{/if}-->
                             <!--{/foreach}-->
                         </ul>
                     </dd>
                 </dl>
-                <!--通報するボタン-->
-                <p><button type="button" class="c-btn--report">通報する</button></p>
-                <div class="l-popup" data-item_mode="false">
-                    <div class="l-popup__inner">
-                        <p class="u-mb--2 report_message"></p>
-                        <input type="hidden" name="report_title" value="出品アイテムの違反報告です">
-                        <input type="hidden" name="reporter" value="リポートしたユーザーのIDが入るように">
-                        <input type="hidden" name="report_url" value="./detail.php?product_id=<!--{$tpl_product_id}-->">
-                        <!--/下のJSの「通報の処理」に送信処理を追加願います-->
-                        <button type="button" class="c-btn--tertiary u-mb--2 report_submit">通報する</button>
-                        <button type="button" class="c-btn--default report_undo-btn">やめる</button>
+                <!--{if !$tpl_my_product}--><!--通報するボタン-->
+                    <p><button type="button" class="c-btn--report">通報する</button></p>
+                    <div class="l-popup" data-item_mode="false">
+                        <div class="l-popup__inner">
+                            <p class="u-mb--2 report_message"></p>
+                            <input type="hidden" name="report_title" value="出品アイテムの違反報告です">
+                            <input type="hidden" name="reporter" value="リポートしたユーザーのIDが入るように">
+                            <input type="hidden" name="report_url" value="./detail.php?product_id=<!--{$tpl_product_id}-->">
+                            <!--/下のJSの「通報の処理」に送信処理を追加願います-->
+                            <button type="button" class="c-btn--tertiary u-mb--2 report_submit">通報する</button>
+                            <button type="button" class="c-btn--default report_undo-btn">やめる</button>
+                        </div>
+                        <div class="l-popup__close"></div>
                     </div>
-                    <div class="l-popup__close"></div>
-                </div>
+                <!--{/if}-->
             </div>
             <!--/.p-item-detail__body__main-->
 
