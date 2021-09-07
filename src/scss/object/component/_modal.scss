@@ -19,12 +19,25 @@
     &[data-modal_mode=detail] .swiper-container {
         display: none;
     }
+    .c-modal__btn {
+        display: none;
+        margin: $unit*3 0 #{-$unit*4};
+    }
+    &[data-modal_mode=myitem] .c-modal__btn {
+        display: block;
+    }
     &__inner {
         display: block;
         overflow: auto;
-        padding: 0 $unit*3;
-        & > * {
+        padding: 0 $unit*3 $unit*3;
+        a {
             pointer-events: none;
+        }
+        .c-modal__inner__head {
+            margin: 0 #{-$unit*3} 0;
+        }
+        .l-header__inner, .c-btn--report {
+            display: none;
         }
     }
 
@@ -46,8 +59,8 @@
         left: 0;
         top: 0;
         opacity: 0;
-        z-index: 100;
         transition: opacity .1s;
+        z-index: 700;
     }
 
     &.--active {
