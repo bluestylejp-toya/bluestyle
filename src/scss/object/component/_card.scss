@@ -1,0 +1,85 @@
+.c-card{
+    font-weight: 500;
+    position: relative;
+    align-items: center;
+    padding: $unit 0;
+    border-bottom: none;
+    border-radius: $unit;
+    box-shadow: 1px 1px 3px 0px rgba(#000, .15);
+    margin-bottom: $unit;
+    min-height: $unit*8 ;
+    display: flex;
+    height: 56px;
+
+    &__detail-btn {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $unit*6;
+    }
+
+    &__radio-button {
+        display: flex;
+        border-right: 1px solid $border-color-light;
+        padding-right: $unit;
+        width: calc(100% - #{$unit*6});
+
+        input {
+            display: none;
+
+            &:checked {
+                & + .c-card__main::after {
+                    opacity: 1;
+                }
+            }
+
+            & + .c-card__main {
+                width: 100%;
+                position: relative;
+                padding-left: $unit*10;
+
+                p {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                .c-card__img{
+                    left: $unit*3;
+                    top: 0;
+                    width: $unit*6;
+                    height: $unit*6;
+                    position: absolute;
+                    object-fit: cover;
+                    border-radius: $unit;
+                }
+
+                &::before {
+                    position: absolute;
+                    left: 0;
+                    top: #{$unit*2 - 2px};
+                    display: block;
+                    content: '';
+                    width: $unit*2;
+                    height: $unit*2;
+                    border-radius: $unit;
+                    border: 1px solid $blue;
+                }
+                &::after {
+                    transition: .3s;
+                    opacity: 0;
+                    display: block;
+                    position: absolute;
+                    left: 3px;
+                    top: #{$unit*2 +1px};
+                    content: '';
+                    width: $unit+2px;
+                    height: $unit+2px;
+                    border-radius: $unit;
+                    background: $blue;
+                }
+            }
+        }
+    }
+}

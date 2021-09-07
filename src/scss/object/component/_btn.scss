@@ -163,6 +163,15 @@
         position: relative;
         background: $white;
         z-index: 1;
+        &:disabled {
+            svg {
+                opacity: 0.5;
+            }
+            color: rgba(#009fcf, 0.5);
+            &::before {
+                opacity: 0.5;
+            }
+        }
 
         &::before {
             border: 2px solid $blue;
