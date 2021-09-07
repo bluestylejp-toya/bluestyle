@@ -54,12 +54,12 @@
     &__body {
         position: relative;
         z-index: -1;
+        margin-top: $unit*6;
 
         &__slideup {
-            height: auto;
-            overflow: auto;
+
             .select_status {
-                margin: $unit*2 auto;
+                margin: $unit*2 auto $unit*2;
                 display: block;
             }
             &.--hidden {

@@ -52,12 +52,12 @@
                     height: $unit*6;
                     position: absolute;
                     object-fit: cover;
-                    border-radius: $unit;
+                    border-radius: $unit/2;
                 }
 
                 &::before {
                     position: absolute;
-                    left: 0;
+                    left: 5px;
                     top: #{$unit*2 - 2px};
                     display: block;
                     content: '';
@@ -71,7 +71,7 @@
                     opacity: 0;
                     display: block;
                     position: absolute;
-                    left: 3px;
+                    left: 8px;
                     top: #{$unit*2 +1px};
                     content: '';
                     width: $unit+2px;
