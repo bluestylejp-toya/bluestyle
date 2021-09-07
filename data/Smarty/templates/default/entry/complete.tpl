@@ -20,8 +20,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 <section>
+    <div class="l-header__inner u-mb--0">
+        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
+    </div>
     <div class="c-entry-kv">
-        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-send-mail.png" decoding="async" loading="lazy"/>
+        <img src="<!--{$TPL_URLPATH}-->img/entry/zoom-bg.png" width="100%" height="100%"  class="c-entry-kv__bg"/>
+        <img src="<!--{$TPL_URLPATH}-->img/entry/illust__paperPlane.png" width="164" class="c-entry-kv__object paperPlane">
     </div>
     <h1 class="c-heading--md u-color--gray">登録情報を送信しました！</h1>
     <p class="u-mb--4 u-color--gray">
