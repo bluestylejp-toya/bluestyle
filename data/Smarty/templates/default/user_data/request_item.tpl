@@ -73,7 +73,9 @@
         $('[data-modal_url]').on('click', function(){
             $this = $(this)
             $body = $('body')
-            $modal = $('.c-modal')
+            $modal = $('.c-modal');
+            $('.c-modal__inner__head').empty();
+            $('.c-modal__inner__body').empty();
             $url = $this.attr('data-modal_url')
             $mode = $this.closest('[data-modal]')
             $('[data-modal_mode]').attr('data-modal_mode', $mode.attr('data-modal'))
