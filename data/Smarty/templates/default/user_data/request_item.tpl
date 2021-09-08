@@ -13,6 +13,7 @@
             </li>
         </ul>
     </div>
+    <!--/タブメニュー-->
     <div class="c-item-tab__content --active" data-tab_item="0">
         <div class="c-notification--secondary notification">リクエストを取り消しました</div>
         <ul data-modal="myitem">
@@ -32,8 +33,8 @@
             </li>
         </ul>
     </div>
+    <!--/マイアイテム-->
     <div class="c-item-tab__content" data-tab_item="1">
-
         <ul data-modal="requestitem">
             <li class="c-item" data-modal_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=9">
              <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
@@ -44,6 +45,7 @@
             </li>
         </ul>
     </div>
+    <!--/マイアイテム-->
     <div class="c-modal" data-modal_mode="false">
         <button class="c-modal__close-btn" type="button">close</button>
         <div class="c-modal__inner">
@@ -53,9 +55,11 @@
         </div>
     </div>
     <div class="c-modal__bg"></div>
+    <!--/モーダル-->
 </section>
 <script>
     $(function(){
+        //タブメニュー
         $('[data-tab_nav]').each(function(index){
             $(this).on('click', function(){
                 $('[data-tab_nav]').removeClass('--active');
@@ -65,6 +69,7 @@
                 $('[data-tab_item=' + $(this).data('tab_nav') + ']').addClass('--active');
             })
         });
+        //モーダルのコントロール
         $('[data-modal_url]').on('click', function(){
             $this = $(this)
             $body = $('body')
@@ -79,13 +84,17 @@
              // いいねの取り消し処理が必要
              $('.c-modal__btn').on('click', function(){
                $body.find(".notification").fadeIn(300,
-                function() {
-                    setTimeout(function(){
+                    function() {
+                        setTimeout(function(){
                         $body.find(".notification").fadeOut();
                         $('.c-modal').attr('data-modal_mode', 'false').removeClass('--active')
                         $('body').removeClass('--overflow-hidden');
-                        $('.c-modal__inner__head').empty();
-                        $('.c-modal__inner__body').empty();
+                        $('.c-modal').on("transitionend", function() {
+                            if(!$('.c-modal').hasClass('--active')){
+                                $('.c-modal__inner__head').empty();
+                                $('.c-modal__inner__body').empty();
+                            }
+                        })
                         $this.remove()
                     }, 1000);
                 })
@@ -98,8 +107,12 @@
             $('.c-modal__bg, .c-modal__close-btn').on('click', function(){
                 $('.c-modal').attr('data-modal_mode', 'false').removeClass('--active')
                 $('body').removeClass('--overflow-hidden');
-                $('.c-modal__inner__head').empty();
-                $('.c-modal__inner__body').empty();
+                $('.c-modal').on("transitionend", function() {
+                    if(!$('.c-modal').hasClass('--active')){
+                        $('.c-modal__inner__head').empty();
+                        $('.c-modal__inner__body').empty();
+                    }
+                })
             })
         }
     })

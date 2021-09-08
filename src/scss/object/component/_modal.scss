@@ -19,12 +19,12 @@
     &[data-modal_mode=detail] .swiper-container {
         display: none;
     }
+     &[data-modal_mode=myitem] .c-modal__btn {
+         display: block;
+     }
     .c-modal__btn {
-        display: none;
         margin: $unit*3 0 #{-$unit*4};
-    }
-    &[data-modal_mode=myitem] .c-modal__btn {
-        display: block;
+        display: none;
     }
     &__inner {
         display: block;
