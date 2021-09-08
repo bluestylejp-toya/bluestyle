@@ -7,11 +7,21 @@
     background: $white;
 
     &__item {
-        width: 33.333%;
+        // 修正する
+        // width: 33.333%;
+        width: 50%;
         height: $unit*7;
-        &.--current {
+
+        &.--active {
             color: $blue;
             border-bottom: 4px solid $blue;
+        }
+    }
+    &__content {
+        display: none;
+
+        &.--active {
+          display: block;
         }
     }
     a,strong {

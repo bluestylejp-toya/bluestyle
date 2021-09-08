@@ -9,6 +9,29 @@
     text-decoration: none;
     width: 100%;
     transition: $btn-animation;
+
+    &:disabled,
+    &[disabled=disabled] {
+        opacity: 0.5;
+    }
+}
+
+%c-btn--small {
+    height: $button-height*.8;
+    border-radius: $unit;
+    display: flex;
+    padding: 0 $unit*2;
+    justify-content: center;
+    align-items: center;
+    @include font('button');
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: $btn-animation;
+
+    &:disabled,
+    &[disabled=disabled] {
+        opacity: 0.5;
+    }
 }
 
 .c-btn {
@@ -38,6 +61,17 @@
             color: $red;
         }
     }
+    &--tertiary {
+        $tertiary: map-get($brand-colors, 'tertiary');
+        background: map-get($tertiary, 'default');
+        @extend %c-btn;
+        color: $black;
+
+
+        &:hover {
+            background: map-get($tertiary, 'dark');
+        }
+    }
 
     &--primary {
         @extend %c-btn;
@@ -62,6 +96,17 @@
                 border-color:  map-get($primary, 'dark');
                 color: $white;
             }
+        }
+    }
+
+    &--report {
+        @extend %c-btn--small;
+        $tertiary: map-get($brand-colors, 'tertiary');
+        background: map-get($tertiary, 'default');
+        color: $black;
+
+        &:hover {
+            background: map-get($tertiary, 'dark');
         }
     }
 
@@ -118,6 +163,15 @@
         position: relative;
         background: $white;
         z-index: 1;
+        &:disabled {
+            svg {
+                opacity: 0.5;
+            }
+            color: rgba(#009fcf, 0.5);
+            &::before {
+                opacity: 0.5;
+            }
+        }
 
         &::before {
             border: 2px solid $blue;

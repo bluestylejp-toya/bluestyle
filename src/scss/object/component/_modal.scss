@@ -16,6 +16,18 @@
     overflow: hidden;
     height: 70%;
 
+    &[data-modal_mode=detail] .swiper-container {
+        display: none;
+    }
+    &__inner {
+        display: block;
+        overflow: auto;
+        padding: 0 $unit*3;
+        & > * {
+            pointer-events: none;
+        }
+    }
+
     .swiper-container {
         margin-right: 1px;
         height: 100%;
@@ -34,6 +46,7 @@
         left: 0;
         top: 0;
         opacity: 0;
+        z-index: 100;
         transition: opacity .1s;
     }
 
@@ -42,7 +55,7 @@
         transform: translateY(0);
 
 
-        & + .c-modal__bg {
+        & ~ .c-modal__bg {
             width: 100%;
             opacity: 1;
             height: 100%;
@@ -114,4 +127,6 @@
         color: #ccc;
         font-size: 20px;
     }
+
+
 }

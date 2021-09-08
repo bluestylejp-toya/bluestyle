@@ -1,0 +1,23 @@
+%notification {
+    position: fixed;
+    z-index: 900;
+    top: 60px;
+    width: calc(100% - #{$unit*6});
+    left: $unit*3;
+    border-radius: $unit;
+    padding: $unit;
+    text-align: center;
+    color: $white;
+    font-weight: 500;
+    display: none;
+}
+
+.c-notification {
+    &--secondary {
+        background: #{map-get(map-get($brand-colors, secondary), dark)};
+        @extend %notification;
+    }
+    &--default {
+        background: $gray;
+    }
+}
