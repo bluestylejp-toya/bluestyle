@@ -79,8 +79,8 @@
             $url = $this.attr('data-modal_url')
             $mode = $this.closest('[data-modal]')
             $('[data-modal_mode]').attr('data-modal_mode', $mode.attr('data-modal'))
-             $('.c-modal__inner__head').load( $url + ' .p-item-detail__head__img');
-             $('.c-modal__inner__body').load( $url + ' .p-item-detail__body');
+            $('.c-modal__inner__head').load( $url + ' .p-item-detail__head__img');
+            $('.c-modal__inner__body').load( $url + ' .p-item-detail__body');
 
              // リクエストの取り消し
              // いいねの取り消し処理が必要
