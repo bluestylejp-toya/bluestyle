@@ -19,6 +19,8 @@
             <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/news.php">お知らせ<span class="c-bach--num">2</span></a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/guide.php">ご利用方法</a></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/flow.php">発送の流れ</a></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/payment.php">支払い方法</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/help.php">ヘルプ</a></li>
         </ul>
         <ul class="c-nav-list">
