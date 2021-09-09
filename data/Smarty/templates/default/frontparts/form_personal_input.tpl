@@ -64,7 +64,7 @@ $flgFields について
         <!--{else}-->
             <tr>
                 <th>国<!--{$require_mark}--></th>
-            <dd class="u-mb--2">
+            <dd>
                     <!--{if $arrErr[$key6]}-->
                         <p><small class="attention"><!--{$arrErr[$key6]}--></small></p>
                     <!--{/if}-->
@@ -74,7 +74,7 @@ $flgFields について
                     </select>
             </dd>
             <dt>ZIP CODE</dt>
-            <dd class="u-mb--2">
+            <dd>
                     <!--{if $arrErr[$key7]}-->
                         <p><small class="attention"><!--{$arrErr[$key7]}--></small></p>
                     <!--{/if}-->
@@ -110,7 +110,7 @@ $flgFields について
             <!--{/if}-->
         </dd>
         <dt>電話番号<span class="attention">※必須</span></dt>
-        <dd class="u-mb--2">
+        <dd>
             <!--{assign var=key1 value="`$prefix`tel01"}-->
             <!--{assign var=key2 value="`$prefix`tel02"}-->
             <!--{assign var=key3 value="`$prefix`tel03"}-->
@@ -156,8 +156,8 @@ $flgFields について
         <!--{/if}-->
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
-        <dt class="c-heading--form-title">パスワード<!--{$require_mark}--></dt>
-        <dd class="u-mb--2">
+        <dt>パスワード<!--{$require_mark}--></dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`password"}-->
             <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->の半角英数字"/>
             <!--{if $arrErr[$key1]}-->
@@ -166,8 +166,8 @@ $flgFields について
         </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
-        <dt class="c-heading--form-title">お支払い方法<!--{$require_mark}--></dt>
-        <dd class="u-mb--2">
+        <dt>お支払い方法<!--{$require_mark}--></dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
             <div class="c-form-parts--select">
                 <select name="<!--{$key1|h}-->" <!--{if $arrErr[$key1]}--><!--{sfSetErrorStyle}--><!--{/if}-->>
@@ -179,8 +179,8 @@ $flgFields について
     <!--{/if}-->
     <!--{if $flgFields == 93}-->
         <!--{assign var=key1 value="nickname"}-->
-        <dt class="c-heading--form-title"><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
-        <dd class="u-mb--2">
+        <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
+        <dd>
             <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="Chain内のユーザ名"/>
             <!--{if $arrErr[$key1]}-->
                 <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
