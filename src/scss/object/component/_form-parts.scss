@@ -7,6 +7,13 @@
     line-height: 1;
     min-height: 40px;
 
+    &.--underline {
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-width: 0 0 1px 0;
+    }
+
     &--zip {
         display: flex;
         justify-content: space-between;
@@ -125,6 +132,42 @@
             height: 20px;
             display: inline-block;
             background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.71 11H12.5L17.49 16L16 17.49L11 12.5V11.71L10.73 11.43C9.59 12.41 8.11 13 6.5 13C2.91 13 0 10.09 0 6.5C0 2.91 2.91 0 6.5 0C10.09 0 13 2.91 13 6.5C13 8.11 12.41 9.59 11.43 10.73L11.71 11ZM2 6.5C2 8.99 4.01 11 6.5 11C8.99 11 11 8.99 11 6.5C11 4.01 8.99 2 6.5 2C4.01 2 2 4.01 2 6.5Z" fill="%23475462"/></svg>') center / 16px auto  no-repeat;
+        }
+    }
+
+    &--toggle-btn {
+        width: 36px;
+        height: 18px;
+        background: rgba(#000, .54);
+        border-radius: 30px;
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            top: 3px;
+            left: 3px;
+            position: absolute;
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: $white;
+            left: 3px;
+            opacity: 0.8;
+            transition: .1s;
+        }
+
+        &__hidden{
+            display: none;
+
+            &:checked {
+                & + * {
+                    &::before {
+                        opacity: 1;
+                        left: 19px;
+                    }
+                }
+            }
         }
     }
 }

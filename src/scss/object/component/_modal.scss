@@ -2,18 +2,67 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    padding-bottom: $footer-nav-height;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     transform: translateY(100%);
     border: 1px solid #000;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     z-index: 800;
     background: #fff;
-    transition: .5s;
+    transition: .5s .2s;
+    opacity: 0;
+    overflow: hidden;
+    height: 70%;
+
+    &[data-modal_mode=detail] .swiper-container {
+        display: none;
+    }
+     &[data-modal_mode=requestitem] .c-modal__btn {
+         display: none;
+    }
+    .c-modal__btn {
+        margin: $unit*3 0 #{-$unit*4};
+        display: block;
+    }
+    &__inner {
+        display: block;
+        overflow: auto;
+        padding: 0 $unit*3 $unit*3;
+        a {
+            pointer-events: none;
+        }
+        .c-modal__inner__head {
+            margin: 0 #{-$unit*3} 0;
+            position: relative;
+            padding-top: 100%;
+            height: 0;
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .l-header__inner, .c-btn--report {
+            display: none;
+        }
+    }
+
+    .swiper-container {
+        margin-right: 1px;
+        height: 100%;
+    }
+
+    li {
+        list-style: none;
+        height: auto;
+    }
 
     &__bg {
         position: fixed;
@@ -24,31 +73,47 @@
         top: 0;
         opacity: 0;
         transition: opacity .1s;
+        z-index: 700;
     }
 
     &.--active {
+        opacity: 1;
         transform: translateY(0);
-        & + .c-modal__bg {
+
+
+        & ~ .c-modal__bg {
             width: 100%;
             opacity: 1;
             height: 100%;
         }
+        figure {
+            opacity: 1;
+        }
     }
     &__close-btn {
         display: flex;
-        padding: 10px;
+        padding: $unit $unit*2;
         height: 48px;
         font-size: 0;
         width: 100%;
-        justify-content: flex-end;
 
         &::after {
             font-size: 2rem;
             content: '×';
         }
     }
+    figure {
+        width: 100%;
+        display: block;
+        height: 100%;
+        opacity: 0;
+        transition: opacity .5s .5s;
+    }
     &__img {
         position: relative;
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
     }
     &__caption {
         padding: $unit*2 $unit*2 $unit*4;
@@ -83,5 +148,11 @@
              right: 0;
          }
     }
+
+    .swiper-button-next:after, .swiper-button-prev:after {
+        color: #ccc;
+        font-size: 20px;
+    }
+
 
 }

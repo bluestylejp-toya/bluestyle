@@ -110,10 +110,40 @@ class SC_UploadFile
             foreach ($this->keyname as $val) {
                 // 一致したキーのファイルに情報を保存する。
                 if ($val == $keyname) {
-                    // 拡張子チェック
-                    $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->arrExt[$cnt]), array('FILE_EXT_CHECK'));
                     // ファイルサイズチェック
                     $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->size[$cnt]), array('FILE_SIZE_CHECK'));
+                    // HEIF 対応 (JPEG 変換)
+                    if (in_array('jpg', $this->arrExt[$cnt])
+                        && class_exists('Imagick')
+                        && preg_match('/^(.*)(\.(heic|heif))$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+                        $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
+                        $im = new Imagick();
+                        try {
+                            $success = $im->readImage($_FILES[$keyname]['tmp_name']);
+                            if (!$success) {
+                                throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
+                            }
+                            $im->setImageFormat('jpeg');
+                            $success = $im->writeImage($_FILES[$keyname]['tmp_name']);
+                            if (!$success) {
+                                throw new Exception("Imagick::writeImage: {$_FILES[$keyname]['tmp_name']}");
+                            }
+                        }
+                        catch (Exception $e) {
+                            throw $e;
+                        }
+                        finally {
+                            $im->clear();
+                            $im->destroy();
+                        }
+                    }
+                    // Safari on iOS の拡張子が .jpeg なので .jpg に書き換える
+                    if (in_array('jpg', $this->arrExt[$cnt])
+                        && preg_match('/^(.*)(\.jpeg)$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+                        $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
+                    }
+                    // 拡張子チェック
+                    $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->arrExt[$cnt]), array('FILE_EXT_CHECK'));
                     // エラーがない場合
                     if (!isset($objErr->arrErr[$keyname])) {
                         // 画像ファイルの場合

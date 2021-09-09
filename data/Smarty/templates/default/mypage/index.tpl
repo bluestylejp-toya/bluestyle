@@ -24,8 +24,10 @@
 
 <section>
     <header class="c-profile-header">
-        <img src="/upload/save_profile_image/08291454_612b212851600.jpg" class="c-profile-header__img">
-        <h1 class="c-profile-header__name">名前</h1>
+        <!--{if strlen($tpl_profile_image) >= 1}-->
+            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$tpl_profile_image|h}-->" class="c-profile-header__img">
+        <!--{/if}-->
+        <h1 class="c-profile-header__name"><!--{$tpl_nickname|h}--></h1>
     </header>
     <!--{if $tpl_navi != ""}-->
         <!--{include file=$tpl_navi}-->
@@ -81,5 +83,4 @@
             <!--{/if}-->
         </form>
     </div>-->
-
 </section>

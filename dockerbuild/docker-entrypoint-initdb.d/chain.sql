@@ -476,6 +476,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,2,1,4,4,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,3,1,0);
@@ -598,7 +599,6 @@ INSERT INTO `dtb_category` VALUES (1,'食品',0,1,5,2,'2021-01-13 01:40:19','202
 INSERT INTO `dtb_category` VALUES (2,'雑貨',0,1,6,2,'2021-01-13 01:40:19','2021-01-13 01:40:19',0);
 INSERT INTO `dtb_category` VALUES (3,'お菓子',1,2,3,2,'2021-01-13 01:40:19','2021-01-13 01:40:19',0);
 INSERT INTO `dtb_category` VALUES (4,'なべ',1,2,4,2,'2021-01-13 01:40:19','2021-01-13 01:40:19',0);
-INSERT INTO `dtb_category` VALUES (5,'アイス',3,3,2,2,'2021-01-13 01:40:20','2021-01-13 01:40:20',0);
 INSERT INTO `dtb_category` VALUES (6,'レシピ',0,1,1,2,'2021-01-13 01:40:20','2021-01-13 01:40:20',0);
 /*!40000 ALTER TABLE `dtb_category` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -647,9 +647,9 @@ CREATE TABLE `dtb_category_count` (
 
 LOCK TABLES `dtb_category_count` WRITE;
 /*!40000 ALTER TABLE `dtb_category_count` DISABLE KEYS */;
-INSERT INTO `dtb_category_count` VALUES (4,2,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_count` VALUES (5,1,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_count` VALUES (6,1,'2021-01-13 01:40:20');
+INSERT INTO `dtb_category_count` VALUES (3,1,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_count` VALUES (4,2,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_count` VALUES (6,1,'2021-08-19 08:39:07');
 /*!40000 ALTER TABLE `dtb_category_count` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -674,12 +674,10 @@ CREATE TABLE `dtb_category_total_count` (
 
 LOCK TABLES `dtb_category_total_count` WRITE;
 /*!40000 ALTER TABLE `dtb_category_total_count` DISABLE KEYS */;
-INSERT INTO `dtb_category_total_count` VALUES (1,3,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_total_count` VALUES (2,NULL,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_total_count` VALUES (3,1,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_total_count` VALUES (4,2,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_total_count` VALUES (5,1,'2021-01-13 01:40:20');
-INSERT INTO `dtb_category_total_count` VALUES (6,1,'2021-01-13 01:40:20');
+INSERT INTO `dtb_category_total_count` VALUES (1,3,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (3,1,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (4,2,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (6,1,'2021-08-19 08:39:07');
 /*!40000 ALTER TABLE `dtb_category_total_count` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2664,7 +2662,7 @@ CREATE TABLE `dtb_product_categories` (
 
 LOCK TABLES `dtb_product_categories` WRITE;
 /*!40000 ALTER TABLE `dtb_product_categories` DISABLE KEYS */;
-INSERT INTO `dtb_product_categories` VALUES (1,5,1);
+INSERT INTO `dtb_product_categories` VALUES (1,3,1);
 INSERT INTO `dtb_product_categories` VALUES (2,4,2);
 INSERT INTO `dtb_product_categories` VALUES (3,4,1);
 INSERT INTO `dtb_product_categories` VALUES (3,6,1);
@@ -2771,6 +2769,7 @@ CREATE TABLE `dtb_products` (
   `update_date` timestamp NOT NULL,
   `deliv_date_id` int DEFAULT NULL,
   `customer_id` int NOT NULL,
+  `withdrawal_flg` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2781,9 +2780,9 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'',NULL,NULL,NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1);
-INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'',NULL,NULL,NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1);
-INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'',NULL,NULL,NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1,0);
+INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'',NULL,NULL,NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1,0);
+INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1,0);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3438,7 +3437,7 @@ INSERT INTO `mtb_constants` VALUES ('CREDIT_NO_LEN','4',207,'クレジットカ�
 INSERT INTO `mtb_constants` VALUES ('CSV_LINE_MAX','10000',128,'CSVアップロード1行あたりの最大文字数');
 INSERT INTO `mtb_constants` VALUES ('CSV_SIZE','2000',127,'CSVサイズ制限(KB)');
 INSERT INTO `mtb_constants` VALUES ('CSV_TEMP_REALDIR','DATA_REALDIR . \"upload/csv/\"',156,'エンコードCSVの一時保存先');
-INSERT INTO `mtb_constants` VALUES ('CUSTOMER_CONFIRM_MAIL','false',75,'会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員)');
+INSERT INTO `mtb_constants` VALUES ('CUSTOMER_CONFIRM_MAIL','true',75,'会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員)');
 INSERT INTO `mtb_constants` VALUES ('CUSTOMER_LOG_REALFILE','DATA_REALDIR . \"logs/customer.log\"',143,'会員ログイン ログファイル');
 INSERT INTO `mtb_constants` VALUES ('CV_PAYMENT_LIMIT','14',275,'支払期限 (*モジュールで使用)');
 INSERT INTO `mtb_constants` VALUES ('DB_LOG_REALFILE','DATA_REALDIR . \"logs/db.log\"',147,'DBログファイル');
@@ -3492,7 +3491,7 @@ INSERT INTO `mtb_constants` VALUES ('IMAGE_RENAME','true',525,'画像リネー�
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_REALDIR','HTML_REALDIR . \"upload/save_image/\"',151,'画像保存先');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_RSS_URL','HTTP_URL . \"upload/save_image/\"',155,'RSS用画像保存先URL');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_URLPATH','ROOT_URLPATH . \"upload/save_image/\"',153,'画像保存先URL');
-INSERT INTO `mtb_constants` VALUES ('IMAGE_SIZE','1000',126,'画像サイズ制限(KB)');
+INSERT INTO `mtb_constants` VALUES ('IMAGE_SIZE','10240',126,'画像サイズ制限(KB)');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_REALDIR','HTML_REALDIR . \"upload/temp_image/\"',150,'画像一時保存');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_RSS_URL','HTTP_URL . \"upload/temp_image/\"',154,'RSS用画像一時保存URL');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_URLPATH','ROOT_URLPATH . \"upload/temp_image/\"',152,'画像一時保存URL');
@@ -3503,7 +3502,7 @@ INSERT INTO `mtb_constants` VALUES ('LARGE_IMAGE_HEIGHT','500',111,'拡大画像
 INSERT INTO `mtb_constants` VALUES ('LARGE_IMAGE_WIDTH','500',110,'拡大画像横');
 INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_HEIGHT','500',119,'拡大サブ画像縦');
 INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_WIDTH','500',118,'拡大サブ画像横');
-INSERT INTO `mtb_constants` VALUES ('LEVEL_MAX','5',132,'カテゴリの最大階層');
+INSERT INTO `mtb_constants` VALUES ('LEVEL_MAX','2',132,'カテゴリの最大階層');
 INSERT INTO `mtb_constants` VALUES ('LLTEXT_LEN','99999',193,'超長文の文字数 (メルマガなど)');
 INSERT INTO `mtb_constants` VALUES ('LOCALE','\"ja_JP.UTF-8\"',40,'ロケール設定');
 INSERT INTO `mtb_constants` VALUES ('LOG_REALFILE','DATA_REALDIR . \"logs/site.log\"',142,'標準ログファイル');
@@ -5011,4 +5010,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-17 17:12:19
+-- Dump completed on 2021-08-29  4:33:35

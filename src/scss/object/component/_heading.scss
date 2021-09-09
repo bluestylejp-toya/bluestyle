@@ -13,6 +13,10 @@
         text-align: center;
         margin-bottom: $unit*2;
     }
+    &--sm {
+        font-size: 1.6rem;
+        margin-bottom: $unit*2;
+    }
     &--form-title {
         @extend %heading;
         font-weight: 700;
@@ -32,6 +36,10 @@
         text-align: center;
         margin-bottom: $unit*2;
     }
+    &--detail {
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
 }
 
 // headerタイトル
@@ -42,6 +50,4 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-
 }

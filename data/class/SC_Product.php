@@ -765,4 +765,20 @@ __EOS__;
 
         return $objQuery->count('dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
     }
+
+    /**
+     * 出品中の商品情報一覧を取得する
+     *
+     * @param $customer_id 会員ID
+     * @return array|null 出品中の商品情報一覧
+     */
+    public static function getListingProducts($customer_id)
+    {
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $where = 'dtb_products.customer_id = ? AND dtb_products.del_flg = 0 AND dtb_products.status = 1';
+        if (NOSTOCK_HIDDEN) {
+            $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        }
+        return $objQuery->select('*', 'dtb_products', $where, [$customer_id]);
+    }
 }
