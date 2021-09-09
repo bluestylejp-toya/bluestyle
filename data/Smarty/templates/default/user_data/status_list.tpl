@@ -1,5 +1,5 @@
 <section>
-    <header class="l-header__inner u-mb--0">
+    <header class="l-header__inner u-mb">
         <a href="<!--{$smarty.const.TOP_URL}-->user_data/myitem.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">Chainの状況</p>
     </header>
