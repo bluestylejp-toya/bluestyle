@@ -38,7 +38,7 @@
             width: 100%;
         }
         @extend .c-form-parts;
-        background: url('data:image/svg+xml;utf8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.59 7.70508L6 3.12508L1.41 7.70508L-1.23266e-07 6.29508L6 0.295079L12 6.29508L10.59 7.70508Z" fill="%23515767"/></svg>') center right 15px no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.41"><path class="cls-1" d="M12,1.41,10.59,0,6,4.58,1.41,0,0,1.41l6,6Z" fill="%23515767"/></svg>') center right 5px/ 10px 15px no-repeat;
     }
     &--date {
         display: flex;
