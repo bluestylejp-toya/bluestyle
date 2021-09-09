@@ -26,7 +26,8 @@
         <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
     </div>
     <div class="c-entry-kv">
-        <img src="<!--{$TPL_URLPATH}-->img/entry/entry-complete.png" class="" decoding="async" loading="lazy"/>
+        <img src="<!--{$TPL_URLPATH}-->img/entry/zoom-bg.png" width="100%" height="100%"  class="c-entry-kv__bg"/>
+        <img src="<!--{$TPL_URLPATH}-->img/entry/illust__balloon.png" width="164" class="c-entry-kv__object baloon">
     </div>
     <h1 class="c-heading--md u-color--gray u-mb--4">
         おめでとうございます！<br />登録完了しました
