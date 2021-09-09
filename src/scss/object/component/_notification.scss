@@ -6,7 +6,6 @@
     left: $unit*3;
     border-radius: $unit;
     padding: $unit;
-    text-align: center;
     color: $white;
     font-weight: 500;
     display: none;
@@ -19,5 +18,9 @@
     }
     &--default {
         background: $gray;
+    }
+    &--gradient {
+        background: $gradient-color;
+        @extend %notification;
     }
 }
