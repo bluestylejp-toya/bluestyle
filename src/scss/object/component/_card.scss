@@ -52,7 +52,7 @@
                     height: $unit*6;
                     position: absolute;
                     object-fit: cover;
-                    border-radius: $unit/2;
+                    border-radius: math.div($unit,2);
                 }
 
                 &::before {
