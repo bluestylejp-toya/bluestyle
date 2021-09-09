@@ -134,12 +134,15 @@
 
                 <li class="c-item--default">
                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"  class="c-item--default__img">
-                        <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" /></span>
+                        <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_mmimage1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" /></span>
 
-                        <!--{if $arrProduct.registered_favorite}-->
-                            <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
-                        <!--{/if}-->
+                    <!--{if $arrProduct.registered_favorite}-->
+                        <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
+                    <!--{elseif $tpl_my_product}-->
+                        <span class="c-item--default__my-item">出品中</span>
+                    <!--{/if}-->
                     </a>
+                    <!--{$tpl_my_product}-->
                     <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></a></p>
                 </li>
             <!--▲商品-->
