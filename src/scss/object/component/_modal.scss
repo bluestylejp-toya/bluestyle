@@ -19,12 +19,38 @@
     &[data-modal_mode=detail] .swiper-container {
         display: none;
     }
+     &[data-modal_mode=requestitem] .c-modal__btn {
+         display: none;
+    }
+    .c-modal__btn {
+        margin: $unit*3 0 #{-$unit*4};
+        display: block;
+    }
     &__inner {
         display: block;
         overflow: auto;
-        padding: 0 $unit*3;
-        & > * {
+        padding: 0 $unit*3 $unit*3;
+        a {
             pointer-events: none;
+        }
+        .c-modal__inner__head {
+            margin: 0 #{-$unit*3} 0;
+            position: relative;
+            padding-top: 100%;
+            height: 0;
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .l-header__inner, .c-btn--report {
+            display: none;
         }
     }
 
@@ -46,8 +72,8 @@
         left: 0;
         top: 0;
         opacity: 0;
-        z-index: 100;
         transition: opacity .1s;
+        z-index: 700;
     }
 
     &.--active {

@@ -82,4 +82,26 @@
             }
         }
     }
+
+    &--white {
+        p.c-card__title {
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        padding: $unit;
+        border-radius: $unit;
+        box-shadow: 1px 1px 3px 0px rgba(#000, .15);
+        display: flex;
+        flex-wrap: wrap;
+
+        .c-item__main {
+            padding-left: $unit;
+        }
+    }
+    &--blue {
+        @extend .c-card--white;
+        background: #E4F2F8;
+    }
 }
