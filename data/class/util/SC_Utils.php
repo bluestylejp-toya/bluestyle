@@ -1445,7 +1445,7 @@ class SC_Utils
     public function sfNoImageMainList($filename = '')
     {
         if (strlen($filename) == 0 || substr($filename, -1, 1) == '/') {
-            $filename .= 'noimage_main_list.jpg';
+            $filename .= 'noimage_main_list.png';
         }
 
         return $filename;

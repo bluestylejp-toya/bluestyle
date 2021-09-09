@@ -62,7 +62,7 @@
 //]]></script>
 
 <!--{strip}-->
-    <div class="p-item-list">
+    <div class="p-item-list --active" data-tab_item="0">
         <form name="form1" id="form1" method="get" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="mode" value="<!--{$mode|h}-->" />
@@ -115,7 +115,7 @@
 
             <!--{if $smarty.foreach.arrProducts.first}-->
                 <!--▼件数-->
-               <dl class="c-list--dl u-mb--4">
+               <dl class="u-mb--4">
                     <dt>アイテム数：</dt><dd><!--{$tpl_linemax}-->件</dd>
                 </dl>
                 <!--▲件数-->
@@ -134,14 +134,15 @@
 
                 <li class="c-item--default">
                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"  class="c-item--default__img">
-
-                    <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" /></span>
+                        <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" /></span>
 
                     <!--{if $arrProduct.registered_favorite}-->
-
                         <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
+                    <!--{elseif $tpl_my_product}-->
+                        <span class="c-item--default__my-item">出品中</span>
                     <!--{/if}-->
                     </a>
+                    <!--{$tpl_my_product}-->
                     <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></a></p>
                 </li>
             <!--▲商品-->

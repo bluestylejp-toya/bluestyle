@@ -24,7 +24,7 @@
 
 <section>
     <header class="l-header__inner">
-        <a href="#" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->user_data/other.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title">Chainについて</h1>
     </header>
     <table class="c-table l-full">
