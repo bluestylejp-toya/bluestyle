@@ -244,6 +244,26 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $this->doCart();
                 break;
 
+            case 'api_add_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
+
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setUrl('http://daemon_api:8081/chain/edges/add');
+                $objHelperApi->setMethod('POST');
+                $data = [
+                    "source_id" => $this->objFormParam->getValue('favorite_product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
+                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
+                ];
+                $objHelperApi->setParam($data);
+                $result = $objHelperApi->exec();
+                SC_Response_Ex::json([
+                    'registered' => true,
+                ]);
+                break;
+
             case 'add_favorite_ajax':
                 if ($this->tpl_my_product) {
                     throw new Exception('自分の商品はお気に入りに登録できない。');
@@ -459,6 +479,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('EXIST_CHECK', 'ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お気に入り商品ID', 'favorite_product_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品規格ID', 'product_class_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('交換対象商品', 'target_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         // 値の取得
         $objFormParam->setParam($_REQUEST);
         // 入力値の変換
@@ -606,7 +627,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      * お気に入り商品登録
      * @return void
      */
-    public function lfRegistFavoriteProduct($favorite_product_id, $customer_id)
+    public function lfRegistFavoriteProduct($favorite_product_id, $customer_id, $target_id)
     {
         // ログイン中のユーザが商品をお気に入りにいれる処理
         if (!SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', $favorite_product_id, 'del_flg = 0 AND status = 1')) {
@@ -622,6 +643,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $sqlval['product_id'] = $favorite_product_id;
                 $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
                 $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
+                $sqlval['target_id'] = $target_id;
 
                 $objQuery->begin();
                 $objQuery->insert('dtb_customer_favorite_products', $sqlval);
@@ -685,8 +707,8 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             if (count($this->arrErr) == 0) {
                 // 登録
                 if ($register) {
-                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
-                        SC_Response_Ex::actionExit(); 
+                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'), $this->objFormParam->getValue('target_id'))) {
+                        SC_Response_Ex::actionExit();
                     }
                     $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
                     $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite', array($this));
