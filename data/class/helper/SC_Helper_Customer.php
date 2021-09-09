@@ -731,4 +731,26 @@ class SC_Helper_Customer
         
         return true;
     }
+
+    /**
+     * 指定された会員の商品を取得する
+     *
+     * @return array
+     */
+    public static function getCustomerProducts($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objProduct = new SC_Product_Ex();
+
+        $objQuery->setWhere('alldtl.customer_id = ?', [$customer_id]);
+        $objQuery->andWhere('alldtl.del_flg = 0');
+        $objQuery->andWhere('alldtl.status = 1');
+        $objQuery->setOrder('alldtl.product_id DESC');
+        $objQuery->setLimit(10);
+
+        $addCols = ['count_of_favorite'];
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        return $arrProducts;
+    }
 }
