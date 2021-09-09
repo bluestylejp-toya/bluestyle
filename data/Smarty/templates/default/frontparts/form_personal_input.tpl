@@ -156,8 +156,8 @@ $flgFields について
         <!--{/if}-->
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
-        <dt class="c-heading--form-title">パスワード<!--{$require_mark}--></dt>
-        <dd class="u-mb--2">
+        <dt>パスワード<!--{$require_mark}--></dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`password"}-->
             <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->の半角英数字"/>
             <!--{if $arrErr[$key1]}-->
@@ -166,8 +166,8 @@ $flgFields について
         </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
-        <dt class="c-heading--form-title">お支払い方法<!--{$require_mark}--></dt>
-        <dd class="u-mb--2">
+        <dt>お支払い方法<!--{$require_mark}--></dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
             <div class="c-form-parts--select">
                 <select name="<!--{$key1|h}-->" <!--{if $arrErr[$key1]}--><!--{sfSetErrorStyle}--><!--{/if}-->>
