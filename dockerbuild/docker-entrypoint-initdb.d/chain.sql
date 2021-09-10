@@ -1136,7 +1136,8 @@ CREATE TABLE `dtb_customer_favorite_products` (
   `product_id` int NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` timestamp NOT NULL,
-  PRIMARY KEY (`customer_id`,`product_id`)
+  `target_id` int NOT NULL,
+  PRIMARY KEY (`customer_id`,`product_id`,`target_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
