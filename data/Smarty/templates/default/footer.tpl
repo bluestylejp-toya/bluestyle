@@ -23,7 +23,6 @@
 <!--▼FOOTER-->
 <!--{strip}-->
 <nav class="l-footer-nav">
-  <ul class="l-footer-nav__inner --login">
     <!--{assign var=current value="other"}-->
     <!--{if $tpl_page_class_name ==="LC_Page_Products_Detail" or $tpl_page_class_name === "LC_Page_Products_List"}-->
         <!--{assign var=current value="search"}-->
@@ -35,27 +34,30 @@
         <!--{/if}-->
     <!--{/if}-->
     <!--{if $tpl_login}-->
-        <li class="l-footer-nav__item">
-            <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">さがす</a>
-        </li>
-        <li class="l-footer-nav__item">
-            <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item-list.php" class="c-footer-nav-item--listing<!--{if $current == 'display'}--> is-current<!--{/if}-->">出品</a>
-        </li>
-        <li class="l-footer-nav__item">
-            <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}--> has-batch">マイページ</a>
-        </li>
-        <li class="l-footer-nav__item">
-            <a href="<!--{$smarty.const.HTTPS_URL}-->user_data/other.php" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
-        </li>
+        <ul class="l-footer-nav__inner --login">
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">さがす</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item-list.php" class="c-footer-nav-item--listing<!--{if $current == 'display'}--> is-current<!--{/if}-->">出品</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}--> has-batch">マイページ</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->user_data/other.php" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
+            </li>
+        </ul>
     <!--{else}-->
-        <li class="l-footer-nav__item">
-            <a href="<!--{$smarty.const.HTTPS_URL}-->" class="c-footer-nav-item--search is-current">さがす</a>
-        </li>
-        <li class="l-footer-nav__item">
-            <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--listing">出品</a>
-        </li>
+        <ul class="l-footer-nav__inner">
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->" class="c-footer-nav-item--search is-current">さがす</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--listing">出品</a>
+            </li>
+        </ul>
     <!--{/if}-->
-  </ul>
 </nav>
 <!--{/strip}-->
 <!--▲FOOTER-->
