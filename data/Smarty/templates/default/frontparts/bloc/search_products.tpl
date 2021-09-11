@@ -44,12 +44,24 @@
 
             <div class="p-search__menu">
                 <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
-                    <button aria-label="戻る" class="c-btn--header-nav" type="button"></button>
-                    <p class="c-header-title"></p>
+                    <button aria-label="戻る" class="c-btn--header-nav menu_btn" type="button"></button>
+                    <p class="c-header-title change_title"></p>
                 </header>
                 <ul id="category" class="c-nav-list">
                     <!--{foreach from=$arrCatList item=cate key=key}-->
-                    <li><label><input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->><span><!--{$cate}--></span></label></li>
+                    <li><button type="button" data-sub_menu_id="menu<!--{$key}-->"><!--{$cate}--></button>
+                        <div id="menu<!--{$key}-->"  class="p-search__sub-menu">
+                            <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
+                                <button aria-label="戻る" class="c-btn--header-nav menu_sub_btn" type="button"></button>
+                                <p class="c-header-title"><!--{$cate}--></p>
+                            </header>
+                            <ul class="c-nav-list">
+                                <!--{foreach from=$arrCatList item=cate key=key}-->
+                                <li><label><input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->><span><!--{$cate}--></span></label></li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                    </li>
                     <!--{/foreach}-->
                 </ul>
                 <ul id="maker" class="c-nav-list">
@@ -65,6 +77,7 @@
         const category = $("input[name=category_id], input[name=maker_id]");
         const list = $(".p-search__list");
         const slideInMenu = $(".p-search__menu");
+        const slideInSubMenu = $(".p-search__sub-menu");
         const searchBtn = $(".c-form-parts--search__btn");
         search.on('click',function(e){
             list.fadeIn();
@@ -74,13 +87,19 @@
             $('#search_form').submit();
         });
         $('[data-menu_id]').on('click',function(){
-            slideInMenu.find('.c-header-title').text($(this).text());
+            slideInMenu.find('.c-header-title.change_title').text($(this).text());
             slideInMenu.addClass('--show')
             console.log($('#' + $(this).data('menu_id')))
             $('#' + $(this).data('menu_id')).addClass('--show')
-            slideInMenu.find('.c-btn--header-nav').on('click',function(){
+            slideInMenu.find('.c-btn--header-nav.menu_btn').on('click',function(){
                 slideInMenu.removeClass('--show')
-                slideInMenu.find('ul').removeClass('--show')
+            })
+        })
+        $('[data-sub_menu_id]').on('click',function(){
+            slideInSubMenu.addClass('--show')
+            $('#' + $(this).data('sub_menu_id')).addClass('--show')
+            slideInSubMenu.find('.c-btn--header-nav.menu_sub_btn').on('click',function(){
+                slideInSubMenu.removeClass('--show')
             })
         })
         category.on('change',function(){

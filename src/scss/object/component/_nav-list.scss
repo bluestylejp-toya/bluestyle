@@ -2,7 +2,7 @@
 
     li {
         border-bottom: 1px solid #EAECEE;
-        button,a,label {
+        & > button,& > a,& > label {
             width: 100%;
             color: $gray;
             text-decoration: none;

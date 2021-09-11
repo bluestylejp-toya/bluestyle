@@ -57,7 +57,7 @@
         z-index: 500;
         transition: .5s;
         padding: 0 $unit*3;
-        ul {
+        & > ul {
             display: none;
             &.--show {
                 display: block;
@@ -66,6 +66,13 @@
 
         &.--show {
             transform: translateX(0);
+        }
+    }
+
+    &__sub-menu {
+        @extend .p-search__menu;
+        ul {
+            display: block;
         }
     }
 }
