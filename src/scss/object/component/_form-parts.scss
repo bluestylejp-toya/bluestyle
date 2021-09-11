@@ -138,10 +138,11 @@
     &--toggle-btn {
         width: 36px;
         height: 18px;
-        background: rgba(#000, .54);
+        background: rgba(#000, .53);
         border-radius: 30px;
         display: inline-block;
         position: relative;
+        transition: .3s;
 
         &::before {
             top: 3px;
@@ -153,7 +154,6 @@
             border-radius: 50%;
             background: $white;
             left: 3px;
-            opacity: 0.8;
             transition: .1s;
         }
 
@@ -162,6 +162,7 @@
 
             &:checked {
                 & + * {
+                    background:$blue;
                     &::before {
                         opacity: 1;
                         left: 19px;
