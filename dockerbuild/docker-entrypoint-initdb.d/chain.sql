@@ -476,7 +476,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,2,1,4,4,0);
+INSERT INTO `dtb_blocposition` VALUES (10,2,4,11,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,3,1,0);
