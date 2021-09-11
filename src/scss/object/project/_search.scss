@@ -1,0 +1,71 @@
+.p-search {
+    margin: $unit #{-$unit*3};
+    position: relative;
+    z-index: 400;
+
+    &__box {
+        margin: 0 $unit*2 $unit;
+        input:-webkit-autofill {
+            box-shadow: 0 0 0 1000px #eaecee inset;
+        }
+    }
+
+    &__list {
+
+        padding: 0 $unit*3;
+        position: fixed;
+        display: none;
+        z-index: 200;
+        background: $white;
+        width: 100%;
+        top: 48px;
+        left: 0;
+        height: calc(100vh - 48px);
+
+        li {
+            height: 48px;
+            border-bottom: 1px solid $border-color-light;
+            label {
+                height: 48px;
+                display: flex;
+                align-items: center;
+                padding: 0 $unit*3;
+                input {
+                    display: none;
+
+                    &:checked + span {
+                        font-weight: 500;
+                    }
+                }
+            }
+            button {
+                height: 48px;
+            }
+            & > ul {
+                display: block;
+            }
+        }
+    }
+    &__menu {
+        position: fixed;
+        transform: translateX(100%);
+        top: 0;
+        left: 0;
+        background: $white;
+        width: 100%;
+        height: 100vh;
+        z-index: 500;
+        transition: .5s;
+        padding: 0 $unit*3;
+        ul {
+            display: none;
+            &.--show {
+                display: block;
+            }
+        }
+
+        &.--show {
+            transform: translateX(0);
+        }
+    }
+}

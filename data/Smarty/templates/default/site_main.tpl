@@ -28,7 +28,6 @@
             <!--{if $tpl_login != true}-->
             <!--{/if}-->
         <!--{else}-->
-        <header class="l-header">
         <!--{* ▼HeaderHeaderTop COLUMN*}-->
         <!--{if !empty($arrPageLayout.HeaderTopNavi)}-->
             <!--{* ▼上ナビ *}-->
@@ -51,28 +50,8 @@
         <!--{include file= $header_tpl}-->
         <!--{/if}-->
         <!--{* ▲HEADER *}-->
-        </header>
         <!--{/if}-->
         <main class="l-main">
-            <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
-            <!--{if $smarty.server.PHP_SELF==$list}-->
-            <div class="l-header--item">
-                <!--{include file="frontparts/bloc/search_products.tpl"}-->
-                <!--{if $tpl_subtitle !== '検索結果'}-->
-                <ul class="c-item-tab">
-                    <li class="c-item-tab__item --active" data-tab_nav="0">
-                        <a href="javascript:void(0)">新着</a>
-                    </li>
-                    <!--<li class="c-item-tab__item">
-                        <a href="javascript:void(0)">ファストChain</a>
-                    </li>-->
-                    <li class="c-item-tab__item" data-tab_nav="1">
-                        <a href="javascript:void(0)">閲覧履歴</a>
-                    </li>
-                </ul>
-                <!--{/if}-->
-            </div>
-            <!--{/if}-->
 
         <!--{* ▼TOP COLUMN*}-->
         <!--{if !empty($arrPageLayout.TopNavi)}-->
@@ -116,6 +95,24 @@
                     <!--{/foreach}-->
                 <!--{/if}-->
                 <!--{* ▲メイン上部 *}-->
+            <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
+                <!--{if $smarty.server.PHP_SELF==$list}-->
+                    <!--{if $tpl_subtitle !== '検索結果'}-->
+                        <div class="l-header--item">
+                            <ul class="c-item-tab">
+                                <li class="c-item-tab__item --active" data-tab_nav="0">
+                                    <a href="javascript:void(0)">新着</a>
+                                </li>
+                                <!--<li class="c-item-tab__item">
+                                    <a href="javascript:void(0)">ファストChain</a>
+                                </li>-->
+                                <li class="c-item-tab__item" data-tab_nav="1">
+                                    <a href="javascript:void(0)">閲覧履歴</a>
+                                </li>
+                            </ul>
+                        </div>
+                    <!--{/if}-->
+                <!--{/if}-->
 
                 <!-- ▼メイン -->
                 <!--{if $smarty.server.PHP_SELF==$list}--><div class="c-item-tab__content --active" data-tab_item="0"><!--{/if}-->
