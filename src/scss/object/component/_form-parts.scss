@@ -121,6 +121,7 @@
         align-items: center;
         justify-content: center;
         background:  map-get($gray-set, 2);
+        font-size: 1.6rem;
 
         &__box {
             line-height: $unit*3;
