@@ -8,4 +8,23 @@ require_once CLASS_REALDIR . 'pages/mypage/myitem/LC_Page_Mypage_Myitem_History.
  */
 class LC_Page_Mypage_Myitem_History_Ex extends LC_Page_Mypage_Myitem_History
 {
+    /**
+     * Page を初期化する.
+     *
+     * @return void
+     */
+    function init()
+    {
+        parent::init();
+    }
+
+    /**
+     * Page のプロセス.
+     *
+     * @return void
+     */
+    function process()
+    {
+        parent::process();
+    }
 }
