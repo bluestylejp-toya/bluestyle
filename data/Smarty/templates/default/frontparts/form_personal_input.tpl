@@ -64,7 +64,7 @@ $flgFields について
         <!--{else}-->
             <tr>
                 <th>国<!--{$require_mark}--></th>
-            <dd class="u-mb--2">
+            <dd>
                     <!--{if $arrErr[$key6]}-->
                         <p><small class="attention"><!--{$arrErr[$key6]}--></small></p>
                     <!--{/if}-->
@@ -74,7 +74,7 @@ $flgFields について
                     </select>
             </dd>
             <dt>ZIP CODE</dt>
-            <dd class="u-mb--2">
+            <dd>
                     <!--{if $arrErr[$key7]}-->
                         <p><small class="attention"><!--{$arrErr[$key7]}--></small></p>
                     <!--{/if}-->
@@ -110,7 +110,7 @@ $flgFields について
             <!--{/if}-->
         </dd>
         <dt>電話番号<span class="attention">※必須</span></dt>
-        <dd class="u-mb--2">
+        <dd>
             <!--{assign var=key1 value="`$prefix`tel01"}-->
             <!--{assign var=key2 value="`$prefix`tel02"}-->
             <!--{assign var=key3 value="`$prefix`tel03"}-->
@@ -179,8 +179,8 @@ $flgFields について
     <!--{/if}-->
     <!--{if $flgFields == 93}-->
         <!--{assign var=key1 value="nickname"}-->
-        <dt class="c-heading--form-title"><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
-        <dd class="u-mb--2">
+        <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
+        <dd>
             <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="Chain内のユーザ名"/>
             <!--{if $arrErr[$key1]}-->
                 <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>

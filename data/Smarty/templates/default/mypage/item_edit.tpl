@@ -266,6 +266,7 @@ $(function(){
             } else {
                 alert('画像を削除しました。');
                 $('.l-popup').attr('data-item_mode', 'false') ;
+                $closest.find('input[name=sub_title' + $closest.attr('data-item_id') + ']').val('') ;
                 $closest.find('img').attr('src', '');
                 $closest.addClass('--hidden');
                 $closest.find('span.c-item__img').removeClass('--hidden');
@@ -321,11 +322,13 @@ $('[data-item_id] .c-item__sort-btn').each( function(index){
                 prev = $this.prev().contents();
                 $this.prev().append(current)
                 $this.empty().append(prev);
+                postSwapImage('sub_large_image', id, $this.prev().attr('data-item_id'));
             }
             if (move > 0 && length > id) {
                 next = $this.next().contents();
                 $this.next().append(current)
                 $this.empty().append(next)
+                postSwapImage('sub_large_image', id, $this.next().attr('data-item_id'));
             }
             $('body').removeClass('--overflow-hidden');
         },
@@ -340,12 +343,14 @@ $('[data-item_id] .c-item__sort-btn').each( function(index){
                     $this.next().append(current)
                     $this.empty().append(next)
                     $this.attr('style', 'transform: translateY('+  70+'px)').addClass('--move')
+                    postSwapImage('sub_large_image', id, $this.next().attr('data-item_id'));
                 }
                 if(event.offsetY <= 30 && id > 1)  {
                     prev = $this.prev().contents();
                     $this.prev().append(current)
                     $this.empty().append(prev);
                     $this.attr('style', 'transform: translateY('+  -70+'px)').addClass('--move')
+                    postSwapImage('sub_large_image', id, $this.prev().attr('data-item_id'));
                 }
                 setTimeout(function(){
                     $this.removeAttr('style').removeClass('--move')
@@ -354,4 +359,18 @@ $('[data-item_id] .c-item__sort-btn').each( function(index){
         }
     })
 });
+
+// 画像の入れ替えに伴うフォームオブジェクトの name 属性の書き換えを行う
+function postSwapImage(key_base, id1, id2) {
+    [key_base, 'temp_' + key_base, 'save_' + key_base].forEach(key => {
+        let $input1 = $('#form1 input[name="' + key + id1 + '"]');
+        let $input2 = $('#form1 input[name="' + key + id2 + '"]');
+        $input1.attr('name', key + id2);
+        $input2.attr('name', key + id1);
+    });
+    let $cap1 = $('#form1 input[name=sub_title' + id1 + ']');
+    let $cap2 = $('#form1 input[name=sub_title' + id2 + ']');
+    $cap1.attr('name', 'sub_title' + id2);
+    $cap2.attr('name', 'sub_title' + id1);
+}
 </script>

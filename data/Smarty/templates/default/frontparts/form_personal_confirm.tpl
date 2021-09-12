@@ -24,50 +24,50 @@
 
 <!--{strip}-->
     <!--{if $flgFields != 93}-->
-        <dt class="c-heading--form-title">お名前</dt>
-        <dd class="u-mb--2">
+        <dt>お名前</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`name01"}-->
             <!--{assign var=key2 value="`$prefix`name02"}-->
             <!--{$arrForm[$key1].value|h}-->&nbsp;
             <!--{$arrForm[$key2].value|h}-->
         </dd>
-        <dt class="c-heading--form-title">お名前(フリガナ)</th>
-        <dd class="u-mb--2">
+        <dt>お名前(フリガナ)</th>
+        <dd>
             <!--{assign var=key1 value="`$prefix`kana01"}-->
             <!--{assign var=key2 value="`$prefix`kana02"}-->
             <!--{$arrForm[$key1].value|h}-->&nbsp;
             <!--{$arrForm[$key2].value|h}-->
         </dd>
         <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
-        <dt class="c-heading--form-title">国</dt>
-        <dd class="u-mb--2">
+        <dt>国</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`country_id"}-->
             <!--{assign var="country_id" value=$arrForm[$key1].value}-->
             <!--{$arrCountry[$country_id]|h}-->
         </dd>
         </tr>
-        <dt class="c-heading--form-title">ZIP CODE</dt>
-        <dd class="u-mb--2">
+        <dt>ZIP CODE</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`zipcode"}-->
             <!--{$arrForm[$key1].value|h}-->
         </dd>
         <!--{/if}-->
-        <dt class="c-heading--form-title">郵便番号</dt>
-        <dd class="u-mb--2">
+        <dt>郵便番号</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`zip01"}-->
             <!--{assign var=key2 value="`$prefix`zip02"}-->
             〒 <!--{$arrForm[$key1].value|h}--> - <!--{$arrForm[$key2].value|h}-->
         </dd>
-        <dt class="c-heading--form-title">住所</dt>
-        <dd class="u-mb--2">
+        <dt>住所</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`pref"}-->
             <!--{assign var=key2 value="`$prefix`addr01"}-->
             <!--{assign var=key3 value="`$prefix`addr02"}-->
             <!--{assign var="pref_id" value=$arrForm[$key1].value}-->
             <!--{$arrPref[$pref_id]|h}--><!--{$arrForm[$key2].value|h}--><!--{$arrForm[$key3].value|h}-->
         </dd>
-        <dt class="c-heading--form-title">電話番号</dt>
-        <dd class="u-mb--2">
+        <dt>電話番号</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`tel01"}-->
             <!--{assign var=key2 value="`$prefix`tel02"}-->
             <!--{assign var=key3 value="`$prefix`tel03"}-->
@@ -75,15 +75,15 @@
         </dd>
     <!--{/if}-->
     <!--{if $flgFields != 1}-->
-        <dt class="c-heading--form-title">メールアドレス</dt>
-        <dd class="u-mb--2">
+        <dt>メールアドレス</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`email"}-->
             <a href="mailto:<!--{$arrForm[$key1].value|escape:'hex'}-->"><!--{$arrForm[$key1].value|escape:'hexentity'}--></a>
         </dd>
     <!--{/if}-->
     <!--{if $flgFields == 2 || $flgFields == 3}-->
-        <dt class="c-heading--form-title">生年月日</dt>
-        <dd class="u-mb--2">
+        <dt>生年月日</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`year"}-->
             <!--{assign var=key2 value="`$prefix`month"}-->
             <!--{assign var=key3 value="`$prefix`day"}-->
@@ -95,12 +95,12 @@
         </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
-        <dt class="c-heading--form-title">パスワード</dt>
-        <dd class="u-mb--2"><!--{$passlen}--></dd>
+        <dt>パスワード</dt>
+        <dd><!--{$passlen}--></dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
-        <dt class="c-heading--form-title">お支払い方法</dt>
-        <dd class="u-mb--2">
+        <dt>お支払い方法</dt>
+        <dd>
             <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
             <!--{assign var="default_payment_id" value=$arrForm[$key1].value}-->
             <!--{$arrPayment[$default_payment_id]|h}-->
@@ -108,7 +108,7 @@
     <!--{/if}-->
     <!--{if $flgFields == 93}-->
         <!--{assign var=key1 value="nickname"}-->
-        <dt class="c-heading--form-title"><!--{$arrForm[$key1].disp_name|h}--></dt>
-        <dd class="u-mb--2"><!--{$arrForm[$key1].value|h}--></dd>
+        <dt><!--{$arrForm[$key1].disp_name|h}--></dt>
+        <dd><!--{$arrForm[$key1].value|h}--></dd>
     <!--{/if}-->
 <!--{/strip}-->

@@ -469,8 +469,12 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
+<<<<<<< HEAD
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,4,4,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,2,11,1,0);
+=======
+INSERT INTO `dtb_blocposition` VALUES (10,2,4,11,1,0);
+>>>>>>> master
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,3,1,0);
@@ -1139,7 +1143,8 @@ CREATE TABLE `dtb_customer_favorite_products` (
   `product_id` int NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` timestamp NOT NULL,
-  PRIMARY KEY (`customer_id`,`product_id`)
+  `target_id` int NOT NULL,
+  PRIMARY KEY (`customer_id`,`product_id`,`target_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

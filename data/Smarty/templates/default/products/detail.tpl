@@ -47,6 +47,8 @@
             <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
 
                 <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
+                <a href="/products/select.php?source_id=<!--{$arrProduct.product_id|h}-->">【暫定対応】商品選択画面に遷移</a>
+
                 <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
                 <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
                 <g class="particleLayer">
@@ -431,4 +433,14 @@
             $('.c-modal__inner').empty();
         })
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const url = new URL(location.href);
+        const params = new URLSearchParams(url.search);
+        if (params.get('mode') !== undefined && params.get('mode') == 'select_product_success'){
+            alert('リクエストを送信しました');
+            params.delete('mode');
+            history.replaceState('', '', location.href.replace('&mode=select_product_success', ''));
+        }
+    })
 </script>

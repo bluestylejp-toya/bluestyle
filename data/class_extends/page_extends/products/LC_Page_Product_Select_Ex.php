@@ -1,4 +1,4 @@
-<!--{*
+<?php
 /*
  * This file is part of EC-CUBE
  *
@@ -20,13 +20,37 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-*}-->
 
-<section>
-    <header class="l-header__inner u-mb--0">
-        <a  href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
-        <p class="c-header-title">アカウント情報を更新しました</p>
-    </header>
-    <p class="u-mb--4">アカウント情報を更新しました。<br>引き続き、Chainをお楽しみください。</p>
-    <p><a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary">新着アイテムを見る</a></p>
-</div>
+require_once CLASS_REALDIR . 'pages/products/LC_Page_Product_Select.php';
+
+/**
+ * LC_Page_Products_Detail のページクラス(拡張).
+ *
+ * LC_Page_Products_Detail をカスタマイズする場合はこのクラスを編集する.
+ *
+ * @package Page
+ * @author EC-CUBE CO.,LTD.
+ * @version $Id$
+ */
+class LC_Page_Product_Select_Ex extends LC_Page_Product_Select
+{
+    /**
+     * Page を初期化する.
+     *
+     * @return void
+     */
+    function init()
+    {
+        parent::init();
+    }
+
+    /**
+     * Page のプロセス.
+     *
+     * @return void
+     */
+    function process()
+    {
+        parent::process();
+    }
+}

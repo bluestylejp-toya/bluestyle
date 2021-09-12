@@ -40,14 +40,17 @@
 <!--{if $arrPageLayout.meta_robots|strlen >= 1}-->
     <meta name="robots" content="<!--{$arrPageLayout.meta_robots|h}-->" />
 <!--{/if}-->
-<link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
-<link rel="icon" type="image/vnd.microsoft.icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
+<link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="<!--{$TPL_URLPATH}-->img/common/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" type="image/png" href="<!--{$TPL_URLPATH}-->img/common/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/main.css" media="all" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->js/main.js" differ/>
+<!--<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->js/main.js" differ/>-->
 
 
 <!--{if $tpl_page_class_name === "LC_Page_Products_Detail"}-->

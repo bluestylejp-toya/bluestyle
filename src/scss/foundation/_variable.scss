@@ -7,7 +7,7 @@ $gray-set: (1: #FFFFFF, 2:#EAECEE, 3:#9DA4B0, 4:#757f89,5: #475462,6: #000000);
 
 $brand-colors: (
     default: (default: map-get($gray-set, 0), dark: map-get($gray-set, 2)),
-    primary: (default: #009fcf, dark: #2A7DA7),
+    primary: (default: #72c8e2, dark: #2A7DA7),
     secondary: (default: #84C200, dark: #79A52B),
     tertiary: (default: #FFAF33, dark: #CC7D19),
     red: (default: #FD0000, dark: #FD0000),

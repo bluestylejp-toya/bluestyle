@@ -45,7 +45,7 @@
             width: 100%;
         }
         @extend .c-form-parts;
-        background: url('data:image/svg+xml;utf8,<svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.9357 0.589844L6.3457 5.16984L1.7557 0.589844L0.345703 1.99984L6.3457 7.99984L12.3457 1.99984L10.9357 0.589844Z" fill="black" fill-opacity="0.54"/></svg>') center right 15px no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.41"><path class="cls-1" d="M12,1.41,10.59,0,6,4.58,1.41,0,0,1.41l6,6Z" fill="%23515767"/></svg>') center right 5px/ 10px 15px no-repeat;
     }
     &--date {
         display: flex;
@@ -138,10 +138,11 @@
     &--toggle-btn {
         width: 36px;
         height: 18px;
-        background: rgba(#000, .54);
+        background: rgba(#000, .53);
         border-radius: 30px;
         display: inline-block;
         position: relative;
+        transition: .3s;
 
         &::before {
             top: 3px;
@@ -153,7 +154,6 @@
             border-radius: 50%;
             background: $white;
             left: 3px;
-            opacity: 0.8;
             transition: .1s;
         }
 
@@ -162,6 +162,7 @@
 
             &:checked {
                 & + * {
+                    background:$blue;
                     &::before {
                         opacity: 1;
                         left: 19px;
