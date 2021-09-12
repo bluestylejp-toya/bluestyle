@@ -17,32 +17,29 @@
     <div class="c-item-tab__content --active" data-tab_item="0">
         <div class="c-notification--secondary notification">リクエストを取り消しました</div>
         <ul data-modal="myitem">
-            <li class="c-item--has-icon" data-modal_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=9">
-             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+            <!--{foreach from=$arrRequestingProducts item="product"}-->
+            <li class="c-item" data-modal_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product.product_id|h}-->">
+                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$product.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$product.name|h}--> 画像(1)" class="c-item__img"/>
                 <div class="c-item__main">
-                    <p class="c-item__title"><!--{$arrCustomerProduct.name|h}--></p>
+                    <p class="c-item__title"><!--{$product.name|h}--></p>
                     <p class="c-item__request"><!--{$arrCustomerProduct.count_of_favorite|n2s|h}--></p>
                 </div>
             </li>
-            <li class="c-item--has-icon" data-modal_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=9">
-             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
-                <div class="c-item__main">
-                    <p class="c-item__title"><!--{$arrCustomerProduct.name|h}--></p>
-                    <p class="c-item__request"><!--{$arrCustomerProduct.count_of_favorite|n2s|h}--></p>
-                </div>
-            </li>
+            <!--{/foreach}-->
         </ul>
     </div>
     <!--/マイアイテム-->
     <div class="c-item-tab__content" data-tab_item="1">
         <ul data-modal="requestitem">
-            <li class="c-item" data-modal_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=9">
-             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+            <!--{foreach from=$arrRequestedProducts item="product"}-->
+            <li class="c-item" data-modal_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product.product_id|h}-->">
+             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$product.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$product.name|h}--> 画像(1)" class="c-item__img"/>
                 <div class="c-item__main">
-                    <p class="c-item__title"><!--{$arrCustomerProduct.name|h}--></p>
+                    <p class="c-item__title"><!--{$product.name|h}--></p>
                     <p class="c-item__request"><!--{$arrCustomerProduct.count_of_favorite|n2s|h}--></p>
                 </div>
             </li>
+            <!--{/foreach}-->
         </ul>
     </div>
     <!--/マイアイテム-->

@@ -51,7 +51,58 @@ class LC_Page_Mypage_Myitem_RequestItem extends LC_Page_AbstractMypage_Ex
         if (isset($_POST['pageno'])) {
             $this->tpl_pageno = intval($_POST['pageno']);
         }
-        $this->arrProducts = $this->getProducts($customer_id, $this);
+
+        // リクエストしている商品
+        $this->arrRequestingProducts = $this->getRequestingProducts($customer_id, $this);
+
+        // リクエストされている商品
+        $this->arrRequestedProducts = $this->getRequestedProducts($customer_id, $this);
+
+
+    }
+
+    /**
+     * リクエストされている商品
+     *
+     * @param mixed $customer_id
+     * @access private
+     * @return array リクエストされている商品
+     */
+    public function getRequestedProducts($customer_id)
+    {
+        // リクエストされている商品ID取得
+        $arrProductId = array();
+        $arrProducts  = SC_Product_Ex::getRequestedFavoriteByCustomerId($customer_id);
+
+        foreach ($arrProducts as $arrProduct) {
+            $arrProductId[] = $arrProduct['product_id'];
+        }
+        $arrProductId = array_values(array_unique($arrProductId));
+        $arrProductsList = $this->getProductsData($arrProductId);
+
+        return $arrProductsList;
+    }
+
+    /**
+     * リクエストしている商品
+     *
+     * @param mixed $customer_id
+     * @access private
+     * @return array リクエストしている商品
+     */
+    public function getRequestingProducts($customer_id)
+    {
+        // リクエストしている商品ID取得
+        $arrProductId = array();
+        $arrProducts  = SC_Product_Ex::getRequestingFavoriteByCustomerId($customer_id);
+
+        foreach ($arrProducts as $arrProduct) {
+            $arrProductId[] = $arrProduct['product_id'];
+        }
+        $arrProductId = array_values(array_unique($arrProductId));
+        $arrProductsList = $this->getProductsData($arrProductId);
+
+        return $arrProductsList;
     }
 
     /**
@@ -61,15 +112,8 @@ class LC_Page_Mypage_Myitem_RequestItem extends LC_Page_AbstractMypage_Ex
      * @access private
      * @return array 出品中アイテム商品一覧
      */
-    public function getProducts($customer_id)
+    public function getProductsData($arrProductId)
     {
-        // 出品中アイテム商品ID取得
-        $arrProductId = array();
-        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id);
-        foreach ($arrListingProducts as $arrListingProduct) {
-            $arrProductId[] = $arrListingProduct['product_id'];
-        }
-
         $objQuery       = SC_Query_Ex::getSingletonInstance();
         $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
         $objProduct     = new SC_Product_Ex();

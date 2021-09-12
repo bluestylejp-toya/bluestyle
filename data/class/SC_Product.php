@@ -767,6 +767,36 @@ __EOS__;
     }
 
     /**
+     * リクエストされている商品情報
+     * @param $customer_id
+     * @return array|null
+     */
+    public static function getRequestedFavoriteByCustomerId($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $sql = 'select * from dtb_customer_favorite_products where product_id IN (
+            select product_id from dtb_products where customer_id = ? and del_flg = 0
+        )';
+
+        return $objQuery->getAll($sql, [$customer_id]);
+    }
+
+    /**
+     * リクエストしている商品情報
+     * @param $customer_id
+     * @return array|null
+     */
+    public static function getRequestingFavoriteByCustomerId($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $sql = 'select * from dtb_customer_favorite_products where customer_id = ?';
+
+        return $objQuery->getAll($sql, [$customer_id]);
+    }
+
+    /**
      * 出品中の商品情報一覧を取得する
      *
      * @param $customer_id 会員ID
