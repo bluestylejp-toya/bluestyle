@@ -63,7 +63,7 @@ $flgFields について
             <input type="hidden" name="<!--{$key6}-->" value="<!--{$smarty.const.DEFAULT_COUNTRY_ID}-->" />
         <!--{else}-->
             <tr>
-                <th>国<!--{$require_mark}--></th>
+                <th>国<span class="attention">※必須</span></th>
             <dd>
                     <!--{if $arrErr[$key6]}-->
                         <p><small class="attention"><!--{$arrErr[$key6]}--></small></p>
@@ -123,7 +123,7 @@ $flgFields について
         </dd>
     <!--{/if}-->
     <!--{if $flgFields != 1}-->
-        <dt>メールアドレス<!--{$require_mark}--></dt>
+        <dt>メールアドレス<span class="attention">※必須</span></dt>
         <dd>
             <!--{assign var=key1 value="`$prefix`email"}-->
             <input type="text" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" style="ime-mode: disabled;" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="〇〇文字以上の半角英数字"/>
@@ -156,7 +156,7 @@ $flgFields について
         <!--{/if}-->
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
-        <dt>パスワード<!--{$require_mark}--></dt>
+        <dt>パスワード<span class="attention">※必須</span></dt>
         <dd>
             <!--{assign var=key1 value="`$prefix`password"}-->
             <input type="password" name="<!--{$key1}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="<!--{$smarty.const.PASSWORD_MIN_LEN}-->～<!--{$smarty.const.PASSWORD_MAX_LEN}-->の半角英数字"/>
@@ -166,7 +166,7 @@ $flgFields について
         </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
-        <dt>お支払い方法<!--{$require_mark}--></dt>
+        <dt>お支払い方法<span class="attention">※必須</span></dt>
         <dd>
             <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
             <div class="c-form-parts--select">
@@ -179,7 +179,7 @@ $flgFields について
     <!--{/if}-->
     <!--{if $flgFields == 93}-->
         <!--{assign var=key1 value="nickname"}-->
-        <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><!--{$require_mark}--><!--{/if}--></dt>
+        <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><span class="attention">※必須</span><!--{/if}--></dt>
         <dd>
             <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="Chain内のユーザ名"/>
             <!--{if $arrErr[$key1]}-->
