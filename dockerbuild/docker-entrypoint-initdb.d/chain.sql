@@ -1,6 +1,7 @@
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
 -- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
 --
--- Host: localhost    Database: chain
+-- Host: localhost    Database: chain_chain24
 -- ------------------------------------------------------
 -- Server version	8.0.26
 
@@ -14,6 +15,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+mysqldump: Error: 'Access denied; you need (at least one of) the PROCESS privilege(s) for this operation' when trying to dump tablespaces
 
 --
 -- Table structure for table `dtb_api_account`
@@ -1099,6 +1101,7 @@ CREATE TABLE `dtb_customer` (
 
 LOCK TABLES `dtb_customer` WRITE;
 /*!40000 ALTER TABLE `dtb_customer` DISABLE KEYS */;
+INSERT INTO `dtb_customer` VALUES (1,'','',NULL,NULL,NULL,NULL,NULL,NULL,392,NULL,NULL,NULL,'kk580923@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'e5090f927de984b37b7761d5ae35fdf9dee935eaf8653b074d8d240a27dcde75',NULL,NULL,'cedriwraec','r613c9f27ddef5kyqUEJe3',NULL,NULL,0,0,0,NULL,2,'2021-09-11 12:20:55','2021-09-11 12:20:55',0,NULL,NULL,NULL,'kk580923@gmail.com',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1112,7 +1115,7 @@ DROP TABLE IF EXISTS `dtb_customer_customer_id_seq`;
 CREATE TABLE `dtb_customer_customer_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1121,6 +1124,7 @@ CREATE TABLE `dtb_customer_customer_id_seq` (
 
 LOCK TABLES `dtb_customer_customer_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_customer_customer_id_seq` DISABLE KEYS */;
+INSERT INTO `dtb_customer_customer_id_seq` VALUES (1);
 /*!40000 ALTER TABLE `dtb_customer_customer_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1770,7 +1774,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-01-13 10:41:20');
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-11 23:07:55');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2422,6 +2426,14 @@ INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集
 INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,31,'MYページ/アイテム登録','mypage/item_edit.php','mypage/item_edit',1,1,2,NULL,NULL,NULL,NULL,'2021-07-31 00:00:00','2021-07-31 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,32,'MYページ/出品中アイテム一覧','mypage/item-list.php','mypage/item-list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,33,'MYページ/アイテムトップナビ','mypage/myitem/myitem.php','mypage/myitem/myitem',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,34,'MYページ/リクエストアイテム','mypage/myitem/request_item.php','mypage/myitem/request_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,35,'MYページ/Chainの状況','mypage/myitem/status_list.php','mypage/myitem/status_list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,36,'MYページ/Chainの状況/詳細','mypage/myitem/status.php','mypage/myitem/status',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,37,'MYページ/選択待ちアイテム','mypage/myitem/unselected_item.php','mypage/myitem/unselected_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,38,'MYページ/受け取り待ちのアイテム','mypage/myitem/unreceived_item.php','mypage/myitem/unreceived_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,39,'MYページ/交換済みのアイテム','mypage/myitem/history.php','mypage/myitem/history',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,40,'MYページ/交換済みのアイテム/詳細','mypage/myitem/history_detail.php','mypage/myitem/history_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3070,6 +3082,7 @@ CREATE TABLE `dtb_session` (
 
 LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
+INSERT INTO `dtb_session` VALUES ('9606f69baf55038607f696b85e376733','cart|a:0:{}prev_url|s:379:\"/mypage/change.php?message=%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2%E5%86%85%E5%AE%B9%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%9F%E3%82%81%E3%80%81%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2%E5%86%85%E5%AE%B9%E5%A4%89%E6%9B%B4%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%B8%E7%A7%BB%E5%8B%95%E3%81%97%E3%81%BE%E3%81%99&transactionid=a46325846c79934f88e4978b11227b8231fe3414\";transactionid|s:40:\"a46325846c79934f88e4978b11227b8231fe3414\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"613c9f009fac0ZYENwhC7\";last_login|s:19:\"2021-09-11 21:20:16\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:18:\"kk580923@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"e5090f927de984b37b7761d5ae35fdf9dee935eaf8653b074d8d240a27dcde75\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"cedriwraec\";s:10:\"secret_key\";s:22:\"r613c9f27ddef5kyqUEJe3\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-11 12:20:55\";s:11:\"update_date\";s:19:\"2021-09-11 12:20:55\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:18:\"kk580923@gmail.com\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:39:\"http://localhost:9000/products/list.php\";','2021-09-11 14:07:55','2021-09-12 06:11:28');
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5011,4 +5024,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-29  4:33:35
+-- Dump completed on 2021-09-12  6:14:40
