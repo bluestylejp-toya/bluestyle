@@ -34,7 +34,6 @@
                 <ul class="c-nav-list">
                     <li>
                         <button type="button" data-menu_id="category">カテゴリーから探す</button>
-
                     </li>
                     <li>
                         <button type="button" data-menu_id="maker">出品者の都道府県から探す</button>

@@ -266,6 +266,7 @@ $(function(){
             } else {
                 alert('画像を削除しました。');
                 $('.l-popup').attr('data-item_mode', 'false') ;
+                $closest.find('input[name=sub_title' + $closest.attr('data-item_id') + ']').val('') ;
                 $closest.find('img').attr('src', '');
                 $closest.addClass('--hidden');
                 $closest.find('span.c-item__img').removeClass('--hidden');
@@ -367,5 +368,9 @@ function postSwapImage(key_base, id1, id2) {
         $input1.attr('name', key + id2);
         $input2.attr('name', key + id1);
     });
+    let $cap1 = $('#form1 input[name=sub_title' + id1 + ']');
+    let $cap2 = $('#form1 input[name=sub_title' + id2 + ']');
+    $cap1.attr('name', 'sub_title' + id2);
+    $cap2.attr('name', 'sub_title' + id1);
 }
 </script>

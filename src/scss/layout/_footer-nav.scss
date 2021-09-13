@@ -10,13 +10,20 @@
 .12) solid;
 
     &__inner {
+        flex-wrap: wrap;
+        &.--login {
+            justify-content: space-between;
+            .l-footer-nav__item {
+                width: inherit;
+            }
+        }
         display: flex;
-        justify-content: space-between;
         padding: $unit $unit+$horizontal-gap;
         height:$footer-nav-height;
     }
 
     &__item {
+        width: 50%;
         display: flex;
         justify-content: center;
     }
