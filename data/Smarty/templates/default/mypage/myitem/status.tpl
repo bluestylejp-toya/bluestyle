@@ -1,6 +1,6 @@
 <section>
     <header class="l-header__inner u-mb--0">
-        <a href="<!--{$smarty.const.TOP_URL}-->user_data/status_list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/status_list.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">ここにアイテム名が入りますここにアイテム名が入りますここにアイテム名が入ります</p>
     </header>
     <div class="c-achievement">
