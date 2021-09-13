@@ -237,7 +237,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     public function lfInitFile(&$objUpFile)
     {
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
-            $objUpFile->addFile("画像({$cnt})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
+            $necessary = $cnt == 1;
+            $objUpFile->addFile("画像({$cnt})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, $necessary, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
         }
     }
 
