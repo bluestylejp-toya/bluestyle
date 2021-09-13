@@ -1,6 +1,6 @@
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->user_data/myitem.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">受け取り待ちのアイテム</p>
     </header>
     <div class="c-notification--gradient notification">交換を完了しました</div>
@@ -9,14 +9,14 @@
             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
             <div class="c-item__main">
                 <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
-                <p class="c-item__achievement --active">発送済み</p>
+                <p class="c-item__achievement --active">発送待ち</p>
             </div>
         </li>
         <li class="c-item">
             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
             <div class="c-item__main">
                 <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
-                <p class="c-item__achievement">発送待ち</p>
+                <p class="c-item__achievement">発送済み</p>
             </div>
         </li>
     </ul>

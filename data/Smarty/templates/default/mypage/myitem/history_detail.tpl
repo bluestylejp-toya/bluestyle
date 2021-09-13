@@ -1,6 +1,6 @@
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->user_data/myitem.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/history.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">交換済みのアイテム名</p>
     </header>
     <div class="c-achievement">
