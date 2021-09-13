@@ -2422,6 +2422,14 @@ INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集
 INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,31,'MYページ/アイテム登録','mypage/item_edit.php','mypage/item_edit',1,1,2,NULL,NULL,NULL,NULL,'2021-07-31 00:00:00','2021-07-31 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,32,'MYページ/出品中アイテム一覧','mypage/item-list.php','mypage/item-list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,33,'MYページ/アイテムトップナビ','mypage/myitem/myitem.php','mypage/myitem/myitem',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,34,'MYページ/リクエストアイテム','mypage/myitem/request_item.php','mypage/myitem/request_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,35,'MYページ/Chainの状況','mypage/myitem/status_list.php','mypage/myitem/status_list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,36,'MYページ/Chainの状況/詳細','mypage/myitem/status.php','mypage/myitem/status',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,37,'MYページ/選択待ちアイテム','mypage/myitem/unselected_item.php','mypage/myitem/unselected_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,38,'MYページ/受け取り待ちのアイテム','mypage/myitem/unreceived_item.php','mypage/myitem/unreceived_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,39,'MYページ/交換済みのアイテム','mypage/myitem/history.php','mypage/myitem/history',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,40,'MYページ/交換済みのアイテム/詳細','mypage/myitem/history_detail.php','mypage/myitem/history_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5011,4 +5019,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-29  4:33:35
+-- Dump completed on 2021-09-12  6:14:40
