@@ -46,7 +46,7 @@
             <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item.value|h}-->" />
         <!--{/foreach}-->
 
-        <dl class="u-mb--4">
+        <dl class="c-list--dl u-mb--4">
             <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=93 emailMobile=false prefix=""}-->
         </dl>
         <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default u-mb--1">戻る</a>

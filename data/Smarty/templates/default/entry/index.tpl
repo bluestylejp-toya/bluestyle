@@ -47,7 +47,7 @@
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="mode" value="confirm" />
 
-        <dl class="u-mb--4">
+        <dl class="c-list--dl u-mb--4">
         <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=93 emailMobile=false prefix=""}-->
         </dl>
         <button name="confirm" id="confirm" class="c-btn--primary">アカウントを作成する</button>
