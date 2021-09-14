@@ -70,6 +70,9 @@
 
                     <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
                     <li data-item_id="<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3 && $arrFile[$key].filepath == ''}--> --hidden<!--{/if}-->">
+                        <!--{if strlen($arrErr[$key]) >= 1}-->
+                            <div class="attention"><!--{$arrErr[$key]}--></div>
+                        <!--{/if}-->
                         <button class="c-item__back-btn" type="button">詳細写真編集</button>
                         <button class="c-item__sort-btn" type="button"></button>
                         <label class="preview">
@@ -89,8 +92,6 @@
                             <h2 class="c-heading-subtitle u-text--left u-color--gray">キャプション</h2>
                             <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" readonly/>
                         </div>
-                        <!--{assign var=key1 value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                        <!--{assign var=key2 value="sub_title`$smarty.section.cnt.iteration`"}-->
                         <button class="c-item__controll-btn" type="button" data-id="<!--{$smarty.section.cnt.iteration}-->"></button>
 
                     </li>
