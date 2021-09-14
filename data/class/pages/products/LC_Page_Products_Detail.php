@@ -250,7 +250,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
 
                 $objHelperApi = new SC_Helper_Api_Ex();
-                $objHelperApi->setUrl('http://daemon_api:8081/chain/edges/add');
+                $objHelperApi->setUrl(API_URL . 'chain/edges/add');
                 $objHelperApi->setMethod('POST');
                 $data = [
                     "source_id" => $this->objFormParam->getValue('favorite_product_id'),
