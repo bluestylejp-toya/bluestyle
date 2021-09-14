@@ -22,6 +22,7 @@
 
 <!--▼FOOTER-->
 <!--{strip}-->
+
 <nav class="l-footer-nav">
     <!--{assign var=current value="other"}-->
     <!--{if $tpl_page_class_name ==="LC_Page_Products_Detail" or $tpl_page_class_name === "LC_Page_Products_List"}-->
@@ -30,6 +31,8 @@
         <!--{if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/item-list.php" or  $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/item_edit.php"}-->
             <!--{assign var=current value="display"}-->
         <!--{else if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/index.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/profile.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change.php"}-->
+            <!--{assign var=current value="mypage"}-->
+        <!--{else if $smarty.server.PHP_SELF|mb_strpos:'myitem' !== false}-->
             <!--{assign var=current value="mypage"}-->
         <!--{/if}-->
     <!--{/if}-->
@@ -45,7 +48,7 @@
                 <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}-->">マイページ</a>
             </li>
             <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.HTTPS_URL}-->user_data/other.php" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
+                <a href="<!--{$smarty.const.HTTPS_URL}-->other/" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
             </li>
         </ul>
     <!--{else}-->

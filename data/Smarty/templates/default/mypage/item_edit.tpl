@@ -65,11 +65,14 @@
             </dl>
             <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
 
-            <ul class="u-mb--4">
+            <ul class="sub_large_images u-mb--4">
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
 
                     <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
                     <li data-item_id="<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3 && $arrFile[$key].filepath == ''}--> --hidden<!--{/if}-->">
+                        <!--{if strlen($arrErr[$key]) >= 1}-->
+                            <div class="attention"><!--{$arrErr[$key]}--></div>
+                        <!--{/if}-->
                         <button class="c-item__back-btn" type="button">詳細写真編集</button>
                         <button class="c-item__sort-btn" type="button"></button>
                         <label class="preview">
@@ -89,9 +92,7 @@
                             <h2 class="c-heading-subtitle u-text--left u-color--gray">キャプション</h2>
                             <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" readonly/>
                         </div>
-                        <!--{assign var=key1 value="sub_large_image`$smarty.section.cnt.iteration`"}-->
-                        <!--{assign var=key2 value="sub_title`$smarty.section.cnt.iteration`"}-->
-                        <button class="c-item__controll-btn" type="button" data-id="<!--{$smarty.section.cnt.iteration}-->"></button>
+                        <button class="c-item__controll-btn" type="button"></button>
 
                     </li>
                 <!--{/section}-->
@@ -129,7 +130,7 @@ $(function(){
     $('.c-item__add-image-btn').on('click', function(){
         $items     = $('.c-item--edit.--hidden');
         $next      = $items.first();
-        $id        = $next.data('item_id');
+        $id        = $next.attr('data-item_id');
         $caption   = $next.find('[name^=sub_title]');
         $imageFile = $next.find('[name^=sub_large_image]');
         $image     = $next.find('img');
@@ -159,7 +160,7 @@ $(function(){
         $caption   = $parent.find('[name^=sub_title]');
         $imageFile = $parent.find('[name^=sub_large_image]');
         $image     = $parent.find('img');
-        $id        = $parent.closest('[data-item_id]').data('item_id');
+        $id        = $parent.closest('[data-item_id]').attr('data-item_id');
 
         //削除と編集のコントロール・ポップアップ
         $('.l-popup').attr('data-item_mode', 'edit') ;
@@ -235,7 +236,17 @@ $(function(){
             processData: false,
             dataType: 'json',
         })
-        .done((data, textStatus, jqXHR) => {ajax_done(data, textStatus, jqXHR, $closest)})
+        .done((data, textStatus, jqXHR) => {
+            ajax_done(data, textStatus, jqXHR, $closest);
+            alert('画像を削除しました。');
+            $('.l-popup').attr('data-item_mode', 'false');
+            $closest.find('input[name=sub_title' + $closest.attr('data-item_id') + ']').val('') ;
+            $closest.find('img').attr('src', '');<!--{* プレビューの削除に必要な様子 *}-->
+            $closest.addClass('--hidden');
+            $closest.find('span.c-item__img').removeClass('--hidden');
+            $closest.parent().append($closest);
+            renumberImgNum();
+        })
         .fail(ajax_fail);
     });
 
@@ -263,13 +274,6 @@ $(function(){
         else {
             if($closest.attr('data-item_id') === 1) {
                 alert('カバー写真は削除できません。');
-            } else {
-                alert('画像を削除しました。');
-                $('.l-popup').attr('data-item_mode', 'false') ;
-                $closest.find('input[name=sub_title' + $closest.attr('data-item_id') + ']').val('') ;
-                $closest.find('img').attr('src', '');
-                $closest.addClass('--hidden');
-                $closest.find('span.c-item__img').removeClass('--hidden');
             }
         }
     }
@@ -318,17 +322,13 @@ $('[data-item_id] .c-item__sort-btn').each( function(index){
             $this.removeAttr('style').removeClass('--move');
 
             // 入れ替える
-            if(move < 0 && id > 1) {
-                prev = $this.prev().contents();
-                $this.prev().append(current)
-                $this.empty().append(prev);
-                postSwapImage('sub_large_image', id, $this.prev().attr('data-item_id'));
+            if(move < 0 && $this.prev().length) {
+                $this.prev().before($this);
+                renumberImgNum();
             }
-            if (move > 0 && length > id) {
-                next = $this.next().contents();
-                $this.next().append(current)
-                $this.empty().append(next)
-                postSwapImage('sub_large_image', id, $this.next().attr('data-item_id'));
+            if (move > 0 && $this.next().length) {
+                $this.next().after($this);
+                renumberImgNum();
             }
             $('body').removeClass('--overflow-hidden');
         },
@@ -338,19 +338,15 @@ $('[data-item_id] .c-item__sort-btn').each( function(index){
                 id      = parseInt($this.attr('data-item_id'))
                 length  = $('[data-item_id]').not('.--hidden').length
                 current = $this.contents();
-                if(event.offsetY > 50 && length > id) {
-                    next = $this.next().contents();
-                    $this.next().append(current)
-                    $this.empty().append(next)
+                if(event.offsetY > 50 && $this.next().length) {
+                    $this.next().after($this);
+                    renumberImgNum();
                     $this.attr('style', 'transform: translateY('+  70+'px)').addClass('--move')
-                    postSwapImage('sub_large_image', id, $this.next().attr('data-item_id'));
                 }
-                if(event.offsetY <= 30 && id > 1)  {
-                    prev = $this.prev().contents();
-                    $this.prev().append(current)
-                    $this.empty().append(prev);
+                if(event.offsetY <= 30 && $this.prev().length)  {
+                    $this.prev().before($this);
+                    renumberImgNum();
                     $this.attr('style', 'transform: translateY('+  -70+'px)').addClass('--move')
-                    postSwapImage('sub_large_image', id, $this.prev().attr('data-item_id'));
                 }
                 setTimeout(function(){
                     $this.removeAttr('style').removeClass('--move')
@@ -372,5 +368,32 @@ function postSwapImage(key_base, id1, id2) {
     let $cap2 = $('#form1 input[name=sub_title' + id2 + ']');
     $cap1.attr('name', 'sub_title' + id2);
     $cap2.attr('name', 'sub_title' + id1);
+}
+
+function renumberImgNum() {
+    const attr_name = 'data-item_id';
+    const $elements = $('ul.sub_large_images > li');
+    const hidden_keys = ['sub_large_image', 'temp_sub_large_image', 'save_sub_large_image', 'sub_title'];
+
+    // name を書き換えるフォームオブジェクトを変数に保存
+    let $inputs = {};
+    $elements.each((index, val) => {
+        let item_id = $(val).attr(attr_name);
+        $inputs[item_id] = {};
+        hidden_keys.forEach(key => {
+            $inputs[item_id][key] = $('#form1 input[name="' + key + item_id + '"]');
+        });
+    });
+
+    $elements.each((index, val) => {
+        let old_num = $(val).attr(attr_name);
+        let new_num = index + 1;
+        // 属性に連番を振り直す
+        $(val).attr(attr_name, new_num);
+        // フォームオブジェクトの name を書き換える
+        Object.keys($inputs[old_num]).forEach((key) => {
+            $inputs[old_num][key].attr('name', key + new_num);
+        });
+    });
 }
 </script>
