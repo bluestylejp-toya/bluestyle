@@ -2,13 +2,20 @@
 
     li {
         border-bottom: 1px solid #EAECEE;
-        a {
+        & > button,& > a,& > label {
+            width: 100%;
             color: $gray;
             text-decoration: none;
             font-weight: 500;
             display: flex;
             padding: $unit*2 $unit*4 $unit*2 0;
             background: url('data:image/svg+xml;utf8,<svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.99984 0.210449L0.589844 1.62045L5.16984 6.21045L0.589844 10.8004L1.99984 12.2104L7.99984 6.21045L1.99984 0.210449Z" fill="%239DA4B0"/></svg>') center right 8px/ 10px auto no-repeat;
+            input {
+                display: none;
+                &:checked + span {
+                    font-weight: 500;
+                }
+            }
         }
     }
     &__news-item {

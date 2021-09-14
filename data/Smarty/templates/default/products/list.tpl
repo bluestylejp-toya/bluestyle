@@ -82,7 +82,7 @@
         <!--▼検索条件-->
         <!--{if $tpl_subtitle == "検索結果"}-->
             <!--<ul class="pagecond_area">
-                <li><strong>商品カテゴリ：</strong><!--{$arrSearch.category|h}--></li>
+                <li><strong>カテゴリー：</strong><!--{$arrSearch.category|h}--></li>
                 <!--{if $arrSearch.maker|strlen >= 1}--><li><strong>メーカー：</strong><!--{$arrSearch.maker|h}--></li><!--{/if}-->
                 <li><strong>商品名：</strong><!--{$arrSearch.name|h}--></li>
                 <li><strong>出品者の都道府県：</strong><!--{$arrSearch.pref|h}--></li>
@@ -114,11 +114,19 @@
         <!--{foreach from=$arrProducts item=arrProduct name=arrProducts}-->
 
             <!--{if $smarty.foreach.arrProducts.first}-->
+                <!--{if $tpl_subtitle == "検索結果"}-->
                 <!--▼件数-->
-               <dl class="u-mb--4">
-                    <dt>アイテム数：</dt><dd><!--{$tpl_linemax}-->件</dd>
-                </dl>
-                <!--▲件数-->
+                    <dl class="u-mb--4 c-list--search">
+                        <dt>アイテム数：</dt><dd><!--{$tpl_linemax}-->件</dd>
+                        <!--{if $arrSearch.category != '指定なし' && $arrSearch.category != null}-->
+                            <dt>カテゴリー：</dt><dd><!--{$arrSearch.category|h}--></dt>
+                        <!--{/if}-->
+                        <!--{if $arrSearch.maker != '指定なし' && $arrSearch.maker != null}-->
+                            <dt>出費者の地域：</dt><dd><!--{$arrSearch.maker|h}--></dt>
+                        <!--{/if}-->
+                    </dl>
+                    <!--▲件数-->
+                <!--{/if}-->
 
                 <!--▼ページナビ(上部)-->
                 <form name="page_navi_top" id="page_navi_top" action="?">
@@ -152,7 +160,9 @@
         <!--▼ページナビ(下部)-->
         <form name="page_navi_bottom" id="page_navi_bottom" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-            <!--{if $tpl_linemax > 0}--><!--{$smarty.capture.page_navi_body nofilter}--><!--{/if}-->
+            <!--{if $tpl_subtitle !== '検索結果'}-->
+                <!--{if $tpl_linemax > 0}--><!--{$smarty.capture.page_navi_body nofilter}--><!--{/if}-->
+            <!--{/if}-->
         </form>
         <!--▲ページナビ(下部)-->
     <!--{/if}-->

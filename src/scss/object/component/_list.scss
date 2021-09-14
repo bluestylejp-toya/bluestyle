@@ -146,4 +146,16 @@
             display: none;
         }
     }
+
+    &--search {
+        margin-top: $unit*4;
+        display: flex;
+        flex-wrap: wrap;
+        dt {
+            width: 100px;
+        }
+        dd {
+            width: calc(100% - 100px);
+        }
+    }
 }
