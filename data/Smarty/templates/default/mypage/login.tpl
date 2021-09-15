@@ -45,7 +45,7 @@
     <form name="login_mypage" id="login_mypage" method="post" action="<!--{$smarty.const.HTTPS_URL}-->frontparts/login_check.php" onsubmit="return eccube.checkLoginFormInputted('login_mypage')">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="mode" value="login" />
-        <input type="hidden" name="url" value="<!--{$smarty.server.REQUEST_URI|h}-->" />
+        <input type="hidden" name="url" value="<!--{$smarty.const.TOP_URL}-->" />
 
         <dl class="u-mb--4">
             <!--{assign var=key value="login_email"}-->
