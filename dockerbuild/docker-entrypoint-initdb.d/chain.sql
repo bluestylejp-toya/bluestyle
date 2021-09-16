@@ -321,6 +321,8 @@ INSERT INTO `dtb_bloc` VALUES (1,3,'おすすめ商品','recommend.tpl','recomme
 INSERT INTO `dtb_bloc` VALUES (1,4,'カテゴリ','category.tpl','category','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/category.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (1,5,'ログイン','login.tpl','login','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (1,6,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (1,7,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (1,8,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 INSERT INTO `dtb_bloc` VALUES (2,1,'新着情報','news.tpl','news','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/news.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,2,'ログイン','login.tpl','login','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,3,'おすすめ商品','recommend.tpl','recommend','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/recommend.php',0,NULL);
@@ -329,6 +331,8 @@ INSERT INTO `dtb_bloc` VALUES (2,5,'【ヘッダー】ログイン','login_heade
 INSERT INTO `dtb_bloc` VALUES (2,6,'【ヘッダー】ナビ','navi_header.tpl','navi_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/navi_header.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,7,'【フッター】ログイン','login_footer.tpl','login_footer','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_footer.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,8,'【フッター】ナビ','navi_footer.tpl','navi_footer','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/navi_footer.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (2,9,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (2,10,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 INSERT INTO `dtb_bloc` VALUES (10,1,'カテゴリ','category.tpl','category','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/category.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,2,'利用ガイド','guide.tpl','guide','2021-01-13 01:40:18','2021-01-13 01:40:18',NULL,0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,3,'カゴの中','cart.tpl','cart','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/cart.php',0,NULL);
@@ -340,6 +344,8 @@ INSERT INTO `dtb_bloc` VALUES (10,8,'カレンダー','calendar.tpl','calendar',
 INSERT INTO `dtb_bloc` VALUES (10,9,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,10,'新着アイテム','new_item.tpl','new_item','2021-07-28 00:00:00','2021-07-28 00:00:00','frontparts/bloc/new_item.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,11,'閲覧履歴','check_item.tpl','check_item','2021-08-08 00:00:00','2021-08-08 00:00:00','frontparts/bloc/check_item.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (10,12,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (10,13,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 /*!40000 ALTER TABLE `dtb_bloc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1773,7 +1779,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-13 10:16:11');
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-16 18:24:55');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1857,7 +1863,7 @@ CREATE TABLE `dtb_module` (
 LOCK TABLES `dtb_module` WRITE;
 /*!40000 ALTER TABLE `dtb_module` DISABLE KEYS */;
 INSERT INTO `dtb_module` VALUES (0,'0','patch',NULL,0,0,'2021-01-13 01:40:22','2021-01-13 01:40:22');
-INSERT INTO `dtb_module` VALUES (2073,'mdl_sln','e-SCOTT Smart light for EC-CUBE(2.17系)',NULL,0,0,'2021-09-16 09:26:30','2021-09-16 09:26:30');
+INSERT INTO `dtb_module` VALUES (2073,'mdl_sln','e-SCOTT Smart light for EC-CUBE(2.17系)','a:5:{s:15:\"master_settings\";a:0:{}s:13:\"user_settings\";a:55:{s:19:\"enable_payment_type\";a:2:{i:0;s:2:\"10\";i:1;s:2:\"11\";}s:10:\"MerchantId\";s:8:\"00011686\";s:12:\"MerchantPass\";s:8:\"i5PbSCeY\";s:8:\"TenantId\";s:0:\"\";s:23:\"credit_connection_place\";s:0:\"\";s:24:\"credit_connection_place1\";s:49:\"https://www.test.e-scott.jp/online/aut/OAUT002.do\";s:24:\"credit_connection_place2\";s:49:\"https://www.test.e-scott.jp/online/crp/OCRP005.do\";s:24:\"credit_connection_place3\";s:37:\"https://link.kessai.info/JLPCT/JLPcon\";s:24:\"credit_connection_place4\";s:0:\"\";s:24:\"credit_connection_place5\";s:49:\"https://www.test.e-scott.jp/online/cnv/OCNV005.do\";s:24:\"credit_connection_place6\";s:49:\"https://www.test.e-scott.jp/online/tds/OTDS010.do\";s:24:\"credit_connection_place7\";s:56:\"https://www.test.e-scott.jp/euser/stn/CdGetJavaScript.do\";s:17:\"token_ninsyo_code\";s:0:\"\";s:14:\"credit_aes_key\";s:0:\"\";s:13:\"credit_aes_iv\";s:0:\"\";s:11:\"payKbnKaisu\";a:1:{i:0;s:2:\"01\";}s:5:\"SecCd\";s:1:\"1\";s:22:\"attestation_assistance\";a:0:{}s:9:\"OperateId\";s:10:\"1Gathering\";s:18:\"card_order_pre_end\";s:1:\"0\";s:13:\"member_regist\";s:1:\"1\";s:6:\"3d_pay\";s:1:\"1\";s:14:\"quick_accounts\";s:1:\"1\";s:19:\"OnlinePaymentMethod\";s:0:\"\";s:5:\"Free1\";s:0:\"\";s:5:\"Free2\";s:0:\"\";s:5:\"Free3\";s:0:\"\";s:5:\"Free4\";s:0:\"\";s:5:\"Free5\";s:0:\"\";s:5:\"Free6\";s:0:\"\";s:5:\"Free7\";s:0:\"\";s:7:\"Comment\";s:0:\"\";s:5:\"Free8\";s:0:\"\";s:5:\"Free9\";s:0:\"\";s:6:\"Free10\";s:0:\"\";s:6:\"Free11\";s:0:\"\";s:6:\"Free12\";s:0:\"\";s:6:\"Free13\";s:0:\"\";s:6:\"Free14\";s:0:\"\";s:6:\"Free15\";s:0:\"\";s:6:\"Free16\";s:0:\"\";s:6:\"Free17\";s:0:\"\";s:6:\"Free18\";s:0:\"\";s:6:\"Free19\";s:0:\"\";s:5:\"Title\";s:0:\"\";s:16:\"payOnlineWording\";s:0:\"\";s:29:\"credit_connection_destination\";s:1:\"1\";s:29:\"threed_connection_destination\";s:1:\"1\";s:26:\"cvs_connection_destination\";s:1:\"1\";s:22:\"creditConnectionPlace1\";N;s:22:\"creditConnectionPlace2\";N;s:22:\"creditConnectionPlace7\";N;s:22:\"creditConnectionPlace6\";N;s:22:\"creditConnectionPlace3\";N;s:22:\"creditConnectionPlace5\";N;}s:12:\"page_setting\";a:1:{s:32:\"shopping/load_sln_payment_module\";a:3:{i:10;i:41;i:2;i:30;i:1;i:38;}}s:12:\"bloc_setting\";a:2:{s:10:\"sln_credit\";a:3:{i:10;i:12;i:2;i:9;i:1;i:7;}s:17:\"sln_regist_credit\";a:3:{i:10;i:13;i:2;i:10;i:1;i:8;}}s:18:\"add_card_mem_table\";i:1;}',0,0,'2021-09-16 09:26:30','2021-09-16 09:26:30');
 /*!40000 ALTER TABLE `dtb_module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2366,6 +2372,7 @@ INSERT INTO `dtb_pagelayout` VALUES (1,34,'ご利用ガイド/プライバシー
 INSERT INTO `dtb_pagelayout` VALUES (1,35,'ご利用ガイド/通信料について','guide/charge.php','guide/charge',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (1,36,'ご利用ガイド/ご利用規約','guide/kiyaku.php','guide/kiyaku',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (1,37,'ご利用ガイド/運営会社紹介','guide/about.php','guide/about',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (1,38,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,0,NULL,'preview','preview',1,1,1,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,1,'TOPページ','index.php','index',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,2,'商品一覧ページ','products/list.php','products/list',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
@@ -2396,6 +2403,8 @@ INSERT INTO `dtb_pagelayout` VALUES (2,26,'商品購入/ご入力内容のご確
 INSERT INTO `dtb_pagelayout` VALUES (2,27,'商品購入/ご注文完了','shopping/complete.php','shopping/complete',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (2,28,'プライバシーポリシー','guide/privacy.php','guide/privacy',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,29,'パスワードを忘れた方','forgot/index.php','forgot/index',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (2,30,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (2,31,'MYページ/登録済カード情報変更','mypage/card_info.php','mypage/card_info',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,0,'プレビューデータ','preview',NULL,1,1,1,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,1,'TOPページ','index.php','index',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,2,'商品一覧ページ','products/list.php','products/list',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
@@ -2437,6 +2446,8 @@ INSERT INTO `dtb_pagelayout` VALUES (10,37,'MYページ/選択待ちアイテム
 INSERT INTO `dtb_pagelayout` VALUES (10,38,'MYページ/受け取り待ちのアイテム','mypage/myitem/unreceived_item.php','mypage/myitem/unreceived_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,39,'MYページ/交換済みのアイテム','mypage/myitem/history.php','mypage/myitem/history',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,40,'MYページ/交換済みのアイテム/詳細','mypage/myitem/history_detail.php','mypage/myitem/history_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,41,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,42,'MYページ/登録済カード情報変更','mypage/card_info.php','mypage/card_info',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2477,6 +2488,7 @@ CREATE TABLE `dtb_payment` (
   `memo08` text,
   `memo09` text,
   `memo10` text,
+  `module_code` text,
   PRIMARY KEY (`payment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2487,10 +2499,12 @@ CREATE TABLE `dtb_payment` (
 
 LOCK TABLES `dtb_payment` WRITE;
 /*!40000 ALTER TABLE `dtb_payment` DISABLE KEYS */;
-INSERT INTO `dtb_payment` VALUES (1,'郵便振替',0,NULL,4,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (2,'現金書留',0,NULL,3,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (3,'銀行振込',0,NULL,2,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (4,'代金引換',0,NULL,1,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (1,'郵便振替',0,NULL,4,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (2,'現金書留',0,NULL,3,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (3,'銀行振込',0,NULL,2,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (4,'代金引換',0,NULL,1,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (5,'クレジットカード決済',0,1,5,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
+INSERT INTO `dtb_payment` VALUES (6,'登録済みクレジットカード決済',0,1,6,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
 /*!40000 ALTER TABLE `dtb_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2533,7 +2547,7 @@ DROP TABLE IF EXISTS `dtb_payment_payment_id_seq`;
 CREATE TABLE `dtb_payment_payment_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2542,7 +2556,7 @@ CREATE TABLE `dtb_payment_payment_id_seq` (
 
 LOCK TABLES `dtb_payment_payment_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_payment_payment_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_payment_payment_id_seq` VALUES (4);
+INSERT INTO `dtb_payment_payment_id_seq` VALUES (6);
 /*!40000 ALTER TABLE `dtb_payment_payment_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2582,6 +2596,7 @@ CREATE TABLE `dtb_plugin` (
 
 LOCK TABLES `dtb_plugin` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin` DISABLE KEYS */;
+INSERT INTO `dtb_plugin` VALUES (1,'ソニーペイメントサービス決済プラグイン','SLNCore','SLNCore','ソニーペイメントサービス','http://www.sonypaymentservices.jp/','http://www.sonypaymentservices.jp/','1.0','2.17.0','ソニーペイメントサービス決済モジュールの動作に必要なプラグインです。決済を利用する場合に、本プラグインの無効化や削除はしないで下さい。',0,1,NULL,NULL,NULL,NULL,'2021-09-16 09:35:11','2021-09-16 09:35:11');
 /*!40000 ALTER TABLE `dtb_plugin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2610,6 +2625,26 @@ CREATE TABLE `dtb_plugin_hookpoint` (
 
 LOCK TABLES `dtb_plugin_hookpoint` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint` DISABLE KEYS */;
+INSERT INTO `dtb_plugin_hookpoint` VALUES (1,1,'LC_Page_Admin_Basis_PaymentInput_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (2,1,'LC_Page_Shopping_Payment_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (3,1,'LC_Page_Shopping_Payment_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (4,1,'LC_Page_Shopping_Complete_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (5,1,'LC_Page_Admin_Order_Status_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (6,1,'LC_Page_Admin_Order_Edit_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (7,1,'LC_Page_Admin_Order_Edit_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (8,1,'LC_Page_Admin_Order_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (9,1,'LC_Page_Admin_Order_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (10,1,'LC_Page_Mypage_Refusal_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (11,1,'LC_Page_Admin_Customer_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (12,1,'LC_Page_Products_Detail_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (13,1,'LC_Page_Products_List_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (14,1,'LC_Page_Cart_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (15,1,'LC_Page_Shopping_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (16,1,'LC_Page_Shopping_Payment_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (17,1,'LC_Page_Shopping_Deliv_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (18,1,'LC_Page_Shopping_Confirm_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (19,1,'LC_Page_Shopping_Confirm_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (20,1,'prefilterTransform','prefilterTransform',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2623,7 +2658,7 @@ DROP TABLE IF EXISTS `dtb_plugin_hookpoint_plugin_hookpoint_id_seq`;
 CREATE TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2632,6 +2667,7 @@ CREATE TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` (
 
 LOCK TABLES `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` DISABLE KEYS */;
+INSERT INTO `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` VALUES (20);
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2645,7 +2681,7 @@ DROP TABLE IF EXISTS `dtb_plugin_plugin_id_seq`;
 CREATE TABLE `dtb_plugin_plugin_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2654,6 +2690,7 @@ CREATE TABLE `dtb_plugin_plugin_id_seq` (
 
 LOCK TABLES `dtb_plugin_plugin_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin_plugin_id_seq` DISABLE KEYS */;
+INSERT INTO `dtb_plugin_plugin_id_seq` VALUES (1);
 /*!40000 ALTER TABLE `dtb_plugin_plugin_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5016,6 +5053,30 @@ LOCK TABLES `mtb_zip` WRITE;
 /*!40000 ALTER TABLE `mtb_zip` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mtb_zip` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `sln_dtb_mem_card_id`
+--
+
+DROP TABLE IF EXISTS `sln_dtb_mem_card_id`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sln_dtb_mem_card_id` (
+  `customer_id` int NOT NULL,
+  `mem_id` int NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sln_dtb_mem_card_id`
+--
+
+LOCK TABLES `sln_dtb_mem_card_id` WRITE;
+/*!40000 ALTER TABLE `sln_dtb_mem_card_id` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sln_dtb_mem_card_id` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -5026,4 +5087,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-16  9:27:41
+-- Dump completed on 2021-09-16  9:35:25
