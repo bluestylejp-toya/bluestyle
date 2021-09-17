@@ -24,8 +24,11 @@
 
 <section>
     <header class="c-profile-header">
+
         <!--{if strlen($tpl_profile_image) >= 1}-->
             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$tpl_profile_image|h}-->" class="c-profile-header__img">
+        <!--{else}-->
+            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$tpl_profile_image|sfNoImageMainList|h}-->" class="c-profile-header__img">
         <!--{/if}-->
         <h1 class="c-profile-header__name"><!--{$tpl_nickname|h}--></h1>
     </header>
