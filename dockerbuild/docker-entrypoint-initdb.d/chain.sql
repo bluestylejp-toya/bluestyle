@@ -2434,14 +2434,15 @@ INSERT INTO `dtb_pagelayout` VALUES (10,37,'MYページ/選択待ちアイテム
 INSERT INTO `dtb_pagelayout` VALUES (10,38,'MYページ/受け取り待ちのアイテム','mypage/myitem/unreceived_item.php','mypage/myitem/unreceived_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,39,'MYページ/交換済みのアイテム','mypage/myitem/history.php','mypage/myitem/history',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,40,'MYページ/交換済みのアイテム/詳細','mypage/myitem/history_detail.php','mypage/myitem/history_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
-INSERT INTO `dtb_pagelayout` VALUES (10,41,'ご利用規約','user_data/kiyaku.php','user_data/kiyaku',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?page_id=41&device_type_id=10','2021-09-14 04:37:23','2021-09-14 04:43:34',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,42,'その他','user_data/other.php','user_data/other',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-14 04:42:40','2021-09-14 04:42:40',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,43,'お知らせ','user_data/news.php','user_data/news',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-14 04:45:57','2021-09-14 04:45:57',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,44,'ガイドの禁止されている行為','user_data/prohibited_activities.php','user_data/prohibited_activities',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10&page_id=44&msg=on&transactionid=c114716688df9887f54139f3b61355b4f77ecf7c','2021-09-14 04:49:44','2021-09-14 04:51:14',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,45,'禁止アイテム','user_data/prohibited_items.php','user_data/prohibited_items',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-14 04:51:46','2021-09-14 04:51:46',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,46,'支払い方法','user_data/payment.php','user_data/payment',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-14 04:56:18','2021-09-14 04:56:18',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,47,'配送の流れ','user_data/flow.php','user_data/flow',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-14 04:57:39','2021-09-14 04:57:39',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,48,'ヘルプ','user_data/help.php','user_data/help',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-14 04:58:22','2021-09-14 04:58:22',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,41,'その他','other/kiyaku.php','other/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,42,'ご利用規約','terms/kiyaku.php','terms/kiyaku',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,43,'違反行為','terms/prohibited_activities.php','terms/prohibited_activities',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,44,'違反出品物','terms/prohibited_items.php','terms/prohibited_items',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,45,'支払い方法','guide/payment.php','guide/payment',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,46,'配送の流れ','guide/flow.php','guide/flow',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,47,'お知らせ','news/kiyaku.php','news/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,48,'ご利用方法','guide/guide.php','guide/guide',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,49,'ヘルプ','guide/help.php','guide/help',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
