@@ -1,4 +1,3 @@
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
 -- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: chain
@@ -15,7 +14,6 @@ mysqldump: [Warning] Using a password on the command line interface can be insec
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-mysqldump: Error: 'Access denied; you need (at least one of) the PROCESS privilege(s) for this operation' when trying to dump tablespaces
 
 --
 -- Table structure for table `dtb_api_account`
@@ -2478,6 +2476,18 @@ INSERT INTO `dtb_pagelayout` VALUES (10,37,'MYページ/選択待ちアイテム
 INSERT INTO `dtb_pagelayout` VALUES (10,38,'MYページ/受け取り待ちのアイテム','mypage/myitem/unreceived_item.php','mypage/myitem/unreceived_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,39,'MYページ/交換済みのアイテム','mypage/myitem/history.php','mypage/myitem/history',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,40,'MYページ/交換済みのアイテム/詳細','mypage/myitem/history_detail.php','mypage/myitem/history_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+<<<<<<< HEAD
+>>>>>>> master
+=======
+INSERT INTO `dtb_pagelayout` VALUES (10,41,'その他','other/kiyaku.php','other/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,42,'ご利用規約','terms/kiyaku.php','terms/kiyaku',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,43,'違反行為','terms/prohibited_activities.php','terms/prohibited_activities',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,44,'違反出品物','terms/prohibited_items.php','terms/prohibited_items',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,45,'支払い方法','guide/payment.php','guide/payment',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,46,'配送の流れ','guide/flow.php','guide/flow',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,47,'お知らせ','news/kiyaku.php','news/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,48,'ご利用方法','guide/guide.php','guide/guide',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,49,'ヘルプ','guide/help.php','guide/help',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 >>>>>>> master
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
