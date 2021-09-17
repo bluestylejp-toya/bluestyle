@@ -1,0 +1,1 @@
+data/Smarty/templates/default/terms/prohibited_activities.tpl
