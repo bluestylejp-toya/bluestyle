@@ -144,7 +144,7 @@
                     <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>
                     <dt>趣味</dt>
                     <dd><!--{$arrProduct.arrCustomer.hobbies|h}--></dd>
-                    <dt class="full">出品中アイテム</dt>
+                    <!--<dt class="full">出品中アイテム</dt>
                     <dd class="full">
                         <ul>
                             <!--{assign var=id value=`$arrProduct.product_id`}-->
@@ -162,10 +162,10 @@
                                 <!--{/if}-->
                             <!--{/foreach}-->
                         </ul>
-                    </dd>
+                    </dd>-->
                 </dl>
                 <!--{if !$tpl_my_product}--><!--通報するボタン-->
-                    <p><button type="button" class="c-btn--report">通報する</button></p>
+                    <p class="u-mb--4 u-text--right report_btn"><a href="javascript:void(0)" type="button">通報する</a></p>
                     <div class="l-popup" data-item_mode="false">
                         <div class="l-popup__inner">
                             <p class="u-mb--2 report_message"></p>
@@ -179,6 +179,7 @@
                         <div class="l-popup__close"></div>
                     </div>
                 <!--{/if}-->
+                <h2 class="c-heading--lg">閲覧履歴</h2>
             </div>
             <!--/.p-item-detail__body__main-->
 
@@ -371,7 +372,7 @@
 
 
     // 通報の処理
-    $('.c-btn--report').on('click', function(){
+    $('.report_btn').on('click', function(){
         $('.l-popup').attr('data-item_mode', 'report') ;
         $('body').addClass('--overflow-hidden');
         $('.report_message').text('このアイテムについて通報しますか？');
@@ -383,7 +384,6 @@
             $(this).attr('disabled', 'disabled');
             $('.report_undo-btn').text('閉じる');
             $('.report_message').text('通報が完了しました');
-            $('.c-btn--report').attr('disabled', 'disabled');
         })
 
         $('.l-popup .l-popup__close, .report_undo-btn').on('click', function(){
