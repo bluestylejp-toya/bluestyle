@@ -129,6 +129,7 @@ class SLN_ChangeCard extends LC_Page_AbstractMypage_Ex {
 					if ($ret) {
 						$this->success = true;
 					} else {
+						var_dump($objectClient);exit;
 						$arrErr = $objectClient->getError();
 						$this->arrErr['error2'] = '※ クレジットカード登録でエラーが発生しました。<br />' . implode('<br />', $arrErr);
 						$this->arrForm = $objectFormParam->getFormParamList();

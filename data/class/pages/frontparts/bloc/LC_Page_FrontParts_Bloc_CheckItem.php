@@ -163,12 +163,8 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
             $strParam = $product_id;
         }
 
-        setcookie(self::COOKIENAME, $strParam, [
-            'httponly' => true,
-            'expires' => time() + 60 * 60 * 24 * self::EXPIRESDAY,
-            'path' => ROOT_URLPATH,
-            'samesite' => 'None',
-            'secure' => true,
-        ]);
+        // クッキー管理クラス
+        $objCookie = new SC_Cookie_Ex(self::EXPIRESDAY);
+        $objCookie->setCookie(self::COOKIENAME, $strParam);
     }
 }
