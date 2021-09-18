@@ -813,6 +813,9 @@ __EOS__;
         if (NOSTOCK_HIDDEN) {
             $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
         }
+
+        $objQuery->setOrder('dtb_products.product_id DESC');
+
         return $objQuery->select('*', 'dtb_products', $where, [$customer_id]);
     }
 }
