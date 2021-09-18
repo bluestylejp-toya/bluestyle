@@ -566,6 +566,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,31,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,43,4,5,1,0);
 /*!40000 ALTER TABLE `dtb_blocposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
