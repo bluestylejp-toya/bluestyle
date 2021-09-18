@@ -1,0 +1,99 @@
+@use 'sass:math';
+@import 'foundation',
+        'layout';
+
+//Object
+@import 'object/component',
+        'object/project',
+        'object/utility';
+
+
+
+// ハートのアニメーション
+@keyframes heartAnime {
+  0% {
+    transform: scale(.2);
+  }
+  60% {
+    transform: scale(1.2, 1.2);
+  }
+  70% {
+    transform: scale(1, 1);
+  }
+  75% {
+    transform: scale(1.1, 0.9);
+  }
+  80% {
+    transform: scale(0.95, 1.05);
+  }
+  100% {
+    transform: scale(1.0, 1.0);
+  }
+}
+
+// パーティクル全体のアニメーション
+@keyframes particleLayerAnime {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  31% {
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(0, 0);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, -20px);
+  }
+}
+
+$points: -16, -59,
+41, 43,
+50, -48,
+-39, 36,
+-39, 32,
+48, 6,
+-69, -36,
+-12, -52,
+-43, -21,
+-10, 47,
+66, -9,
+40, -45,
+29, 24,
+-10, 50;
+
+$pointer: 1;
+
+@for $index from 1 through 14 {
+  @keyframes particleAnimate#{$index} {
+    0% {
+      transform: translate(0, 0);
+    }
+    30% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    80% {
+      transform: translate(#{nth($points, $pointer)*2}px, #{nth($points, $pointer + 1)*2}px);
+    }
+    90% {
+      transform: translate(#{nth($points, $pointer)*2}px, #{nth($points, $pointer + 1)*2}px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(#{nth($points, $pointer)*2}px, #{nth($points, $pointer + 1)*2}px);
+    }
+  }
+  $pointer: $pointer + 2;
+}

@@ -62,18 +62,16 @@ class LC_Page_Mypage_ItemList extends LC_Page_AbstractMypage_Ex
      */
     public function getProducts($customer_id)
     {
-        $objQuery       = SC_Query_Ex::getSingletonInstance();
-        $objProduct     = new SC_Product_Ex();
-
-        $objQuery->setOrder('dtb_products.product_id DESC');
-        $where = 'dtb_products.customer_id = ? AND dtb_products.del_flg = 0 AND dtb_products.status = 1';
-        if (NOSTOCK_HIDDEN) {
-            $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        // 出品中アイテム商品ID取得
+        $arrProductId = array();
+        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id, true);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
         }
-        $arrProductId  = $objQuery->getCol('dtb_products.product_id', 'dtb_products', $where, [$customer_id]);
 
         $objQuery       = SC_Query_Ex::getSingletonInstance();
         $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
+        $objProduct     = new SC_Product_Ex();
         $linemax        = $objProduct->findProductCount($objQuery);
 
         $this->tpl_linemax = $linemax;   // 何件が該当しました。表示用

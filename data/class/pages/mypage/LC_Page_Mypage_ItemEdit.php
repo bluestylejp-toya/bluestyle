@@ -134,7 +134,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                     $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
                     if (strlen($error) >= 1) {
                         SC_Response_Ex::json([
-                            'error' => $error,
+                            'error' => strip_tags($error),
                         ]);
                     }
                 }
@@ -237,7 +237,8 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     public function lfInitFile(&$objUpFile)
     {
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
-            $objUpFile->addFile("画像({$cnt})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, false, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
+            $necessary = $cnt == 1;
+            $objUpFile->addFile("画像({$cnt})", "sub_large_image{$cnt}", array('jpg', 'gif', 'png'), IMAGE_SIZE, $necessary, LARGE_SUBIMAGE_WIDTH, LARGE_SUBIMAGE_HEIGHT);
         }
     }
 
@@ -435,6 +436,39 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
     }
 
     /**
+     * 同名画像ファイル登録の有無を確認する.
+     *
+     * 画像ファイルの削除可否判定用。
+     * 同名ファイルの登録がある場合には画像ファイルの削除を行わない。
+     * 戻り値： 同名ファイル有り(true) 同名ファイル無し(false)
+     *
+     * @param  string  $image_file_name 画像ファイル名
+     * @param  SC_UploadFile_Ex $objUpFile SC_UploadFileインスタンス
+     * @return boolean
+     */
+    public function lfHasSameProductImage2($image_file_name, $objUpFile)
+    {
+        if (strlen($image_file_name) == 0) return false;
+
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $where = "del_flg = 0";
+        $arrWhereVal = [];
+
+        $arrKeyName = $objUpFile->keyname;
+        $arrPart = array();
+        foreach ($arrKeyName as $keyname) {
+            $arrPart[] = "{$keyname} = ?";
+            $arrWhereVal[] = $image_file_name;
+        }
+        $where .= ' AND (' . implode(' OR ', $arrPart) . ')';
+
+        $exists = $objQuery->exists('dtb_products', $where, $arrWhereVal);
+
+        return $exists;
+    }
+
+    /**
      * DBから商品データを取得する
      *
      * @param  integer $product_id 商品ID
@@ -546,24 +580,23 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             // 会員の整合を確認
             $this->checkCustomer($arrRet['customer_id']);
 
+            // UPDATEの実行
+            $where = 'product_id = ? AND customer_id = ?';
+            $objQuery->update('dtb_products', $sqlval, $where, array($product_id, $customer_id));
+
             // 削除要求のあった既存ファイルの削除
             // TODO: SC_UploadFile::deleteDBFileの画像削除条件見直し要
             $objImage = new SC_Image_Ex($objUpFile->temp_dir);
             $arrKeyName = $objUpFile->keyname;
             $arrSaveFile = $objUpFile->save_file;
-            $arrImageKey = array();
             foreach ($arrKeyName as $key => $keyname) {
                 if ($arrRet[$keyname] && !$arrSaveFile[$key]) {
-                    $arrImageKey[] = $keyname;
-                    $has_same_image = $this->lfHasSameProductImage($product_id, $arrImageKey, $arrRet[$keyname], $objUpFile);
+                    $has_same_image = $this->lfHasSameProductImage2($arrRet[$keyname], $objUpFile);
                     if (!$has_same_image) {
                         $objImage->deleteImage($arrRet[$keyname], $objUpFile->save_dir);
                     }
                 }
             }
-            // UPDATEの実行
-            $where = 'product_id = ? AND customer_id = ?';
-            $objQuery->update('dtb_products', $sqlval, $where, array($product_id, $customer_id));
         }
 
         // カテゴリを更新

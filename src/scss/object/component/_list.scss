@@ -1,0 +1,161 @@
+.c-list {
+    &--dot {
+        li {
+            margin-left: 1em;
+            text-indent: -1em;
+
+            &::before {
+                display: inline-block;
+                width: 1em;
+                text-indent: 0;
+                content: '・';
+            }
+        }
+    }
+
+    &--order {
+        counter-reset: num;
+        li {
+            counter-increment: num;
+            margin-left: 1.5em;
+            text-indent: -1.5em;
+            margin-bottom: $unit;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &::before {
+                display: inline-block;
+                width: 1.5em;
+                text-indent: 0;
+                content: counter(num)'.';
+            }
+        }
+    }
+    &--dl {
+        display: flex;
+        flex-wrap: wrap;
+        dd:not([class]) {
+            width: 100%;
+            margin-bottom: $unit*2;
+        }
+        dt:not([class]) {
+            width: 100%;
+            margin-bottom: math.div($unit, 2);
+        }
+        dt {
+            .attention {
+                display: inline-block;
+                margin-left: $unit;
+            }
+            @include font('sub-title-bold');
+            color: $gray;
+        }
+
+        &__left {
+            width: 100px;
+            padding-top: $unit;
+            margin-bottom: $unit*3;
+        }
+        &__right {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: $unit;
+            margin-bottom: $unit*3;
+            width: calc(100% - 100px);
+        }
+    }
+
+    &--news {
+        li {
+            padding: $unit 0;
+            border-bottom: 1px solid $border-color-light;
+            &.--open {
+                .c-list--news__title::after {
+                    transform: rotate(
+            45deg) translate(-50% ,-50%);
+                border-top: 2px solid #c4c8d0;
+                border-left: 2px solid #c4c8d0;
+                }
+            }
+        }
+        &__title {
+            padding-right: $unit*6;
+            position: relative;
+            font-weight: 500;
+            &::after {
+                position: absolute;
+                right: 4px;
+                top: 50%;
+                width: 10px;
+                height: 10px;
+                content: "";
+                display: block;
+                transform: rotate(
+            -135deg) translate(50% ,50%);
+                border-top: 2px solid #c4c8d0;
+                border-left: 2px solid #c4c8d0;
+            }
+        }
+        &__date {
+            @include font('sub-title-bold');
+            color: $gray;
+        }
+        &__body {
+            display: none;
+        }
+    }
+
+    &--news {
+        li {
+            padding: $unit 0;
+            border-bottom: 1px solid $border-color-light;
+            &.--open {
+                .c-list--news__title::after {
+                    transform: rotate(
+            45deg) translate(-50% ,-50%);
+                border-top: 2px solid #c4c8d0;
+                border-left: 2px solid #c4c8d0;
+                }
+            }
+        }
+        &__title {
+            padding-right: $unit*6;
+            position: relative;
+            font-weight: 500;
+            &::after {
+                position: absolute;
+                right: 4px;
+                top: 50%;
+                width: 10px;
+                height: 10px;
+                content: "";
+                display: block;
+                transform: rotate(
+            -135deg) translate(50% ,50%);
+                border-top: 2px solid #c4c8d0;
+                border-left: 2px solid #c4c8d0;
+            }
+        }
+        &__date {
+            @include font('sub-title-bold');
+            color: $gray;
+        }
+        &__body {
+            display: none;
+        }
+    }
+
+    &--search {
+        margin-top: $unit*4;
+        display: flex;
+        flex-wrap: wrap;
+        dt {
+            width: 100px;
+        }
+        dd {
+            width: calc(100% - 100px);
+        }
+    }
+}

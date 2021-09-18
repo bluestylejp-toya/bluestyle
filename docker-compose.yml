@@ -14,6 +14,9 @@ services:
       - ./data:/var/www/data
     depends_on:
       - db
+    networks:
+      - default
+      - shared_network
 
   db:
     container_name: mysql
@@ -35,3 +38,7 @@ services:
     ports:
       - "1090:1080"
       - "1035:1025"
+
+networks:
+  shared_network:
+    external: true

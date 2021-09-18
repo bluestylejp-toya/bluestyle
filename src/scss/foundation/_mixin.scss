@@ -1,0 +1,34 @@
+//mediaquery
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+//mediaquery
+@mixin mqd($breakpoint: md) {
+  @media #{map-get($breakpoints-d, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin font($f) {
+    $size: 1;
+    @each $p, $v in map-get($fonts, $f){
+        @if $p == 'font-size' {
+            $size: $v;
+            #{$p}: #{$v*.1}rem;
+        }
+        @else if $p == 'line-height' {
+            #{$p}:  line-height($v, $size);
+        }
+        @else {
+            #{$p}: #{$v};
+        }
+    }
+}
+
+// line heightの計算
+@function line-height($f, $h){
+    @return math.round(math.div( $f*10, $h)) * .1;
+}

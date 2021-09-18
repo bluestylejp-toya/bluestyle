@@ -1,0 +1,20 @@
+.c-profile-header {
+    display: flex;
+    align-items: center;
+    padding: $unit*2 0 ;
+    margin-top: $unit*3;
+    border-bottom: 1px solid $border-color-light;
+
+    &__img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: $unit;
+        object-fit: cover;
+    }
+
+    &__name {
+        font: 1.6rem;
+        font: 500px;
+    }
+}

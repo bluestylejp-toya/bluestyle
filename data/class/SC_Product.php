@@ -765,4 +765,54 @@ __EOS__;
 
         return $objQuery->count('dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
     }
+
+    /**
+     * リクエストされている商品情報
+     * @param int $customer_id
+     * @return array|null
+     */
+    public static function getRequestedFavoriteByCustomerId($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $sql = 'select * from dtb_customer_favorite_products where product_id IN (
+            select product_id from dtb_products where customer_id = ? and del_flg = 0
+        )';
+
+        return $objQuery->getAll($sql, [$customer_id]);
+    }
+
+    /**
+     * リクエストしている商品情報
+     * @param int $customer_id
+     * @return array|null
+     */
+    public static function getRequestingFavoriteByCustomerId($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $sql = 'select * from dtb_customer_favorite_products where customer_id = ?';
+
+        return $objQuery->getAll($sql, [$customer_id]);
+    }
+
+    /**
+     * 出品中の商品情報一覧を取得する
+     *
+     * @param int $customer_id 会員ID
+     * @param bool $dispPrivateFlg 非公開商品を表示するかどうか
+     * @return array|null 出品中の商品情報一覧
+     */
+    public static function getListingProducts($customer_id, $dispPrivateFlg = false)
+    {
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $where = 'dtb_products.customer_id = ? AND dtb_products.del_flg = 0';
+        if (!$dispPrivateFlg){
+            $where .= ' AND dtb_products.status = 1';
+        }
+        if (NOSTOCK_HIDDEN) {
+            $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        }
+        return $objQuery->select('*', 'dtb_products', $where, [$customer_id]);
+    }
 }

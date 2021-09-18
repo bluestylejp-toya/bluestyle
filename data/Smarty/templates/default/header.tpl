@@ -22,45 +22,12 @@
 
 <!--▼HEADER-->
 <!--{strip}-->
-    <div id="header_wrap">
-        <div id="header" class="clearfix">
-            <div id="logo_area">
-                <p id="site_description">EC-CUBE発!世界中を旅して見つけた立方体グルメを立方隊長が直送！</p>
-                <a href="<!--{$smarty.const.TOP_URL}-->"><img src="<!--{$TPL_URLPATH}-->img/common/logo.gif" alt="<!--{$arrSiteInfo.shop_name|h}-->/<!--{$tpl_title|h}-->" /></a>
-            </div>
-            <div id="header_utility">
-                <div id="headerInternalColumn">
-                <!--{* ▼HeaderInternal COLUMN *}-->
-                <!--{if !empty($arrPageLayout.HeaderInternalNavi)}-->
-                    <!--{* ▼上ナビ *}-->
-                    <!--{foreach key=HeaderInternalNaviKey item=HeaderInternalNaviItem from=$arrPageLayout.HeaderInternalNavi}-->
-                        <!-- ▼<!--{$HeaderInternalNaviItem.bloc_name}--> -->
-                        <!--{if $HeaderInternalNaviItem.php_path != ""}-->
-                            <!--{include_php_ex file=$HeaderInternalNaviItem.php_path items=$HeaderInternalNaviItem}-->
-                        <!--{else}-->
-                            <!--{include file=$HeaderInternalNaviItem.tpl_path items=$HeaderInternalNaviItem}-->
-                        <!--{/if}-->
-                        <!-- ▲<!--{$HeaderInternalNaviItem.bloc_name}--> -->
-                    <!--{/foreach}-->
-                    <!--{* ▲上ナビ *}-->
-                <!--{/if}-->
-                <!--{* ▲HeaderInternal COLUMN *}-->
-                </div>
-                <div id="header_navi">
-                    <ul>
-                        <li class="mypage">
-                            <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/common/btn_header_mypage.jpg" alt="MYページ" /></a>
-                        </li>
-                        <li class="entry">
-                            <a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/common/btn_header_entry.jpg" alt="会員登録" /></a>
-                        </li>
-                        <li>
-                            <a href="<!--{$smarty.const.CART_URL}-->"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/common/btn_header_cart.jpg" alt="カゴの中を見る" /></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
+<!--<div class="l-header__inner">
+  <a href="" aria-label="戻る" class="c-btn--header-nav"></a>
+  <h1 class="c-header-title">
+    <!--{$tpl_title|h}-->
+  </h1>
+</div>-->
 <!--{/strip}-->
 <!--▲HEADER-->

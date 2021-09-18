@@ -1,0 +1,35 @@
+.l-header {
+
+    &__inner {
+        position: relative;
+        margin: 0 #{-$unit*3} $unit*2;
+        padding: 0 56px;
+        align-items: center;
+        max-width: $container;
+        display: flex;
+        justify-content: center;
+        height: $header-height;
+    }
+
+    &--item {
+        padding-top: $unit;
+        padding-bottom: $unit;
+        margin-left: -#{$unit*3};
+        margin-right: -#{$unit*3};
+        margin-bottom:  $unit*3;
+        left: 0;
+        position: sticky;
+        top: 0;
+        background: $white;
+        z-index: 300;
+    }
+
+    &--btn {
+        margin: $unit*3 0 $unit*4;
+        *[class^=c-btn] {
+            svg {
+                margin-right: $unit;
+            }
+        }
+    }
+}

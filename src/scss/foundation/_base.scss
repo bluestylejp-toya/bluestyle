@@ -1,0 +1,42 @@
+html {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 62.5%;
+
+}
+body {
+    color: $font-color;
+    @include font('body');
+
+    &.--overflow-hidden {
+        overflow: hidden;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a:not([class]) {
+  color: $blue;
+  text-decoration: underline;
+}
+
+hr {
+    border-color: $border-color;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #9da4b0;
+}
+::placeholder{ /* Others */
+  color: #9da4b0;
+}
+
+small {
+    font-size: 1rem;
+}
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px white inset;
+}

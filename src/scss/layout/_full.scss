@@ -1,0 +1,5 @@
+// 余白のないフルサイズ
+.l-full {
+    margin-left: -#{$unit*3};
+    margin-right: -#{$unit*3};
+}

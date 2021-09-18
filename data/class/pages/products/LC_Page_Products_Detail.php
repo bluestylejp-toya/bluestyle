@@ -122,6 +122,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     /** @var array エラー情報 */
     public $arrErr;
 
+    // 自分が出品した商品か
+    public $tpl_my_product = false;
+
     /**
      * Page を初期化する.
      *
@@ -134,11 +137,12 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
 
         // POST に限定する mode
         $this->arrLimitPostMode[] = 'cart';
-        $this->arrLimitPostMode[] = 'add_favorite';
-        $this->arrLimitPostMode[] = 'add_favorite_sphone';
+        $this->arrLimitPostMode[] = 'add_favorite_ajax';
+        $this->arrLimitPostMode[] = 'del_favorite_ajax';
         $this->arrLimitPostMode[] = 'select';
         $this->arrLimitPostMode[] = 'select2';
         $this->arrLimitPostMode[] = 'selectItem';
@@ -224,16 +228,46 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         // 商品IDをFORM内に保持する
         $this->tpl_product_id = $product_id;
 
+        // 商品詳細を取得
+        $this->arrProduct = $objProduct->getDetail($product_id);
+
+        // ログイン判定
+        if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
+            $customer_id = $objCustomer->getValue('customer_id');
+            if ($this->arrProduct['customer_id'] == $customer_id) {
+                $this->tpl_my_product = true;
+            }
+        }
+
         switch ($this->mode) {
             case 'cart':
                 $this->doCart();
                 break;
 
-            case 'add_favorite':
-                $this->doAddFavorite($objCustomer);
+            case 'api_add_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
+
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setUrl(API_URL . 'chain/edges/add');
+                $objHelperApi->setMethod('POST');
+                $data = [
+                    "source_id" => $this->objFormParam->getValue('favorite_product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
+                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
+                ];
+                $objHelperApi->setParam($data);
+                $result = $objHelperApi->exec();
+                SC_Response_Ex::json([
+                    'registered' => true,
+                ]);
                 break;
 
             case 'add_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
                 $this->doAddFavorite($objCustomer);
                 SC_Response_Ex::json([
                     'registered' => true,
@@ -247,10 +281,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                     'registered' => false,
                     'count_of_favorite' => SC_Product_Ex::countFavoriteByProductId($this->objFormParam->getValue('favorite_product_id')),
                 ]);
-                break;
-
-            case 'add_favorite_sphone':
-                $this->doAddFavoriteSphone($objCustomer);
                 break;
 
             case 'select':
@@ -293,9 +323,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             }
         }
 
-        // 商品詳細を取得
-        $this->arrProduct = $objProduct->getDetail($product_id);
-
         // サブタイトルを取得
         $this->tpl_subtitle = $this->arrProduct['name'];
 
@@ -312,12 +339,12 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         //関連商品情報表示
         $this->arrRecommend = $this->lfPreGetRecommendProducts($product_id);
 
-        // ログイン判定
-        if ($objCustomer->isLoginSuccess() === true) {
-            //お気に入りボタン表示
-            $this->tpl_login = true;
-            $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($objCustomer->getValue('customer_id'), $product_id));
+        if ($this->tpl_login) {
+            $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
         }
+
+        $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
+        $this->arrProduct['arrCustomerProducts'] = SC_Helper_Customer_Ex::getCustomerProducts($this->arrProduct['customer_id']);
     }
 
     /**
@@ -452,6 +479,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('EXIST_CHECK', 'ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お気に入り商品ID', 'favorite_product_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品規格ID', 'product_class_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('交換対象商品', 'target_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         // 値の取得
         $objFormParam->setParam($_REQUEST);
         // 入力値の変換
@@ -599,7 +627,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      * お気に入り商品登録
      * @return void
      */
-    public function lfRegistFavoriteProduct($favorite_product_id, $customer_id)
+    public function lfRegistFavoriteProduct($favorite_product_id, $customer_id, $target_id)
     {
         // ログイン中のユーザが商品をお気に入りにいれる処理
         if (!SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', $favorite_product_id, 'del_flg = 0 AND status = 1')) {
@@ -615,6 +643,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $sqlval['product_id'] = $favorite_product_id;
                 $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
                 $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
+                $sqlval['target_id'] = $target_id;
 
                 $objQuery->begin();
                 $objQuery->insert('dtb_customer_favorite_products', $sqlval);
@@ -678,8 +707,8 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             if (count($this->arrErr) == 0) {
                 // 登録
                 if ($register) {
-                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
-                        SC_Response_Ex::actionExit(); 
+                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'), $this->objFormParam->getValue('target_id'))) {
+                        SC_Response_Ex::actionExit();
                     }
                     $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
                     $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite', array($this));
@@ -689,30 +718,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                     $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'));
                 }
             }
-        }
-    }
-
-    /**
-     * Add product to authenticated user's favorites. (for Smart phone)
-     *
-     * @param  SC_Customer $objCustomer
-     * @return void
-     */
-    public function doAddFavoriteSphone(SC_Customer $objCustomer)
-    {
-        // ログイン中のユーザが商品をお気に入りにいれる処理(スマートフォン用)
-        if ($objCustomer->isLoginSuccess() === true && $this->objFormParam->getValue('favorite_product_id') > 0) {
-            $this->arrErr = $this->lfCheckError($this->mode, $this->objFormParam);
-            if (count($this->arrErr) == 0) {
-                if ($this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
-                    $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
-                    $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite_sphone', array($this));
-                    print 'true';
-                    SC_Response_Ex::actionExit();
-                }
-            }
-            print 'error';
-            SC_Response_Ex::actionExit();
         }
     }
 
