@@ -35,6 +35,7 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
     public function init()
     {
         parent::init();
+        $this->httpCacheControl('nocache');
     }
 
     /**
@@ -55,9 +56,6 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
      */
     public function action()
     {
-        // 閲覧商品取得
-        $this->arrCheckItems = $this->getCheckItem();
-
         // 商品詳細ページアクセス時には閲覧商品に追加
         if (isset($_GET['product_id'])) {
             // 商品IDフォーマットチェック
@@ -70,6 +68,9 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
             }
             self::setCookie($objFormParam_PreEdit->getValue('product_id'));
         }
+
+        // 閲覧商品取得
+        $this->arrCheckItems = $this->getCheckItem();
     }
 
     /**
@@ -166,5 +167,6 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
         // クッキー管理クラス
         $objCookie = new SC_Cookie_Ex(self::EXPIRESDAY);
         $objCookie->setCookie(self::COOKIENAME, $strParam);
+        $_COOKIE[self::COOKIENAME] = $strParam;
     }
 }
