@@ -24,7 +24,7 @@
 
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->user_data/other.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->other/" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
     </header>
     <p class="u-mb--4">株式会社BLUE STYLE（以下、「当社」といいます。）は、以下のとおりお客さま個人に関する情報(以下「個人情報」といいます。)保護方針を定め、個人情報保護の仕組みを構築し、全従業員に個人情報保護の重要性の認識と取組みを徹底させることにより、個人情報の保護を推進致します。</p>
