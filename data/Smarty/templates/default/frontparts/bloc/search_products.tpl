@@ -88,17 +88,18 @@
         $('[data-menu_id]').on('click',function(){
             slideInMenu.find('.c-header-title.change_title').text($(this).text());
             slideInMenu.addClass('--show')
-            console.log($('#' + $(this).data('menu_id')))
-            $('#' + $(this).data('menu_id')).addClass('--show')
+            $id = '#' + $(this).data('menu_id')
+            $($id).addClass('--show')
             slideInMenu.find('.c-btn--header-nav.menu_btn').on('click',function(){
-                slideInMenu.removeClass('--show')
+                slideInMenu.removeClass('--show');
+                $($id).removeClass('--show');
             })
         })
         $('[data-sub_menu_id]').on('click',function(){
-            slideInSubMenu.addClass('--show')
-            $('#' + $(this).data('sub_menu_id')).addClass('--show')
+            $id = '#' + $(this).data('sub_menu_id');
+            $($id).addClass('--show');
             slideInSubMenu.find('.c-btn--header-nav.menu_sub_btn').on('click',function(){
-                slideInSubMenu.removeClass('--show')
+                $($id).removeClass('--show')
             })
         })
         category.on('change',function(){
