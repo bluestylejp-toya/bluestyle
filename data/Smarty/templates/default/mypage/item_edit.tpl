@@ -272,9 +272,9 @@ $(function(){
             $closest.find('span.c-item__img').addClass('--hidden');
         }
         else {
-            if($closest.attr('data-item_id') === 1) {
-                alert('カバー写真は削除できません。');
-            }
+            // if($closest.attr('data-item_id') === 1) {
+            //     alert('カバー写真は削除できません。');
+            // }
         }
     }
 
