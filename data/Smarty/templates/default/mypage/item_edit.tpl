@@ -84,13 +84,15 @@
                             </span>
 
                             <input type="file" name="<!--{$key|h}-->" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" disabled/>
+
                         </label>
 
 
                         <div class="c-item__main">
                             <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
                             <h2 class="c-heading-subtitle u-text--left u-color--gray">キャプション</h2>
-                            <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" readonly/>
+                            <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="u-mb--4" readonly/>
+                            <button type="button" class="c-item__img-save-btn c-btn--primary">保存する</button>
                         </div>
                         <button class="c-item__controll-btn" type="button"></button>
 
@@ -180,7 +182,7 @@ $(function(){
             $('body').addClass('--overflow-hidden');
 
             //画像が登録されなかった場合の処理も必要
-            $('.c-item__back-btn').on('click', function(){
+            $('.c-item__back-btn, .c-item__img-save-btn').on('click', function(){
                 if($image.attr('src') == '' && $caption.val() != '') {
                     // キャプションの登録があって画像がない場合
                     alert('画像の登録をしてください。');
