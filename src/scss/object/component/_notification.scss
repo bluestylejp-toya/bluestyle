@@ -23,4 +23,9 @@
         background: $gradient-color;
         @extend %notification;
     }
+    &--tertiary {
+        @extend %notification;
+        background: #{map-get(map-get($brand-colors, tertiary), default)};
+         color: $black;
+    }
 }

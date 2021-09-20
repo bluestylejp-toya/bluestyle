@@ -164,21 +164,24 @@
                         </ul>
                     </dd>-->
                 </dl>
-                <!--{if !$tpl_my_product}--><!--通報するボタン-->
-                    <p class="u-mb--4 u-text--right report_btn"><a href="javascript:void(0)" type="button">通報する</a></p>
+
+                    <button class="u-mb--4 report_btn c-btn--default--sm" type="button">その他</button>
                     <div class="l-popup" data-item_mode="false">
-                        <div class="l-popup__inner">
-                            <p class="u-mb--2 report_message"></p>
+                        <div class="l-popup__inner u-text--left">
+                            <p class="u-mb--2 report_message u-weight--bold">その他</p>
+                            <!--{if !$tpl_my_product}--><!--通報するボタン-->
+                            <button type="button" class="report_submit">通報する</button>
                             <input type="hidden" name="report_title" value="出品アイテムの違反報告です">
                             <input type="hidden" name="reporter" value="リポートしたユーザーのIDが入るように">
-                            <input type="hidden" name="report_url" value="./detail.php?product_id=<!--{$tpl_product_id}-->">
+                            <input type="hidden" name="report_url" value="<!--{$smarty.const.TOP_URL}-->/detail.php?product_id=<!--{$tpl_product_id}-->">
                             <!--/下のJSの「通報の処理」に送信処理を追加願います-->
-                            <button type="button" class="c-btn--tertiary u-mb--2 report_submit">通報する</button>
-                            <button type="button" class="c-btn--default report_undo-btn">やめる</button>
+                            <!--{else}-->
+                            <a href="<!--{$smarty.const.TOP_URL}-->mypage/item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|h}-->" class="c--btn--text">編集する</a>
+                            <!--{/if}-->
                         </div>
                         <div class="l-popup__close"></div>
+                        <p class="c-notification--secondary notification">このアイテムを通報しました</p>
                     </div>
-                <!--{/if}-->
                 <div class="history">
                     <h2 class="c-heading--lg history_title">閲覧履歴</h2>
                 </div>
@@ -379,20 +382,27 @@ $(function(){
     $('.report_btn').on('click', function(){
         $('.l-popup').attr('data-item_mode', 'report') ;
         $('body').addClass('--overflow-hidden');
-        $('.report_message').text('このアイテムについて通報しますか？');
+        $('.report_message').text('その他');
+        $('.report_form').hide()
 
         $('.report_submit').on('click', function(){
 
             //ここに管理者へのajaxの処理をお願いします。
             // 成功した時の処理
+            $('.l-popup').find('.c-notification--secondary.notification').show().delay(400).fadeOut();
             $(this).attr('disabled', 'disabled');
-            $('.report_undo-btn').text('閉じる');
-            $('.report_message').text('通報が完了しました');
+            setTimeout(
+                function(){
+                    $('body').removeClass('--overflow-hidden');
+                    $('.l-popup').attr('data-item_mode', 'false');
+                },
+                700
+            )
         })
 
-        $('.l-popup .l-popup__close, .report_undo-btn').on('click', function(){
+        $('.l-popup .l-popup__close').on('click', function(){
             $('body').removeClass('--overflow-hidden');
-            $('.l-popup').attr('data-item_mode', 'false') ;
+            $('.l-popup').attr('data-item_mode', 'false');
         })
     })
 
