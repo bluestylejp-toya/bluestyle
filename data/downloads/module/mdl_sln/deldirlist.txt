@@ -1,0 +1,9 @@
+./class/client
+./class/pages
+./class/util
+./class/plugin
+./copy/media
+./plugins
+./inc
+./module
+./templates/mail_template
