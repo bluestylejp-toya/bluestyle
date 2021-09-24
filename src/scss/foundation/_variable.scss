@@ -9,7 +9,7 @@ $brand-colors: (
     default: (default: map-get($gray-set, 0), dark: map-get($gray-set, 2)),
     primary: (default: #72c8e2, dark: #2A7DA7),
     secondary: (default: #84C200, dark: #79A52B),
-    tertiary: (default: #FFAF33, dark: #CC7D19),
+    tertiary: (default: #fcbc5c, dark: #CC7D19),
     red: (default: #FD0000, dark: #FD0000),
     gradient: (default: $gradient-color, dark: $gradient-color),
 );
