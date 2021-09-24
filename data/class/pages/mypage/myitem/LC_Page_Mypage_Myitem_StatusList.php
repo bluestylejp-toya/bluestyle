@@ -42,15 +42,52 @@ class LC_Page_Mypage_Myitem_StatusList extends LC_Page_AbstractMypage_Ex
      */
     public function action()
     {
-        $objCustomer = new SC_Customer_Ex();
-
-        $customer_id = $objCustomer->getValue('customer_id');
-
         // ページ送り用
         if (isset($_POST['pageno'])) {
             $this->tpl_pageno = intval($_POST['pageno']);
         }
-        $this->arrProducts = $this->getProducts($customer_id, $this);
+
+        $objCustomer = new SC_Customer_Ex();
+        $customer_id = $objCustomer->getValue('customer_id');
+
+        // chain進捗状況取得
+        $this->arrChainProductStatus = $this->getChainProductStatus($customer_id);
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getChainProductStatus($customer_id)
+    {
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        $arrChainProductStatus = array();
+        $index = 0;
+
+        $arrProducts = $this->getProducts($customer_id, $this);
+        foreach ($arrProducts as $arrProduct) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $arrProduct['product_id']);
+            $result = json_decode($objHelperApi->exec(), true);
+            if ( count($result) > 0 ){
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                foreach ( $result["chain_list"] as $chainList)
+                {
+                    foreach ( $chainList as $chain){
+                        if ($arrProduct['product_id'] == $chain['source_id']){
+                            $arrChainProductStatus[$index]['product'] = $arrProduct;
+                            $arrChainProductStatus[$index]['chain'] = $chain;
+                            $arrChainProductStatus[$index]['progress_percent'] = $result['progress_percent'];
+                        }
+                    }
+                }
+            }
+        }
+
+        return $arrChainProductStatus;
     }
 
     /**
@@ -64,7 +101,7 @@ class LC_Page_Mypage_Myitem_StatusList extends LC_Page_AbstractMypage_Ex
     {
         // 出品中アイテム商品ID取得
         $arrProductId = array();
-        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id);
+        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id, false);
         foreach ($arrListingProducts as $arrListingProduct) {
             $arrProductId[] = $arrListingProduct['product_id'];
         }
