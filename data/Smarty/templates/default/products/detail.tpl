@@ -179,7 +179,9 @@
                         <div class="l-popup__close"></div>
                     </div>
                 <!--{/if}-->
-                <h2 class="c-heading--lg">閲覧履歴</h2>
+                <div class="history">
+                    <h2 class="c-heading--lg history_title">閲覧履歴</h2>
+                </div>
             </div>
             <!--/.p-item-detail__body__main-->
 
@@ -270,6 +272,8 @@
 </section>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+$(function(){
+    $(".history_list").appendTo(".history");
 
     $('.favorite_area #request').on('click', function(){
         let $this = $(this);
@@ -443,4 +447,5 @@
             history.replaceState('', '', location.href.replace('&mode=select_product_success', ''));
         }
     })
+});
 </script>

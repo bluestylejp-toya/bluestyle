@@ -3,7 +3,7 @@
         <!--{if $smarty.server.PHP_SELF==$list}-->
             <div class="c-item-tab__content" data-tab_item="1">
         <!--{/if}-->
-        <ul class="l-item-list">
+        <ul class="l-item-list history_list">
             <!--{section name=cnt loop=$arrCheckItems}-->
                 <li class="c-item--default">
                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrCheckItems[cnt].product_id|u}-->" class="c-item--default__img">
