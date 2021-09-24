@@ -257,7 +257,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                     "target_id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
-                $objHelperApi->setParam($data);
+                $objHelperApi->setPostParam($data);
                 $result = $objHelperApi->exec();
                 SC_Response_Ex::json([
                     'registered' => true,
