@@ -19,7 +19,7 @@ class LC_Page_Mypage_Myitem_UnselectedItem extends LC_Page_AbstractMypage_Ex
     public function init()
     {
         parent::init();
-        $this->tpl_subtitle = '出品中アイテム一覧';
+        $this->tpl_subtitle = '選択待ちのアイテム詳細';
         $this->tpl_mypageno = 'item-list';
         // 1ページあたりの件数
         $this->dispNumber = 10;
@@ -43,14 +43,42 @@ class LC_Page_Mypage_Myitem_UnselectedItem extends LC_Page_AbstractMypage_Ex
     public function action()
     {
         $objCustomer = new SC_Customer_Ex();
-
         $customer_id = $objCustomer->getValue('customer_id');
+        $this->arrChainProduct = $this->getChainProductStatus($customer_id, $this);
+    }
 
-        // ページ送り用
-        if (isset($_POST['pageno'])) {
-            $this->tpl_pageno = intval($_POST['pageno']);
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getChainProductStatus($customer_id)
+    {
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        $arrChainProductStatus = array();
+        $arrProducts = $this->getProducts($customer_id);
+        $objProduct = new SC_Product_Ex();
+        $index = 0;
+        foreach ($arrProducts as $arrProduct) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $arrProduct['product_id']);
+            $result = json_decode($objHelperApi->exec(), true);
+            if ( count($result) > 0 ){
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                foreach ( $result["selection_edge_list"] as $chainList)
+                {
+                    foreach ( $chainList as $chain){
+                        if ($arrProduct['product_id'] == $chain['source_id']){
+                            $arrChainProductStatus[$arrProduct['product_id']]['source_product'] = $arrProduct;
+                            $arrChainProductStatus[$arrProduct['product_id']]['progress_percent'] = $result['progress_percent'];
+                        }
+                    }
+                }
+            }
         }
-        $this->arrProducts = $this->getProducts($customer_id, $this);
+        return $arrChainProductStatus;
     }
 
     /**
