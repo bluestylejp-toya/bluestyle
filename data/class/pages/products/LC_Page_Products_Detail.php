@@ -244,6 +244,26 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $this->doCart();
                 break;
 
+            case 'api_remove_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
+
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setUrl(API_URL . 'chain/edges/remove');
+                $objHelperApi->setMethod('POST');
+                $data = [
+                    "id" => $this->objFormParam->getValue('product_id'),
+                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
+                ];
+                $objHelperApi->setPostParam($data);
+                $result = $objHelperApi->exec();
+                SC_Response_Ex::json([
+                    'registered' => false,
+                ]);
+                break;
+
+
             case 'api_add_favorite_ajax':
                 if ($this->tpl_my_product) {
                     throw new Exception('自分の商品はお気に入りに登録できない。');
@@ -295,6 +315,11 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
             default:
                 $this->doDefault();
+
+                // 交換対象商品一覧を取得する
+                if ($objCustomer->isLoginSuccess() === true) {
+                    $this->arrTargetProducts = $this->getTargetProducts($objCustomer->getValue('customer_id'));
+                }
                 break;
         }
 
@@ -843,5 +868,74 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     public function doMobileDefault()
     {
         $this->tpl_mainpage = 'products/detail.tpl';
+    }
+
+    /**
+     * 出品中アイテムを取得する
+     *
+     * @param mixed $customer_id
+     * @access private
+     * @return array 出品中アイテム商品一覧
+     */
+    public function getTargetProducts($customer_id)
+    {
+        // 出品中アイテム商品ID取得
+        $arrProductId = array();
+        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
+        $objProduct     = new SC_Product_Ex();
+        $linemax        = $objProduct->findProductCount($objQuery);
+
+        $this->tpl_linemax = $linemax;   // 何件が該当しました。表示用
+
+        // ページ送りの取得
+        $objNavi        = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
+        $this->tpl_strnavi = $objNavi->strnavi; // 表示文字列
+        $startno        = $objNavi->start_row;
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        //$objQuery->setLimitOffset($this->dispNumber, $startno);
+        // 取得範囲の指定(開始行番号、行数のセット)
+        $arrProductId  = array_slice($arrProductId, $startno, $this->dispNumber);
+
+        $where = $this->lfMakeWhere('', $arrProductId);
+        $where .= ' AND del_flg = 0';
+        $objQuery->setWhere($where, $arrProductId);
+        $addCols = ['count_of_favorite'];
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        //取得している並び順で並び替え
+        $arrProducts2 = array();
+        foreach ($arrProducts as $item) {
+            $arrProducts2[$item['product_id']] = $item;
+        }
+        $arrProductsList = array();
+        foreach ($arrProductId as $product_id) {
+            $arrProductsList[] = $arrProducts2[$product_id];
+        }
+
+        return $arrProductsList;
+    }
+
+    /**
+     * @param string $tablename
+     */
+    public function lfMakeWhere($tablename, $arrProductId)
+    {
+        // 取得した表示すべきIDだけを指定して情報を取得。
+        $where = '';
+        if (is_array($arrProductId) && !empty($arrProductId)) {
+            $where = $tablename . 'product_id IN (' . implode(',', $arrProductId) . ')';
+        } else {
+            // 一致させない
+            $where = '0<>0';
+        }
+
+        return $where;
     }
 }
