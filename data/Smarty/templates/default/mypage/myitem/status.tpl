@@ -12,14 +12,14 @@
                 <path d="M 100,100 L 100,0 A 100, 0 0 0 1 100, 0 z"></path>
             </clipPath>
         </svg>
-        <h1>Chain成立まであと33%</h1>
+        <h1>Chain成立まであと<!--{100-$arrChainProduct.progress_percent}-->%</h1>
     </div>
     <h2 class="c-heading--lg u-mb--1">あなたの交換</h2>
     <div class="c-card--blue u-mb--2">
         <p class="c-card__title">あなた</p>
-        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrChainProduct.source_product.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrChainProduct.source_product.name|h}--> 画像(1)" class="c-item__img"/>
         <div class="c-item__main">
-            <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
+            <p class="c-item__title">タイトル<!--{$arrChainProduct.source_product.name|h}--></p>
             <p class="c-item__request">12</p>
         </div>
     </div>
@@ -37,14 +37,16 @@
         </svg>
     </div>
     <div class="c-card--white u-mb--4">
-        <p class="c-card__title">交換相手</p>
-        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
-        <div class="c-item__main">
-            <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
-            <p class="c-item__request">12</p>
-        </div>
+        <!--{foreach from=$arrChainProduct.target_product item=targetProduct}-->
+            <p class="c-card__title">交換相手</p>
+            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$targetProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$targetProduct.name|h}--> 画像(1)" class="c-item__img"/>
+            <div class="c-item__main">
+                <p class="c-item__title">タイトル<!--{$targetProduct.name|h}--></p>
+                <p class="c-item__request">ダミー：12</p>
+            </div>
+        <!--{/foreach}-->
     </div>
-    <h2 class="c-heading--lg u-mb--1">その他のアイテム</h2>
+    <h2 class="c-heading--lg u-mb--1">ダミー：その他のアイテム</h2>
     <ul class="u-mb--4">
         <li>
             <a href="<!--{$smarty.const.TOP_URL}-->user_data/status.php?product_id=1" class="c-item">
@@ -63,7 +65,7 @@
             </a>
         </li>
     </ul>
-    <h2 class="c-heading--lg u-mb--1">未確定アイテム</h2>
+    <h2 class="c-heading--lg u-mb--1">ダミー：未確定アイテム</h2>
     <ul>
         <li class="c-item">
             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
