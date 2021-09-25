@@ -60,5 +60,7 @@ class LC_Page_News extends LC_Page_Ex
      */
     public function action()
     {
+        $objNews = new SC_Helper_News_Ex();
+        $this->arrNews = $objNews->getList();
     }
 }
