@@ -62,11 +62,19 @@ class SC_Helper_Api
         $this->options[CURLOPT_CUSTOMREQUEST] = $method;
     }
 
-    function setParam($data)
+    /**
+     * POSTするデータ
+     * @param $data
+     */
+    function setPostParam($data)
     {
         $this->options[CURLOPT_POSTFIELDS] = json_encode($data);
     }
 
+    /**
+     * API実行
+     * @return bool|string
+     */
     function exec()
     {
         //cURLセッションを初期化する

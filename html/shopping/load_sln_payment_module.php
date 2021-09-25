@@ -22,8 +22,8 @@
  */
 
 require_once '../require.php';
-require_once CLASS_EX_REALDIR . 'page_extends/products/LC_Page_Product_Select_Ex.php';
+require_once CLASS_EX_REALDIR . 'page_extends/shopping/LC_Page_Shopping_LoadPaymentModule_Ex.php';
 
-$objPage = new LC_Page_Product_Select_Ex();
+$objPage = new LC_Page_Shopping_LoadPaymentModule_Ex();
 $objPage->init();
 $objPage->process();

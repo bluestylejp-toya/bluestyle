@@ -19,7 +19,7 @@
 
                                 <div class="c-item__main">
                                     <p class="c-item__title"><!--{$arrProduct.name|h}--></p>
-                                    <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+                                    <div class="c-item__status"><i class="c-item__<!--{if $arrProduct.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div></div>
                                 </div>
                             </a>
                         </li>

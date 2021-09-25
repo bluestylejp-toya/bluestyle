@@ -321,6 +321,8 @@ INSERT INTO `dtb_bloc` VALUES (1,3,'おすすめ商品','recommend.tpl','recomme
 INSERT INTO `dtb_bloc` VALUES (1,4,'カテゴリ','category.tpl','category','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/category.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (1,5,'ログイン','login.tpl','login','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (1,6,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (1,7,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (1,8,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 INSERT INTO `dtb_bloc` VALUES (2,1,'新着情報','news.tpl','news','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/news.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,2,'ログイン','login.tpl','login','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,3,'おすすめ商品','recommend.tpl','recommend','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/recommend.php',0,NULL);
@@ -329,6 +331,8 @@ INSERT INTO `dtb_bloc` VALUES (2,5,'【ヘッダー】ログイン','login_heade
 INSERT INTO `dtb_bloc` VALUES (2,6,'【ヘッダー】ナビ','navi_header.tpl','navi_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/navi_header.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,7,'【フッター】ログイン','login_footer.tpl','login_footer','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_footer.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (2,8,'【フッター】ナビ','navi_footer.tpl','navi_footer','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/navi_footer.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (2,9,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (2,10,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 INSERT INTO `dtb_bloc` VALUES (10,1,'カテゴリ','category.tpl','category','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/category.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,2,'利用ガイド','guide.tpl','guide','2021-01-13 01:40:18','2021-01-13 01:40:18',NULL,0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,3,'カゴの中','cart.tpl','cart','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/cart.php',0,NULL);
@@ -340,6 +344,8 @@ INSERT INTO `dtb_bloc` VALUES (10,8,'カレンダー','calendar.tpl','calendar',
 INSERT INTO `dtb_bloc` VALUES (10,9,'【ヘッダー】ログイン','login_header.tpl','login_header','2021-01-13 01:40:18','2021-01-13 01:40:18','frontparts/bloc/login_header.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,10,'新着アイテム','new_item.tpl','new_item','2021-07-28 00:00:00','2021-07-28 00:00:00','frontparts/bloc/new_item.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,11,'閲覧履歴','check_item.tpl','check_item','2021-08-08 00:00:00','2021-08-08 00:00:00','frontparts/bloc/check_item.php',0,NULL);
+INSERT INTO `dtb_bloc` VALUES (10,12,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (10,13,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 /*!40000 ALTER TABLE `dtb_bloc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,24 +468,26 @@ INSERT INTO `dtb_blocposition` VALUES (2,28,10,6,1,0);
 INSERT INTO `dtb_blocposition` VALUES (2,29,6,7,2,0);
 INSERT INTO `dtb_blocposition` VALUES (2,29,6,8,1,0);
 INSERT INTO `dtb_blocposition` VALUES (2,29,10,6,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,1,4,10,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,1,1,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,1,2,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,3,4,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,3,6,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,3,8,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,5,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,7,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,10,3,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,11,4,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
-<<<<<<< HEAD
-<<<<<<< HEAD
-INSERT INTO `dtb_blocposition` VALUES (10,2,1,4,4,0);
-INSERT INTO `dtb_blocposition` VALUES (10,2,2,11,1,0);
-=======
-=======
 INSERT INTO `dtb_blocposition` VALUES (10,2,2,4,1,0);
->>>>>>> master
 INSERT INTO `dtb_blocposition` VALUES (10,2,4,11,1,0);
->>>>>>> master
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,3,4,11,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,4,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,4,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,4,1,3,1,0);
@@ -564,7 +572,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,31,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,3,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,37,4,5,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,43,4,5,1,0);
 /*!40000 ALTER TABLE `dtb_blocposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -647,10 +655,9 @@ CREATE TABLE `dtb_category_count` (
 
 LOCK TABLES `dtb_category_count` WRITE;
 /*!40000 ALTER TABLE `dtb_category_count` DISABLE KEYS */;
-INSERT INTO `dtb_category_count` VALUES (2,0,'2021-09-01 05:52:13');
-INSERT INTO `dtb_category_count` VALUES (3,0,'2021-09-01 05:24:52');
-INSERT INTO `dtb_category_count` VALUES (4,2,'2021-09-01 06:26:15');
-INSERT INTO `dtb_category_count` VALUES (6,0,'2021-09-01 05:44:51');
+INSERT INTO `dtb_category_count` VALUES (3,1,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_count` VALUES (4,2,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_count` VALUES (6,1,'2021-08-19 08:39:07');
 /*!40000 ALTER TABLE `dtb_category_count` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -675,11 +682,10 @@ CREATE TABLE `dtb_category_total_count` (
 
 LOCK TABLES `dtb_category_total_count` WRITE;
 /*!40000 ALTER TABLE `dtb_category_total_count` DISABLE KEYS */;
-INSERT INTO `dtb_category_total_count` VALUES (1,2,'2021-09-01 06:26:15');
-INSERT INTO `dtb_category_total_count` VALUES (2,0,'2021-09-01 05:52:13');
-INSERT INTO `dtb_category_total_count` VALUES (3,0,'2021-09-01 05:24:52');
-INSERT INTO `dtb_category_total_count` VALUES (4,2,'2021-09-01 06:26:15');
-INSERT INTO `dtb_category_total_count` VALUES (6,0,'2021-09-01 05:44:51');
+INSERT INTO `dtb_category_total_count` VALUES (1,3,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (3,1,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (4,2,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (6,1,'2021-08-19 08:39:07');
 /*!40000 ALTER TABLE `dtb_category_total_count` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1101,16 +1107,7 @@ CREATE TABLE `dtb_customer` (
 
 LOCK TABLES `dtb_customer` WRITE;
 /*!40000 ALTER TABLE `dtb_customer` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `dtb_customer` VALUES (1,'','',NULL,NULL,NULL,NULL,NULL,NULL,392,NULL,NULL,NULL,'yuri.soushi@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'71b25fb1aff88c7565e8d8fd69da2cf92619550f918f4645af51913465b6719a',NULL,NULL,'sloudriawi','r612f0b4766fd87m4BzkPw',NULL,NULL,0,0,0,NULL,1,'2021-09-01 05:10:31','2021-09-01 05:14:28',1,NULL,NULL,NULL,'かみーゆ',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (2,'井上','太郎','イノウエ','タロウ',NULL,'731','1223',NULL,392,15,'広島市佐伯区','111','yuri.soushi@gmail.com',NULL,'000','0000','0000',NULL,NULL,NULL,NULL,NULL,'1974-10-08 00:00:00','13b4781696f7cd6b631fedccb41c7705e9c4388327a5b311654a1cfddf5d170c',NULL,NULL,'phaimiohai','r612f0c75398e5x47ubAmJ',NULL,NULL,0,0,0,NULL,2,'2021-09-01 05:15:33','2021-09-02 09:33:30',0,NULL,NULL,4,'admin','かみーゆ','かみーゆ','09021833_61309a5a2c1e6.jpg');
-INSERT INTO `dtb_customer` VALUES (3,'井上','太郎','イノウエ','タロウ',NULL,'731','5112',NULL,392,13,'広島市佐伯区','12355','test@gmail.com',NULL,'000','0000','0000',NULL,NULL,NULL,NULL,NULL,'1975-08-06 00:00:00','a704b2f43b9c83854bb6e3ad0b3f6d64e3ad59147852535b272b2cab58499c37',NULL,NULL,'dradiawila','r612f0dae81edcaEaDYyM5',NULL,NULL,0,0,0,NULL,2,'2021-09-01 05:20:46','2021-09-01 05:24:52',1,NULL,NULL,1,'猫',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (4,'','',NULL,NULL,NULL,NULL,NULL,NULL,392,NULL,NULL,NULL,'test@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7b5db8367dbb79f0764d11609cb35e5d588c855963b134246f8c096c60fd61fc',NULL,NULL,'frecriawea','r6132d1ac4eeebBrwveNdz',NULL,NULL,0,0,0,NULL,2,'2021-09-04 01:53:48','2021-09-04 01:53:48',0,NULL,NULL,NULL,'ねこ',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (5,'','',NULL,NULL,NULL,NULL,NULL,NULL,392,NULL,NULL,NULL,'aaa@aaa.aaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2d0d392520ccdad4b443e2275976e7140467461174725610075f8a1bb0c7bfed',NULL,NULL,'fralithuso','r6137408694aa3URuFCy4K',NULL,NULL,0,0,0,NULL,2,'2021-09-07 10:35:50','2021-09-07 10:35:50',0,NULL,NULL,NULL,'neko',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (6,'井上','太郎','イノウエ','タロウ',NULL,'731','5112',NULL,392,23,'Wism','Aaa','test2@gmail.com',NULL,'090','7563','1265',NULL,NULL,NULL,NULL,NULL,'1977-03-02 00:00:00','0cd34b60816f2ef9febe8e4c70528ac0426a63b718a59767e936621bb08a2924',NULL,NULL,'paphawiore','r61378a6e421f6akcsbC3E',NULL,NULL,0,0,0,NULL,2,'2021-09-07 15:51:10','2021-09-07 15:54:57',0,NULL,NULL,2,'ねこねこ',NULL,NULL,NULL);
-=======
 INSERT INTO `dtb_customer` VALUES (1,'','',NULL,NULL,NULL,NULL,NULL,NULL,392,NULL,NULL,NULL,'yuri.soushi@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699',NULL,NULL,'phethouvej','r613ea3b65961b5ABxABRz',NULL,NULL,0,0,0,NULL,2,'2021-09-13 01:04:54','2021-09-13 01:04:54',0,NULL,NULL,NULL,'かみーゆ',NULL,NULL,NULL);
->>>>>>> master
 /*!40000 ALTER TABLE `dtb_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1124,11 +1121,7 @@ DROP TABLE IF EXISTS `dtb_customer_customer_id_seq`;
 CREATE TABLE `dtb_customer_customer_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
->>>>>>> master
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1137,11 +1130,7 @@ CREATE TABLE `dtb_customer_customer_id_seq` (
 
 LOCK TABLES `dtb_customer_customer_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_customer_customer_id_seq` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `dtb_customer_customer_id_seq` VALUES (6);
-=======
 INSERT INTO `dtb_customer_customer_id_seq` VALUES (1);
->>>>>>> master
 /*!40000 ALTER TABLE `dtb_customer_customer_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1168,9 +1157,6 @@ CREATE TABLE `dtb_customer_favorite_products` (
 
 LOCK TABLES `dtb_customer_favorite_products` WRITE;
 /*!40000 ALTER TABLE `dtb_customer_favorite_products` DISABLE KEYS */;
-INSERT INTO `dtb_customer_favorite_products` VALUES (2,8,'2021-09-01 07:04:04','2021-09-01 07:04:04');
-INSERT INTO `dtb_customer_favorite_products` VALUES (4,9,'2021-09-07 08:17:27','2021-09-07 08:17:27');
-INSERT INTO `dtb_customer_favorite_products` VALUES (6,9,'2021-09-07 15:51:55','2021-09-07 15:51:55');
 /*!40000 ALTER TABLE `dtb_customer_favorite_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1794,11 +1780,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-<<<<<<< HEAD
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-08 01:26:02');
-=======
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-13 10:16:11');
->>>>>>> master
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-16 18:24:55');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1882,6 +1864,7 @@ CREATE TABLE `dtb_module` (
 LOCK TABLES `dtb_module` WRITE;
 /*!40000 ALTER TABLE `dtb_module` DISABLE KEYS */;
 INSERT INTO `dtb_module` VALUES (0,'0','patch',NULL,0,0,'2021-01-13 01:40:22','2021-01-13 01:40:22');
+INSERT INTO `dtb_module` VALUES (2073,'mdl_sln','e-SCOTT Smart light for EC-CUBE(2.17系)','a:5:{s:15:\"master_settings\";a:0:{}s:13:\"user_settings\";a:55:{s:19:\"enable_payment_type\";a:2:{i:0;s:2:\"10\";i:1;s:2:\"11\";}s:10:\"MerchantId\";s:8:\"00012997\";s:12:\"MerchantPass\";s:8:\"wj8tntdW\";s:8:\"TenantId\";s:0:\"\";s:23:\"credit_connection_place\";s:0:\"\";s:24:\"credit_connection_place1\";s:49:\"https://www.test.e-scott.jp/online/aut/OAUT002.do\";s:24:\"credit_connection_place2\";s:49:\"https://www.test.e-scott.jp/online/crp/OCRP005.do\";s:24:\"credit_connection_place3\";s:37:\"https://link.kessai.info/JLPCT/JLPcon\";s:24:\"credit_connection_place4\";s:0:\"\";s:24:\"credit_connection_place5\";s:49:\"https://www.test.e-scott.jp/online/cnv/OCNV005.do\";s:24:\"credit_connection_place6\";s:49:\"https://www.test.e-scott.jp/online/tds/OTDS010.do\";s:24:\"credit_connection_place7\";s:56:\"https://www.test.e-scott.jp/euser/stn/CdGetJavaScript.do\";s:17:\"token_ninsyo_code\";s:32:\"dHkXyPMRsW3wC56J7ky8p4eGABJmHBV4\";s:14:\"credit_aes_key\";s:0:\"\";s:13:\"credit_aes_iv\";s:0:\"\";s:11:\"payKbnKaisu\";a:1:{i:0;s:2:\"01\";}s:5:\"SecCd\";s:1:\"1\";s:22:\"attestation_assistance\";a:0:{}s:9:\"OperateId\";s:10:\"1Gathering\";s:18:\"card_order_pre_end\";s:1:\"0\";s:13:\"member_regist\";s:1:\"1\";s:6:\"3d_pay\";s:1:\"1\";s:14:\"quick_accounts\";s:1:\"1\";s:19:\"OnlinePaymentMethod\";s:0:\"\";s:5:\"Free1\";s:0:\"\";s:5:\"Free2\";s:0:\"\";s:5:\"Free3\";s:0:\"\";s:5:\"Free4\";s:0:\"\";s:5:\"Free5\";s:0:\"\";s:5:\"Free6\";s:0:\"\";s:5:\"Free7\";s:0:\"\";s:7:\"Comment\";s:0:\"\";s:5:\"Free8\";s:0:\"\";s:5:\"Free9\";s:0:\"\";s:6:\"Free10\";s:0:\"\";s:6:\"Free11\";s:0:\"\";s:6:\"Free12\";s:0:\"\";s:6:\"Free13\";s:0:\"\";s:6:\"Free14\";s:0:\"\";s:6:\"Free15\";s:0:\"\";s:6:\"Free16\";s:0:\"\";s:6:\"Free17\";s:0:\"\";s:6:\"Free18\";s:0:\"\";s:6:\"Free19\";s:0:\"\";s:5:\"Title\";s:0:\"\";s:16:\"payOnlineWording\";s:0:\"\";s:29:\"credit_connection_destination\";s:1:\"1\";s:29:\"threed_connection_destination\";s:1:\"1\";s:26:\"cvs_connection_destination\";s:1:\"1\";s:22:\"creditConnectionPlace1\";N;s:22:\"creditConnectionPlace2\";N;s:22:\"creditConnectionPlace7\";N;s:22:\"creditConnectionPlace6\";N;s:22:\"creditConnectionPlace3\";N;s:22:\"creditConnectionPlace5\";N;}s:12:\"page_setting\";a:1:{s:32:\"shopping/load_sln_payment_module\";a:3:{i:10;s:2:\"50\";i:2;s:2:\"30\";i:1;s:2:\"38\";}}s:12:\"bloc_setting\";a:2:{s:10:\"sln_credit\";a:3:{i:10;s:2:\"12\";i:2;s:1:\"9\";i:1;s:1:\"7\";}s:17:\"sln_regist_credit\";a:3:{i:10;s:2:\"13\";i:2;s:2:\"10\";i:1;s:1:\"8\";}}s:18:\"add_card_mem_table\";i:1;}',0,0,'2021-09-16 09:26:30','2021-09-16 09:26:30');
 /*!40000 ALTER TABLE `dtb_module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1911,6 +1894,7 @@ CREATE TABLE `dtb_module_update_logs` (
 
 LOCK TABLES `dtb_module_update_logs` WRITE;
 /*!40000 ALTER TABLE `dtb_module_update_logs` DISABLE KEYS */;
+INSERT INTO `dtb_module_update_logs` VALUES (1,2073,'/var/www/html/../data/downloads/backup/update_1631784390/',0,NULL,'ファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/config.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/defines.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/deldirlist.txt\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/delfilelist.txt\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/errors.txt\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/payment.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/CryptAES.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/GetErrorMsg.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_CVS.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_3DCredit.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_Base.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_CVS.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_Credit.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_Member.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_RegistCredit.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_C_Util.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_ChangeCard.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Config.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Core.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Credit.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Helper.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Recv.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_RegistCredit.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Util.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/class/SLN_Utils_Payment_Status.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/SLNCore.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/btn_bloc_buy.jpg\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/btn_bloc_buy_on.jpg\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/btn_quick.png\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/btn_quick_on.png\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/card_info.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/payment_status.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/plugin_info.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/security_code.jpg\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/sln_3d.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/sln_3d_post.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/sln_card_3d.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/copy/sln_recv.php\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_admin_addmenu.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_config.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_edit_changealert.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_edit_top.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_index_baseoneactionmenu.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_index_list.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_index_list_colwidth.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_index_oneactionmenu.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_payment_body.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_status_colwidth.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_status_head.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_status_js.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_status_oneactionmenu.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/admin/sln_order_status_status.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/sln_card_info.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/sln_cart_index_quickbtn.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/sln_mypage_navi_changecard.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/sln_payment.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/sln_shopping_confirm_quick.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/bloc/sln_credit.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/bloc/sln_cvs.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/default/bloc/sln_regist_credit.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/mail/sln_no_order.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/mobile/sln_cart_index_quickbtn.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/mobile/sln_payment.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/mobile/bloc/sln_credit.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/mobile/bloc/sln_cvs.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/mobile/bloc/sln_regist_credit.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/sln_card_info.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/sln_cart_index_quickbtn.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/sln_mypage_navi_changecard.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/sln_payment.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/bloc/sln_credit.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/bloc/sln_cvs.tpl\nファイルのコピーに成功しました: /var/www/html/../data/downloads/module/mdl_sln/templates/sphone/bloc/sln_regist_credit.tpl','2021-09-16 09:26:30','2021-09-16 09:26:30');
 /*!40000 ALTER TABLE `dtb_module_update_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1924,7 +1908,7 @@ DROP TABLE IF EXISTS `dtb_module_update_logs_log_id_seq`;
 CREATE TABLE `dtb_module_update_logs_log_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1933,6 +1917,7 @@ CREATE TABLE `dtb_module_update_logs_log_id_seq` (
 
 LOCK TABLES `dtb_module_update_logs_log_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_module_update_logs_log_id_seq` DISABLE KEYS */;
+INSERT INTO `dtb_module_update_logs_log_id_seq` VALUES (1);
 /*!40000 ALTER TABLE `dtb_module_update_logs_log_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1966,8 +1951,7 @@ CREATE TABLE `dtb_news` (
 
 LOCK TABLES `dtb_news` WRITE;
 /*!40000 ALTER TABLE `dtb_news` DISABLE KEYS */;
-INSERT INTO `dtb_news` VALUES (1,'2021-01-13 00:00:00',1,'サイトオープンいたしました!','一人暮らしからオフィスなどさまざまなシーンで あなたの生活をサポートするグッズをご家庭へお届けします!一人暮らしからオフィスなどさまざまなシーンで あなたの生活をサポートするグッズをご家庭へお届けします!一人暮らしからオフィスなどさまざまなシーンで あなたの生活をサポートするグッズをご家庭へお届けします!',NULL,0,'1',1,'2021-01-13 01:40:22','2021-09-06 10:31:14',0);
-INSERT INTO `dtb_news` VALUES (2,'2012-08-11 00:00:00',2,'aaaaaaaaa','aaaaaaaaaaaaaaaaaa',NULL,0,'1',2,'2021-09-06 10:51:52','2021-09-06 10:51:52',0);
+INSERT INTO `dtb_news` VALUES (1,'2021-01-13 01:40:22',1,'サイトオープンいたしました!','一人暮らしからオフィスなどさまざまなシーンで あなたの生活をサポートするグッズをご家庭へお届けします！一人暮らしからオフィスなどさまざまなシーンで あなたの生活をサポートするグッズをご家庭へお届けします！一人暮らしからオフィスなどさまざまなシーンで あなたの生活をサポートするグッズをご家庭へお届けします！',NULL,0,NULL,1,'2021-01-13 01:40:22','2021-01-13 01:40:22',0);
 /*!40000 ALTER TABLE `dtb_news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1981,7 +1965,7 @@ DROP TABLE IF EXISTS `dtb_news_news_id_seq`;
 CREATE TABLE `dtb_news_news_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1990,7 +1974,7 @@ CREATE TABLE `dtb_news_news_id_seq` (
 
 LOCK TABLES `dtb_news_news_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_news_news_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_news_news_id_seq` VALUES (2);
+INSERT INTO `dtb_news_news_id_seq` VALUES (1);
 /*!40000 ALTER TABLE `dtb_news_news_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2315,6 +2299,7 @@ CREATE TABLE `dtb_ownersstore_settings` (
 
 LOCK TABLES `dtb_ownersstore_settings` WRITE;
 /*!40000 ALTER TABLE `dtb_ownersstore_settings` DISABLE KEYS */;
+INSERT INTO `dtb_ownersstore_settings` VALUES ('443f1c96a11f9f573116aaae7e755d9d2e8e3764');
 /*!40000 ALTER TABLE `dtb_ownersstore_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2388,6 +2373,7 @@ INSERT INTO `dtb_pagelayout` VALUES (1,34,'ご利用ガイド/プライバシー
 INSERT INTO `dtb_pagelayout` VALUES (1,35,'ご利用ガイド/通信料について','guide/charge.php','guide/charge',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (1,36,'ご利用ガイド/ご利用規約','guide/kiyaku.php','guide/kiyaku',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (1,37,'ご利用ガイド/運営会社紹介','guide/about.php','guide/about',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (1,38,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,0,NULL,'preview','preview',1,1,1,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,1,'TOPページ','index.php','index',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,2,'商品一覧ページ','products/list.php','products/list',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
@@ -2418,6 +2404,8 @@ INSERT INTO `dtb_pagelayout` VALUES (2,26,'商品購入/ご入力内容のご確
 INSERT INTO `dtb_pagelayout` VALUES (2,27,'商品購入/ご注文完了','shopping/complete.php','shopping/complete',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (2,28,'プライバシーポリシー','guide/privacy.php','guide/privacy',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (2,29,'パスワードを忘れた方','forgot/index.php','forgot/index',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (2,30,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (2,31,'MYページ/登録済カード情報変更','mypage/card_info.php','mypage/card_info',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,0,'プレビューデータ','preview',NULL,1,1,1,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,1,'TOPページ','index.php','index',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,2,'商品一覧ページ','products/list.php','products/list',1,1,2,NULL,NULL,NULL,NULL,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
@@ -2451,23 +2439,6 @@ INSERT INTO `dtb_pagelayout` VALUES (10,29,'MYページ/プロフィール編集
 INSERT INTO `dtb_pagelayout` VALUES (10,30,'プロフィール','profile.php','profile',1,1,2,NULL,NULL,NULL,NULL,'2021-07-23 00:00:00','2021-07-23 00:00:00',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,31,'MYページ/アイテム登録','mypage/item_edit.php','mypage/item_edit',1,1,2,NULL,NULL,NULL,NULL,'2021-07-31 00:00:00','2021-07-31 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,32,'MYページ/出品中アイテム一覧','mypage/item-list.php','mypage/item-list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
-<<<<<<< HEAD
-INSERT INTO `dtb_pagelayout` VALUES (10,33,'ご利用規約','user_data/kiyaku.php','user_data/kiyaku',2,1,1,NULL,NULL,NULL,'http://localhost:3000/chainadmin/design/main_edit.php?page_id=33&device_type_id=10','2021-09-01 05:18:02','2021-09-01 05:19:30',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,34,'その他','user_data/other.php','user_data/other',2,1,1,NULL,NULL,NULL,'http://localhost:3000/chainadmin/design/main_edit.php?device_type_id=10','2021-09-01 05:19:16','2021-09-01 05:19:16',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,35,'禁止されている出品物','user_data/prohibited_items.php','user_data/prohibited_items',2,1,1,NULL,NULL,NULL,'http://localhost:3000/chainadmin/design/main_edit.php?page_id=35&device_type_id=10','2021-09-01 07:09:33','2021-09-01 08:39:15',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,36,'ガイドで禁止されている行為','user_data/prohibited_activities.php','user_data/prohibited_activities',2,1,1,NULL,NULL,NULL,'http://localhost:3000/chainadmin/design/main_edit.php?device_type_id=10&page_id=36&msg=on&transactionid=b519f77f7a01ee63016f835c6dbc4f9d74ef8b1c','2021-09-01 07:14:59','2021-09-01 08:38:32',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,37,'新着情報一覧','user_data/news.php','user_data/news',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?page_id=37&device_type_id=10','2021-09-06 10:12:10','2021-09-06 11:01:55',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,38,'マイアイテム','user_data/myitem.php','user_data/myitem',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-07 16:26:38','2021-09-07 16:26:38',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,39,'リクエストアイテム','user_data/request_item.php','user_data/request_item',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-07 16:54:26','2021-09-07 16:54:26',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,40,'Chainの状況','user_data/status_list.php','user_data/status_list',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?page_id=40&device_type_id=10','2021-09-08 05:21:49','2021-09-08 06:17:18',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,41,'Chainの状況 アイテム別','user_data/status.php','user_data/status',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-08 06:18:33','2021-09-08 06:18:33',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,42,'選択待ちアイテム','user_data/unselected_item.php','user_data/unselected_item',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-08 09:34:09','2021-09-08 09:34:09',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,43,'受け取り待ちのアイテム','user_data/unreceived_item.php','user_data/unreceived_item',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-08 10:00:28','2021-09-08 10:00:28',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,44,'交換済みのアイテム','user_data/history.php','user_data/history',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-08 10:45:55','2021-09-08 10:45:55',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,45,'交換済みのアイテム　詳細','user_data/history_detail.php','user_data/history_detail',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-08 10:52:15','2021-09-08 10:52:15',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,46,'支払い方法','user_data/payment.php','user_data/payment',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10&page_id=46&msg=on&transactionid=66494dbd7e7fd69023cd3c7649de35879e464912','2021-09-08 11:08:12','2021-09-08 11:08:47',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,47,'発送の流れ','user_data/flow.php','user_data/flow',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-09-08 11:11:39','2021-09-08 11:11:39',NULL);
-=======
 INSERT INTO `dtb_pagelayout` VALUES (10,33,'MYページ/アイテムトップナビ','mypage/myitem/myitem.php','mypage/myitem/myitem',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,34,'MYページ/リクエストアイテム','mypage/myitem/request_item.php','mypage/myitem/request_item',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,35,'MYページ/Chainの状況','mypage/myitem/status_list.php','mypage/myitem/status_list',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
@@ -2477,17 +2448,26 @@ INSERT INTO `dtb_pagelayout` VALUES (10,38,'MYページ/受け取り待ちのア
 INSERT INTO `dtb_pagelayout` VALUES (10,39,'MYページ/交換済みのアイテム','mypage/myitem/history.php','mypage/myitem/history',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,40,'MYページ/交換済みのアイテム/詳細','mypage/myitem/history_detail.php','mypage/myitem/history_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
 =======
 INSERT INTO `dtb_pagelayout` VALUES (10,41,'その他','other/kiyaku.php','other/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+=======
+INSERT INTO `dtb_pagelayout` VALUES (10,41,'その他','other/index.php','other/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+>>>>>>> master
 INSERT INTO `dtb_pagelayout` VALUES (10,42,'ご利用規約','terms/kiyaku.php','terms/kiyaku',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,43,'違反行為','terms/prohibited_activities.php','terms/prohibited_activities',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,44,'違反出品物','terms/prohibited_items.php','terms/prohibited_items',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,45,'支払い方法','guide/payment.php','guide/payment',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,46,'配送の流れ','guide/flow.php','guide/flow',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
-INSERT INTO `dtb_pagelayout` VALUES (10,47,'お知らせ','news/kiyaku.php','news/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,47,'お知らせ','news/index.php','news/index',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,48,'ご利用方法','guide/guide.php','guide/guide',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,49,'ヘルプ','guide/help.php','guide/help',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+<<<<<<< HEAD
+>>>>>>> master
+=======
+INSERT INTO `dtb_pagelayout` VALUES (10,50,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,51,'MYページ/登録済カード情報変更','mypage/card_info.php','mypage/card_info',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 >>>>>>> master
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2529,6 +2509,7 @@ CREATE TABLE `dtb_payment` (
   `memo08` text,
   `memo09` text,
   `memo10` text,
+  `module_code` text,
   PRIMARY KEY (`payment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2539,10 +2520,12 @@ CREATE TABLE `dtb_payment` (
 
 LOCK TABLES `dtb_payment` WRITE;
 /*!40000 ALTER TABLE `dtb_payment` DISABLE KEYS */;
-INSERT INTO `dtb_payment` VALUES (1,'郵便振替',0,NULL,4,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (2,'現金書留',0,NULL,3,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (3,'銀行振込',0,NULL,2,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (4,'代金引換',0,NULL,1,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (1,'郵便振替',0,NULL,4,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (2,'現金書留',0,NULL,3,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (3,'銀行振込',0,NULL,2,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (4,'代金引換',0,NULL,1,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (5,'クレジットカード決済',0,1,5,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
+INSERT INTO `dtb_payment` VALUES (6,'登録済みクレジットカード決済',0,1,6,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
 /*!40000 ALTER TABLE `dtb_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2585,7 +2568,7 @@ DROP TABLE IF EXISTS `dtb_payment_payment_id_seq`;
 CREATE TABLE `dtb_payment_payment_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2594,7 +2577,7 @@ CREATE TABLE `dtb_payment_payment_id_seq` (
 
 LOCK TABLES `dtb_payment_payment_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_payment_payment_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_payment_payment_id_seq` VALUES (4);
+INSERT INTO `dtb_payment_payment_id_seq` VALUES (6);
 /*!40000 ALTER TABLE `dtb_payment_payment_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2634,6 +2617,7 @@ CREATE TABLE `dtb_plugin` (
 
 LOCK TABLES `dtb_plugin` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin` DISABLE KEYS */;
+INSERT INTO `dtb_plugin` VALUES (1,'ソニーペイメントサービス決済プラグイン','SLNCore','SLNCore','ソニーペイメントサービス','http://www.sonypaymentservices.jp/','http://www.sonypaymentservices.jp/','1.0','2.17.0','ソニーペイメントサービス決済モジュールの動作に必要なプラグインです。決済を利用する場合に、本プラグインの無効化や削除はしないで下さい。',0,1,NULL,NULL,NULL,NULL,'2021-09-16 09:35:11','2021-09-16 09:35:11');
 /*!40000 ALTER TABLE `dtb_plugin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2662,6 +2646,26 @@ CREATE TABLE `dtb_plugin_hookpoint` (
 
 LOCK TABLES `dtb_plugin_hookpoint` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint` DISABLE KEYS */;
+INSERT INTO `dtb_plugin_hookpoint` VALUES (1,1,'LC_Page_Admin_Basis_PaymentInput_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (2,1,'LC_Page_Shopping_Payment_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (3,1,'LC_Page_Shopping_Payment_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (4,1,'LC_Page_Shopping_Complete_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (5,1,'LC_Page_Admin_Order_Status_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (6,1,'LC_Page_Admin_Order_Edit_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (7,1,'LC_Page_Admin_Order_Edit_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (8,1,'LC_Page_Admin_Order_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (9,1,'LC_Page_Admin_Order_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (10,1,'LC_Page_Mypage_Refusal_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (11,1,'LC_Page_Admin_Customer_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (12,1,'LC_Page_Products_Detail_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (13,1,'LC_Page_Products_List_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (14,1,'LC_Page_Cart_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (15,1,'LC_Page_Shopping_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (16,1,'LC_Page_Shopping_Payment_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (17,1,'LC_Page_Shopping_Deliv_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (18,1,'LC_Page_Shopping_Confirm_action_before','hookActionBefore',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (19,1,'LC_Page_Shopping_Confirm_action_after','hookActionAfter',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
+INSERT INTO `dtb_plugin_hookpoint` VALUES (20,1,'prefilterTransform','prefilterTransform',1,'2021-09-16 09:35:11','2021-09-16 09:35:11');
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2675,7 +2679,7 @@ DROP TABLE IF EXISTS `dtb_plugin_hookpoint_plugin_hookpoint_id_seq`;
 CREATE TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2684,6 +2688,7 @@ CREATE TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` (
 
 LOCK TABLES `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` DISABLE KEYS */;
+INSERT INTO `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` VALUES (20);
 /*!40000 ALTER TABLE `dtb_plugin_hookpoint_plugin_hookpoint_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2697,7 +2702,7 @@ DROP TABLE IF EXISTS `dtb_plugin_plugin_id_seq`;
 CREATE TABLE `dtb_plugin_plugin_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2706,6 +2711,7 @@ CREATE TABLE `dtb_plugin_plugin_id_seq` (
 
 LOCK TABLES `dtb_plugin_plugin_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_plugin_plugin_id_seq` DISABLE KEYS */;
+INSERT INTO `dtb_plugin_plugin_id_seq` VALUES (1);
 /*!40000 ALTER TABLE `dtb_plugin_plugin_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2734,12 +2740,6 @@ INSERT INTO `dtb_product_categories` VALUES (1,3,1);
 INSERT INTO `dtb_product_categories` VALUES (2,4,2);
 INSERT INTO `dtb_product_categories` VALUES (3,4,1);
 INSERT INTO `dtb_product_categories` VALUES (3,6,1);
-INSERT INTO `dtb_product_categories` VALUES (4,3,2);
-INSERT INTO `dtb_product_categories` VALUES (5,4,3);
-INSERT INTO `dtb_product_categories` VALUES (6,2,1);
-INSERT INTO `dtb_product_categories` VALUES (7,6,2);
-INSERT INTO `dtb_product_categories` VALUES (8,4,4);
-INSERT INTO `dtb_product_categories` VALUES (9,4,5);
 /*!40000 ALTER TABLE `dtb_product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2768,11 +2768,6 @@ CREATE TABLE `dtb_product_status` (
 LOCK TABLES `dtb_product_status` WRITE;
 /*!40000 ALTER TABLE `dtb_product_status` DISABLE KEYS */;
 INSERT INTO `dtb_product_status` VALUES (1,1,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',0);
-INSERT INTO `dtb_product_status` VALUES (1,4,2,'2021-09-01 05:23:09','2021-09-01 05:23:09',0);
-INSERT INTO `dtb_product_status` VALUES (1,6,2,'2021-09-01 05:37:18','2021-09-01 05:37:18',0);
-INSERT INTO `dtb_product_status` VALUES (3,7,2,'2021-09-01 05:43:43','2021-09-01 05:43:43',0);
-INSERT INTO `dtb_product_status` VALUES (3,8,0,'2021-09-02 07:48:32','2021-09-02 07:48:32',0);
-INSERT INTO `dtb_product_status` VALUES (3,9,2,'2021-09-01 06:05:31','2021-09-01 06:05:31',0);
 INSERT INTO `dtb_product_status` VALUES (4,3,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',0);
 INSERT INTO `dtb_product_status` VALUES (5,2,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',0);
 /*!40000 ALTER TABLE `dtb_product_status` ENABLE KEYS */;
@@ -2859,15 +2854,9 @@ CREATE TABLE `dtb_products` (
 
 LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
-INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'',NULL,NULL,NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1,1);
-INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'',NULL,NULL,NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1,1);
-INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1,1);
-INSERT INTO `dtb_products` VALUES (4,'猫',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021/09/01/09011422_612f0e151a062.jpg',NULL,NULL,NULL,'2021/09/01/09011422_612f0e1a6b3d4.jpg',NULL,NULL,NULL,'2021/09/01/09011422_612f0e1f82c1f.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,'2021-09-01 05:22:55','2021-09-01 05:23:09',NULL,3,1);
-INSERT INTO `dtb_products` VALUES (5,'ああああああああああああ',NULL,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021/09/01/09011423_612f0e575ea0f.jpg',NULL,NULL,NULL,'2021/09/01/09011423_612f0e5c40a75.jpg',NULL,NULL,NULL,'2021/09/01/09011423_612f0e62421a3.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,'2021-09-01 05:24:01','2021-09-01 05:24:01',NULL,3,1);
-INSERT INTO `dtb_products` VALUES (6,'なべ',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ああああああ',NULL,'あああああああああ',NULL,NULL,'あああああああああああ',NULL,NULL,NULL,'あああああああああああ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,2,'2021-09-01 05:37:18','2021-09-01 07:03:39',NULL,0,0);
-INSERT INTO `dtb_products` VALUES (7,'なべ',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'neko',NULL,NULL,'2021/09/01/09011442_612f12ceaaebb.jpg','美味しそうなお鍋',NULL,NULL,'2021/09/01/09011443_612f12f0ee471.jpg','美味しそうなお鍋2',NULL,NULL,'2021/09/01/09011443_612f13016f6de.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,'2021-09-01 05:43:43','2021-09-01 05:52:08',NULL,2,0);
-INSERT INTO `dtb_products` VALUES (8,'猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹猫を500匹',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021/09/02/09021647_613081af4f735.jpg','aaaaaaあああああた',NULL,NULL,'2021/09/01/09011507_612f188a0ccf9.jpg','加工後',NULL,NULL,'2021/09/02/09021648_613081b90a71e.jpg','美味しそうなお鍋',NULL,NULL,'2021/09/02/09020941_61301dbe473e3.jpg',NULL,NULL,NULL,'2021/09/02/09021013_613025393b903.jpg','aaaaaaaaaaaaaaaaa',NULL,NULL,'2021/09/02/09021648_613081c164de5.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2021-09-01 05:47:12','2021-09-02 07:48:32',NULL,2,0);
-INSERT INTO `dtb_products` VALUES (9,'肉',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'うまそうな肉',NULL,NULL,'2021/09/01/09011455_612f15e3eb0e3.jpg','美味しそうなお鍋',NULL,NULL,'2021/09/01/09011457_612f1667b62b5.jpg','肉',NULL,NULL,'2021/09/01/09011458_612f167929322.jpg','加工後',NULL,NULL,'2021/09/01/09011504_612f1808d8295.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2021-09-01 05:58:59','2021-09-01 06:05:31',NULL,2,0);
+INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'',NULL,NULL,NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1,0);
+INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'',NULL,NULL,NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1,0);
+INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1,0);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2913,12 +2902,6 @@ LOCK TABLES `dtb_products_class` WRITE;
 INSERT INTO `dtb_products_class` VALUES (0,1,0,0,1,'ice-01',1,0,NULL,NULL,0,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (10,2,0,0,1,'nabe-01',1,0,NULL,NULL,0,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (11,3,0,0,2,'recipe-01',0,0,NULL,NULL,0,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23','おなべレシピ.pdf','recipe_onabe.pdf',0);
-INSERT INTO `dtb_products_class` VALUES (12,4,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,2,'2021-09-01 05:22:55','2021-09-01 05:23:09',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (13,5,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,2,'2021-09-01 05:24:01','2021-09-01 05:24:01',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (14,6,0,0,1,'aaaaaaa',1,0,NULL,1111,1111,NULL,0,2,'2021-09-01 05:37:18','2021-09-01 07:03:39',NULL,NULL,1);
-INSERT INTO `dtb_products_class` VALUES (15,7,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,2,'2021-09-01 05:43:43','2021-09-01 05:52:08',NULL,NULL,1);
-INSERT INTO `dtb_products_class` VALUES (16,8,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,0,'2021-09-01 05:47:12','2021-09-02 07:48:32',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (17,9,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,2,'2021-09-01 05:58:59','2021-09-01 06:05:31',NULL,NULL,0);
 /*!40000 ALTER TABLE `dtb_products_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2932,7 +2915,7 @@ DROP TABLE IF EXISTS `dtb_products_class_product_class_id_seq`;
 CREATE TABLE `dtb_products_class_product_class_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2941,7 +2924,7 @@ CREATE TABLE `dtb_products_class_product_class_id_seq` (
 
 LOCK TABLES `dtb_products_class_product_class_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_products_class_product_class_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_products_class_product_class_id_seq` VALUES (17);
+INSERT INTO `dtb_products_class_product_class_id_seq` VALUES (11);
 /*!40000 ALTER TABLE `dtb_products_class_product_class_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2955,7 +2938,7 @@ DROP TABLE IF EXISTS `dtb_products_product_id_seq`;
 CREATE TABLE `dtb_products_product_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2964,7 +2947,7 @@ CREATE TABLE `dtb_products_product_id_seq` (
 
 LOCK TABLES `dtb_products_product_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_products_product_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_products_product_id_seq` VALUES (9);
+INSERT INTO `dtb_products_product_id_seq` VALUES (3);
 /*!40000 ALTER TABLE `dtb_products_product_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3160,21 +3143,6 @@ CREATE TABLE `dtb_session` (
 
 LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `dtb_session` VALUES ('1b17f7552c0e59ea85b9c5fbd04e6748','cart|a:0:{}prev_url|s:33:\"/products/detail.php?product_id=9\";transactionid|s:40:\"4583bf994f8aba4e33ebbd9dd090e0a7dd6ffe7a\";customer|a:46:{s:11:\"customer_id\";s:1:\"2\";s:6:\"name01\";s:6:\"井上\";s:6:\"name02\";s:6:\"太郎\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"731\";s:5:\"zip02\";s:4:\"1223\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:2:\"15\";s:6:\"addr01\";s:18:\"広島市佐伯区\";s:6:\"addr02\";s:3:\"111\";s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"000\";s:5:\"tel02\";s:4:\"0000\";s:5:\"tel03\";s:4:\"0000\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1974-10-08 00:00:00\";s:8:\"password\";s:64:\"13b4781696f7cd6b631fedccb41c7705e9c4388327a5b311654a1cfddf5d170c\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phaimiohai\";s:10:\"secret_key\";s:22:\"r612f0c75398e5x47ubAmJ\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-01 05:15:33\";s:11:\"update_date\";s:19:\"2021-09-01 05:40:33\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"4\";s:8:\"nickname\";s:5:\"admin\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=9\";','2021-09-01 11:05:11','2021-09-02 09:32:17');
-INSERT INTO `dtb_session` VALUES ('1dbea85a3c6c0b60c4bc5ef5b115265f','cart|a:0:{}prev_url|s:22:\"/mypage/item_edit.php?\";transactionid|s:40:\"76084be773da1d5469f1f47ba348adabd1c72cb5\";customer|a:46:{s:11:\"customer_id\";s:1:\"2\";s:6:\"name01\";s:6:\"井上\";s:6:\"name02\";s:6:\"太郎\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"731\";s:5:\"zip02\";s:4:\"1223\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:2:\"15\";s:6:\"addr01\";s:18:\"広島市佐伯区\";s:6:\"addr02\";s:3:\"111\";s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"000\";s:5:\"tel02\";s:4:\"0000\";s:5:\"tel03\";s:4:\"0000\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1974-10-08 00:00:00\";s:8:\"password\";s:64:\"13b4781696f7cd6b631fedccb41c7705e9c4388327a5b311654a1cfddf5d170c\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phaimiohai\";s:10:\"secret_key\";s:22:\"r612f0c75398e5x47ubAmJ\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-01 05:15:33\";s:11:\"update_date\";s:19:\"2021-09-01 05:40:33\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"4\";s:8:\"nickname\";s:5:\"admin\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-02 09:13:26','2021-09-02 09:44:51');
-INSERT INTO `dtb_session` VALUES ('515725f5ed1893dc07fc124e92408c3b','cart|a:0:{}prev_url|s:48:\"/mypage/item_edit.php?mode=pre_edit&product_id=9\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"612f0ad88ee29rpLnbBgJ\";last_login|s:19:\"2021-01-13 10:41:20\";cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=8\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:27:\"/frontparts/login_check.php\";s:8:\"now_page\";s:19:\"/mypage/refusal.php\";s:6:\"uniqid\";s:0:\"\";}refusal_transactionid|s:40:\"718a4ec7f6f362a5bedfe8ba3e622f321a54a4fd\";transactionid|s:40:\"b519f77f7a01ee63016f835c6dbc4f9d74ef8b1c\";customer|a:46:{s:11:\"customer_id\";s:1:\"2\";s:6:\"name01\";s:6:\"井上\";s:6:\"name02\";s:6:\"太郎\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"731\";s:5:\"zip02\";s:4:\"1223\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:2:\"15\";s:6:\"addr01\";s:18:\"広島市佐伯区\";s:6:\"addr02\";s:3:\"111\";s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"000\";s:5:\"tel02\";s:4:\"0000\";s:5:\"tel03\";s:4:\"0000\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1974-10-08 00:00:00\";s:8:\"password\";s:64:\"13b4781696f7cd6b631fedccb41c7705e9c4388327a5b311654a1cfddf5d170c\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phaimiohai\";s:10:\"secret_key\";s:22:\"r612f0c75398e5x47ubAmJ\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-01 05:15:33\";s:11:\"update_date\";s:19:\"2021-09-01 05:40:33\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"4\";s:8:\"nickname\";s:5:\"admin\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-01 05:35:27','2021-09-01 11:04:06');
-INSERT INTO `dtb_session` VALUES ('79254247be3152a43dab0a7a2889e3cd','cart|a:0:{}prev_url|s:18:\"/products/list.php\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"612f0ad88ee29rpLnbBgJ\";last_login|s:19:\"2021-09-05 17:42:31\";cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:27:\"/frontparts/login_check.php\";s:8:\"now_page\";s:27:\"/frontparts/login_check.php\";s:6:\"uniqid\";s:0:\"\";}refusal_transactionid|s:40:\"718a4ec7f6f362a5bedfe8ba3e622f321a54a4fd\";transactionid|s:40:\"e86521e0907faa8e377030a5b45a77dba1ce751d\";customer|a:46:{s:11:\"customer_id\";s:1:\"4\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:14:\"test@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"7b5db8367dbb79f0764d11609cb35e5d588c855963b134246f8c096c60fd61fc\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"frecriawea\";s:10:\"secret_key\";s:22:\"r6132d1ac4eeebBrwveNdz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-04 01:53:48\";s:11:\"update_date\";s:19:\"2021-09-04 01:53:48\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:6:\"ねこ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-09 05:43:10','2021-09-09 05:43:28');
-INSERT INTO `dtb_session` VALUES ('a04d6445c94a80330c520334ffe42a45','cart|a:0:{}prev_url|s:18:\"/products/list.php\";cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:27:\"/frontparts/login_check.php\";s:8:\"now_page\";s:27:\"/frontparts/login_check.php\";s:6:\"uniqid\";s:0:\"\";}transactionid|s:40:\"bad489d691bcf6221d3210ba403f7f1c003df2a5\";customer|a:46:{s:11:\"customer_id\";s:1:\"6\";s:6:\"name01\";s:6:\"井上\";s:6:\"name02\";s:6:\"太郎\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"731\";s:5:\"zip02\";s:4:\"5112\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:2:\"23\";s:6:\"addr01\";s:4:\"Wism\";s:6:\"addr02\";s:3:\"Aaa\";s:5:\"email\";s:15:\"test2@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"090\";s:5:\"tel02\";s:4:\"7563\";s:5:\"tel03\";s:4:\"1265\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1977-03-02 00:00:00\";s:8:\"password\";s:64:\"0cd34b60816f2ef9febe8e4c70528ac0426a63b718a59767e936621bb08a2924\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"paphawiore\";s:10:\"secret_key\";s:22:\"r61378a6e421f6akcsbC3E\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-07 15:51:10\";s:11:\"update_date\";s:19:\"2021-09-07 15:54:57\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"2\";s:8:\"nickname\";s:12:\"ねこねこ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-07 08:01:25','2021-09-07 15:55:31');
-INSERT INTO `dtb_session` VALUES ('a9be516beee817f0ed84482da2ab3090','cart|a:0:{}prev_url|s:33:\"/products/detail.php?product_id=8\";cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=8\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:27:\"/frontparts/login_check.php\";s:8:\"now_page\";s:27:\"/frontparts/login_check.php\";s:6:\"uniqid\";s:0:\"\";}transactionid|s:40:\"2d6b9783ef622ef021b3acc6027d8e898f112b28\";customer|a:46:{s:11:\"customer_id\";s:1:\"4\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:14:\"test@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"7b5db8367dbb79f0764d11609cb35e5d588c855963b134246f8c096c60fd61fc\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"frecriawea\";s:10:\"secret_key\";s:22:\"r6132d1ac4eeebBrwveNdz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-04 01:53:48\";s:11:\"update_date\";s:19:\"2021-09-04 01:53:48\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:6:\"ねこ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-07 08:01:25','2021-09-07 08:03:17');
-INSERT INTO `dtb_session` VALUES ('d67acda0a51f489367cf249bef4c1513','cart|a:0:{}prev_url|s:20:\"/user_data/other.php\";transactionid|s:40:\"8c0c010a1286607260af2254ceb8ec5bb7a2007c\";cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";customer|a:46:{s:11:\"customer_id\";s:1:\"4\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:14:\"test@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"7b5db8367dbb79f0764d11609cb35e5d588c855963b134246f8c096c60fd61fc\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"frecriawea\";s:10:\"secret_key\";s:22:\"r6132d1ac4eeebBrwveNdz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-04 01:53:48\";s:11:\"update_date\";s:19:\"2021-09-04 01:53:48\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:6:\"ねこ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-06 12:59:25','2021-09-07 15:43:44');
-INSERT INTO `dtb_session` VALUES ('eb97454df9059b17b2a4a8e3798fb5d0','cart|a:0:{}prev_url|s:33:\"/products/detail.php?product_id=9\";transactionid|s:40:\"3a576982f4873500e5967c226178b7c25192483d\";customer|a:46:{s:11:\"customer_id\";s:1:\"2\";s:6:\"name01\";s:6:\"井上\";s:6:\"name02\";s:6:\"太郎\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"731\";s:5:\"zip02\";s:4:\"1223\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:2:\"15\";s:6:\"addr01\";s:18:\"広島市佐伯区\";s:6:\"addr02\";s:3:\"111\";s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"000\";s:5:\"tel02\";s:4:\"0000\";s:5:\"tel03\";s:4:\"0000\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1974-10-08 00:00:00\";s:8:\"password\";s:64:\"13b4781696f7cd6b631fedccb41c7705e9c4388327a5b311654a1cfddf5d170c\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phaimiohai\";s:10:\"secret_key\";s:22:\"r612f0c75398e5x47ubAmJ\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-01 05:15:33\";s:11:\"update_date\";s:19:\"2021-09-02 09:33:30\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"4\";s:8:\"nickname\";s:5:\"admin\";s:17:\"self_introduction\";s:12:\"かみーゆ\";s:7:\"hobbies\";s:12:\"かみーゆ\";s:13:\"profile_image\";s:26:\"09021833_61309a5a2c1e6.jpg\";}cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=9\";','2021-09-04 05:44:59','2021-09-04 07:03:18');
-INSERT INTO `dtb_session` VALUES ('f2e5e093333804c03cdef97a7ca38171','cart|a:0:{}prev_url|s:48:\"/mypage/item_edit.php?mode=pre_edit&product_id=9\";transactionid|s:40:\"3a576982f4873500e5967c226178b7c25192483d\";customer|a:46:{s:11:\"customer_id\";s:1:\"2\";s:6:\"name01\";s:6:\"井上\";s:6:\"name02\";s:6:\"太郎\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"731\";s:5:\"zip02\";s:4:\"1223\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:2:\"15\";s:6:\"addr01\";s:18:\"広島市佐伯区\";s:6:\"addr02\";s:3:\"111\";s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"000\";s:5:\"tel02\";s:4:\"0000\";s:5:\"tel03\";s:4:\"0000\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1974-10-08 00:00:00\";s:8:\"password\";s:64:\"13b4781696f7cd6b631fedccb41c7705e9c4388327a5b311654a1cfddf5d170c\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phaimiohai\";s:10:\"secret_key\";s:22:\"r612f0c75398e5x47ubAmJ\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-01 05:15:33\";s:11:\"update_date\";s:19:\"2021-09-02 09:33:30\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"4\";s:8:\"nickname\";s:5:\"admin\";s:17:\"self_introduction\";s:12:\"かみーゆ\";s:7:\"hobbies\";s:12:\"かみーゆ\";s:13:\"profile_image\";s:26:\"09021833_61309a5a2c1e6.jpg\";}cart_referer_url|s:177:\"http://localhost:8080/products/list.php?transactionid=3a576982f4873500e5967c226178b7c25192483d&mode=&category_id=0&maker_id=0&name=&orderby=price&disp_number=15&pageno=1&rnd=mou\";','2021-09-01 11:05:37','2021-09-02 09:38:53');
-INSERT INTO `dtb_session` VALUES ('f76b99cf5543c3d962e836bf5b4f4dc4','cart|a:0:{}prev_url|s:72:\"/mypage/login.php?transactionid=938ebb2e60733adf86d61e52644e98915f0f3b35\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"612f0ad88ee29rpLnbBgJ\";last_login|s:19:\"2021-09-03 16:25:30\";cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=8\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:19:\"/mypage/refusal.php\";s:8:\"now_page\";s:27:\"/frontparts/login_check.php\";s:6:\"uniqid\";s:0:\"\";}refusal_transactionid|s:40:\"718a4ec7f6f362a5bedfe8ba3e622f321a54a4fd\";transactionid|s:40:\"938ebb2e60733adf86d61e52644e98915f0f3b35\";customer|a:46:{s:11:\"customer_id\";s:1:\"4\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:14:\"test@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"7b5db8367dbb79f0764d11609cb35e5d588c855963b134246f8c096c60fd61fc\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"frecriawea\";s:10:\"secret_key\";s:22:\"r6132d1ac4eeebBrwveNdz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-04 01:53:48\";s:11:\"update_date\";s:19:\"2021-09-04 01:53:48\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:6:\"ねこ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-05 08:44:27','2021-09-05 08:44:27');
-=======
-INSERT INTO `dtb_session` VALUES ('3299a62e34bc6f21aa6dcea62cf569d0','cart|a:0:{}prev_url|s:33:\"/products/detail.php?product_id=2\";transactionid|s:40:\"fbdca42c7b3b5eb9d98ae43cd604dfe32f45f16e\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-09-13 01:04:54\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=2\";','2021-09-13 01:04:03','2021-09-13 01:21:05');
-INSERT INTO `dtb_session` VALUES ('339a1265a7cf3ef3bae8bfc3d1a3b65f','cart|a:0:{}prev_url|s:109:\"/chainadmin/design/?device_type_id=10&page_id=3&msg=on&transactionid=c114716688df9887f54139f3b61355b4f77ecf7c\";transactionid|s:40:\"c114716688df9887f54139f3b61355b4f77ecf7c\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-09-13 01:04:54\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"613ea65b40769UUAN3J9g\";last_login|s:19:\"2021-01-13 10:41:20\";','2021-09-13 01:16:11','2021-09-13 01:20:53');
->>>>>>> master
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3543,7 +3511,7 @@ INSERT INTO `mtb_constants` VALUES ('CREDIT_NO_LEN','4',207,'クレジットカ�
 INSERT INTO `mtb_constants` VALUES ('CSV_LINE_MAX','10000',128,'CSVアップロード1行あたりの最大文字数');
 INSERT INTO `mtb_constants` VALUES ('CSV_SIZE','2000',127,'CSVサイズ制限(KB)');
 INSERT INTO `mtb_constants` VALUES ('CSV_TEMP_REALDIR','DATA_REALDIR . \"upload/csv/\"',156,'エンコードCSVの一時保存先');
-INSERT INTO `mtb_constants` VALUES ('CUSTOMER_CONFIRM_MAIL','false',75,'会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員)');
+INSERT INTO `mtb_constants` VALUES ('CUSTOMER_CONFIRM_MAIL','true',75,'会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員)');
 INSERT INTO `mtb_constants` VALUES ('CUSTOMER_LOG_REALFILE','DATA_REALDIR . \"logs/customer.log\"',143,'会員ログイン ログファイル');
 INSERT INTO `mtb_constants` VALUES ('CV_PAYMENT_LIMIT','14',275,'支払期限 (*モジュールで使用)');
 INSERT INTO `mtb_constants` VALUES ('DB_LOG_REALFILE','DATA_REALDIR . \"logs/db.log\"',147,'DBログファイル');
@@ -5106,6 +5074,30 @@ LOCK TABLES `mtb_zip` WRITE;
 /*!40000 ALTER TABLE `mtb_zip` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mtb_zip` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `sln_dtb_mem_card_id`
+--
+
+DROP TABLE IF EXISTS `sln_dtb_mem_card_id`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sln_dtb_mem_card_id` (
+  `customer_id` int NOT NULL,
+  `mem_id` int NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sln_dtb_mem_card_id`
+--
+
+LOCK TABLES `sln_dtb_mem_card_id` WRITE;
+/*!40000 ALTER TABLE `sln_dtb_mem_card_id` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sln_dtb_mem_card_id` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -5116,8 +5108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2021-09-09  5:43:45
-=======
--- Dump completed on 2021-09-13  1:23:42
->>>>>>> master
+-- Dump completed on 2021-09-18  8:36:34
