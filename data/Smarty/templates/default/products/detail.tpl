@@ -47,8 +47,6 @@
             <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
 
                 <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
-                <a href="/products/select.php?source_id=<!--{$arrProduct.product_id|h}-->">【暫定対応】商品選択画面に遷移</a>
-
                 <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
                 <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
                 <g class="particleLayer">
@@ -202,38 +200,26 @@
                 </svg>
                 <p class="u-text--center u-mb--2 u-color--gray">交換するアイテムを選んでください。</p>
                 <!--/自分のアイテムをfor文で出力-->
-                <ul class="u-mb--4">
-                    <li class="c-card">
-                        <label class="c-card__radio-button"><input type="radio" name="my_product">
-                            <div class="c-card__main">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                <p><!--{$arrProduct.name|h}--></p>
-                                <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                            </div>
-                        </label>
-                        <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
-                    </li>
-                    <li class="c-card">
-                        <label class="c-card__radio-button"><input type="radio" name="my_product">
-                            <div class="c-card__main">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                <p><!--{$arrProduct.name|h}--></p>
-                                <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                            </div>
-                        </label>
-                        <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
-                    </li>
-                    <li class="c-card">
-                        <label class="c-card__radio-button"><input type="radio" name="my_product">
-                            <div class="c-card__main">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                <p><!--{$arrProduct.name|h}--></p>
-                                <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                            </div>
-                        </label>
-                        <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=9">詳細</button>
-                    </li>
-                </ul>
+
+                <!-- 交換するアイテム一覧 -->
+                <!--{if $tpl_linemax > 0}-->
+                    <ul class="u-mb--4">
+                        <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
+                            <li class="c-card">
+                                <label class="c-card__radio-button"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
+                                    <div class="c-card__main">
+                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
+                                        <p><!--{$arrProduct.name|h}--></p>
+                                        <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+                                    </div>
+                                </label>
+                                <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
+                            </li>
+                        <!--{/foreach}-->
+                    </ul>
+                <!--{else}-->
+                <p>アイテムが登録されておりません。</p>
+                <!--{/if}-->
             </div>
             <!--/.p-item-detail__body__slideup-->
         </div>
@@ -327,6 +313,7 @@ $(function(){
                 : "add_favorite_ajax",
             product_id: $this.data("product_id"),
             favorite_product_id:  $this.data("product_id"),
+            target_id: $("input[name='my_product']:checked").val()
         };
 
         postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
@@ -336,16 +323,52 @@ $(function(){
             data: postData,
             dataType: "json",
         }).done(function (data, textStatus, jqXHR) {
+            // リクエスト送信
             if (data.registered === true) {
-                $closest.addClass("registered_favorite");
-                $this.addClass('--active');
+                let postData = {
+                    mode : "api_add_favorite_ajax",
+                    product_id: $this.data("product_id"),
+                    favorite_product_id:  $this.data("product_id"),
+                    target_id: $("input[name='my_product']:checked").val()
+                };
+                postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
+
+                $.ajax({
+                    url: "/products/detail.php",
+                    method: "POST",
+                    data: postData,
+                    dataType: "json",
+                }).done(function (data, textStatus, jqXHR) {
+                    $closest.addClass("registered_favorite");
+                    $this.addClass('--active');
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    // エラーの場合処理
+                });
+
+            // リクエスト取り消し
             } else if (data.registered === false) {
-                $closest.removeClass("registered_favorite");
-                $this.removeClass('--active');
+                let postData = {
+                    mode : "api_remove_favorite_ajax",
+                    product_id: $this.data("product_id"),
+                };
+                postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
+
+                $.ajax({
+                    url: "/products/detail.php",
+                    method: "POST",
+                    data: postData,
+                    dataType: "json",
+                }).done(function (data, textStatus, jqXHR) {
+                    $closest.removeClass("registered_favorite");
+                    $this.removeClass('--active');
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    // エラーの場合処理
+                });
             }
+
             $closest.find(".count_of_favorite .num").text(data.count_of_favorite);
             $this.children('span').text( $this.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
-            $closest.find(".notification").text($mode ? 'リクエストを取り消しました' : 'リクエストを送信しました' )
+            $closest.find(".notification").text($mode ? 'リクエストを取り消しました' : 'リクエストを送信しました' );
 
             $closest.find(".notification").fadeIn(300,
             function() {
