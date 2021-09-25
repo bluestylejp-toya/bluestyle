@@ -36,7 +36,8 @@
             <!--{assign var=current value="mypage"}-->
         <!--{/if}-->
     <!--{/if}-->
-    <!--{if $tpl_login}-->
+    <!--{$current}-->
+    <!--{if $tpl_login or $current == 'other'}-->
         <ul class="l-footer-nav__inner --login">
             <li class="l-footer-nav__item">
                 <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">さがす</a>
