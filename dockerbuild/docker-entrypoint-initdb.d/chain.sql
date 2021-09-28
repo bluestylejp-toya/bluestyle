@@ -468,10 +468,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,1,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,3,4,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,3,6,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,3,8,3,0);
-INSERT INTO `dtb_blocposition` VALUES (10,1,4,5,2,0);
-INSERT INTO `dtb_blocposition` VALUES (10,1,4,7,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,1,4,10,3,0);
-INSERT INTO `dtb_blocposition` VALUES (10,1,4,11,4,0);
+INSERT INTO `dtb_blocposition` VALUES (10,1,4,10,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,1,10,9,1,1);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
@@ -566,7 +563,6 @@ INSERT INTO `dtb_blocposition` VALUES (10,31,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,3,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,43,4,5,1,0);
 /*!40000 ALTER TABLE `dtb_blocposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1774,7 +1770,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-13 10:16:11');
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-28 17:03:59');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3093,6 +3089,7 @@ LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
 INSERT INTO `dtb_session` VALUES ('3299a62e34bc6f21aa6dcea62cf569d0','cart|a:0:{}prev_url|s:33:\"/products/detail.php?product_id=2\";transactionid|s:40:\"fbdca42c7b3b5eb9d98ae43cd604dfe32f45f16e\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-09-13 01:04:54\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:54:\"http://localhost:8080/products/detail.php?product_id=2\";','2021-09-13 01:04:03','2021-09-13 01:21:05');
 INSERT INTO `dtb_session` VALUES ('339a1265a7cf3ef3bae8bfc3d1a3b65f','cart|a:0:{}prev_url|s:109:\"/chainadmin/design/?device_type_id=10&page_id=3&msg=on&transactionid=c114716688df9887f54139f3b61355b4f77ecf7c\";transactionid|s:40:\"c114716688df9887f54139f3b61355b4f77ecf7c\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-09-13 01:04:54\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"613ea65b40769UUAN3J9g\";last_login|s:19:\"2021-01-13 10:41:20\";','2021-09-13 01:16:11','2021-09-13 01:20:53');
+INSERT INTO `dtb_session` VALUES ('657252d503b931f4e8a143cf8fbf21fb','cart|a:0:{}prev_url|s:7:\"/other/\";cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"6152cc6fbfea29pdRNdfX\";last_login|s:19:\"2021-09-13 10:16:11\";site|a:5:{s:18:\"pre_regist_success\";s:0:\"\";s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:0:\"\";s:8:\"now_page\";s:27:\"/frontparts/login_check.php\";s:6:\"uniqid\";s:0:\"\";}transactionid|s:40:\"a7b2a43743bb084e958667c7a35b35f4dbfe1317\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-09-13 01:04:54\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}','2021-09-28 09:14:45','2021-09-28 09:52:51');
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5024,6 +5021,30 @@ LOCK TABLES `mtb_zip` WRITE;
 /*!40000 ALTER TABLE `mtb_zip` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mtb_zip` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `sln_dtb_mem_card_id`
+--
+
+DROP TABLE IF EXISTS `sln_dtb_mem_card_id`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sln_dtb_mem_card_id` (
+  `customer_id` int NOT NULL,
+  `mem_id` int NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sln_dtb_mem_card_id`
+--
+
+LOCK TABLES `sln_dtb_mem_card_id` WRITE;
+/*!40000 ALTER TABLE `sln_dtb_mem_card_id` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sln_dtb_mem_card_id` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -5034,4 +5055,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-13  1:23:42
+-- Dump completed on 2021-09-28  9:53:28
