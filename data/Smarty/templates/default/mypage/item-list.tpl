@@ -9,8 +9,6 @@
 
             <!--{if $tpl_linemax > 0}-->
 
-                <!--<p><span class="attention"><!--{$tpl_linemax}-->件</span>の出品中アイテムがあります。</p>-->
-
                 <ul>
                     <!--{foreach from=$arrProducts item=$arrProduct}-->
                         <li>
