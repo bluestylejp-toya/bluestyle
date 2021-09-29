@@ -17,6 +17,11 @@
         font-size: 1.6rem;
         margin-bottom: $unit*2;
     }
+    &--status {
+        font-size: 1.8rem;
+        color: #1A202C;
+        font-weight: 700;
+    }
     &--form-title {
         @extend %heading;
         font-weight: 700;

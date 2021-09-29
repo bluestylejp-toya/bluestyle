@@ -35,7 +35,7 @@
     <div class="p-item-detail">
         <div class="p-item-detail__head">
             <header class="l-header__inner u-mb--0">
-                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+                <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem.php" aria-label="戻る" class="c-btn--header-nav"></a>
                 <p class="c-header-title">商品名<!--{$arrProduct.name|h}--></p>
             </header>
             <!--{* ステータスごとの変数の値はダミーです。適宜修正してください。 *}-->
