@@ -21,4 +21,19 @@
         font-weight: 500;
         margin: -$unit*2 $unit*3;
     }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: $unit;
+        margin: 4px $unit*3;
+        font-weight: 700;
+        font-size: 18px;
+        color: #1A202C;
+        svg {
+            width: 55px;
+            margin-right: $unit*2;
+        }
+    }
 }
