@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--{*
  * This file is part of EC-CUBE
  *
@@ -48,3 +49,5 @@
         $(this).toggleClass('--open');
     })
 </script>
+=======
+>>>>>>> a30f2ff918c2645f5e8f5272f24c6b19ad85d663
