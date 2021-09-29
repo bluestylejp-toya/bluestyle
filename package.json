@@ -56,6 +56,8 @@
     "lint:javascript": "eslint --fix data/*.js",
     "dev": "gulp",
     "prod": "gulp --env production",
-    "start": "gulp"
+    "start": "gulp",
+    "sql:dump": "docker exec -it mysql /bin/sh -c 'mysqldump -u chain -pUgEbkrHp --skip-extended-insert chain 2> /dev/null' > dockerbuild/docker-entrypoint-initdb.d/chain.sql",
+    "sql:restore": "docker cp dockerbuild/docker-entrypoint-initdb.d/chain.sql mysql:/tmp/dump.sql && docker exec -it mysql /bin/sh -c 'mysql -u chain -pUgEbkrHp chain < /tmp/dump.sql' ; docker exec mysql rm /tmp/dump.sql"
   }
 }

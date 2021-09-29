@@ -1,1 +1,0 @@
-/data/Smarty/templates/default/news/index.tpl
