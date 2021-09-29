@@ -54,14 +54,6 @@
                     <div  class="c-form-parts--select --underline" ><!--{html_options name="product_status" options=$arrSTATUS selected=$arrForm.product_status.value}--></div>
                 </dd>
 
-
-                <!--{assign var=key value="comment3"}-->
-                <!--<dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><!--{$require_mark}--><!--{/if}--><br />※複数の場合は、カンマ( , )区切りで入力して下さい</dt>
-                <dd>
-                    <span class="attention"><!--{$arrErr.comment3}--></span>
-                    <textarea name="comment3" cols="60" rows="8" class="area60" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr.comment3|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm.comment3.value|h}--></textarea><br />
-                    <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
-                </dd>-->
             </dl>
             <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
 
