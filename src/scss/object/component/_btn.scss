@@ -281,3 +281,32 @@
         }
     }
 }
+
+.c-btn--mypage {
+    &__wrapper {
+        padding: $unit $unit $unit*2;
+    }
+    &--unselected {
+        background: $green;
+        color: $white;
+        height: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+    }
+    &--unshipped {
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        background: #FFAF33;
+        color: $white;
+        height: 64px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+    }
+}
