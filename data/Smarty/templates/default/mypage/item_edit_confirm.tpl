@@ -37,11 +37,6 @@
                                 <!--{$arrSTATUS[$status]|h}-->
                             <!--{/foreach}-->
                         </dd>
-                        <!--{assign var=key value="comment3"}-->
-                        <!--<th><!--{$arrForm[$key].disp_name|h}--></th>
-                        <dd>
-                            <!--{$arrForm.comment3.value|h}-->
-                        </dd>-->
                     </dl>
                     <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
                     <ul class="u-mb--4">
