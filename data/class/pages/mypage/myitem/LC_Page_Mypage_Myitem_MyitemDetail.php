@@ -371,6 +371,17 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
 
         $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
         $this->arrProduct['arrCustomerProducts'] = SC_Helper_Customer_Ex::getCustomerProducts($this->arrProduct['customer_id']);
+
+        // 交換選択待ち商品が存在するか
+        $this->hasUnselectdProductFlg = false;
+        if ($this->tpl_login) {
+            $objHelperCustomer = new SC_Helper_Customer_Ex();
+            if ( $objHelperCustomer->getCustomerUnselectedProductId($customer_id) > 0){
+                if (in_array($product_id, $objHelperCustomer->getCustomerUnselectedProductId($customer_id))){
+                    $this->hasUnselectdProductFlg = true;
+                }
+            }
+        }
     }
 
     /**
