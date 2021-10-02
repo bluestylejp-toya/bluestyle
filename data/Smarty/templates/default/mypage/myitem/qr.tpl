@@ -1,0 +1,1 @@
+data/Smarty/templates/default/mypage/myitem/qr.tpl
