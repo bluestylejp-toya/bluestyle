@@ -50,7 +50,48 @@ class LC_Page_Mypage_Myitem_Myitem extends LC_Page_AbstractMypage_Ex
         if (isset($_POST['pageno'])) {
             $this->tpl_pageno = intval($_POST['pageno']);
         }
-        $this->arrProducts = $this->getProducts($customer_id, $this);
+        $this->arrProducts = $this->getChainProductStatus($customer_id, $this);
+
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getChainProductStatus($customer_id)
+    {
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        $arrChainProductStatus = array();
+        $arrProducts = $this->getProducts($customer_id, $this);
+
+        $index = 0;
+        foreach ($arrProducts as $arrProduct) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $arrProduct['product_id']);
+            $result = json_decode($objHelperApi->exec(), true);
+            if (count($result) > 0) {
+                $chainId = $result[0]['id'];
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                foreach ($result["chain_list"] as $chainList) {
+                    foreach ($chainList as $chain) {
+                        if ($arrProduct['product_id'] == $chain['source_id']) {
+                            $arrChainProductStatus[$chainId]['product'] = $arrProduct;
+                            $arrChainProductStatus[$chainId]['chain'] = $chain;
+                            $arrChainProductStatus[$chainId]['progress_percent'] = $result['progress_percent'];
+                            $arrChainProductStatus[$chainId]['selection_edge_list'] = $result['selection_edge_list'];
+                        }
+                    }
+                }
+            } else {
+                $arrChainProductStatus[$index]['product'] = $arrProduct;
+                $index++;
+            }
+        }
+
+        return $arrChainProductStatus;
     }
 
     /**
@@ -64,27 +105,27 @@ class LC_Page_Mypage_Myitem_Myitem extends LC_Page_AbstractMypage_Ex
     {
         // 出品中アイテム商品ID取得
         $arrProductId = array();
-        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id);
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
         foreach ($arrListingProducts as $arrListingProduct) {
             $arrProductId[] = $arrListingProduct['product_id'];
         }
 
-        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery = SC_Query_Ex::getSingletonInstance();
         $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
-        $objProduct     = new SC_Product_Ex();
-        $linemax        = $objProduct->findProductCount($objQuery);
+        $objProduct = new SC_Product_Ex();
+        $linemax = $objProduct->findProductCount($objQuery);
 
         $this->tpl_linemax = $linemax;   // 何件が該当しました。表示用
 
         // ページ送りの取得
-        $objNavi        = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
+        $objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
         $this->tpl_strnavi = $objNavi->strnavi; // 表示文字列
-        $startno        = $objNavi->start_row;
+        $startno = $objNavi->start_row;
 
-        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery = SC_Query_Ex::getSingletonInstance();
         //$objQuery->setLimitOffset($this->dispNumber, $startno);
         // 取得範囲の指定(開始行番号、行数のセット)
-        $arrProductId  = array_slice($arrProductId, $startno, $this->dispNumber);
+        $arrProductId = array_slice($arrProductId, $startno, $this->dispNumber);
 
         $where = $this->lfMakeWhere('', $arrProductId);
         $where .= ' AND del_flg = 0';

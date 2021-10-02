@@ -38,6 +38,11 @@
                 <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
                 <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
             </header>
+
+            <!--{if $hasUnselectdProductFlg}-->
+                交換するアイテムを選んでください　<a href="/mypage/myitem/status.php?product_id=<!--{$arrProduct.product_id|h}-->">選択画面に遷移</a>
+            <!--{/if}-->
+
             <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
             <div class="c-notification--secondary notification">リクエストを送信しました</div>
