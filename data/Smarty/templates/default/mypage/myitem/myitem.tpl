@@ -1,14 +1,36 @@
 <section>
-    <header class="l-header__inner u-mb--0">
+    <header class="l-header__inner">
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">マイアイテム</p>
     </header>
-    <ul class="c-nav-list">
-        <li><a href="/mypage/item-list.php">出品したアイテム</a></li>
-        <li><a href="/mypage/myitem/request_item.php">リクエストアイテム<span class="c-batch--num">3</span></a></a></li>
-        <li><a href="/mypage/myitem/status_list.php">Chainの状況</a></li>
-        <li><a href="/mypage/myitem/unselected_item.php">選択待ちアイテム<span class="c-batch--num">3</span></a></li>
-        <li><a href="/mypage/myitem/unreceived_item.php">受け取り待ちのアイテム</a></li>
-        <li><a href="/mypage/myitem/history.php">交換済みのアイテム</a></li>
+    <ul>
+        <li>
+            <a href="/user_data/myitem_detail.php" class="c-item">
+                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+                <div class="c-item__main">
+                    <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
+                    <div class="c-item__status"><span class="status-unselected">選択期限まであと2日</span><i class="c-item__<!--{if $arrProduct.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></span></div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/user_data/myitem_detail.php" class="c-item">
+                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+                <div class="c-item__main">
+                    <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
+                    <div class="c-item__status"><span class="status-unshipped">未発送</span><i class="c-item__<!--{if $arrProduct.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></span></div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/user_data/myitem_detail.php" class="c-item">
+                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+                <div class="c-item__main">
+                    <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
+                    <div class="c-item__status"><span class="status-unselected">選択期限まであと2日</span><i class="c-item__<!--{if $arrProduct.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></span></div>
+                </div>
+             </a>
+        </li>
     </ul>
+
 </section>
