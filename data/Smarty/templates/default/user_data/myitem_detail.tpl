@@ -160,7 +160,6 @@
                     </defs>
                 </svg>
                 <p class="u-text--center u-mb--2 u-color--gray">交換するアイテムを選んでください。</p>
-                <!--/自分のアイテムをfor文で出力-->
 
                 <!-- 交換するアイテム一覧 -->
                 <!--{if $tpl_linemax > 0}-->
@@ -190,7 +189,6 @@
     <div class="c-modal" data-modal_mode="false">
         <button class="c-modal__close-btn" type="button">close</button>
         <!-- スライダーのメインコンテナの div 要素 -->
-        <div class="c-modal__inner"></div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <!-- それぞれのスライドの div 要素 -->
