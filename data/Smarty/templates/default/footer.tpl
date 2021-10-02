@@ -36,7 +36,6 @@
             <!--{assign var=current value="mypage"}-->
         <!--{/if}-->
     <!--{/if}-->
-    <!--{$current}-->
     <!--{if $tpl_login or $current == 'other'}-->
         <ul class="l-footer-nav__inner --login">
             <li class="l-footer-nav__item">
