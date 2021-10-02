@@ -24,6 +24,6 @@ composer.phar
 /tests/tmp/*
 /ctests/_output/*
 /reports/*
-main.css.map
+*.css.map
 .idea
 !.gitkeep
