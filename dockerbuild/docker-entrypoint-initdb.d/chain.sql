@@ -569,6 +569,7 @@ INSERT INTO `dtb_blocposition` VALUES (10,31,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,32,1,3,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,47,4,5,1,0);
 /*!40000 ALTER TABLE `dtb_blocposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -653,7 +654,7 @@ LOCK TABLES `dtb_category_count` WRITE;
 /*!40000 ALTER TABLE `dtb_category_count` DISABLE KEYS */;
 INSERT INTO `dtb_category_count` VALUES (3,1,'2021-08-19 08:39:07');
 INSERT INTO `dtb_category_count` VALUES (4,2,'2021-08-19 08:39:07');
-INSERT INTO `dtb_category_count` VALUES (6,1,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_count` VALUES (6,0,'2021-10-02 06:47:03');
 /*!40000 ALTER TABLE `dtb_category_count` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -681,7 +682,7 @@ LOCK TABLES `dtb_category_total_count` WRITE;
 INSERT INTO `dtb_category_total_count` VALUES (1,3,'2021-08-19 08:39:07');
 INSERT INTO `dtb_category_total_count` VALUES (3,1,'2021-08-19 08:39:07');
 INSERT INTO `dtb_category_total_count` VALUES (4,2,'2021-08-19 08:39:07');
-INSERT INTO `dtb_category_total_count` VALUES (6,1,'2021-08-19 08:39:07');
+INSERT INTO `dtb_category_total_count` VALUES (6,0,'2021-10-02 06:47:03');
 /*!40000 ALTER TABLE `dtb_category_total_count` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1103,7 +1104,7 @@ CREATE TABLE `dtb_customer` (
 
 LOCK TABLES `dtb_customer` WRITE;
 /*!40000 ALTER TABLE `dtb_customer` DISABLE KEYS */;
-INSERT INTO `dtb_customer` VALUES (1,'','',NULL,NULL,NULL,NULL,NULL,NULL,392,NULL,NULL,NULL,'yuri.soushi@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699',NULL,NULL,'phethouvej','r613ea3b65961b5ABxABRz',NULL,NULL,0,0,0,NULL,2,'2021-09-13 01:04:54','2021-09-13 01:04:54',0,NULL,NULL,NULL,'かみーゆ',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (1,'あああああああ','あああああああああ','イノウエ','タロウ',NULL,'000','0000',NULL,392,7,'aaaaaa','aaaaaaaa','yuri.soushi@gmail.com',NULL,'000','0000','0000',NULL,NULL,NULL,NULL,NULL,'1973-04-04 00:00:00','2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699',NULL,NULL,'phethouvej','r613ea3b65961b5ABxABRz',NULL,NULL,0,0,0,NULL,2,'2021-09-13 01:04:54','2021-10-02 03:30:13',0,NULL,NULL,6,'かみーゆ',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1776,7 +1777,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-09-16 18:24:55');
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-10-02 17:13:29');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2454,6 +2455,9 @@ INSERT INTO `dtb_pagelayout` VALUES (10,48,'ご利用方法','guide/guide.php','
 INSERT INTO `dtb_pagelayout` VALUES (10,49,'ヘルプ','guide/help.php','guide/help',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,50,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,51,'MYページ/登録済カード情報変更','mypage/card_info.php','mypage/card_info',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,52,'QR発行用のページ','user_data/qr.php','user_data/qr',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10&transactionid=ede41c85ac057161545206e4f71b33fe61f834ec','2021-10-02 08:17:31','2021-10-02 08:17:31',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,53,'マイアイテム詳細','user_data/myitem_detail.php','user_data/myitem_detail',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-10-02 08:31:11','2021-10-02 08:31:11',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,54,'未選択のマイアイテム','user_data/unselected_item.php','user_data/unselected_item',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10&page_id=54&msg=on&transactionid=ede41c85ac057161545206e4f71b33fe61f834ec','2021-10-02 08:59:42','2021-10-02 09:01:35',NULL);
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2724,7 +2728,6 @@ LOCK TABLES `dtb_product_categories` WRITE;
 INSERT INTO `dtb_product_categories` VALUES (1,3,1);
 INSERT INTO `dtb_product_categories` VALUES (2,4,2);
 INSERT INTO `dtb_product_categories` VALUES (3,4,1);
-INSERT INTO `dtb_product_categories` VALUES (3,6,1);
 /*!40000 ALTER TABLE `dtb_product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2753,7 +2756,7 @@ CREATE TABLE `dtb_product_status` (
 LOCK TABLES `dtb_product_status` WRITE;
 /*!40000 ALTER TABLE `dtb_product_status` DISABLE KEYS */;
 INSERT INTO `dtb_product_status` VALUES (1,1,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',0);
-INSERT INTO `dtb_product_status` VALUES (4,3,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',0);
+INSERT INTO `dtb_product_status` VALUES (4,3,0,'2021-10-02 06:47:03','2021-10-02 06:47:03',0);
 INSERT INTO `dtb_product_status` VALUES (5,2,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',0);
 /*!40000 ALTER TABLE `dtb_product_status` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2841,7 +2844,7 @@ LOCK TABLES `dtb_products` WRITE;
 /*!40000 ALTER TABLE `dtb_products` DISABLE KEYS */;
 INSERT INTO `dtb_products` VALUES (1,'アイスクリーム',NULL,1,NULL,NULL,'アイス,バニラ,チョコ,抹茶',NULL,NULL,NULL,NULL,NULL,NULL,'冷たいものはいかがですか?',NULL,'',NULL,NULL,NULL,'ice500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',2,1,0);
 INSERT INTO `dtb_products` VALUES (2,'おなべ',NULL,1,NULL,NULL,'鍋,なべ,ナベ',NULL,NULL,NULL,NULL,NULL,NULL,'たまには鍋でもどうでしょう。',NULL,'',NULL,NULL,NULL,'nabe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',3,1,0);
-INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,'鍋,なべ,ナベ,レシピ,作り方',NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',1,1,0);
+INSERT INTO `dtb_products` VALUES (3,'おなべレシピ',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'この商品はダウンロード商品です\n自分でチャレンジしてみたい方に。',NULL,'',NULL,NULL,NULL,'recipe500.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-01-13 01:40:23','2021-10-02 06:47:03',1,1,0);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2886,7 +2889,7 @@ LOCK TABLES `dtb_products_class` WRITE;
 /*!40000 ALTER TABLE `dtb_products_class` DISABLE KEYS */;
 INSERT INTO `dtb_products_class` VALUES (0,1,0,0,1,'ice-01',1,0,NULL,NULL,0,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (10,2,0,0,1,'nabe-01',1,0,NULL,NULL,0,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (11,3,0,0,2,'recipe-01',0,0,NULL,NULL,0,NULL,10,2,'2021-01-13 01:40:23','2021-01-13 01:40:23','おなべレシピ.pdf','recipe_onabe.pdf',0);
+INSERT INTO `dtb_products_class` VALUES (11,3,0,0,1,'recipe-01',0,0,NULL,NULL,0,NULL,10,0,'2021-01-13 01:40:23','2021-10-02 06:47:03','おなべレシピ.pdf','recipe_onabe.pdf',0);
 /*!40000 ALTER TABLE `dtb_products_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3128,6 +3131,7 @@ CREATE TABLE `dtb_session` (
 
 LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
+INSERT INTO `dtb_session` VALUES ('002a3a514aadc462ebf6e95f5f69b64e','cart|a:0:{}prev_url|s:30:\"/user_data/unselected_item.php\";transactionid|s:40:\"ede41c85ac057161545206e4f71b33fe61f834ec\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";s:21:\"あああああああ\";s:6:\"name02\";s:27:\"あああああああああ\";s:6:\"kana01\";s:12:\"イノウエ\";s:6:\"kana02\";s:9:\"タロウ\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"000\";s:5:\"zip02\";s:4:\"0000\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:1:\"7\";s:6:\"addr01\";s:6:\"aaaaaa\";s:6:\"addr02\";s:8:\"aaaaaaaa\";s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"000\";s:5:\"tel02\";s:4:\"0000\";s:5:\"tel03\";s:4:\"0000\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"1973-04-04 00:00:00\";s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-10-02 03:30:13\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"6\";s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}plg_slnquick_payment_item|b:0;cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:31:\"/user_data/unselected_items.php\";s:8:\"now_page\";s:30:\"/user_data/unselected_item.php\";s:6:\"uniqid\";s:21:\"6157d2112a43aV7gZckuG\";}cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"615814a9733c2N6SDBTGR\";last_login|s:19:\"2021-09-16 18:24:55\";','2021-10-02 08:13:29','2021-10-02 09:01:55');
 INSERT INTO `dtb_session` VALUES ('4daba42fe4961394ef959039f8144c13','cart|a:0:{}prev_url|s:7:\"/other/\";transactionid|s:40:\"334ee584a987ae13c0410ec4ca2b71fa7a8bf692\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:32:\"/terms/prohibited_activities.php\";s:8:\"now_page\";s:32:\"/terms/prohibited_activities.php\";s:6:\"uniqid\";s:21:\"6153c110656a1bvdyvE2f\";}cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"6153c216aaa86sNZgwd2T\";last_login|s:19:\"2021-09-16 18:24:55\";customer|a:46:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";N;s:6:\"name02\";N;s:6:\"kana01\";N;s:6:\"kana02\";N;s:12:\"company_name\";N;s:5:\"zip01\";N;s:5:\"zip02\";N;s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";N;s:6:\"addr01\";N;s:6:\"addr02\";N;s:5:\"email\";s:21:\"yuri.soushi@gmail.com\";s:12:\"email_mobile\";N;s:5:\"tel01\";N;s:5:\"tel02\";N;s:5:\"tel03\";N;s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";N;s:8:\"password\";s:64:\"2bfde7c5ba3f376db75148aa87a6cfbd05db1b6dbb289e0a88e282f63c9c2699\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"phethouvej\";s:10:\"secret_key\";s:22:\"r613ea3b65961b5ABxABRz\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-09-13 01:04:54\";s:11:\"update_date\";s:19:\"2021-09-13 01:04:54\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";N;s:8:\"nickname\";s:12:\"かみーゆ\";s:17:\"self_introduction\";N;s:7:\"hobbies\";N;s:13:\"profile_image\";N;}cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";','2021-09-29 02:38:24','2021-09-29 02:39:24');
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -5094,4 +5098,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-29  2:40:28
+-- Dump completed on 2021-10-02  9:17:30
