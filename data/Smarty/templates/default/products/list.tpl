@@ -91,6 +91,11 @@
         <!--{/if}-->
         <!--▲検索条件-->
 
+        <!--{* 交換選択待ち商品あり *}-->
+        <!--{if $hasUnselectdProductFlg}-->
+            交換するアイテムを選んでください
+        <!--{/if}-->
+
         <!--▼ページナビ(本文)-->
         <!--{capture name=page_navi_body}-->
             <div class="pagenumber_area clearfix">

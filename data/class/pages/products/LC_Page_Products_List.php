@@ -166,6 +166,15 @@ class LC_Page_Products_List extends LC_Page_Ex
         }
 
         $this->tpl_rnd = SC_Utils_Ex::sfGetRandomString(3);
+
+        // 交換選択待ち商品が存在するか
+        $this->hasUnselectdProductFlg = false;
+        if ($this->tpl_login) {
+            $objHelperCustomer = new SC_Helper_Customer_Ex();
+            if ( count($objHelperCustomer->getCustomerUnselectedProductId($this->objCustomer->getValue('customer_id'))) > 0){
+                $this->hasUnselectdProductFlg = true;
+            }
+        }
     }
 
     /**
