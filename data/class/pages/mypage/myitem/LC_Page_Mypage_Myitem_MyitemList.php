@@ -6,7 +6,7 @@ require_once CLASS_EX_REALDIR . 'page_extends/mypage/LC_Page_AbstractMypage_Ex.p
  *
  * @package Page
  */
-class LC_Page_Mypage_Myitem_Myitem extends LC_Page_AbstractMypage_Ex
+class LC_Page_Mypage_Myitem_MyitemList extends LC_Page_AbstractMypage_Ex
 {
     /** ページナンバー */
     public $tpl_pageno;
