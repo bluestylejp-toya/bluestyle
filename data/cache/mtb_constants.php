@@ -76,7 +76,7 @@ define('ORDER_STATUS_MAX', 50);
 /** フロントレビュー書き込み最大数 */
 define('REVIEW_REGIST_MAX', 5);
 /** デバッグモード(true：sfPrintRやDBのエラーメッセージ、ログレベルがDebugのログを出力する、false：出力しない) */
-define('DEBUG_MODE', false);
+define('DEBUG_MODE', true);
 /** ログを冗長とするか(true:利用する、false:利用しない) */
 define('USE_VERBOSE_LOG', DEBUG_MODE);
 /** 管理ユーザID(メンテナンス用表示されない。) */
