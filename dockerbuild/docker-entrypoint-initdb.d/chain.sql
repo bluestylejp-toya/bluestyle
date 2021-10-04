@@ -2455,9 +2455,9 @@ INSERT INTO `dtb_pagelayout` VALUES (10,48,'ご利用方法','guide/guide.php','
 INSERT INTO `dtb_pagelayout` VALUES (10,49,'ヘルプ','guide/help.php','guide/help',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,50,'商品購入/決済画面','shopping/load_sln_payment_module.php','shopping/load_sln_payment_module',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,51,'MYページ/登録済カード情報変更','mypage/card_info.php','mypage/card_info',1,1,2,NULL,NULL,NULL,'http://localhost:8080/chainadmin/load_module_config.php?module_id=2073','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,52,'QR発行用のページ','user_data/qr.php','user_data/qr',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10&transactionid=ede41c85ac057161545206e4f71b33fe61f834ec','2021-10-02 08:17:31','2021-10-02 08:17:31',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,53,'マイアイテム詳細','user_data/myitem_detail.php','user_data/myitem_detail',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-10-02 08:31:11','2021-10-02 08:31:11',NULL);
-INSERT INTO `dtb_pagelayout` VALUES (10,54,'未選択のマイアイテム','user_data/unselected_item.php','user_data/unselected_item',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10&page_id=54&msg=on&transactionid=ede41c85ac057161545206e4f71b33fe61f834ec','2021-10-02 08:59:42','2021-10-02 09:01:35',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,52,'MYページ/送付状QR','mypage/myitem/qr.php','mypage/myitem/qr',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+INSERT INTO `dtb_pagelayout` VALUES (10,53,'MYページ/マイアイテム詳細','mypage/myitem/myitem_detail.php','mypage/myitem/myitem_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
+
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -21,11 +21,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-require_once CLASS_EX_REALDIR . 'page_extends/LC_Page_Ex.php';
+//require_once CLASS_EX_REALDIR . 'page_extends/LC_Page_Ex.php';
+//
+//if (file_exists(MODULE_REALDIR . 'mdl_gmopg/inc/function.php')) {
+//    require_once MODULE_REALDIR . 'mdl_gmopg/inc/function.php';
+//}
 
-if (file_exists(MODULE_REALDIR . 'mdl_gmopg/inc/function.php')) {
-    require_once MODULE_REALDIR . 'mdl_gmopg/inc/function.php';
-}
+require_once CLASS_EX_REALDIR . 'page_extends/mypage/LC_Page_AbstractMypage_Ex.php';
+
 /**
  * 商品詳細 のページクラス.
  *
@@ -33,7 +36,7 @@ if (file_exists(MODULE_REALDIR . 'mdl_gmopg/inc/function.php')) {
  * @author EC-CUBE CO.,LTD.
  * @version $Id$
  */
-class LC_Page_Products_Detail extends LC_Page_Ex
+class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
 {
     /** 商品ステータス */
     public $arrSTATUS;
@@ -156,8 +159,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     public function process()
     {
         parent::process();
-        $this->action();
-        $this->sendResponse();
     }
 
     /**
@@ -401,7 +402,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         }
 
         if (!$objProduct->isValidProductId($product_id, $include_hidden)) {
-                SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
+            SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
         }
 
         return $product_id;
@@ -574,39 +575,39 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     public function lfCheckError($mode, SC_FormParam &$objFormParam, $tpl_classcat_find1 = null, $tpl_classcat_find2 = null)
     {
         switch ($mode) {
-        case 'add_favorite_sphone':
-        case 'add_favorite':
-            $objCustomer = new SC_Customer_Ex();
-            $objErr = new SC_CheckError_Ex();
-            $customer_id = $objCustomer->getValue('customer_id');
-            $favorite_product_id = $objFormParam->getValue('favorite_product_id');
-            if (SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id))) {
-                $objErr->arrErr['add_favorite'.$favorite_product_id] = '※ この商品は既にお気に入りに追加されています。<br />';
-            }
-            break;
+            case 'add_favorite_sphone':
+            case 'add_favorite':
+                $objCustomer = new SC_Customer_Ex();
+                $objErr = new SC_CheckError_Ex();
+                $customer_id = $objCustomer->getValue('customer_id');
+                $favorite_product_id = $objFormParam->getValue('favorite_product_id');
+                if (SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id))) {
+                    $objErr->arrErr['add_favorite'.$favorite_product_id] = '※ この商品は既にお気に入りに追加されています。<br />';
+                }
+                break;
 
-        case 'add_favorite_ajax':
-            $objErr = new SC_CheckError_Ex();
-            break;
+            case 'add_favorite_ajax':
+                $objErr = new SC_CheckError_Ex();
+                break;
 
-        case 'del_favorite_ajax':
-            $objErr = new SC_CheckError_Ex();
-            break;
+            case 'del_favorite_ajax':
+                $objErr = new SC_CheckError_Ex();
+                break;
 
-        default:
-            // 入力データを渡す。
-            $arrRet =  $objFormParam->getHashArray();
-            $objErr = new SC_CheckError_Ex($arrRet);
-            $objErr->arrErr = $objFormParam->checkError();
+            default:
+                // 入力データを渡す。
+                $arrRet =  $objFormParam->getHashArray();
+                $objErr = new SC_CheckError_Ex($arrRet);
+                $objErr->arrErr = $objFormParam->checkError();
 
-            // 複数項目チェック
-            if ($tpl_classcat_find1) {
-                $objErr->doFunc(array('規格1', 'classcategory_id1'), array('EXIST_CHECK'));
-            }
-            if ($tpl_classcat_find2) {
-                $objErr->doFunc(array('規格2', 'classcategory_id2'), array('EXIST_CHECK'));
-            }
-            break;
+                // 複数項目チェック
+                if ($tpl_classcat_find1) {
+                    $objErr->doFunc(array('規格1', 'classcategory_id1'), array('EXIST_CHECK'));
+                }
+                if ($tpl_classcat_find2) {
+                    $objErr->doFunc(array('規格2', 'classcategory_id2'), array('EXIST_CHECK'));
+                }
+                break;
         }
 
         return $objErr->arrErr;
@@ -711,8 +712,8 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     public function doCart()
     {
         $this->arrErr = $this->lfCheckError($this->mode, $this->objFormParam,
-                                            $this->tpl_classcat_find1,
-                                            $this->tpl_classcat_find2);
+            $this->tpl_classcat_find1,
+            $this->tpl_classcat_find2);
         if (count($this->arrErr) == 0) {
             $objCartSess = new SC_CartSession_Ex();
             $product_class_id = $this->objFormParam->getValue('product_class_id');
