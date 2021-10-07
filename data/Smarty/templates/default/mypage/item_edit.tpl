@@ -122,28 +122,11 @@ $(function(){
 
     //画像の追加ボタン
     $('.c-item__add-image-btn').on('click', function(){
-        $items     = $('.c-item--edit.--hidden');
-        $next      = $items.first();
-        $id        = $next.attr('data-item_id');
-        $caption   = $next.find('[name^=sub_title]');
-        $imageFile = $next.find('[name^=sub_large_image]');
-        $image     = $next.find('img');
-        $next.removeClass('--hidden').addClass('c-item--modal').removeClass('c-item--edit');
-        $caption .attr('readonly', false);
-        $imageFile.attr('disabled', false);
-        $('body').addClass('--overflow-hidden');
-
-        $('.c-item__back-btn').on('click', function(){
-            if($image == '' && $caption.val() != '') {
-                alert('画像の登録をしてください。');
-            } else {
-                $next.removeClass('c-item--modal').addClass('c-item--edit');
-                $caption.attr('readonly', true);
-                $imageFile.attr('disabled', true);
-                $('body').removeClass('--overflow-hidden');
-            }
-        })
-        if( $items.length === 0 ) {
+        $next = $('.c-item--edit.--hidden:first');
+        $next.removeClass('--hidden');
+        $next.find('.c-item__controll-btn').click();
+        $('.image_edit').click();
+        if ($('.c-item--edit.--hidden').length === 0) {
             $(this).remove();
         }
     })
@@ -172,19 +155,19 @@ $(function(){
             $caption.attr('readonly', false);
             $imageFile.attr('disabled', false);
             $('body').addClass('--overflow-hidden');
+        })
 
-            //画像が登録されなかった場合の処理も必要
-            $('.c-item__back-btn, .c-item__img-save-btn').on('click', function(){
-                if($image.attr('src') == '' && $caption.val() != '') {
-                    // キャプションの登録があって画像がない場合
-                    alert('画像の登録をしてください。');
-                } else {
-                    $parent.removeClass('c-item--modal').addClass('c-item--edit');
-                    $caption.attr('readonly', true);
-                    $imageFile.attr('disabled', true);
-                    $('body').removeClass('--overflow-hidden');
-                }
-            })
+        //画像が登録されなかった場合の処理も必要
+        $('.c-item__back-btn, .c-item__img-save-btn').on('click', function(){
+            if($image.attr('src') == '' && $caption.val() != '') {
+                // キャプションの登録があって画像がない場合
+                alert('画像の登録をしてください。');
+            } else {
+                $parent.removeClass('c-item--modal').addClass('c-item--edit');
+                $caption.attr('readonly', true);
+                $imageFile.attr('disabled', true);
+                $('body').removeClass('--overflow-hidden');
+            }
         })
     })
 })
