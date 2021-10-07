@@ -40,6 +40,15 @@
 <!--{if $arrPageLayout.meta_robots|strlen >= 1}-->
     <meta name="robots" content="<!--{$arrPageLayout.meta_robots|h}-->" />
 <!--{/if}-->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PJZ7TPFVG6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PJZ7TPFVG6');
+</script>
 <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="<!--{$TPL_URLPATH}-->img/common/apple-touch-icon.png" sizes="180x180">
 <link rel="icon" type="image/png" href="<!--{$TPL_URLPATH}-->img/common/android-chrome-192x192.png" sizes="192x192">
