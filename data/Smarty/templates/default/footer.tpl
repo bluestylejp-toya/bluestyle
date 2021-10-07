@@ -24,6 +24,11 @@
 <!--{strip}-->
 
 <nav class="l-footer-nav">
+    <!--{if $tpl_login }-->
+        <!--{assign var=is_login value=true}-->
+    <!--{else}-->
+        <!--{assign var=is_login value=false}-->
+    <!--{/if}-->
     <!--{assign var=current value="other"}-->
     <!--{if $tpl_page_class_name ==="LC_Page_Products_Detail" or $tpl_page_class_name === "LC_Page_Products_List"}-->
         <!--{assign var=current value="search"}-->
@@ -36,7 +41,8 @@
             <!--{assign var=current value="mypage"}-->
         <!--{/if}-->
     <!--{/if}-->
-    <!--{if $tpl_login or $current == 'other'}-->
+
+    <!--{if $is_login}-->
         <ul class="l-footer-nav__inner --login">
             <li class="l-footer-nav__item">
                 <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">さがす</a>
