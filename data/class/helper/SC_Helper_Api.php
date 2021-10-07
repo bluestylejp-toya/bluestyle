@@ -100,4 +100,19 @@ class SC_Helper_Api
         return $json;
     }
 
+    /**
+     * API オペレーション「Get Prov Chain」
+     * 
+     * @param string $id 仮成立チェインネットワークの一意のキー
+     */
+    public static function getChain($id) {
+        $objHelperApi = new SC_Helper_Api_Ex();
+
+        $objHelperApi->setUrl(API_URL . "chain/{$id}");
+        $objHelperApi->setMethod('GET');
+        $result = $objHelperApi->exec();
+        $return = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
+
+        return $return;
+    }
 }

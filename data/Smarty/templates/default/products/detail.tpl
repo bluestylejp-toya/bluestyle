@@ -384,6 +384,9 @@ $(function(){
                     $closest.find(".notification").fadeOut();
                 }, 1000);
             })
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            alert('エラーが発生しました。');
+            location.reload();
         });
     }
     // スライドアップ
