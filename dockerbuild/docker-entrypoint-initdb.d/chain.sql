@@ -1163,6 +1163,19 @@ CREATE TABLE `dtb_customer_favorite_products` (
 
 LOCK TABLES `dtb_customer_favorite_products` WRITE;
 /*!40000 ALTER TABLE `dtb_customer_favorite_products` DISABLE KEYS */;
+INSERT INTO `dtb_customer_favorite_products` VALUES (2,3,'2021-10-06 00:00:00','2021-10-06 00:00:00',2);
+INSERT INTO `dtb_customer_favorite_products` VALUES (3,5,'2021-10-06 00:00:00','2021-10-06 00:00:00',3);
+INSERT INTO `dtb_customer_favorite_products` VALUES (3,10,'2021-10-06 00:00:00','2021-10-06 00:00:00',3);
+INSERT INTO `dtb_customer_favorite_products` VALUES (4,7,'2021-10-06 00:00:00','2021-10-06 00:00:00',5);
+INSERT INTO `dtb_customer_favorite_products` VALUES (5,8,'2021-10-06 00:00:00','2021-10-06 00:00:00',7);
+INSERT INTO `dtb_customer_favorite_products` VALUES (5,9,'2021-10-06 00:00:00','2021-10-06 00:00:00',7);
+INSERT INTO `dtb_customer_favorite_products` VALUES (6,1,'2021-10-06 00:00:00','2021-10-06 00:00:00',8);
+INSERT INTO `dtb_customer_favorite_products` VALUES (7,1,'2021-10-06 00:00:00','2021-10-06 00:00:00',9);
+INSERT INTO `dtb_customer_favorite_products` VALUES (8,11,'2021-10-06 00:00:00','2021-10-06 00:00:00',10);
+INSERT INTO `dtb_customer_favorite_products` VALUES (8,12,'2021-10-06 00:00:00','2021-10-06 00:00:00',10);
+INSERT INTO `dtb_customer_favorite_products` VALUES (9,13,'2021-10-06 00:00:00','2021-10-06 00:00:00',11);
+INSERT INTO `dtb_customer_favorite_products` VALUES (9,13,'2021-10-06 00:00:00','2021-10-06 00:00:00',12);
+INSERT INTO `dtb_customer_favorite_products` VALUES (10,7,'2021-10-06 00:00:00','2021-10-06 00:00:00',13);
 /*!40000 ALTER TABLE `dtb_customer_favorite_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
