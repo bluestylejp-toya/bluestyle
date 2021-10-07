@@ -2072,6 +2072,7 @@ CREATE TABLE `dtb_order` (
   `memo08` text,
   `memo09` text,
   `memo10` text,
+  `chain_id` text NOT NULL,
   PRIMARY KEY (`order_id`),
   KEY `dtb_order_customer_id_key` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -4088,6 +4089,7 @@ INSERT INTO `mtb_customer_order_status` VALUES (4,'注文受付',5);
 INSERT INTO `mtb_customer_order_status` VALUES (5,'発送済み',6);
 INSERT INTO `mtb_customer_order_status` VALUES (6,'注文受付',3);
 INSERT INTO `mtb_customer_order_status` VALUES (7,'注文未完了',0);
+INSERT INTO `mtb_customer_order_status` VALUES (101,'中断',7);
 /*!40000 ALTER TABLE `mtb_customer_order_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4527,6 +4529,7 @@ INSERT INTO `mtb_order_status` VALUES (4,'取り寄せ中',5);
 INSERT INTO `mtb_order_status` VALUES (5,'発送済み',6);
 INSERT INTO `mtb_order_status` VALUES (6,'入金済み',3);
 INSERT INTO `mtb_order_status` VALUES (7,'決済処理中',0);
+INSERT INTO `mtb_order_status` VALUES (101,'中断',7);
 /*!40000 ALTER TABLE `mtb_order_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5169,4 +5172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-13  2:57:37
+-- Dump completed on 2021-10-14 12:57:09

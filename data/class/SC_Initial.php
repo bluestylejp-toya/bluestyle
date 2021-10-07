@@ -451,6 +451,9 @@ class SC_Initial
         define('UNLIMITED_FLG_UNLIMITED', '1');
         /** 無制限フラグ： 制限有り */
         define('UNLIMITED_FLG_LIMITED', '0');
+
+        /** 対応状況: 中断 */
+        define('ORDER_SUSPEND', 101);
     }
 
     /**

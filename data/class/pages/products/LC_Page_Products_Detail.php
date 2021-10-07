@@ -681,25 +681,25 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             return false;
         }
 
-        $objQuery = SC_Query_Ex::getSingletonInstance();
-        $exists = $objQuery->exists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id));
+            $objQuery = SC_Query_Ex::getSingletonInstance();
+            $exists = $objQuery->exists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id));
 
-        if (!$exists) {
-            $sqlval['customer_id'] = $customer_id;
-            $sqlval['product_id'] = $favorite_product_id;
-            $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
-            $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
-            $sqlval['target_id'] = $target_id;
+            if (!$exists) {
+                $sqlval['customer_id'] = $customer_id;
+                $sqlval['product_id'] = $favorite_product_id;
+                $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
+                $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
+                $sqlval['target_id'] = $target_id;
 
-            $objQuery->begin();
-            $objQuery->insert('dtb_customer_favorite_products', $sqlval);
-            $objQuery->commit();
+                $objQuery->begin();
+                $objQuery->insert('dtb_customer_favorite_products', $sqlval);
+                $objQuery->commit();
+            }
+            // お気に入りに登録したことを示すフラグ
+            $this->just_added_favorite = true;
+
+            return true;
         }
-        // お気に入りに登録したことを示すフラグ
-        $this->just_added_favorite = true;
-
-        return true;
-    }
 
     /*
      * お気に入り商品解除
@@ -962,33 +962,14 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     /**
      * ループが成立したときの処理
      * 
-     * @param string $id 仮成立チェインネットワークの一意のキー
+     * @param string $chain_id 仮成立チェインネットワークの一意のキー
      */
-    function loop($id)
+    function loop($chain_id)
     {
-        $objQuery = SC_Query_Ex::getSingletonInstance();
-
-        $chain = SC_Helper_Api_Ex::getChain($id);
-
-        // 含まれる商品IDを全て拾う
-        $arrProductId = [];
-        foreach ($chain->chain_list as $chain_one) {
-            foreach ($chain_one as $edge) {
-                $arrProductId[] = $edge->source_id;
-                $arrProductId[] = $edge->target_id;
-            }
-        }
-        $arrProductId = array_unique($arrProductId);
-
-        // 商品マスター更新
-        $arrUpdate = [
-            'status' => 2, // 非公開
-            'chain_id' => $id,
-        ];
-        $where = 'product_id IN (' . SC_Utils_Ex::repeatStrWithSeparator('?', count($arrProductId)) . ')';
-        $objQuery->update('dtb_products', $arrUpdate, $where, $arrProductId);
+        // 商品非公開
+        SC_Helper_Chain_Ex::lockProductsByChainId($chain_id);
 
         // バッチ起動
-        // https://bluestyle.backlog.jp/view/CHAIN-160
+        SC_Helper_Chain_Ex::execBatchPostLoopUpdate($chain_id);
     }
 }
