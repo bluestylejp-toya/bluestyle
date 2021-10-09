@@ -9,6 +9,7 @@ RUN apt-get update \
   && docker-php-ext-install -j$(nproc) zip gd xml pdo pdo_mysql mysqli soap intl \
   && (printf "\n" | pecl install imagick) \
   && docker-php-ext-enable imagick \
+  && docker-php-ext-install exif \
   && rm -rf /var/lib/apt/lists/*
 
 RUN /bin/sh -c a2enmod rewrite
