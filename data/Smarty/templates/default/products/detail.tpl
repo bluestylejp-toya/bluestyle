@@ -38,6 +38,11 @@
                 <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
                 <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
             </header>
+
+            <!--{if $hasUnselectdProductFlg}-->
+                交換するアイテムを選んでください　<a href="/mypage/myitem/status.php?product_id=<!--{$arrProduct.product_id|h}-->">選択画面に遷移</a>
+            <!--{/if}-->
+
             <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
             <div class="c-notification--secondary notification">リクエストを送信しました</div>
@@ -206,7 +211,8 @@
                     <ul class="u-mb--4">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
-                                <label class="c-card__radio-button"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
+                                <label class="c-card__radio-button" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                                    <input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
                                     <div class="c-card__main">
                                     <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
                                         <p><!--{$arrProduct.name|h}--></p>
@@ -264,48 +270,49 @@
 $(function(){
     $(".history_list").appendTo(".history");
 
-    $('.favorite_area #request').on('click', function(){
+    // 交換商品クリック時
+    $('.c-card__radio-button').on('change', function () {
+        let $this = $(this)
+        let $closest = $(this).closest(".favorite_area");
+        let $close = $this.next('.slideup_bg');
+        let $mode = $closest.hasClass("registered_favorite");
+        init_favorite($mode, $closest, $this)
+        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+        let $main = $('.p-item-detail__body .p-item-detail__body__main');
+        setTimeout(function () {
+            slideDown($close, $slideUp, $main);
+        }, 300)
+        $("span[class=label]").text('済');
+        checked(true, $('.favorite_area #request'))
+        $("input[type=radio][name=my_product]").removeAttr('checked');
+    })
+
+    // ほしいボタンクリック時
+    $('.favorite_area #request').on('click', function () {
         let $this = $(this);
         let $closest = $(this).closest(".favorite_area");
         let $mode = $closest.hasClass("registered_favorite");
         let $close = $this.next('.slideup_bg');
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $main = $('.p-item-detail__body .p-item-detail__body__main');
-        let $checked = ($slideUp.find('input[type=radio]:checked').size() > 0) ? true : false;
+        let $checked = $mode;
         $slideUp.find('.select_status path').attr('stroke', '#eee');
-
-        if($mode === true) {
-            init_favorite($mode, $closest, $this)
-            $slideUp.find('input[type=radio]').removeAttr('checked');
+        // リクエスト取り消し
+        if ($mode === true) {
+            init_favorite($mode, $closest, $this);
         } else {
-            if($checked === true) {
-                init_favorite($mode, $closest, $this);
-                setTimeout(function(){
-                    slideDown($close, $slideUp, $main);
-                }, 300)
-            } else {
-                slideUp($close, $slideUp, $main);
-                checked($checked, $this)
+            slideUp($close, $slideUp, $main);
+            checked($checked, $this)
 
-                $slideUp.find('input[type=radio]').on('change', function(){
-                    if( $this.prop('checked', true) ){
-                        $checked = true;
-                        $slideUp.find('.select_status path').attr('stroke', 'url(#paint0_linear)');
-                    }
-                    checked($checked, $this)
-                })
-
-                //選ぶのをやめる
-                $close.on('click', function(){
-                    slideDown($close, $slideUp, $main);
-                    $this.removeAttr('disabled');
-                    $checked = true;
-                    $slideUp.find('input[type=radio]').removeAttr('checked');
-                    checked($checked, $this);
-                });
-            }
+            //選ぶのをやめる
+            $close.on('click', function () {
+                slideDown($close, $slideUp, $main);
+                $this.removeAttr('disabled');
+                checked(true, $this);
+            });
         }
     })
+
     function init_favorite($mode, $closest, $this){
         let postData = {
             mode: $mode
@@ -313,7 +320,7 @@ $(function(){
                 : "add_favorite_ajax",
             product_id: $this.data("product_id"),
             favorite_product_id:  $this.data("product_id"),
-            target_id: $("input[name='my_product']:checked").val()
+            target_id: $this.data("target_id"),
         };
 
         postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
@@ -329,7 +336,7 @@ $(function(){
                     mode : "api_add_favorite_ajax",
                     product_id: $this.data("product_id"),
                     favorite_product_id:  $this.data("product_id"),
-                    target_id: $("input[name='my_product']:checked").val()
+                    target_id: $this.data("target_id"),
                 };
                 postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
 

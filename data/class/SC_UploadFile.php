@@ -96,6 +96,56 @@ class SC_UploadFile
         return basename($ret[1]);
     }
 
+    /**
+     * 画像を回転させる
+     * @param resource $image
+     * @param array $exif
+     * @return resource
+     */
+    private function rotate($image, array $exif)
+    {
+        $orientation = $exif['Orientation'] ? $exif['Orientation'] : 1;
+
+        switch ($orientation) {
+            case imagick::ORIENTATION_UNDEFINED:
+                break;
+            case imagick::ORIENTATION_TOPLEFT:
+                break;
+            case imagick::ORIENTATION_TOPRIGHT:
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_BOTTOMRIGHT:
+                $image->rotateImage(new ImagickPixel(), 180);
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_BOTTOMLEFT:
+                $image->rotateImage(new ImagickPixel(), 180);
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_LEFTTOP:
+                $image->rotateImage(new ImagickPixel(), 90);
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_RIGHTTOP:
+                $image->rotateImage(new ImagickPixel(), 90);
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_RIGHTBOTTOM:
+                $image->rotateImage(new ImagickPixel(), 270);
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_LEFTBOTTOM:
+                $image->rotateImage(new ImagickPixel(), 270);
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+        }
+        return $image;
+    }
+
     // アップロードされたファイルを保存する。
 
     /**
@@ -120,9 +170,16 @@ class SC_UploadFile
                         $im = new Imagick();
                         try {
                             $success = $im->readImage($_FILES[$keyname]['tmp_name']);
+
                             if (!$success) {
                                 throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
                             }
+
+                            $exif = exif_read_data($_FILES[$keyname]['tmp_name'], 'EXIF');
+                            if ($exif !== false){
+                                $im = $this->rotate($im, $exif);
+                            }
+
                             $im->setImageFormat('jpeg');
                             $success = $im->writeImage($_FILES[$keyname]['tmp_name']);
                             if (!$success) {

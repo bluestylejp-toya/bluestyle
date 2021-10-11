@@ -83,12 +83,20 @@ class SC_Helper_Api
         //URLの情報を取得し、ブラウザに渡す
         $json = curl_exec($ch);
 
-        if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) != 200){
-            throw new Exception('');
+        $response_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        if ($response_code != 200) {
+            $http_connectcode = curl_getinfo($ch, CURLINFO_HTTP_CONNECTCODE);
+            $error = curl_error($ch);
+
+            //セッションを終了する
+            curl_close($ch);
+
+            throw new Exception("{$error}: [response_code={$response_code}] [http_connectcode={$http_connectcode}] [data={$json}]");
         }
 
         //セッションを終了する
         curl_close($ch);
+
         return $json;
     }
 

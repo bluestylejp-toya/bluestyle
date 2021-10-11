@@ -753,4 +753,38 @@ class SC_Helper_Customer
 
         return $arrProducts;
     }
+
+    /**
+     * 交換選択待ち商品IDを取得する
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    public function getCustomerUnselectedProductId($customer_id)
+    {
+        $arrUnselectedProductId = array();
+
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+
+        foreach ($arrProductId as $product_id) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $product_id);
+            $result = json_decode($objHelperApi->exec(), true);
+            if (count($result) > 0) {
+                $chainId = $result[0]['id'];
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                if (count($result["selection_edge_list"]) > 0){
+                    foreach ($result["selection_edge_list"] as $selection_edge_list) {
+                        $arrUnselectedProductId[] = $selection_edge_list['source_id'];
+                    }
+                }
+            }
+        }
+
+        return array_unique($arrUnselectedProductId);
+    }
 }

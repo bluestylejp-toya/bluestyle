@@ -1,6 +1,6 @@
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->terms/guide.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}--><!--{if $tpl_login}-->terms/<!--{else}-->entry/<!--{/if}-->kiyaku.php" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title">ガイドの禁止されている行為</h1>
     </header>
     <div class="l-section--order">
@@ -277,5 +277,5 @@
             </ul>
         </section>
     </div>
-    <p><a href="<!--{$smarty.const.TOP_URL}-->terms/guide.php" class="c-btn--default">ご利用規約へ戻る</a></p>
+    <p><a href="<!--{$smarty.const.TOP_URL}--><!--{if $tpl_login}-->terms/<!--{else}-->entry/<!--{/if}-->kiyaku.php" class="c-btn--default">ご利用規約へ戻る</a></p>
 </section>

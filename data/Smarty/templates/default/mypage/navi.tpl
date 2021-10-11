@@ -40,7 +40,7 @@
 
                 <!--<li><a href="item_edit.php" class="<!--{if $tpl_mypageno == 'item_edit'}--> selected<!--{/if}-->">
                     アイテム登録</a></li>-->
-                <li><a href="/mypage/myitem/myitem.php" class="<!--{if $tpl_mypageno == 'item-list'}--> selected<!--{/if}-->">
+                <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_list.php" class="<!--{if $tpl_mypageno == 'item-list'}--> selected<!--{/if}-->">
                     アイテム<span class="c-batch--num"><!--{$arrListingProducts|@count}--></span></a></li>
                 <!--<li><a href="delivery.php" class="<!--{if $tpl_mypageno == 'delivery'}--> selected<!--{/if}-->">
                     お届け先追加・変更</a></li>-->
