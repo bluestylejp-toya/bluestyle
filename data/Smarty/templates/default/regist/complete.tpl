@@ -30,7 +30,10 @@
         <img src="<!--{$TPL_URLPATH}-->img/entry/illust__balloon.png" width="164" class="c-entry-kv__object baloon">
     </div>
     <h1 class="c-heading--md u-color--gray u-mb--4">おめでとうございます！<br />登録完了しました</h1>
-    <p>
+    <p class="u-mb--2">
         <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary">ホームへ</a>
+    </p>
+    <p>
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-btn--primary--outline">マイページへ</a>
     </p>
 </section>
