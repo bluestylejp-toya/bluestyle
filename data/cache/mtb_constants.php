@@ -82,7 +82,7 @@ define('USE_VERBOSE_LOG', DEBUG_MODE);
 /** 管理ユーザID(メンテナンス用表示されない。) */
 define('ADMIN_ID', "1");
 /** 会員登録時に仮会員確認メールを送信するか (true:仮会員、false:本会員) */
-define('CUSTOMER_CONFIRM_MAIL', true);
+define('CUSTOMER_CONFIRM_MAIL', false);
 /** ログイン画面フレーム */
 define('LOGIN_FRAME', "login_frame.tpl");
 /** 管理画面フレーム */
