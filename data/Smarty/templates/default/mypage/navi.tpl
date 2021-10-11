@@ -24,7 +24,7 @@
 
 <div>
     <!--{strip}-->
-        <ul class="c-nav-list">
+        <ul class="c-nav-list u-mb--4">
 
             <!--{* 会員状態 *}-->
             <!--{if $tpl_login}-->

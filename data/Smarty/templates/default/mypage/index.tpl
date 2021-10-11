@@ -86,4 +86,7 @@
             <!--{/if}-->
         </form>
     </div>-->
+    <p>
+        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary">ホームへ</a>
+    </p>
 </section>
