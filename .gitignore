@@ -27,3 +27,5 @@ composer.phar
 *.css.map
 .idea
 !.gitkeep
+
+chain-for-camille.sql

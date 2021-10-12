@@ -234,9 +234,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         // ログイン判定
         if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
             $customer_id = $objCustomer->getValue('customer_id');
-            if ($this->arrProduct['customer_id'] == $customer_id) {
-                $this->tpl_my_product = true;
-            }
         }
 
         switch ($this->mode) {
