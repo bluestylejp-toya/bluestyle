@@ -22,7 +22,7 @@
 
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->other/" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}--><!--{if $tpl_login}-->other/<!--{else}-->mypage/login.php<!--{/if}-->" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title">お問い合わせ（完了）</h1>
     </header>
     <h2 class="c-heading--subtitle">お問い合わせ内容の送信が完了いたしました。</h2>
