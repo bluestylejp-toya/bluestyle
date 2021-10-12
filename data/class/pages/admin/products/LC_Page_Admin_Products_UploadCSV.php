@@ -489,6 +489,7 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
         // 商品規格テーブルのカラムに存在しているもののうち、Form投入設定されていないデータは上書きしない。
         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $this->arrProductClassColumn);
 
+        $product_class_id = $product_id;
         if ($product_class_id == '') {
             // 新規登録
             // 必須入力では無い項目だが、空文字では問題のある特殊なカラム値の初期値設定
@@ -673,6 +674,14 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
         if (!$this->lfIsDbRecord('dtb_products_class', 'product_class_id', $item)) {
             $arrErr['product_class_id'] = '※ 指定の商品規格IDは、登録されていません。';
         }
+
+        // 会員IDの存在チェック
+        if (!$this->objDb->sfIsRecord('dtb_customer', 'customer_id',
+            array($item['customer_id']))
+        ) {
+            $arrErr['customer_id'] = "※ 存在しない会員(".$item['customer_id'].")です。";
+        }
+
         // 商品ID、規格IDの組合せチェック
         if (array_search('product_class_id', $this->arrFormKeyList) !== FALSE
             && $item['product_class_id'] != ''

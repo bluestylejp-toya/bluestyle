@@ -194,6 +194,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
 
         // 検索条件
         $objFormParam->addParam('商品ID', 'search_product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('会員ID', 'search_customer_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品コード', 'search_product_code', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品名', 'search_name', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('カテゴリ', 'search_category_id', STEXT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
@@ -285,6 +286,11 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
             // 商品ID
             case 'search_product_id':
                 $where .= ' AND product_id = ?';
+                $arrValues[] = sprintf('%d', $objFormParam->getValue($key));
+                break;
+            // 会員ID
+            case 'search_customer_id':
+                $where .= ' AND customer_id = ?';
                 $arrValues[] = sprintf('%d', $objFormParam->getValue($key));
                 break;
             // 商品コード
@@ -387,7 +393,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
         // 読み込む列とテーブルの指定
-        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date';
+        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date, customer_id';
         $from = $objProduct->alldtlSQL();
 
         $objQuery->setLimitOffset($limit, $offset);
