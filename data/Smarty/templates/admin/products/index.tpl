@@ -55,6 +55,19 @@ function lfnDispChange(){
 
 </script>
 
+<script type="text/javascript">
+    <!--
+    function fnEdit(customer_id) {
+        document.form1.action = '../customer/edit.php';
+        document.form1.mode.value = "edit_search"
+        document.form1['edit_customer_id'].value = customer_id;
+        document.form1.search_pageno.value = 1;
+        document.form1.submit();
+        return false;
+    }
+    //-->
+</script>
+
 
 <div id="products" class="contents-main">
     <form name="search_form" id="search_form" method="post" action="?">
@@ -66,10 +79,18 @@ function lfnDispChange(){
         <table>
             <tr>
                 <th>商品ID</th>
-                <td colspan="3">
+                <td>
                     <!--{assign var=key value="search_product_id"}-->
                     <!--{if $arrErr[$key]}-->
                         <span class="attention"><!--{$arrErr[$key]}--></span>
+                    <!--{/if}-->
+                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30"/>
+                </td>
+                <th>会員ID</th>
+                <td>
+                    <!--{assign var=key value="search_customer_id"}-->
+                    <!--{if $arrErr[$key]}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
                     <!--{/if}-->
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30"/>
                 </td>
@@ -179,7 +200,9 @@ function lfnDispChange(){
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="mode" value="search" />
             <input type="hidden" name="product_id" value="" />
+            <input type="hidden" name="customer_id" value="" />
             <input type="hidden" name="category_id" value="" />
+            <input type="hidden" name="edit_customer_id" value="" />
             <!--{foreach key=key item=item from=$arrHidden}-->
                 <!--{if is_array($item)}-->
                     <!--{foreach item=c_item from=$item}-->
@@ -218,6 +241,7 @@ function lfnDispChange(){
                     <col width="5%" />
                     <col width="5%" />
                     <tr>
+                        <th rowspan="2">会員ID</th>
                         <th rowspan="2">商品ID</th>
                         <th rowspan="2">商品画像</th>
                         <th rowspan="2">商品コード</th>
@@ -231,7 +255,6 @@ function lfnDispChange(){
                         <th rowspan="2">規格</th>
                         <!--{/if}-->
                         <th rowspan="2">削除</th>
-                        <th rowspan="2">複製</th>
                     </tr>
                     <tr>
                         <th nowrap="nowrap"><a href="#" onclick="lfnDispChange(); return false;">カテゴリ ⇔ URL</a></th>
@@ -241,6 +264,9 @@ function lfnDispChange(){
                         <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
                         <!--{assign var=status value="`$arrProducts[cnt].status`"}-->
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
+                            <td class="id" rowspan="2">
+                                <a href="#" onclick="return fnEdit('<!--{$arrProducts[cnt].customer_id}-->');"><!--{$arrProducts[cnt].customer_id|h}--></a>
+                            </td>
                             <td class="id" rowspan="2"><!--{$arrProducts[cnt].product_id}--></td>
                             <td class="thumbnail" rowspan="2">
                             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProducts[cnt].main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
@@ -273,7 +299,6 @@ function lfnDispChange(){
                             <td class="menu" rowspan="2"><span class="icon_class"><a href="javascript:;" onclick="eccube.changeAction('./product_class.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >規格</a></span></td>
                             <!--{/if}-->
                             <td class="menu" rowspan="2"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
-                            <td class="menu" rowspan="2"><span class="icon_copy"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('copy', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >複製</a></span></td>
                         </tr>
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
                             <td>
