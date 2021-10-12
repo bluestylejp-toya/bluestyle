@@ -16,6 +16,24 @@
     overflow: hidden;
     height: 70%;
 
+    &[data-modal_mode=slide] {
+        .c-modal__inner {
+            display: none;
+        }
+    }
+
+    &[data-modal_mode=detail]{
+        .c-modal__inner {
+            padding: 0 $unit*3 $unit*3;
+        }
+        .report_btn {
+            display: none;
+        }
+        .history {
+            display: none;
+        }
+    }
+
     &[data-modal_mode=detail] .swiper-container {
         display: none;
     }
@@ -29,7 +47,6 @@
     &__inner {
         display: block;
         overflow: auto;
-        padding: 0 $unit*3 $unit*3;
         a {
             pointer-events: none;
         }

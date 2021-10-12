@@ -274,13 +274,14 @@ $(function(){
     $('.c-card__radio-button').on('change', function () {
         let $this = $(this)
         let $closest = $(this).closest(".favorite_area");
-        let $close = $this.next('.slideup_bg');
+        let $close = $('.slideup_bg');
         let $mode = $closest.hasClass("registered_favorite");
         init_favorite($mode, $closest, $this)
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $main = $('.p-item-detail__body .p-item-detail__body__main');
         setTimeout(function () {
             slideDown($close, $slideUp, $main);
+            $('.favorite_area #request').addClass('--active');
         }, 300)
         $("span[class=label]").text('済');
         checked(true, $('.favorite_area #request'))
