@@ -58,7 +58,6 @@ class LC_Page_Products_List extends LC_Page_Ex
 
     /** @var bool ログイン状態かどうか */
     public $tpl_login;
-
     /**
      * Page を初期化する.
      *
@@ -103,7 +102,10 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         // ログイン判定
         $this->tpl_login = $this->objCustomer->isLoginSuccess() === true;
-
+        $this->customer_id = null;
+        if ($this->tpl_login){
+            $this->customer_id = $this->objCustomer->getValue('customer_id');
+        }
         $objProduct = new SC_Product_Ex();
         // パラメーター管理クラス
         $objFormParam = new SC_FormParam_Ex();
@@ -267,6 +269,7 @@ class LC_Page_Products_List extends LC_Page_Ex
         $arrProductId = $objProduct->findProductIdsOrder($objQuery, array_merge($searchCondition['arrval'], $arrOrderVal));
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
+
 
         $addCols = ['count_of_favorite'];
         if ($this->tpl_login) {
@@ -617,6 +620,7 @@ __EOS__;
         $this->tpl_stock_find       = $objProduct->stock_find;
         $this->tpl_product_class_id = $objProduct->product_class_id;
         $this->tpl_product_type     = $objProduct->product_type;
+
 
         // 商品ステータスを取得
         $this->productStatus = $this->arrProducts['productStatus'];
