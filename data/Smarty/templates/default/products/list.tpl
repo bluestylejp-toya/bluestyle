@@ -151,7 +151,7 @@
 
                     <!--{if $arrProduct.registered_favorite}-->
                         <span class="favorite_area"><span class="c-item--default__request" data-product_id="<!--{$arrProduct.product_id|h}-->"></span></span>
-                    <!--{elseif $tpl_my_product}-->
+                    <!--{elseif $arrProduct.customer_id == $customer_id}-->
                         <span class="c-item--default__my-item">出品中</span>
                     <!--{/if}-->
                     </a>

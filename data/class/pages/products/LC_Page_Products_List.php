@@ -103,7 +103,10 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         // ログイン判定
         $this->tpl_login = $this->objCustomer->isLoginSuccess() === true;
-
+        $this->customer_id = null;
+        if ($this->tpl_login){
+            $this->customer_id = $this->objCustomer->getValue('customer_id');
+        }
         $objProduct = new SC_Product_Ex();
         // パラメーター管理クラス
         $objFormParam = new SC_FormParam_Ex();

@@ -148,6 +148,7 @@ class SC_Product
             ,del_flg
             ,update_date
             ,pref
+            ,customer_id
 __EOS__;
 
         if (!empty($addCols)) {
