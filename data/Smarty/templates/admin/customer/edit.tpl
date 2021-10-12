@@ -180,6 +180,16 @@
                 </td>
             </tr>
             <tr>
+                <th>お支払い方法<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.default_payment_id}--></span>
+                    <select name="default_payment_id" <!--{if $arrErr.default_payment_id != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> >
+                    <option value="" selected="selected">----</option>
+                    <!--{html_options options=$arrPayment selected=$arrForm.default_payment_id}-->
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <th>SHOP用メモ</th>
                 <td>
                     <span class="attention"><!--{$arrErr.note}--></span>

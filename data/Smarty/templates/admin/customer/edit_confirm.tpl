@@ -110,6 +110,10 @@ function func_return(){
                 <td><!--{$smarty.const.DEFAULT_PASSWORD}--></td>
             </tr>
             <tr>
+                <th>お支払い方法</th>
+                <td><!--{$arrPayment[$arrForm.default_payment_id]|h}--></td>
+            </tr>
+            <tr>
                 <th>SHOP用メモ</th>
                 <td><!--{$arrForm.note|h|nl2br|default:"未登録"}--></td>
             </tr>
