@@ -5,6 +5,11 @@
                 <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
                 <p class="c-header-title">アイテム編集</p>
             </header>
+
+        <!--{if $tpl_lock_because_on_loop}-->
+            <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
+        <!--{/if}-->
+
         <!--{assign var=key value="status"}-->
         <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}-->">このアイテムは公開されていません</p>
 
@@ -103,7 +108,9 @@
             </div>
             <button class="c-btn--default u-mb--4 c-item__add-image-btn" type="button"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>写真を追加</button>
 
-            <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
+            <!--{if !$tpl_lock_because_on_loop}-->
+                <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
+            <!--{/if}-->
         </form>
     </section>
 <!--{/strip}-->

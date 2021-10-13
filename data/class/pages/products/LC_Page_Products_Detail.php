@@ -275,7 +275,14 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
                 $objHelperApi->setPostParam($data);
-                $result = $objHelperApi->exec();
+                $result_raw = $objHelperApi->exec();
+                $result = json_decode($result_raw, null, 512, JSON_THROW_ON_ERROR);
+
+                // ループが成立した場合
+                if (strlen($result->id) >= 1) {
+                    $this->loop($result->id);
+                }
+
                 SC_Response_Ex::json([
                     'registered' => true,
                 ]);
@@ -662,31 +669,36 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      */
     public function lfRegistFavoriteProduct($favorite_product_id, $customer_id, $target_id)
     {
-        // ログイン中のユーザが商品をお気に入りにいれる処理
         if (!SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', $favorite_product_id, 'del_flg = 0 AND status = 1')) {
             SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
 
             return false;
-        } else {
-            $objQuery = SC_Query_Ex::getSingletonInstance();
-            $exists = $objQuery->exists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id));
-
-            if (!$exists) {
-                $sqlval['customer_id'] = $customer_id;
-                $sqlval['product_id'] = $favorite_product_id;
-                $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
-                $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
-                $sqlval['target_id'] = $target_id;
-
-                $objQuery->begin();
-                $objQuery->insert('dtb_customer_favorite_products', $sqlval);
-                $objQuery->commit();
-            }
-            // お気に入りに登録したことを示すフラグ
-            $this->just_added_favorite = true;
-
-            return true;
         }
+
+        if (!SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', $target_id, 'del_flg = 0 AND status = 1')) {
+            SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
+
+            return false;
+        }
+
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $exists = $objQuery->exists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id));
+
+        if (!$exists) {
+            $sqlval['customer_id'] = $customer_id;
+            $sqlval['product_id'] = $favorite_product_id;
+            $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
+            $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
+            $sqlval['target_id'] = $target_id;
+
+            $objQuery->begin();
+            $objQuery->insert('dtb_customer_favorite_products', $sqlval);
+            $objQuery->commit();
+        }
+        // お気に入りに登録したことを示すフラグ
+        $this->just_added_favorite = true;
+
+        return true;
     }
 
     /*
@@ -945,5 +957,38 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         }
 
         return $where;
+    }
+
+    /**
+     * ループが成立したときの処理
+     * 
+     * @param string $id 仮成立チェインネットワークの一意のキー
+     */
+    function loop($id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $chain = SC_Helper_Api_Ex::getChain($id);
+
+        // 含まれる商品IDを全て拾う
+        $arrProductId = [];
+        foreach ($chain->chain_list as $chain_one) {
+            foreach ($chain_one as $edge) {
+                $arrProductId[] = $edge->source_id;
+                $arrProductId[] = $edge->target_id;
+            }
+        }
+        $arrProductId = array_unique($arrProductId);
+
+        // 商品マスター更新
+        $arrUpdate = [
+            'status' => 2, // 非公開
+            'chain_id' => $id,
+        ];
+        $where = 'product_id IN (' . SC_Utils_Ex::repeatStrWithSeparator('?', count($arrProductId)) . ')';
+        $objQuery->update('dtb_products', $arrUpdate, $where, $arrProductId);
+
+        // バッチ起動
+        // https://bluestyle.backlog.jp/view/CHAIN-160
     }
 }

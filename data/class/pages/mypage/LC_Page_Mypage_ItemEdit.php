@@ -8,6 +8,9 @@ require_once CLASS_EX_REALDIR . 'page_extends/mypage/LC_Page_AbstractMypage_Ex.p
  */
 class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 {
+    /** ループになっているのでロックするか */
+    var $tpl_lock_because_on_loop = false;
+
     /**
      * Page を初期化する.
      *
@@ -64,6 +67,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
                 $product_id = $objFormParam_PreEdit->getValue('product_id');
                 // 商品データ取得
                 $arrForm = $this->lfGetFormParam_PreEdit($objUpFile, $product_id);
+
+                if (strlen($arrForm['chain_id']) >= 1) {
+                    $this->tpl_lock_because_on_loop = true;
+                }
 
                 // 会員の整合を確認
                 $this->checkCustomer($arrForm['customer_id']);
@@ -579,6 +586,10 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
 
             // 会員の整合を確認
             $this->checkCustomer($arrRet['customer_id']);
+
+            if (strlen($arrRet['chain_id']) >= 1) {
+                throw new Exception('ループに含まれる商品なので編集できない。');
+            }
 
             // UPDATEの実行
             $where = 'product_id = ? AND customer_id = ?';
