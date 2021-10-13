@@ -2541,12 +2541,9 @@ CREATE TABLE `dtb_payment` (
 
 LOCK TABLES `dtb_payment` WRITE;
 /*!40000 ALTER TABLE `dtb_payment` DISABLE KEYS */;
-INSERT INTO `dtb_payment` VALUES (1,'郵便振替',0,NULL,4,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (2,'現金書留',0,NULL,3,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (3,'銀行振込',0,NULL,2,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (4,'代金引換',0,NULL,1,NULL,2,1,0,1,'2021-01-13 01:40:23','2021-01-13 01:40:23',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `dtb_payment` VALUES (5,'クレジットカード決済',0,1,5,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
-INSERT INTO `dtb_payment` VALUES (6,'登録済みクレジットカード決済',0,1,6,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
+INSERT INTO `dtb_payment` VALUES (5,'クレジットカード決済',0,1,NULL,NULL,3,1,1,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
+INSERT INTO `dtb_payment` VALUES (6,'登録済みクレジットカード決済',0,1,NULL,NULL,3,1,1,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
+INSERT INTO `dtb_payment` VALUES (7,'九州産業大学',0,NULL,1,NULL,2,1,0,2,'2021-10-13 16:08:25','2021-10-13 16:08:25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2571,10 +2568,8 @@ CREATE TABLE `dtb_payment_options` (
 
 LOCK TABLES `dtb_payment_options` WRITE;
 /*!40000 ALTER TABLE `dtb_payment_options` DISABLE KEYS */;
-INSERT INTO `dtb_payment_options` VALUES (1,1,1);
-INSERT INTO `dtb_payment_options` VALUES (1,2,2);
-INSERT INTO `dtb_payment_options` VALUES (1,3,3);
-INSERT INTO `dtb_payment_options` VALUES (1,4,4);
+INSERT INTO `dtb_payment_options` VALUES (1,6,2);
+INSERT INTO `dtb_payment_options` VALUES (1,7,1);
 INSERT INTO `dtb_payment_options` VALUES (2,3,1);
 /*!40000 ALTER TABLE `dtb_payment_options` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2589,7 +2584,7 @@ DROP TABLE IF EXISTS `dtb_payment_payment_id_seq`;
 CREATE TABLE `dtb_payment_payment_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2598,7 +2593,7 @@ CREATE TABLE `dtb_payment_payment_id_seq` (
 
 LOCK TABLES `dtb_payment_payment_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_payment_payment_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_payment_payment_id_seq` VALUES (6);
+INSERT INTO `dtb_payment_payment_id_seq` VALUES (7);
 /*!40000 ALTER TABLE `dtb_payment_payment_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5169,4 +5164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-13  2:57:37
+-- Dump completed on 2021-10-13 16:14:05
