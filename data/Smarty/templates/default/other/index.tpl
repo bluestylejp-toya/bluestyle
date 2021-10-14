@@ -11,10 +11,12 @@
         <ul class="c-nav-list u-mb--4">
             <li><a href="<!--{$smarty.const.TOP_URL}-->news/">お知らせ<span class="c-batch--num">2</span></a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
+            <!--{*
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用方法</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/flow.php">発送の流れ</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/payment.php">支払い方法</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/help.php">ヘルプ</a></li>
+            *}-->
         </ul>
         <h2 class="c-heading--md u-text--left">サービス情報</h2>
         <ul class="c-nav-list u-mb--4">
