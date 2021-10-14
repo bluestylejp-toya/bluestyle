@@ -17,7 +17,6 @@
             <label class="c-profile-img__inner">
                 <div class="preview" style="<!--{if strlen($arrFile[$key1].filepath) == 0}-->display: none;<!--{/if}-->">
                     <img src="<!--{$arrFile[$key1].filepath|h}-->" alt="" />
-
                 </div>
                 <input type="file" name="<!--{$key1|h}-->" size="40" style="display:none"/>
             </label>
