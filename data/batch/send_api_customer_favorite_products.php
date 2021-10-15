@@ -23,7 +23,7 @@ class Batch {
             $data = [
                 "source_id" => $arrRow['product_id'],
                 "target_id" => $arrRow['target_id'],
-                "date" => str_replace('+00:00', 'Z', gmdate('c', strtotime($arrRow['update_date']))),
+                // "date" => str_replace('+00:00', 'Z', gmdate('c', strtotime($arrRow['update_date']))),
             ];
             $objHelperApi->setPostParam($data);
             $result_raw = $objHelperApi->exec();
@@ -42,7 +42,7 @@ class Batch {
         $data = [
             "source_id" => 2,
             "target_id" => 1,
-            "date" => str_replace('+00:00', 'Z', gmdate('c')),
+            // "date" => str_replace('+00:00', 'Z', gmdate('c')),
         ];
         $objHelperApi->setPostParam($data);
         $result_raw = $objHelperApi->exec();

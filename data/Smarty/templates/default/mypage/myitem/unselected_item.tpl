@@ -1,15 +1,17 @@
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->user_data/myitem_detail.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="/mypage/myitem/myitem_detail.php?product_id=<!--{$arrProduct.product_id|h}-->" aria-label="戻る" class="c-btn--header-nav"></a>
     </header>
     <h1 class="c-heading--status u-text--center u-mb--2">もうすぐChainが成立しそうです。</h1>
-    <p class="u-mb--1 u-color--gray">現在、TaroTaroさんは3つのアイテムをリクエストしています。交換するアイテムをひとつ選んでください。選択には制限時間があります。時間をすぎるとランダムに確定されます。</p>
-    <p class="c-box__gray u-mb--3">あと20時間</p>
+    <input type="hidden" name="product_id" value="<!--{$tpl_product_id}-->">
+    <p class="u-mb--1 u-color--gray">現在、<!--{$nickname|h}-->さんは<!--{count($arrChainProductStatus.selection_edge_detail)}-->つのアイテムをリクエストしています。交換するアイテムをひとつ選んでください。
+        <!--{*選択には制限時間があります。時間をすぎるとランダムに確定されます。*}--></p>
+    <!--{*<p class="c-box__gray u-mb--3">あと20時間</p>*}-->
     <h1 class="c-heading--sm">あなたのアイテム</h1>
     <div class="c-card--blue u-mb--2">
-        <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
+        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-item__img"/>
         <div class="c-item__main">
-            <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
+            <p class="c-item__title"><!--{$arrProduct.name|h}--></p>
             <p class="c-item__request">12</p>
         </div>
     </div>
@@ -26,29 +28,33 @@
             </defs>
         </svg>
     </div>
+
+    <div class="p-item-detail favorite_area"></div>
+    <div class="c-notification--secondary notification">リクエストを送信しました</div>
+
+    <!--{if count($arrChainProductStatus.selection_edge_detail) > 0}-->
     <ul class="u-mb--4">
+        <!--{foreach from=$arrChainProductStatus.selection_edge_detail item=$arrProduct}-->
         <li class="c-card">
-            <label class="c-card__radio-button"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
+            <!--{if $arrChainProductStatus.selection_edge_mode == 'target'}-->
+            <label class="c-card__radio-button" data-chain_id="<!--{$arrChainProductStatus.chain_id|h}-->" data-product_id="<!--{$arrProduct.product_id|h}-->" data-target_id="<!--{$tpl_product_id|h}-->">
+                <input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-chain_id="<!--{$arrChainProductStatus.chain_id|h}-->" data-product_id="<!--{$arrProduct.product_id|h}-->" data-target_id="<!--{$tpl_product_id|h}-->">
+                <!--{else}-->
+            <label class="c-card__radio-button" data-chain_id="<!--{$arrChainProductStatus.chain_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                <input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-chain_id="<!--{$arrChainProductStatus.chain_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+            <!--{/if}-->
                 <div class="c-card__main">
-                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                    <p>aaaaaaaaaa<!--{$arrProduct.name|h}--></p>
+                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
+                    <p><!--{$arrProduct.name|h}--></p>
                     <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
                 </div>
             </label>
-            <button type="button" class="c-card__detail-btn" data-page_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=4">詳細</button>
+            <button type="button" class="c-card__detail-btn" data-page_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
         </li>
-        <li class="c-card">
-            <label class="c-card__radio-button"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
-                <div class="c-card__main">
-                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                    <p>sssssssss<!--{$arrProduct.name|h}--></p>
-                    <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                </div>
-            </label>
-            <button type="button" class="c-card__detail-btn" data-page_url="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=4">詳細</button>
-        </li>
+        <!--{/foreach}-->
     </ul>
-    <p><a href="" class="c-btn--primary">決定する</a></p>
+    <p><a href="javascript:void(0)" class="c-btn--primary">決定する</a></p>
+    <!--{/if}-->
     <div class="c-modal" data-modal_mode="false">
         <button class="c-modal__close-btn" type="button">close</button>
         <div class="c-modal__inner"></div>
@@ -75,4 +81,52 @@ function toggleModal(){
         $('.c-modal__inner').empty();
     })
 }
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    $(function() {
+        $(".history_list").appendTo(".history");
+
+        // 交換商品クリック時
+        $('.c-btn--primary').on('click', function () {
+            if ($('input[name="my_product"]:checked').length == 0){
+                alert('交換するアイテムをひとつ選んでください');
+                return false;
+            }
+            let $this = $(this)
+            let $mode = 'api_selection_edge_ajax';
+            let $closest = $(this).closest("section");
+            init_favorite($mode, $closest, $('input[name="my_product"]:checked'))
+        })
+    })
+
+    function init_favorite($mode, $closest, $this){
+        let postData = {
+            mode: $mode,
+            product_id: $this.data("product_id"),
+            favorite_product_id:  $this.data("product_id"),
+            target_id: $this.data("target_id"),
+            chain_id: $this.data("chain_id"),
+        };
+        postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
+
+        $.ajax({
+            url: "/mypage/myitem/myitem_detail.php",
+            method: "POST",
+            data: postData,
+            dataType: "json",
+        }).done(function (data, textStatus, jqXHR) {
+            $(".notification").text('リクエストを送信しました' );
+            $(".notification").fadeIn(300,
+                function() {
+                    setTimeout(function(){
+                        $(".notification").fadeOut();
+                        location.href='/mypage/myitem/myitem_detail.php?product_id='+$("input[name='product_id']").val();
+                    }, 1000);
+                })
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            alert('エラーが発生しました。');
+            location.reload();
+        });
+    }
 </script>

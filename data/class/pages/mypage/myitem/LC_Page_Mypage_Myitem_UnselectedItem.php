@@ -44,41 +44,78 @@ class LC_Page_Mypage_Myitem_UnselectedItem extends LC_Page_AbstractMypage_Ex
     {
         $objCustomer = new SC_Customer_Ex();
         $customer_id = $objCustomer->getValue('customer_id');
-        $this->arrChainProduct = $this->getChainProductStatus($customer_id, $this);
+
+        // パラメーター管理クラス
+        $this->objFormParam = new SC_FormParam_Ex();
+        // パラメーター情報の初期化
+        $this->arrForm = $this->lfInitParam($this->objFormParam);
+
+        // プロダクトIDの正当性チェック
+        $objProduct = new SC_Product_Ex();
+        $product_id = $this->lfCheckProductId($this->objFormParam->getValue('admin'), $this->objFormParam->getValue('product_id'), $objProduct);
+        $this->tpl_product_id = $product_id;
+        // プロダクトIDの正当性チェック
+        $this->lfCheckMyProductId($objCustomer->getValue('customer_id'), $product_id);
+
+        $this->arrChainProductStatus = $this->getChainProductStatus($this->objFormParam->getValue('product_id'));
+
+        // 商品詳細を取得
+        $objProduct = new SC_Product_Ex();
+        $this->arrProduct = $objProduct->getDetail($this->objFormParam->getValue('product_id'));
+
+        // ログイン判定
+        if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
+            $this->nickname = $objCustomer->getValue('customer_id');
+            if ($this->arrProduct['customer_id'] == $customer_id) {
+                $this->tpl_my_product = true;
+            }
+        }
     }
 
     /**
-     * @param $customer_id
-     * @return array
-     * @throws Exception
+     * プロダクトIDの正当性チェック
+     *
+     * @param string $admin_mode
+     * @param int $product_id
+     * @param SC_Product $objProduct
+     * @return integer
      */
-    private function getChainProductStatus($customer_id)
+    public function lfCheckProductId($admin_mode, $product_id, SC_Product $objProduct)
     {
-        $objHelperApi = new SC_Helper_Api_Ex();
-        $objHelperApi->setMethod('GET');
-
-        $arrChainProductStatus = array();
-        $arrProducts = $this->getProducts($customer_id);
-        $objProduct = new SC_Product_Ex();
-        $index = 0;
-        foreach ($arrProducts as $arrProduct) {
-            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $arrProduct['product_id']);
-            $result = json_decode($objHelperApi->exec(), true);
-            if ( count($result) > 0 ){
-                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
-                $result = json_decode($objHelperApi->exec(), true);
-                foreach ( $result["selection_edge_list"] as $chainList)
-                {
-                    foreach ( $chainList as $chain){
-                        if ($arrProduct['product_id'] == $chain['source_id']){
-                            $arrChainProductStatus[$arrProduct['product_id']]['source_product'] = $arrProduct;
-                            $arrChainProductStatus[$arrProduct['product_id']]['progress_percent'] = $result['progress_percent'];
-                        }
-                    }
-                }
-            }
+        // 管理機能からの確認の場合は、非公開の商品も表示する。
+        if (isset($admin_mode) && $admin_mode == 'on' && SC_Utils_Ex::sfIsSuccess(new SC_Session_Ex(), false)) {
+            $include_hidden = true;
+        } else {
+            $include_hidden = false;
         }
-        return $arrChainProductStatus;
+
+        if (!$objProduct->isValidProductId($product_id, $include_hidden)) {
+            SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
+        }
+
+        return $product_id;
+    }
+
+    /**
+     * パラメーター情報の初期化
+     *
+     * @param SC_FormParam $objFormParam
+     * @return array
+     */
+    public function lfInitParam(SC_FormParam &$objFormParam)
+    {
+        $objFormParam->addParam('会員ID', 'customer_id', INT_LEN, 'n', array('EXIST_CHECK', 'ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('EXIST_CHECK', 'ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('お気に入り商品ID', 'favorite_product_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('交換対象商品', 'target_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('チェーンID', 'chain_id', STEXT_LEN, 'n', array('MAX_LENGTH_CHECK'));
+
+        // 値の取得
+        $objFormParam->setParam($_REQUEST);
+        // 入力値の変換
+        $objFormParam->convParam();
+        // 入力情報を渡す
+        return $objFormParam->getFormParamList();
     }
 
     /**
@@ -92,27 +129,27 @@ class LC_Page_Mypage_Myitem_UnselectedItem extends LC_Page_AbstractMypage_Ex
     {
         // 出品中アイテム商品ID取得
         $arrProductId = array();
-        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id);
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
         foreach ($arrListingProducts as $arrListingProduct) {
             $arrProductId[] = $arrListingProduct['product_id'];
         }
 
-        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery = SC_Query_Ex::getSingletonInstance();
         $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
-        $objProduct     = new SC_Product_Ex();
-        $linemax        = $objProduct->findProductCount($objQuery);
+        $objProduct = new SC_Product_Ex();
+        $linemax = $objProduct->findProductCount($objQuery);
 
         $this->tpl_linemax = $linemax;   // 何件が該当しました。表示用
 
         // ページ送りの取得
-        $objNavi        = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
+        $objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
         $this->tpl_strnavi = $objNavi->strnavi; // 表示文字列
-        $startno        = $objNavi->start_row;
+        $startno = $objNavi->start_row;
 
-        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery = SC_Query_Ex::getSingletonInstance();
         //$objQuery->setLimitOffset($this->dispNumber, $startno);
         // 取得範囲の指定(開始行番号、行数のセット)
-        $arrProductId  = array_slice($arrProductId, $startno, $this->dispNumber);
+        $arrProductId = array_slice($arrProductId, $startno, $this->dispNumber);
 
         $where = $this->lfMakeWhere('', $arrProductId);
         $where .= ' AND del_flg = 0';
@@ -133,6 +170,19 @@ class LC_Page_Mypage_Myitem_UnselectedItem extends LC_Page_AbstractMypage_Ex
         return $arrProductsList;
     }
 
+    private function lfCheckMyProductId($customer_id, $product_id)
+    {
+        // 出品中アイテム商品ID取得
+        $arrProductId = array();
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+        if (array_search($product_id, $arrProductId) === false){
+            throw new Exception('出品者のみアクセスできるページとなります。');
+        }
+    }
+
     /* 仕方がない処理。。 */
 
     /**
@@ -150,5 +200,53 @@ class LC_Page_Mypage_Myitem_UnselectedItem extends LC_Page_AbstractMypage_Ex
         }
 
         return $where;
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getChainProductStatus($product_id)
+    {
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        $index = 0;
+        $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $product_id);
+        $result = json_decode($objHelperApi->exec(), true);
+
+        $arrChainProductStatus = array();
+        $arrTargetId = array();
+        $arrSourceId = array();
+
+        $objProduct = new SC_Product_Ex();
+
+        if (count($result) > 0) {
+            $chainId = $result[0]['id'];
+            $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+            $result = json_decode($objHelperApi->exec(), true);
+            foreach ($result['selection_edge_list'] as $selection_edge_list) {
+                $arrTargetId[] = $selection_edge_list['target_id'];
+                $arrSourceId[] = $selection_edge_list['source_id'];
+            }
+            // source_id、target_idに出品商品が含まれているか確認する
+            // https://bluestyle.backlog.jp/view/CHAIN-182#comment-123642696
+            if (count(array_unique($arrTargetId)) == 1 and array_search($product_id, $arrTargetId) !== false) {
+                foreach ($arrSourceId as $sourceID) {
+                    $arrChainProductStatus['selection_edge_detail'][] = $objProduct->getDetail($sourceID);
+                }
+                $arrChainProductStatus['selection_edge_mode'] = 'target';
+            }
+            if (count(array_unique($arrSourceId)) == 1 and array_search($product_id, $arrSourceId) !== false) {
+                foreach ($arrTargetId as $targetId) {
+                    $arrChainProductStatus['selection_edge_detail'][] = $objProduct->getDetail($targetId);
+                }
+                $arrChainProductStatus['selection_edge_mode'] = 'source';
+            }
+            $arrChainProductStatus['chain_id'] = $chainId;
+            $arrChainProductStatus['progress_percent'] = $result['progress_percent'];
+        }
+        return $arrChainProductStatus;
     }
 }
