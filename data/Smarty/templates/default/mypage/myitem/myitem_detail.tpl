@@ -29,38 +29,38 @@
         var $sele2 = $form.find('select[name=classcategory_id2]');
         eccube.setClassCategories($form, product_id, $sele1, $sele2, classcat_id2_selected);
     }
-//]]></script>
+    //]]></script>
 <section>
 
-    <div class="p-item-detail">
+    <div class="p-item-detail favorite_area<!--{if $is_favorite}--> registered_favorite<!--{/if}-->">
         <div class="p-item-detail__head">
             <header class="l-header__inner u-mb--0">
                 <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_list.php" aria-label="戻る" class="c-btn--header-nav"></a>
-                <p class="c-header-title">商品名<!--{$arrProduct.name|h}--></p>
+                <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
             </header>
             <!--{* ステータスごとの変数の値はダミーです。適宜修正してください。 *}-->
             <!--{assign var=status value="unlooped"}-->
             <!--{* 選択待ち *}-->
-            <!--{if $status == 'unselected'}-->
-                <div class="c-btn--mypage__wrapper">
-                    <a href="/mypage/myitem/unselected_item.php" class="c-btn--mypage--unselected">交換するアイテム選んでね</a>
-                </div>
+            <!--{if count($arrChainProductStatus.selection_edge_detail) > 0}-->
+            <div class="c-btn--mypage__wrapper">
+                <a href="/mypage/myitem/unselected_item.php?product_id=<!--{$tpl_product_id|h}-->" class="c-btn--mypage--unselected">交換するアイテム選んでね</a>
+            </div>
             <!--{* Chain成立待ち *}-->
-            <!--{else if $status == 'unlooped'}-->
-                <div>
-                    <a href="/mypage/myitem/status.php" class="c-achievement__link">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
-                            <path class="cls-1" d="M103.21,200a31,31,0,0,1-28.07-18,6.24,6.24,0,0,0-3.55-3.25,6.32,6.32,0,0,0-2.1-.37,6.21,6.21,0,0,0-2.7.62,30.94,30.94,0,0,1-35.24-6,31,31,0,0,1-7.1-32.6,6.21,6.21,0,0,0-3.76-8A30.87,30.87,0,0,1,18,75.13a6.22,6.22,0,0,0,3-8.33A30.9,30.9,0,0,1,59.62,24.44a6.19,6.19,0,0,0,2.16.38,6.38,6.38,0,0,0,2.64-.58,6.22,6.22,0,0,0,3.22-3.57A30.88,30.88,0,0,1,124.86,18a6.19,6.19,0,0,0,3.54,3.25,6.36,6.36,0,0,0,2.1.37,6.25,6.25,0,0,0,2.71-.62,30.92,30.92,0,0,1,42.35,38.61,6.22,6.22,0,0,0,3.77,8A30.87,30.87,0,0,1,182,124.87a6.23,6.23,0,0,0-3,8.35,30.91,30.91,0,0,1-38.59,42.36,6,6,0,0,0-2.16-.39,6.22,6.22,0,0,0-5.86,4.15A31,31,0,0,1,103.21,200ZM83.85,59.42A6.22,6.22,0,0,0,78,63.59a30.43,30.43,0,0,1-7.3,11.63,31.17,31.17,0,0,1-9,6.26,6.22,6.22,0,0,0-3,8.36A30.79,30.79,0,0,1,59.82,114a6.22,6.22,0,0,0,3.78,8,31,31,0,0,1,17.86,16.3A6.21,6.21,0,0,0,85,141.56a6.19,6.19,0,0,0,4.81-.25A30.86,30.86,0,0,1,114,140.18a6.05,6.05,0,0,0,2.18.4,6.22,6.22,0,0,0,5.87-4.17,30.41,30.41,0,0,1,7.31-11.63,30.86,30.86,0,0,1,9-6.26,6.19,6.19,0,0,0,3.26-3.55,6.28,6.28,0,0,0-.25-4.81,30.38,30.38,0,0,1-3.05-13.37,30.86,30.86,0,0,1,1.92-10.74,6.23,6.23,0,0,0-3.77-8,30.49,30.49,0,0,1-11.63-7.32,30.91,30.91,0,0,1-6.26-9A6.27,6.27,0,0,0,115,58.45a6.19,6.19,0,0,0-4.81.25A30.86,30.86,0,0,1,86,59.82,6.09,6.09,0,0,0,83.85,59.42Z" fill="#EAECEE"/>
-                            <path class="cls-1" d="M103.21,200a31,31,0,0,1-28.07-18,6.24,6.24,0,0,0-3.55-3.25,6.32,6.32,0,0,0-2.1-.37,6.21,6.21,0,0,0-2.7.62,30.94,30.94,0,0,1-35.24-6,31,31,0,0,1-7.1-32.6,6.21,6.21,0,0,0-3.76-8A30.87,30.87,0,0,1,18,75.13a6.22,6.22,0,0,0,3-8.33A30.9,30.9,0,0,1,59.62,24.44a6.19,6.19,0,0,0,2.16.38,6.38,6.38,0,0,0,2.64-.58,6.22,6.22,0,0,0,3.22-3.57A30.88,30.88,0,0,1,124.86,18a6.19,6.19,0,0,0,3.54,3.25,6.36,6.36,0,0,0,2.1.37,6.25,6.25,0,0,0,2.71-.62,30.92,30.92,0,0,1,42.35,38.61,6.22,6.22,0,0,0,3.77,8A30.87,30.87,0,0,1,182,124.87a6.23,6.23,0,0,0-3,8.35,30.91,30.91,0,0,1-38.59,42.36,6,6,0,0,0-2.16-.39,6.22,6.22,0,0,0-5.86,4.15A31,31,0,0,1,103.21,200ZM83.85,59.42A6.22,6.22,0,0,0,78,63.59a30.43,30.43,0,0,1-7.3,11.63,31.17,31.17,0,0,1-9,6.26,6.22,6.22,0,0,0-3,8.36A30.79,30.79,0,0,1,59.82,114a6.22,6.22,0,0,0,3.78,8,31,31,0,0,1,17.86,16.3A6.21,6.21,0,0,0,85,141.56a6.19,6.19,0,0,0,4.81-.25A30.86,30.86,0,0,1,114,140.18a6.05,6.05,0,0,0,2.18.4,6.22,6.22,0,0,0,5.87-4.17,30.41,30.41,0,0,1,7.31-11.63,30.86,30.86,0,0,1,9-6.26,6.19,6.19,0,0,0,3.26-3.55,6.28,6.28,0,0,0-.25-4.81,30.38,30.38,0,0,1-3.05-13.37,30.86,30.86,0,0,1,1.92-10.74,6.23,6.23,0,0,0-3.77-8,30.49,30.49,0,0,1-11.63-7.32,30.91,30.91,0,0,1-6.26-9A6.27,6.27,0,0,0,115,58.45a6.19,6.19,0,0,0-4.81.25A30.86,30.86,0,0,1,86,59.82,6.09,6.09,0,0,0,83.85,59.42Z" fill="url(#gradient)" clip-path="url(#clip)"/>
-                            <defs><linearGradient id="gradient" x1="-165.21" y1="-5000.98" x2="6.99" y2="-4796.48" gradientTransform="matrix(1, 0, 0, -1, 179, -4798.59)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3cf"/><stop offset="0.45" stop-color="#67cc9d"/><stop offset="0.83" stop-color="#8fcc51"/><stop offset="1" stop-color="#9fcc33"/></linearGradient></defs>
-                            <clipPath id="clip">
-                                <path d="M 100,100 L 100,0 A 100, 0 0 0 1 100, 0 z"></path>
-                            </clipPath>
-                        </svg>
-                        Chainまで00%
-                    </a>
-                </div>
-                <script>
+            <!--{elseif 0 < $arrChainProductStatus.progress_percent|h AND $arrChainProductStatus.progress_percent|h < 100}-->
+            <div>
+                <a href="/mypage/myitem/status.php" class="c-achievement__link">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+                        <path class="cls-1" d="M103.21,200a31,31,0,0,1-28.07-18,6.24,6.24,0,0,0-3.55-3.25,6.32,6.32,0,0,0-2.1-.37,6.21,6.21,0,0,0-2.7.62,30.94,30.94,0,0,1-35.24-6,31,31,0,0,1-7.1-32.6,6.21,6.21,0,0,0-3.76-8A30.87,30.87,0,0,1,18,75.13a6.22,6.22,0,0,0,3-8.33A30.9,30.9,0,0,1,59.62,24.44a6.19,6.19,0,0,0,2.16.38,6.38,6.38,0,0,0,2.64-.58,6.22,6.22,0,0,0,3.22-3.57A30.88,30.88,0,0,1,124.86,18a6.19,6.19,0,0,0,3.54,3.25,6.36,6.36,0,0,0,2.1.37,6.25,6.25,0,0,0,2.71-.62,30.92,30.92,0,0,1,42.35,38.61,6.22,6.22,0,0,0,3.77,8A30.87,30.87,0,0,1,182,124.87a6.23,6.23,0,0,0-3,8.35,30.91,30.91,0,0,1-38.59,42.36,6,6,0,0,0-2.16-.39,6.22,6.22,0,0,0-5.86,4.15A31,31,0,0,1,103.21,200ZM83.85,59.42A6.22,6.22,0,0,0,78,63.59a30.43,30.43,0,0,1-7.3,11.63,31.17,31.17,0,0,1-9,6.26,6.22,6.22,0,0,0-3,8.36A30.79,30.79,0,0,1,59.82,114a6.22,6.22,0,0,0,3.78,8,31,31,0,0,1,17.86,16.3A6.21,6.21,0,0,0,85,141.56a6.19,6.19,0,0,0,4.81-.25A30.86,30.86,0,0,1,114,140.18a6.05,6.05,0,0,0,2.18.4,6.22,6.22,0,0,0,5.87-4.17,30.41,30.41,0,0,1,7.31-11.63,30.86,30.86,0,0,1,9-6.26,6.19,6.19,0,0,0,3.26-3.55,6.28,6.28,0,0,0-.25-4.81,30.38,30.38,0,0,1-3.05-13.37,30.86,30.86,0,0,1,1.92-10.74,6.23,6.23,0,0,0-3.77-8,30.49,30.49,0,0,1-11.63-7.32,30.91,30.91,0,0,1-6.26-9A6.27,6.27,0,0,0,115,58.45a6.19,6.19,0,0,0-4.81.25A30.86,30.86,0,0,1,86,59.82,6.09,6.09,0,0,0,83.85,59.42Z" fill="#EAECEE"/>
+                        <path class="cls-1" d="M103.21,200a31,31,0,0,1-28.07-18,6.24,6.24,0,0,0-3.55-3.25,6.32,6.32,0,0,0-2.1-.37,6.21,6.21,0,0,0-2.7.62,30.94,30.94,0,0,1-35.24-6,31,31,0,0,1-7.1-32.6,6.21,6.21,0,0,0-3.76-8A30.87,30.87,0,0,1,18,75.13a6.22,6.22,0,0,0,3-8.33A30.9,30.9,0,0,1,59.62,24.44a6.19,6.19,0,0,0,2.16.38,6.38,6.38,0,0,0,2.64-.58,6.22,6.22,0,0,0,3.22-3.57A30.88,30.88,0,0,1,124.86,18a6.19,6.19,0,0,0,3.54,3.25,6.36,6.36,0,0,0,2.1.37,6.25,6.25,0,0,0,2.71-.62,30.92,30.92,0,0,1,42.35,38.61,6.22,6.22,0,0,0,3.77,8A30.87,30.87,0,0,1,182,124.87a6.23,6.23,0,0,0-3,8.35,30.91,30.91,0,0,1-38.59,42.36,6,6,0,0,0-2.16-.39,6.22,6.22,0,0,0-5.86,4.15A31,31,0,0,1,103.21,200ZM83.85,59.42A6.22,6.22,0,0,0,78,63.59a30.43,30.43,0,0,1-7.3,11.63,31.17,31.17,0,0,1-9,6.26,6.22,6.22,0,0,0-3,8.36A30.79,30.79,0,0,1,59.82,114a6.22,6.22,0,0,0,3.78,8,31,31,0,0,1,17.86,16.3A6.21,6.21,0,0,0,85,141.56a6.19,6.19,0,0,0,4.81-.25A30.86,30.86,0,0,1,114,140.18a6.05,6.05,0,0,0,2.18.4,6.22,6.22,0,0,0,5.87-4.17,30.41,30.41,0,0,1,7.31-11.63,30.86,30.86,0,0,1,9-6.26,6.19,6.19,0,0,0,3.26-3.55,6.28,6.28,0,0,0-.25-4.81,30.38,30.38,0,0,1-3.05-13.37,30.86,30.86,0,0,1,1.92-10.74,6.23,6.23,0,0,0-3.77-8,30.49,30.49,0,0,1-11.63-7.32,30.91,30.91,0,0,1-6.26-9A6.27,6.27,0,0,0,115,58.45a6.19,6.19,0,0,0-4.81.25A30.86,30.86,0,0,1,86,59.82,6.09,6.09,0,0,0,83.85,59.42Z" fill="url(#gradient)" clip-path="url(#clip)"/>
+                        <defs><linearGradient id="gradient" x1="-165.21" y1="-5000.98" x2="6.99" y2="-4796.48" gradientTransform="matrix(1, 0, 0, -1, 179, -4798.59)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3cf"/><stop offset="0.45" stop-color="#67cc9d"/><stop offset="0.83" stop-color="#8fcc51"/><stop offset="1" stop-color="#9fcc33"/></linearGradient></defs>
+                        <clipPath id="clip">
+                            <path d="M 100,100 L 100,0 A 100, 0 0 0 1 100, 0 z"></path>
+                        </clipPath>
+                    </svg>
+                    Chainまで<!--{100-$arrChainProductStatus.progress_percent|h}-->%
+                </a>
+            </div>
+            <script>
                 $(function(){
                     let $achieveRate = 45;
                     let $deg = $achieveRate * 360 /100;
@@ -73,44 +73,77 @@
                     let $d = 'M 100,100 L 100, 0 ' +' A' + $r + ' ' + $r + ' ' + 0 + ' ' + largeArcFlag + ' ' + 1 + ' ' + x + ' ' + y + ' z';
                     $path.attr('d', $d);
                 })
-                </script>
+            </script>
             <!--{* 発送待ち *}-->
-            <!--{else if $status == 'unshipped'}-->
-                <div class="c-btn--mypage__wrapper">
-                    <a href="/user_data/qr.php" class="c-btn--mypage--unshipped">このアイテムはChain成立しています<br>あと◯◯日以内に発送してください</a>
-                </div>
+            <!--{elseif $status == 'unshipped'}-->
+            <div class="c-btn--mypage__wrapper">
+                <a href="/user_data/qr.php" class="c-btn--mypage--unshipped">このアイテムはChain成立しています<br>あと◯◯日以内に発送してください</a>
+            </div>
             <!--{/if}-->
+
+            <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
+            <div class="c-notification--secondary notification">リクエストを送信しました</div>
             <!--★画像★-->
-            <div data-img_id="0" class="p-item-detail__head__inner"><img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
+            <div data-img_id="0" class="p-item-detail__head__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
+            <!--★お気に入り登録★-->
+            <!--{*if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
+                <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
+                <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
+                    <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
+                        <g class="particleLayer">
+                            <circle fill="#2A7DA7" cx="130" cy="126.5" r="12.5"/>
+                            <circle fill="#009FCF" cx="411" cy="313.5" r="12.5"/>
+                            <circle fill="#FD0000" cx="279" cy="86.5" r="12.5"/>
+                            <circle fill="#79A52B" cx="155" cy="390.5" r="12.5"/>
+                            <circle fill="#FFDD00" cx="89" cy="292.5" r="10.5"/>
+                            <circle fill="#34B1E2" cx="414" cy="282.5" r="10.5"/>
+                            <circle fill="#34B1E2" cx="115" cy="149.5" r="10.5"/>
+                            <circle fill="#FF7878" cx="250" cy="80.5" r="10.5"/>
+                            <circle fill="#FFAF33" cx="78" cy="261.5" r="10.5"/>
+                            <circle fill="#96D8E9" cx="182" cy="402.5" r="10.5"/>
+                            <circle fill="#FFDD00" cx="401.5" cy="166" r="13"/>
+                            <circle fill="#FFAF33" cx="379" cy="141.5" r="10.5"/>
+                            <circle fill="#FD0000" cx="327" cy="397.5" r="10.5"/>
+                            <circle fill="#FF7878" cx="296" cy="392.5" r="10.5"/>
+                        </g>
+                        <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"/>
+                    </svg>
+                    <span class="label"><!--{if $is_favorite}-->済<!--{else}-->ほしい<!--{/if}--></span>
+                </button>
+                <!--{if $arrErr[$add_favorite]}-->
+                <div class="attention"><!--{$arrErr[$add_favorite]}--></div>
+                <!--{/if}-->
+            <!--{/if*}-->
+            <div class="slideup_bg"></div>
         </div>
         <!--/key visual-->
         <div class="p-item-detail__body">
             <div class="p-item-detail__body__main">
-                <h1 class="c-heading--detail">商品名<!--{$arrProduct.name|mb_substr:0:30|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 30}-->...<!--{/if}--></h1>
+                <h1 class="c-heading--detail"><!--{$arrProduct.name|mb_substr:0:30|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 30}-->...<!--{/if}--></h1>
                 <p class="c-item-request count_of_favorite u-mb--4">
                     <svg class="icon" width="150px" height="150px" viewBox="0 0 500 500">
                         <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#2A7DA7"/>
                     </svg>
-                    <span class="num"><!--{$arrProduct.count_of_favorite|h}-->10</span>
+                    <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span>
                 </p>
                 <!--▼サブコメント-->
                 <div class="u-mb--4">
                     <ul class="p-item-detail__photo l-item-list">
                         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
-                            <!--{assign var=key value="sub_title`$smarty.section.cnt.index+1`"}-->
-                            <!--{assign var=ikey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
-                            <!--{if $arrProduct[$key] != "" or $arrProduct[$ikey]|strlen >= 1}-->
-                                    <!--{assign var=ckey value="sub_comment`$smarty.section.cnt.index+1`"}-->
-                                    <!--▼サブ画像-->
-                                    <!--{assign var=lkey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
-                                    <!--{if $arrProduct[$ikey]|strlen >= 1}-->
-                                        <li data-img_id="<!--{$smarty.section.cnt.index}-->">
-                                            <span class="c-square"><img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" /></span>
-                                        </li>
-                                    <!--{/if}-->
-                                    <!--▲サブ画像-->
-                            <!--{/if}-->
+                        <!--{assign var=key value="sub_title`$smarty.section.cnt.index+1`"}-->
+                        <!--{assign var=ikey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
+                        <!--{if $arrProduct[$key] != "" or $arrProduct[$ikey]|strlen >= 1}-->
+                        <!--{assign var=ckey value="sub_comment`$smarty.section.cnt.index+1`"}-->
+                        <!--▼サブ画像-->
+                        <!--{assign var=lkey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
+                        <!--{if $arrProduct[$ikey]|strlen >= 1}-->
+                        <li data-img_id="<!--{$smarty.section.cnt.index}-->">
+                            <span class="c-square"><img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" /></span>
+                        </li>
+                        <!--{/if}-->
+                        <!--▲サブ画像-->
+                        <!--{/if}-->
                         <!--{/section}-->
                     </ul>
                 </div>
@@ -124,10 +157,10 @@
                     <!--▼商品ステータス-->
                     <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
                     <!--{if !empty($ps)}-->
-                        <dt>アイテムの状態</dt>
-                        <!--{foreach from=$ps item=status}-->
-                            <dd class="product_status<!--{$status|h}-->"><!--{$arrSTATUS[$status]|h}--></dd>
-                        <!--{/foreach}-->
+                    <dt>アイテムの状態</dt>
+                    <!--{foreach from=$ps item=status}-->
+                    <dd class="product_status<!--{$status|h}-->"><!--{$arrSTATUS[$status]|h}--></dd>
+                    <!--{/foreach}-->
                     <!--{/if}-->
                     <!--▲商品ステータス-->
 
@@ -135,12 +168,12 @@
 
                     <dt>カテゴリー</dt>
                     <!--{section name=r loop=$arrRelativeCat}-->
-                        <dd>
-                            <!--{section name=s loop=$arrRelativeCat[r]}-->
-                                <a href="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php?category_id=<!--{$arrRelativeCat[r][s].category_id}-->"><!--{$arrRelativeCat[r][s].category_name|h}--></a>
-                                <!--{if !$smarty.section.s.last}--><!--{$smarty.const.SEPA_CATNAVI}--><!--{/if}-->
-                            <!--{/section}-->
-                        </dd>
+                    <dd>
+                        <!--{section name=s loop=$arrRelativeCat[r]}-->
+                        <a href="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php?category_id=<!--{$arrRelativeCat[r][s].category_id}-->"><!--{$arrRelativeCat[r][s].category_name|h}--></a>
+                        <!--{if !$smarty.section.s.last}--><!--{$smarty.const.SEPA_CATNAVI}--><!--{/if}-->
+                        <!--{/section}-->
+                    </dd>
                     <!--{/section}-->
                 </dl>
 
@@ -152,31 +185,36 @@
                     <path d="M9.99219 21.3182V40.4266H1.20508L21.9961 59.7303L42.7871 40.4266H34V20.3037H25.2129L46.0039 1L66.7949 20.3037H58.0078V39.4121" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <defs>
                         <linearGradient id="paint0_linear" x1="1.20508" y1="59.7303" x2="67.308" y2="59.147" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#33CCFF"/>
-                        <stop offset="0.45" stop-color="#67CC9D"/>
-                        <stop offset="0.83" stop-color="#8FCC51"/>
-                        <stop offset="1" stop-color="#9FCC33"/>
-                    </linearGradient>
+                            <stop stop-color="#33CCFF"/>
+                            <stop offset="0.45" stop-color="#67CC9D"/>
+                            <stop offset="0.83" stop-color="#8FCC51"/>
+                            <stop offset="1" stop-color="#9FCC33"/>
+                        </linearGradient>
                     </defs>
                 </svg>
-                <p class="u-text--center u-mb--2 u-color--gray">交換するアイテムを選んでください。</p>
 
                 <!-- 交換するアイテム一覧 -->
-                <!--{if $tpl_linemax > 0}-->
-                    <ul class="u-mb--4">
-                        <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
-                            <li class="c-card">
-                                <label class="c-card__radio-button"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
-                                    <div class="c-card__main">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                        <p><!--{$arrProduct.name|h}--></p>
-                                        <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                                    </div>
-                                </label>
-                                <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
-                            </li>
-                        <!--{/foreach}-->
-                    </ul>
+                <!--{if count($arrChainProductStatus.selection_edge_detail) > 0}-->
+                <p class="u-text--center u-mb--2 u-color--gray">交換するアイテムを選んでください。</p>
+                <ul class="u-mb--4">
+                    <!--{foreach from=$arrChainProductStatus.selection_edge_detail item=$arrProduct}-->
+                    <li class="c-card">
+                        <!--{* 複数の方からいいねされていて分岐しているケースと、複数の方にいいねして分岐しているケースが存在する *}-->
+                        <!--{if $arrChainProductStatus.selection_edge_mode == 'target'}-->
+                            <label class="c-card__radio-button" data-chain_id="<!--{$arrChainProductStatus.chain_id|h}-->" data-product_id="<!--{$arrProduct.product_id|h}-->" data-target_id="<!--{$tpl_product_id|h}-->"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
+                        <!--{else}-->
+                            <label class="c-card__radio-button" data-chain_id="<!--{$arrChainProductStatus.chain_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->"><input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
+                        <!--{/if}-->
+                            <div class="c-card__main">
+                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
+                                <p><!--{$arrProduct.name|h}--></p>
+                                <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
+                            </div>
+                        </label>
+                        <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
                 <!--{else}-->
                 <p>アイテムが登録されておりません。</p>
                 <!--{/if}-->
@@ -189,17 +227,26 @@
     <div class="c-modal" data-modal_mode="false">
         <button class="c-modal__close-btn" type="button">close</button>
         <!-- スライダーのメインコンテナの div 要素 -->
+        <div class="c-modal__inner"></div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <!-- それぞれのスライドの div 要素 -->
+                <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
+                <!--{assign var=ikey value="sub_large_image`$smarty.section.cnt.index+1`"}-->
+                <!--{if $arrProduct[$key] != "" or $arrProduct[$ikey]|strlen >= 1}-->
+                <!--{assign var=tkey value="sub_title`$smarty.section.cnt.index+1`"}-->
+                <!--{if $arrProduct[$ikey]|strlen >= 1}-->
                 <li class="swiper-slide">
                     <figure>
-                        <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" class="c-modal__img"/>
+                        <img src="<!--{$arrFile[$ikey].filepath}-->" alt="<!--{$arrProduct.name|h}-->" width="<!--{$arrFile[$ikey].width}-->" height="<!--{$arrFile[$ikey].height}-->" class="c-modal__img"/>
                         <!--{if $arrProduct[$tkey]}-->
-                            <figcaption class="c-modal__caption"><!--{$arrProduct[$tkey]|h}--></figcaption>
+                        <figcaption class="c-modal__caption"><!--{$arrProduct[$tkey]|h}--></figcaption>
                         <!--{/if}-->
                     </figure>
                 </li>
+                <!--{/if}-->
+                <!--{/if}-->
+                <!--{/section}-->
             </div>
 
             <!-- ナビゲーションボタンの div 要素-->
@@ -212,48 +259,185 @@
 </section>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-$(function(){
+    $(function(){
+        $(".history_list").appendTo(".history");
 
-    // スライドショー
-    let mySwiper = new Swiper ('.swiper-container', {
-        // オプション
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-    const $slides = $('[data-img_id]');
-    const $detailShowBtn = $('.c-card__detail-btn');
+        // 交換商品クリック時
+        $('.c-card__radio-button').on('change', function () {
+            let $this = $(this)
+            let $closest = $(this).closest(".favorite_area");
+            let $close = $('.slideup_bg');
+            let $mode = $closest.hasClass("registered_favorite");
+            init_favorite($mode, $closest, $this)
+            let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+            let $main = $('.p-item-detail__body .p-item-detail__body__main');
+            setTimeout(function () {
+                slideDown($close, $slideUp, $main);
+                $('.favorite_area #request').addClass('--active');
+            }, 300)
+            $("span[class=label]").text('済');
+            checked(true, $('.favorite_area #request'))
+            $("input[type=radio][name=my_product]").removeAttr('checked');
+        })
 
-    let imagesArr = [];
-    $slides.each(function() {
-        $(this).on('click', function(){
-            toggleModal();
+        // ほしいボタンクリック時
+        $('.favorite_area #request').on('click', function () {
+            let $this = $(this);
+            let $closest = $(this).closest(".favorite_area");
+            let $mode = $closest.hasClass("registered_favorite");
+            let $close = $this.next('.slideup_bg');
+            let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+            let $main = $('.p-item-detail__body .p-item-detail__body__main');
+            let $checked = $mode;
+            $slideUp.find('.select_status path').attr('stroke', '#eee');
+            // リクエスト取り消し
+            if ($mode === true) {
+                init_favorite($mode, $closest, $this);
+            } else {
+                slideUp($close, $slideUp, $main);
+                checked($checked, $this)
 
-            $('.c-modal').attr('data-modal_mode', 'slide')
+                //選ぶのをやめる
+                $close.on('click', function () {
+                    slideDown($close, $slideUp, $main);
+                    $this.removeAttr('disabled');
+                    checked(true, $this);
+                });
+            }
+        })
 
-            // スライドと同じIDから
-            mySwiper.slideToLoop($(this).attr('data-img_id'));
+        function init_favorite($mode, $closest, $this){
+            let postData = {
+                mode: "api_selection_edge_ajax",
+                product_id: $this.data("product_id"),
+                favorite_product_id:  $this.data("product_id"),
+                target_id: $this.data("target_id"),
+                chain_id: $this.data("chain_id"),
+            };
+
+            postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
+            $.ajax({
+                url: "/mypage/myitem/myitem_detail.php",
+                method: "POST",
+                data: postData,
+                dataType: "json",
+            }).done(function (data, textStatus, jqXHR) {
+                $closest.find(".count_of_favorite .num").text(data.count_of_favorite);
+                $this.children('span').text( $this.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
+                $closest.find(".notification").text($mode ? 'リクエストを取り消しました' : 'リクエストを送信しました' );
+
+                $closest.find(".notification").fadeIn(300,
+                    function() {
+                        setTimeout(function(){
+                            $closest.find(".notification").fadeOut();
+                        }, 1000);
+                    })
+            }).fail(function(jqXHR, textStatus, errorThrown){
+                alert('エラーが発生しました。');
+                location.reload();
+            });
+        }
+        // スライドアップ
+        function slideUp($close, $slideUp, $main){
+            $close.addClass('--active');
+            $slideUp.removeClass('--hidden');
+            $main.slideUp(700);
+        }
+        // スライドダウン
+        function slideDown($close, $slideUp, $main){
+            $close.removeClass('--active');
+            $slideUp.addClass('--hidden');
+            $main.slideDown(700);
+        }
+        // ボタンの状態
+        function checked($checked, $this){
+            if($checked == false){
+                $this.attr('disabled', 'disabled');
+
+            } else {
+                $this.removeAttr('disabled');
+            }
+        }
+
+
+        // 通報の処理
+        $('.report_btn').on('click', function(){
+            $('.l-popup').attr('data-item_mode', 'report') ;
+            $('body').addClass('--overflow-hidden');
+            $('.report_message').text('その他');
+            $('.report_form').hide()
+
+            $('.report_submit').on('click', function(){
+
+                //ここに管理者へのajaxの処理をお願いします。
+                // 成功した時の処理
+                $('.l-popup').find('.c-notification--secondary.notification').show().delay(400).fadeOut();
+                $(this).attr('disabled', 'disabled');
+                setTimeout(
+                    function(){
+                        $('body').removeClass('--overflow-hidden');
+                        $('.l-popup').attr('data-item_mode', 'false');
+                    },
+                    700
+                )
+            })
+
+            $('.l-popup .l-popup__close').on('click', function(){
+                $('body').removeClass('--overflow-hidden');
+                $('.l-popup').attr('data-item_mode', 'false');
+            })
+        })
+
+        // スライドショー
+        let mySwiper = new Swiper ('.swiper-container', {
+            // オプション
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        const $slides = $('[data-img_id]');
+        const $detailShowBtn = $('.c-card__detail-btn');
+
+        let imagesArr = [];
+        $slides.each(function() {
+            $(this).on('click', function(){
+                toggleModal();
+
+                $('.c-modal').attr('data-modal_mode', 'slide')
+
+                // スライドと同じIDから
+                mySwiper.slideToLoop($(this).attr('data-img_id'));
+            })
+        });
+
+        $detailShowBtn.each(function() {
+            $(this).on('click', function(){
+                $('.c-modal').attr('data-modal_mode', 'detail');
+
+                $('.c-modal__inner').load( $(this).attr('data-page_url') + ' .p-item-detail');
+                toggleModal();
+            })
+        })
+
+        function toggleModal(){
+            $('.c-modal').addClass('--active')
+            $('body').addClass('--overflow-hidden');
+            $('.c-modal__bg, .c-modal__close-btn').on('click', function(){
+                $('.c-modal').attr('data-modal_mode', 'false').removeClass('--active')
+                $('body').removeClass('--overflow-hidden');
+                $('.c-modal__inner').empty();
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const url = new URL(location.href);
+            const params = new URLSearchParams(url.search);
+            if (params.get('mode') !== undefined && params.get('mode') == 'select_product_success'){
+                alert('リクエストを送信しました');
+                params.delete('mode');
+                history.replaceState('', '', location.href.replace('&mode=select_product_success', ''));
+            }
         })
     });
-
-    $detailShowBtn.each(function() {
-        $(this).on('click', function(){
-            $('.c-modal').attr('data-modal_mode', 'detail');
-
-            $('.c-modal__inner').load( $(this).attr('data-page_url') + ' .p-item-detail');
-            toggleModal();
-        })
-    })
-
-    function toggleModal(){
-        $('.c-modal').addClass('--active')
-        $('body').addClass('--overflow-hidden');
-        $('.c-modal__bg, .c-modal__close-btn').on('click', function(){
-            $('.c-modal').attr('data-modal_mode', 'false').removeClass('--active')
-            $('body').removeClass('--overflow-hidden');
-            $('.c-modal__inner').empty();
-        })
-    }
-});
 </script>
