@@ -69,14 +69,27 @@
         }
     }
     &--card {
-        display: inline-flex;
-        text-align: center;
-        justify-content: space-between;
-        @extend .c-form-parts;
-        width: 300px;
-        input {
-            width: 45%;
+        display: flex;
+        align-items: center;
+        &__item {
+             @extend .c-form-parts;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+             select {
+                 padding-right: 8px;
+             }
+             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.41"><path class="cls-1" d="M12,1.41,10.59,0,6,4.58,1.41,0,0,1.41l6,6Z" fill="%23515767"/></svg>') center right 5px/ 10px 15px no-repeat;
+             &:first-child {
+                 margin-right: 8px;
+                }
+                &:last-child {
+                 margin-right: 8px;
+                 margin-left: 8px;
+             }
         }
+
     }
     &--sm {
         @extend .c-form-parts;
