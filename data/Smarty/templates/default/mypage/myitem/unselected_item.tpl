@@ -12,7 +12,7 @@
         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-item__img"/>
         <div class="c-item__main">
             <p class="c-item__title"><!--{$arrProduct.name|h}--></p>
-            <p class="c-item__request">12</p>
+            <p class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></p>
         </div>
     </div>
     <div class="u-text--center">

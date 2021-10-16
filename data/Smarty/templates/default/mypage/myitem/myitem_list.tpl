@@ -14,8 +14,12 @@
                         <!--{*<span class="status-unselected">ダミー：選択期限まであと2日</span>*}-->
                         <i class="c-item__<!--{if $item.product.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$item.product.count_of_favorite|n2s|h}--></span></div>
                     <!--{if count($item.selection_edge_detail) > 0}-->
-                        選択待ち商品あり
-                    <!--{else}-->
+                        選択が必要な商品がございます
+                    <!--{elseif $item.progress_percent > 1 and $item.progress_percent < 100}-->
+                        Chainまで<!--{$item.progress_percent}-->%
+                    <!--{elseif $item.progress_percent == 100}-->
+                        Chain成立
+                        // TODO:該当の受注情報の出荷状況を取得し、応じたメッセージが必要
                     <!--{/if}-->
                 </div>
             </a>

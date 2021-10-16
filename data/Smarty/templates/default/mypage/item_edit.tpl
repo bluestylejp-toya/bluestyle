@@ -188,7 +188,9 @@ $(function(){
         let $closest = $(this).closest('li');
         let formData = new FormData($('#form1').get(0));
         formData.append('mode', 'upload_image_ajax');
-        formData.append('image_key', this.name);
+        formData.append('image_key', this.name)
+
+        $closest.find('.preview').addClass('roading')
 
         $.ajax({
             type: 'POST',
@@ -254,6 +256,7 @@ $(function(){
         if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
             $closest.find('img').attr('src', data.arrFile.filepath);
             $closest.find('span.c-item__img').addClass('--hidden');
+            $closest.find('.preview').removeClass('roading')
         }
         else {
             // if($closest.attr('data-item_id') === 1) {
@@ -380,4 +383,5 @@ function renumberImgNum() {
         });
     });
 }
+
 </script>
