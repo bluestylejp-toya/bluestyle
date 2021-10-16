@@ -40,7 +40,9 @@
             </header>
 
             <!--{if $hasUnselectdProductFlg}-->
-                交換するアイテムを選んでください　<a href="/mypage/myitem/status.php?product_id=<!--{$arrProduct.product_id|h}-->">選択画面に遷移</a>
+            <div class="c-btn--mypage__wrapper">
+                <a href="/mypage/myitem/myitem_list.php" class="c-btn--mypage--unselected">交換するアイテム選んでね</a>
+            </div>
             <!--{/if}-->
 
             <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
