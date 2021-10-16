@@ -98,6 +98,7 @@ class LC_Page_Mypage_Myitem_MyitemList extends LC_Page_AbstractMypage_Ex
                 }
                 $arrChainProductStatus[$key]['chain_id'] = $chainId;
                 $arrChainProductStatus[$key]['progress_percent'] = $result['progress_percent'];
+                $arrChainProductStatus[$key]['selected_edge_list'] = $result['selected_edge_list'];
             }
             $arrChainProductStatus[$key]['product'] = $arrProduct;
         }
