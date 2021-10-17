@@ -19,7 +19,7 @@
                         Chainまで<!--{$item.progress_percent}-->%
                     <!--{elseif $item.progress_percent == 100}-->
                         Chain成立
-                        // TODO:該当の受注情報の出荷状況を取得し、応じたメッセージが必要
+                        <!--{* TODO:該当の受注情報の出荷状況を取得し、応じたメッセージが必要 *}-->
                     <!--{/if}-->
                 </div>
             </a>
