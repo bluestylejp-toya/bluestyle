@@ -190,7 +190,7 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
         $objProduct = new SC_Product_Ex();
 
         // プロダクトIDの正当性チェック
-        $product_id = $this->lfCheckProductId($this->objFormParam->getValue('admin'), $this->objFormParam->getValue('product_id'), $objProduct);
+        $product_id = $this->lfCheckProductId($this->objFormParam->getValue('product_id'), $objProduct);
 
         // 暫定対応
         if ($this->mode != 'api_selection_edge_ajax') {
@@ -414,7 +414,7 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
     {
         // 出品中アイテム商品ID取得
         $arrProductId = array();
-        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id, true);
         foreach ($arrListingProducts as $arrListingProduct) {
             $arrProductId[] = $arrListingProduct['product_id'];
         }
@@ -479,16 +479,9 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
      * @param SC_Product $objProduct
      * @return integer
      */
-    public function lfCheckProductId($admin_mode, $product_id, SC_Product $objProduct)
+    public function lfCheckProductId($product_id, SC_Product $objProduct)
     {
-        // 管理機能からの確認の場合は、非公開の商品も表示する。
-        if (isset($admin_mode) && $admin_mode == 'on' && SC_Utils_Ex::sfIsSuccess(new SC_Session_Ex(), false)) {
-            $include_hidden = true;
-        } else {
-            $include_hidden = false;
-        }
-
-        if (!$objProduct->isValidProductId($product_id, $include_hidden)) {
+        if (!$objProduct->isValidProductId($product_id, true)) {
             SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
         }
 
