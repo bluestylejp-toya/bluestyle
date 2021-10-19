@@ -69,8 +69,7 @@ class Batch {
             $objQuery->commit();
 
             if ($arrOrder['status'] == ORDER_SUSPEND) {
-                echo "カウントアップの読み込みを中断した。: ORDER_SUSPEND\n";
-                break 1;
+                throw new Exception("カウントアップの読み込みを中断した。: ORDER_SUSPEND");
             }
         }
     }
