@@ -1,4 +1,9 @@
 <section>
+    <aside class="c-alert--yellow">
+        <h2 class="c-alert__title">ご注意ください</h2>
+        <p>現在、出品可能なアイテムのサイズは、ヤマト運輸のネコポスサイズまでに制限させていただいています。</p>
+        <a href="https://business.kuronekoyamato.co.jp/service/lineup/nekoposu/#section02" target="_blank" rel="noopener" class="c-alert__btn">詳しくはヤマト運輸公式サイトをご確認ください</a>
+    </aside>
     <p class="l-header--btn"><a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php" class="c-btn--default"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>出品する</a></p>
     <div id="mycontents_area">
         <form name="form1" id="form1" method="post" action="?">
