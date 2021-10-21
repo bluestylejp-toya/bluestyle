@@ -1,18 +1,17 @@
 <!--{strip}-->
     <section>
         <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
-            <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
-                <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
-                <p class="c-header-title">アイテム編集</p>
-            </header>
-
-        <!--{if $tpl_lock_because_on_loop}-->
-            <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
-        <!--{/if}-->
+        <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
+            <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+            <p class="c-header-title">アイテム編集</p>
+        </header>
 
         <!--{assign var=key value="status"}-->
         <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}-->">このアイテムは公開されていません</p>
-
+        <!--{if $tpl_lock_because_on_loop}-->
+            <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
+            <div class="disabled">
+        <!--{/if}-->
         <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME|h}-->" value="<!--{$transactionid|h}-->" />
             <input type="hidden" name="mode" value="edit" />
@@ -112,6 +111,9 @@
                 <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
             <!--{/if}-->
         </form>
+        <!--{if $tpl_lock_because_on_loop}-->
+            </div>
+        <!--{/if}-->
     </section>
 <!--{/strip}-->
 <script type="text/javascript">

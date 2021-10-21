@@ -97,3 +97,11 @@ $pointer: 1;
   }
   $pointer: $pointer + 2;
 }
+
+.disabled {
+    opacity: 0.7;
+
+    * {
+        pointer-events: none;
+    }
+}
