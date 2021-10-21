@@ -41,7 +41,10 @@
             </tr>
             <tr>
                 <th>電話番号</th>
-                <td><!--{$arrOrder.law_tel01|h}-->-<!--{$arrOrder.law_tel02|h}-->-<!--{$arrOrder.law_tel03|h}--></td>
+                <td>
+                <div class="c-alert--yellow">お電話でのお問合せは、基本的に受け付けておりません。</div>
+                <!--{$arrOrder.law_tel01|h}-->-<!--{$arrOrder.law_tel02|h}-->-<!--{$arrOrder.law_tel03|h}-->
+                </td>
             </tr>
             <tr>
                 <th>FAX番号</th>
