@@ -190,7 +190,7 @@ $(function(){
         formData.append('mode', 'upload_image_ajax');
         formData.append('image_key', this.name)
 
-        $closest.find('.preview').addClass('roading')
+        $closest.find('.preview').addClass('loading')
 
         $.ajax({
             type: 'POST',
@@ -256,7 +256,7 @@ $(function(){
         if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
             $closest.find('img').attr('src', data.arrFile.filepath);
             $closest.find('span.c-item__img').addClass('--hidden');
-            $closest.find('.preview').removeClass('roading')
+            $closest.find('.preview').removeClass('loading')
         }
         else {
             // if($closest.attr('data-item_id') === 1) {
