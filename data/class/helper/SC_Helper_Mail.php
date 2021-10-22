@@ -267,6 +267,9 @@ class SC_Helper_Mail
         $from = $arrInfo['email03'];
         $error = $arrInfo['email04'];
         $tosubject = $this->sfMakeSubject($tmp_subject);
+        if (strlen($to) == 0) {
+            $to = $arrInfo['email01'];
+        }
 
         $objSendMail->setItem($to, $tosubject, $body, $from, $arrInfo['shop_name'], $from, $error, $error, $bcc);
         $objSendMail->sendMail();

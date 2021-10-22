@@ -267,6 +267,10 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
                 ];
                 $objHelperApi->setPostParam($data);
                 $result = $objHelperApi->exec();
+
+                // バッチ起動
+                SC_Helper_Chain_Ex::execBatchPostLoopUpdate($this->objFormParam->getValue('chain_id'));
+
                 SC_Response_Ex::json([
                     'registered' => true,
                 ]);
