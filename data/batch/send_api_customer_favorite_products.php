@@ -6,15 +6,15 @@ require_once '../../html/require.php';
 while (@ob_end_flush());
 
 echo "START\n";
-Batch::loop();
-// Batch::chain();
+Batch::loop_minus_one();
+// Batch::loop();
 echo "END\n";
 
 class Batch {
     /**
      * dtb_customer_favorite_products の内容を基に API 要求する。
      */
-    public static function loop() {
+    public static function loop_minus_one() {
         $arrCustomerFavoriteProducts = self::getCustomerFavoriteProducts();
         foreach ($arrCustomerFavoriteProducts as $arrRow) {
             $objHelperApi = new SC_Helper_Api_Ex();
@@ -33,9 +33,9 @@ class Batch {
     }
 
     /**
-     * loop() と供に実行することで、Chain を成立させる。
+     * loop_minus_one() と供に実行することで、Loop を成立させる。
      */
-    public static function chain() {
+    public static function loop() {
         $objHelperApi = new SC_Helper_Api_Ex();
         $objHelperApi->setUrl(API_URL . 'chain/edges/add');
         $objHelperApi->setMethod('POST');

@@ -117,7 +117,7 @@ class LC_Page_Mypage_Myitem_MyitemList extends LC_Page_AbstractMypage_Ex
     {
         // 出品中アイテム商品ID取得
         $arrProductId = array();
-        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id, True);
         foreach ($arrListingProducts as $arrListingProduct) {
             $arrProductId[] = $arrListingProduct['product_id'];
         }
