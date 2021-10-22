@@ -75,9 +75,9 @@
                 })
             </script>
             <!--{* 発送待ち *}-->
-            <!--{elseif $status == 'unshipped'}-->
+            <!--{else}-->
             <div class="c-btn--mypage__wrapper">
-                <a href="/user_data/qr.php" class="c-btn--mypage--unshipped">このアイテムはChain成立しています<br>あと◯◯日以内に発送してください</a>
+                <a href="/mypage/myitem/qr.php?product_id=<!--{$tpl_product_id|h}-->" class="c-btn--mypage--unshipped">このアイテムはChain成立しています<br>発送してください</a>
             </div>
             <!--{/if}-->
 
