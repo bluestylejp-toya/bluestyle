@@ -35,7 +35,7 @@
     <div class="p-item-detail favorite_area<!--{if $is_favorite}--> registered_favorite<!--{/if}-->">
         <div class="p-item-detail__head">
             <header class="l-header__inner u-mb--0">
-                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date" aria-label="戻る" class="c-btn--header-nav"></a>
                 <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
             </header>
 
