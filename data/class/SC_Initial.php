@@ -454,6 +454,8 @@ class SC_Initial
 
         /** 対応状況: 中断 */
         define('ORDER_SUSPEND', 101);
+        /** 対応状況: Chain 成立 */
+        define('ORDER_CHAIN', 102);
     }
 
     /**
