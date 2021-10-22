@@ -75,7 +75,7 @@
                 })
             </script>
             <!--{* 発送待ち *}-->
-            <!--{else}-->
+            <!--{elseif $arrChainProductStatus.progress_percent|h == 100}-->
             <div class="c-btn--mypage__wrapper">
                 <a href="/mypage/myitem/qr.php?product_id=<!--{$tpl_product_id|h}-->" class="c-btn--mypage--unshipped">このアイテムはChain成立しています<br>発送してください</a>
             </div>
