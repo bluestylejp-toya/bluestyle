@@ -4383,6 +4383,7 @@ INSERT INTO `mtb_mail_template` VALUES (2,'注文受付メール(携帯)',1);
 INSERT INTO `mtb_mail_template` VALUES (3,'注文キャンセル受付メール',2);
 INSERT INTO `mtb_mail_template` VALUES (4,'取り寄せ確認メール',3);
 INSERT INTO `mtb_mail_template` VALUES (5,'お問い合わせ受付メール',4);
+INSERT INTO `mtb_mail_template` VALUES (6,'フリーメール',5);
 /*!40000 ALTER TABLE `mtb_mail_template` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4412,6 +4413,7 @@ INSERT INTO `mtb_mail_tpl_path` VALUES (2,'mail_templates/order_mail.tpl',1);
 INSERT INTO `mtb_mail_tpl_path` VALUES (3,'mail_templates/order_mail.tpl',2);
 INSERT INTO `mtb_mail_tpl_path` VALUES (4,'mail_templates/order_mail.tpl',3);
 INSERT INTO `mtb_mail_tpl_path` VALUES (5,'mail_templates/contact_mail.tpl',4);
+INSERT INTO `mtb_mail_tpl_path` VALUES (6,'mail_templates/free_mail.tpl',5);
 /*!40000 ALTER TABLE `mtb_mail_tpl_path` ENABLE KEYS */;
 UNLOCK TABLES;
 
