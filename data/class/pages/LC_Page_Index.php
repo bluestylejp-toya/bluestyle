@@ -71,7 +71,7 @@ class LC_Page_Index extends LC_Page_Ex
 
         // ログイン中は商品一覧ページに遷移させる
         if ($this->isLogin){
-            header('Location: /products/list.php');
+            header('Location: /products/list.php?orderby=date');
             exit();
         }
 
