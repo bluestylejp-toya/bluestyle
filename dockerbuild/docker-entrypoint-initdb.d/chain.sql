@@ -4378,7 +4378,7 @@ CREATE TABLE `mtb_mail_template` (
 
 LOCK TABLES `mtb_mail_template` WRITE;
 /*!40000 ALTER TABLE `mtb_mail_template` DISABLE KEYS */;
-INSERT INTO `mtb_mail_template` VALUES (1,'注文受付メール',0);
+INSERT INTO `mtb_mail_template` VALUES (1,'Chain 成立のお知らせ',0);
 INSERT INTO `mtb_mail_template` VALUES (2,'注文受付メール(携帯)',1);
 INSERT INTO `mtb_mail_template` VALUES (3,'注文キャンセル受付メール',2);
 INSERT INTO `mtb_mail_template` VALUES (4,'取り寄せ確認メール',3);

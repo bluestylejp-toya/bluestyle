@@ -16,6 +16,7 @@ Batch::main($chain_id);
 class Batch {
     public static function main($chain_id) {
         $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objPurchase = new SC_Helper_Purchase_Ex();
 
         $chain = SC_Helper_Api_Ex::getChain($chain_id);
 
@@ -26,10 +27,24 @@ class Batch {
         SC_Helper_Chain_Ex::lockProductsByChainId($chain_id);
         $objQuery->commit();
 
+        if (!isset($chain->selection_edge_list)
+            || !is_array($chain->selection_edge_list)
+        ) {
+            throw new Exception('selection_edge_list が異常。: ' . var_export($selection_edge_list ,true));
+        }
+
+        if (!empty($chain->selection_edge_list)) {
+            echo "分岐選択:\n";
+            var_export($chain->selection_edge_list);
+        }
+
+        $chained = count($chain->chain_list) == 1;
+        echo '$chained = ' . var_export($chained, true) . "\n";
+
         if (!isset($chain->selected_edge_list)
             || !is_array($chain->selected_edge_list)
         ) {
-            throw new Exception('selected_edge_list が異常。');
+            throw new Exception('selected_edge_list が異常。: ' . var_export($selected_edge_list ,true));
         }
 
         foreach ($chain->selected_edge_list as $edge) {
@@ -56,11 +71,11 @@ class Batch {
             }
             $customer_id = $arrTargetProduct['customer_id'];
 
-            $arrOrder = SC_Helper_Purchase::getOrderByChain($chain_id, $customer_id, $product_class_id);
+            $arrOrder = SC_Helper_Purchase_Ex::getOrderByChain($chain_id, $customer_id, $product_class_id);
             if (empty($arrOrder)) {
                 echo "createOrder\n";
                 $order_id = self::createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct);
-                $arrOrder = SC_Helper_Purchase::getOrderByChain($chain_id, $customer_id, $product_class_id);
+                $arrOrder = SC_Helper_Purchase_Ex::getOrderByChain($chain_id, $customer_id, $product_class_id);
             }
             else {
                 $order_id = $arrOrder['order_id'];
@@ -70,6 +85,34 @@ class Batch {
 
             if ($arrOrder['status'] == ORDER_SUSPEND) {
                 throw new Exception("カウントアップの読み込みを中断した。: ORDER_SUSPEND");
+            }
+
+            // 決済処理
+            // ★未実装(CHAIN-6)
+
+            // Chain 成立
+            if ($chained) {
+                // 注文受付メールを送信するか
+                $send_order_mail = false;
+                if ($arrOrder['status'] == ORDER_CHAIN) {
+                    $send_order_mail = true;
+                }
+                // ループ (Chain 確定)
+                elseif ($arrOrder['status'] == ORDER_PRE_END) {
+                    // 対応状況を更新
+                    $objQuery->begin();
+                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_CHAIN); // Chain 成立
+                    $objQuery->commit();
+                    $send_order_mail = true;
+                }
+
+                if ($send_order_mail
+                    && !SC_Helper_Mail_Ex::existsOrderMailHistory($order_id, 1)
+                ) {
+                    echo "sendOrderMail\n";
+                    // 注文受付メールを送信
+                    $objPurchase->sendOrderMail($order_id);
+                }
             }
         }
     }
