@@ -427,9 +427,10 @@ $(function(){
                     // エラーの場合処理
                 });
             }
+            let $request = $closest.find('#request')
 
             $closest.find(".count_of_favorite .num").text(data.count_of_favorite);
-            $this.children('span').text( $this.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
+            $request.children('span').text( $request.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
             $closest.find(".notification").text($mode ? 'リクエストを取り消しました' : 'リクエストを送信しました' );
 
             $closest.find(".notification").fadeIn(300,
