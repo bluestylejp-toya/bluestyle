@@ -238,40 +238,7 @@
                     <ul class="u-mb--4">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
-                                <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
-                                    <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
-                                    <div class="c-card__main">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                        <p><!--{$arrProduct.name|h}--></p>
-                                        <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                                    </div>
-                                </label>
-                                <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
-                            </li>
-                            <li class="c-card">
-                                <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
-                                    <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
-                                    <div class="c-card__main">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                        <p><!--{$arrProduct.name|h}--></p>
-                                        <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                                    </div>
-                                </label>
-                                <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
-                            </li>
-                            <li class="c-card">
-                                <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
-                                    <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
-                                    <div class="c-card__main">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                        <p><!--{$arrProduct.name|h}--></p>
-                                        <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
-                                    </div>
-                                </label>
-                                <button type="button" class="c-card__detail-btn" data-page_url="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->">詳細</button>
-                            </li>
-                            <li class="c-card">
-                                <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                                <label class="c-card__checkbox">
                                     <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
                                     <div class="c-card__main">
                                     <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
@@ -289,7 +256,7 @@
                 <!--{/if}-->
                 <div class="l-floating-btn">
                     <button class="c-btn--primary--outline u-mb--1 slide-close_btn">キャンセル</button>
-                    <button class="c-btn--primary send-request_btn" disabled>決定</button>
+                    <button class="c-btn--primary send-request_btn" disabled data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="">決定</button>
                 </div>
             </div>
             <!--/.p-item-detail__body__slideup-->
@@ -338,12 +305,13 @@ $(function(){
     $(".history_list").appendTo(".history");
 
     // 交換商品クリック時
-    $('.c-card__radio-button').on('change', function () {
+    $('.send-request_btn').on('click', function () {
         let $this = $(this)
         let $closest = $(this).closest(".favorite_area");
         let $close = $('.slideup_bg');
         let $mode = $closest.hasClass("registered_favorite");
         let $wrap = $closest.parents('.l-wrapper');
+
         init_favorite($mode, $closest, $this)
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $main = $('.p-item-detail__body .p-item-detail__body__main');
@@ -351,9 +319,6 @@ $(function(){
             slideDown($close, $slideUp, $main, $wrap);
             $('.favorite_area #request').addClass('--active');
         }, 300)
-        $("span[class=label]").text('済');
-        checked(true, $('.favorite_area #request'))
-        $("input[type=radio][name=my_product]").removeAttr('checked');
     })
 
     // ほしいボタンクリック時
@@ -379,21 +344,25 @@ $(function(){
             $close.on('click', function () {
                 slideDown($close, $slideUp, $main, $wrap);
                 $this.removeAttr('disabled');
-                checked(true, $this);
             });
 
             //チェックを入ったらリクエストボタンをクリックできるようになる
             $checkList.on('change', function(){
                 if(  $('.c-card__checkbox input:checked').length > 0) {
+                    // 出品アイテムを配列に格納する
+                    $target = [];
+                    $checkList.each(function() {
+                        if( $(this).prop('checked') == true) {
+                            $target.push($(this).val());
+                        }
+                    })
+                    $('.send-request_btn').attr('data-target_id', $target)
                     $sendRequestBtn.removeAttr('disabled');
+
                     return false;
                 } else {
                     $sendRequestBtn.attr('disabled', true);
                 }
-            })
-
-            $sendRequestBtn.on('click', function(){
-                init_favorite($mode, $closest, $this);
             })
 
         }
