@@ -1,18 +1,17 @@
 <!--{strip}-->
     <section>
         <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
-            <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
-                <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
-                <p class="c-header-title">アイテム編集</p>
-            </header>
-
-        <!--{if $tpl_lock_because_on_loop}-->
-            <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
-        <!--{/if}-->
+        <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
+            <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+            <p class="c-header-title">アイテム編集</p>
+        </header>
 
         <!--{assign var=key value="status"}-->
         <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}-->">このアイテムは公開されていません</p>
-
+        <!--{if $tpl_lock_because_on_loop}-->
+            <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
+            <div class="disabled">
+        <!--{/if}-->
         <form name="form1" id="form1" method="post" action="?" enctype="multipart/form-data">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME|h}-->" value="<!--{$transactionid|h}-->" />
             <input type="hidden" name="mode" value="edit" />
@@ -112,6 +111,9 @@
                 <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
             <!--{/if}-->
         </form>
+        <!--{if $tpl_lock_because_on_loop}-->
+            </div>
+        <!--{/if}-->
     </section>
 <!--{/strip}-->
 <script type="text/javascript">
@@ -188,7 +190,9 @@ $(function(){
         let $closest = $(this).closest('li');
         let formData = new FormData($('#form1').get(0));
         formData.append('mode', 'upload_image_ajax');
-        formData.append('image_key', this.name);
+        formData.append('image_key', this.name)
+
+        $closest.find('.preview').addClass('loading')
 
         $.ajax({
             type: 'POST',
@@ -254,6 +258,7 @@ $(function(){
         if ('filepath' in data.arrFile && data.arrFile.filepath.length >= 1) {
             $closest.find('img').attr('src', data.arrFile.filepath);
             $closest.find('span.c-item__img').addClass('--hidden');
+            $closest.find('.preview').removeClass('loading')
         }
         else {
             // if($closest.attr('data-item_id') === 1) {
@@ -380,4 +385,5 @@ function renumberImgNum() {
         });
     });
 }
+
 </script>

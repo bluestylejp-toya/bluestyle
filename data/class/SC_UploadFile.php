@@ -177,7 +177,7 @@ class SC_UploadFile
 
                             $exif = exif_read_data($_FILES[$keyname]['tmp_name'], 'EXIF');
                             if ($exif !== false){
-                                $im = $this->rotate($im, $exif);
+                                $im->autoOrient();
                             }
 
                             $im->setImageFormat('jpeg');

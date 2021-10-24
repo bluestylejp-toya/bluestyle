@@ -267,6 +267,9 @@ class SC_Helper_Mail
         $from = $arrInfo['email03'];
         $error = $arrInfo['email04'];
         $tosubject = $this->sfMakeSubject($tmp_subject);
+        if (strlen($to) == 0) {
+            $to = $arrInfo['email01'];
+        }
 
         $objSendMail->setItem($to, $tosubject, $body, $from, $arrInfo['shop_name'], $from, $error, $error, $bcc);
         $objSendMail->sendMail();
@@ -557,5 +560,27 @@ class SC_Helper_Mail
         }
 
         return;
+    }
+
+    /**
+     * 受注メール送信履歴の有無
+     *
+     * @param  integer  $order_id 注文番号
+     * @return bool     有無
+     */
+    public static function existsOrderMailHistory($order_id, $template_id = null)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $where = 'order_id = ?';
+        $arrWhereValue = [$order_id];
+        if (strlen($template_id) >= 1) {
+            $where .= ' AND template_id = ?';
+            $arrWhereValue[] = $template_id;
+        }
+
+        $exists = $objQuery->exists('dtb_mail_history', $where, $arrWhereValue);
+
+        return $exists;
     }
 }

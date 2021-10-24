@@ -1451,4 +1451,34 @@ __EOS__;
             $objQuery->commit();
         }
     }
+
+    /**
+     * 受注情報を取得する.
+     *
+     * @param  integer $customer_id 会員ID
+     * @param  integer $product_class_id 商品規格ID
+     * @return array   受注情報の配列
+     */
+    public function getOrderByChain($chain_id, $customer_id, $product_class_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $where = 'del_flg = 0';
+        $arrValues = [];
+
+        $where .= ' AND chain_id = ?';
+        $arrValues[] = $chain_id;
+
+        $where .= ' AND customer_id = ?';
+        $arrValues[] = $customer_id;
+
+        $where .= ' AND EXISTS(SELECT * FROM dtb_order_detail WHERE order_id = dtb_order.order_id AND product_class_id = ?)';
+        $arrValues[] = $product_class_id;
+
+        // 最新の受注を優先する。良くないアイディアかも。複数一致したら例外が妥当か。
+        $objQuery->setOrder('order_id DESC');
+
+        // 戻り値は getOrder() と同じくする必要がある。本来、getOrder() を呼ぶのが確実かも。
+        return $objQuery->getRow('*', 'dtb_order', $where, $arrValues);
+    }
 }

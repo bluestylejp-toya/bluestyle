@@ -45,7 +45,7 @@
     <!--{if $is_login}-->
         <ul class="l-footer-nav__inner --login">
             <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">さがす</a>
+                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">さがす</a>
             </li>
             <li class="l-footer-nav__item">
                 <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item-list.php" class="c-footer-nav-item--listing<!--{if $current == 'display'}--> is-current<!--{/if}-->">出品</a>

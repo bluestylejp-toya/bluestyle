@@ -88,7 +88,7 @@ class SC_PageNavi
                 $this->arrPagenavi['before'] = $this->now_page - 1;
                 $urlParamThis = str_replace('#page#', $this->arrPagenavi['before'], $urlParam);
                 $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
-                $before = "<a href=\"?$urlParamThis\" onclick=\"$func_name(1)); return false;\" class=\"c-pagination__first\"></a><a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['before']}'); return false; \" class=\"c-pagination__newer\"></a> ";
+                $before = "<a href=\"?$urlParamThis\" onclick=\"$func_name(1); return false;\" class=\"c-pagination__first\"></a><a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['before']}'); return false; \" class=\"c-pagination__newer\"></a> ";
             } else {
                 $before = "<span class=\"c-pagination__first\"></span><span class=\"c-pagination__newer\"></span> ";
             }
@@ -126,7 +126,7 @@ class SC_PageNavi
 
             $this->arrPagenavi['arrPageno'] = array();
             $page_number = '';
-            $page_number .= "<strong>$this->now_page / $disp_max</strong>";
+            $page_number .= "<strong>$this->now_page / $this->max_page</strong>";
 
             if ($before && $next) {
                 $this->strnavi = $before .(($display_number) ? $page_number : ' | ') .$next;

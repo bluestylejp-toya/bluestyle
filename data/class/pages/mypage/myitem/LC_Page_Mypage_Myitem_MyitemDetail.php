@@ -149,6 +149,8 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
         $this->arrLimitPostMode[] = 'select';
         $this->arrLimitPostMode[] = 'select2';
         $this->arrLimitPostMode[] = 'selectItem';
+        $this->arrLimitPostMode[] = 'api_selection_edge_ajax';
+
     }
 
     /**
@@ -188,7 +190,12 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
         $objProduct = new SC_Product_Ex();
 
         // プロダクトIDの正当性チェック
-        $product_id = $this->lfCheckProductId($this->objFormParam->getValue('admin'), $this->objFormParam->getValue('product_id'), $objProduct);
+        $product_id = $this->lfCheckProductId($this->objFormParam->getValue('product_id'), $objProduct);
+
+        // 暫定対応
+        if ($this->mode != 'api_selection_edge_ajax') {
+            $this->lfCheckMyProductId($objCustomer->getValue('customer_id'), $product_id);
+        }
 
         $objProduct->setProductsClassByProductIds(array($product_id));
 
@@ -243,6 +250,30 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
         switch ($this->mode) {
             case 'cart':
                 $this->doCart();
+                break;
+
+            case 'api_selection_edge_ajax':
+                if (!$this->tpl_my_product) {
+                    //暫定対応
+                    //throw new Exception('自分の商品以外は登録できない。');
+                }
+
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setUrl(API_URL . 'chain/'.$this->objFormParam->getValue('chain_id').'/edges/select');
+                $objHelperApi->setMethod('POST');
+                $data = [
+                    "source_id" => $this->objFormParam->getValue('product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
+                ];
+                $objHelperApi->setPostParam($data);
+                $result = $objHelperApi->exec();
+
+                // バッチ起動
+                SC_Helper_Chain_Ex::execBatchPostLoopUpdate($this->objFormParam->getValue('chain_id'));
+
+                SC_Response_Ex::json([
+                    'registered' => true,
+                ]);
                 break;
 
             case 'api_remove_favorite_ajax':
@@ -369,9 +400,6 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
             $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
         }
 
-        $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
-        $this->arrProduct['arrCustomerProducts'] = SC_Helper_Customer_Ex::getCustomerProducts($this->arrProduct['customer_id']);
-
         // 交換選択待ち商品が存在するか
         $this->hasUnselectdProductFlg = false;
         if ($this->tpl_login) {
@@ -382,6 +410,69 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
                 }
             }
         }
+
+        $this->arrChainProductStatus = $this->getChainProductStatus($product_id);
+    }
+
+    private function lfCheckMyProductId($customer_id, $product_id)
+    {
+        // 出品中アイテム商品ID取得
+        $arrProductId = array();
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id, true);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+        if (array_search($product_id, $arrProductId) === false){
+            throw new Exception('出品者のみアクセスできるページとなります。');
+        }
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getChainProductStatus($product_id)
+    {
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        $index = 0;
+        $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $product_id);
+        $result = json_decode($objHelperApi->exec(), true);
+
+        $arrChainProductStatus = array();
+        $objProduct = new SC_Product_Ex();
+
+        if (count($result) > 0) {
+            $chainId = $result[0]['id'];
+            $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+            $result = json_decode($objHelperApi->exec(), true);
+            $arrTargetId = array();
+            $arrSourceId = array();
+            foreach ($result['selection_edge_list'] as $selection_edge_list) {
+                $arrTargetId[] = $selection_edge_list['target_id'];
+                $arrSourceId[] = $selection_edge_list['source_id'];
+            }
+            // source_id、target_idに出品商品が含まれているか確認する
+            // https://bluestyle.backlog.jp/view/CHAIN-182#comment-123642696
+            if (count(array_unique($arrTargetId)) == 1 and array_search($product_id, $arrTargetId) !== false) {
+                foreach ($arrSourceId as $sourceID) {
+                    $arrChainProductStatus['selection_edge_detail'][] = $objProduct->getDetail($sourceID);
+                }
+                $arrChainProductStatus['selection_edge_mode'] = 'target';
+            }
+            if (count(array_unique($arrSourceId)) == 1 and array_search($product_id, $arrSourceId) !== false) {
+                foreach ($arrTargetId as $targetId) {
+                    $arrChainProductStatus['selection_edge_detail'][] = $objProduct->getDetail($targetId);
+                }
+                $arrChainProductStatus['selection_edge_mode'] = 'source';
+            }
+            $arrChainProductStatus['chain_id'] = $chainId;
+            $arrChainProductStatus['progress_percent'] = $result['progress_percent'];
+        }
+
+        return $arrChainProductStatus;
     }
 
     /**
@@ -392,16 +483,9 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
      * @param SC_Product $objProduct
      * @return integer
      */
-    public function lfCheckProductId($admin_mode, $product_id, SC_Product $objProduct)
+    public function lfCheckProductId($product_id, SC_Product $objProduct)
     {
-        // 管理機能からの確認の場合は、非公開の商品も表示する。
-        if (isset($admin_mode) && $admin_mode == 'on' && SC_Utils_Ex::sfIsSuccess(new SC_Session_Ex(), false)) {
-            $include_hidden = true;
-        } else {
-            $include_hidden = false;
-        }
-
-        if (!$objProduct->isValidProductId($product_id, $include_hidden)) {
+        if (!$objProduct->isValidProductId($product_id, true)) {
             SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
         }
 
@@ -517,6 +601,8 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
         $objFormParam->addParam('お気に入り商品ID', 'favorite_product_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品規格ID', 'product_class_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('交換対象商品', 'target_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('チェーンID', 'chain_id', STEXT_LEN, 'n', array('MAX_LENGTH_CHECK'));
+
         // 値の取得
         $objFormParam->setParam($_REQUEST);
         // 入力値の変換

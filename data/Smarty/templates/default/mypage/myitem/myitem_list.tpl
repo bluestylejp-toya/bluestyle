@@ -6,31 +6,25 @@
     <ul>
         <!--{foreach from=$arrProducts item=item}-->
         <li>
-            <a href="/mypage/myitem/myitem_detail.php?product_id=<!--{$item.product.product_id}-->" class="c-item">
-                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$item.product.name}--> 画像(1)" class="c-item__img"/>
+            <a href="/mypage/myitem/myitem_detail.php?product_id=<!--{$item.product.product_id|h}-->" class="c-item">
+                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.product.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$item.product.name|h}--> 画像(1)" class="c-item__img"/>
                 <div class="c-item__main">
-                    <p class="c-item__title">タイトル<!--{$item.product.name|h}--></p>
-                    <div class="c-item__status"><span class="status-unselected">ダミー：選択期限まであと2日</span><i class="c-item__<!--{if $item.product.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></span></div>
-                    <!--{if count($item.selection_edge_list) > 0}-->
-                        選択待ち商品あり
-                    <!--{else}-->
+                    <p class="c-item__title"><!--{$item.product.name|h}--></p>
+                    <div class="c-item__status">
+                        <!--{*<span class="status-unselected">ダミー：選択期限まであと2日</span>*}-->
+                        <i class="c-item__<!--{if $item.product.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$item.product.count_of_favorite|n2s|h}--></span></div>
+                    <!--{if count($item.selection_edge_detail) > 0}-->
+                        選択が必要な商品がございます
+                    <!--{elseif $item.progress_percent > 1 and $item.progress_percent < 100}-->
+                        Chainまで<!--{$item.progress_percent}-->%
+                    <!--{elseif $item.progress_percent == 100}-->
+                        Chain成立
+                        <!--{* TODO:該当の受注情報の出荷状況を取得し、応じたメッセージが必要 *}-->
                     <!--{/if}-->
                 </div>
             </a>
         </li>
         <!--{/foreach}-->
-
-        <!--{*　未発送商品ありのデザイン
-        <li>
-            <a href="/user_data/myitem_detail.php" class="c-item">
-                <img src="http://localhost:8080/upload/save_image/2021/09/29/09291558_61540e96ab89a.jpg" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
-                <div class="c-item__main">
-                    <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
-                    <div class="c-item__status"><span class="status-unshipped">未発送</span><i class="c-item__<!--{if $arrProduct.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></span></div>
-                </div>
-            </a>
-        </li>
-        *}-->
     </ul>
 
 </section>

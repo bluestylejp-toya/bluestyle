@@ -35,12 +35,14 @@
     <div class="p-item-detail favorite_area<!--{if $is_favorite}--> registered_favorite<!--{/if}-->">
         <div class="p-item-detail__head">
             <header class="l-header__inner u-mb--0">
-                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date" aria-label="戻る" class="c-btn--header-nav"></a>
                 <p class="c-header-title"><!--{$arrProduct.name|h}--></p>
             </header>
 
             <!--{if $hasUnselectdProductFlg}-->
-                交換するアイテムを選んでください　<a href="/mypage/myitem/status.php?product_id=<!--{$arrProduct.product_id|h}-->">選択画面に遷移</a>
+            <div class="c-btn--mypage__wrapper">
+                <a href="/mypage/myitem/myitem_list.php" class="c-btn--mypage--unselected">交換するアイテム選んでね</a>
+            </div>
             <!--{/if}-->
 
             <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
