@@ -38,6 +38,7 @@ class Batch {
             var_export($chain->selection_edge_list);
         }
 
+        // Chain 成立済みか
         $chained = count($chain->chain_list) == 1;
         echo '$chained = ' . var_export($chained, true) . "\n";
 
@@ -75,7 +76,7 @@ class Batch {
             if (empty($arrOrder)) {
                 echo "createOrder\n";
                 $order_id = self::createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct);
-                $arrOrder = SC_Helper_Purchase_Ex::getOrderByChain($chain_id, $customer_id, $product_class_id);
+                $arrOrder = SC_Helper_Purchase_Ex::getOrder($order_id);
             }
             else {
                 $order_id = $arrOrder['order_id'];
@@ -83,14 +84,21 @@ class Batch {
 
             $objQuery->commit();
 
+            // 中断
             if ($arrOrder['status'] == ORDER_SUSPEND) {
                 throw new Exception("カウントアップの読み込みを中断した。: ORDER_SUSPEND");
             }
 
             // 決済処理
-            // ★未実装(CHAIN-6)
+            if ($arrOrder['status'] == ORDER_NEW) {
+                // 九州産業大学
+                if ($arrOrder['payment_id'] == 7) {
+                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PRE_END); // ループ (Chain 確定)
+                }
+            }
+            $arrOrder = SC_Helper_Purchase_Ex::getOrder($order_id);
 
-            // Chain 成立
+            // Chain 成立済みの場合
             if ($chained) {
                 // 注文受付メールを送信するか
                 $send_order_mail = false;
