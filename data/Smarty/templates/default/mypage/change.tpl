@@ -44,7 +44,6 @@
     });
 <!--{/if}-->
 $('.next_form').on('keyup', function(){
-    console.log($(this).attr('maxlength'))
     if ($(this).val().length >= $(this).attr('maxlength')) {
         $(this).next().focus();
     }
