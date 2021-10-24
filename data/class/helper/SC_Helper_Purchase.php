@@ -1478,6 +1478,7 @@ __EOS__;
         // 最新の受注を優先する。良くないアイディアかも。複数一致したら例外が妥当か。
         $objQuery->setOrder('order_id DESC');
 
+        // 戻り値は getOrder() と同じくする必要がある。本来、getOrder() を呼ぶのが確実かも。
         return $objQuery->getRow('*', 'dtb_order', $where, $arrValues);
     }
 }
