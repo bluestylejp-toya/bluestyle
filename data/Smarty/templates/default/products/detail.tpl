@@ -194,7 +194,7 @@
             <!--/.p-item-detail__body__main-->
 
             <div class="p-item-detail__body__slideup --hidden">
-                <button type="button" class="c-btn--request p-item-detail__request-btn">
+                <span class="c-btn--request p-item-detail__request-btn">
                     <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
                     <g class="particleLayer">
                         <circle fill="#2A7DA7" cx="130" cy="126.5" r="12.5"></circle>
@@ -215,7 +215,7 @@
                     <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"></path>
                     </svg>
                     <span class="label">ほしい</span>
-                </button>
+                </span>
                 <div>
                     <h2 class="c-heading--sm u-text--center">交換に出すアイテムを選んでください</h2>
                     <p>チェックしたアイテムの中から1対1の交換です。数が多いほど、Chainが成立する確率が高くなります。</p>
