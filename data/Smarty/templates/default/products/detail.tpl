@@ -356,7 +356,7 @@ $(function(){
                             $target.push($(this).val());
                         }
                     })
-                    $('.send-request_btn').attr('data-target_id', $target)
+                    $('.send-request_btn').attr('data-target_id', $target);
                     $sendRequestBtn.removeAttr('disabled');
 
                     return false;
