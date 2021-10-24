@@ -19,14 +19,16 @@
         width: $unit*6;
     }
 
+    &__checkbox,
+
     &__radio-button {
         display: flex;
         border-right: 1px solid $border-color-light;
         padding-right: $unit;
         width: calc(100% - #{$unit*6});
 
-        input {
-            display: none;
+        input[type=redio] {
+             display: none;
 
             &:checked {
                 & + .c-card__main::after {
@@ -78,6 +80,70 @@
                     height: $unit+2px;
                     border-radius: $unit;
                     background: $blue;
+                }
+            }
+        }
+
+        input[type=checkbox] {
+            display: none;
+
+            &:checked {
+                & + .c-card__main::after {
+                    opacity: 1;
+                }
+                & + .c-card__main::before {
+                    border: 2px solid $blue;
+                    background: $blue;
+                }
+            }
+
+            & + .c-card__main {
+                width: 100%;
+                position: relative;
+                padding-left: $unit*11;
+
+                p {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                .c-card__img{
+                    left: #{$unit*3+6px};
+                    top: 0;
+                    width: $unit*6;
+                    height: $unit*6;
+                    position: absolute;
+                    object-fit: cover;
+                    border-radius: math.div($unit,2);
+                }
+
+                &::before {
+                    position: absolute;
+                    left: 5px;
+                    top: #{$unit*2 - 2px};
+                    display: block;
+                    content: '';
+                    width: $unit*2;
+                    height: $unit*2;
+                    border-radius: 2px;
+                    border: 2px solid #DADADA;
+                    transition: .3s;
+                }
+                &::after {
+                    transition: .3s;
+                    opacity: 0;
+                    display: block;
+                    position: absolute;
+                    left: 10px;
+                    top: #{$unit*2-1px};
+                    content: '';
+                    width: 7px;
+                    height: $unit+2px;
+                    border-right: 2px solid $white;
+                    border-bottom: 2px solid $white;
+                    transform: rotate(45deg);
+
                 }
             }
         }

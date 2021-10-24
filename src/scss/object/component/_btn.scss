@@ -171,17 +171,14 @@
         padding-bottom: 10px;
         font-weight: 700;
         position: relative;
+        top: calc(100% - 40px);
         background: $white;
         z-index: 1;
+        transition: box-shadow .3s;
+
         &:disabled {
             opacity: 1;
-            svg {
-                opacity: 0.5;
-            }
-            color: rgba(#009fcf, 0.5);
-            &::before {
-                opacity: 0.5;
-            }
+            box-shadow: none;
         }
 
         &::before {
