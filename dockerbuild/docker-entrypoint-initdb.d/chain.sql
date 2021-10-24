@@ -2543,8 +2543,8 @@ CREATE TABLE `dtb_payment` (
 LOCK TABLES `dtb_payment` WRITE;
 /*!40000 ALTER TABLE `dtb_payment` DISABLE KEYS */;
 INSERT INTO `dtb_payment` VALUES (5,'クレジットカード決済',0,1,NULL,NULL,3,1,1,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
-INSERT INTO `dtb_payment` VALUES (6,'登録済みクレジットカード決済',0,1,NULL,NULL,3,1,1,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
-INSERT INTO `dtb_payment` VALUES (7,'九州産業大学',0,NULL,1,NULL,2,1,0,2,'2021-10-13 16:08:25','2021-10-13 16:08:25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_payment` VALUES (6,'登録済みクレジットカード決済',0,1,1,NULL,3,1,0,2,'2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,NULL,1,NULL,NULL,NULL,'/var/www/html/../data/downloads/module/mdl_sln/payment.php',NULL,NULL,'11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'mdl_sln');
+INSERT INTO `dtb_payment` VALUES (7,'九州産業大学',0,NULL,NULL,NULL,2,1,1,2,'2021-10-13 16:08:25','2021-10-13 16:08:25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2569,8 +2569,7 @@ CREATE TABLE `dtb_payment_options` (
 
 LOCK TABLES `dtb_payment_options` WRITE;
 /*!40000 ALTER TABLE `dtb_payment_options` DISABLE KEYS */;
-INSERT INTO `dtb_payment_options` VALUES (1,6,2);
-INSERT INTO `dtb_payment_options` VALUES (1,7,1);
+INSERT INTO `dtb_payment_options` VALUES (1,6,1);
 INSERT INTO `dtb_payment_options` VALUES (2,3,1);
 /*!40000 ALTER TABLE `dtb_payment_options` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -5171,4 +5170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-22  0:46:02
+-- Dump completed on 2021-10-24  4:12:42
