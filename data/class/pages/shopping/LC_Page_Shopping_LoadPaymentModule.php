@@ -67,7 +67,12 @@ class LC_Page_Shopping_LoadPaymentModule extends LC_Page_Ex
 
             return;
         }
-        require_once $module_path;
+        if (defined('BATCH') && BATCH) {
+            require $module_path;
+        }
+        else {
+            require_once $module_path;
+        }
     }
 
     /**
