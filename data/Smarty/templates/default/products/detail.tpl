@@ -213,10 +213,12 @@
                     <ul class="u-mb--4">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
-                                <label class="c-card__radio-button" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
-                                    <input type="radio" name="my_product" value="<!--{$arrProduct.product_id|h}-->">
+                                <label data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                                    <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
                                     <div class="c-card__main">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
+                                        <!--{*
+                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
+                                        *}-->
                                         <p><!--{$arrProduct.name|h}--></p>
                                         <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
                                     </div>
@@ -225,6 +227,8 @@
                             </li>
                         <!--{/foreach}-->
                     </ul>
+                    <button type="button" id="decision-button">決定ボタン</button>
+                    <button type="button" id="cancel-button">キャンセルボタン</button>
                 <!--{else}-->
                 <p>アイテムが登録されておりません。</p>
                 <!--{/if}-->
@@ -272,22 +276,42 @@
 $(function(){
     $(".history_list").appendTo(".history");
 
-    // 交換商品クリック時
-    $('.c-card__radio-button').on('change', function () {
-        let $this = $(this)
-        let $closest = $(this).closest(".favorite_area");
-        let $close = $('.slideup_bg');
-        let $mode = $closest.hasClass("registered_favorite");
-        init_favorite($mode, $closest, $this)
-        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+    // キャンセルボタンクリック時
+    $('#cancel-button').on('click', function () {
+        $("input[type=checkbox][name=my_product]").removeAttr('checked');
+
         let $main = $('.p-item-detail__body .p-item-detail__body__main');
+        let $close = $('.slideup_bg');
+        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+        setTimeout(function () {
+            slideDown($close, $slideUp, $main);
+        }, 300)
+        checked(true, $('.favorite_area #request'))
+    })
+
+    // 交換商品クリック時
+    $('#decision-button').on('click', function () {
+        // 未選択時エラー
+        if ($('input[name=my_product]:checked').length == 0) {
+            alert('交換商品を選択してください')
+            return false;
+        }
+        $('input[name=my_product]:checked').map(function(){
+            let $this = $(this)
+            let $closest = $(this).closest(".favorite_area");
+            let $mode = $closest.hasClass("registered_favorite");
+            init_favorite($mode, $closest, $this)
+        });
+        let $main = $('.p-item-detail__body .p-item-detail__body__main');
+        let $close = $('.slideup_bg');
+        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         setTimeout(function () {
             slideDown($close, $slideUp, $main);
             $('.favorite_area #request').addClass('--active');
         }, 300)
         $("span[class=label]").text('済');
         checked(true, $('.favorite_area #request'))
-        $("input[type=radio][name=my_product]").removeAttr('checked');
+        $("input[type=checkbox][name=my_product]").removeAttr('checked');
     })
 
     // ほしいボタンクリック時
