@@ -21,6 +21,11 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
     public $arrCheckItems;
 
     /**
+     * @var リクエスト商品ID
+     */
+    public $arrRequestProductId = [];
+
+    /**
      * LC_Page_FrontParts_Bloc_CheckItem constructor.
      */
     public function __construct()
@@ -71,6 +76,12 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
 
         // 閲覧商品取得
         $this->arrCheckItems = $this->getCheckItem();
+
+        // リクエスト商品IDを取得
+        $objCustomer = new SC_Customer_Ex();
+        if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
+            $this->arrRequestProductId = $this->getRequestProductId($objCustomer->getValue('customer_id'));
+        }
     }
 
     /**
@@ -168,5 +179,43 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
         $objCookie = new SC_Cookie_Ex(self::EXPIRESDAY);
         $objCookie->setCookie(self::COOKIENAME, $strParam);
         $_COOKIE[self::COOKIENAME] = $strParam;
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getRequestProductId($customer_id)
+    {
+        $arrRequestProductId = array();
+
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        // 出品中アイテム商品ID取得
+        $arrProductId = array();
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+        $index = 0;
+        foreach ($arrProductId as $key => $productID) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $productID);
+            $result = json_decode($objHelperApi->exec(), true);
+            if (count($result) > 0) {
+                $chainId = $result[0]['id'];
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                foreach ($result['chain_list'] as $chainList){
+                    foreach ($chainList as $chain){
+                        if (in_array($chain['target_id'], $arrProductId)){
+                            $arrRequestProductId[] = $chain['source_id'];
+                        }
+                    }
+                }
+            }
+        }
+        return $arrRequestProductId;
     }
 }
