@@ -313,6 +313,7 @@ $(function(){
         let $close = $('.slideup_bg');
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $wrap = $closest.parents('.l-wrapper');
+
         if ($('input[name=my_product]:checked').length == 0) {
             alert('交換商品を選択してください')
             return false;
@@ -328,6 +329,8 @@ $(function(){
             $('.favorite_area #request').addClass('--active');
         }, 300)
         $("input[type=checkbox][name=my_product]").removeAttr('checked');
+        $(this).attr('disabled', true);
+
     })
 
     // ほしいボタンクリック時
