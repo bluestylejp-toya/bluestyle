@@ -197,6 +197,29 @@ class SC_UploadFile
                     // Safari on iOS の拡張子が .jpeg なので .jpg に書き換える
                     if (in_array('jpg', $this->arrExt[$cnt])
                         && preg_match('/^(.*)(\.jpeg)$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+
+                        $exif = exif_read_data($_FILES[$keyname]['tmp_name'], 'EXIF');
+                        if ($exif !== false) {
+                            $im = new Imagick();
+                            try {
+                                $success = $im->readImage($_FILES[$keyname]['tmp_name']);
+                                if (!$success) {
+                                    throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
+                                }
+
+                                $im->autoOrient();
+                                $success = $im->writeImage($_FILES[$keyname]['tmp_name']);
+                                if (!$success) {
+                                    throw new Exception("Imagick::writeImage: {$_FILES[$keyname]['tmp_name']}");
+                                }
+                            } catch (Exception $e) {
+                                throw $e;
+                            } finally {
+                                $im->clear();
+                                $im->destroy();
+                            }
+                        }
+
                         $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
                     }
                     // 拡張子チェック
@@ -208,7 +231,7 @@ class SC_UploadFile
                             // 保存用の画像名を取得する
                             $dst_file = $this->lfGetTmpImageName($rename, $keyname);
                             $this->temp_file[$cnt] = $this->makeThumb($_FILES[$keyname]['tmp_name'], $this->width[$cnt], $this->height[$cnt], $dst_file);
-                        // 画像ファイル以外の場合
+                            // 画像ファイル以外の場合
                         } else {
                             // 一意なファイル名を作成する。
                             if ($rename) {
