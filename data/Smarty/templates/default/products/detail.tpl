@@ -238,12 +238,12 @@
                     <ul class="u-mb--4">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
-                                <label data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                                <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->" class="">
                                     <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
                                     <div class="c-card__main">
-                                        <!--{*
+
                                         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                        *}-->
+
                                         <p><!--{$arrProduct.name|h}--></p>
                                         <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
                                     </div>
@@ -318,7 +318,6 @@ $(function(){
         setTimeout(function () {
             slideDown($close, $slideUp, $main);
         }, 300)
-        checked(true, $('.favorite_area #request'))
     })
 
     // 交換商品クリック時
@@ -342,8 +341,6 @@ $(function(){
             $('.favorite_area #request').addClass('--active');
         }, 300)
         $("span[class=label]").text('済');
-        checked(true, $('.favorite_area #request'))
-        $("input[type=checkbox][name=my_product]").removeAttr('checked');
     })
 
     // ほしいボタンクリック時
