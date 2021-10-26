@@ -9,6 +9,14 @@ var fs = require("fs");
 var del = require("del");
 var minimist = require("minimist");
 var runSequence = require("run-sequence");
+var imageminPngquant = require("imagemin-pngquant");
+var imageminJpegRecompress = require("imagemin-jpeg-recompress");
+
+//ejs
+var ejs = require("gulp-ejs");
+var rename = require("gulp-rename");
+var plumber = require("gulp-plumber");
+var htmlbeautify = require("gulp-html-beautify");
 
 const { task } = require("gulp");
 
@@ -37,11 +45,15 @@ var paths = {
 var src = {
   scss: paths.srcDir + "scss/**/*.scss",
   js: paths.srcDir + "js/**/*.js",
+  ejs: paths.srcDir + "ejs/**/*.ejs",
+  img: paths.srcDir + "img/**/**/*.+(jpg|png|gif|svg|ico)",
 };
 
 var dest = {
+  html: "html/lp/",
   js: "html/user_data/packages/default/js",
   css: "html/user_data/packages/default/css",
+  img: "html/user_data/packages/default/img",
 };
 
 // ベンダープレフィックス付与範囲
@@ -112,7 +124,9 @@ gulp.task("jsmin", function (done) {
 // ファイルの監視
 gulp.task("watch", function () {
   gulp.watch(src.scss, gulp.task("sass"));
+  gulp.watch(src.img, gulp.task("imgmin"));
   gulp.watch(src.js, gulp.task("jsmin"));
+  gulp.watch(src.ejs, gulp.task("ejs"));
   gulp.watch(templateFiles, gulp.task("bs-reload"));
 });
 
@@ -125,8 +139,62 @@ function errNotify() {
   });
 }
 
+//画像圧縮
+gulp.task("imgmin", function (done) {
+  return gulp
+    .src(src.img)
+    .pipe($.cached("image"))
+    .pipe(
+      $.imagemin([
+        $.imagemin.gifsicle({ interlaced: true }),
+        imageminPngquant(),
+        imageminJpegRecompress(),
+        $.imagemin.svgo({
+          plugins: [{ removeViewBox: true }],
+        }),
+      ])
+    )
+    .pipe(gulp.dest(dest.img))
+    .pipe(bs.stream({ once: true }))
+    .pipe($.notify({ message: "Images minified", onLast: true }));
+  done();
+});
+
+// ejs
+gulp.task("ejs", function (done) {
+  const json_path = "./src/data.json";
+  const json = JSON.parse(fs.readFileSync(json_path));
+
+  return gulp
+    .src(["src/ejs/**/*.ejs", "!" + "src/ejs/**/_*.ejs"])
+    .pipe(plumber())
+    .pipe(
+      ejs({
+        jsonData: json,
+      })
+    )
+    .pipe(
+      htmlbeautify({
+        indent_size: 2,
+        indent_char: " ",
+        max_preserve_newlines: 0,
+        preserve_newlines: false,
+        indent_inner_html: false,
+        extra_liners: [],
+      })
+    )
+    .pipe(rename({ extname: ".html" }))
+    .pipe(gulp.dest("./html/lp"))
+    .pipe(bs.stream())
+    .pipe($.notify({ message: "HTML compiled", onLast: true }));
+  done();
+});
+
 // task
 gulp.task(
   "default",
-  gulp.series(gulp.parallel("sass", "jsmin"), gulp.parallel("watch", "bs-init"))
+  gulp.series(
+    gulp.parallel("sass", "jsmin", "imgmin", "ejs"),
+    gulp.parallel("watch", "bs-init")
+  )
 );

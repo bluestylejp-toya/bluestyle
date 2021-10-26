@@ -1,0 +1,12 @@
+
+<% var id = "lp"; %>
+<% var title = jsonData.page[id].title; %>
+<% var description = jsonData.page[id].description; %>
+<% var thumbnail = jsonData.page[id].thumbnail; %>
+<%- include( './_inc/_header', { id:id,title: title, description: description, thumbnail: thumbnail}) %>
+<main>
+  <div class="c-firstview">
+  </div>
+</main>
+<%- include( './_inc/_footer', {id:id}) %>
+

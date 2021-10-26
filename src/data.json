@@ -1,0 +1,20 @@
+{
+    "site-info": {
+        "title": "Chain",
+        "description": "Chain",
+        "sns": {
+            "line": "",
+            "twitter": "",
+            "instagram": ""
+        }
+    },
+    "page": {
+        "lp":{
+
+            "dir": "/lp",
+            "title": "ページ名",
+            "description": "ページの説明",
+            "thumbnail": "lp-ogp.png"
+        }
+    }
+}
