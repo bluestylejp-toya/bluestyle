@@ -306,41 +306,43 @@ $(function(){
     $(".history_list").appendTo(".history");
 
     // 交換商品クリック時
-    $('.send-request_btn').on('click', function () {
-        let $this = $(this)
-        let $closest = $(this).closest(".favorite_area");
-        let $close = $('.slideup_bg');
-        let $mode = $closest.hasClass("registered_favorite");
-        let $wrap = $closest.parents('.l-wrapper');
+    // $('.send-request_btn').on('click', function () {
+    //     let $this = $(this)
+    //     let $closest = $(this).closest(".favorite_area");
+    //     let $close = $('.slideup_bg');
+    //     let $mode = $closest.hasClass("registered_favorite");
+    //     let $wrap = $closest.parents('.l-wrapper');
 
-        init_favorite($mode, $closest, $this)
-        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
-        setTimeout(function () {
-            slideDown($close, $slideUp, $main);
-        }, 300)
-    })
+    //     init_favorite($mode, $closest, $this)
+    //     let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+    //     setTimeout(function () {
+    //         slideDown($close, $slideUp, $main);
+    //     }, 300)
+    // })
 
     // 交換商品クリック時
     $('#decision-button').on('click', function () {
         // 未選択時エラー
+        let $closest = $(this).closest(".favorite_area");
+        let $main = $('.p-item-detail__body .p-item-detail__body__main');
+        let $close = $('.slideup_bg');
+        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+        let $wrap = $closest.parents('.l-wrapper');
         if ($('input[name=my_product]:checked').length == 0) {
             alert('交換商品を選択してください')
             return false;
         }
         $('input[name=my_product]:checked').map(function(){
             let $this = $(this)
-            let $closest = $(this).closest(".favorite_area");
             let $mode = $closest.hasClass("registered_favorite");
             init_favorite($mode, $closest, $this)
         });
-        let $main = $('.p-item-detail__body .p-item-detail__body__main');
-        let $close = $('.slideup_bg');
-        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+
         setTimeout(function () {
             slideDown($close, $slideUp, $main, $wrap);
             $('.favorite_area #request').addClass('--active');
         }, 300)
-        $("span[class=label]").text('済');
+        $("input[type=checkbox][name=my_product]").removeAttr('checked');
     })
 
     // ほしいボタンクリック時
@@ -415,6 +417,7 @@ $(function(){
                     favorite_product_id:  $this.data("product_id"),
                     target_id: $this.data("target_id"),
                 };
+                console.log(postData)
                 postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
 
                 $.ajax({
