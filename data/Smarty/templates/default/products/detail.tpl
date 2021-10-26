@@ -306,21 +306,6 @@ $(function(){
     $(".history_list").appendTo(".history");
 
     // 交換商品クリック時
-    // $('.send-request_btn').on('click', function () {
-    //     let $this = $(this)
-    //     let $closest = $(this).closest(".favorite_area");
-    //     let $close = $('.slideup_bg');
-    //     let $mode = $closest.hasClass("registered_favorite");
-    //     let $wrap = $closest.parents('.l-wrapper');
-
-    //     init_favorite($mode, $closest, $this)
-    //     let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
-    //     setTimeout(function () {
-    //         slideDown($close, $slideUp, $main);
-    //     }, 300)
-    // })
-
-    // 交換商品クリック時
     $('#decision-button').on('click', function () {
         // 未選択時エラー
         let $closest = $(this).closest(".favorite_area");
