@@ -180,6 +180,7 @@ $(function(){
                 // キャプションの登録があって画像がない場合
                 alert('画像の登録をしてください。');
             } else {
+                // 登録されなくて、3個以降のアイテムの場合非表示
                 if($image.attr('src') == '' && $('.sub_large_images li.--hidden').length < 7) {
                     $parent.addClass('--hidden');
                 }
@@ -242,7 +243,6 @@ $(function(){
             $('.l-popup').attr('data-item_mode', 'false');
             $closest.find('input[name=sub_title' + $closest.attr('data-item_id') + ']').val('') ;
             $closest.find('img').attr('src', '');<!--{* プレビューの削除に必要な様子 *}-->
-            console.log( )
             if($('.sub_large_images li.--hidden').length < 7) {
                 $closest.addClass('--hidden');
             }
@@ -375,11 +375,10 @@ function postSwapImage(key_base, id1, id2) {
 
 // ボタンの表示のコントロール
 function addimageBtnStatus($add = 0){
-    console.log($('.c-item__img[src=""]').length)
-    if($('.c-item__img[src=""]').length > (7 - $add) || $('.c-item__img[src=""]').length === 0) {
-        $('.c-item__add-image-btn').addClass('--hidden')
-    }else {
+    if($('.c-item__img[src=""]').length <= 7 && $('.c-item__img[src=""]').length > 0) {
         $('.c-item__add-image-btn').removeClass('--hidden')
+    }else {
+        $('.c-item__add-image-btn').addClass('--hidden')
     }
 }
 
