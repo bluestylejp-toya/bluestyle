@@ -189,9 +189,9 @@
         }
     }
     span.c-item__img {
-        background: map-get($gray-set, 3);
         height: 48px;
         display: block;
+        background: url('data:image/svg+xml;utf8,<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.6789 11.3337H10.6789V19.3337H8.01221V11.3337H0.012207V8.66699H8.01221V0.666992H10.6789V8.66699H18.6789V11.3337Z" fill="%23fff"/></svg>') center / 19px auto no-repeat map-get($gray-set, 3);
 
         span {
             display: none;

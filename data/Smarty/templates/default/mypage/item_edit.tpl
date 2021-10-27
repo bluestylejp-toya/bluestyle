@@ -87,7 +87,7 @@
                         <div class="c-item__main">
                             <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
                             <h2 class="c-heading-subtitle u-text--left u-color--gray">キャプション</h2>
-                            <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="u-mb--4" readonly/>
+                            <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="u-mb--4" readonly placeholder="（キャプションがありません）"/>
                             <button type="button" class="c-item__img-save-btn c-btn--primary">保存する</button>
                         </div>
                         <button class="c-item__controll-btn" type="button"></button>
@@ -105,7 +105,7 @@
                 <div class="l-popup__close">
                 </div>
             </div>
-            <button class="c-btn--default u-mb--4 c-item__add-image-btn" type="button"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>写真を追加</button>
+            <button class="c-btn--default u-mb--4 c-item__add-image-btn --hidden" type="button"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>写真を追加</button>
 
             <!--{if !$tpl_lock_because_on_loop}-->
                 <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
@@ -124,6 +124,8 @@
 <!--{/if}-->
 // 公開、非公開
 $(function(){
+    // ボタンの初期化
+    addimageBtnStatus();
     $('.c-form-parts--toggle-btn__hidden').on('change', function(){
         $('[name=status]').val($('[name=status]').val() == 1 ? 2 :1);
         $('.c-message--alert').toggleClass('--hidden');
@@ -150,7 +152,13 @@ $(function(){
 
         //削除と編集のコントロール・ポップアップ
         $('.l-popup').attr('data-item_mode', 'edit') ;
-        $('a.delete_image').attr('data-item_delete', $id);
+        if($image.attr('src') !== "") {
+            $('a.delete_image').attr('data-item_delete', $id);
+            $('a.delete_image').removeClass('disabled')
+        } else {
+            $('a.delete_image').removeAttr('data-item_delete');
+            $('a.delete_image').addClass('disabled')
+        }
 
         $('.l-popup .l-popup__close').on('click', function(){
             $('body').removeClass('--overflow-hidden');
@@ -172,6 +180,9 @@ $(function(){
                 // キャプションの登録があって画像がない場合
                 alert('画像の登録をしてください。');
             } else {
+                if($image.attr('src') == '' && $('.sub_large_images li.--hidden').length < 7) {
+                    $parent.addClass('--hidden');
+                }
                 $parent.removeClass('c-item--modal').addClass('c-item--edit');
                 $caption.attr('readonly', true);
                 $imageFile.attr('disabled', true);
@@ -206,6 +217,7 @@ $(function(){
         .fail(ajax_fail);
 
         $(this).val(null);
+
     });
 
     //画像が削除された時の処理
@@ -230,10 +242,15 @@ $(function(){
             $('.l-popup').attr('data-item_mode', 'false');
             $closest.find('input[name=sub_title' + $closest.attr('data-item_id') + ']').val('') ;
             $closest.find('img').attr('src', '');<!--{* プレビューの削除に必要な様子 *}-->
-            $closest.addClass('--hidden');
+            console.log( )
+            if($('.sub_large_images li.--hidden').length < 7) {
+                $closest.addClass('--hidden');
+            }
             $closest.find('span.c-item__img').removeClass('--hidden');
             $closest.parent().append($closest);
             renumberImgNum();
+            addimageBtnStatus()
+
         })
         .fail(ajax_fail);
     });
@@ -260,15 +277,12 @@ $(function(){
             $closest.find('span.c-item__img').addClass('--hidden');
             $closest.find('.preview').removeClass('loading')
         }
-        else {
-            // if($closest.attr('data-item_id') === 1) {
-            //     alert('カバー写真は削除できません。');
-            // }
-        }
+        addimageBtnStatus();
     }
 
     function ajax_fail(jqXHR, textStatus, errorThrown) {
         alert('失敗しました。');
+        $closest.find('.preview').removeClass('loading')
     }
 });
 
@@ -357,6 +371,16 @@ function postSwapImage(key_base, id1, id2) {
     let $cap2 = $('#form1 input[name=sub_title' + id2 + ']');
     $cap1.attr('name', 'sub_title' + id2);
     $cap2.attr('name', 'sub_title' + id1);
+}
+
+// ボタンの表示のコントロール
+function addimageBtnStatus($add = 0){
+    console.log($('.c-item__img[src=""]').length)
+    if($('.c-item__img[src=""]').length > (7 - $add) || $('.c-item__img[src=""]').length === 0) {
+        $('.c-item__add-image-btn').addClass('--hidden')
+    }else {
+        $('.c-item__add-image-btn').removeClass('--hidden')
+    }
 }
 
 function renumberImgNum() {
