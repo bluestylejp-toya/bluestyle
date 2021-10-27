@@ -91,7 +91,7 @@ class Batch {
 
             // 決済処理
             if ($arrOrder['status'] == ORDER_NEW) {
-                // 九州産業大学
+                // 無料
                 if ($arrOrder['payment_id'] == 7) {
                     $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PRE_END); // ループ (Chain 確定)
                 }
