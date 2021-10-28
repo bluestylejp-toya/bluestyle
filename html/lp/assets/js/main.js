@@ -132,7 +132,32 @@ window.addEventListener("DOMContentLoaded", () => {
   const moveto = new MoveTo();
   let anchorTags = document.querySelectorAll('a[href^="#"]');
   anchorTags = Array.prototype.slice.call(anchorTags, 0); //IE対策
-  anchorTags.forEach((value) => {
-    moveto.registerTrigger(value);
+  anchorTags.forEach((anchor) => {
+    moveto.registerTrigger(anchor);
+    anchor.addEventListener("click", () => {
+      menuBtn.classList.remove("on");
+      body.classList.remove("hidden");
+    });
   });
+  const setFillHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+    console.log(vh);
+  };
+
+  let vw = window.innerWidth;
+
+  window.addEventListener("resize", () => {
+    if (vw === window.innerWidth) {
+      // 画面の横幅にサイズ変動がないので処理を終える
+      return;
+    }
+
+    // 画面の横幅のサイズ変動があった時のみ高さを再計算する
+    vw = window.innerWidth;
+    setFillHeight();
+  });
+
+  // 初期化
+  setFillHeight();
 });
