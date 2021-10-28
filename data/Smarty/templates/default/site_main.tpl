@@ -22,6 +22,10 @@
 
 <!--{strip}-->
 <body class="<!--{$tpl_page_class_name|h}-->">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMZZBG3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!--{$GLOBAL_ERR}-->
     <div class="l-wrapper">
     <!--{if $smarty.server.PHP_SELF == "/index.php"}-->
