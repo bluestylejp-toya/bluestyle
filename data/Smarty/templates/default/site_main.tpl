@@ -103,10 +103,10 @@
                                 <li class="c-item-tab__item --active" data-tab_nav="0">
                                     <a href="javascript:void(0)">新着</a>
                                 </li>
-                                <!--<li class="c-item-tab__item">
-                                    <a href="javascript:void(0)">ファストChain</a>
-                                </li>-->
                                 <li class="c-item-tab__item" data-tab_nav="1">
+                                    <a href="javascript:void(0)">ファストChain</a>
+                                </li>
+                                <li class="c-item-tab__item" data-tab_nav="2">
                                     <a href="javascript:void(0)">閲覧履歴</a>
                                 </li>
                             </ul>
@@ -122,8 +122,8 @@
 
                 <!--{* ▼メイン下部 *}-->
                 <!--{if !empty($arrPageLayout.MainFoot)}-->
-                    <!--{if $smarty.server.PHP_SELF==$list}--><div class="c-item-tab__content" data-tab_item="1"><!--{/if}-->
                     <!--{foreach key=MainFootKey item=MainFootItem from=$arrPageLayout.MainFoot}-->
+                        <!--{if $smarty.server.PHP_SELF==$list}--><div class="c-item-tab__content" data-tab_item="<!--{$MainFootKey+1}-->"><!--{/if}-->
                         <!-- ▼<!--{$MainFootItem.bloc_name}--> -->
                         <!--{if $MainFootItem.php_path != ""}-->
                             <!--{include_php_ex file=$MainFootItem.php_path items=$MainFootItem}-->
@@ -131,8 +131,8 @@
                             <!--{include file=$MainFootItem.tpl_path items=$MainFootItem}-->
                         <!--{/if}-->
                         <!-- ▲<!--{$MainFootItem.bloc_name}--> -->
+                        <!--{if $smarty.server.PHP_SELF==$list}--></div><!--{/if}-->
                     <!--{/foreach}-->
-                    <!--{if $smarty.server.PHP_SELF==$list}--></div><!--{/if}-->
                 <!--{/if}-->
                 <!--{* ▲メイン下部 *}-->
             </div>

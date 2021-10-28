@@ -1,7 +1,7 @@
 <!--{if $arrCheckItems}-->
     <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
         <!--{if $smarty.server.PHP_SELF==$list}-->
-            <div class="c-item-tab__content" data-tab_item="1">
+            <div class="c-item-tab__content" data-tab_item="2">
         <!--{/if}-->
         <ul class="l-item-list history_list">
             <!--{section name=cnt loop=$arrCheckItems}-->
