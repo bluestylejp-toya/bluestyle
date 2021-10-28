@@ -44,16 +44,18 @@ var paths = {
 // 関連ファイルパス設定
 var src = {
   scss: paths.srcDir + "scss/**/*.scss",
-  js: paths.srcDir + "js/**/*.js",
+  lpScss: paths.srcDir + "lp/scss/**/*.scss",
+  js: paths.srcDir + "lp/js/**/*.js",
   ejs: paths.srcDir + "ejs/**/*.ejs",
   img: paths.srcDir + "img/**/**/*.+(jpg|png|gif|svg|ico)",
 };
 
 var dest = {
   html: "html/lp/",
-  js: "html/user_data/packages/default/js",
+  js: "html/lp/assets/js",
   css: "html/user_data/packages/default/css",
-  img: "html/user_data/packages/default/img",
+  lpCss: "html/lp/assets/css",
+  img: "html/lp/assets/img",
 };
 
 // ベンダープレフィックス付与範囲
@@ -106,6 +108,25 @@ gulp.task("sass", function (done) {
     .pipe($.notify({ message: "SASS -> CSS Completed", onLast: true }));
   done();
 });
+gulp.task("lpSass", function (done) {
+  gulp
+    .src(src.lpScss)
+    // .pipe($.cached("sass"))
+    .pipe($.sassPartialsImported(paths.srcDir + "lp/scss/"))
+    .pipe($.if(!isProduction, $.sourcemaps.init()))
+    .pipe(scss({ outputStyle: "compressed" }))
+    .on("error", errNotify())
+    .pipe(
+      $.autoprefixer({
+        autoprefixer: { browsers: prefixBrowsers },
+      })
+    )
+    .pipe($.if(!isProduction, $.sourcemaps.write("./_map")))
+    .pipe(gulp.dest(dest.lpCss))
+    .pipe(bs.stream())
+    .pipe($.notify({ message: "SASS -> CSS Completed", onLast: true }));
+  done();
+});
 
 // JS結合＆圧縮
 gulp.task("jsmin", function (done) {
@@ -124,6 +145,7 @@ gulp.task("jsmin", function (done) {
 // ファイルの監視
 gulp.task("watch", function () {
   gulp.watch(src.scss, gulp.task("sass"));
+  gulp.watch(src.lpScss, gulp.task("lpSass"));
   gulp.watch(src.img, gulp.task("imgmin"));
   gulp.watch(src.js, gulp.task("jsmin"));
   gulp.watch(src.ejs, gulp.task("ejs"));
@@ -194,7 +216,7 @@ gulp.task("ejs", function (done) {
 gulp.task(
   "default",
   gulp.series(
-    gulp.parallel("sass", "jsmin", "imgmin", "ejs"),
+    gulp.parallel("sass", "lpSass", "imgmin", "ejs"),
     gulp.parallel("watch", "bs-init")
   )
 );

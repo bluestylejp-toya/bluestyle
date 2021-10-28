@@ -1,0 +1,74 @@
+@use 'sass:math';
+html{
+  height: -webkit-fill-available;
+}
+body{
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  font-family: 'Noto Sans JP', sans-serif;
+
+  &.hidden {
+      height: 100%;
+      overflow: hidden;
+  }
+}
+.l-container{
+    max-width: 1080px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@import "../../scss/foundation/index";
+@import "./header";
+@import "./footer";
+@import "./objects/objects";
+body{
+  @include mq($breakpoint: md) {
+    min-width: 1080px;
+  }//Media Query
+}
+main {
+    background: #EBEBEC;
+}
+.heading--lg {
+    font-size: 28px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+
+    span {
+        background: linear-gradient(to top, #FFF000 10%, rgba(#FFF000, 0) 10%);
+    }
+    @include mq($breakpoint: md) {
+        font-size: 40px;
+      margin-bottom: 20px;
+    }//Media Query
+}
+.heading--md {
+    font-weight: 700;
+    color: #FFF000;
+    font-size: 18px;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 20px;
+    @include mq($breakpoint: md) {
+        font-size: 28px;
+        margin-bottom: 15px;
+
+    }//Media Query
+}
+
+.is-sp {
+    @include mq($breakpoint: md) {
+        display: none;
+    }//Media Query
+}
+.is-pc {
+    @include mqd($breakpoint: md) {
+        display: none;
+    }//Media Query
+}

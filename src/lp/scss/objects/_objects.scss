@@ -1,0 +1,502 @@
+.c-firstview {
+    padding: 24px;
+    background: linear-gradient(to right,#28C4F4 0%, #97CA41 100%);
+    color: #fff;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+
+    @include mq($breakpoint: md) {
+        height: calc(100vh - 80px);
+        margin-bottom: 50px;
+    }//Media Query
+
+    &__title {
+        font-size: 28px;
+        font-family: 'Zen Maru Gothic', sans-serif;
+        text-align: center;
+
+        text-shadow: 2px 2px 4px rgba(#000, .3);
+        letter-spacing: -.09em;
+        line-height: 1.4;
+
+        @include mq($breakpoint: md) {
+            font-size: 42px;
+            letter-spacing: 0em;
+
+        }//Media Query
+    }
+    &__lead {
+        font-size: 16px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(#000, .3);
+        font-weight: 700;
+
+        @include mq($breakpoint: md) {
+          font-size: 18px;
+        }//Media Query
+    }
+}
+
+.c-firstview-img {
+    position: relative;
+    max-width: 350px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mq($breakpoint: md) {
+        max-width: 400px;
+    }//Media Query
+    @include mq($breakpoint: lg) {
+        max-width: 560px;
+    }//Media Query
+    .circle {
+        fill: rgba(#fff, .3)
+    }
+    .line {
+        fill: #fff;
+    }
+    .left-1,.left-3,.right-2,.right-4 {
+        opacity: 1;
+        animation: kirakira 2s infinite;
+        transform-origin: center;
+    }
+    .left-2,.left-4,.right-1,.right-3 {
+        opacity: 1;
+        animation: kirakira2  2s infinite;
+        transform-origin: center;
+    }
+    &__logo {
+        left: 25%;
+        width: 50%;
+       top: 50%;
+       transform: translateY(-50%);
+        position: absolute;
+        filter: drop-shadow(4px 4px 4px rgba(0,0,0,.2));
+    }
+}
+
+.c-btn--cv {
+    background: #F35400;
+    width: 240px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    margin: 0 auto;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border: 1px solid #F35400;
+    color: $white;
+    font-size: 20px;
+
+    @include mq($breakpoint: md) {
+        height: 60px;
+        width: 270px;
+        transition: .3s;
+        &:hover {
+            background: $white;
+            color: #F35400;
+            box-shadow: 0 0 10px rgba(#000, .3);
+        }
+    }//Media Query
+
+    &--header {
+        @include mq($breakpoint: md) {
+
+            background: #F35400;
+            width: 160px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+            margin: 0 auto;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            border: 1px solid #F35400;
+            &:hover {
+                background: $white;
+                box-shadow: 0 0 10px rgba(#000, .3);
+            }
+        }//Media Query
+    }
+}
+
+@keyframes kirakira {
+    0% {
+
+        transform: scale(1);
+    }
+    50% {
+
+        transform: scale(.95);
+    }
+    100% {
+
+        transform: scale(1);
+    }
+}
+@keyframes kirakira2 {
+    0% {
+
+        transform: scale(.95);
+    }
+    50% {
+
+        transform: scale(1);
+    }
+    100% {
+
+        transform: scale(.95);
+    }
+}
+
+.c-about {
+    text-align: center;
+    margin-bottom: 20px;
+
+
+    @include mq($breakpoint: md) {
+        margin-bottom: 30px;
+
+    }//Media Query
+    margin-right: auto;
+
+    &__title {
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 28px;
+
+        @include mq($breakpoint: md) {
+            font-size: 40px;
+
+        }//Media Query
+    }
+
+    &__lead {
+        font-size: 18px;
+        color: #009ECD;
+
+        @include mq($breakpoint: md) {
+            color: #000;
+          font-size: 22px;
+        }//Media Query
+    }
+}
+.c-content-wrapper {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 20px;
+    padding-bottom: 80px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><g  transform="translate(-1220 -1448.58)"><path d="M30,3.6A26.408,26.408,0,0,0,19.725,54.327,26.408,26.408,0,0,0,40.275,5.673,26.231,26.231,0,0,0,30,3.6M30,0A30,30,0,1,1,0,30,30,30,0,0,1,30,0Z" transform="translate(1220 1448.58)" fill="%23ffffff"/><path d="M1251.389,1493.574l13.19-10.8a2.193,2.193,0,0,0-2.779-3.392l-9.608,7.871v-21.966a2.192,2.192,0,0,0-4.384,0v21.966l-9.608-7.871a2.193,2.193,0,0,0-2.779,3.392l13.19,10.8A2.193,2.193,0,0,0,1251.389,1493.574Z" fill="%23ffffff"/></g></svg>') center bottom 0px/ 60px auto no-repeat #009ECD;
+
+    &.is-last {
+        background: #009ECD;
+        padding-bottom: 0px;
+
+        @include mq($breakpoint: md) {
+          background: none;
+          padding-bottom: 70px;
+        }//Media Query
+    }
+
+    strong {
+        font-weight: 400;
+        background: linear-gradient(to top, #FFF000 12%, rgba(#FFF000, 0) 12%);
+    }
+
+    @include mq($breakpoint: md) {
+        background: none;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+        position: relative;
+
+
+        &.is-first .c-content-wrapper__inner {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        &.is-last .c-content-wrapper__inner {
+            background: #009ECD;
+            padding-bottom: 20px;
+
+            &::after {
+                content: none;
+            }
+        }
+
+        &.reverse {
+            justify-content: flex-end;
+        }
+    }//Media Query
+    &__inner {
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @include mq($breakpoint: md) {
+            width: 630px;
+            padding: 30px 30px 100px;
+            margin-left: auto;
+            margin-right: auto;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><g  transform="translate(-1220 -1448.58)"><path d="M30,3.6A26.408,26.408,0,0,0,19.725,54.327,26.408,26.408,0,0,0,40.275,5.673,26.231,26.231,0,0,0,30,3.6M30,0A30,30,0,1,1,0,30,30,30,0,0,1,30,0Z" transform="translate(1220 1448.58)" fill="%23ffffff"/><path d="M1251.389,1493.574l13.19-10.8a2.193,2.193,0,0,0-2.779-3.392l-9.608,7.871v-21.966a2.192,2.192,0,0,0-4.384,0v21.966l-9.608-7.871a2.193,2.193,0,0,0-2.779,3.392l13.19,10.8A2.193,2.193,0,0,0,1251.389,1493.574Z" fill="%23ffffff"/></g></svg>') center bottom 10px/ 60px auto no-repeat #009ECD;
+        }//Media Query
+    }
+}
+
+
+.row--reverse,
+.row {
+    font-size: 18px;
+    color: #fff;
+    & > * {
+        margin-bottom: 30px;
+    }
+
+    @include mqd($breakpoint: md) {
+
+        & + img {
+            margin-bottom: 30px;
+        }
+    }
+    @include mq($breakpoint: md) {
+      display: flex;
+      justify-content: space-between;
+      & > * {
+          margin-bottom: 0;
+          width: calc(50% - 10px);
+
+      }
+
+    }//Media Query
+}
+.row--reverse {
+    @include mq($breakpoint: md) {
+      flex-direction: row-reverse;
+    }//Media Query
+}
+.c-point {
+    margin-bottom: 40px;
+    @include mq($breakpoint: md) {
+
+        margin-bottom: 0px;
+    }//Media Query
+    p {
+        text-align: center;
+        border-radius: 24px;
+        padding: 25px 20px;
+        background: $white;
+        color: #009ECD;
+        font-family: 'Zen Maru Gothic', sans-serif;
+        margin-bottom: 25px;
+    }
+}
+.c-baloon{
+    &__title {
+        @include mqd($breakpoint: md) {
+            br {
+                display: none;
+            }
+        }
+
+        color: #333333;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+
+
+
+        @include mq($breakpoint: md) {
+            font-size: 22px;
+        }//Media Query
+
+        &::after {
+            background: #333333;
+            content: '';
+            margin: 20px auto;
+            display: block;
+            width: 30px;
+            height: 2px;
+            @include mq($breakpoint: md) {
+                margin: 15px auto;
+
+            }//Media Query
+        }
+    }
+    &__lead {
+        color: #333333;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        @include mqd($breakpoint: md) {
+            br {
+                display: none;
+            }
+        }
+    }
+    &--right{
+        img {
+            max-width: 250px;
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        border-radius: 24px;
+        padding: 25px 20px;
+        background: $white;
+        box-shadow: 0 0 8px rgba(#000, .25);
+        position: relative;
+        @include mq($breakpoint: md) {
+          width: 193px;
+          margin-left: 12px;
+          position: absolute;
+          right: 0;
+          top: 0;
+
+
+        }//Media Query
+        &::before {
+            position: absolute;
+            content: '';
+            top: -15px ;
+            left: calc(50% - 8px);
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #fff;
+            @include mq($breakpoint: md) {
+                top: 50%;
+                left: -33px;
+                border-bottom: 15px solid transparent;
+                border-top: 15px solid transparent;
+                border-right: 20px solid #fff;
+            }
+        }
+    }
+    &--left{
+        border-radius: 24px;
+        padding: 25px 20px;
+        background: $white;
+        box-shadow: 0 0 8px rgba(#000, .25);
+        position: relative;
+        img {
+            max-width: 250px;
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+        }
+         p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+
+
+
+        @include mqd($breakpoint: md) {
+            & + .c-baloon--right {
+                margin-top: 40px;
+            }
+        }
+
+        @include mq($breakpoint: md) {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 193px;
+            margin-right: 12px;
+            &.down {
+                top: 100px;
+            }
+        }//Media Query
+        &::before {
+            position: absolute;
+            content: '';
+            top: -15px ;
+            left: calc(50% - 8px);
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #fff;
+            @include mq($breakpoint: md) {
+                width: 40px;
+                top: 50%;
+                left: 100%;
+                border-bottom: 15px solid transparent;
+                border-top: 15px solid transparent;
+                border-left: 20px solid #fff;
+            }
+        }
+    }
+}
+
+.c-cv-area {
+    @include mq($breakpoint: md) {
+        width: 630px;
+
+    }//Media Query
+    background: #009ECD;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    .c-firstview-img {
+        max-width: 400px;
+        margin-top: -20px;
+        @include mq($breakpoint: md) {
+            margin-top: -50px;
+
+        }//Media Query
+    }
+    .c-btn--cv {
+        margin-top: 40px;
+    }
+}
+
+.c-price {
+    background: #fff;
+    text-align: center;
+    padding: 30px 20px;
+
+    @include mq($breakpoint: md) {
+      padding-top: 40px;
+      padding-bottom: 60px;
+    }//Media Query
+
+    &__title {
+        margin-bottom: 15px;
+        font-size: 28px;
+
+        @include mq($breakpoint: md) {
+            margin-bottom: 15px;
+            font-size: 40px;
+        }//Media Query
+    }
+
+    &__lead {
+        font-size: 18px;
+        display: inline-block;
+        background: linear-gradient(to top, #FFF000 12%, rgba(#FFF000, 0) 12%);
+
+        @include mq($breakpoint: md) {
+            font-size: 22px;
+            margin-bottom: 50px;
+
+        }//Media Query
+    }
+
+    .c-btn--cv {
+        margin-top: 20px;
+    }
+}
