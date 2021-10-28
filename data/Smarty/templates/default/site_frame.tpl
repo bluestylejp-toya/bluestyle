@@ -46,12 +46,58 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WMZZBG3');</script>
-<!-- End Google Tag Manager -->nfig', 'G-PJZ7TPFVG6');
-</script>
 <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="<!--{$TPL_URLPATH}-->img/common/apple-touch-icon.png" sizes="180x180">
 <link rel="icon" type="image/png" href="<!--{$TPL_URLPATH}-->img/common/android-chrome-192x192.png" sizes="192x192">
 <link rel="icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
+
+<meta property="og:title" content="<!--{$arrSiteInfo.shop_name|h}-->">
+<meta property="og:description" content="<!--{$arrPageLayout.description|h}-->">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://chain-market.net/assets/img/lp/ogp.png">
+<meta property="twitter:card" content="summary_large_image">
+<meta name="thumbnail" content="https://chain-market.net/assets/img/lp/ogp.png">
+<meta name="twitter:image" content="https://chain-market.net/assets/img/lp/ogp.png">
+<meta name="twitter:title" content="<!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
+<meta name="twitter:description" content="<!--{$arrPageLayout.description|h}-->">
+
+  <script type="application/ld+json">
+  [
+    {"@context":"http://schema.org",
+    "@type":"WebSite",
+    "inLanguage":"ja",
+    "url":"https://chain-market.net/",
+    "name":"<!--{$arrSiteInfo.shop_name|h}-->",
+    "author":[
+      {
+        "@type":"Organization",
+        "name":"<!--{$arrSiteInfo.shop_name|h}-->",
+        "description":"<!--{$arrPageLayout.description|h}-->",
+        "url":"https://chain-market.net/",
+        "sameAs":[
+          {
+            "twitter":"chain_marketnet",
+            "instagram":"chain2364",
+            "line":"309jmrcc",
+          }
+        ]
+      }
+    ],
+    "publisher":{
+      "@type":"Organization",
+      "name":"<!--{$arrSiteInfo.shop_name|h}-->",
+      "description":"<!--{$arrPageLayout.description|h}-->",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://chain-market.net/user_data/packages/default/img/common/android-chrome-192x192.png",
+        "width":192,
+        "height":192
+        }
+      },
+      "image":"https://chain-market.net/assets/img/lp/ogp.png",
+      "description":"<!--{$arrPageLayout.description|h}-->"
+    }
+  ]</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
