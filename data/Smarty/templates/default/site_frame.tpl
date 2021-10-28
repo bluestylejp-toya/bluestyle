@@ -54,10 +54,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:title" content="<!--{$arrSiteInfo.shop_name|h}-->">
 <meta property="og:description" content="<!--{$arrPageLayout.description|h}-->">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://chain-market.net/assets/img/lp/ogp.png">
+<meta property="og:image" content="https://chain-market.net/lp/assets/img/lp/ogp.png">
 <meta property="twitter:card" content="summary_large_image">
-<meta name="thumbnail" content="https://chain-market.net/assets/img/lp/ogp.png">
-<meta name="twitter:image" content="https://chain-market.net/assets/img/lp/ogp.png">
+<meta name="thumbnail" content="https://chain-market.net/lp/assets/img/lp/ogp.png">
+<meta name="twitter:image" content="https://chain-market.net/lp/assets/img/lp/ogp.png">
 <meta name="twitter:title" content="<!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
 <meta name="twitter:description" content="<!--{$arrPageLayout.description|h}-->">
 
@@ -94,7 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "height":192
         }
       },
-      "image":"https://chain-market.net/assets/img/lp/ogp.png",
+      "image":"https://chain-market.net/lp/assets/img/lp/ogp.png",
       "description":"<!--{$arrPageLayout.description|h}-->"
     }
   ]</script>
