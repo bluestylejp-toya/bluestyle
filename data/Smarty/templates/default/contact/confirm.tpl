@@ -51,7 +51,7 @@
             </dd>
 
             <dt>住所</dt>
-            <dd><!--{$arrPref[$arrForm.pref.value]}--><!--{$arrForm.addr01.value|h}--><!--{$arrForm.addr02.value|h}--></dd>
+            <dd><!--{$arrPref[$arrForm.pref.value]}--><!--{$arrForm.addr01.value|h}--><!--{$arrForm.addr02.value|h}--><!--{$arrForm.addr03.value|h}--></dd>
 
             <dt>電話番号</dt>
             <dd>

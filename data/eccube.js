@@ -348,6 +348,7 @@ require("slick-carousel/slick/slick-theme.css");
         "shipping_zip02",
         "shipping_addr01",
         "shipping_addr02",
+        "shipping_addr03",
         "shipping_tel01",
         "shipping_tel02",
         "shipping_tel03",

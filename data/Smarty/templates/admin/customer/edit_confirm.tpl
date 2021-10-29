@@ -91,7 +91,7 @@ function func_return(){
             </tr>
             <tr>
                 <th>住所</th>
-                <td><!--{$arrPref[$arrForm.pref]|h}--><!--{$arrForm.addr01|h}--><!--{$arrForm.addr02|h}--></td>
+                <td><!--{$arrPref[$arrForm.pref]|h}--><!--{$arrForm.addr01|h}--><!--{$arrForm.addr02|h}--><!--{$arrForm.addr03|h}--></td>
             </tr>
             <tr>
                 <th>メールアドレス</th>

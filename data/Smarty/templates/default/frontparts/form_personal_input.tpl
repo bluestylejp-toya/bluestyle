@@ -57,6 +57,7 @@ $flgFields について
         <!--{assign var=key3 value="`$prefix`pref"}-->
         <!--{assign var=key4 value="`$prefix`addr01"}-->
         <!--{assign var=key5 value="`$prefix`addr02"}-->
+        <!--{assign var=key8 value="`$prefix`addr03"}-->
         <!--{assign var=key6 value="`$prefix`country_id"}-->
         <!--{assign var=key7 value="`$prefix`zipcode"}-->
         <!--{if !$smarty.const.FORM_COUNTRY_ENABLE}-->
@@ -104,9 +105,10 @@ $flgFields について
             </div>
             <p class="u-mb--1"><input type="text" name="<!--{$key4}-->" value="<!--{$arrForm[$key4].value|h}-->" class="c-form-parts" style="<!--{$arrErr[$key4]|sfGetErrorColor}-->; ime-mode: active;" placeholder="<!--{$smarty.const.SAMPLE_ADDRESS1}-->"/></p>
             <p class="u-mb--1"><input type="text" name="<!--{$key5}-->" value="<!--{$arrForm[$key5].value|h}-->" class="c-form-parts" style="<!--{$arrErr[$key5]|sfGetErrorColor}-->; ime-mode: active;" placeholder="<!--{$smarty.const.SAMPLE_ADDRESS2}-->"/></p>
-            <p class="mini"><span class="attention">住所は2つに分けてご記入ください。マンション名は必ず記入してください。</span></p>
-            <!--{if $arrErr[$key3] || $arrErr[$key4] || $arrErr[$key5]}-->
-                <p><small class="attention"><!--{$arrErr[$key3]}--><!--{$arrErr[$key4]}--><!--{$arrErr[$key5]}--></small></p>
+            <p class="u-mb--1"><input type="text" name="<!--{$key8}-->" value="<!--{$arrForm[$key8].value|h}-->" class="c-form-parts" style="<!--{$arrErr[$key5]|sfGetErrorColor}-->; ime-mode: active;" placeholder="<!--{$smarty.const.SAMPLE_ADDRESS3}-->"/></p>
+            <p class="mini"><span class="attention">住所は3つに分けてご記入ください。マンション名は必ず記入してください。</span></p>
+            <!--{if $arrErr[$key3] || $arrErr[$key4] || $arrErr[$key5] || $arrErr[$key8]}-->
+                <p><small class="attention"><!--{$arrErr[$key3]}--><!--{$arrErr[$key4]}--><!--{$arrErr[$key5]}--><!--{$arrErr[$key8]}--></small></p>
             <!--{/if}-->
         </dd>
         <dt>電話番号<span class="attention">※必須</span></dt>
