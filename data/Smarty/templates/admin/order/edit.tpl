@@ -59,6 +59,7 @@
         <!--{/if}-->
         df['shipping_addr01'+shipping_key].value = df.order_addr01.value;
         df['shipping_addr02'+shipping_key].value = df.order_addr02.value;
+        df['shipping_addr03'+shipping_key].value = df.order_addr03.value;
         df['shipping_pref'+shipping_key].value = df.order_pref.value;
     }
 
@@ -289,6 +290,9 @@
                     <span class="attention"><!--{$arrErr[$key]}--></span>
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60 top" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" /><br />
                     <!--{assign var=key value="order_addr02"}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
+                    <!--{assign var=key value="order_addr03"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
                 </td>
@@ -633,6 +637,9 @@
                         <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
                         <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" size="60" class="box60 top" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->" /><br />
                         <!--{assign var=key value="shipping_addr02"}-->
+                        <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
+                        <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->" />
+                        <!--{assign var=key value="shipping_addr03"}-->
                         <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
                         <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->" />
                     </td>

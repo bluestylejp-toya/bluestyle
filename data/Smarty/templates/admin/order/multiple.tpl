@@ -40,6 +40,7 @@ $(function() {
     var shipping_pref = window.opener.jQuery('select[name^=shipping_pref] option:selected');
     var shipping_addr01 = window.opener.jQuery('input[name^=shipping_addr01]');
     var shipping_addr02 = window.opener.jQuery('input[name^=shipping_addr02]');
+    var shipping_addr03 = window.opener.jQuery('input[name^=shipping_addr03]');
 
     // 都道府県の入力チェック
     shipping_pref.each(function() {
@@ -114,7 +115,7 @@ $(function() {
     for (var i = 0; i < shipping_id.length; i++) {
         var text = $(shipping_name01[i]).val() + $(shipping_name02[i]).val()
             + ' ' + $(shipping_pref[i]).text()
-            + $(shipping_addr01[i]).val() + $(shipping_addr02[i]).val();
+            + $(shipping_addr01[i]).val() + $(shipping_addr02[i]).val() + $(shipping_addr03[i]).val();
 
         var option = $('<option value="' + $(shipping_id[i]).val() + '">' + text + '</option>');
         $('select').append(option);
