@@ -161,6 +161,7 @@ class Batch {
             'order_pref' => $arrCustomer['pref'],
             'order_addr01' => $arrCustomer['addr01'],
             'order_addr02' => $arrCustomer['addr02'],
+            'order_addr03' => $arrCustomer['addr03'],
             'order_email' => $arrCustomer['email'],
             'order_email_mobile' => $arrCustomer['email_mobile'],
             'order_tel01' => $arrCustomer['tel01'],

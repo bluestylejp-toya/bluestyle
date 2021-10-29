@@ -193,7 +193,7 @@
                     </tr>
                     <tr>
                         <th scope="row">住所</th>
-                        <td><!--{$arrPref[$arrForm.order_pref]}--><!--{$arrForm.order_addr01|h}--><!--{$arrForm.order_addr02|h}--></td>
+                        <td><!--{$arrPref[$arrForm.order_pref]}--><!--{$arrForm.order_addr01|h}--><!--{$arrForm.order_addr02|h}--><!--{$arrForm.order_addr03|h}--></td>
                     </tr>
                     <tr>
                         <th scope="row">電話番号</th>
@@ -278,7 +278,7 @@
                         </tr>
                         <tr>
                             <th scope="row">住所</th>
-                            <td><!--{$arrPref[$shippingItem.shipping_pref]}--><!--{$shippingItem.shipping_addr01|h}--><!--{$shippingItem.shipping_addr02|h}--></td>
+                            <td><!--{$arrPref[$shippingItem.shipping_pref]}--><!--{$shippingItem.shipping_addr01|h}--><!--{$shippingItem.shipping_addr02|h}--><!--{$shippingItem.shipping_addr03|h}--></td>
                         </tr>
                         <tr>
                             <th scope="row">電話番号</th>

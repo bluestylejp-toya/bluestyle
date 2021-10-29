@@ -183,6 +183,7 @@ class LC_Page_Shopping_Deliv extends LC_Page_Ex
                 'pref'              => $objCustomer->getValue('pref'),
                 'addr01'            => $objCustomer->getValue('addr01'),
                 'addr02'            => $objCustomer->getValue('addr02'),
+                'addr03'            => $objCustomer->getValue('addr03'),
                 'tel01'             => $objCustomer->getValue('tel01'),
                 'tel02'             => $objCustomer->getValue('tel02'),
                 'tel03'             => $objCustomer->getValue('tel03'),

@@ -116,7 +116,7 @@
             <th>住所</th>
             <td>
                 〒　<!--{$arrForm.order_zip01.value|h}--> - <!--{$arrForm.order_zip02.value|h}--><br />
-                <!--{$arrPref[$arrForm.order_pref.value]|h}--><!--{$arrForm.order_addr01.value|h}--><!--{$arrForm.order_addr02.value|h}-->
+                <!--{$arrPref[$arrForm.order_pref.value]|h}--><!--{$arrForm.order_addr01.value|h}--><!--{$arrForm.order_addr02.value|h}--><!--{$arrForm.order_addr03.value|h}-->
             </td>
         </tr>
         <tr>
@@ -320,6 +320,8 @@
                     <!--{assign var=key value="shipping_addr01"}-->
                     <!--{$arrShipping[$key]|h}-->
                     <!--{assign var=key value="shipping_addr02"}-->
+                    <!--{$arrShipping[$key]|h}-->
+                    <!--{assign var=key value="shipping_addr03"}-->
                     <!--{$arrShipping[$key]|h}-->
                 </td>
             </tr>
