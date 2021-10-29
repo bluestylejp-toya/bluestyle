@@ -39,6 +39,9 @@
                 justify-content: center;
                 align-items: center;
                 text-decoration: none;
+                &.disabled {
+                    pointer-events: none;
+                }
             }
         }
     }
