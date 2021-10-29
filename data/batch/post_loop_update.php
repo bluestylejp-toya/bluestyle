@@ -11,10 +11,23 @@ if (strlen($chain_id) == 0) {
 }
 echo "START\n";
 echo "\$chain_id={$chain_id}\n";
-Batch::main($chain_id);
+$objBatch = new Batch;
+$objBatch->main($chain_id);
 
 class Batch {
-    public static function main($chain_id) {
+    public function main($chain_id) {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        try {
+            $this->process($chain_id);
+        }
+        catch (Exception $e) {
+            $this->mailShop($e, '例外を補足');
+            throw $e;
+        }
+    }
+
+    public function process($chain_id) {
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objPurchase = new SC_Helper_Purchase_Ex();
 
@@ -91,9 +104,9 @@ class Batch {
 
             // 決済処理
             if ($arrOrder['status'] == ORDER_NEW) {
-                // 九州産業大学
+                // 無料
                 if ($arrOrder['payment_id'] == 7) {
-                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PRE_END); // ループ (Chain 確定)
+                        $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PRE_END); // ループ (Chain 確定)
                 }
             }
             $arrOrder = SC_Helper_Purchase_Ex::getOrder($order_id);
@@ -130,7 +143,6 @@ class Batch {
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objPurchase = new SC_Helper_Purchase_Ex();
         $objProduct = new SC_Product_Ex();
-        $objHelperMail = new SC_Helper_Mail_Ex();
 
         $arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($customer_id);
         if (empty($arrCustomer)) {
@@ -219,9 +231,15 @@ class Batch {
 ・product_id: {$arrSourceProduct['product_id']}
 ・product_class_id: {$product_class_id}
 __EOS__;
-            $objHelperMail->sfSendMail('', '在庫の減少で異常を検出', $body);
+            $this->mailShop($body, '在庫の減少で異常を検出');
         }
 
         return $order_id;
+    }
+
+    function mailShop($body, $subject = '') {
+        $objHelperMail = new SC_Helper_Mail_Ex();
+
+        $objHelperMail->sfSendMail('', $subject, $body);
     }
 }
