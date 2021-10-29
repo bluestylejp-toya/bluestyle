@@ -170,7 +170,7 @@ class LC_Page_Mypage_Myitem_Qr extends LC_Page_AbstractMypage_Ex
             "dstAddress1" => $arrPref[$arrTargetCustomer['pref']],
             "dstAddress2" => $arrTargetCustomer['addr01'],
             "dstAddress3" => $arrTargetCustomer['addr02'],
-            "dstAddress4" => '',
+            "dstAddress4" => $arrTargetCustomer['addr03'],
             "dstLastNm" => $arrTargetCustomer['name01'],
             "dstFirstNm" => $arrTargetCustomer['name02'],
             // ご依頼主
@@ -181,7 +181,7 @@ class LC_Page_Mypage_Myitem_Qr extends LC_Page_AbstractMypage_Ex
             "srcAddress1" => $arrPref[$arrSourceCustomer['pref']],
             "srcAddress2" => $arrSourceCustomer['addr01'],
             "srcAddress3" => $arrSourceCustomer['addr02'],
-            "srcAddress4" => '',
+            "srcAddress4" => $arrSourceCustomer['addr03'],
             "srcLastNm" => $arrSourceCustomer['name01'],
             "srcFirstNm" => $arrSourceCustomer['name02'],
             "baggDesc2" => $this->getTextLengthLimit($arrProductDetail['name']),

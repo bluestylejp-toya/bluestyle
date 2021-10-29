@@ -60,5 +60,93 @@
     >
   </div>
 </section>
-<div class="c-onboading"></div>
+<div class="u-mb--4">
+    <button type="button" class="c-btn--default c-onboarding__show-btn">Chainとは？</button>
+    <div class="c-onboarding">
+        <ol>
+            <li class="--active">
+                <h2>物々交換のサービスです</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-01.png"></figure>
+                <p>Chainは、1対1では成立しにくい物々交換を、複数人で成立しやすくします。物々交換だから、モノにお金はかかりません。</p>
+            </li>
+            <li>
+                <h2>交換するアイテムを<br>登録しよう</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-02.png"></figure>
+                <p>まだまだ使えるけど必要がなくなったモノ、捨てるにはもったいないモノなどがあったら登録しよう。</p>
+            </li>
+            <li>
+                <h2>交換したいアイテムを<br>見つけよう</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-03.png"></figure>
+                <p>欲しいアイテムを探し、自分のアイテムとの交換をリクエストをしてください。</p>
+            </li>
+            <li>
+                <h2>アイテム同士がつながり<br>「欲しい」の輪ができます</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-04.png"></figure>
+                <p>リクエストされたアイテムが繋がってできた輪をChainと呼びます。Chainができたら交換成立。</p>
+            </li>
+            <li><h2>交換アイテムを<br>送り合います</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-05.png"></figure>
+                <p>交換が成立したら、アイテムを送ります。受け取ったら、交換完了です。</p>
+            </li>
+        </ol>
+
+        <div class="c-onboarding__btn">
+            <button type="button" class="c-onboarding__prev-btn --hidden">前へ</button>
+            <button type="button" class="c-onboarding__next-btn">次へ</button>
+            <button type="button" class="c-onboarding__close-btn --hidden">閉じる</button>
+        </div>
+    </div>
+    <div class="c-onboarding__bg"></div>
+</div>
+<script>
+$('.c-onboarding__show-btn').on('click', function(){
+    $('.c-onboarding').fadeIn();
+    $('.c-onboarding__bg').fadeIn();
+    $('body').addClass('--overflow-hidden');
+    let $lists = $('.c-onboarding ol li');
+    let $num = 0;
+
+    $('.c-onboarding__next-btn').on('click', function(){
+        if($num < ($lists.length - 1)) {
+            ++$num
+            $('.c-onboarding ol li').removeClass('--active')
+            $('.c-onboarding ol li').eq($num).addClass('--active')
+
+            if($num == 1) {
+                $('.c-onboarding__prev-btn').removeClass('--hidden')
+            }
+            if($num === 4) {
+                $(this).addClass('--hidden')
+                $('.c-onboarding__close-btn').removeClass('--hidden')
+            }
+        }
+
+    })
+    $('.c-onboarding__prev-btn').on('click', function(){
+        if($num !== 0) {
+            --$num
+            $('.c-onboarding ol li').removeClass('--active')
+            $('.c-onboarding ol li').eq($num).addClass('--active')
+            if($num == 0) {
+                $('.c-onboarding__prev-btn').addClass('--hidden')
+            }
+            if($num < 4) {
+                $('.c-onboarding__next-btn').removeClass('--hidden')
+                $('.c-onboarding__close-btn').addClass('--hidden')
+            }
+        }
+    })
+    $('.c-onboarding__bg,.c-onboarding__close-btn').on('click', function(){
+        $num = 0;
+        $('.c-onboarding').fadeOut();
+        $('.c-onboarding__bg').fadeOut();
+        $('.c-onboarding ol li').removeClass('--active')
+        $('.c-onboarding ol li').eq($num).addClass('--active')
+        $('.c-onboarding__prev-btn').addClass('--hidden')
+        $('.c-onboarding__next-btn').removeClass('--hidden')
+        $('.c-onboarding__close-btn').addClass('--hidden')
+        $('body').removeClass('--overflow-hidden');
+    })
+})
+</script>
 <!--{/strip}-->

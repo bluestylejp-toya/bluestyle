@@ -32,6 +32,12 @@
         .history {
             display: none;
         }
+        .p-item-detail__body__slideup {
+            display: none;
+        }
+        .c-btn--request.p-item-detail__request-btn {
+            display: none;
+        }
     }
 
     &[data-modal_mode=detail] .swiper-container {

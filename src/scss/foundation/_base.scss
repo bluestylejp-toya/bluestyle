@@ -1,11 +1,12 @@
 html {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 62.5%;
-
+    height: 100%;
 }
 body {
     color: $font-color;
     @include font('body');
+    height: 100%;
 
     &.--overflow-hidden {
         overflow: hidden;
