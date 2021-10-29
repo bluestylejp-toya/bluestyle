@@ -175,8 +175,7 @@ class SC_UploadFile
                                 throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
                             }
 
-                            $exif = exif_read_data($_FILES[$keyname]['tmp_name'], 'EXIF');
-                            if ($exif !== false){
+                            if (!in_array($im->getImageOrientation(), [imagick::ORIENTATION_UNDEFINED, imagick::ORIENTATION_TOPLEFT])) {
                                 $im->autoOrient();
                             }
 
@@ -194,32 +193,33 @@ class SC_UploadFile
                             $im->destroy();
                         }
                     }
-                    // Safari on iOS の拡張子が .jpeg なので .jpg に書き換える
-                    if (in_array('jpg', $this->arrExt[$cnt])
-                        && preg_match('/^(.*)(\.jpeg)$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+                    elseif (class_exists('Imagick')
+                        && preg_match('/\.(jpg|jpeg)$/i', $_FILES[$keyname]['name'])) {
+                        // 回転
+                        $im = new Imagick();
+                        try {
+                            $success = $im->readImage($_FILES[$keyname]['tmp_name']);
+                            if (!$success) {
+                                throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
+                            }
 
-                        $exif = exif_read_data($_FILES[$keyname]['tmp_name'], 'EXIF');
-                        if ($exif !== false) {
-                            $im = new Imagick();
-                            try {
-                                $success = $im->readImage($_FILES[$keyname]['tmp_name']);
-                                if (!$success) {
-                                    throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
-                                }
-
+                            if (!in_array($im->getImageOrientation(), [imagick::ORIENTATION_UNDEFINED, imagick::ORIENTATION_TOPLEFT])) {
                                 $im->autoOrient();
                                 $success = $im->writeImage($_FILES[$keyname]['tmp_name']);
                                 if (!$success) {
                                     throw new Exception("Imagick::writeImage: {$_FILES[$keyname]['tmp_name']}");
                                 }
-                            } catch (Exception $e) {
-                                throw $e;
-                            } finally {
-                                $im->clear();
-                                $im->destroy();
                             }
+                        } catch (Exception $e) {
+                            throw $e;
+                        } finally {
+                            $im->clear();
+                            $im->destroy();
                         }
-
+                    }
+                    // Safari on iOS の拡張子が .jpeg なので .jpg に書き換える
+                    if (in_array('jpg', $this->arrExt[$cnt])
+                        && preg_match('/^(.*)(\.jpeg)$/i', $_FILES[$keyname]['name'], $arrMatche)) {
                         $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
                     }
                     // 拡張子チェック
