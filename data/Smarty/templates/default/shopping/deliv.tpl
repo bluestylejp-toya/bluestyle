@@ -98,7 +98,7 @@
                             <!--{if $smarty.const.FORM_COUNTRY_ENABLE}-->
                             <!--{$arrCountry[$key2]|h}--><br/>
                             <!--{/if}-->
-                            <!--{$arrPref[$key1]|h}--><!--{$arrAddr[cnt].addr01|h}--><!--{$arrAddr[cnt].addr02|h}--><br />
+                            <!--{$arrPref[$key1]|h}--><!--{$arrAddr[cnt].addr01|h}--><!--{$arrAddr[cnt].addr02|h}--><!--{$arrAddr[cnt].addr03|h}--><br />
                             <!--{$arrAddr[cnt].name01|h}--> <!--{$arrAddr[cnt].name02|h}-->
                         </td>
                         <td class="alignC">

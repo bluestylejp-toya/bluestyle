@@ -2,7 +2,9 @@
 /** フロント表示関連 */
 define('SAMPLE_ADDRESS1', "市区町村名 (例：千代田区神田神保町)");
 /** フロント表示関連 */
-define('SAMPLE_ADDRESS2', "番地・ビル名 (例：1-3-5)");
+define('SAMPLE_ADDRESS2', "番地 (例：1-3-5)");
+/** フロント表示関連 */
+define('SAMPLE_ADDRESS3', "ビル名");
 /** ユーザファイル保存先 */
 define('USER_DIR', "user_data/");
 /** ユーザファイル保存先 */
@@ -228,6 +230,8 @@ define('STEXT_LEN', 50);
 define('SMTEXT_LEN', 100);
 /** 長い項目の文字数 (住所など) */
 define('MTEXT_LEN', 200);
+/** 住所の文字数 */
+define('ADDR_LEN', 15);
 /** 長中文の文字数 (問い合わせなど) */
 define('MLTEXT_LEN', 1000);
 /** 長文の文字数 */

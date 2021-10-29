@@ -63,8 +63,9 @@
             <!--{assign var=key1 value="`$prefix`pref"}-->
             <!--{assign var=key2 value="`$prefix`addr01"}-->
             <!--{assign var=key3 value="`$prefix`addr02"}-->
+            <!--{assign var=key4 value="`$prefix`addr03"}-->
             <!--{assign var="pref_id" value=$arrForm[$key1].value}-->
-            <!--{$arrPref[$pref_id]|h}--><!--{$arrForm[$key2].value|h}--><!--{$arrForm[$key3].value|h}-->
+            <!--{$arrPref[$pref_id]|h}--><!--{$arrForm[$key2].value|h}--><!--{$arrForm[$key3].value|h}--><!--{$arrForm[$key4].value|h}-->
         </dd>
         <dt>電話番号</dt>
         <dd>

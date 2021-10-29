@@ -129,7 +129,7 @@
             <tr>
                 <th>住所<span class="attention"> *</span></th>
                 <td>
-                    <span class="attention"><!--{$arrErr.pref}--><!--{$arrErr.addr01}--><!--{$arrErr.addr02}--></span>
+                    <span class="attention"><!--{$arrErr.pref}--><!--{$arrErr.addr01}--><!--{$arrErr.addr02}--><!--{$arrErr.addr03}--></span>
                     <select class="top" name="pref" <!--{if $arrErr.pref != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
                         <option class="top" value="" selected="selected">都道府県を選択</option>
                         <!--{html_options options=$arrPref selected=$arrForm.pref}-->
@@ -137,7 +137,9 @@
                     <input type="text" name="addr01" value="<!--{$arrForm.addr01|h}-->" size="60" class="box60" <!--{if $arrErr.addr01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /><br />
                     <!--{$smarty.const.SAMPLE_ADDRESS1}--><br />
                     <input type="text" name="addr02" value="<!--{$arrForm.addr02|h}-->" size="60" class="box60" <!--{if $arrErr.addr02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /><br />
-                    <!--{$smarty.const.SAMPLE_ADDRESS2}-->
+                    <!--{$smarty.const.SAMPLE_ADDRESS2}--><br />
+                    <input type="text" name="addr03" value="<!--{$arrForm.addr03|h}-->" size="60" class="box60" <!--{if $arrErr.addr03 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /><br />
+                    <!--{$smarty.const.SAMPLE_ADDRESS3}-->
                 </td>
             </tr>
             <tr>

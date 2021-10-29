@@ -222,7 +222,7 @@
                     </tr>
                     <tr>
                         <th class="alignL">住所</th>
-                        <td><!--{$arrPref[$shippingItem.shipping_pref]}--><!--{$shippingItem.shipping_addr01|h}--><!--{$shippingItem.shipping_addr02|h}--></td>
+                        <td><!--{$arrPref[$shippingItem.shipping_pref]}--><!--{$shippingItem.shipping_addr01|h}--><!--{$shippingItem.shipping_addr02|h}--><!--{$shippingItem.shipping_addr03|h}--></td>
                     </tr>
                     <tr>
                         <th class="alignL">電話番号</th>
