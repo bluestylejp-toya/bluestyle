@@ -35,9 +35,9 @@
                     <li>
                         <button type="button" data-menu_id="category">カテゴリーから探す</button>
                     </li>
-                    <li>
+                    <!--{*<li>
                         <button type="button" data-menu_id="maker">出品者の都道府県から探す</button>
-                    </li>
+                    </li>*}-->
                 </ul>
             </div>
 
@@ -48,26 +48,14 @@
                 </header>
                 <ul id="category" class="c-nav-list">
                     <!--{foreach from=$arrCatList item=cate key=key}-->
-                    <li><button type="button" data-sub_menu_id="menu<!--{$key}-->"><!--{$cate}--></button>
-                        <div id="menu<!--{$key}-->"  class="p-search__sub-menu">
-                            <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
-                                <button aria-label="戻る" class="c-btn--header-nav menu_sub_btn" type="button"></button>
-                                <p class="c-header-title"><!--{$cate}--></p>
-                            </header>
-                            <ul class="c-nav-list">
-                                <!--{foreach from=$arrCatList item=cate key=key}-->
-                                <li><label><input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->><span><!--{$cate}--></span></label></li>
-                                <!--{/foreach}-->
-                            </ul>
-                        </div>
-                    </li>
+                    <li><label><input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->><span><!--{$cate}--></span></label></li>
                     <!--{/foreach}-->
                 </ul>
-                <ul id="maker" class="c-nav-list">
+                <!--{*<ul id="maker" class="c-nav-list">
                     <!--{foreach from=$arrMakerList item=area key=key}-->
                     <li><label><input type="radio" name="maker_id" value="<!--{$key}-->" <!--{if $maker_id[0] == $key}--> checked<!--{/if}-->><span><!--{$area}--></span></label></li>
                     <!--{/foreach}-->
-                </ul>
+                </ul>*}-->
             </div>
         </div>
     </form>
@@ -78,8 +66,10 @@
         const slideInMenu = $(".p-search__menu");
         const slideInSubMenu = $(".p-search__sub-menu");
         const searchBtn = $(".c-form-parts--search__btn");
+        const body = $("body");
         search.on('click',function(e){
             list.fadeIn();
+            body.addClass('--overflow-hidden')
         });
         searchBtn.on('click',function(){
             category.removeAttr('checked');

@@ -65,7 +65,15 @@
         }
 
         &.--show {
+
+            .l-header__inner {
+                top: 0;
+                position: sticky;
+                background: $white;
+            }
             transform: translateX(0);
+            overflow: auto;
+            padding-bottom: 58px;
         }
     }
 
