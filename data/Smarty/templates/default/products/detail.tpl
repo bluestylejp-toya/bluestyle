@@ -194,18 +194,43 @@
             <!--/.p-item-detail__body__main-->
 
             <div class="p-item-detail__body__slideup --hidden">
-                <svg width="68" height="61" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg" class="select_status">
-                    <path d="M9.99219 21.3182V40.4266H1.20508L21.9961 59.7303L42.7871 40.4266H34V20.3037H25.2129L46.0039 1L66.7949 20.3037H58.0078V39.4121" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
-                        <linearGradient id="paint0_linear" x1="1.20508" y1="59.7303" x2="67.308" y2="59.147" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#33CCFF"/>
-                        <stop offset="0.45" stop-color="#67CC9D"/>
-                        <stop offset="0.83" stop-color="#8FCC51"/>
-                        <stop offset="1" stop-color="#9FCC33"/>
-                    </linearGradient>
-                    </defs>
-                </svg>
-                <p class="u-text--center u-mb--2 u-color--gray">交換するアイテムを選んでください。</p>
+                <span class="c-btn--request p-item-detail__request-btn">
+                    <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
+                    <g class="particleLayer">
+                        <circle fill="#2A7DA7" cx="130" cy="126.5" r="12.5"></circle>
+                        <circle fill="#009FCF" cx="411" cy="313.5" r="12.5"></circle>
+                        <circle fill="#FD0000" cx="279" cy="86.5" r="12.5"></circle>
+                        <circle fill="#79A52B" cx="155" cy="390.5" r="12.5"></circle>
+                        <circle fill="#FFDD00" cx="89" cy="292.5" r="10.5"></circle>
+                        <circle fill="#34B1E2" cx="414" cy="282.5" r="10.5"></circle>
+                        <circle fill="#34B1E2" cx="115" cy="149.5" r="10.5"></circle>
+                        <circle fill="#FF7878" cx="250" cy="80.5" r="10.5"></circle>
+                        <circle fill="#FFAF33" cx="78" cy="261.5" r="10.5"></circle>
+                        <circle fill="#96D8E9" cx="182" cy="402.5" r="10.5"></circle>
+                        <circle fill="#FFDD00" cx="401.5" cy="166" r="13"></circle>
+                        <circle fill="#FFAF33" cx="379" cy="141.5" r="10.5"></circle>
+                        <circle fill="#FD0000" cx="327" cy="397.5" r="10.5"></circle>
+                        <circle fill="#FF7878" cx="296" cy="392.5" r="10.5"></circle>
+                    </g>
+                    <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"></path>
+                    </svg>
+                    <span class="label">ほしい</span>
+                </span>
+                <div>
+                    <h2 class="c-heading--sm u-text--center">交換に出すアイテムを選んでください</h2>
+                    <p>チェックしたアイテムの中から1対1の交換です。数が多いほど、Chainが成立する確率が高くなります。</p>
+                    <svg width="52" height="46" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg" class="select_status">
+                        <path d="M9.99219 21.3182V40.4266H1.20508L21.9961 59.7303L42.7871 40.4266H34V20.3037H25.2129L46.0039 1L66.7949 20.3037H58.0078V39.4121" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="paint0_linear" x1="1.20508" y1="59.7303" x2="67.308" y2="59.147" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#33CCFF"/>
+                            <stop offset="0.45" stop-color="#67CC9D"/>
+                            <stop offset="0.83" stop-color="#8FCC51"/>
+                            <stop offset="1" stop-color="#9FCC33"/>
+                        </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
                 <!--/自分のアイテムをfor文で出力-->
 
                 <!-- 交換するアイテム一覧 -->
@@ -213,12 +238,12 @@
                     <ul class="u-mb--4">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
-                                <label data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                                <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->" class="">
                                     <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
                                     <div class="c-card__main">
-                                        <!--{*
+
                                         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
-                                        *}-->
+
                                         <p><!--{$arrProduct.name|h}--></p>
                                         <div class="c-item__request"><!--{$arrProduct.count_of_favorite|n2s|h}--></div>
                                     </div>
@@ -227,16 +252,20 @@
                             </li>
                         <!--{/foreach}-->
                     </ul>
-                    <button type="button" id="decision-button">決定ボタン</button>
-                    <button type="button" id="cancel-button">キャンセルボタン</button>
                 <!--{else}-->
                 <p>アイテムが登録されておりません。</p>
                 <!--{/if}-->
+                <div class="l-floating-btn">
+                    <button class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">キャンセル</button>
+                    <button class="c-btn--primary send-request_btn" disabled data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">決定</button>
+                </div>
             </div>
             <!--/.p-item-detail__body__slideup-->
         </div>
         <!--/.p-item-detail__body-->
     </div>
+    <!-- 決定ボタン -->
+
     <!--/.c-item-detail-->
     <div class="c-modal" data-modal_mode="false">
         <button class="c-modal__close-btn" type="button">close</button>
@@ -276,42 +305,32 @@
 $(function(){
     $(".history_list").appendTo(".history");
 
-    // キャンセルボタンクリック時
-    $('#cancel-button').on('click', function () {
-        $("input[type=checkbox][name=my_product]").removeAttr('checked');
-
-        let $main = $('.p-item-detail__body .p-item-detail__body__main');
-        let $close = $('.slideup_bg');
-        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
-        setTimeout(function () {
-            slideDown($close, $slideUp, $main);
-        }, 300)
-        checked(true, $('.favorite_area #request'))
-    })
-
     // 交換商品クリック時
     $('#decision-button').on('click', function () {
         // 未選択時エラー
+        let $closest = $(this).closest(".favorite_area");
+        let $main = $('.p-item-detail__body .p-item-detail__body__main');
+        let $close = $('.slideup_bg');
+        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+        let $wrap = $closest.parents('.l-wrapper');
+
         if ($('input[name=my_product]:checked').length == 0) {
             alert('交換商品を選択してください')
             return false;
         }
         $('input[name=my_product]:checked').map(function(){
             let $this = $(this)
-            let $closest = $(this).closest(".favorite_area");
             let $mode = $closest.hasClass("registered_favorite");
             init_favorite($mode, $closest, $this)
         });
-        let $main = $('.p-item-detail__body .p-item-detail__body__main');
-        let $close = $('.slideup_bg');
-        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
+
         setTimeout(function () {
-            slideDown($close, $slideUp, $main);
+            slideDown($close, $slideUp, $main, $wrap);
             $('.favorite_area #request').addClass('--active');
         }, 300)
-        $("span[class=label]").text('済');
-        checked(true, $('.favorite_area #request'))
         $("input[type=checkbox][name=my_product]").removeAttr('checked');
+        $(this).attr('disabled', true);
+
     })
 
     // ほしいボタンクリック時
@@ -319,24 +338,45 @@ $(function(){
         let $this = $(this);
         let $closest = $(this).closest(".favorite_area");
         let $mode = $closest.hasClass("registered_favorite");
-        let $close = $this.next('.slideup_bg');
+        let $close = $('.slideup_bg, .slide-close_btn');
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $main = $('.p-item-detail__body .p-item-detail__body__main');
+        let $wrap = $closest.parents('.l-wrapper');
         let $checked = $mode;
-        $slideUp.find('.select_status path').attr('stroke', '#eee');
+        let $checkList = $('.c-card__checkbox input');
+        let $sendRequestBtn = $('.send-request_btn')
+
         // リクエスト取り消し
         if ($mode === true) {
             init_favorite($mode, $closest, $this);
         } else {
-            slideUp($close, $slideUp, $main);
-            checked($checked, $this)
+            slideUp($close, $slideUp, $main, $wrap);
 
             //選ぶのをやめる
             $close.on('click', function () {
-                slideDown($close, $slideUp, $main);
+                slideDown($close, $slideUp, $main, $wrap);
                 $this.removeAttr('disabled');
-                checked(true, $this);
             });
+
+            //チェックを入ったらリクエストボタンをクリックできるようになる
+            $checkList.on('change', function(){
+                if(  $('.c-card__checkbox input:checked').length > 0) {
+                    // 出品アイテムを配列に格納する
+                    $target = [];
+                    $checkList.each(function() {
+                        if( $(this).prop('checked') == true) {
+                            $target.push($(this).val());
+                        }
+                    })
+                    $('.send-request_btn').attr('data-target_id', $target);
+                    $sendRequestBtn.removeAttr('disabled');
+
+                    return false;
+                } else {
+                    $sendRequestBtn.attr('disabled', true);
+                }
+            })
+
         }
     })
 
@@ -365,6 +405,7 @@ $(function(){
                     favorite_product_id:  $this.data("product_id"),
                     target_id: $this.data("target_id"),
                 };
+                console.log(postData)
                 postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
 
                 $.ajax({
@@ -399,9 +440,10 @@ $(function(){
                     // エラーの場合処理
                 });
             }
+            let $request = $closest.find('#request')
 
             $closest.find(".count_of_favorite .num").text(data.count_of_favorite);
-            $this.children('span').text( $this.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
+            $request.children('span').text( $request.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
             $closest.find(".notification").text($mode ? 'リクエストを取り消しました' : 'リクエストを送信しました' );
 
             $closest.find(".notification").fadeIn(300,
@@ -416,25 +458,16 @@ $(function(){
         });
     }
     // スライドアップ
-    function slideUp($close, $slideUp, $main){
+    function slideUp($close, $slideUp, $main, $wrap){
         $close.addClass('--active');
         $slideUp.removeClass('--hidden');
-        $main.slideUp(700);
+        $wrap.addClass('--list-show')
     }
     // スライドダウン
-    function slideDown($close, $slideUp, $main){
+    function slideDown($close, $slideUp, $main, $wrap){
         $close.removeClass('--active');
         $slideUp.addClass('--hidden');
-        $main.slideDown(700);
-    }
-    // ボタンの状態
-    function checked($checked, $this){
-        if($checked == false){
-            $this.attr('disabled', 'disabled');
-
-        } else {
-            $this.removeAttr('disabled');
-        }
+        $wrap.removeClass('--list-show')
     }
 
 
