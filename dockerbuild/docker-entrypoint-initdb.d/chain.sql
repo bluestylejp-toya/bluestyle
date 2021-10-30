@@ -346,6 +346,7 @@ INSERT INTO `dtb_bloc` VALUES (10,10,'新着アイテム','new_item.tpl','new_it
 INSERT INTO `dtb_bloc` VALUES (10,11,'閲覧履歴','check_item.tpl','check_item','2021-08-08 00:00:00','2021-08-08 00:00:00','frontparts/bloc/check_item.php',0,NULL);
 INSERT INTO `dtb_bloc` VALUES (10,12,'クレジットカード決済入力フォーム','sln_credit.tpl','sln_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
 INSERT INTO `dtb_bloc` VALUES (10,13,'登録済みクレジットカード決済入力フォーム','sln_regist_credit.tpl','sln_regist_credit','2021-09-16 09:35:11','2021-09-16 09:35:11',NULL,0,1);
+INSERT INTO `dtb_bloc` VALUES (10,14,'ファストChain','fast_chain.tpl','fast_chain','2021-08-08 00:00:00','2021-08-08 00:00:00','frontparts/bloc/fast_chain.php',0,NULL);
 /*!40000 ALTER TABLE `dtb_bloc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -480,7 +481,8 @@ INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,2,4,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,2,4,11,1,0);
+INSERT INTO `dtb_blocposition` VALUES (10,2,4,11,2,0);
+INSERT INTO `dtb_blocposition` VALUES (10,2,4,14,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,3,1,0);
@@ -5175,4 +5177,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-26  7:14:09
+-- Dump completed on 2021-10-27 15:48:35
