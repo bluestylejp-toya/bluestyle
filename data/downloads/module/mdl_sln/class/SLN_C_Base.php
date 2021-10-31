@@ -199,7 +199,7 @@ class SLN_C_Base {
 			}
 		}
 		// 定期購入の場合には、MerchantFree2を書き換える
-		if (class_exists(SLNTerm_SC_Helper_Purchase) && $orderHash['order_id']) {
+		if (class_exists('SLNTerm_SC_Helper_Purchase') && $orderHash['order_id']) {
 			$sendDataHash = SLNTerm_SC_Helper_Purchase::setMerchantFree2($sendDataHash, $orderHash, $paramHash);
 		}
 		return $sendDataHash;
@@ -220,7 +220,11 @@ class SLN_C_Base {
 		$sendDataHash = $this->getSendData($sendKeyHash, $orderHash, $paramHash, $slnSettingHash);
 
 		$requestParamHash = $paramHash;
-		$ret = $this->accessSlnServer($url, $sendDataHash);
+		if (defined('BATCH') && BATCH) {
+			$ret = $this->accessSlnServer($url, $sendDataHash, true);
+		} else {
+			$ret = $this->accessSlnServer($url, $sendDataHash);
+		}
 		if ($ret) {
 			$paramHash = $this->getResults();
 		} else {
