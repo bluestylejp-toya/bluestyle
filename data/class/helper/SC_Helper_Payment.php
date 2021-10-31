@@ -216,6 +216,6 @@ class SC_Helper_Payment
      */
     public static function getIDValueList($type = 'payment_method')
     {
-        return SC_Helper_DB_Ex::sfGetIDValueList('dtb_payment', 'payment_id', $type);
+        return SC_Helper_DB_Ex::sfGetIDValueList('dtb_payment', 'payment_id', "$type || CASE WHEN del_flg = 0 THEN '' ELSE '【無効】' END", '0=0');
     }
 }
