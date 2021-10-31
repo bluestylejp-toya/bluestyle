@@ -30,6 +30,10 @@
  */
 class SC_Helper_Payment
 {
+    public $arrDelFlgName = [
+        0 => '有効',
+        1 => '無効',
+    ];
     /**
      * 支払方法の情報を取得.
      *
@@ -58,7 +62,7 @@ class SC_Helper_Payment
     public function getList($has_deleted = false)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
-        $col = 'payment_id, payment_method, payment_image, charge, rule_max, upper_rule, note, fix, charge_flg';
+        $col = '*';
         $where = '';
         if (!$has_deleted) {
             $where .= 'del_flg = 0';
@@ -212,6 +216,6 @@ class SC_Helper_Payment
      */
     public static function getIDValueList($type = 'payment_method')
     {
-        return SC_Helper_DB_Ex::sfGetIDValueList('dtb_payment', 'payment_id', $type);
+        return SC_Helper_DB_Ex::sfGetIDValueList('dtb_payment', 'payment_id', "$type || CASE WHEN del_flg = 0 THEN '' ELSE '【無効】' END", '0=0');
     }
 }
