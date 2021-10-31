@@ -85,6 +85,13 @@
                         <a class="btn-normal" href="javascript:;" name="btn" onclick="eccube.setModeAndSubmit('upload_image', 'image_key', '<!--{$key}-->'); return false;">アップロード</a>
                     </td>
                 </tr>
+                <tr>
+                    <th>有効・無効<span class="attention"> *</span></th>
+                    <td>
+                        <!--{assign var=key value="del_flg"}-->
+                        <!--{html_radios name=$key options=$arrDelFlgName selected=$arrForm[$key].value style=$arrErr[$key]|sfGetErrorColor}-->
+                    </td>
+                </tr>
             </table>
 
         <div class="btn-area">

@@ -36,10 +36,10 @@
         <table class="list">
             <col width="5%" />
             <col width="30%" />
-            <col width="20%" />
+            <col width="15%" />
             <col width="20%" />
             <col width="5%" />
-            <col width="5%" />
+            <col width="10%" />
             <col width="15%" />
             <tr>
                 <th class="center">ID</th>
@@ -47,11 +47,11 @@
                 <th>手数料（円）</th>
                 <th>利用条件</th>
                 <th>編集</th>
-                <th>削除</th>
+                <th>有効・無効</th>
                 <th>移動</th>
             </tr>
             <!--{section name=cnt loop=$arrPaymentListFree}-->
-            <tr>
+            <tr class="del_flg<!--{$arrPaymentListFree[cnt].del_flg|h}-->">
                 <td class="center"><!--{$arrPaymentListFree[cnt].payment_id|h}--></td>
                 <td class="center"><!--{$arrPaymentListFree[cnt].payment_method|h}--></td>
                 <!--{if $arrPaymentListFree[cnt].charge_flg == 2}-->
@@ -63,7 +63,9 @@
                     <!--{if $arrPaymentListFree[cnt].rule_max > 0}--><!--{$arrPaymentListFree[cnt].rule_max|n2s|h}--><!--{else}-->0<!--{/if}-->円
                     <!--{if $arrPaymentListFree[cnt].upper_rule > 0}-->～<!--{$arrPaymentListFree[cnt].upper_rule|n2s|h}-->円<!--{elseif $arrPaymentListFree[cnt].upper_rule == "0"}--><!--{else}-->～無制限<!--{/if}--></td>
                 <td class="center"><!--{if $arrPaymentListFree[cnt].fix != 1}--><a href="?" onclick="eccube.changeAction('./payment_input.php'); eccube.setModeAndSubmit('pre_edit', 'payment_id', <!--{$arrPaymentListFree[cnt].payment_id}-->); return false;">編集</a><!--{else}-->-<!--{/if}--></td>
-                <td class="center"><!--{if $arrPaymentListFree[cnt].fix != 1}--><a href="?" onclick="eccube.setModeAndSubmit('delete', 'payment_id', <!--{$arrPaymentListFree[cnt].payment_id}-->); return false;">削除</a><!--{else}-->-<!--{/if}--></td>
+                <td class="center">
+                    <!--{$arrDelFlgName[$arrPaymentListFree[cnt].del_flg]|h}-->
+                </td>
                 <td class="center">
                 <!--{if $smarty.section.cnt.iteration != 1}-->
                 <a href="?" onclick="eccube.setModeAndSubmit('up','payment_id', <!--{$arrPaymentListFree[cnt].payment_id}-->); return false;">上へ</a>
@@ -77,3 +79,9 @@
         </table>
     </div>
 </form>
+
+<style>
+.del_flg1 {
+    background-color: #ccc;
+}
+</style>
