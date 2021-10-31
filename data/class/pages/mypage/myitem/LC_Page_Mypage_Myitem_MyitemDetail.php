@@ -307,6 +307,7 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
                 $data = [
                     "source_id" => $this->objFormParam->getValue('favorite_product_id'),
                     "target_id" => $this->objFormParam->getValue('target_id'),
+                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
                 $objHelperApi->setPostParam($data);
                 $result = $objHelperApi->exec();
