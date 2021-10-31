@@ -106,7 +106,7 @@
         <!--{assign var=key value="payment_ids"}-->
         <table>
             <tr>
-                <th>支払方法 <span class="attention">*</span></th>
+                <th>支払方法</th>
                 <td>
                     <span class="attention"><!--{$arrErr[$key]}--></span>
                     <span style="<!--{$arrErr[$key]|sfGetErrorColor}-->">
