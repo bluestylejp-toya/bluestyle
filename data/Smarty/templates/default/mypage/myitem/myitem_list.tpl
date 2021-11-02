@@ -20,7 +20,7 @@
                         <!--{elseif $item.progress_percent == 100}-->
                             <span class="status-chained">Chain成立</span>
                         <!--{/if}-->
-                        <i class="c-item__<!--{if $item.product.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$item.product.count_of_favorite|n2s|h}--></span></
+                        <i class="c-item__<!--{if $item.product.status == 2}-->unpublished<!--{else}-->published<!--{/if}-->"></i><span class="c-item__request"><!--{$item.product.count_of_favorite|n2s|h}--></span></div>
                 </div>
             </a>
         </li>
