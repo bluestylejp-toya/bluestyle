@@ -40,7 +40,6 @@
                     </li>*}-->
                 </ul>
             </div>
-
             <div class="p-search__menu">
                 <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
                     <button aria-label="戻る" class="c-btn--header-nav menu_btn" type="button"></button>
@@ -48,10 +47,12 @@
                 </header>
                 <ul id="category" class="c-nav-list">
                     <!--{foreach from=$arrCatList item=cate key=key}-->
-                    <li class="level<!--{$cate.level|h}-->"><label>
-                        <input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->>
-                        <span><!--{$cate.category_name}--></span>
-                    </label></li>
+                        <!--{if $cate.level === '1'}-->
+                        <li class="level<!--{$cate.level|h}-->"><label>
+                            <input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->>
+                            <span><!--{$cate.category_name}--></span>
+                        </label></li>
+                        <!--{/if}-->
                     <!--{/foreach}-->
                 </ul>
                 <!--{*<ul id="maker" class="c-nav-list">
