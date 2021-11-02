@@ -694,28 +694,10 @@ class SLN_Core {
 				$objectPage->sln_pay_name = $arrPayNames[$objectPage->sln_payid];
 				$objectPage->sln_pay_status = $objectPage->arrPaymentData['pay_status'];
 			} else {
-				$arrPgPayments = SLN_Util::getPayments();
-				$arrPayment = $objectPage->arrPayment;
-				foreach($arrPayment as $key => $payment) {
-					foreach ($arrPgPayments as $pg_payment) {
-						if ($pg_payment['payment_id'] == $key) {
-							unset($objectPage->arrPayment[$key]);
-							break;
-						}
-					}
-				}
+				// 「受注管理＞受注登録」画面の「お支払方法」の選択肢に「登録済みクレジットカード決済」が列挙されなくなる様子なので処理を削除した。
 			}
 		} else {
-			$arrPgPayments = SLN_Util::getPayments();
-			$arrPayment = $objectPage->arrPayment;
-			foreach($arrPayment as $key => $payment) {
-				foreach ($arrPgPayments as $pg_payment) {
-					if ($pg_payment['payment_id'] == $key) {
-						unset($objectPage->arrPayment[$key]);
-						break;
-					}
-				}
-			}
+			// 「受注管理＞受注登録」画面の「お支払方法」の選択肢に「登録済みクレジットカード決済」が列挙されなくなる様子なので処理を削除した。
 		}
 
 		if (!SC_Utils::isBlank($objectPage->arrForm['payment_id']['value'])) {
@@ -723,12 +705,7 @@ class SLN_Core {
 			$paymentHash = SLN_Util::getPaymentHash($payment_id);
 			$objectPage->paymentHash = $paymentHash;
 		} else {
-			foreach ($objectPage->arrPayment as $payment_id => $name) {
-				$arrPayConfig = SLN_Util::getPaymentHash($payment_id);
-				if (!SC_Utils::isBlank($arrPayConfig[SLN_PAYMENT_COL_PAYID])) {
-					unset($objectPage->arrPayment[$payment_id]);
-				}
-			}
+			// 「受注管理＞受注登録」画面の「お支払方法」の選択肢に「登録済みクレジットカード決済」が列挙されなくなる様子なので処理を削除した。
 		}
 	}
 

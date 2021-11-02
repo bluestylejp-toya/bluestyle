@@ -1043,8 +1043,8 @@ __EOS__;
         $count = count($arrList);
         $arrRet = array();
         for ($cnt = 0; $cnt < $count; $cnt++) {
-            $key = $arrList[$cnt][$keyname];
-            $val = $arrList[$cnt][$valname];
+            $key = reset($arrList[$cnt]);
+            $val = next($arrList[$cnt]);
             $arrRet[$key] = $val;
         }
 

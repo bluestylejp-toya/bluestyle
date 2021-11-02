@@ -8,22 +8,32 @@
     background: $white;
     z-index: 700;
     border-radius: 16px;
+
+
     h2 {
         font-size: 20px;
         font-weight: 700;
         color: #39496F;
         text-align: center;
         height: 68px;
-    }
 
+    }
     figure {
         display: block;
         padding: 24px;
         text-align: center;
         background: #F7FAFC;
         margin-bottom: 16px;
+        max-width: 300px;
+        img {
+            width: 100%;
+        }
     }
     li {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 24px;
         opacity: 0;
         position: absolute;
@@ -31,11 +41,7 @@
         margin-top: 24px;
         margin-bottom: 32px;
         transition: .5s;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
     }
-
     li.--active {
         opacity: 1;
     }
