@@ -89,7 +89,7 @@ class LC_Page_FrontParts_Bloc_FastChain extends LC_Page_FrontParts_Bloc_Ex
 
         $data = [];
         foreach ($arrProductId as $productId) {
-            $data[] = [["id" => $productId]];
+            $data[] = ["id" => $productId];
         }
         $objHelperApi->setPostParam($data);
 

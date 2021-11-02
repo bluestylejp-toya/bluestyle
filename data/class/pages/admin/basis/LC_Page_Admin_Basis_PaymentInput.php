@@ -73,6 +73,8 @@ class LC_Page_Admin_Basis_PaymentInput extends LC_Page_Admin_Ex
         $mode = $this->getMode();
         $this->lfInitParam($mode, $objFormParam);
 
+        $this->arrDelFlgName = $objPayment->arrDelFlgName;
+
         // ファイル管理クラス
         $this->objUpFile = new SC_UploadFile_Ex(IMAGE_TEMP_REALDIR, IMAGE_SAVE_REALDIR);
         // ファイル情報の初期化
@@ -123,13 +125,14 @@ class LC_Page_Admin_Basis_PaymentInput extends LC_Page_Admin_Ex
                 $this->arrErr = $objFormParam->checkError();
                 $post = $objFormParam->getHashArray();
                 if (count($this->arrErr) == 0) {
-                    $arrRet = $objPayment->get($post['payment_id']);
+                    $arrRet = $objPayment->get($post['payment_id'], true);
 
                     $objFormParam->addParam('支払方法', 'payment_method', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'));
                     $objFormParam->addParam('手数料', 'charge', PRICE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
                     $objFormParam->addParam('利用条件(～円以上)', 'rule_max', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
                     $objFormParam->addParam('利用条件(～円以下)', 'upper_rule', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
                     $objFormParam->addParam('固定', 'fix');
+                    $objFormParam->addParam('有効・無効', 'del_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
                     $objFormParam->setParam($arrRet);
 
                     $this->charge_flg = $arrRet['charge_flg'];
@@ -174,6 +177,7 @@ class LC_Page_Admin_Basis_PaymentInput extends LC_Page_Admin_Ex
                 $objFormParam->addParam('固定', 'fix');
                 $objFormParam->addParam('支払いID', 'payment_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
                 $objFormParam->addParam('課金フラグ', 'charge_flg', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+                $objFormParam->addParam('有効・無効', 'del_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
 
                 break;
             case 'upload_image':
@@ -185,6 +189,7 @@ class LC_Page_Admin_Basis_PaymentInput extends LC_Page_Admin_Ex
                 $objFormParam->addParam('利用条件(～円以下)', 'upper_rule', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
                 $objFormParam->addParam('固定', 'fix');
                 $objFormParam->addParam('画像キー', 'image_key', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'));
+                $objFormParam->addParam('有効・無効', 'del_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
 
                 break;
             case 'pre_edit':
@@ -198,6 +203,7 @@ class LC_Page_Admin_Basis_PaymentInput extends LC_Page_Admin_Ex
                 $objFormParam->addParam('利用条件(～円以上)', 'rule_max', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
                 $objFormParam->addParam('利用条件(～円以下)', 'upper_rule', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
                 $objFormParam->addParam('固定', 'fix');
+                $objFormParam->addParam('有効・無効', 'del_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
 
                 break;
         }

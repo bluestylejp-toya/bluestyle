@@ -67,6 +67,8 @@ class LC_Page_Admin_Basis_Payment extends LC_Page_Admin_Ex
     {
         $objPayment = new SC_Helper_Payment_Ex();
 
+        $this->arrDelFlgName = $objPayment->arrDelFlgName;
+
         if (!empty($_POST)) {
             $objFormParam = new SC_FormParam_Ex();
             $objFormParam->addParam('支払方法ID', 'payment_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
@@ -103,6 +105,6 @@ class LC_Page_Admin_Basis_Payment extends LC_Page_Admin_Ex
                 $this->objDisplay->reload();
                 break;
         }
-        $this->arrPaymentListFree = $objPayment->getList();
+        $this->arrPaymentListFree = $objPayment->getList(true);
     }
 }

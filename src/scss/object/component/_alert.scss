@@ -12,6 +12,20 @@
         background: $yellow;
     }
 
+    &--gray {
+        border-radius: $unit;
+        padding: 16px;
+        margin-top: 16px;
+        background: #EAECEE;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+
+        button {
+            margin-left: 16px;
+        }
+    }
+
     &__btn {
         margin-top: $unit;
         display: flex;

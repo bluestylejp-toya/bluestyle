@@ -21,13 +21,21 @@ class SLN_Helper extends LC_Page_Ex {
 	}
 
 	function init() {
+		if (defined('BATCH') && BATCH) {
+			$this->skip_load_page_layout = true;
+		}
 		parent::init();
 		$this->httpCacheControl('nocache');
 	}
 
 	function process() {
 		$this->action();
-		$this->sendResponse();
+		if (defined('BATCH') && BATCH) {
+			// nop
+		}
+		else {
+			$this->sendResponse();
+		}
 	}
 
 	function action() {
@@ -42,26 +50,37 @@ class SLN_Helper extends LC_Page_Ex {
 		}
 
 		$orderHash = $objectPurchase->getOrder($order_id);
-		switch ($orderHash['status']) {
-			case ORDER_PENDING:
-				break;
-			case ORDER_NEW:
-			case ORDER_PRE_END:
-				SC_Response::sendRedirect(SHOPPING_COMPLETE_URLPATH);
-				SC_Response::actionExit();
-				break;
-			case ORDER_PAY_WAIT:
-				if ($this->getMode() != 'pgreturn') {
+		if (defined('BATCH') && BATCH) {
+			switch ($orderHash['status']) {
+				case ORDER_PENDING:
+					break;
+				default:
+					throw new Exception('対応状況が ORDER_PENDING でない。: ' . $orderHash['status']);
+					break;
+			}
+		}
+		else {
+			switch ($orderHash['status']) {
+				case ORDER_PENDING:
+					break;
+				case ORDER_NEW:
+				case ORDER_PRE_END:
 					SC_Response::sendRedirect(SHOPPING_COMPLETE_URLPATH);
 					SC_Response::actionExit();
-				}
-				break;
-			default:
-				if ($this->getMode() != 'pgreturn' && !SC_Utils::isBlank($orderHash['status'])) {
-					SC_Utils::sfDispSiteError(FREE_ERROR_MSG, "", true, "例外エラーが発生しました。<br />注文情報が無効です。");
-					SC_Response::actionExit();
-				}
-				break;
+					break;
+				case ORDER_PAY_WAIT:
+					if ($this->getMode() != 'pgreturn') {
+						SC_Response::sendRedirect(SHOPPING_COMPLETE_URLPATH);
+						SC_Response::actionExit();
+					}
+					break;
+				default:
+					if ($this->getMode() != 'pgreturn' && !SC_Utils::isBlank($orderHash['status'])) {
+						SC_Utils::sfDispSiteError(FREE_ERROR_MSG, "", true, "例外エラーが発生しました。<br />注文情報が無効です。");
+						SC_Response::actionExit();
+					}
+					break;
+			}
 		}
 
 		$paymentHash = SLN_Util::getPaymentHash($orderHash['payment_id']);

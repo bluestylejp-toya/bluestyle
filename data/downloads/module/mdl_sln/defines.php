@@ -62,7 +62,7 @@ define('SLN_PAYID_CREDIT', '10');
 define('SLN_PAYID_REGIST_CREDIT', '11');
 define('SLN_PAYID_CVS', '20');
 define('SLN_PAYNAME_CREDIT', 'クレジットカード決済');
-define('SLN_PAYNAME_REGIST_CREDIT', '登録済みクレジットカード決済');
+define('SLN_PAYNAME_REGIST_CREDIT', 'クレジットカード'); // オリジナルは「登録済みクレジットカード決済」である。
 define('SLN_PAYNAME_CVS', 'オンライン収納');
 define('SLN_PAYCODE_CREDIT', 'Credit');
 define('SLN_PAYCODE_REGIST_CREDIT', 'RegistCredit');

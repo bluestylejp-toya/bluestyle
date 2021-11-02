@@ -5,6 +5,7 @@ chdir(dirname(__FILE__));
 require_once '../../html/require.php';
 while (@ob_end_flush());
 
+define('BATCH', true);
 $chain_id = $argv[1];
 if (strlen($chain_id) == 0) {
     die('引数1 (chain_id) が指定されていない。');
@@ -88,7 +89,7 @@ class Batch {
             $arrOrder = SC_Helper_Purchase_Ex::getOrderByChain($chain_id, $customer_id, $product_class_id);
             if (empty($arrOrder)) {
                 echo "createOrder\n";
-                $order_id = self::createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct);
+                $order_id = $this->createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct);
                 $arrOrder = SC_Helper_Purchase_Ex::getOrder($order_id);
             }
             else {
@@ -103,13 +104,24 @@ class Batch {
             }
 
             // 決済処理
+            // 対応状況が「新規受付」(ORDER_NEW) の場合
             if ($arrOrder['status'] == ORDER_NEW) {
                 // 無料
                 if ($arrOrder['payment_id'] == 7) {
-                        $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PRE_END); // ループ (Chain 確定)
+                    $objQuery->begin();
+                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PRE_END);
+                    $objQuery->commit();
+                }
+                // クレジットカード
+                elseif ($arrOrder['payment_id'] == 6) {
+                    SC_Helper_Purchase_Ex::payment($order_id);
                 }
             }
             $arrOrder = SC_Helper_Purchase_Ex::getOrder($order_id);
+
+            if ($arrOrder['status'] == ORDER_PAY_WAIT) { // 入金待ち
+                throw new Exception("カウントアップの読み込みを中断した。: ORDER_PAY_WAIT");
+            }
 
             // Chain 成立済みの場合
             if ($chained) {
@@ -122,7 +134,7 @@ class Batch {
                 elseif ($arrOrder['status'] == ORDER_PRE_END) {
                     // 対応状況を更新
                     $objQuery->begin();
-                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_CHAIN); // Chain 成立
+                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_CHAIN);
                     $objQuery->commit();
                     $send_order_mail = true;
                 }
@@ -138,7 +150,12 @@ class Batch {
         }
     }
 
-    static function createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct)
+    /**
+     * 受注を作成する。
+     *
+     * トランザクション制御しない。(呼び出し元で行う。) そのため、この関数内で例外をスローすると、ロールバックされる。
+     */
+    function createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objPurchase = new SC_Helper_Purchase_Ex();
@@ -224,6 +241,7 @@ class Batch {
             echo "在庫の減少で異常を検出\n";
 
             // メール通知 (店舗宛)
+            // データベースはコミットしたいため、例外で処理しない。呼び出し元で、対応状況を基に例外をスローする(カウントアップしない)。
             $body = <<< __EOS__
 在庫の減少で異常を検出しました。
 ・注文番号: {$order_id}

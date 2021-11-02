@@ -63,6 +63,14 @@ class SLN_RegistCredit {
 		$objectClient = new SLN_C_RegistCredit();
 		$result = $objectClient->requestPayment($orderHash, $objectFormParam->getHashArray());
 		if (!$result) {
+			if (defined('BATCH') && BATCH) {
+				$this->updateOrderStatusPayWait($orderHash['order_id'], $objectPurchase);
+				$arrErr = $objectClient->getError();
+				$message = '決済処理でエラーが発生しました。';
+				$message .= ": order_id = {$orderHash['order_id']}";
+				$message .= ': arrErr = ' . var_export($arrErr, true);
+				throw new Exception($message);
+			}
 			$arrErr = $objectClient->getError();
 			$objectPage->arrErr['payment'] = '※ 決済処理でエラーが発生しました。<br />' . implode('<br />', $arrErr);
 			return;
@@ -73,8 +81,13 @@ class SLN_RegistCredit {
 		$objectPurchase->sendOrderMail($orderHash['order_id']);
 		$paramHash = SLN_Util::getOrderPayHash($orderHash['order_id']);
 		$this->cardRegist($orderHash, $paramHash);
-		SC_Response::sendRedirect(SHOPPING_COMPLETE_URLPATH);
-		$objectPage->actionExit();
+		if (defined('BATCH') && BATCH) {
+			// nop
+		}
+		else {
+			SC_Response::sendRedirect(SHOPPING_COMPLETE_URLPATH);
+			$objectPage->actionExit();
+		}
 	}
 
 	function loadAction(&$objectPage, &$orderHash)
@@ -116,6 +129,11 @@ class SLN_RegistCredit {
 	}
 
 	function actionByMode($mode, &$objectFormParam, &$orderHash, &$objectPage) {
+		if (defined('BATCH') && BATCH) {
+			// 設定に関わらず 3D を使わない。
+			$objectPage->arrConfigs['3d_pay'] = SLN_3D_PAY2;
+		}
+
 		$this->prepareObjectPage($objectPage);
 		$objectPurchase = new SC_Helper_Purchase();
 
@@ -154,5 +172,18 @@ class SLN_RegistCredit {
 
 		$objectClient = new SLN_C_Util();
 		$objectClient->exec4MemAdd($orderHash, $paramHash);
+	}
+
+    /**
+     * 対応状況を「入金待ち」に更新する。
+     * 
+     * 決済に失敗を意味する。
+     */
+	function updateOrderStatusPayWait($orderId, &$objectPurchase) {
+		$objectQuery =& SC_Query::getSingletonInstance();
+
+		$objectQuery->begin();
+		$objectPurchase->sfUpdateOrderStatus($orderId, ORDER_PAY_WAIT);
+		$objectQuery->commit();
 	}
 }
