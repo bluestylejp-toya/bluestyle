@@ -480,17 +480,38 @@ $(function(){
 
         $('.report_submit').on('click', function(){
 
-            //ここに管理者へのajaxの処理をお願いします。
-            // 成功した時の処理
-            $('.l-popup').find('.c-notification--secondary.notification').show().delay(400).fadeOut();
-            $(this).attr('disabled', 'disabled');
-            setTimeout(
-                function(){
-                    $('body').removeClass('--overflow-hidden');
-                    $('.l-popup').attr('data-item_mode', 'false');
-                },
-                700
-            )
+            let postData = {
+                mode: 'report',
+                product_id: <!--{$tpl_product_id|@json_encode}-->,
+            };
+            postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
+
+            $.ajax({
+                url: "?",
+                method: "POST",
+                data: postData,
+                dataType: "json",
+                context: this,
+            })
+                .done(function (data, textStatus, jqXHR) {
+                    if (data.success !== true) {
+                        // 応答本文エラー処理
+                        return;
+                    }
+                    $('.l-popup').find('.c-notification--secondary.notification').show().delay(400).fadeOut();
+                    $(this).attr('disabled', 'disabled');
+                    setTimeout(
+                        function(){
+                            $('body').removeClass('--overflow-hidden');
+                            $('.l-popup').attr('data-item_mode', 'false');
+                        },
+                        700
+                    );
+                })
+                .fail(function(jqXHR, textStatus, errorThrown){
+                    // エラーの場合処理
+                })
+            ;
         })
 
         $('.l-popup .l-popup__close').on('click', function(){
