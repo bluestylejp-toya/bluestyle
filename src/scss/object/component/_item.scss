@@ -241,6 +241,9 @@
         width: calc(100% - 30px);
         position: absolute;
         height: 100%;
+        &.no-image {
+            background: none;
+        }
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 4"><path fill="%239DA4B0" fill-rule="evenodd" d="M2,0A2,2,0,1,0,4,2,2,2,0,0,0,2,0ZM14,0a2,2,0,1,0,2,2A2,2,0,0,0,14,0ZM6,2A2,2,0,1,1,8,4,2,2,0,0,1,6,2Z"/></svg>') center right 8px / 14px auto no-repeat;
     }
 
