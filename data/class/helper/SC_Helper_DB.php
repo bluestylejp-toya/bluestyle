@@ -541,6 +541,7 @@ class SC_Helper_DB
         $where = 'del_flg = 0';
         if ($parent_zero === self::FILTER_CATEGORY_LEVEL1) {
             $where .= ' AND level = 1';
+            $parent_zero = false;
         }
         $objQuery->setOption('ORDER BY rank DESC');
         $arrRet = $objQuery->select($col, 'dtb_category', $where);
