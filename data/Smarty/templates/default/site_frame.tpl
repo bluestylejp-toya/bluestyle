@@ -78,7 +78,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {
             "twitter":"chain_marketnet",
             "instagram":"chain2364",
-            "line":"309jmrcc",
+            "line":"309jmrcc"
           }
         ]
       }
