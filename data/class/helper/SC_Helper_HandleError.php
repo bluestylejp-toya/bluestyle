@@ -96,11 +96,7 @@ class SC_Helper_HandleError
 
         switch ($errno) {
             case E_USER_ERROR:
-                $message = "Fatal error($error_type_name): $errstr on [$errfile($errline)]";
-                GC_Utils_Ex::gfPrintLog($message, ERROR_LOG_REALFILE, true);
-
-                SC_Helper_HandleError_Ex::displaySystemError($message);
-                exit(1);
+                throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
                 break;
 
             case E_WARNING:
