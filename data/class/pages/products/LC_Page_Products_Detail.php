@@ -277,6 +277,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                     "target_id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
+                if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
+                    unset($data['date']);
+                }
                 $objHelperApi->setPostParam($data);
                 $result_raw = $objHelperApi->exec();
                 $result = json_decode($result_raw, null, 512, JSON_THROW_ON_ERROR);
