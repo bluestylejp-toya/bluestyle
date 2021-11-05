@@ -20,14 +20,13 @@
     }
 
     &__checkbox,
-
     &__radio-button {
         display: flex;
         border-right: 1px solid $border-color-light;
         padding-right: $unit;
         width: calc(100% - #{$unit*6});
 
-        input[type=redio] {
+        input[type=radio] {
              display: none;
 
             &:checked {
