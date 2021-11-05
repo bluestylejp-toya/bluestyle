@@ -65,28 +65,24 @@
     <div class="c-onboarding">
         <ol>
             <li class="--active">
-                <h2>物々交換のサービスです</h2>
+                <h2>出品しましょう</h2>
                 <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-01.png"></figure>
-                <p>Chainは、1対1では成立しにくい物々交換を、複数人で成立しやすくします。物々交換だから、モノにお金はかかりません。</p>
+                <p>画面下のカメラアイコン（出品）を押して出品しましょう！</p>
             </li>
             <li>
-                <h2>交換するアイテムを<br>登録しよう</h2>
+                <h2>「ほしい」をしましょう</h2>
                 <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-02.png"></figure>
-                <p>まだまだ使えるけど必要がなくなったモノ、捨てるにはもったいないモノなどがあったら登録しよう。</p>
+                <p>出品できたら、次は欲しいアイテムを見つけましょう！手に入れたいアイテムにすべて「ほしい」と意思表示しましょう。</p>
             </li>
             <li>
-                <h2>交換したいアイテムを<br>見つけよう</h2>
+                <h2>「ほしい」されるのを<br>待ちましょう</h2>
                 <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-03.png"></figure>
-                <p>欲しいアイテムを探し、自分のアイテムとの交換をリクエストをしてください。</p>
+                <p>自分の出品アイテムに対して誰かが「ほしい」と意思表示してくれます。<br><small class="u-color--red">※現在は、誰が「ほしい」を押したかは確認できません</small></p>
             </li>
             <li>
-                <h2>アイテム同士がつながり<br>「欲しい」の輪ができます</h2>
+                <h2>Chainが成立したら<br>通知が来ます</h2>
                 <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-04.png"></figure>
-                <p>リクエストされたアイテムが繋がってできた輪をChainと呼びます。Chainができたら交換成立。</p>
-            </li>
-            <li><h2>交換アイテムを<br>送り合います</h2>
-                <figure><img src="<!--{$TPL_URLPATH}-->img/login/on-boarding-05.png"></figure>
-                <p>交換が成立したら、アイテムを送ります。受け取ったら、交換完了です。</p>
+                <p>みんなの「ほしい」が繋がって輪になることでChain（物々交換）が成立します。<br><small class="u-color--red">※通知がメールで届きます</small></p>
             </li>
         </ol>
 
@@ -115,7 +111,7 @@ $('.c-onboarding__show-btn').on('click', function(){
             if($num == 1) {
                 $('.c-onboarding__prev-btn').removeClass('--hidden')
             }
-            if($num === 4) {
+            if($num === 3) {
                 $(this).addClass('--hidden')
                 $('.c-onboarding__close-btn').removeClass('--hidden')
             }
