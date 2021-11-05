@@ -3,7 +3,7 @@
         <h2 class="c-alert__title">ご注意ください</h2>
         <p>現在、出品可能なアイテムのサイズは、ヤマト運輸のネコポスのサイズ（31.2cm x 22.8cm x 2.5cm：1kg）までに制限させていただいています。</p>
     </aside>
-    <p class="l-header--btn"><a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php" class="c-btn--default"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>出品する</a></p>
+    <p class="l-header--btn"><a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php" class="c-btn--gradient"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="white"/></svg>出品する</a></p>
     <div id="mycontents_area">
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
