@@ -277,6 +277,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                     "target_id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
+                if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
+                    unset($data['date']);
+                }
                 $objHelperApi->setPostParam($data);
                 $result_raw = $objHelperApi->exec();
                 $result = json_decode($result_raw, null, 512, JSON_THROW_ON_ERROR);
@@ -318,6 +321,10 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                  * $_SESSION['cart_referer_url'] を上書きさせないために、
                  * 何もせずbreakする。
                  */
+                break;
+
+            case 'report':
+                $this->doReport($product_id);
                 break;
 
             default:
@@ -974,5 +981,39 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
         // バッチ起動
         SC_Helper_Chain_Ex::execBatchPostLoopUpdate($chain_id);
+    }
+
+    /**
+     * 通報
+     *
+     * @return void
+     */
+    public function doReport($product_id)
+    {
+        $objHelperMail = new SC_Helper_Mail_Ex();
+        $objProduct = new SC_Product_Ex();
+
+        $arrProduct = $objProduct->getDetail($product_id);
+
+        $from = null;
+        if (strlen($arrProduct['customer_id']) >= 1) {
+            $arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($arrProduct['customer_id']);
+            $from = $arrCustomer['email'];
+        }
+
+        $subject = '【Chain】不適切アイテムの報告';
+        $url = SC_Utils_Ex::sfTrimURL(HTTP_URL) . P_DETAIL_URLPATH . $product_id;
+        $body = <<< __EOS__
+不適切アイテムの報告がありました。
+{$url}
+出品者ID：{$arrProduct['customer_id']}
+__EOS__;
+
+        $objHelperMail->sfSendMail('', $subject, $body, $from);
+
+        SC_Response_Ex::json([
+            'success' => true,
+        ]);
+        SC_Response_Ex::actionExit();
     }
 }
