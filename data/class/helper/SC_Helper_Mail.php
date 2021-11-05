@@ -258,13 +258,15 @@ class SC_Helper_Mail
     }
 
     // 通常のメール送信
-    public function sfSendMail($to, $tmp_subject, $body)
+    public function sfSendMail($to, $tmp_subject, $body, $from = null)
     {
         $arrInfo = SC_Helper_DB_Ex::sfGetBasisData();
         // メール送信処理
         $objSendMail = new SC_SendMail_Ex();
         $bcc = $arrInfo['email01'];
-        $from = $arrInfo['email03'];
+        if (strlen($from) == 0) {
+            $from = $arrInfo['email03'];
+        }
         $error = $arrInfo['email04'];
         $tosubject = $this->sfMakeSubject($tmp_subject);
         if (strlen($to) == 0) {

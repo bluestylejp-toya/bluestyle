@@ -176,9 +176,6 @@
                             <p class="u-mb--2 report_message u-weight--bold">その他</p>
                             <!--{if !$tpl_my_product}--><!--通報するボタン-->
                             <button type="button" class="report_submit">通報する</button>
-                            <input type="hidden" name="report_title" value="出品アイテムの違反報告です">
-                            <input type="hidden" name="reporter" value="リポートしたユーザーのIDが入るように">
-                            <input type="hidden" name="report_url" value="<!--{$smarty.const.TOP_URL}-->/detail.php?product_id=<!--{$tpl_product_id}-->">
                             <!--/下のJSの「通報の処理」に送信処理を追加願います-->
                             <!--{else}-->
                             <a href="<!--{$smarty.const.TOP_URL}-->mypage/item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|h}-->" class="c--btn--text">編集する</a>
@@ -480,17 +477,38 @@ $(function(){
 
         $('.report_submit').on('click', function(){
 
-            //ここに管理者へのajaxの処理をお願いします。
-            // 成功した時の処理
-            $('.l-popup').find('.c-notification--secondary.notification').show().delay(400).fadeOut();
-            $(this).attr('disabled', 'disabled');
-            setTimeout(
-                function(){
-                    $('body').removeClass('--overflow-hidden');
-                    $('.l-popup').attr('data-item_mode', 'false');
-                },
-                700
-            )
+            let postData = {
+                mode: 'report',
+                product_id: <!--{$tpl_product_id|@json_encode}-->,
+            };
+            postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
+
+            $.ajax({
+                url: "?",
+                method: "POST",
+                data: postData,
+                dataType: "json",
+                context: this,
+            })
+                .done(function (data, textStatus, jqXHR) {
+                    if (data.success !== true) {
+                        // 応答本文エラー処理
+                        return;
+                    }
+                    $('.l-popup').find('.c-notification--secondary.notification').show().delay(400).fadeOut();
+                    $(this).attr('disabled', 'disabled');
+                    setTimeout(
+                        function(){
+                            $('body').removeClass('--overflow-hidden');
+                            $('.l-popup').attr('data-item_mode', 'false');
+                        },
+                        700
+                    );
+                })
+                .fail(function(jqXHR, textStatus, errorThrown){
+                    // エラーの場合処理
+                })
+            ;
         })
 
         $('.l-popup .l-popup__close').on('click', function(){

@@ -323,6 +323,10 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                  */
                 break;
 
+            case 'report':
+                $this->doReport($product_id);
+                break;
+
             default:
                 $this->doDefault();
 
@@ -977,5 +981,39 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
         // バッチ起動
         SC_Helper_Chain_Ex::execBatchPostLoopUpdate($chain_id);
+    }
+
+    /**
+     * 通報
+     *
+     * @return void
+     */
+    public function doReport($product_id)
+    {
+        $objHelperMail = new SC_Helper_Mail_Ex();
+        $objProduct = new SC_Product_Ex();
+
+        $arrProduct = $objProduct->getDetail($product_id);
+
+        $from = null;
+        if (strlen($arrProduct['customer_id']) >= 1) {
+            $arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($arrProduct['customer_id']);
+            $from = $arrCustomer['email'];
+        }
+
+        $subject = '【Chain】不適切アイテムの報告';
+        $url = SC_Utils_Ex::sfTrimURL(HTTP_URL) . P_DETAIL_URLPATH . $product_id;
+        $body = <<< __EOS__
+不適切アイテムの報告がありました。
+{$url}
+出品者ID：{$arrProduct['customer_id']}
+__EOS__;
+
+        $objHelperMail->sfSendMail('', $subject, $body, $from);
+
+        SC_Response_Ex::json([
+            'success' => true,
+        ]);
+        SC_Response_Ex::actionExit();
     }
 }
