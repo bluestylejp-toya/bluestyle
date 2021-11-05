@@ -304,7 +304,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         // カテゴリマスターデータ取得
         $objDb = new SC_Helper_DB_Ex();
 
-        list($this->arrCatVal, $this->arrCatOut) = $objDb->sfGetLevelCatList(false);
+        list($this->arrCatVal, $this->arrCatOut) = $objDb->sfGetLevelCatList(SC_Helper_DB_Ex::FILTER_CATEGORY_LEVEL1);
 
         $arrForm = $objFormParam->getHashArray();
 
