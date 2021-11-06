@@ -182,6 +182,19 @@
                 </td>
             </tr>
             <tr>
+                <th>パスワードを忘れたときのヒント<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.reminder}--><!--{$arrErr.reminder_answer}--></span>
+                    質問：
+                    <select class="top" name="reminder" <!--{if $arrErr.reminder != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> >
+                        <option value="" selected="selected">選択してください</option>
+                        <!--{html_options options=$arrReminder selected=$arrForm.reminder}-->
+                    </select><br />
+                    答え：
+                    <input type="text" name="reminder_answer" value="<!--{$arrForm.reminder_answer|h}-->" size="30" class="box30" <!--{if $arrErr.reminder_answer != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
+                </td>
+            </tr>
+            <tr>
                 <th>お支払い方法<span class="attention"> *</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.default_payment_id}--></span>

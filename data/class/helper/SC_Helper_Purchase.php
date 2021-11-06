@@ -756,7 +756,7 @@ class SC_Helper_Purchase
 
         // 不要な変数を unset
         $unsets = array('mailmaga_flg', 'deliv_check', 'point_check', 'password',
-                        'mail_flag', 'session');
+                        'reminder', 'reminder_answer', 'mail_flag', 'session');
         foreach ($unsets as $unset) {
             unset($orderParams[$unset]);
         }

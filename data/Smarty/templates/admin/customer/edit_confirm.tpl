@@ -110,6 +110,13 @@ function func_return(){
                 <td><!--{$smarty.const.DEFAULT_PASSWORD}--></td>
             </tr>
             <tr>
+                <th>パスワードを忘れたときのヒント</th>
+                <td>
+                    質問： <!--{$arrReminder[$arrForm.reminder]|h}--><br />
+                    答え： <!--{$smarty.const.DEFAULT_PASSWORD}-->
+                </td>
+            </tr>
+            <tr>
                 <th>お支払い方法</th>
                 <td><!--{$arrPayment[$arrForm.default_payment_id]|h}--></td>
             </tr>

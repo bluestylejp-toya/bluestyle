@@ -268,6 +268,8 @@ class LC_Page_Shopping extends LC_Page_Ex
         // 不要なパラメーターの削除
         // XXX: 共通化したことをうまく使えば、以前あった購入同時会員登録も復活出来そうですが
         $objFormParam->removeParam('order_password');
+        $objFormParam->removeParam('order_reminder');
+        $objFormParam->removeParam('order_reminder_answer');
 
         $objFormParam->addParam('別のお届け先', 'deliv_check', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
 
