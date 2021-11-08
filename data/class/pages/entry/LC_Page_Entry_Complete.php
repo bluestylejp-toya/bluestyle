@@ -79,16 +79,18 @@ class LC_Page_Entry_Complete extends LC_Page_Ex
 
         // 仮会員登録完了
         if (CUSTOMER_CONFIRM_MAIL == true) {
-            // 登録された会員ID
-            $this->tpl_customer_id = $_SESSION['registered_customer_id'];
+            if (isset($_SESSION['registered_customer_id'])) {
+                // 登録された会員ID
+                $this->tpl_customer_id = $_SESSION['registered_customer_id'];
 
-            // 仮会員情報を取得
-            $arrCustomer = SC_Helper_Customer::sfGetCustomerData($_SESSION['registered_customer_id']);
-            if ( $arrCustomer['status'] == 1 ){
-                $this->arrCustomer = $arrCustomer;
+                // 仮会員情報を取得
+                $arrCustomer = SC_Helper_Customer::sfGetCustomerData($_SESSION['registered_customer_id']);
+                if ( $arrCustomer['status'] == 1 ){
+                    $this->arrCustomer = $arrCustomer;
+                }
+
+                unset($_SESSION['registered_customer_id']);
             }
-
-            unset($_SESSION['registered_customer_id']);
 
             // メインテンプレートを設定
             $this->tpl_mainpage = 'entry/complete.tpl';
