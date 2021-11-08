@@ -49,7 +49,7 @@
                     <!--{foreach from=$arrCatList item=cate key=key}-->
                         <!--{if $cate.level === '1'}-->
                         <li class="level<!--{$cate.level|h}-->"><label>
-                            <input type="radio" name="category_id" value="<!--{$key}-->" <!--{if $category_id[0] == $key}--> checked<!--{/if}-->>
+                            <input type="radio" name="category_id" value="<!--{$cate['category_id']}-->" <!--{if $category_id[0] == $cate['category_id']}--> checked<!--{/if}-->>
                             <span><!--{$cate.category_name}--></span>
                         </label></li>
                         <!--{/if}-->
@@ -79,6 +79,7 @@
             category.removeAttr('checked');
             $('#search_form').submit();
         });
+        // メニューを表示
         $('[data-menu_id]').on('click',function(){
             slideInMenu.find('.c-header-title.change_title').text($(this).text());
             slideInMenu.addClass('--show')
@@ -92,11 +93,12 @@
         $('[data-sub_menu_id]').on('click',function(){
             $id = '#' + $(this).data('sub_menu_id');
             $($id).addClass('--show');
+            // カテゴリー検索へ戻る
             slideInSubMenu.find('.c-btn--header-nav.menu_sub_btn').on('click',function(){
                 $($id).removeClass('--show')
             })
         })
-        category.on('change',function(){
+        category.on('click', function(){
             search.val('');
             $('#search_form').submit();
         })
