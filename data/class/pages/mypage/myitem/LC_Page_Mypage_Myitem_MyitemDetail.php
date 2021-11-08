@@ -309,6 +309,9 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
                     "target_id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
+                if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
+                    unset($data['date']);
+                }
                 $objHelperApi->setPostParam($data);
                 $result = $objHelperApi->exec();
                 SC_Response_Ex::json([

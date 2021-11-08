@@ -31,6 +31,7 @@ class Batch {
     public function process($chain_id) {
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objPurchase = new SC_Helper_Purchase_Ex();
+        $objProduct = new SC_Product_Ex();
 
         $chain = SC_Helper_Api_Ex::getChain($chain_id);
 
@@ -48,8 +49,9 @@ class Batch {
         }
 
         if (!empty($chain->selection_edge_list)) {
-            echo "分岐選択:\n";
-            var_export($chain->selection_edge_list);
+            $edge = reset($chain->selection_edge_list);
+            echo "分岐選択: {$edge->target_id}:\n";
+            $this->mailSelectItem($edge->target_id, $chain_id);
         }
 
         // Chain 成立済みか
@@ -64,8 +66,6 @@ class Batch {
 
         foreach ($chain->selected_edge_list as $edge) {
             echo "{$edge->source_id},{$edge->target_id}\n";
-
-            $objProduct = new SC_Product_Ex();
 
             $objQuery->begin();
 
@@ -259,5 +259,63 @@ __EOS__;
         $objHelperMail = new SC_Helper_Mail_Ex();
 
         $objHelperMail->sfSendMail('', $subject, $body);
+    }
+
+    /**
+     * 「アイテムを選択してください」メールを送信する。
+     *
+     * LC_Page_Contact::lfSendMail() を基に実装。
+     * @return void
+     * @link https://bluestyle.backlog.jp/view/CHAIN-197
+     */
+    function mailSelectItem($product_id, $chain_id)
+    {
+        echo 'Start ' . __FUNCTION__ . "\n";
+
+        $objPage = new LC_Page_Ex();
+        $helperMail = new SC_Helper_Mail_Ex();
+        $objProduct = new SC_Product_Ex();
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $arrTargetProduct = $objProduct->getDetail($product_id);
+        if (empty($arrTargetProduct)) {
+            throw new Exception("対象の商品情報を取得できない。: {$product_id}");
+        }
+        $customer_id = $arrTargetProduct['customer_id'];
+
+        // 送信済みチェック
+        if ($arrTargetProduct['mailed_select_item'] === $chain_id) {
+            echo "送信省略(送信済み)\n";
+            return;
+        }
+
+        $arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($customer_id);
+        if (empty($arrCustomer)) {
+            throw new Exception("対象の会員情報を取得できない。: {$customer_id}");
+        }
+
+        $CONF = SC_Helper_DB_Ex::sfGetBasisData();
+
+        $objPage->tpl_url = HTTPS_URL . 'mypage/myitem/myitem_detail.php?product_id=' . $product_id;
+        $helperMail->setPage($objPage);
+        $helperMail->sfSendTemplateMail(
+            $arrCustomer['email'],                          // to
+            $arrCustomer['name01'] . ' 様',                 // to_name
+            101,                                            // template_id 101:アイテムを選択してください
+            $objPage,                                       // objPage
+            $CONF['email03'],                               // from_address
+            $CONF['shop_name'],                             // from_name
+            $CONF['email02'],                               // reply_to
+            $CONF['email02']                                // bcc
+        );
+        echo "送信\n";
+
+        // 商品マスターに送信済みを記録
+        $arrUpdate = [
+            'mailed_select_item' => $chain_id,
+        ];
+        $where = 'product_id = ?';
+        $arrWhereValue = [$product_id];
+        $objQuery->update('dtb_products', $arrUpdate, $where, $arrWhereValue);
     }
 }

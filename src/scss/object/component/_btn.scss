@@ -43,6 +43,17 @@
         text-decoration: none;
     }
 
+    &--gradient {
+        @extend %c-btn;
+
+        background: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
+        color: $white;
+
+        &:hover {
+            opacity: .75;
+        }
+
+    }
     &--default {
         @extend %c-btn;
         border-color: $border-color;
