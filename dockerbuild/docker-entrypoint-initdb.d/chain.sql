@@ -1818,7 +1818,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-11-10 20:50:52');
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-10-04 11:52:53');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2774,8 +2774,6 @@ INSERT INTO `dtb_product_categories` VALUES (10,6,2);
 INSERT INTO `dtb_product_categories` VALUES (11,1,3);
 INSERT INTO `dtb_product_categories` VALUES (12,2,3);
 INSERT INTO `dtb_product_categories` VALUES (13,3,3);
-INSERT INTO `dtb_product_categories` VALUES (14,2,4);
-INSERT INTO `dtb_product_categories` VALUES (15,2,5);
 /*!40000 ALTER TABLE `dtb_product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2806,8 +2804,6 @@ LOCK TABLES `dtb_product_status` WRITE;
 INSERT INTO `dtb_product_status` VALUES (1,1,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (1,6,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (1,11,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
-INSERT INTO `dtb_product_status` VALUES (1,14,0,'2021-11-07 06:40:34','2021-11-07 06:40:34',0);
-INSERT INTO `dtb_product_status` VALUES (1,15,2,'2021-11-10 11:57:51','2021-11-10 11:57:51',0);
 INSERT INTO `dtb_product_status` VALUES (2,2,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (2,7,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (2,12,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
@@ -2917,8 +2913,6 @@ INSERT INTO `dtb_products` VALUES (10,'Hバッグ',0,1,'','','','','','','','','
 INSERT INTO `dtb_products` VALUES (11,'I時計',0,1,'','','','','','','','','','テスト\nテスト','','','','','','nabe500.jpg','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,9,0,NULL,NULL);
 INSERT INTO `dtb_products` VALUES (12,'I服',0,1,'','','','','','','','','','テスト\nテスト','','','','','','recipe500.jpg','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,9,0,NULL,NULL);
 INSERT INTO `dtb_products` VALUES (13,'Jバッグ',0,1,'','','','','','','','','','テスト\nテスト','','','','','','ice500.jpg','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,10,0,NULL,NULL);
-INSERT INTO `dtb_products` VALUES (14,'a-2',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021/11/07/11071540_618774de7e3fc.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2021-11-07 06:40:34','2021-11-07 06:40:34',NULL,1,0,NULL,NULL);
-INSERT INTO `dtb_products` VALUES (15,'a-3',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'wwwwww',NULL,'2021/11/07/11071540_618774f1bafaf.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-11-07 06:40:53','2021-11-10 11:57:51',NULL,1,0,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2974,8 +2968,6 @@ INSERT INTO `dtb_products_class` VALUES (10,10,0,0,1,'test-10',1,0,NULL,NULL,0,N
 INSERT INTO `dtb_products_class` VALUES (11,11,0,0,1,'test-11',1,0,NULL,NULL,0,NULL,10,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (12,12,0,0,1,'test-12',1,0,NULL,NULL,0,NULL,10,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (13,13,0,0,1,'test-13',1,0,NULL,NULL,0,NULL,10,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (14,14,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,0,'2021-11-07 06:40:34','2021-11-07 06:40:34',NULL,NULL,0);
-INSERT INTO `dtb_products_class` VALUES (15,15,0,0,1,NULL,NULL,1,NULL,NULL,0,NULL,0,2,'2021-11-07 06:40:53','2021-11-10 11:57:51',NULL,NULL,0);
 /*!40000 ALTER TABLE `dtb_products_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2989,7 +2981,7 @@ DROP TABLE IF EXISTS `dtb_products_class_product_class_id_seq`;
 CREATE TABLE `dtb_products_class_product_class_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2998,7 +2990,7 @@ CREATE TABLE `dtb_products_class_product_class_id_seq` (
 
 LOCK TABLES `dtb_products_class_product_class_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_products_class_product_class_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_products_class_product_class_id_seq` VALUES (15);
+INSERT INTO `dtb_products_class_product_class_id_seq` VALUES (13);
 /*!40000 ALTER TABLE `dtb_products_class_product_class_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3012,7 +3004,7 @@ DROP TABLE IF EXISTS `dtb_products_product_id_seq`;
 CREATE TABLE `dtb_products_product_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3021,7 +3013,7 @@ CREATE TABLE `dtb_products_product_id_seq` (
 
 LOCK TABLES `dtb_products_product_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_products_product_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_products_product_id_seq` VALUES (15);
+INSERT INTO `dtb_products_product_id_seq` VALUES (13);
 /*!40000 ALTER TABLE `dtb_products_product_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3217,8 +3209,6 @@ CREATE TABLE `dtb_session` (
 
 LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
-INSERT INTO `dtb_session` VALUES ('91c37195f9c0a92c77f958bf28610a51','cart|a:0:{}prev_url|s:22:\"/chainadmin/products/?\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:32:\"/chainadmin/products/product.php\";s:8:\"now_page\";s:32:\"/chainadmin/products/product.php\";s:6:\"uniqid\";s:21:\"618774c08674dG7EntYpm\";}customer|a:47:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";s:10:\"テストA\";s:6:\"name02\";s:9:\"テスト\";s:6:\"kana01\";s:9:\"テスト\";s:6:\"kana02\";s:9:\"テスト\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"111\";s:5:\"zip02\";s:4:\"1111\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:1:\"1\";s:6:\"addr01\";s:45:\"テストテストテストテストテスト\";s:6:\"addr02\";s:45:\"テストテストテストテストテスト\";s:6:\"addr03\";s:45:\"テストテストテストテストテスト\";s:5:\"email\";s:11:\"a@localhost\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"011\";s:5:\"tel02\";s:3:\"111\";s:5:\"tel03\";s:4:\"1111\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"2001-01-01 00:00:00\";s:8:\"password\";s:64:\"7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"claihaiwae\";s:10:\"secret_key\";s:8:\"test0001\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-10-06 00:00:00\";s:11:\"update_date\";s:19:\"2021-11-09 16:28:51\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"7\";s:8:\"nickname\";s:7:\"Aさん\";s:17:\"self_introduction\";s:20:\"テスト\r\nテスト\";s:7:\"hobbies\";N;s:13:\"profile_image\";N;}plg_slnquick_payment_item|b:0;cart_referer_url|s:52:\"http://localhost:8080/products/list.php?orderby=date\";transactionid|s:40:\"bccaf68e1efed790074da922555ccfb1b9deb6d1\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"618bb1ad58159eu2Bp9Ue\";last_login|s:19:\"2021-11-10 20:49:01\";','2021-11-10 11:50:52','2021-11-10 12:06:12');
-INSERT INTO `dtb_session` VALUES ('f2a66ff7f2cd531a599e7f6697c3e687','cart|a:0:{}prev_url|s:18:\"/products/list.php\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:18:\"/mypage/change.php\";s:8:\"now_page\";s:18:\"/mypage/change.php\";s:6:\"uniqid\";s:21:\"618774c08674dG7EntYpm\";}customer|a:47:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";s:10:\"テストA\";s:6:\"name02\";s:9:\"テスト\";s:6:\"kana01\";s:9:\"テスト\";s:6:\"kana02\";s:9:\"テスト\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"111\";s:5:\"zip02\";s:4:\"1111\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:1:\"1\";s:6:\"addr01\";s:45:\"テストテストテストテストテスト\";s:6:\"addr02\";s:45:\"テストテストテストテストテスト\";s:6:\"addr03\";s:45:\"テストテストテストテストテスト\";s:5:\"email\";s:11:\"a@localhost\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"011\";s:5:\"tel02\";s:3:\"111\";s:5:\"tel03\";s:4:\"1111\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"2001-01-01 00:00:00\";s:8:\"password\";s:64:\"7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"claihaiwae\";s:10:\"secret_key\";s:8:\"test0001\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-10-06 00:00:00\";s:11:\"update_date\";s:19:\"2021-11-09 16:28:51\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"7\";s:8:\"nickname\";s:7:\"Aさん\";s:17:\"self_introduction\";s:20:\"テスト\r\nテスト\";s:7:\"hobbies\";N;s:13:\"profile_image\";N;}plg_slnquick_payment_item|b:0;cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";transactionid|s:40:\"bccaf68e1efed790074da922555ccfb1b9deb6d1\";','2021-11-07 06:40:03','2021-11-09 16:28:53');
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3421,35 +3411,6 @@ CREATE TABLE `dtb_update` (
 LOCK TABLES `dtb_update` WRITE;
 /*!40000 ALTER TABLE `dtb_update` DISABLE KEYS */;
 /*!40000 ALTER TABLE `dtb_update` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `edges`
---
-
-DROP TABLE IF EXISTS `edges`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `edges` (
-  `source_id` varchar(32) NOT NULL,
-  `target_id` varchar(32) NOT NULL,
-  `date` timestamp NOT NULL,
-  `is_delete` tinyint(1) NOT NULL,
-  `create_at` timestamp NOT NULL,
-  `update_at` timestamp NOT NULL,
-  PRIMARY KEY (`source_id`,`target_id`),
-  KEY `ix_edges_target_id` (`target_id`),
-  KEY `ix_edges_source_id` (`source_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `edges`
---
-
-LOCK TABLES `edges` WRITE;
-/*!40000 ALTER TABLE `edges` DISABLE KEYS */;
-/*!40000 ALTER TABLE `edges` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
