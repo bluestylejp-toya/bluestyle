@@ -830,77 +830,77 @@ CREATE TABLE `dtb_csv` (
 
 LOCK TABLES `dtb_csv` WRITE;
 /*!40000 ALTER TABLE `dtb_csv` DISABLE KEYS */;
-INSERT INTO `dtb_csv` VALUES (1,1,'product_id','商品ID',6,3,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
-INSERT INTO `dtb_csv` VALUES (2,1,'product_class_id','商品規格ID',NULL,3,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (3,1,'parent_classcategory_id','親規格分類ID',NULL,2,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (4,1,'classcategory_id','規格分類ID',NULL,2,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (5,1,'parent_classcategory_name','親規格分類名',NULL,2,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (6,1,'classcategory_name','規格分類名',NULL,2,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (7,1,'maker_id','メーカーID',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (8,1,'(SELECT name as maker_name FROM dtb_maker WHERE prdcls.maker_id = dtb_maker.maker_id) as maker_name','メーカー名',NULL,2,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (9,1,'name','アイテム名',7,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
-INSERT INTO `dtb_csv` VALUES (10,1,'status','表示ステータス(公開・非公開)',8,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (11,1,'comment1','メーカーURL(コメント1)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','URL_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,URL_CHECK');
-INSERT INTO `dtb_csv` VALUES (12,1,'comment2','コメント2',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (13,1,'comment3','検索ワード(コメント3)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (14,1,'comment4','コメント4',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (15,1,'comment5','コメント5',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (16,1,'comment6','コメント6',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (17,1,'note','備考欄(SHOP専用)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (18,1,'main_list_comment','一覧-メインコメント',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','MTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (19,1,'main_list_image','一覧-メイン画像',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (20,1,'main_comment','詳細-メインコメント',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,HTML_TAG_CHECK');
-INSERT INTO `dtb_csv` VALUES (21,1,'main_image','詳細-メイン画像',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (22,1,'main_large_image','詳細-メイン拡大画像 ',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (23,1,'sub_title1','詳細-サブタイトル(1)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (24,1,'sub_comment1','詳細-サブコメント(1)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,HTML_TAG_CHECK');
-INSERT INTO `dtb_csv` VALUES (25,1,'sub_image1','詳細-サブ画像(1)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (26,1,'sub_large_image1','詳細-サブ拡大画像(1)',13,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS,EXIST_CHECK');
-INSERT INTO `dtb_csv` VALUES (27,1,'sub_title2','詳細-サブタイトル(2)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (28,1,'sub_comment2','詳細-サブコメント(2)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (29,1,'sub_image2','詳細-サブ画像(2)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (30,1,'sub_large_image2','詳細-サブ拡大画像(2)',14,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (31,1,'sub_title3','詳細-サブタイトル(3)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (32,1,'sub_comment3','詳細-サブコメント(3)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (33,1,'sub_image3','詳細-サブ画像(3)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (34,1,'sub_large_image3','詳細-サブ拡大画像(3)',15,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (35,1,'sub_title4','詳細-サブタイトル(4)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (36,1,'sub_comment4','詳細-サブコメント(4)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (37,1,'sub_image4','詳細-サブ画像(4)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (38,1,'sub_large_image4','詳細-サブ拡大画像(4)',16,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (39,1,'sub_title5','詳細-サブタイトル(5)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (40,1,'sub_comment5','詳細-サブコメント(5)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (41,1,'sub_image5','詳細-サブ画像(5)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (42,1,'sub_large_image5','詳細-サブ拡大画像(5)',17,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (43,1,'deliv_date_id','発送日目安ID',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (44,1,'del_flg','削除フラグ',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (45,1,'product_type_id','商品種別ID',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (46,1,'product_code','商品コード',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (47,1,'stock','在庫数',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','AMOUNT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (48,1,'stock_unlimited','在庫無制限フラグ',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (49,1,'sale_limit','販売制限数',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','AMOUNT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (50,1,'price01','通常価格',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','PRICE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (51,1,'price02','販売価格',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','PRICE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (52,1,'deliv_fee','送料',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','PRICE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (53,1,'point_rate','ポイント付与率',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','PERCENTAGE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (54,1,'down_filename','ダウンロードファイル名',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (55,1,'down_realfilename','ダウンロード実ファイル',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,DOWN_FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (56,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 0) AS recommend_product_id1','関連商品ID(1)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (57,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 0) AS recommend_comment1','関連商品コメント(1)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (58,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 1) AS recommend_product_id2','関連商品ID(2)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (59,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 1) AS recommend_comment2','関連商品コメント(2)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (60,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 2) AS recommend_product_id3','関連商品ID(3)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (61,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 2) AS recommend_comment3','関連商品コメント(3)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (62,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 3) AS recommend_product_id4','関連商品ID(4)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (63,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 3) AS recommend_comment4','関連商品コメント(4)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (64,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 4) AS recommend_product_id5','関連商品ID(5)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (65,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 4) AS recommend_comment5','関連商品コメント(5)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (66,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 5) AS recommend_product_id6','関連商品ID(6)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (67,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 5) AS recommend_comment6','関連商品コメント(6)',NULL,1,2,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (68,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT product_status_id FROM dtb_product_status WHERE dtb_product_status.product_id = prdcls.product_id and del_flg = 0 ORDER BY dtb_product_status.product_status_id), \',\')) as product_statuses','状態ステータス',9,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (69,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT name FROM dtb_product_status LEFT JOIN mtb_status ON  dtb_product_status.product_status_id = mtb_status.id  WHERE dtb_product_status.product_id = prdcls.product_id and del_flg = 0 ORDER BY dtb_product_status.product_status_id), \',\')) as product_status_names','状態ステータス名',10,2,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (70,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT category_id FROM dtb_product_categories WHERE dtb_product_categories.product_id = prdcls.product_id ORDER BY dtb_product_categories.`RANK`), \',\')) as category_ids','カテゴリID',11,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
-INSERT INTO `dtb_csv` VALUES (71,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT category_name FROM dtb_product_categories LEFT JOIN dtb_category ON dtb_product_categories.category_id = dtb_category.category_id WHERE dtb_product_categories.product_id = prdcls.product_id ORDER BY dtb_product_categories.`RANK`), \',\')) as category_names','カテゴリ名',12,2,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (1,1,'product_id','商品ID',6,3,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
+INSERT INTO `dtb_csv` VALUES (2,1,'product_class_id','商品規格ID',NULL,3,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (3,1,'parent_classcategory_id','親規格分類ID',NULL,2,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (4,1,'classcategory_id','規格分類ID',NULL,2,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (5,1,'parent_classcategory_name','親規格分類名',NULL,2,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (6,1,'classcategory_name','規格分類名',NULL,2,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (7,1,'maker_id','メーカーID',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (8,1,'(SELECT name as maker_name FROM dtb_maker WHERE prdcls.maker_id = dtb_maker.maker_id) as maker_name','メーカー名',NULL,2,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (9,1,'name','アイテム名',7,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
+INSERT INTO `dtb_csv` VALUES (10,1,'status','表示ステータス(公開・非公開)',8,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (11,1,'comment1','メーカーURL(コメント1)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','URL_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,URL_CHECK');
+INSERT INTO `dtb_csv` VALUES (12,1,'comment2','コメント2',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (13,1,'comment3','検索ワード(コメント3)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (14,1,'comment4','コメント4',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (15,1,'comment5','コメント5',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (16,1,'comment6','コメント6',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (17,1,'note','備考欄(SHOP専用)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (18,1,'main_list_comment','一覧-メインコメント',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','MTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (19,1,'main_list_image','一覧-メイン画像',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (20,1,'main_comment','詳細-メインコメント',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,HTML_TAG_CHECK');
+INSERT INTO `dtb_csv` VALUES (21,1,'main_image','詳細-メイン画像',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (22,1,'main_large_image','詳細-メイン拡大画像 ',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (23,1,'sub_title1','詳細-サブタイトル(1)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (24,1,'sub_comment1','詳細-サブコメント(1)',13,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,HTML_TAG_CHECK');
+INSERT INTO `dtb_csv` VALUES (25,1,'sub_image1','詳細-サブ画像(1)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (26,1,'sub_large_image1','詳細-サブ拡大画像(1)',14,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS,EXIST_CHECK');
+INSERT INTO `dtb_csv` VALUES (27,1,'sub_title2','詳細-サブタイトル(2)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (28,1,'sub_comment2','詳細-サブコメント(2)',15,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (29,1,'sub_image2','詳細-サブ画像(2)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (30,1,'sub_large_image2','詳細-サブ拡大画像(2)',16,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (31,1,'sub_title3','詳細-サブタイトル(3)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (32,1,'sub_comment3','詳細-サブコメント(3)',17,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (33,1,'sub_image3','詳細-サブ画像(3)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (34,1,'sub_large_image3','詳細-サブ拡大画像(3)',18,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (35,1,'sub_title4','詳細-サブタイトル(4)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (36,1,'sub_comment4','詳細-サブコメント(4)',19,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (37,1,'sub_image4','詳細-サブ画像(4)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (38,1,'sub_large_image4','詳細-サブ拡大画像(4)',20,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (39,1,'sub_title5','詳細-サブタイトル(5)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (40,1,'sub_comment5','詳細-サブコメント(5)',21,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (41,1,'sub_image5','詳細-サブ画像(5)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (42,1,'sub_large_image5','詳細-サブ拡大画像(5)',22,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (43,1,'deliv_date_id','発送日目安ID',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (44,1,'del_flg','削除フラグ',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (45,1,'product_type_id','商品種別ID',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (46,1,'product_code','商品コード',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (47,1,'stock','在庫数',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','AMOUNT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (48,1,'stock_unlimited','在庫無制限フラグ',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (49,1,'sale_limit','販売制限数',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','AMOUNT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (50,1,'price01','通常価格',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','PRICE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (51,1,'price02','販売価格',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','PRICE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (52,1,'deliv_fee','送料',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','PRICE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (53,1,'point_rate','ポイント付与率',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','PERCENTAGE_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (54,1,'down_filename','ダウンロードファイル名',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (55,1,'down_realfilename','ダウンロード実ファイル',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,DOWN_FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (56,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 0) AS recommend_product_id1','関連商品ID(1)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (57,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 0) AS recommend_comment1','関連商品コメント(1)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (58,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 1) AS recommend_product_id2','関連商品ID(2)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (59,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 1) AS recommend_comment2','関連商品コメント(2)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (60,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 2) AS recommend_product_id3','関連商品ID(3)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (61,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 2) AS recommend_comment3','関連商品コメント(3)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (62,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 3) AS recommend_product_id4','関連商品ID(4)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (63,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 3) AS recommend_comment4','関連商品コメント(4)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (64,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 4) AS recommend_product_id5','関連商品ID(5)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (65,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 4) AS recommend_comment5','関連商品コメント(5)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (66,1,'(SELECT recommend_product_id FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 5) AS recommend_product_id6','関連商品ID(6)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (67,1,'(SELECT comment FROM dtb_recommend_products WHERE prdcls.product_id = dtb_recommend_products.product_id ORDER BY `RANK` DESC, recommend_product_id DESC limit 1 offset 5) AS recommend_comment6','関連商品コメント(6)',NULL,1,2,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LLTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (68,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT product_status_id FROM dtb_product_status WHERE dtb_product_status.product_id = prdcls.product_id and del_flg = 0 ORDER BY dtb_product_status.product_status_id), \',\')) as product_statuses','状態ステータス',9,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (69,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT name FROM dtb_product_status LEFT JOIN mtb_status ON  dtb_product_status.product_status_id = mtb_status.id  WHERE dtb_product_status.product_id = prdcls.product_id and del_flg = 0 ORDER BY dtb_product_status.product_status_id), \',\')) as product_status_names','状態ステータス名',10,2,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (70,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT category_id FROM dtb_product_categories WHERE dtb_product_categories.product_id = prdcls.product_id ORDER BY dtb_product_categories.`RANK`), \',\')) as category_ids','カテゴリID',11,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
+INSERT INTO `dtb_csv` VALUES (71,1,'(SELECT ARRAY_TO_STRING(ARRAY(SELECT category_name FROM dtb_product_categories LEFT JOIN dtb_category ON dtb_product_categories.category_id = dtb_category.category_id WHERE dtb_product_categories.product_id = prdcls.product_id ORDER BY dtb_product_categories.`RANK`), \',\')) as category_names','カテゴリ名',12,2,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
 INSERT INTO `dtb_csv` VALUES (72,2,'customer_id','会員ID',1,1,1,'2021-01-13 01:40:20','2021-01-13 01:40:20',NULL,NULL,NULL);
 INSERT INTO `dtb_csv` VALUES (73,2,'name01','お名前(姓)',2,1,1,'2021-01-13 01:40:20','2021-01-13 01:40:20',NULL,NULL,NULL);
 INSERT INTO `dtb_csv` VALUES (74,2,'name02','お名前(名)',3,1,1,'2021-01-13 01:40:20','2021-01-13 01:40:20',NULL,NULL,NULL);
@@ -989,16 +989,21 @@ INSERT INTO `dtb_csv` VALUES (156,5,'parent_category_id','親カテゴリID',3,1
 INSERT INTO `dtb_csv` VALUES (157,5,'level','階層',NULL,2,2,'2021-01-13 01:40:21','2021-01-13 01:40:21','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
 INSERT INTO `dtb_csv` VALUES (158,5,'`RANK`','表示ランク',NULL,2,2,'2021-01-13 01:40:21','2021-01-13 01:40:21','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
 INSERT INTO `dtb_csv` VALUES (159,5,'del_flg','削除フラグ',NULL,1,2,'2021-01-13 01:40:21','2021-01-13 01:40:21','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (160,1,'customer_id','会員ID',1,3,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
-INSERT INTO `dtb_csv` VALUES (161,1,'sub_large_image6','詳細-サブ拡大画像(6)',18,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (162,1,'sub_large_image7','詳細-サブ拡大画像(7)',19,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (163,1,'sub_large_image8','詳細-サブ拡大画像(8)',20,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (164,1,'sub_large_image9','詳細-サブ拡大画像(9)',21,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (165,1,'sub_large_image10','詳細-サブ拡大画像(10)',22,1,1,'2021-01-13 01:40:20','2021-10-13 05:10:46',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
-INSERT INTO `dtb_csv` VALUES (166,1,'(SELECT name01  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_name01','お名前(姓)',2,2,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (167,1,'(SELECT name02  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_name02','お名前(名)',3,2,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
-INSERT INTO `dtb_csv` VALUES (168,1,'(SELECT kana01  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_kana01','お名前(フリガナ・姓)',4,2,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa',NULL,NULL);
-INSERT INTO `dtb_csv` VALUES (169,1,'(SELECT kana02  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_kana02','お名前(フリガナ名)',5,2,1,'2021-01-13 01:40:20','2021-10-13 05:10:46','KVa',NULL,NULL);
+INSERT INTO `dtb_csv` VALUES (160,1,'customer_id','会員ID',1,3,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','n','INT_LEN','NUM_CHECK,MAX_LENGTH_CHECK,EXIST_CHECK');
+INSERT INTO `dtb_csv` VALUES (161,1,'sub_large_image6','詳細-サブ拡大画像(6)',24,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (162,1,'sub_large_image7','詳細-サブ拡大画像(7)',26,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (163,1,'sub_large_image8','詳細-サブ拡大画像(8)',28,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (164,1,'sub_large_image9','詳細-サブ拡大画像(9)',30,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (165,1,'sub_large_image10','詳細-サブ拡大画像(10)',32,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (166,1,'(SELECT name01  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_name01','お名前(姓)',2,2,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (167,1,'(SELECT name02  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_name02','お名前(名)',3,2,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa','STEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK');
+INSERT INTO `dtb_csv` VALUES (168,1,'(SELECT kana01  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_kana01','お名前(フリガナ・姓)',4,2,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa',NULL,NULL);
+INSERT INTO `dtb_csv` VALUES (169,1,'(SELECT kana02  FROM dtb_customer WHERE prdcls.customer_id = dtb_customer.customer_id) as customer_kana02','お名前(フリガナ名)',5,2,1,'2021-01-13 01:40:20','2021-11-10 12:05:59','KVa',NULL,NULL);
+INSERT INTO `dtb_csv` VALUES (170,1,'sub_large_image6','詳細-サブコメント(6)',23,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (171,1,'sub_large_image7','詳細-サブコメント(7)',25,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (172,1,'sub_large_image8','詳細-サブコメント(8)',27,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (173,1,'sub_large_image9','詳細-サブコメント(9)',29,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
+INSERT INTO `dtb_csv` VALUES (174,1,'sub_large_image10','詳細-サブコメント(10)',31,1,1,'2021-01-13 01:40:20','2021-11-10 12:05:59',NULL,'LTEXT_LEN','SPTAB_CHECK,MAX_LENGTH_CHECK,FILE_EXISTS');
 /*!40000 ALTER TABLE `dtb_csv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1117,7 +1122,7 @@ CREATE TABLE `dtb_customer` (
 
 LOCK TABLES `dtb_customer` WRITE;
 /*!40000 ALTER TABLE `dtb_customer` DISABLE KEYS */;
-INSERT INTO `dtb_customer` VALUES (1,'テストA','テスト','テスト','テスト',NULL,'111','1111',NULL,392,1,'テスト','テスト','テスト','a@localhost',NULL,'011','111','1111',NULL,NULL,NULL,NULL,NULL,'2001-01-01 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0001',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Aさん','テスト\r\nテスト',NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (1,'テストA','テスト','テスト','テスト',NULL,'111','1111',NULL,392,1,'テストテストテストテストテスト','テストテストテストテストテスト','テストテストテストテストテスト','a@localhost',NULL,'011','111','1111',NULL,NULL,NULL,NULL,NULL,'2001-01-01 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0001',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-11-09 16:28:51',0,NULL,NULL,7,'Aさん','テスト\r\nテスト',NULL,NULL);
 INSERT INTO `dtb_customer` VALUES (2,'テストB','テスト','テスト','テスト',NULL,'222','2222',NULL,392,2,'テスト','テスト','テスト','b@localhost',NULL,'022','222','2222',NULL,NULL,NULL,NULL,NULL,'2002-02-02 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0002',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Bさん','テスト\r\nテスト',NULL,NULL);
 INSERT INTO `dtb_customer` VALUES (3,'テストC','テスト','テスト','テスト',NULL,'333','3333',NULL,392,3,'テスト','テスト','テスト','c@localhost',NULL,'033','333','3333',NULL,NULL,NULL,NULL,NULL,'2003-03-03 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0003',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Cさん','テスト\r\nテスト',NULL,NULL);
 INSERT INTO `dtb_customer` VALUES (4,'テストD','テスト','テスト','テスト',NULL,'444','4444',NULL,392,4,'テスト','テスト','テスト','d@localhost',NULL,'044','444','4444',NULL,NULL,NULL,NULL,NULL,'2004-04-04 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0004',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Dさん','テスト\r\nテスト',NULL,NULL);
@@ -1813,7 +1818,7 @@ CREATE TABLE `dtb_member` (
 LOCK TABLES `dtb_member` WRITE;
 /*!40000 ALTER TABLE `dtb_member` DISABLE KEYS */;
 INSERT INTO `dtb_member` VALUES (1,'dummy',NULL,'dummy','dummy','dummy',0,0,1,1,0,'2021-01-13 01:40:22','2021-01-13 01:40:22',NULL);
-INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-10-04 11:52:53');
+INSERT INTO `dtb_member` VALUES (2,'管理者',NULL,'admin','2de7f6d45a5c5fae9c54a08e272ea0bc4101cd485d48705d55d60dfd8d04d5fe','chionotrok',0,1,1,0,0,'2021-01-13 01:40:44','2021-01-13 01:40:44','2021-11-10 20:50:52');
 /*!40000 ALTER TABLE `dtb_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2769,6 +2774,8 @@ INSERT INTO `dtb_product_categories` VALUES (10,6,2);
 INSERT INTO `dtb_product_categories` VALUES (11,1,3);
 INSERT INTO `dtb_product_categories` VALUES (12,2,3);
 INSERT INTO `dtb_product_categories` VALUES (13,3,3);
+INSERT INTO `dtb_product_categories` VALUES (14,2,4);
+INSERT INTO `dtb_product_categories` VALUES (15,2,5);
 /*!40000 ALTER TABLE `dtb_product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2799,6 +2806,8 @@ LOCK TABLES `dtb_product_status` WRITE;
 INSERT INTO `dtb_product_status` VALUES (1,1,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (1,6,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (1,11,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
+INSERT INTO `dtb_product_status` VALUES (1,14,0,'2021-11-07 06:40:34','2021-11-07 06:40:34',0);
+INSERT INTO `dtb_product_status` VALUES (1,15,2,'2021-11-10 11:57:51','2021-11-10 11:57:51',0);
 INSERT INTO `dtb_product_status` VALUES (2,2,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (2,7,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
 INSERT INTO `dtb_product_status` VALUES (2,12,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0);
@@ -2908,6 +2917,8 @@ INSERT INTO `dtb_products` VALUES (10,'Hバッグ',0,1,'','','','','','','','','
 INSERT INTO `dtb_products` VALUES (11,'I時計',0,1,'','','','','','','','','','テスト\nテスト','','','','','','nabe500.jpg','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,9,0,NULL,NULL);
 INSERT INTO `dtb_products` VALUES (12,'I服',0,1,'','','','','','','','','','テスト\nテスト','','','','','','recipe500.jpg','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,9,0,NULL,NULL);
 INSERT INTO `dtb_products` VALUES (13,'Jバッグ',0,1,'','','','','','','','','','テスト\nテスト','','','','','','ice500.jpg','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,0,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,10,0,NULL,NULL);
+INSERT INTO `dtb_products` VALUES (14,'a-2',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021/11/07/11071540_618774de7e3fc.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2021-11-07 06:40:34','2021-11-07 06:40:34',NULL,1,0,NULL,NULL);
+INSERT INTO `dtb_products` VALUES (15,'a-3',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'wwwwww',NULL,'2021/11/07/11071540_618774f1bafaf.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,2,'2021-11-07 06:40:53','2021-11-10 11:57:51',NULL,1,0,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2963,6 +2974,8 @@ INSERT INTO `dtb_products_class` VALUES (10,10,0,0,1,'test-10',1,0,NULL,NULL,0,N
 INSERT INTO `dtb_products_class` VALUES (11,11,0,0,1,'test-11',1,0,NULL,NULL,0,NULL,10,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (12,12,0,0,1,'test-12',1,0,NULL,NULL,0,NULL,10,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',NULL,NULL,0);
 INSERT INTO `dtb_products_class` VALUES (13,13,0,0,1,'test-13',1,0,NULL,NULL,0,NULL,10,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',NULL,NULL,0);
+INSERT INTO `dtb_products_class` VALUES (14,14,0,0,1,NULL,1,0,NULL,NULL,0,NULL,0,0,'2021-11-07 06:40:34','2021-11-07 06:40:34',NULL,NULL,0);
+INSERT INTO `dtb_products_class` VALUES (15,15,0,0,1,NULL,NULL,1,NULL,NULL,0,NULL,0,2,'2021-11-07 06:40:53','2021-11-10 11:57:51',NULL,NULL,0);
 /*!40000 ALTER TABLE `dtb_products_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2976,7 +2989,7 @@ DROP TABLE IF EXISTS `dtb_products_class_product_class_id_seq`;
 CREATE TABLE `dtb_products_class_product_class_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2985,7 +2998,7 @@ CREATE TABLE `dtb_products_class_product_class_id_seq` (
 
 LOCK TABLES `dtb_products_class_product_class_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_products_class_product_class_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_products_class_product_class_id_seq` VALUES (13);
+INSERT INTO `dtb_products_class_product_class_id_seq` VALUES (15);
 /*!40000 ALTER TABLE `dtb_products_class_product_class_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2999,7 +3012,7 @@ DROP TABLE IF EXISTS `dtb_products_product_id_seq`;
 CREATE TABLE `dtb_products_product_id_seq` (
   `sequence` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3008,7 +3021,7 @@ CREATE TABLE `dtb_products_product_id_seq` (
 
 LOCK TABLES `dtb_products_product_id_seq` WRITE;
 /*!40000 ALTER TABLE `dtb_products_product_id_seq` DISABLE KEYS */;
-INSERT INTO `dtb_products_product_id_seq` VALUES (13);
+INSERT INTO `dtb_products_product_id_seq` VALUES (15);
 /*!40000 ALTER TABLE `dtb_products_product_id_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3204,6 +3217,8 @@ CREATE TABLE `dtb_session` (
 
 LOCK TABLES `dtb_session` WRITE;
 /*!40000 ALTER TABLE `dtb_session` DISABLE KEYS */;
+INSERT INTO `dtb_session` VALUES ('91c37195f9c0a92c77f958bf28610a51','cart|a:0:{}prev_url|s:22:\"/chainadmin/products/?\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:32:\"/chainadmin/products/product.php\";s:8:\"now_page\";s:32:\"/chainadmin/products/product.php\";s:6:\"uniqid\";s:21:\"618774c08674dG7EntYpm\";}customer|a:47:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";s:10:\"テストA\";s:6:\"name02\";s:9:\"テスト\";s:6:\"kana01\";s:9:\"テスト\";s:6:\"kana02\";s:9:\"テスト\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"111\";s:5:\"zip02\";s:4:\"1111\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:1:\"1\";s:6:\"addr01\";s:45:\"テストテストテストテストテスト\";s:6:\"addr02\";s:45:\"テストテストテストテストテスト\";s:6:\"addr03\";s:45:\"テストテストテストテストテスト\";s:5:\"email\";s:11:\"a@localhost\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"011\";s:5:\"tel02\";s:3:\"111\";s:5:\"tel03\";s:4:\"1111\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"2001-01-01 00:00:00\";s:8:\"password\";s:64:\"7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"claihaiwae\";s:10:\"secret_key\";s:8:\"test0001\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-10-06 00:00:00\";s:11:\"update_date\";s:19:\"2021-11-09 16:28:51\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"7\";s:8:\"nickname\";s:7:\"Aさん\";s:17:\"self_introduction\";s:20:\"テスト\r\nテスト\";s:7:\"hobbies\";N;s:13:\"profile_image\";N;}plg_slnquick_payment_item|b:0;cart_referer_url|s:52:\"http://localhost:8080/products/list.php?orderby=date\";transactionid|s:40:\"bccaf68e1efed790074da922555ccfb1b9deb6d1\";cert|s:8:\"7WDhcBTF\";member_id|s:1:\"2\";login_id|s:5:\"admin\";authority|s:1:\"0\";login_name|s:9:\"管理者\";uniqid|s:21:\"618bb1ad58159eu2Bp9Ue\";last_login|s:19:\"2021-11-10 20:49:01\";','2021-11-10 11:50:52','2021-11-10 12:06:12');
+INSERT INTO `dtb_session` VALUES ('f2a66ff7f2cd531a599e7f6697c3e687','cart|a:0:{}prev_url|s:18:\"/products/list.php\";site|a:5:{s:18:\"pre_regist_success\";b:0;s:14:\"regist_success\";b:0;s:8:\"pre_page\";s:18:\"/mypage/change.php\";s:8:\"now_page\";s:18:\"/mypage/change.php\";s:6:\"uniqid\";s:21:\"618774c08674dG7EntYpm\";}customer|a:47:{s:11:\"customer_id\";s:1:\"1\";s:6:\"name01\";s:10:\"テストA\";s:6:\"name02\";s:9:\"テスト\";s:6:\"kana01\";s:9:\"テスト\";s:6:\"kana02\";s:9:\"テスト\";s:12:\"company_name\";N;s:5:\"zip01\";s:3:\"111\";s:5:\"zip02\";s:4:\"1111\";s:7:\"zipcode\";N;s:10:\"country_id\";s:3:\"392\";s:4:\"pref\";s:1:\"1\";s:6:\"addr01\";s:45:\"テストテストテストテストテスト\";s:6:\"addr02\";s:45:\"テストテストテストテストテスト\";s:6:\"addr03\";s:45:\"テストテストテストテストテスト\";s:5:\"email\";s:11:\"a@localhost\";s:12:\"email_mobile\";N;s:5:\"tel01\";s:3:\"011\";s:5:\"tel02\";s:3:\"111\";s:5:\"tel03\";s:4:\"1111\";s:5:\"fax01\";N;s:5:\"fax02\";N;s:5:\"fax03\";N;s:3:\"sex\";N;s:3:\"job\";N;s:5:\"birth\";s:19:\"2001-01-01 00:00:00\";s:8:\"password\";s:64:\"7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7\";s:8:\"reminder\";N;s:15:\"reminder_answer\";N;s:4:\"salt\";s:10:\"claihaiwae\";s:10:\"secret_key\";s:8:\"test0001\";s:14:\"first_buy_date\";N;s:13:\"last_buy_date\";N;s:9:\"buy_times\";s:1:\"0\";s:9:\"buy_total\";s:1:\"0\";s:5:\"point\";s:1:\"0\";s:4:\"note\";N;s:6:\"status\";s:1:\"2\";s:11:\"create_date\";s:19:\"2021-10-06 00:00:00\";s:11:\"update_date\";s:19:\"2021-11-09 16:28:51\";s:7:\"del_flg\";s:1:\"0\";s:15:\"mobile_phone_id\";N;s:12:\"mailmaga_flg\";N;s:18:\"default_payment_id\";s:1:\"7\";s:8:\"nickname\";s:7:\"Aさん\";s:17:\"self_introduction\";s:20:\"テスト\r\nテスト\";s:7:\"hobbies\";N;s:13:\"profile_image\";N;}plg_slnquick_payment_item|b:0;cart_referer_url|s:39:\"http://localhost:8080/products/list.php\";transactionid|s:40:\"bccaf68e1efed790074da922555ccfb1b9deb6d1\";','2021-11-07 06:40:03','2021-11-09 16:28:53');
 /*!40000 ALTER TABLE `dtb_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3406,6 +3421,35 @@ CREATE TABLE `dtb_update` (
 LOCK TABLES `dtb_update` WRITE;
 /*!40000 ALTER TABLE `dtb_update` DISABLE KEYS */;
 /*!40000 ALTER TABLE `dtb_update` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `edges`
+--
+
+DROP TABLE IF EXISTS `edges`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `edges` (
+  `source_id` varchar(32) NOT NULL,
+  `target_id` varchar(32) NOT NULL,
+  `date` timestamp NOT NULL,
+  `is_delete` tinyint(1) NOT NULL,
+  `create_at` timestamp NOT NULL,
+  `update_at` timestamp NOT NULL,
+  PRIMARY KEY (`source_id`,`target_id`),
+  KEY `ix_edges_target_id` (`target_id`),
+  KEY `ix_edges_source_id` (`source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `edges`
+--
+
+LOCK TABLES `edges` WRITE;
+/*!40000 ALTER TABLE `edges` DISABLE KEYS */;
+/*!40000 ALTER TABLE `edges` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -5179,4 +5223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-04 10:27:54
+-- Dump completed on 2021-11-10 12:07:21
