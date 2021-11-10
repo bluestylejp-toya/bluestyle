@@ -122,9 +122,15 @@ class Batch {
             if ($arrOrder['status'] == ORDER_PAY_WAIT) { // 入金待ち
                 throw new Exception("カウントアップの読み込みを中断した。: ORDER_PAY_WAIT");
             }
+        }
 
-            // Chain 成立済みの場合
-            if ($chained) {
+        // Chain 成立済みの場合
+        // 上のループと分けて遅延実行する https://bluestyle.backlog.jp/view/CHAIN-246#comment-126470865
+        if ($chained) {
+            echo "Chain 成立済み\n";
+            foreach ($chain->selected_edge_list as $edge) {
+                echo "{$edge->source_id},{$edge->target_id}\n";
+
                 // 注文受付メールを送信するか
                 $send_order_mail = false;
                 if ($arrOrder['status'] == ORDER_CHAIN) {
