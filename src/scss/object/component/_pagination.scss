@@ -35,6 +35,8 @@
         }
     }
     &__first {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
         &::before {
             width: 3px;
             height: 16px;
@@ -52,6 +54,8 @@
         }
     }
     &__last {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
         &::after {
             width: 3px;
             height: 16px;
