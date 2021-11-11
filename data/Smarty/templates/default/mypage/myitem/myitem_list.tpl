@@ -16,7 +16,7 @@
                         <!--{if count($item.selection_edge_detail) > 0}-->
                             <span class="status-unselected">選択が必要な商品がございます</span>
                         <!--{elseif $item.progress_percent > 1 and $item.progress_percent < 100}-->
-                            Chainまで<!--{$item.progress_percent}-->%
+                            Chainまで<!--{100-$item.progress_percent}-->%
                         <!--{elseif $item.progress_percent == 100}-->
                             <span class="status-chained">Chain成立</span>
                         <!--{/if}-->
