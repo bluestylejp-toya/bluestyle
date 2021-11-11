@@ -93,6 +93,16 @@
                 <!--{/foreach}-->
             </td>
         </tr>
+        <tr>
+            <th>在庫数</th>
+            <td>
+                <!--{if $arrForm.stock_unlimited == 1}-->
+                無制限
+                <!--{else}-->
+                <!--{$arrForm.stock|h}-->
+                <!--{/if}-->
+            </td>
+        </tr>
 
         <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->
             <tr>
@@ -110,6 +120,13 @@
 
         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
             <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
+            <tr>
+                <th>詳細-サブコメント（<!--{$smarty.section.cnt.iteration}-->）</th>
+                <td>
+                    <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
+                    <!--{$arrForm[$key]|nl2br_html}-->
+                </td>
+            </tr>
             <tr>
                 <th>詳細-サブ拡大画像（<!--{$smarty.section.cnt.iteration}-->）</th>
                 <td>
