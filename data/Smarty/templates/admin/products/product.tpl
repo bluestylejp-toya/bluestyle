@@ -208,9 +208,14 @@
             <input type="hidden" name="price02" value="<!--{$arrForm.price02|default:0|h}-->" size="6" class="box6"
                    maxlength="<!--{$smarty.const.PRICE_LEN}-->"
                    style="<!--{if $arrErr.price02 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>
-            <input type="hidden" name="stock" value="<!--{$arrForm.stock|default:1|h}-->" size="6" class="box6"
-                   maxlength="<!--{$smarty.const.AMOUNT_LEN}-->"
-                   style="<!--{if $arrErr.stock != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>
+            <tr>
+                <th>在庫数<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.stock}--></span>
+                    <input type="text" name="stock" value="<!--{$arrForm.stock|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.AMOUNT_LEN}-->" style="<!--{if $arrErr.stock != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>
+                    <input type="checkbox" name="stock_unlimited" value="1" <!--{if $arrForm.stock_unlimited == "1"}-->checked<!--{/if}--> onclick="eccube.checkStockLimit('<!--{$smarty.const.DISABLED_RGB}-->');"/>無制限
+                </td>
+            </tr>
             <!--{/if}-->
             <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->
             <tr>
@@ -240,6 +245,15 @@
             <table class="form">
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
                 <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
+                <tr>
+                    <th>詳細-サブコメント(<!--{$smarty.section.cnt.iteration}-->)<span class="attention">(タグ許可)</span></th>
+                    <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
+                    <td>
+                        <span class="attention"><!--{$arrErr[$key]}--></span>
+                        <textarea name="sub_comment<!--{$smarty.section.cnt.iteration}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
+                        <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+                    </td>
+                </tr>
                 <tr>
                     <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
                     <th>詳細-サブ拡大画像(<!--{$smarty.section.cnt.iteration}--> )<br/>[
