@@ -26,5 +26,8 @@
         </li>
         <!--{/foreach}-->
     </ul>
+    <!--▼ページナビ-->
+    <div class="c-pagination"><!--{$tpl_strnavi}--></div>
+    <!--▲ページナビ-->
 
 </section>
