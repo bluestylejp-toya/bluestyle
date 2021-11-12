@@ -22,7 +22,7 @@ class LC_Page_Mypage_Myitem_MyitemList extends LC_Page_AbstractMypage_Ex
         $this->tpl_subtitle = '出品中アイテム一覧';
         $this->tpl_mypageno = 'item-list';
         // 1ページあたりの件数
-        $this->dispNumber = null;
+        $this->dispNumber = 10;
     }
 
     /**
