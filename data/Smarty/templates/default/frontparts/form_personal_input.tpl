@@ -166,21 +166,6 @@ $flgFields について
                 <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
             <!--{/if}-->
         </dd>
-        <dt>パスワードを忘れた時のヒント<span class="attention">※</span></dt>
-        <dd>
-            <!--{assign var=key1 value="`$prefix`reminder"}-->
-            <!--{assign var=key2 value="`$prefix`reminder_answer"}-->
-            <!--{if $arrErr[$key1] || $arrErr[$key2]}-->
-                <div class="attention"><!--{$arrErr[$key1]}--><!--{$arrErr[$key2]}--></div>
-            <!--{/if}-->
-            質問：
-            <select name="<!--{$key1}-->" style="<!--{$arrErr[$key1]|sfGetErrorColor}-->">
-                <option value="" selected="selected">選択してください</option>
-                <!--{html_options options=$arrReminder selected=$arrForm[$key1].value}-->
-            </select>
-            <br />
-            答え：<input type="text" name="<!--{$key2}-->" value="<!--{$arrForm[$key2].value|h}-->" style="<!--{$arrErr[$key2]|sfGetErrorColor}-->; ime-mode: active;" class="box260" />
-        </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
         <dt>お支払い方法<span class="attention">※必須</span></dt>

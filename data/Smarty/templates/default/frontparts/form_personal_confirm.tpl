@@ -98,14 +98,6 @@
     <!--{if $flgFields == 3 || $flgFields == 93}-->
         <dt>パスワード</dt>
         <dd><!--{$passlen}--></dd>
-        <dt>パスワードを忘れた時のヒント</dt>
-        <dd>
-            <!--{assign var=key1 value="`$prefix`reminder"}-->
-            <!--{assign var=key2 value="`$prefix`reminder_answer"}-->
-            <!--{assign var="reminder_id" value=$arrForm[$key1].value}-->
-            質問：<!--{$arrReminder[$reminder_id]|h}--><br />
-            答え：<!--{$arrForm[$key2].value|h}-->
-        </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3}-->
         <dt>お支払い方法</dt>
