@@ -79,6 +79,7 @@
             <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
         </form>
 
+
         <!--▼検索条件-->
         <!--{if $tpl_subtitle == "検索結果"}-->
             <!--<ul class="pagecond_area">
@@ -138,6 +139,9 @@
                     <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
                 </form>
                 <!--▲ページナビ(上部)-->
+                <!--{if $tpl_subtitle === '全商品'}-->
+                    <div class="c-alert--gray --show u-mb--4"><button type="button" class="c-btn--default c-onboarding__show-btn">Chainの使い方</button><button type="button" class="close-btn"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.9888C0 5.45877 4.47 0.98877 10 0.98877C15.53 0.98877 20 5.45877 20 10.9888C20 16.5188 15.53 20.9888 10 20.9888C4.47 20.9888 0 16.5188 0 10.9888ZM13.59 15.9888L15 14.5788L11.41 10.9888L15 7.39877L13.59 5.98877L10 9.57877L6.41 5.98877L5 7.39877L8.59 10.9888L5 14.5788L6.41 15.9888L10 12.3988L13.59 15.9888Z" fill="#9DA4B0"/></svg></button></div>
+                <!--{/if}-->
                 <ul class="l-item-list">
             <!--{/if}-->
 
@@ -178,10 +182,91 @@
     <!--{/foreach}-->
 
     </div>
+    <div class="c-onboarding">
+        <ol>
+            <li class="--active">
+                <h2>出品しましょう</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/products/on-boarding-01.png"></figure>
+                <p>画面下のカメラアイコン（出品）を押して出品しましょう！</p>
+            </li>
+            <li>
+                <h2>「ほしい」をしましょう</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/products/on-boarding-02.png"></figure>
+                <p>出品できたら、次は欲しいアイテムを見つけましょう！手に入れたいアイテムにすべて「ほしい」と意思表示しましょう。</p>
+            </li>
+            <li>
+                <h2>「ほしい」されるのを<br>待ちましょう</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/products/on-boarding-03.png"></figure>
+                <p>自分の出品アイテムに対して誰かが「ほしい」と意思表示してくれます。<br><small class="u-color--red">※現在は、誰が「ほしい」を押したかは確認できません</small></p>
+            </li>
+            <li>
+                <h2>Chainが成立したら<br>通知が来ます</h2>
+                <figure><img src="<!--{$TPL_URLPATH}-->img/products/on-boarding-04.png"></figure>
+                <p>みんなの「ほしい」が繋がって輪になることでChain（物々交換）が成立します。<br><small class="u-color--red">※通知がメールで届きます</small></p>
+            </li>
+        </ol>
+
+        <div class="c-onboarding__btn">
+            <button type="button" class="c-onboarding__prev-btn --hidden">前へ</button>
+            <button type="button" class="c-onboarding__next-btn">次へ</button>
+            <button type="button" class="c-onboarding__close-btn --hidden">閉じる</button>
+        </div>
+    </div>
+    <div class="c-onboarding__bg"></div>
 <!--{strip}-->
 
 </div>
 <script>
-// $('.favorite_area .btn--regist').init_favorite_area(<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->, <!--{$transactionid|@json_encode}-->);
+$('.c-alert--gray .close-btn').on('click', function(){
+    $('.c-alert--gray').fadeOut();
+})
+$('.c-onboarding__show-btn').on('click', function(){
+    $('.c-onboarding').fadeIn();
+    $('.c-onboarding__bg').fadeIn();
+    $('body').addClass('--overflow-hidden');
+    let $lists = $('.c-onboarding ol li');
+    let $num = 0;
 
+    $('.c-onboarding__next-btn').on('click', function(){
+        if($num < ($lists.length - 1)) {
+            ++$num
+            $('.c-onboarding ol li').removeClass('--active')
+            $('.c-onboarding ol li').eq($num).addClass('--active')
+
+            if($num == 1) {
+                $('.c-onboarding__prev-btn').removeClass('--hidden')
+            }
+            if($num === 3) {
+                $(this).addClass('--hidden')
+                $('.c-onboarding__close-btn').removeClass('--hidden')
+            }
+        }
+
+    })
+    $('.c-onboarding__prev-btn').on('click', function(){
+        if($num !== 0) {
+            --$num
+            $('.c-onboarding ol li').removeClass('--active')
+            $('.c-onboarding ol li').eq($num).addClass('--active')
+            if($num == 0) {
+                $('.c-onboarding__prev-btn').addClass('--hidden')
+            }
+            if($num < 4) {
+                $('.c-onboarding__next-btn').removeClass('--hidden')
+                $('.c-onboarding__close-btn').addClass('--hidden')
+            }
+        }
+    })
+    $('.c-onboarding__bg,.c-onboarding__close-btn').on('click', function(){
+        $num = 0;
+        $('.c-onboarding').fadeOut();
+        $('.c-onboarding__bg').fadeOut();
+        $('.c-onboarding ol li').removeClass('--active')
+        $('.c-onboarding ol li').eq($num).addClass('--active')
+        $('.c-onboarding__prev-btn').addClass('--hidden')
+        $('.c-onboarding__next-btn').removeClass('--hidden')
+        $('.c-onboarding__close-btn').addClass('--hidden')
+        $('body').removeClass('--overflow-hidden');
+    })
+})
 </script>

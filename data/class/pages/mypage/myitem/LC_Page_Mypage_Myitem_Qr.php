@@ -91,8 +91,14 @@ class LC_Page_Mypage_Myitem_Qr extends LC_Page_AbstractMypage_Ex
             return null;
         }
 
+        // 受注情報からChainID取得
+        $chain_id = $this->getChainId($customerId, $productId);
+        if (is_null($chain_id)) {
+            return null;
+        }
+
         // Chain詳細情報を取得
-        $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+        $objHelperApi->setUrl(API_URL . 'chain/' . $chain_id);
         $result = json_decode($objHelperApi->exec(), true);
 
         // 分岐選択待ち商品あり
@@ -160,7 +166,7 @@ class LC_Page_Mypage_Myitem_Qr extends LC_Page_AbstractMypage_Ex
         $objHelperApi->setMethod('POST');
         $objHelperApi->setUrl(API_URL . 'yamato/shipping_qr_code/create');
         $data = [
-            "tradingId" => $orderId,
+            "tradingId" => 'o'.$orderId,
             "reservePwd" => sprintf('%06d', $orderId),
             // お届け先
             "dstTel1" => $arrTargetCustomer['tel01'],
@@ -215,6 +221,28 @@ class LC_Page_Mypage_Myitem_Qr extends LC_Page_AbstractMypage_Ex
 
         if (!is_null($arrOrderDetail)) {
             return $arrOrderDetail[0]['order_id'];
+        }
+        return null;
+    }
+
+    /**
+     * 会員IDと商品IDに紐づくChainIDを取得
+     *
+     * @param int $customerId 会員ID
+     * @param int $productId 商品ID
+     * @return int|null 注文ID
+     */
+    private function getChainId($customerId, $productId)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $col    = 'dtb_order.order_id, dtb_order_detail.product_id, dtb_order_detail.product_name ,dtb_products.customer_id, dtb_order.chain_id';
+        $table  = 'dtb_order LEFT JOIN dtb_order_detail ON dtb_order.order_id = dtb_order_detail.order_id ';
+        $table  .= 'LEFT JOIN dtb_products ON dtb_order_detail.product_id = dtb_products.product_id';
+        $where  = 'dtb_order_detail.product_id = ? and dtb_products.customer_id = ?';
+        $arrOrderDetail = $objQuery->select($col, $table, $where, array($productId, $customerId));
+
+        if (!is_null($arrOrderDetail)) {
+            return $arrOrderDetail[0]['chain_id'];
         }
         return null;
     }
