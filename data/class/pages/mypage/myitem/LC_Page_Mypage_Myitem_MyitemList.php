@@ -47,8 +47,8 @@ class LC_Page_Mypage_Myitem_MyitemList extends LC_Page_AbstractMypage_Ex
         $customer_id = $objCustomer->getValue('customer_id');
 
         // ページ送り用
-        if (isset($_POST['pageno'])) {
-            $this->tpl_pageno = intval($_POST['pageno']);
+        if (isset($_GET['pageno'])) {
+            $this->tpl_pageno = intval($_GET['pageno']);
         }
         $this->arrProducts = $this->getChainProductStatus($customer_id, $this);
 
