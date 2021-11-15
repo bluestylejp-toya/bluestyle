@@ -26,5 +26,10 @@
         </li>
         <!--{/foreach}-->
     </ul>
-
+    <!--▼ページナビ-->
+    <div class="c-pagination"><!--{$tpl_strnavi}--></div>
+    <!--▲ページナビ-->
+    <form name="form1" id="form1" method="get" action="?">
+        <input type="hidden" name="pageno" value="<!--{$tpl_pageno|h}-->" />
+    </form>
 </section>
