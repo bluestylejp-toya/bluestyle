@@ -64,7 +64,8 @@ class Batch {
             throw new Exception('selected_edge_list が異常。: ' . var_export($selected_edge_list ,true));
         }
 
-        foreach ($chain->selected_edge_list as $edge) {
+        // 末尾にキャッシュ処理があるため、このループ内で continue しない。
+        foreach ($chain->selected_edge_list as &$edge) {
             echo "{$edge->source_id},{$edge->target_id}\n";
 
             $objQuery->begin();
@@ -123,28 +124,40 @@ class Batch {
                 throw new Exception("カウントアップの読み込みを中断した。: ORDER_PAY_WAIT");
             }
 
-            // Chain 成立済みの場合
-            if ($chained) {
+            // 後続の foreach で参照するためキャッシュ
+            $edge->arrOrder = $arrOrder;
+        }
+        unset($edge);
+
+        // Chain 成立済みの場合
+        // 上のループと分けて遅延実行する https://bluestyle.backlog.jp/view/CHAIN-246#comment-126470865
+        if ($chained) {
+            echo "Chain 成立済み\n";
+            foreach ($chain->selected_edge_list as $edge) {
+                echo "{$edge->source_id},{$edge->target_id}\n";
+
+                $arrOrder = $edge->arrOrder;
+
                 // 注文受付メールを送信するか
                 $send_order_mail = false;
-                if ($arrOrder['status'] == ORDER_CHAIN) {
-                    $send_order_mail = true;
-                }
-                // ループ (Chain 確定)
-                elseif ($arrOrder['status'] == ORDER_PRE_END) {
+                if ($arrOrder['status'] == ORDER_PRE_END) {
                     // 対応状況を更新
                     $objQuery->begin();
-                    $objPurchase->sfUpdateOrderStatus($order_id, ORDER_CHAIN);
+                    $objPurchase->sfUpdateOrderStatus($arrOrder['order_id'], ORDER_CHAIN);
                     $objQuery->commit();
+                    $send_order_mail = true;
+                }
+                // この状態はあまり想定しにくいが、メール送信に失敗したケースか。
+                elseif ($arrOrder['status'] == ORDER_CHAIN) {
                     $send_order_mail = true;
                 }
 
                 if ($send_order_mail
-                    && !SC_Helper_Mail_Ex::existsOrderMailHistory($order_id, 1)
+                    && !SC_Helper_Mail_Ex::existsOrderMailHistory($arrOrder['order_id'], 1)
                 ) {
                     echo "sendOrderMail\n";
                     // 注文受付メールを送信
-                    $objPurchase->sendOrderMail($order_id);
+                    $objPurchase->sendOrderMail($arrOrder['order_id']);
                 }
             }
         }
