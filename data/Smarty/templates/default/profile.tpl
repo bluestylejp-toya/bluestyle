@@ -71,4 +71,7 @@
             </ul>
         </dd>
     </dl>
+    <div>
+        <a href="<!--{$smarty.const.ROOT_URLPATH|h}-->mypage/profile.php">編集</a>
+    </div>
 <!--{/strip}-->
