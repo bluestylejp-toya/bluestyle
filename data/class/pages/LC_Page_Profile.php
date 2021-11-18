@@ -6,6 +6,9 @@ require_once CLASS_EX_REALDIR . 'page_extends/LC_Page_Ex.php';
  */
 class LC_Page_Profile extends LC_Page_Ex
 {
+    /** 編集可能か */
+    public $tpl_editable = false;
+
     /**
      * Page を初期化する.
      *
@@ -39,7 +42,15 @@ class LC_Page_Profile extends LC_Page_Ex
      */
     public function action()
     {
+        $objCustomer = new SC_Customer_Ex();
+
         $customer_id = $_REQUEST['customer_id'];
         $this->arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($customer_id);
+
+        if ($objCustomer->isLoginSuccess(true)
+            && $objCustomer->getValue('customer_id') == $customer_id
+        ) {
+            $this->tpl_editable = true;
+        }
     }
 }

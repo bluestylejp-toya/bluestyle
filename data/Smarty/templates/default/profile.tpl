@@ -21,7 +21,9 @@
         <dt>都道府県</dt>
         <dd><!--{$arrPref[$arrCustomer.pref]|h}--></dd>
     </dl>
-    <div>
-        <a href="<!--{$smarty.const.ROOT_URLPATH|h}-->mypage/profile.php">編集</a>
-    </div>
+    <!--{if $tpl_editable}-->
+        <div>
+            <a href="<!--{$smarty.const.ROOT_URLPATH|h}-->mypage/profile.php">編集</a>
+        </div>
+    <!--{/if}-->
 <!--{/strip}-->
