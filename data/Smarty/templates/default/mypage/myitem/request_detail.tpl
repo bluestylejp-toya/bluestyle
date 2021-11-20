@@ -22,7 +22,7 @@
     </div>
     <h2 class="c-heading--lg u-mb--1">あなたの交換</h2>
     <div class="c-card--blue u-mb--2">
-        <p class="c-card__title">あなた</p>
+        <p class="c-card__title">交換アイテム</p>
         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
         <div class="c-item__main">
             <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
@@ -43,7 +43,7 @@
         </svg>
     </div>
     <div class="c-card--white u-mb--4">
-        <p class="c-card__title">交換相手</p>
+        <p class="c-card__title">あなたのアイテム</p>
         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{$arrCustomerProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrCustomerProduct.name|h}--> 画像(1)" class="c-item__img"/>
         <div class="c-item__main">
             <p class="c-item__title">タイトル<!--{$arrCustomerProduct.name|h}--></p>
