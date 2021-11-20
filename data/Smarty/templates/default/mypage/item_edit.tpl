@@ -65,17 +65,19 @@
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
 
                     <!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
+                    <!--{assign var=image value=$arrFile[$key].filepath}-->
                     <li data-item_id="<!--{$smarty.section.cnt.iteration}-->" class="c-item--edit<!--{if $smarty.section.cnt.iteration > 3 && $arrFile[$key].filepath == ''}--> --hidden<!--{/if}-->">
+
                         <!--{if strlen($arrErr[$key]) >= 1}-->
                             <div class="attention"><!--{$arrErr[$key]}--></div>
                         <!--{/if}-->
                         <button class="c-item__back-btn" type="button">詳細写真編集</button>
                         <button class="c-item__sort-btn" type="button"></button>
                         <label class="preview">
-                            <img src="<!--{$arrFile[$key].filepath|h}-->" alt="" class="c-item__img"/>
+                            <img src="<!--{if count($arrFile[$key]) > 1}--><!--{$arrFile[$key].filepath|h}--><!--{/if}-->"alt="" class="c-item__img"/>
                             <span class="icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8307 0.236328C11.5641 0.236328 12.1641 0.836328 12.1641 1.56966V10.903C12.1641 11.6363 11.5641 12.2363 10.8307 12.2363H1.4974C0.764063 12.2363 0.164062 11.6363 0.164062 10.903V1.56966C0.164062 0.836328 0.764063 0.236328 1.4974 0.236328H10.8307ZM5.4974 9.243L3.83073 7.23633L1.4974 10.2363H10.8307L7.83073 6.23633L5.4974 9.243Z" fill="#475462"/></svg></span>
 
-                            <span class="c-item__img<!--{if $arrFile[$key].filepath }--> --hidden<!--{/if}-->">
+                            <span class="c-item__img<!--{if $image }--> --hidden<!--{/if}-->">
                                 <span>画像追加</span>
                             </span>
 
@@ -83,14 +85,15 @@
 
                         </label>
 
-
                         <div class="c-item__main">
                             <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
                             <h2 class="c-heading-subtitle u-text--left u-color--gray">キャプション</h2>
                             <input type="text" name="<!--{$key|h}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="u-mb--4" readonly placeholder="（キャプションがありません）"/>
                             <button type="button" class="c-item__img-save-btn c-btn--primary">保存する</button>
                         </div>
-                        <button class="c-item__controll-btn" type="button"></button>
+
+
+                        <button class="c-item__controll-btn<!--{if !$image }--> no-image<!--{/if}-->" type="button"></button>
 
                     </li>
                 <!--{/section}-->
@@ -144,18 +147,20 @@ $(function(){
 
     //画像編集
     $('[data-item_id] .c-item__controll-btn').on('click', function(){
-        $parent   = $(this).closest('[data-item_id]');
+        $parent    = $(this).closest('[data-item_id]');
         $caption   = $parent.find('[name^=sub_title]');
         $imageFile = $parent.find('[name^=sub_large_image]');
         $image     = $parent.find('img');
         $id        = $parent.closest('[data-item_id]').attr('data-item_id');
 
         //削除と編集のコントロール・ポップアップ
-        $('.l-popup').attr('data-item_mode', 'edit') ;
         if($image.attr('src') !== "") {
             $('a.delete_image').attr('data-item_delete', $id);
             $('a.delete_image').removeClass('disabled')
+            $('.l-popup').attr('data-item_mode', 'edit') ;
+
         } else {
+            $('.image_edit').click();
             $('a.delete_image').removeAttr('data-item_delete');
             $('a.delete_image').addClass('disabled')
         }
@@ -173,9 +178,9 @@ $(function(){
             $imageFile.attr('disabled', false);
             $('body').addClass('--overflow-hidden');
         })
-
         //画像が登録されなかった場合の処理も必要
         $('.c-item__back-btn, .c-item__img-save-btn').on('click', function(){
+
             if($image.attr('src') == '' && $caption.val() != '') {
                 // キャプションの登録があって画像がない場合
                 alert('画像の登録をしてください。');
@@ -184,6 +189,10 @@ $(function(){
                 if($image.attr('src') == '' && $('.sub_large_images li.--hidden').length < 7) {
                     $parent.addClass('--hidden');
                 }
+                if($image.attr('src') !== ''){
+                    $parent.prevObject.removeClass('no-image')
+                }
+
                 $parent.removeClass('c-item--modal').addClass('c-item--edit');
                 $caption.attr('readonly', true);
                 $imageFile.attr('disabled', true);
@@ -247,6 +256,7 @@ $(function(){
                 $closest.addClass('--hidden');
             }
             $closest.find('span.c-item__img').removeClass('--hidden');
+            $closest.find('.c-item__controll-btn').addClass('no-image')
             $closest.parent().append($closest);
             renumberImgNum();
             addimageBtnStatus()

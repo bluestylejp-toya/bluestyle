@@ -29,7 +29,7 @@
                 </ul>
 
                 <!--▼ページナビ-->
-                <!--<div class="c-pagination"><!--{$tpl_strnavi}--></div>-->
+                <div class="c-pagination"><!--{$tpl_strnavi}--></div>
                 <!--▲ページナビ-->
             <!--{else}-->
                 <p>アイテムが登録されておりません。</p>
