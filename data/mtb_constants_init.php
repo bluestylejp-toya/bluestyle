@@ -2,7 +2,7 @@
 /** フロント表示関連 */
 define('SAMPLE_ADDRESS1', "市区町村名 (例：千代田区神田神保町)");
 /** フロント表示関連 */
-define('SAMPLE_ADDRESS2', "番地 (例：1-3-5)");
+define('SAMPLE_ADDRESS2', "番地(例：1-3-5)");
 /** フロント表示関連 */
 define('SAMPLE_ADDRESS3', "ビル名");
 /** ユーザファイル保存先 */
@@ -27,8 +27,6 @@ define('MODULE_DIR', "downloads/module/");
 define('MODULE_REALDIR', DATA_REALDIR . MODULE_DIR);
 /** DBセッションの有効期限(秒) */
 define('MAX_LIFETIME', 7776000);
-/** マスターデータキャッシュディレクトリ */
-define('MASTER_DATA_REALDIR', DATA_REALDIR . "cache/");
 /** アップデート管理用ファイル格納場所 */
 define('UPDATE_HTTP', "http://www.ec-cube.net/info/index.php");
 /** 文字コード */
@@ -136,17 +134,17 @@ define('LARGE_SUBIMAGE_WIDTH', 500);
 /** 拡大サブ画像縦 */
 define('LARGE_SUBIMAGE_HEIGHT', 500);
 /** 画像サイズ制限(KB) */
-define('IMAGE_SIZE', 10240);
+define('IMAGE_SIZE', 102400);
 /** CSVサイズ制限(KB) */
 define('CSV_SIZE', 2000);
 /** CSVアップロード1行あたりの最大文字数 */
 define('CSV_LINE_MAX', 10000);
 /** ファイル管理画面アップ制限(KB) */
-define('FILE_SIZE', 10000);
+define('FILE_SIZE', 100000);
 /** アップできるテンプレートファイル制限(KB) */
 define('TEMPLATE_SIZE', 10000);
 /** カテゴリの最大階層 */
-define('LEVEL_MAX', 2);
+define('LEVEL_MAX', 5);
 /** 最大カテゴリ登録数 */
 define('CATEGORY_MAX', 1000);
 /** 管理機能タイトル */
@@ -230,8 +228,6 @@ define('STEXT_LEN', 50);
 define('SMTEXT_LEN', 100);
 /** 長い項目の文字数 (住所など) */
 define('MTEXT_LEN', 200);
-/** 住所の文字数 */
-define('ADDR_LEN', 15);
 /** 長中文の文字数 (問い合わせなど) */
 define('MLTEXT_LEN', 1000);
 /** 長文の文字数 */
@@ -492,4 +488,6 @@ define('PENDING_ORDER_CANCEL_FLAG', true);
 define('API_ENABLE_FLAG', false);
 /** UTF-8依存文字が入力された際に表示する文字(Unicode値の整数 デフォルト: ?) */
 define('SUBSTITUTE_CHAR', 63);
+/** 住所の文字数 */
+define('ADDR_LEN', 15);
 
