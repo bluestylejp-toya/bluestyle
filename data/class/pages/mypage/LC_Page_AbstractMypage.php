@@ -86,6 +86,7 @@ class LC_Page_AbstractMypage extends LC_Page_Ex
             $this->CustomerName1 = $this->objCustomer->getValue('name01');
             $this->CustomerName2 = $this->objCustomer->getValue('name02');
             $this->CustomerPoint = $this->objCustomer->getValue('point');
+            $this->arrCustomer   = $this->objCustomer->getAllValues();
             $this->action();
         }
 

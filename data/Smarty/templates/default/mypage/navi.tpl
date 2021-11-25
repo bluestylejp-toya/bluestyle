@@ -28,7 +28,7 @@
 
             <!--{* 会員状態 *}-->
             <!--{if $tpl_login}-->
-                <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/profile.php" class="<!--{if $tpl_mypageno == 'profile'}--> selected<!--{/if}-->">プロフィール</a></li>
+                <li><a href="<!--{$smarty.const.ROOT_URLPATH|h}-->profile.php?customer_id=<!--{$arrCustomer.customer_id|h}-->" class="<!--{if $tpl_mypageno == 'profile'}--> selected<!--{/if}-->">プロフィール</a></li>
                 <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/change.php" class="<!--{if $tpl_mypageno == 'change'}--> selected<!--{/if}-->">アカウント</a></li>
                 <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/card_info.php" class="<!--{if $tpl_mypageno == 'change'}--> selected<!--{/if}-->">支払い情報</a></li>
                 <!--<li><a href="./<!--{$smarty.const.DIR_INDEX_PATH}-->" class="<!--{if $tpl_mypageno == 'index'}--> selected<!--{/if}-->">
