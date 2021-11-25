@@ -57,6 +57,11 @@
         z-index: 500;
         transition: .5s;
         padding: 0 $unit*3;
+
+        .l-header__inner {
+            width: 100%;
+            max-width: 100%;
+        }
         & > ul {
             display: none;
             &.--show {

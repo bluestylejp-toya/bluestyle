@@ -82,6 +82,16 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
         if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
             $this->arrRequestProductId = $this->getRequestProductId($objCustomer->getValue('customer_id'));
         }
+
+        // 会員クラス
+        $this->objCustomer = new SC_Customer_Ex();
+
+        // ログイン判定
+        $this->tpl_login = $this->objCustomer->isLoginSuccess() === true;
+        $this->customer_id = null;
+        if ($this->tpl_login){
+            $this->customer_id = $this->objCustomer->getValue('customer_id');
+        }
     }
 
     /**
@@ -190,29 +200,28 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
     {
         $arrRequestProductId = array();
 
-        $objHelperApi = new SC_Helper_Api_Ex();
-        $objHelperApi->setMethod('GET');
+        $objQuery = new SC_Query_Ex();
+        $objProduct = new SC_Product_Ex();
+        foreach ($this->arrCheckItems as $key => $checkItems) {
+            $addCols = ['count_of_favorite'];
+            $addCols[] = "
+            (
+                CASE WHEN EXISTS
+                (
+                    SELECT * FROM dtb_customer_favorite_products
+                        JOIN dtb_products ON dtb_customer_favorite_products.target_id = dtb_products.product_id AND dtb_products.status = 1
+                        JOIN dtb_products_class ON dtb_customer_favorite_products.target_id = dtb_products_class.product_id
+                    WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . "
+                        AND dtb_products.status = 1 AND dtb_products.del_flg = 0
+                        AND dtb_products_class.classcategory_id1 = 0 AND dtb_products_class.classcategory_id2 = 0 AND dtb_products_class.del_flg = 0
+                        AND (dtb_products_class.stock > 0 OR dtb_products_class.stock_unlimited = 1)
+                ) THEN 1 ELSE 0 END
+            ) AS registered_favorite";
+            $arrProducts = $objProduct->getListByProductIds($objQuery, array($checkItems['product_id']), $addCols);
 
-        // 出品中アイテム商品ID取得
-        $arrProductId = array();
-        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
-        foreach ($arrListingProducts as $arrListingProduct) {
-            $arrProductId[] = $arrListingProduct['product_id'];
-        }
-        $index = 0;
-        foreach ($arrProductId as $key => $productID) {
-            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $productID);
-            $result = json_decode($objHelperApi->exec(), true);
-            if (count($result) > 0) {
-                $chainId = $result[0]['id'];
-                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
-                $result = json_decode($objHelperApi->exec(), true);
-                foreach ($result['chain_list'] as $chainList){
-                    foreach ($chainList as $chain){
-                        if (in_array($chain['target_id'], $arrProductId)){
-                            $arrRequestProductId[] = $chain['source_id'];
-                        }
-                    }
+            foreach ($arrProducts as $product){
+                if ($product['registered_favorite'] > 0){
+                    $arrRequestProductId[] = $product['product_id'];
                 }
             }
         }

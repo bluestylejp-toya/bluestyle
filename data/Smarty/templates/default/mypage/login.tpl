@@ -74,12 +74,16 @@
     </form>
 </div>
 <section class="u-mb--4">
-	<h2 class="c-heading--subtitle u-mb--4">メールアドレス・パスワードを忘れた方は</h2>
-	<p class="u-mb--4 u-color--gray">お手数ですが、サポートまでお問い合わせください</p>
+	<h2 class="c-heading--subtitle u-mb--4">パスワードを忘れた方は</h2>
+    <p class="u-mb--4 u-color--gray"><a href="<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->" onclick="eccube.openWindow('<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->','forget','600','460',{scrollbars:'no',resizable:'no'}); return false;" target="_blank">こちら</a>からパスワードの再発行を行ってください。</p>
+</section>
+<hr class="u-mb--4">
+<section>
+    <h2 class="c-heading--subtitle u-mb--4">メールアドレスを忘れた方は</h2>
+    <p class="u-mb--4 u-color--gray">お手数ですが、サポートまでお問い合わせください</p>
 	<p><a href="<!--{$smarty.const.ROOT_URLPATH}-->contact/<!--{$smarty.const.DIR_INDEX_PATH}-->" class="c-btn--default">お問い合わせ</a></p>
 </section>
 <hr class="u-mb--4">
 <section>
-    <h2 class="c-heading--subtitle u-mb--4">メールアドレス・パスワードを忘れた方は</h2>
 	<a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn--default">アカウント登録をする</a>
 </section>
