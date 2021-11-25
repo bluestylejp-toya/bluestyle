@@ -13,3 +13,5 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 RUN /bin/sh -c a2enmod rewrite
+
+CMD /var/www/data/batch/clear_cache.sh; apache2-foreground
