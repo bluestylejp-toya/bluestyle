@@ -48,6 +48,11 @@ if (!defined('CACHE_REALDIR')) {
     define('CACHE_REALDIR', DATA_REALDIR . "cache/");
 }
 
+if (!defined('MASTER_DATA_REALDIR')) {
+    /** マスターデータキャッシュディレクトリ */
+    define('MASTER_DATA_REALDIR', CACHE_REALDIR);
+}
+
 // クラスのオートローディングに対応するフックを入れるために、ここに入れる必要あり
 require_once(CLASS_EX_REALDIR . 'helper_extends/SC_Helper_Plugin_Ex.php');
 

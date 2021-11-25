@@ -788,4 +788,20 @@ class SC_Helper_Customer
 
         return array_unique($arrUnselectedProductId);
     }
+
+    /**
+     * パスワードリセットコードを更新する。
+     */
+    public static function updatePasswordResetCode($customer_id)
+    {
+        // パスワードリセットコードを生成
+        $password_reset_code = date('mdHi') . '_' . str_replace('.', '_', uniqid('', true));
+
+        $arrData = [
+            'password_reset_code' => $password_reset_code,
+        ];
+        self::sfEditCustomerData($arrData, $customer_id);
+
+        return $password_reset_code;
+    }
 }

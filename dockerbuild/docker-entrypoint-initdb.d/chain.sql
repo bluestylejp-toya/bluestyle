@@ -1110,8 +1110,10 @@ CREATE TABLE `dtb_customer` (
   `self_introduction` text,
   `hobbies` text,
   `profile_image` text,
+  `password_reset_code` varchar(191) DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
+  UNIQUE KEY `password_reset_code` (`password_reset_code`),
   KEY `dtb_customer_mobile_phone_id_key` (`mobile_phone_id`(255))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1122,16 +1124,16 @@ CREATE TABLE `dtb_customer` (
 
 LOCK TABLES `dtb_customer` WRITE;
 /*!40000 ALTER TABLE `dtb_customer` DISABLE KEYS */;
-INSERT INTO `dtb_customer` VALUES (1,'テストA','テスト','テスト','テスト',NULL,'111','1111',NULL,392,1,'テストテストテストテストテスト','テストテストテストテストテスト','テストテストテストテストテスト','a@localhost',NULL,'011','111','1111',NULL,NULL,NULL,NULL,NULL,'2001-01-01 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0001',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-11-09 16:28:51',0,NULL,NULL,7,'Aさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (2,'テストB','テスト','テスト','テスト',NULL,'222','2222',NULL,392,2,'テスト','テスト','テスト','b@localhost',NULL,'022','222','2222',NULL,NULL,NULL,NULL,NULL,'2002-02-02 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0002',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Bさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (3,'テストC','テスト','テスト','テスト',NULL,'333','3333',NULL,392,3,'テスト','テスト','テスト','c@localhost',NULL,'033','333','3333',NULL,NULL,NULL,NULL,NULL,'2003-03-03 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0003',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Cさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (4,'テストD','テスト','テスト','テスト',NULL,'444','4444',NULL,392,4,'テスト','テスト','テスト','d@localhost',NULL,'044','444','4444',NULL,NULL,NULL,NULL,NULL,'2004-04-04 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0004',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Dさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (5,'テストE','テスト','テスト','テスト',NULL,'555','5555',NULL,392,5,'テスト','テスト','テスト','e@localhost',NULL,'055','555','5555',NULL,NULL,NULL,NULL,NULL,'2005-05-05 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0005',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Eさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (6,'テストF','テスト','テスト','テスト',NULL,'666','6666',NULL,392,6,'テスト','テスト','テスト','f@localhost',NULL,'066','666','6666',NULL,NULL,NULL,NULL,NULL,'2006-06-06 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0006',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Fさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (7,'テストG','テスト','テスト','テスト',NULL,'777','7777',NULL,392,7,'テスト','テスト','テスト','g@localhost',NULL,'077','777','7777',NULL,NULL,NULL,NULL,NULL,'2007-07-07 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0007',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Gさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (8,'テストH','テスト','テスト','テスト',NULL,'888','8888',NULL,392,8,'テスト','テスト','テスト','h@localhost',NULL,'088','888','8888',NULL,NULL,NULL,NULL,NULL,'2008-08-08 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0008',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Hさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (9,'テストI','テスト','テスト','テスト',NULL,'999','9999',NULL,392,9,'テスト','テスト','テスト','i@localhost',NULL,'099','999','9999',NULL,NULL,NULL,NULL,NULL,'2009-09-09 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0009',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Iさん','テスト\r\nテスト',NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (10,'テストJ','テスト','テスト','テスト',NULL,'000','0000',NULL,392,0,'テスト','テスト','テスト','j@localhost',NULL,'000','000','0000',NULL,NULL,NULL,NULL,NULL,'2010-10-10 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0010',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Jさん','テスト\r\nテスト',NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (1,'テストA','テスト','テスト','テスト',NULL,'111','1111',NULL,392,1,'テストテストテストテストテスト','テストテストテストテストテスト','テストテストテストテストテスト','a@localhost',NULL,'011','111','1111',NULL,NULL,NULL,NULL,NULL,'2001-01-01 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0001',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-11-09 16:28:51',0,NULL,NULL,7,'Aさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (2,'テストB','テスト','テスト','テスト',NULL,'222','2222',NULL,392,2,'テスト','テスト','テスト','b@localhost',NULL,'022','222','2222',NULL,NULL,NULL,NULL,NULL,'2002-02-02 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0002',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Bさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (3,'テストC','テスト','テスト','テスト',NULL,'333','3333',NULL,392,3,'テスト','テスト','テスト','c@localhost',NULL,'033','333','3333',NULL,NULL,NULL,NULL,NULL,'2003-03-03 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0003',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Cさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (4,'テストD','テスト','テスト','テスト',NULL,'444','4444',NULL,392,4,'テスト','テスト','テスト','d@localhost',NULL,'044','444','4444',NULL,NULL,NULL,NULL,NULL,'2004-04-04 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0004',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Dさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (5,'テストE','テスト','テスト','テスト',NULL,'555','5555',NULL,392,5,'テスト','テスト','テスト','e@localhost',NULL,'055','555','5555',NULL,NULL,NULL,NULL,NULL,'2005-05-05 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0005',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Eさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (6,'テストF','テスト','テスト','テスト',NULL,'666','6666',NULL,392,6,'テスト','テスト','テスト','f@localhost',NULL,'066','666','6666',NULL,NULL,NULL,NULL,NULL,'2006-06-06 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0006',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Fさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (7,'テストG','テスト','テスト','テスト',NULL,'777','7777',NULL,392,7,'テスト','テスト','テスト','g@localhost',NULL,'077','777','7777',NULL,NULL,NULL,NULL,NULL,'2007-07-07 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0007',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Gさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (8,'テストH','テスト','テスト','テスト',NULL,'888','8888',NULL,392,8,'テスト','テスト','テスト','h@localhost',NULL,'088','888','8888',NULL,NULL,NULL,NULL,NULL,'2008-08-08 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0008',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Hさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (9,'テストI','テスト','テスト','テスト',NULL,'999','9999',NULL,392,9,'テスト','テスト','テスト','i@localhost',NULL,'099','999','9999',NULL,NULL,NULL,NULL,NULL,'2009-09-09 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0009',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Iさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (10,'テストJ','テスト','テスト','テスト',NULL,'000','0000',NULL,392,0,'テスト','テスト','テスト','j@localhost',NULL,'000','000','0000',NULL,NULL,NULL,NULL,NULL,'2010-10-10 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0010',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Jさん','テスト\r\nテスト',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2502,6 +2504,7 @@ INSERT INTO `dtb_pagelayout` VALUES (10,51,'MYページ/登録済カード情報
 INSERT INTO `dtb_pagelayout` VALUES (10,52,'MYページ/送付状QR','mypage/myitem/qr.php','mypage/myitem/qr',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,53,'MYページ/マイアイテム詳細','mypage/myitem/myitem_detail.php','mypage/myitem/myitem_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,54,'マイアイテム一覧','user_data/myitem_list.php','user_data/myitem_list',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-10-04 02:53:32','2021-10-04 02:53:32',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,55,'パスワードの再設定','forgot/reset.php','forgot/reset',1,1,2,NULL,NULL,NULL,NULL,'2021-11-20 00:00:00','2021-11-20 00:00:00',NULL);
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3545,6 +3548,7 @@ CREATE TABLE `mtb_constants` (
 
 LOCK TABLES `mtb_constants` WRITE;
 /*!40000 ALTER TABLE `mtb_constants` DISABLE KEYS */;
+INSERT INTO `mtb_constants` VALUES ('ADDR_LEN','15',1422,'住所の文字数');
 INSERT INTO `mtb_constants` VALUES ('ADMIN_HOME_URLPATH','ROOT_URLPATH . ADMIN_DIR . \"home.php\"',165,'ホーム');
 INSERT INTO `mtb_constants` VALUES ('ADMIN_ID','\"1\"',74,'管理ユーザID(メンテナンス用表示されない。)');
 INSERT INTO `mtb_constants` VALUES ('ADMIN_LOG_REALFILE','DATA_REALDIR . \"logs/admin.log\"',144,'管理機能ログファイル');
@@ -3583,7 +3587,7 @@ INSERT INTO `mtb_constants` VALUES ('CUSTOMER_LOG_REALFILE','DATA_REALDIR . \"lo
 INSERT INTO `mtb_constants` VALUES ('CV_PAYMENT_LIMIT','14',275,'支払期限 (*モジュールで使用)');
 INSERT INTO `mtb_constants` VALUES ('DB_LOG_REALFILE','DATA_REALDIR . \"logs/db.log\"',147,'DBログファイル');
 INSERT INTO `mtb_constants` VALUES ('DEBUG_LOG_REALFILE','\"\"',145,'デバッグログファイル(未入力:標準ログファイル・管理画面ログファイル)');
-INSERT INTO `mtb_constants` VALUES ('DEBUG_MODE','false',72,'デバッグモード(true：sfPrintRやDBのエラーメッセージ、ログレベルがDebugのログを出力する、false：出力しない)');
+INSERT INTO `mtb_constants` VALUES ('DEBUG_MODE','true',72,'デバッグモード(true：sfPrintRやDBのエラーメッセージ、ログレベルがDebugのログを出力する、false：出力しない)');
 INSERT INTO `mtb_constants` VALUES ('DEFAULT_COUNTRY_ID','392',1413,'デフォルト国コード ISO_3166-1に準拠');
 INSERT INTO `mtb_constants` VALUES ('DEFAULT_PASSWORD','\"******\"',66,'会員登録変更(マイページ)パスワード用');
 INSERT INTO `mtb_constants` VALUES ('DEFAULT_PRODUCT_DISP','2',56,'1:公開 2:非公開');
@@ -3617,7 +3621,7 @@ INSERT INTO `mtb_constants` VALUES ('ERROR_LOG_REALFILE','DATA_REALDIR . \"logs/
 INSERT INTO `mtb_constants` VALUES ('FAVORITE_ERROR','13',46,'一般サイトエラー');
 INSERT INTO `mtb_constants` VALUES ('FILE_NAME_LEN','10',209,'ファイル名表示文字数');
 INSERT INTO `mtb_constants` VALUES ('FILE_SIZE','10000',130,'ファイル管理画面アップ制限(KB)');
-INSERT INTO `mtb_constants` VALUES ('FORGOT_MAIL','0',95,'パスワード忘れの確認メールを送付するか否か。(0:送信しない、1:送信する)');
+INSERT INTO `mtb_constants` VALUES ('FORGOT_MAIL','1',95,'パスワード忘れの確認メールを送付するか否か。(0:送信しない、1:送信する)');
 INSERT INTO `mtb_constants` VALUES ('FORM_COUNTRY_ENABLE','false',1415,'各種フォームで国の指定を有効にする(true:有効 false:無効)');
 INSERT INTO `mtb_constants` VALUES ('GRAPH_LABEL_MAX','40',52,'グラフのラベルの文字数');
 INSERT INTO `mtb_constants` VALUES ('GRAPH_PIE_MAX','10',51,'円グラフ最大表示数');
@@ -3632,7 +3636,7 @@ INSERT INTO `mtb_constants` VALUES ('IMAGE_RENAME','true',525,'画像リネー�
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_REALDIR','HTML_REALDIR . \"upload/save_image/\"',151,'画像保存先');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_RSS_URL','HTTP_URL . \"upload/save_image/\"',155,'RSS用画像保存先URL');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_SAVE_URLPATH','ROOT_URLPATH . \"upload/save_image/\"',153,'画像保存先URL');
-INSERT INTO `mtb_constants` VALUES ('IMAGE_SIZE','10240',126,'画像サイズ制限(KB)');
+INSERT INTO `mtb_constants` VALUES ('IMAGE_SIZE','102400',126,'画像サイズ制限(KB)');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_REALDIR','HTML_REALDIR . \"upload/temp_image/\"',150,'画像一時保存');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_RSS_URL','HTTP_URL . \"upload/temp_image/\"',154,'RSS用画像一時保存URL');
 INSERT INTO `mtb_constants` VALUES ('IMAGE_TEMP_URLPATH','ROOT_URLPATH . \"upload/temp_image/\"',152,'画像一時保存URL');
@@ -3643,7 +3647,7 @@ INSERT INTO `mtb_constants` VALUES ('LARGE_IMAGE_HEIGHT','500',111,'拡大画像
 INSERT INTO `mtb_constants` VALUES ('LARGE_IMAGE_WIDTH','500',110,'拡大画像横');
 INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_HEIGHT','500',119,'拡大サブ画像縦');
 INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_WIDTH','500',118,'拡大サブ画像横');
-INSERT INTO `mtb_constants` VALUES ('LEVEL_MAX','2',132,'カテゴリの最大階層');
+INSERT INTO `mtb_constants` VALUES ('LEVEL_MAX','5',132,'カテゴリの最大階層');
 INSERT INTO `mtb_constants` VALUES ('LLTEXT_LEN','99999',193,'超長文の文字数 (メルマガなど)');
 INSERT INTO `mtb_constants` VALUES ('LOCALE','\"ja_JP.UTF-8\"',40,'ロケール設定');
 INSERT INTO `mtb_constants` VALUES ('LOG_REALFILE','DATA_REALDIR . \"logs/site.log\"',142,'標準ログファイル');
@@ -3651,7 +3655,6 @@ INSERT INTO `mtb_constants` VALUES ('LOGIN_FRAME','\"login_frame.tpl\"',77,'ロ�
 INSERT INTO `mtb_constants` VALUES ('LOGIN_RETRY_INTERVAL','0',1411,'ログイン失敗時の遅延時間(秒)(ブルートフォースアタック対策)');
 INSERT INTO `mtb_constants` VALUES ('LTEXT_LEN','3000',192,'長文の文字数');
 INSERT INTO `mtb_constants` VALUES ('MAIN_FRAME','\"main_frame.tpl\"',78,'管理画面フレーム');
-INSERT INTO `mtb_constants` VALUES ('MASTER_DATA_REALDIR','DATA_REALDIR . \"cache/\"',27,'マスターデータキャッシュディレクトリ');
 INSERT INTO `mtb_constants` VALUES ('MAX_LIFETIME','7776000',26,'DBセッションの有効期限(秒)');
 INSERT INTO `mtb_constants` VALUES ('MAX_LOG_QUANTITY','5',92,'ログファイル最大数(ログテーション)');
 INSERT INTO `mtb_constants` VALUES ('MAX_LOG_SIZE','\"1000000\"',93,'1つのログファイルに保存する最大容量(byte)');
@@ -5184,4 +5187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-12 17:40:43
+-- Dump completed on 2021-11-24 15:38:10
