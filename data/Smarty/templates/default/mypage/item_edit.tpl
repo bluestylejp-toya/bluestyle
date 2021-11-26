@@ -21,44 +21,6 @@
             <!--{foreach key=key item=item from=$arrHidden}-->
                 <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item|h}-->" />
             <!--{/foreach}-->
-            <dl class="u-mb--4 c-list--dl">
-
-                <!--{assign var=key value="name"}-->
-                <dt>アイテム名<!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
-                <dd>
-                    <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="c-form-parts --underline" />
-                    <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
-                    <span class="attention"><!--{$arrErr.name}--></span>
-                </dd>
-
-
-                <!--{assign var=key value="category_id"}-->
-                <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
-                <dd>
-                    <span class="attention"><!--{$arrErr.category_id}--></span>
-                    <select name="category_id" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" class="c-form-parts--select --underline">
-                        <option value="">選択してください</option>
-                        <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id.value}-->
-                    </select>
-                </dd>
-
-
-                <!--{assign var=key value="status"}-->
-                <dt class="c-list--dl__left">公開状態</dt>
-                <dd class="c-list--dl__right">
-                    <input type="checkbox" class="c-form-parts--toggle-btn__hidden" id="status"<!--{if $arrForm.status.value == 1}--> checked<!--{/if}-->>
-                    <label for="status" class="c-form-parts--toggle-btn"></label>
-                    <input type="hidden" value="<!--{$arrForm.status.value}-->" name="status">
-                </dd>
-
-
-                <!--{assign var=key value="product_status"}-->
-                <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
-                <dd>
-                    <div  class="c-form-parts--select --underline" ><!--{html_options name="product_status" options=$arrSTATUS selected=$arrForm.product_status.value}--></div>
-                </dd>
-
-            </dl>
             <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
 
             <ul class="sub_large_images u-mb--4">
@@ -110,7 +72,46 @@
             </div>
             <button class="c-btn--default u-mb--4 c-item__add-image-btn --hidden" type="button"><svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.1279 8H8.12793V14H6.12793V8H0.12793V6H6.12793V0H8.12793V6H14.1279V8Z" fill="black"/></svg>写真を追加</button>
 
-            <!--{if !$tpl_lock_because_on_loop}-->
+
+            <dl class="u-mb--4 c-list--dl">
+
+                <!--{assign var=key value="name"}-->
+                <dt>アイテム名<!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dd>
+                    <input type="text" name="name" value="<!--{$arrForm.name.value|h}-->" maxlength="<!--{$arrForm[$key].length|h}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="c-form-parts --underline" />
+                    <span class="attention"> (上限<!--{$arrForm[$key].length|n2s|h}-->文字)</span>
+                    <span class="attention"><!--{$arrErr.name}--></span>
+                </dd>
+
+
+                <!--{assign var=key value="category_id"}-->
+                <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dd>
+                    <span class="attention"><!--{$arrErr.category_id}--></span>
+                    <select name="category_id" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" class="c-form-parts--select --underline">
+                        <option value="">選択してください</option>
+                        <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id.value}-->
+                    </select>
+                </dd>
+
+
+                <!--{assign var=key value="status"}-->
+                <dt class="c-list--dl__left">公開状態</dt>
+                <dd class="c-list--dl__right">
+                    <input type="checkbox" class="c-form-parts--toggle-btn__hidden" id="status"<!--{if $arrForm.status.value == 1}--> checked<!--{/if}-->>
+                    <label for="status" class="c-form-parts--toggle-btn"></label>
+                    <input type="hidden" value="<!--{$arrForm.status.value}-->" name="status">
+                </dd>
+
+
+                <!--{assign var=key value="product_status"}-->
+                <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dd>
+                    <div  class="c-form-parts--select --underline" ><!--{html_options name="product_status" options=$arrSTATUS selected=$arrForm.product_status.value}--></div>
+                </dd>
+
+            </dl>
+                        <!--{if !$tpl_lock_because_on_loop}-->
                 <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
             <!--{/if}-->
         </form>
