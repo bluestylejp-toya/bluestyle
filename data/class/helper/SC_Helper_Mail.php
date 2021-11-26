@@ -116,6 +116,7 @@ class SC_Helper_Mail
         $arrTplVar->arrInfo = $arrInfo;
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objPurchase = new SC_Helper_Purchase_Ex();
 
         if ($subject == '' && $header == '' && $footer == '') {
             // メールテンプレート情報の取得
@@ -140,7 +141,10 @@ class SC_Helper_Mail
 
         $where = 'order_id = ?';
         $objQuery->setOrder('order_detail_id');
-        $arrTplVar->arrOrderDetail = $objQuery->select('*', 'dtb_order_detail', $where, array($order_id));
+        $arrTplVar->arrOrderDetail = $objPurchase->getOrderDetail($order_id);
+
+        // テールアイテムの商品ID
+        $arrTplVar->tpl_target_id = $this->getTargetId($arrTplVar->arrOrderDetail);
 
         // 配送情報の取得
         $arrTplVar->arrShipping = $this->sfGetShippingData($order_id);
@@ -584,5 +588,26 @@ class SC_Helper_Mail
         $exists = $objQuery->exists('dtb_mail_history', $where, $arrWhereValue);
 
         return $exists;
+    }
+
+    function getTargetId($arrOrderDetailList)
+    {
+        if (!is_array($arrOrderDetailList) || count($arrOrderDetailList) != 1) {
+            return;
+        }
+        $arrOrderDetail = reset($arrOrderDetailList);
+        $source_id = $arrOrderDetail['product_id'];
+        $chain_id = $arrOrderDetail['chain_id'];
+
+        $objChain = SC_Helper_Api_Ex::getChain($chain_id);
+        if (!is_array($objChain->chain_list) || count($objChain->chain_list) != 1) {
+            return;
+        }
+        $arrChain = reset($objChain->chain_list);
+        foreach ($arrChain as $arrEdge) {
+            if ($arrEdge->source_id == $source_id) {
+                return $arrEdge->target_id;
+            }
+        }
     }
 }
