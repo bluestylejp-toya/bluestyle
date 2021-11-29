@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: chain
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1111,6 +1111,7 @@ CREATE TABLE `dtb_customer` (
   `hobbies` text,
   `profile_image` text,
   `password_reset_code` varchar(191) DEFAULT NULL,
+  `refusal_reason` text,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `secret_key` (`secret_key`(255)),
   UNIQUE KEY `password_reset_code` (`password_reset_code`),
@@ -1124,16 +1125,16 @@ CREATE TABLE `dtb_customer` (
 
 LOCK TABLES `dtb_customer` WRITE;
 /*!40000 ALTER TABLE `dtb_customer` DISABLE KEYS */;
-INSERT INTO `dtb_customer` VALUES (1,'テストA','テスト','テスト','テスト',NULL,'111','1111',NULL,392,1,'テストテストテストテストテスト','テストテストテストテストテスト','テストテストテストテストテスト','a@localhost',NULL,'011','111','1111',NULL,NULL,NULL,NULL,NULL,'2001-01-01 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0001',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-11-09 16:28:51',0,NULL,NULL,7,'Aさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (2,'テストB','テスト','テスト','テスト',NULL,'222','2222',NULL,392,2,'テスト','テスト','テスト','b@localhost',NULL,'022','222','2222',NULL,NULL,NULL,NULL,NULL,'2002-02-02 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0002',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Bさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (3,'テストC','テスト','テスト','テスト',NULL,'333','3333',NULL,392,3,'テスト','テスト','テスト','c@localhost',NULL,'033','333','3333',NULL,NULL,NULL,NULL,NULL,'2003-03-03 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0003',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Cさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (4,'テストD','テスト','テスト','テスト',NULL,'444','4444',NULL,392,4,'テスト','テスト','テスト','d@localhost',NULL,'044','444','4444',NULL,NULL,NULL,NULL,NULL,'2004-04-04 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0004',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Dさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (5,'テストE','テスト','テスト','テスト',NULL,'555','5555',NULL,392,5,'テスト','テスト','テスト','e@localhost',NULL,'055','555','5555',NULL,NULL,NULL,NULL,NULL,'2005-05-05 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0005',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Eさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (6,'テストF','テスト','テスト','テスト',NULL,'666','6666',NULL,392,6,'テスト','テスト','テスト','f@localhost',NULL,'066','666','6666',NULL,NULL,NULL,NULL,NULL,'2006-06-06 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0006',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Fさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (7,'テストG','テスト','テスト','テスト',NULL,'777','7777',NULL,392,7,'テスト','テスト','テスト','g@localhost',NULL,'077','777','7777',NULL,NULL,NULL,NULL,NULL,'2007-07-07 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0007',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Gさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (8,'テストH','テスト','テスト','テスト',NULL,'888','8888',NULL,392,8,'テスト','テスト','テスト','h@localhost',NULL,'088','888','8888',NULL,NULL,NULL,NULL,NULL,'2008-08-08 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0008',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Hさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (9,'テストI','テスト','テスト','テスト',NULL,'999','9999',NULL,392,9,'テスト','テスト','テスト','i@localhost',NULL,'099','999','9999',NULL,NULL,NULL,NULL,NULL,'2009-09-09 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0009',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Iさん','テスト\r\nテスト',NULL,NULL,NULL);
-INSERT INTO `dtb_customer` VALUES (10,'テストJ','テスト','テスト','テスト',NULL,'000','0000',NULL,392,0,'テスト','テスト','テスト','j@localhost',NULL,'000','000','0000',NULL,NULL,NULL,NULL,NULL,'2010-10-10 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0010',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Jさん','テスト\r\nテスト',NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (1,'テストA','テスト','テスト','テスト',NULL,'111','1111',NULL,392,1,'テストテストテストテストテスト','テストテストテストテストテスト','テストテストテストテストテスト','a@localhost',NULL,'011','111','1111',NULL,NULL,NULL,NULL,NULL,'2001-01-01 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0001',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-11-09 16:28:51',0,NULL,NULL,7,'Aさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (2,'テストB','テスト','テスト','テスト',NULL,'222','2222',NULL,392,2,'テスト','テスト','テスト','b@localhost',NULL,'022','222','2222',NULL,NULL,NULL,NULL,NULL,'2002-02-02 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0002',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Bさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (3,'テストC','テスト','テスト','テスト',NULL,'333','3333',NULL,392,3,'テスト','テスト','テスト','c@localhost',NULL,'033','333','3333',NULL,NULL,NULL,NULL,NULL,'2003-03-03 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0003',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Cさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (4,'テストD','テスト','テスト','テスト',NULL,'444','4444',NULL,392,4,'テスト','テスト','テスト','d@localhost',NULL,'044','444','4444',NULL,NULL,NULL,NULL,NULL,'2004-04-04 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0004',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Dさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (5,'テストE','テスト','テスト','テスト',NULL,'555','5555',NULL,392,5,'テスト','テスト','テスト','e@localhost',NULL,'055','555','5555',NULL,NULL,NULL,NULL,NULL,'2005-05-05 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0005',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Eさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (6,'テストF','テスト','テスト','テスト',NULL,'666','6666',NULL,392,6,'テスト','テスト','テスト','f@localhost',NULL,'066','666','6666',NULL,NULL,NULL,NULL,NULL,'2006-06-06 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0006',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Fさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (7,'テストG','テスト','テスト','テスト',NULL,'777','7777',NULL,392,7,'テスト','テスト','テスト','g@localhost',NULL,'077','777','7777',NULL,NULL,NULL,NULL,NULL,'2007-07-07 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0007',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Gさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (8,'テストH','テスト','テスト','テスト',NULL,'888','8888',NULL,392,8,'テスト','テスト','テスト','h@localhost',NULL,'088','888','8888',NULL,NULL,NULL,NULL,NULL,'2008-08-08 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0008',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Hさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (9,'テストI','テスト','テスト','テスト',NULL,'999','9999',NULL,392,9,'テスト','テスト','テスト','i@localhost',NULL,'099','999','9999',NULL,NULL,NULL,NULL,NULL,'2009-09-09 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0009',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Iさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
+INSERT INTO `dtb_customer` VALUES (10,'テストJ','テスト','テスト','テスト',NULL,'000','0000',NULL,392,0,'テスト','テスト','テスト','j@localhost',NULL,'000','000','0000',NULL,NULL,NULL,NULL,NULL,'2010-10-10 00:00:00','7c11d8dd22dd53774fa9513648ea968c69f5b732f0de7f42b78d41343df01ef7',NULL,NULL,'claihaiwae','test0010',NULL,NULL,0,0,0,NULL,2,'2021-10-06 00:00:00','2021-10-06 00:00:00',0,NULL,NULL,7,'Jさん','テスト\r\nテスト',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtb_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5187,4 +5188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-24 15:38:10
+-- Dump completed on 2021-11-29  8:10:19

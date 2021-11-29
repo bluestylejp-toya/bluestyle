@@ -30,7 +30,7 @@
 
     <form name="form1" id="form1" method="post" action="?">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="hidden" name="mode" value="confirm" />
+        <input type="hidden" name="mode" value="entry" />
         <p class="u-mb--4">アカウント削除した場合は、現在保存されているアイテム交換履歴や、お届け先などの情報は、全て削除されます。</p>
 
         <button class="c-btn--primary--outline" name="refusal" id="refusal">アカウント削除手続きへ</button>
