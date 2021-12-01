@@ -922,41 +922,44 @@ class SC_Helper_Purchase
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $dbFactory  = SC_DB_DBFactory_Ex::getInstance();
         $col = <<< __EOS__
-            T3.product_id,
-            T3.product_class_id as product_class_id,
-            T3.product_type_id AS product_type_id,
-            T2.product_code,
-            T2.product_name,
-            T2.classcategory_name1 AS classcategory_name1,
-            T2.classcategory_name2 AS classcategory_name2,
-            T2.price,
-            T2.quantity,
-            T2.point_rate,
-            T2.tax_rate,
-            T2.tax_rule,
+T3.product_id,
+T3.product_class_id as product_class_id,
+T3.product_type_id AS product_type_id,
+T2.product_code,
+T2.product_name,
+T2.classcategory_name1 AS classcategory_name1,
+T2.classcategory_name2 AS classcategory_name2,
+T2.price,
+T2.quantity,
+T2.point_rate,
+T2.tax_rate,
+T2.tax_rule,
+dtb_products.chain_id,
 __EOS__;
         if ($has_order_status) {
             $col .= 'T1.status AS status, T1.payment_date AS payment_date,';
         }
         $col .= <<< __EOS__
-            CASE WHEN
-                EXISTS(
-                    SELECT * FROM dtb_products
-                    WHERE product_id = T3.product_id
-                        AND del_flg = 0
-                        AND status = 1
-                )
-                THEN '1'
-                ELSE '0'
-            END AS enable,
+CASE WHEN
+    EXISTS(
+        SELECT * FROM dtb_products
+        WHERE product_id = T3.product_id
+            AND del_flg = 0
+            AND status = 1
+    )
+    THEN '1'
+    ELSE '0'
+END AS enable,
 __EOS__;
         $col .= $dbFactory->getDownloadableDaysWhereSql('T1') . ' AS effective';
         $from = <<< __EOS__
-            dtb_order T1
-            JOIN dtb_order_detail T2
-                ON T1.order_id = T2.order_id
-            LEFT JOIN dtb_products_class T3
-                ON T2.product_class_id = T3.product_class_id
+dtb_order T1
+JOIN dtb_order_detail T2
+    ON T1.order_id = T2.order_id
+LEFT JOIN dtb_products_class T3
+    USING (product_id, product_class_id)
+LEFT JOIN dtb_products
+    USING (product_id)
 __EOS__;
         $objQuery->setOrder('T2.order_detail_id');
 

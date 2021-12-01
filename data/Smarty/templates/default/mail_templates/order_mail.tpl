@@ -29,6 +29,11 @@
 <!--{section name=cnt loop=$arrOrderDetail}-->
 アイテム名: <!--{$arrOrderDetail[cnt].product_name}-->
 <!--{/section}-->
+<!--{* CHAIN-296
+<!--{if strlen($tpl_target_id) >= 1}-->
+<!--{$tpl_target_id}-->
+<!--{/if}-->
+*}-->
 
 ************************************************
 　ここの住所に届きます

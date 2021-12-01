@@ -30,11 +30,21 @@
     <form name="form1" id="form1" method="post" action="?">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="refusal_transactionid" value="<!--{$refusal_transactionid}-->" />
-        <input type="hidden" name="mode" value="complete" />
+        <input type="hidden" name="mode" value="confirm" />
         <p class="c-message--alert">退会手続きを実行してもよろしいでしょうか？</p>
         <p class="u-mb--4">退会手続きが完了した時点で、現在保存されている購入履歴や、<br />
         お届け先等の情報は全てなくなりますのでご注意ください。</p>
-        <a href="./refusal.php" class="c-btn--default u-mb--2">アカウントを削除しません</a>
+        <a href="/mypage" class="c-btn--default u-mb--2">アカウントを削除しません</a>
+
+        <dl class="u-mb--4">
+            <dl>
+                <dt>退会理由<span class="attention">※必須</span></dt>
+                <dd>
+                    <span class="attention"><!--{$arrErr.refusal_reason}--></span>
+                    <textarea name="refusal_reason" cols="10" rows="8" class="c-form-parts" style="<!--{$arrErr.refusal_reason|h|sfGetErrorColor}-->; ime-mode: active;" placeholder="全角<!--{$smarty.const.MLTEXT_LEN}-->字以下）"><!--{"\n"}--><!--{$arrForm.refusal_reason.value|h}--></textarea>
+                </dd>
+            </dl>
+        </dl>
 
         <button name="refuse_do" id="refuse_do" class="c-btn--danger">アカウントを削除します</button>
 

@@ -1,4 +1,4 @@
-<!--{if $arrFastChainProduct}-->
+<!--{if count($arrFastChainProduct) > 0}-->
     <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
         <!--{if $smarty.server.PHP_SELF==$list}-->
             <div class="c-item-tab__content" data-tab_item="1">
@@ -17,4 +17,10 @@
     <!--{if $smarty.server.PHP_SELF==$list}-->
         </div>
     <!--{/if}-->
+<!--{else}-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        $('#fast-chain').hide();
+    }, false)
+</script>
 <!--{/if}-->

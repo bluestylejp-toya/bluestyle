@@ -101,6 +101,22 @@ class SC_Helper_Api
     }
 
     /**
+     * API オペレーション「Find Prov Chain List」
+     * 
+     * @param string $id ID(source_id、target_id)
+     */
+    public static function findProvChainList($id) {
+        $objHelperApi = new SC_Helper_Api_Ex();
+
+        $objHelperApi->setMethod('GET');
+        $objHelperApi->setUrl(API_URL . "chain/find?id={$id}");
+        $result = $objHelperApi->exec();
+        $return = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
+
+        return $return;
+    }
+
+    /**
      * API オペレーション「Get Prov Chain」
      * 
      * @param string $id 仮成立チェインネットワークの一意のキー
@@ -108,8 +124,8 @@ class SC_Helper_Api
     public static function getChain($id) {
         $objHelperApi = new SC_Helper_Api_Ex();
 
-        $objHelperApi->setUrl(API_URL . "chain/{$id}");
         $objHelperApi->setMethod('GET');
+        $objHelperApi->setUrl(API_URL . "chain/{$id}");
         $result = $objHelperApi->exec();
         $return = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
 
