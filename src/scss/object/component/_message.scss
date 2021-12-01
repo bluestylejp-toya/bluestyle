@@ -29,4 +29,12 @@
         color: $white;
         background:  $gradient-color;
     }
+    &--gray {
+        @extend %message;
+        color: $white;
+        background: #9da4b0;
+        &.--hidden {
+            display: none;
+        }
+    }
 }

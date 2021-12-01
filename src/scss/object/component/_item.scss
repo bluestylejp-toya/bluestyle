@@ -356,6 +356,13 @@
             margin-right: 8px;
         }
 
+        .status-proccessing {
+            font-size: 12px;
+            font-weight: bold;
+            color: $black;
+            padding: 4px 0;
+        }
+
         .status-chained {
             background: $gradient-color;
         }

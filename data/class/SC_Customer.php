@@ -402,4 +402,16 @@ __EOS__;
                 break;
         }
     }
+
+    /**
+     * 全パラメーターの取得
+     *
+     * ポイントを含めキャッシュ値を返す。
+     *
+     * @return array
+     */
+    public function getAllValues()
+    {
+        return $_SESSION['customer'];
+    }
 }

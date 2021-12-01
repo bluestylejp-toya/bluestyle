@@ -729,7 +729,7 @@ class SC_Helper_Customer
         if (strlen($arrData['tel03']) == 0) return false;
         if (strlen($arrData['birth']) == 0) return false;
         if (strlen($arrData['default_payment_id']) == 0) return false;
-        
+
         return true;
     }
 

@@ -1,7 +1,7 @@
 <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
 <section>
     <header class="l-header__inner">
-        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
+        <button type="button" aria-label="戻る" onclick="history.back();" class="c-btn--header-nav"></button>
         <p class="c-header-title">プロフィール</p>
     </header>
 
