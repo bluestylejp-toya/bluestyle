@@ -275,7 +275,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $data = [
                     "source_id" => $this->objFormParam->getValue('favorite_product_id'),
                     "target_id" => $this->objFormParam->getValue('target_id'),
-                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
+//                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
                 if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
                     unset($data['date']);

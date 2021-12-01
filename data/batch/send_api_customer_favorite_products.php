@@ -23,7 +23,7 @@ class Batch {
             $data = [
                 "source_id" => $arrRow['product_id'],
                 "target_id" => $arrRow['target_id'],
-                "date" => str_replace('+00:00', 'Z', gmdate('c', strtotime($arrRow['update_date']))),
+//                "date" => str_replace('+00:00', 'Z', gmdate('c', strtotime($arrRow['update_date']))),
             ];
             if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
                 unset($data['date']);
@@ -45,7 +45,7 @@ class Batch {
         $data = [
             "source_id" => 2,
             "target_id" => 1,
-            "date" => str_replace('+00:00', 'Z', gmdate('c')),
+//            "date" => str_replace('+00:00', 'Z', gmdate('c')),
         ];
         if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
             unset($data['date']);
