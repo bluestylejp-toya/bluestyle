@@ -273,7 +273,8 @@ class SC_Helper_Mail
         }
         $error = $arrInfo['email04'];
         $tosubject = $this->sfMakeSubject($tmp_subject);
-        if (strlen($to) == 0) {
+        // $to が空文字の場合、店舗宛とする。
+        if (!is_array($to) && strlen($to) == 0) {
             $to = $arrInfo['email01'];
         }
 
