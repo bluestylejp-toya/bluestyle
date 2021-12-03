@@ -231,6 +231,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         // 商品詳細を取得
         $this->arrProduct = $objProduct->getDetail($product_id);
 
+        $customer_id = null;
         // ログイン判定
         if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
             $customer_id = $objCustomer->getValue('customer_id');
@@ -990,6 +991,22 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      */
     public function doReport($product_id)
     {
+        $this->mailReportToShop($product_id);
+        $this->mailThanksForReport();
+
+        SC_Response_Ex::json([
+            'success' => true,
+        ]);
+        SC_Response_Ex::actionExit();
+    }
+
+    /**
+     * 店舗宛通報メール送信
+     *
+     * @return void
+     */
+    public function mailReportToShop($product_id)
+    {
         $objHelperMail = new SC_Helper_Mail_Ex();
         $objProduct = new SC_Product_Ex();
 
@@ -1001,7 +1018,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             $from = $arrCustomer['email'];
         }
 
-        $subject = '【Chain】不適切アイテムの報告';
+        $subject = '不適切アイテムの報告';
         $url = SC_Utils_Ex::sfTrimURL(HTTP_URL) . P_DETAIL_URLPATH . $product_id;
         $body = <<< __EOS__
 不適切アイテムの報告がありました。
@@ -1010,10 +1027,33 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 __EOS__;
 
         $objHelperMail->sfSendMail('', $subject, $body, $from);
+    }
 
-        SC_Response_Ex::json([
-            'success' => true,
-        ]);
-        SC_Response_Ex::actionExit();
+    /**
+     * 会員宛サンクスメール送信
+     *
+     * @return void
+     */
+    public function mailThanksForReport()
+    {
+        $objCustomer = new SC_Customer_Ex();
+        $objHelperMail = new SC_Helper_Mail_Ex();
+
+        // 非ログイン時は、何もしない。
+        if (!$objCustomer->isLoginSuccess()) {
+            return;
+        }
+
+        $to = [$objCustomer->getValue('email'), $objCustomer->getValue('name01') . '様'];
+        $subject = '通報を承りました';
+        $body = <<< __EOS__
+いつも Chain をご利用いただき誠にありがとうございます。
+この度は、不適切なアイテムに対しての通報ありがとうございました。
+通報を受けたアイテムの掲載について、対応を検討いたします。
+
+引き続き Chain をよろしくお願いいたします。
+__EOS__;
+
+        $objHelperMail->sfSendMail($to, $subject, $body);
     }
 }
