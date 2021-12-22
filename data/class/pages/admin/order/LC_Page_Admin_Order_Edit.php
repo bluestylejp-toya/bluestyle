@@ -332,8 +332,8 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
      */
     function getYamatoDelivInfo($orderId)
     {
+        $arrYamatoDelivStatus = array();
         if (strlen($orderId) > 0){
-            $arrYamatoDelivStatus = array();
             try {
                 $objHelperApi = new SC_Helper_Api_Ex();
                 $objHelperApi->setMethod('GET');
