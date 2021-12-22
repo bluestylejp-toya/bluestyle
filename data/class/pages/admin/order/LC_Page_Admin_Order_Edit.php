@@ -321,6 +321,30 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         }
         if ($arrValuesBefore['payment_id'])
             $this->arrPayment[$arrValuesBefore['payment_id']] = $arrValuesBefore['payment_method'];
+
+        // 出荷情報
+        $this->arrYamatoDelivStatus = $this->getYamatoDelivInfo($order_id);
+    }
+
+    /**
+     * ヤマトAPI等々から出荷情報を取得する
+     * https://bluestyle.backlog.jp/view/CHAIN-358
+     */
+    function getYamatoDelivInfo($orderId)
+    {
+        if (strlen($orderId) > 0){
+            $arrYamatoDelivStatus = array();
+            try {
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setMethod('GET');
+                $objHelperApi->setUrl(API_URL . 'yamato/shipping_status/' . $orderId);
+                $result = json_decode($objHelperApi->exec(), true);
+                $arrYamatoDelivStatus = $result;
+            } catch (Exception $e) {
+            }
+        }
+
+        return $arrYamatoDelivStatus;
     }
 
     /**

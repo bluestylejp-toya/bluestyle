@@ -162,6 +162,14 @@
                 <th>発送日</th>
                 <td><!--{$arrForm.commit_date.value|sfDispDBDate|default:"未発送"|h}--></td>
             </tr>
+            <tr>
+                <th>お問い合わせ番号</th>
+                <td><!--{$arrYamatoDelivStatus.denpyoNo|h}--></td>
+            </tr>
+            <tr>
+                <th>発送状況</th>
+                <td><!--{$arrYamatoDelivStatus.status|h}--></td>
+            </tr>
         </table>
 
         <h2>注文者情報
