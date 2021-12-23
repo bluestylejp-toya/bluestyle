@@ -340,6 +340,14 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
                 $objHelperApi->setUrl(API_URL . 'yamato/shipping_status/' . $orderId);
                 $result = json_decode($objHelperApi->exec(), true);
                 $arrYamatoDelivStatus = $result;
+
+                $objQuery = SC_Query_Ex::getSingletonInstance();
+                $arrRet = $objQuery->select('yamato_deliv_info', 'dtb_order', 'order_id = ?', array($orderId));
+                if (strlen($arrRet[0]['yamato_deliv_info']) > 0){
+                    foreach (unserialize($arrRet[0]['yamato_deliv_info']) as $Key => $yamatoDelivInfo){
+                        $arrYamatoDelivStatus[$Key] = $yamatoDelivInfo;
+                    }
+                }
             } catch (Exception $e) {
             }
         }
