@@ -4678,18 +4678,18 @@ CREATE TABLE `mtb_permission` (
 
 LOCK TABLES `mtb_permission` WRITE;
 /*!40000 ALTER TABLE `mtb_permission` DISABLE KEYS */;
-INSERT INTO `mtb_permission` VALUES ('/admin/entry/delete.php','1',9);
-INSERT INTO `mtb_permission` VALUES ('/admin/entry/index.php','1',8);
-INSERT INTO `mtb_permission` VALUES ('/admin/entry/inputzip.php','1',10);
-INSERT INTO `mtb_permission` VALUES ('/admin/search/delete_note.php','1',11);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/`RANK`.php','0',7);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/delete.php','0',1);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/index.php','0',0);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/input.php','0',2);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/master_delete.php','0',4);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/master_rank.php','0',5);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/master.php','0',3);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/mastercsv.php','0',6);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/entry/delete.php','1',9);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/entry/index.php','1',8);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/entry/inputzip.php','1',10);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/search/delete_note.php','1',11);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/`RANK`.php','0',7);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/delete.php','0',1);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/index.php','0',0);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/input.php','0',2);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/master_delete.php','0',4);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/master_rank.php','0',5);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/master.php','0',3);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/mastercsv.php','0',6);
 /*!40000 ALTER TABLE `mtb_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
