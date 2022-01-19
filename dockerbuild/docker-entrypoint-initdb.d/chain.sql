@@ -2086,6 +2086,7 @@ CREATE TABLE `dtb_order` (
   `memo09` text,
   `memo10` text,
   `chain_id` text NOT NULL,
+  `yamato_deliv_info` text,
   PRIMARY KEY (`order_id`),
   KEY `dtb_order_customer_id_key` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -5188,4 +5189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-06 14:55:45
+-- Dump completed on 2021-12-23  8:41:40
