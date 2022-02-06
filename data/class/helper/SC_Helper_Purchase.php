@@ -1178,6 +1178,27 @@ __EOS__;
             }
         }
 
+        // ▼在庫
+        $operator = '';
+        // 対応状況が「キャンセル」以外 → 「キャンセル」
+        if ($arrOrderOld['status'] != ORDER_CANCEL && $newStatus == ORDER_CANCEL) {
+            $operator = '+'; // 加算
+        }
+        // 対応状況が「キャンセル」 → 「キャンセル」以外
+        elseif ($arrOrderOld['status'] == ORDER_CANCEL && $newStatus != ORDER_CANCEL) {
+            $operator = '-'; // 減算
+        }
+        // 在庫数の加減
+        if (strlen($operator) >= 1) {
+            $arrOrderDetail = $this->getOrderDetail($orderId);
+            foreach ($arrOrderDetail as $arrDetail) {
+                $objQuery->update('dtb_products_class', array(),
+                                  'product_class_id = ?', array($arrDetail['product_class_id']),
+                                  array('stock' => "stock $operator ?"), array($arrDetail['quantity']));
+            }
+        }
+        // ▲在庫
+
         // ▼受注テーブルの更新
         if (empty($sqlval)) {
             $sqlval = array();

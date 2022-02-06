@@ -218,7 +218,7 @@ class LC_Page_Admin_Order_Status extends LC_Page_Admin_Ex
 
         $objPurchase = new SC_Helper_Purchase_Ex();
         foreach ($arrOrderId as $orderId) {
-            $objPurchase->cancelOrder($orderId, ORDER_CANCEL, true);
+            $objPurchase->registerOrder($orderId, ['del_flg' => 1]);
         }
 
         $this->tpl_onload = "window.alert('選択項目を削除しました。');";
