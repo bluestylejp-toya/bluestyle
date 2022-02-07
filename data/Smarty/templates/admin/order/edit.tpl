@@ -162,6 +162,46 @@
                 <th>発送日</th>
                 <td><!--{$arrForm.commit_date.value|sfDispDBDate|default:"未発送"|h}--></td>
             </tr>
+            <tr>
+                <th>お問い合わせ番号</th>
+                <td><!--{$arrYamatoDelivStatus.denpyoNo|h}--></td>
+            </tr>
+            <tr>
+                <th>発送状況</th>
+                <td><!--{$arrYamatoDelivStatus.status|h}--></td>
+            </tr>
+            <tr>
+                <th>品名</th>
+                <td><!--{$arrYamatoDelivStatus.baggDesc2|h}--></td>
+            </tr>
+            <tr>
+                <th>発送者</th>
+                <td>
+                    <!--{if $arrYamatoDelivStatus.srcLastNm|h|@strlen > 0}-->
+                        <!--{$arrYamatoDelivStatus.srcLastNm|h}--> <!--{$arrYamatoDelivStatus.srcFirstNm|h}-->様<br />
+                        <!--{$arrYamatoDelivStatus.srcTel1|h}-->-<!--{$arrYamatoDelivStatus.srcTel2|h}-->-<!--{$arrYamatoDelivStatus.srcTel3|h}--><br />
+                        <!--{$arrYamatoDelivStatus.srcZipCd|h}--><br />
+                        <!--{$arrYamatoDelivStatus.srcAddress1|h}--><br />
+                        <!--{$arrYamatoDelivStatus.srcAddress2|h}--><br />
+                        <!--{$arrYamatoDelivStatus.srcAddress3|h}--><br />
+                        <!--{$arrYamatoDelivStatus.srcAddress4|h}-->
+                    <!--{/if}-->
+                </td>
+            </tr>
+            <tr>
+                <th>お届け先</th>
+                <td>
+                    <!--{if $arrYamatoDelivStatus.dstLastNm|h|@strlen > 0}-->
+                        <!--{$arrYamatoDelivStatus.dstLastNm|h}--> <!--{$arrYamatoDelivStatus.dstFirstNm|h}-->様<br />
+                        <!--{$arrYamatoDelivStatus.dstTel1|h}-->-<!--{$arrYamatoDelivStatus.dstTel2|h}-->-<!--{$arrYamatoDelivStatus.dstTel3|h}--><br />
+                        <!--{$arrYamatoDelivStatus.dstZipCd|h}--><br />
+                        <!--{$arrYamatoDelivStatus.dstAddress1|h}--><br />
+                        <!--{$arrYamatoDelivStatus.dstAddress2|h}--><br />
+                        <!--{$arrYamatoDelivStatus.dstAddress3|h}--><br />
+                        <!--{$arrYamatoDelivStatus.dstAddress4|h}-->
+                    <!--{/if}-->
+                </td>
+            </tr>
         </table>
 
         <h2>注文者情報

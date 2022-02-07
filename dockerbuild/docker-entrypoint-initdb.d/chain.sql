@@ -2086,6 +2086,7 @@ CREATE TABLE `dtb_order` (
   `memo09` text,
   `memo10` text,
   `chain_id` text NOT NULL,
+  `yamato_deliv_info` text,
   PRIMARY KEY (`order_id`),
   KEY `dtb_order_customer_id_key` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -4677,18 +4678,18 @@ CREATE TABLE `mtb_permission` (
 
 LOCK TABLES `mtb_permission` WRITE;
 /*!40000 ALTER TABLE `mtb_permission` DISABLE KEYS */;
-INSERT INTO `mtb_permission` VALUES ('/admin/entry/delete.php','1',9);
-INSERT INTO `mtb_permission` VALUES ('/admin/entry/index.php','1',8);
-INSERT INTO `mtb_permission` VALUES ('/admin/entry/inputzip.php','1',10);
-INSERT INTO `mtb_permission` VALUES ('/admin/search/delete_note.php','1',11);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/`RANK`.php','0',7);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/delete.php','0',1);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/index.php','0',0);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/input.php','0',2);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/master_delete.php','0',4);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/master_rank.php','0',5);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/master.php','0',3);
-INSERT INTO `mtb_permission` VALUES ('/admin/system/mastercsv.php','0',6);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/entry/delete.php','1',9);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/entry/index.php','1',8);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/entry/inputzip.php','1',10);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/search/delete_note.php','1',11);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/`RANK`.php','0',7);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/delete.php','0',1);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/index.php','0',0);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/input.php','0',2);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/master_delete.php','0',4);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/master_rank.php','0',5);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/master.php','0',3);
+INSERT INTO `mtb_permission` VALUES ('/chainadmin/system/mastercsv.php','0',6);
 /*!40000 ALTER TABLE `mtb_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5188,4 +5189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-29  8:10:19
+-- Dump completed on 2021-12-23  8:41:40

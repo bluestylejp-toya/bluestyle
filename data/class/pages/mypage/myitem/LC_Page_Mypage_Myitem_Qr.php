@@ -195,7 +195,13 @@ class LC_Page_Mypage_Myitem_Qr extends LC_Page_AbstractMypage_Ex
             "baggHandling2" => "03",
         ];
 
-//        SC_Utils::sfPrintR($data);
+        // 管理画面出力用にDBに保存
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $sqlval = array();
+        $sqlval['yamato_deliv_info'] = serialize($data);
+        $table = 'dtb_order';
+        $where = 'order_id = ?';
+        $objQuery->update($table, $sqlval, $where, array($orderId));
 
         $objHelperApi->setPostParam($data);
         $result = json_decode($objHelperApi->exec(), true);
