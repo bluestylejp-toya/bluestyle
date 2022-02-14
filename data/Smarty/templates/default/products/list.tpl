@@ -140,7 +140,12 @@
                 </form>
                 <!--▲ページナビ(上部)-->
                 <!--{if $tpl_subtitle === '全商品'}-->
-                    <div class="c-alert--gray --show u-mb--4"><button type="button" class="c-btn--default c-onboarding__show-btn">Chainの使い方</button><button type="button" class="close-btn"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.9888C0 5.45877 4.47 0.98877 10 0.98877C15.53 0.98877 20 5.45877 20 10.9888C20 16.5188 15.53 20.9888 10 20.9888C4.47 20.9888 0 16.5188 0 10.9888ZM13.59 15.9888L15 14.5788L11.41 10.9888L15 7.39877L13.59 5.98877L10 9.57877L6.41 5.98877L5 7.39877L8.59 10.9888L5 14.5788L6.41 15.9888L10 12.3988L13.59 15.9888Z" fill="#9DA4B0"/></svg></button></div>
+                    <div class="c-alert--gray --show u-mb--4">
+                        <button type="button" class="c-btn--default c-onboarding__show-btn">Chainの使い方</button>
+                        <button type="button" class="c-btn--default c-prohibited__btn">禁止アイテム</button>
+                        <button type="button" class="close-btn"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.9888C0 5.45877 4.47 0.98877 10 0.98877C15.53 0.98877 20 5.45877 20 10.9888C20 16.5188 15.53 20.9888 10 20.9888C4.47 20.9888 0 16.5188 0 10.9888ZM13.59 15.9888L15 14.5788L11.41 10.9888L15 7.39877L13.59 5.98877L10 9.57877L6.41 5.98877L5 7.39877L8.59 10.9888L5 14.5788L6.41 15.9888L10 12.3988L13.59 15.9888Z" fill="#9DA4B0"/></svg></button>
+                    </div>
+
                 <!--{/if}-->
                 <ul class="l-item-list">
             <!--{/if}-->
@@ -212,11 +217,45 @@
             <button type="button" class="c-onboarding__close-btn --hidden">閉じる</button>
         </div>
     </div>
+    <div class="c-prohibited__content">
+        <p>Chain では以下のアイテムの出品を禁止しています。</p>
+        <ul>
+            <li>偽ブランド品、正規品と確証のないもの</li>
+            <li>盗品やそれに類する物品</li>
+            <li>犯罪や違法行為に使用される可能性があるもの</li>
+            <li>殺傷能力があり武器として使用されるもの</li>
+            <li>銃刀法などの法律に違反するおそれのあるもの</li>
+            <li>用途が明確な生活用の刃物</li>
+            <li>児童ポルノやそれに類するとみなされるもの</li>
+            <li>18禁、アダルト関連</li>
+            <li>医薬品、医療機器</li>
+            <li>許可なく製造した化粧品類や小分けした化粧品類</li>
+            <li>法令に抵触するサプリメント類</li>
+            <li>安全面、衛生面に問題のある食品類</li>
+            <li>農薬、肥料</li>
+            <li>受け渡しに伴う手続きが複雑なもの</li>
+            <li>手元にないもの</li>
+            <li>規制薬物・危険ドラッグ類</li>
+            <li>個人情報を含む出品・投稿、個人情報の不正利用</li>
+            <li>外国為替及び外国貿易法（外為法）に抵触する物品について</li>
+            <li>その他、不適切と判断されるもの</li>
+        </ul>
+        <p>管理会社が禁止出品物に当てはまると判断したものは、弊社の判断で掲載を取りやめる、商品情報を削除するものとします。</p>
+        <button type="button" class="c-prohibited__close-btn c-btn--default">閉じる</button>
+    </div>
     <div class="c-onboarding__bg"></div>
 <!--{strip}-->
 
 </div>
 <script>
+$('.c-prohibited__btn').on('click', function(){
+    $('.c-prohibited__content').fadeIn();
+    $('.c-onboarding__bg').fadeIn();
+    $('.c-onboarding__bg,.c-prohibited__close-btn').on('click', function(){
+        $('.c-prohibited__content').fadeOut();
+    $('.c-onboarding__bg').fadeOut();
+    })
+})
 $('.c-alert--gray .close-btn').on('click', function(){
     $('.c-alert--gray').fadeOut();
 })

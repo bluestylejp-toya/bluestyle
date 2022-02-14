@@ -15,19 +15,25 @@
         font-weight: 700;
         color: #39496F;
         text-align: center;
-        height: 68px;
+        height: 50px;
         margin-bottom: 16px;
         display: flex;
         align-items: center;
+        @include mq($breakpoint: sm) {
+            height: 68px;
+        }
 
     }
     figure {
         display: block;
-        padding: 24px;
+        padding: 24px 24px 0;
         text-align: center;
         background: #F7FAFC;
         margin-bottom: 16px;
-        max-width: 300px;
+        max-width: 160px;
+        @include mq($breakpoint: sm) {
+            max-width: 300px;
+        }//Media Query
         img {
             width: 100%;
         }
@@ -37,13 +43,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 24px;
+        padding: 0 24px;
         opacity: 0;
         position: absolute;
         left: 0;
         margin-top: 24px;
         margin-bottom: 32px;
         transition: .5s;
+        @include mq($breakpoint: sm) {
+            padding: 24px;
+        }
     }
     li.--active {
         opacity: 1;
