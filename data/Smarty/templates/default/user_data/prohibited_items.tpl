@@ -1,7 +1,7 @@
 <section>
     <header class="l-header__inner">
         <a href="<!--{$smarty.const.TOP_URL}-->user_data/kiyaku.php" aria-label="戻る" class="c-btn--header-nav"></a>
-        <h1 class="c-header-title">ガイドの禁止されている出品物</h1>
+        <h1 class="c-header-title">禁止されている出品物</h1>
     </header>
     <div class="l-section--order">
         <section>
