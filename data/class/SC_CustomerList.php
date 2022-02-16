@@ -242,7 +242,7 @@ class SC_CustomerList extends SC_SelectSql_Ex
      */
     public function getList()
     {
-        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
+        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date,nickname FROM dtb_customer ';
 
         return $this->getSql(2);
     }

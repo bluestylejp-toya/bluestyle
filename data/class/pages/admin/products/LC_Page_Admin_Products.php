@@ -188,6 +188,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         // POSTされる値
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('会員ID', 'customer_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('会員名', 'customer_name01', INT_LEN, 'n', array('MAX_LENGTH_CHECK'));
         $objFormParam->addParam('カテゴリID', 'category_id', STEXT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('ページ送り番号', 'search_pageno', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('表示件数', 'search_page_max', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
@@ -393,7 +394,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
         // 読み込む列とテーブルの指定
-        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date, customer_id';
+        $col = 'product_id, name, main_list_image, sub_large_image1, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date, customer_id';
         $from = $objProduct->alldtlSQL();
 
         $objQuery->setLimitOffset($limit, $offset);
