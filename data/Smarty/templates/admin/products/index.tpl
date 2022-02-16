@@ -88,6 +88,12 @@ function lfnDispChange(){
                 </td>
                 <th>会員ID</th>
                 <td>
+                    <!--{assign var=key value="search_customer_name"}-->
+                    <!--{if $arrErr[$key]}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                    <!--{/if}-->
+                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30"/>
+<br>
                     <!--{assign var=key value="search_customer_id"}-->
                     <!--{if $arrErr[$key]}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -228,32 +234,14 @@ function lfnDispChange(){
 
                 <!--検索結果表示テーブル-->
                 <table class="list" id="products-search-result">
-                    <col width="8%" />
-                    <col width="9%" />
-                    <col width="9%" />
-                    <col width="8%" />
-                    <col width="25%" />
-                    <col width="8%" />
-                    <col width="8%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
                     <tr>
                         <th rowspan="2">会員ID</th>
                         <th rowspan="2">商品ID</th>
                         <th rowspan="2">商品画像</th>
-                        <th rowspan="2">商品コード</th>
-                        <th rowspan="2">価格(円)</th>
                         <th>商品名</th>
-                        <th rowspan="2">在庫</th>
                         <th rowspan="2">種別</th>
                         <th rowspan="2">編集</th>
                         <th rowspan="2">確認</th>
-                        <!--{if $smarty.const.OPTION_CLASS_REGIST == 1}-->
-                        <th rowspan="2">規格</th>
-                        <!--{/if}-->
                         <th rowspan="2">削除</th>
                     </tr>
                     <tr>
@@ -266,38 +254,17 @@ function lfnDispChange(){
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
                             <td class="id" rowspan="2">
                                 <a href="#" onclick="return fnEdit('<!--{$arrProducts[cnt].customer_id}-->');"><!--{$arrProducts[cnt].customer_id|h}--></a>
-                            </td>
+                            <!--{* $arrProducts[cnt]|@var_dump *}--></td>
                             <td class="id" rowspan="2"><!--{$arrProducts[cnt].product_id}--></td>
                             <td class="thumbnail" rowspan="2">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProducts[cnt].main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProducts[cnt].sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
                             </td>
-                            <td rowspan="2"><!--{$arrProducts[cnt].product_code_min|h}-->
-                                <!--{if $arrProducts[cnt].product_code_min != $arrProducts[cnt].product_code_max}-->
-                                    <br />～ <!--{$arrProducts[cnt].product_code_max|h}-->
-                                <!--{/if}-->
-                            </td>
-                            <!--{* 価格 *}-->
-                            <td rowspan="2" class="right">
-                                <!--{$arrProducts[cnt].price02_min|n2s}-->
-                                <!--{if $arrProducts[cnt].price02_min != $arrProducts[cnt].price02_max}-->
-                                    <br />～ <!--{$arrProducts[cnt].price02_max|n2s}-->
-                                <!--{/if}-->            </td>
                             <td><!--{$arrProducts[cnt].name|h}--></td>
-                            <!--{* 在庫 *}-->
-                            <!--{* XXX 複数規格でかつ、全ての在庫数量が等しい場合は先頭に「各」と入れたれたら良いと思う。 *}-->
-                            <td class="menu" rowspan="2">
-                                <!--{if $arrProducts[cnt].stock_unlimited_min}-->無制限<!--{else}--><!--{$arrProducts[cnt].stock_min|n2s}--><!--{/if}-->
-                                <!--{if $arrProducts[cnt].stock_unlimited_min != $arrProducts[cnt].stock_unlimited_max || $arrProducts[cnt].stock_min != $arrProducts[cnt].stock_max}-->
-                                    <br />～ <!--{if $arrProducts[cnt].stock_unlimited_max}-->無制限<!--{else}--><!--{$arrProducts[cnt].stock_max|n2s}--><!--{/if}-->
-                                <!--{/if}-->            </td>
                             <!--{* 表示 *}-->
                             <!--{assign var=key value=$arrProducts[cnt].status}-->
                             <td class="menu" rowspan="2"><!--{$arrDISP[$key]}--></td>
                             <td class="menu" rowspan="2"><span class="icon_edit"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >編集</a></span></td>
                             <td class="menu" rowspan="2"><span class="icon_confirm"><a href="<!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->&amp;admin=on" target="_blank">確認</a></span></td>
-                            <!--{if $smarty.const.OPTION_CLASS_REGIST == 1}-->
-                            <td class="menu" rowspan="2"><span class="icon_class"><a href="javascript:;" onclick="eccube.changeAction('./product_class.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >規格</a></span></td>
-                            <!--{/if}-->
                             <td class="menu" rowspan="2"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
                         </tr>
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
