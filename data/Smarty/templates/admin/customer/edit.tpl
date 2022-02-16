@@ -89,7 +89,7 @@
                 <td>
                     <span class="attention"><!--{$arrErr.name01}--><!--{$arrErr.name02}--></span>
                     <input type="text" name="name01" value="<!--{$arrForm.name01|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.name01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />&nbsp;&nbsp;<input type="text" name="name02" value="<!--{$arrForm.name02|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.name02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
+                    </td>
             </tr>
             <tr>
                 <th>お名前(フリガナ)<!--{if !$smarty.const.FORM_COUNTRY_ENABLE}--><span class="attention"> *</span><!--{/if}--></th>
@@ -97,6 +97,24 @@
                     <span class="attention"><!--{$arrErr.kana01}--><!--{$arrErr.kana02}--></span>
                     <input type="text" name="kana01" value="<!--{$arrForm.kana01|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.kana01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />&nbsp;&nbsp;<input type="text" name="kana02" value="<!--{$arrForm.kana02|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.kana02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
                 </td>
+            </tr>
+            <tr>
+                <th>ニックネーム<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.name01}--><!--{$arrErr.name02}--></span>
+                    <input type="text" name="name01" value="<!--{$arrForm.nickname|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.name01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
+                </td>
+            <tr>
+            <th>プロフィール画像</th>
+                <td>
+                    <!--{$arrForm.profile_image|h}-->
+                </td>
+            </tr>
+            <tr>
+            <th>プロフィール文章</th>
+            <td>
+                <!--{$arrForm.self_introduction|h}-->
+            </td>
             </tr>
             <!--{if !$smarty.const.FORM_COUNTRY_ENABLE}-->
             <input type="hidden" name="country_id" value="<!--{$smarty.const.DEFAULT_COUNTRY_ID}-->" />
