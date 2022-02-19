@@ -101,15 +101,14 @@
             <tr>
                 <th>ニックネーム<span class="attention"> *</span></th>
                 <td>
-                    <span class="attention"><!--{$arrErr.name01}--><!--{$arrErr.name02}--></span>
-                    <input type="text" name="name01" value="<!--{$arrForm.nickname|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.name01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
+                    <!--{$arrForm.nickname|h}-->
                 </td>
-            <tr>
+            <tr><!--{*
             <th>プロフィール画像</th>
                 <td>
                     <!--{$arrForm.profile_image|h}-->
                 </td>
-            </tr>
+            </tr>*}-->
             <tr>
             <th>プロフィール文章</th>
             <td>
