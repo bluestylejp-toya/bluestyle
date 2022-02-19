@@ -88,12 +88,6 @@ function lfnDispChange(){
                 </td>
                 <th>会員ID</th>
                 <td>
-                    <!--{assign var=key value="search_customer_name"}-->
-                    <!--{if $arrErr[$key]}-->
-                    <span class="attention"><!--{$arrErr[$key]}--></span>
-                    <!--{/if}-->
-                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30"/>
-<br>
                     <!--{assign var=key value="search_customer_id"}-->
                     <!--{if $arrErr[$key]}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
