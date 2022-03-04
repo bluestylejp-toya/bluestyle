@@ -331,7 +331,7 @@
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60 top" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" /><br />
                     <!--{assign var=key value="order_addr02"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
-                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
+                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60 top" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" /><br />
                     <!--{assign var=key value="order_addr03"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
@@ -376,6 +376,7 @@
 
         <table class="list order-edit-products">
             <tr>
+                <th class="chain_id">Chain ID</th>
                 <th class="add_customer_id">出品者ID</th>
                 <th class="id">商品ID</th>
                 <th class="name">商品名</th>
@@ -383,6 +384,7 @@
             <!--{section name=cnt loop=$arrForm.quantity.value}-->
             <!--{assign var=product_index value="`$smarty.section.cnt.index`"}-->
                 <tr>
+                    <td class="center"><!--{$arrForm.chain_id.value|h}--></td>
                     <td class="center"><!--{$arrForm.add_customer_id.value[$product_index]|h}--></td>
                     <td class="center">
                         <!--{$arrForm.product_id.value[$product_index]|h}-->
@@ -423,7 +425,7 @@
                     <!--{assign var=key value="discount"}-->
                     <input type="hidden" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" />
             <tr>
-                <th colspan="2" class="column right">送料</th>
+                <th colspan="3" class="column right">送料</th>
                 <td class="right">
                     <!--{assign var=key value="deliv_fee"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -432,7 +434,7 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="2" class="column right">手数料</th>
+                <th colspan="3" class="column right">手数料</th>
                 <td class="right">
                     <!--{assign var=key value="charge"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -441,14 +443,14 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="2" class="column right">合計</th>
+                <th colspan="3" class="column right">合計</th>
                 <td class="right">
                     <span class="attention"><!--{$arrErr.total}--></span>
                     <!--{$arrForm.total.value|default:0|n2s}--> 円
                 </td>
             </tr>
             <tr>
-                <th colspan="2" class="column right">お支払い合計</th>
+                <th colspan="3" class="column right">お支払い合計</th>
                 <td class="right">
                     <span class="attention"><!--{$arrErr.payment_total}--></span>
                     <!--{$arrForm.payment_total.value|default:0|n2s}-->
@@ -457,7 +459,7 @@
             </tr>
             <!--{if $smarty.const.USE_POINT !== false}-->
                 <tr>
-                    <th colspan="2" class="column right">使用ポイント</th>
+                    <th colspan="3" class="column right">使用ポイント</th>
                     <td class="right">
                         <!--{assign var=key value="use_point"}-->
                         <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -477,7 +479,7 @@
                     </tr>
                 <!--{/if}-->
                 <tr>
-                    <th colspan="2" class="column right">加算ポイント</th>
+                    <th colspan="3" class="column right">加算ポイント</th>
                     <td class="right">
                         <!--{$arrForm.add_point.value|default:0|n2s}-->
                         pt

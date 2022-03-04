@@ -220,6 +220,7 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
         $objFormParam->addParam('購入商品名', 'search_product_name', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
         $objFormParam->addParam('ページ送り番号', 'search_pageno', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('受注ID', 'order_id', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
+        $objFormParam->addParam('ChainID', 'search_chain_id', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
     }
 
     /**
@@ -273,6 +274,10 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
         switch ($key) {
             case 'search_product_name':
                 $where .= ' AND EXISTS (SELECT 1 FROM dtb_order_detail od WHERE od.order_id = dtb_order.order_id AND od.product_name LIKE ?)';
+                $arrValues[] = sprintf('%%%s%%', $objFormParam->getValue($key));
+                break;
+            case 'search_chain_id':
+                $where .= ' AND chain_id LIKE ?';
                 $arrValues[] = sprintf('%%%s%%', $objFormParam->getValue($key));
                 break;
             case 'search_order_name':
