@@ -785,6 +785,7 @@ class SC_Helper_Purchase
             $arrDetail[$i]['product_id'] = $p['product_id'];
             $arrDetail[$i]['product_class_id'] = $p['product_class_id'];
             $arrDetail[$i]['product_name'] = $p['name'];
+            $arrDetail[$i]['add_customer_id'] = $p['customer_id'];
             $arrDetail[$i]['product_code'] = $p['product_code'];
             $arrDetail[$i]['classcategory_name1'] = $p['classcategory_name1'];
             $arrDetail[$i]['classcategory_name2'] = $p['classcategory_name2'];
@@ -925,6 +926,7 @@ class SC_Helper_Purchase
 T3.product_id,
 T3.product_class_id as product_class_id,
 T3.product_type_id AS product_type_id,
+dtb_products.customer_id AS add_customer_id,
 T2.product_code,
 T2.product_name,
 T2.classcategory_name1 AS classcategory_name1,
