@@ -362,10 +362,16 @@
 
         <table class="list order-edit-products">
             <tr>
+                <col width="35%" />
+                <col width="10%" />
+                <col width="10%" />
+                <col width="30%" />
+                <col width="15%" />
                 <th class="chain_id">Chain ID</th>
                 <th class="add_customer_id">出品者ID</th>
                 <th class="id">商品ID</th>
                 <th class="name">商品名</th>
+                <th class="image">画像</th>
             </tr>
             <!--{section name=cnt loop=$arrForm.quantity.value}-->
             <!--{assign var=product_index value="`$smarty.section.cnt.index`"}-->
@@ -381,18 +387,12 @@
                         <input type="hidden" name="product_name[<!--{$product_index}-->]" value="<!--{$arrForm.product_name.value[$product_index]|h}-->" id="product_name_<!--{$product_index}-->" />
                         <input type="hidden" name="classcategory_name1[<!--{$product_index}-->]" value="<!--{$arrForm.classcategory_name1.value[$product_index]|h}-->" id="classcategory_name1_<!--{$product_index}-->" />
                         <input type="hidden" name="classcategory_name2[<!--{$product_index}-->]" value="<!--{$arrForm.classcategory_name2.value[$product_index]|h}-->" id="classcategory_name2_<!--{$product_index}-->" />
-                        <br />
-                        <!--{if $tpl_shipping_quantity <= 1}-->
-                            <a class="btn-normal" href="javascript:;" name="change" onclick="eccube.openWindow('<!--{$smarty.const.ROOT_URLPATH}--><!--{$smarty.const.ADMIN_DIR}-->order/product_select.php?no=<!--{$product_index}-->&amp;order_id=<!--{$arrForm.order_id.value|h}-->&amp;shipping_id=<!--{$top_shipping_id}-->', 'search', '615', '500', {menubar:'no'}); return false;">変更</a>
-                            <!--{if count($arrForm.quantity.value) > 1}-->
-                                <a class="btn-normal" href="javascript:;" name="delete" onclick="eccube.setValue('delete_no', <!--{$product_index}-->, 'form1'); eccube.setValue('select_shipping_id', '<!--{$top_shipping_id}-->', 'form1'); eccube.setModeAndSubmit('delete_product','anchor_key','order_products'); return false;">削除</a>
-                            <!--{/if}-->
-                        <!--{/if}-->
                     <input type="hidden" name="product_type_id[<!--{$product_index}-->]" value="<!--{$arrForm.product_type_id.value[$product_index]|h}-->" id="product_type_id_<!--{$product_index}-->" />
                     <input type="hidden" name="product_id[<!--{$product_index}-->]" value="<!--{$arrForm.product_id.value[$product_index]|h}-->" id="product_id_<!--{$product_index}-->" />
                     <input type="hidden" name="product_class_id[<!--{$product_index}-->]" value="<!--{$arrForm.product_class_id.value[$product_index]|h}-->" id="product_class_id_<!--{$product_index}-->" />
                     <input type="hidden" name="point_rate[<!--{$product_index}-->]" value="<!--{$arrForm.point_rate.value[$product_index]|h}-->" id="point_rate_<!--{$product_index}-->" />
                     </td>
+                    <td class="center"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrForm.sub_large_image1.value[$product_index]|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" style="max-width:100%;"/></td>
                         <!--{assign var=key value="price"}-->
                         <input type="hidden" name="<!--{$key}-->[<!--{$product_index}-->]" value="<!--{$arrForm[$key].value[$product_index]|h}-->" id="<!--{$key}-->_<!--{$product_index}-->" />
 
@@ -411,7 +411,7 @@
                     <!--{assign var=key value="discount"}-->
                     <input type="hidden" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" />
             <tr>
-                <th colspan="3" class="column right">送料</th>
+                <th colspan="4" class="column right">送料</th>
                 <td class="right">
                     <!--{assign var=key value="deliv_fee"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -420,7 +420,7 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="3" class="column right">手数料</th>
+                <th colspan="4" class="column right">手数料</th>
                 <td class="right">
                     <!--{assign var=key value="charge"}-->
                     <span class="attention"><!--{$arrErr[$key]}--></span>
@@ -429,14 +429,14 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="3" class="column right">合計</th>
+                <th colspan="4" class="column right">合計</th>
                 <td class="right">
                     <span class="attention"><!--{$arrErr.total}--></span>
                     <!--{$arrForm.total.value|default:0|n2s}--> 円
                 </td>
             </tr>
             <tr>
-                <th colspan="3" class="column right">お支払い合計</th>
+                <th colspan="4" class="column right">お支払い合計</th>
                 <td class="right">
                     <span class="attention"><!--{$arrErr.payment_total}--></span>
                     <!--{$arrForm.payment_total.value|default:0|n2s}-->

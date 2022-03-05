@@ -786,6 +786,7 @@ class SC_Helper_Purchase
             $arrDetail[$i]['product_class_id'] = $p['product_class_id'];
             $arrDetail[$i]['product_name'] = $p['name'];
             $arrDetail[$i]['add_customer_id'] = $p['customer_id'];
+            $arrDetail[$i]['sub_large_image1'] = $p['sub_large_image1'];
             $arrDetail[$i]['product_code'] = $p['product_code'];
             $arrDetail[$i]['classcategory_name1'] = $p['classcategory_name1'];
             $arrDetail[$i]['classcategory_name2'] = $p['classcategory_name2'];
@@ -937,6 +938,7 @@ T2.point_rate,
 T2.tax_rate,
 T2.tax_rule,
 dtb_products.chain_id,
+dtb_products.sub_large_image1,
 __EOS__;
         if ($has_order_status) {
             $col .= 'T1.status AS status, T1.payment_date AS payment_date,';
