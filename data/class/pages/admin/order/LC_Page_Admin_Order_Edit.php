@@ -73,6 +73,7 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         'product_code',
         'product_name',
         'add_customer_id',
+        'sub_large_image1',
         'classcategory_name1',
         'classcategory_name2',
         'quantity',
@@ -411,6 +412,7 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK', 'NUM_CHECK'), '0');
         $objFormParam->addParam('出品者ID', 'add_customer_id');
         $objFormParam->addParam('ChainID', 'chain_id');
+        $objFormParam->addParam('アイテム画像', 'sub_large_image1');
         $objFormParam->addParam('商品規格ID', 'product_class_id', INT_LEN, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK', 'NUM_CHECK'), '0');
         $objFormParam->addParam('ポイント付与率', 'point_rate');
         $objFormParam->addParam('商品コード', 'product_code');
