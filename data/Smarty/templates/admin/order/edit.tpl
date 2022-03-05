@@ -200,6 +200,7 @@
                         <!--{$arrYamatoDelivStatus.dstAddress3|h}--><br />
                         <!--{$arrYamatoDelivStatus.dstAddress4|h}-->
                     <!--{/if}-->
+                    <!--{$arrYamatoDelivStatus|@var_dump}-->
                 </td>
             </tr>
         </table>
@@ -338,21 +339,6 @@
                 </td>
             </tr>
             <tr>
-                <th>備考</th>
-                <td><!--{$arrForm.message.value|h|nl2br}--></td>
-            </tr>
-            <tr>
-                <th>現在ポイント</th>
-                <td>
-                    <!--{if $arrForm.customer_id.value > 0}-->
-                        <!--{$arrForm.customer_point.value|n2s}-->
-                        pt
-                    <!--{else}-->
-                        (非会員)
-                <!--{/if}-->
-                </td>
-            </tr>
-            <tr>
                 <th>端末種別</th>
                 <td><!--{$arrDeviceType[$arrForm.device_type_id.value]|h}--></td>
             </tr>
@@ -457,104 +443,32 @@
                     円
                 </td>
             </tr>
-            <!--{if $smarty.const.USE_POINT !== false}-->
-                <tr>
-                    <th colspan="3" class="column right">使用ポイント</th>
-                    <td class="right">
-                        <!--{assign var=key value="use_point"}-->
-                        <span class="attention"><!--{$arrErr[$key]}--></span>
-                        <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|default:0|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="5" class="box6" />
-                        pt
-                    </td>
-                </tr>
-                <!--{if $arrForm.birth_point.value > 0}-->
-                    <tr>
-                        <th colspan="2" class="column right">お誕生日ポイント</th>
-                        <td class="right">
-                            <!--{assign var=key value="birth_point"}-->
-                            <input type="hidden" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->"/>
-                            <!--{$arrForm.birth_point.value|n2s}-->
-                            pt
-                        </td>
-                    </tr>
-                <!--{/if}-->
-                <tr>
-                    <th colspan="3" class="column right">加算ポイント</th>
-                    <td class="right">
-                        <!--{$arrForm.add_point.value|default:0|n2s}-->
-                        pt
-                    </td>
-                </tr>
-            <!--{/if}-->
         </table>
         <!--▼お届け先情報ここから-->
-        <a name="shipping"></a>
-        <h2>お届け先情報
-            <!--{if $tpl_shipping_quantity <= 1}-->
-                <a class="btn-normal" href="javascript:;" onclick="fnCopyFromOrderData();">お客様情報へお届けする</a>
-            <!--{/if}-->
-            <!--{if $smarty.const.USE_MULTIPLE_SHIPPING !== false}-->
-                <a class="btn-normal" href="javascript:;"  onclick="fnAppendShipping();">お届け先を新規追加</a>
-                <a class="btn-normal" href="javascript:;" onclick="fnMultiple();">複数のお届け先を指定する</a>
-            <!--{/if}-->
-        </h2>
 
         <!--{foreach name=shipping from=$arrAllShipping item=arrShipping key=shipping_index}-->
-            <!--{if $tpl_shipping_quantity > 1}-->
-                <h3>お届け先<!--{$smarty.foreach.shipping.iteration}--></h3>
-            <!--{/if}-->
             <!--{assign var=key value="shipping_id"}-->
             <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|default:"0"|h}-->" id="<!--{$key}-->_<!--{$shipping_index}-->" />
             <!--{if $tpl_shipping_quantity > 1}-->
-                <h2>届け先商品情報&nbsp;<a class="btn-normal" href="javascript:;" name="add_product" onclick="eccube.openWindow('<!--{$smarty.const.ROOT_URLPATH}--><!--{$smarty.const.ADMIN_DIR}-->order/product_select.php?order_id=<!--{$arrForm.order_id.value|h}-->&shipping_id=<!--{$shipping_index}-->', 'search', '615', '500', {menubar:'no'}); return false;">商品の追加</a>
-                </h2>
 
                 <!--{if count($arrShipping.shipment_product_class_id) > 0}-->
-                    <table class="list order-edit-products">
-                        <tr>
-                            <th class="id">商品コード</th>
-                            <th class="name">商品名/規格1/規格2</th>
-                            <th class="price">単価</th>
-                            <th class="qty">数量</th>
-                        </tr>
                         <!--{section name=item loop=$arrShipping.shipment_product_class_id|@count}-->
                             <!--{assign var=item_index value="`$smarty.section.item.index`"}-->
-
-                            <tr>
-                                <td class="center">
                                     <!--{assign var=key value="shipment_product_class_id"}-->
                                     <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key][$item_index]|h}-->" />
                                     <!--{assign var=key value="shipment_product_code"}-->
                                     <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key][$item_index]|h}-->" />
-                                    <!--{$arrShipping[$key][$item_index]|h}-->
-                                </td>
-                                <td class="center">
                                     <!--{assign var=key1 value="shipment_product_name"}-->
                                     <!--{assign var=key2 value="shipment_classcategory_name1"}-->
                                     <!--{assign var=key3 value="shipment_classcategory_name2"}-->
                                     <input type="hidden" name="<!--{$key1}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key1][$item_index]|h}-->" />
                                     <input type="hidden" name="<!--{$key2}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key2][$item_index]|h}-->" />
                                     <input type="hidden" name="<!--{$key3}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key3][$item_index]|h}-->" />
-                                    <!--{$arrShipping[$key1][$item_index]|h}-->/<!--{$arrShipping[$key2][$item_index]|default:"(なし)"|h}-->/<!--{$arrShipping[$key3][$item_index]|default:"(なし)"|h}-->
-                                    <br />
-                                    <a class="btn-normal" href="javascript:;" name="change" onclick="eccube.openWindow('<!--{$smarty.const.ROOT_URLPATH}--><!--{$smarty.const.ADMIN_DIR}-->order/product_select.php?no=<!--{$item_index}-->&amp;order_id=<!--{$arrForm.order_id.value|h}-->&amp;shipping_id=<!--{$shipping_index}-->', 'search', '615', '500', {menubar:'no'}); return false;">変更</a>
-                                    <!--{if $arrShipping.shipment_product_class_id|@count > 1}-->
-                                    <a class="btn-normal" href="javascript:;" name="delete" onclick="eccube.setValue('delete_no', <!--{$item_index}-->, 'form1'); eccube.setValue('select_shipping_id', <!--{$shipping_index}-->, 'form1'); eccube.setModeAndSubmit('delete_product','anchor_key','order_products'); return false;">削除</a>
-                                    <!--{/if}-->
-                                </td>
-                                <td class="right">
                                     <!--{assign var=key value="shipment_price"}-->
-                                    <!--{$arrShipping[$key][$item_index]|n2s}-->円
                                     <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key][$item_index]|h}-->" />
-                                </td>
-                                <td class="center">
                                     <!--{assign var=key value="shipment_quantity"}-->
-                                    <span class="attention"><!--{$arrErr[$key][$shipping_index][$item_index]}--></span>
                                     <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->][<!--{$item_index}-->]" value="<!--{$arrShipping[$key][$item_index]|h}-->" size="3" class="box3" maxlength="<!--{$arrForm[$key].length}-->" />
-                                </td>
-                            </tr>
                         <!--{/section}-->
-                    </table>
                 <!--{/if}-->
             <!--{else}-->
                 <!-- 配送先が１つでも、shipment_itemを更新するために必要 -->
@@ -578,124 +492,30 @@
                 <!--{/section}-->
             <!--{/if}-->
 
-            <table class="form">
-                <tr>
-                    <th>お名前</th>
-                    <td>
                         <!--{assign var=key1 value="shipping_name01"}-->
                         <!--{assign var=key2 value="shipping_name02"}-->
-                        <span class="attention"><!--{$arrErr[$key1][$shipping_index]}--><!--{$arrErr[$key2][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1][$shipping_index]|sfGetErrorColor}-->" size="15" class="box15" />
-                        <input type="text" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2][$shipping_index]|sfGetErrorColor}-->" size="15" class="box15" />
-                    </td>
-                </tr>
-                <tr>
-                    <th>お名前(フリガナ)</th>
-                    <td>
+                        <input type="hidden" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" />
+                        <input type="hidden" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" />
                         <!--{assign var=key1 value="shipping_kana01"}-->
                         <!--{assign var=key2 value="shipping_kana02"}-->
-                        <span class="attention"><!--{$arrErr[$key1][$shipping_index]}--><!--{$arrErr[$key2][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1][$shipping_index]|sfGetErrorColor}-->" size="15" class="box15" />
-                        <input type="text" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2][$shipping_index]|sfGetErrorColor}-->" size="15" class="box15" />
-                    </td>
-                </tr>
-                <tr>
-                    <th>TEL</th>
-                    <td>
+                        <input type="hidden" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" />
+                        <input type="hidden" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" />
                         <!--{assign var=key1 value="shipping_tel01"}-->
                         <!--{assign var=key2 value="shipping_tel02"}-->
                         <!--{assign var=key3 value="shipping_tel03"}-->
-                        <span class="attention"><!--{$arrErr[$key1][$shipping_index]}--></span>
-                        <span class="attention"><!--{$arrErr[$key2][$shipping_index]}--></span>
-                        <span class="attention"><!--{$arrErr[$key3][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1][$shipping_index]|sfGetErrorColor}-->" size="6" class="box6" /> -
-                        <input type="text" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2][$shipping_index]|sfGetErrorColor}-->" size="6" class="box6" /> -
-                        <input type="text" name="<!--{$key3}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key3]|h}-->" maxlength="<!--{$arrForm[$key3].length}-->" style="<!--{$arrErr[$key3][$shipping_index]|sfGetErrorColor}-->" size="6" class="box6" />
-                    </td>
-                </tr>
-                <!--{assign var=key1 value="shipping_country_id"}-->
-                <!--{assign var=key2 value="shipping_zipcode"}-->
-                <!--{if !$smarty.const.FORM_COUNTRY_ENABLE}-->
-                <input type="hidden" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$smarty.const.DEFAULT_COUNTRY_ID}-->" />
-                <!--{else}-->
-                <tr>
-                    <th>国</th>
-                    <td>
-                        <span class="attention"><!--{$arrErr[$key1][$shipping_index]}--></span>
-                        <select name="<!--{$key1}-->[<!--{$shipping_index}-->]" style="<!--{$arrErr[$key1][$shipping_index]|sfGetErrorColor}-->">
-                                <!--{html_options options=$arrCountry selected=$arrShipping[$key1]|default:$smarty.const.DEFAULT_COUNTRY_ID}-->
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ZIP CODE</th>
-                    <td>
-                        <span class="attention"><!--{$arrErr[$key2][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2][$shipping_index]|sfGetErrorColor}-->;" size="15" class="box15"/>
-                    </td>
-                </tr>
-                <!--{/if}-->
-                <tr>
-                    <th>住所</th>
-                    <td>
+                        <input type="hidden" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" />
+                        <input type="hidden" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" />
+                        <input type="hidden" name="<!--{$key3}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key3]|h}-->" />
                         <!--{assign var=key1 value="shipping_zip01"}-->
                         <!--{assign var=key2 value="shipping_zip02"}-->
-                        <span class="attention"><!--{$arrErr[$key1][$shipping_index]}--><!--{$arrErr[$key2][$shipping_index]}--></span>
-                        〒
-                        <input type="text" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="<!--{$arrErr[$key1][$shipping_index]|sfGetErrorColor}-->" size="6" class="box6" />
-                        -
-                        <input type="text" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" maxlength="<!--{$arrForm[$key2].length}-->" style="<!--{$arrErr[$key2][$shipping_index]|sfGetErrorColor}-->" size="6" class="box6" />
-                        <a class="btn-normal" href="javascript:;" name="address_input" onclick="eccube.getAddress('<!--{$smarty.const.INPUT_ZIP_URLPATH}-->', 'shipping_zip01[<!--{$shipping_index}-->]', 'shipping_zip02[<!--{$shipping_index}-->]', 'shipping_pref[<!--{$shipping_index}-->]', 'shipping_addr01[<!--{$shipping_index}-->]'); return false;">住所入力</a><br />
-                        <!--{assign var=key value="shipping_pref"}-->
-                        <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
-                        <select class="top" name="<!--{$key}-->[<!--{$shipping_index}-->]" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->">
-                            <option value="" selected="">都道府県を選択</option>
-                            <!--{html_options options=$arrPref selected=$arrShipping[$key]}-->
-                        </select><br />
+                        <input type="hidden" name="<!--{$key1}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key1]|h}-->" />
+                        <input type="hidden" name="<!--{$key2}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key2]|h}-->" />
                         <!--{assign var=key value="shipping_addr01"}-->
-                        <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" size="60" class="box60 top" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->" /><br />
+                        <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" />
                         <!--{assign var=key value="shipping_addr02"}-->
-                        <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->" />
+                        <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" />
                         <!--{assign var=key value="shipping_addr03"}-->
-                        <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
-                        <input type="text" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" size="60" class="box60" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->" />
-                    </td>
-                </tr>
-                <tr>
-                    <th>お届け時間</th>
-                    <td>
-                        <!--{assign var=key value="time_id"}-->
-                        <span class="attention"><!--{$arrErr[$key][$shipping_index]}--></span>
-                        <select name="<!--{$key}-->[<!--{$shipping_index}-->]" style="<!--{$arrErr[$key][$shipping_index]|sfGetErrorColor}-->">
-                            <option value="">指定無し</option>
-                            <!--{html_options options=$arrDelivTime selected=$arrShipping[$key]}-->
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>お届け日</th>
-                    <td>
-                        <!--{assign var=key1 value="shipping_date_year"}-->
-                        <!--{assign var=key2 value="shipping_date_month"}-->
-                        <!--{assign var=key3 value="shipping_date_day"}-->
-                        <span class="attention"><!--{$arrErr[$key1][$shipping_index]}--></span>
-                        <span class="attention"><!--{$arrErr[$key2][$shipping_index]}--></span>
-                        <span class="attention"><!--{$arrErr[$key3][$shipping_index]}--></span>
-                        <select name="<!--{$key1}-->[<!--{$shipping_index}-->]" style="<!--{$arrErr[$key1][$shipping_index]|sfGetErrorColor}-->">
-                            <!--{html_options options=$arrYearShippingDate selected=$arrShipping[$key1]|default:""}-->
-                        </select>年
-                        <select name="<!--{$key2}-->[<!--{$shipping_index}-->]" style="<!--{$arrErr[$key2][$shipping_index]|sfGetErrorColor}-->">
-                            <!--{html_options options=$arrMonthShippingDate selected=$arrShipping[$key2]|default:""}-->
-                        </select>月
-                        <select name="<!--{$key3}-->[<!--{$shipping_index}-->]" style="<!--{$arrErr[$key3][$shipping_index]|sfGetErrorColor}-->">
-                            <!--{html_options options=$arrDayShippingDate selected=$arrShipping[$key3]|default:""}-->
-                        </select>日
-                    </td>
-                </tr>
-
-            </table>
+                        <input type="hidden" name="<!--{$key}-->[<!--{$shipping_index}-->]" value="<!--{$arrShipping[$key]|h}-->" />
         <!--{/foreach}-->
         <!--▲お届け先情報ここまで-->
 
