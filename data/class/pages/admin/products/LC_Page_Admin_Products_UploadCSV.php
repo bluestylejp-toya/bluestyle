@@ -356,6 +356,9 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
                     $item['rw_flg'] != CSV_COLUMN_RW_FLG_READ_ONLY
                     );
         }
+        if (!in_array('product_class_id', $objFormParam->getKeyList())) {
+            $objFormParam->addParam('product_class_id', 'product_class_id');
+        }
     }
 
     /**
@@ -489,7 +492,6 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
         // 商品規格テーブルのカラムに存在しているもののうち、Form投入設定されていないデータは上書きしない。
         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $this->arrProductClassColumn);
 
-        $product_class_id = $product_id;
         if ($product_class_id == '') {
             // 新規登録
             // 必須入力では無い項目だが、空文字では問題のある特殊なカラム値の初期値設定
@@ -504,6 +506,11 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
             // UPDATEの実行
             // 必須入力では無い項目だが、空文字では問題のある特殊なカラム値の初期値設定
             $sqlval = $this->lfSetProductClassDefaultData($sqlval, true);
+
+            // キー情報は更新しない。(不整合を検出して例外スローが理想だが。)
+            unset($sqlval['product_class_id']);
+            unset($sqlval['product_id']);
+
             $where = 'product_class_id = ?';
             $objQuery->update('dtb_products_class', $sqlval, $where, array($product_class_id));
         }
