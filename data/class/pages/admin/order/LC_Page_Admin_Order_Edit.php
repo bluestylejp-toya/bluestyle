@@ -337,7 +337,7 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
             try {
                 $objHelperApi = new SC_Helper_Api_Ex();
                 $objHelperApi->setMethod('GET');
-                $objHelperApi->setUrl(API_URL . 'yamato/shipping_status/' . $orderId);
+                $objHelperApi->setUrl(API_URL . 'yamato/shipping_status/' . 'o' . $orderId);
                 $result = json_decode($objHelperApi->exec(), true);
                 $arrYamatoDelivStatus = $result;
 
