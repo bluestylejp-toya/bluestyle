@@ -200,7 +200,6 @@
                         <!--{$arrYamatoDelivStatus.dstAddress3|h}--><br />
                         <!--{$arrYamatoDelivStatus.dstAddress4|h}-->
                     <!--{/if}-->
-                    <!--{$arrYamatoDelivStatus|@var_dump}-->
                 </td>
             </tr>
         </table>
