@@ -464,7 +464,7 @@ a[href]:hover {
 }
 
 #header-contents {
-    width: 1030px;
+    /* width: 1030px; */
 }
 
 #logo {
@@ -499,7 +499,7 @@ a[href]:hover {
 /* ヘッダーナビ
 ----------------------------------------------- */
 #navi-wrap {
-    width: 1030px;
+    /* width: 1030px; */
 }
 #navi {
     z-index: 90;
@@ -833,7 +833,7 @@ body > #container {
 
 #contents {
     padding: 20px 20px 100px;
-    width: 1000px;
+    /* width: 1000px; */
 }
 
 #footer {
@@ -847,7 +847,7 @@ body > #container {
 
 #footer-contents {
     padding-top: 10px;
-    width: 1020px;
+    /* width: 1020px; */
     text-align: right;
 }
 
