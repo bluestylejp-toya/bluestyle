@@ -2,9 +2,9 @@
 /*
  * This file is part of EC-CUBE
  *
- * Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+ * Copyright(c) 2000-2013 LOCKON CO.,LTD. All Rights Reserved.
  *
- * http://www.ec-cube.co.jp/
+ * http://www.lockon.co.jp/
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -47,9 +47,9 @@ class SC_PageNavi
     public $strnavi;       // ページ送り文字列
     public $arrPagenavi = array(); // ページ
 
+    // コンストラクタ
+
     /**
-     * コンストラクタ
-     *
      * @param string $func_name
      */
     public function __construct($now_page, $all_row, $page_row, $func_name, $navi_max = NAVI_PMAX, $urlParam = '', $display_number = true)
@@ -88,18 +88,18 @@ class SC_PageNavi
                 $this->arrPagenavi['before'] = $this->now_page - 1;
                 $urlParamThis = str_replace('#page#', $this->arrPagenavi['before'], $urlParam);
                 $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
-                $before = "<a href=\"?$urlParamThis\" onclick=\"$func_name(1); return false;\" class=\"c-pagination__first\"></a><a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['before']}'); return false; \" class=\"c-pagination__newer\"></a> ";
+                $before = "<a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['before']}'); return false;\">&lt;&lt;前へ</a> ";
             } else {
-                $before = "<span class=\"c-pagination__first\"></span><span class=\"c-pagination__newer\"></span> ";
+                $this->arrPagenavi['before'] = $this->now_page;
             }
 
             if ($this->now_page < $this->max_page) {
                 $this->arrPagenavi['next'] = $this->now_page + 1;
                 $urlParamThis = str_replace('#page#', $this->arrPagenavi['next'], $urlParam);
                 $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
-                $next = " <a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['next']}'); return false;\" class=\"c-pagination__older\"></a><a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->max_page}'); return false;\" class=\"c-pagination__last\"></a>";
+                $next = " <a href=\"?$urlParamThis\" onclick=\"$func_name('{$this->arrPagenavi['next']}'); return false;\">次へ&gt;&gt;</a>";
             } else {
-                $next = " <span class=\"c-pagination__older\"></span><span class=\"c-pagination__last\"></span>";
+                $this->arrPagenavi['next'] = $this->now_page;
             }
 
             // 表示する最大ナビ数を決める。
@@ -126,7 +126,19 @@ class SC_PageNavi
 
             $this->arrPagenavi['arrPageno'] = array();
             $page_number = '';
-            $page_number .= "<strong>$this->now_page / $this->max_page</strong>";
+            for ($i = $disp_min; $i <= $disp_max; $i++) {
+                if ($i == $this->now_page) {
+                    $page_number .= "<strong>$i</strong>";
+                } else {
+                    $urlParamThis = str_replace('#page#', $i, $urlParam);
+                    $urlParamThis = htmlentities($urlParamThis, ENT_QUOTES);
+                    $page_number .= "<a href=\"?$urlParamThis\" onclick=\"$func_name('$i'); return false;\">$i</a>";
+                }
+
+                $page_number .= ' ';
+
+                $this->arrPagenavi['arrPageno'][$i] = $i;
+            }
 
             if ($before && $next) {
                 $this->strnavi = $before .(($display_number) ? $page_number : ' | ') .$next;
