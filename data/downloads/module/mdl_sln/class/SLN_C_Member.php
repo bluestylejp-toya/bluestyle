@@ -247,4 +247,39 @@ class SLN_C_Member extends SLN_C_Base {
 
 		return true;
 	}
+
+	/**
+	 * カードチェック (1Check)
+	 *
+	 * unInvalCard() を基に実装。
+	 */
+	function checkCard($arrCustomer) {
+		$objectMdl =& SLN::getInstance();
+		$slnSettingHash = $objectMdl->getConfigs();
+
+		$accessUrl = $slnSettingHash['credit_connection_place1'];
+
+		$sendKeyHash = array(
+			'MerchantId',
+			'MerchantPass',
+			'TenantId',
+			'TransactionDate',
+			'OperateId',
+			'KaiinId',
+			'KaiinPass',
+			'MerchantFree2',
+			'MerchantFree3',
+		);
+
+		$paramHash['OperateId'] = '1Check';
+
+		$sendDataHash = $this->getSendData($sendKeyHash, $arrCustomer, $paramHash, $slnSettingHash);
+
+		$ret = $this->accessSlnServer($accessUrl, $sendDataHash, $admin);
+		if (!$ret || (!SC_Utils::isBlank($this->getError()))) {
+			return false;
+		}
+
+		return true;
+	}
 }

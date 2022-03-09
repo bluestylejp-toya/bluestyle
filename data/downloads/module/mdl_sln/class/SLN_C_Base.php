@@ -252,7 +252,10 @@ class SLN_C_Base {
 
 		SLN_Util::setOrderPayHash($orderHash, $paramHash);
 
-		if (!SC_Utils::isBlank($this->getError())) {
+		if (!SC_Utils::isBlank($error = $this->getError())) {
+			if (PHP_SAPI === 'cli') {
+				echo __FILE__ . __LINE__ . ' $error = ' . var_export($error, true) . "\n";
+			}
 			return false;
 		}
 
@@ -409,6 +412,9 @@ class SLN_C_Base {
 			$objectReq->addPostData($key, $value);
 		}
 
+		if (PHP_SAPI === 'cli') {
+			echo __FILE__ . __LINE__ . ' PostData = ' . var_export($objectReq->_postData, true) . "\n";
+		}
 		$ret = $objectReq->sendRequest();
 		if (PEAR::isError($ret)) {
 			$msg = '通信エラーが発生しました。:' . $ret->getMessage();
