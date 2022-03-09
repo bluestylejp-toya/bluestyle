@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: chain
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -4099,7 +4099,7 @@ INSERT INTO `mtb_customer_order_status` VALUES (3,'キャンセル',4);
 INSERT INTO `mtb_customer_order_status` VALUES (4,'未使用(4)',6);
 INSERT INTO `mtb_customer_order_status` VALUES (5,'未使用(5)',7);
 INSERT INTO `mtb_customer_order_status` VALUES (6,'ループ (Chain 確定)',3);
-INSERT INTO `mtb_customer_order_status` VALUES (7,'未使用(7)',8);
+INSERT INTO `mtb_customer_order_status` VALUES (7,'注文未完了',8);
 INSERT INTO `mtb_customer_order_status` VALUES (101,'中断',1);
 INSERT INTO `mtb_customer_order_status` VALUES (102,'Chain 成立',5);
 /*!40000 ALTER TABLE `mtb_customer_order_status` ENABLE KEYS */;
@@ -4544,7 +4544,7 @@ INSERT INTO `mtb_order_status` VALUES (3,'キャンセル',4);
 INSERT INTO `mtb_order_status` VALUES (4,'未使用(4)',6);
 INSERT INTO `mtb_order_status` VALUES (5,'未使用(5)',7);
 INSERT INTO `mtb_order_status` VALUES (6,'ループ (Chain 確定)',3);
-INSERT INTO `mtb_order_status` VALUES (7,'未使用(7)',8);
+INSERT INTO `mtb_order_status` VALUES (7,'決済処理中',8);
 INSERT INTO `mtb_order_status` VALUES (101,'中断',1);
 INSERT INTO `mtb_order_status` VALUES (102,'Chain 成立',5);
 /*!40000 ALTER TABLE `mtb_order_status` ENABLE KEYS */;
@@ -5189,4 +5189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-23  8:41:40
+-- Dump completed on 2022-03-09  1:58:48
