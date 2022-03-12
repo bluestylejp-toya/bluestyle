@@ -245,6 +245,7 @@
             <table class="list">
                 <tr>
                     <th>日付</th>
+                    <th>ChainID</th>
                     <th>注文番号</th>
                     <th>購入金額</th>
                     <th>発送日</th>
@@ -253,6 +254,7 @@
                 <!--{section name=cnt loop=$arrPurchaseHistory}-->
                     <tr>
                         <td><!--{$arrPurchaseHistory[cnt].create_date|sfDispDBDate}--></td>
+                        <td><!--{$arrPurchaseHistory[cnt].chain_id|h}--></td>
                         <td class="center"><a href="../order/edit.php?order_id=<!--{$arrPurchaseHistory[cnt].order_id}-->" ><!--{$arrPurchaseHistory[cnt].order_id}--></a></td>
                         <td class="center"><!--{$arrPurchaseHistory[cnt].payment_total|n2s}-->円</td>
                         <td class="center"><!--{if $arrPurchaseHistory[cnt].status eq 5}--><!--{$arrPurchaseHistory[cnt].commit_date|sfDispDBDate}--><!--{else}-->未発送<!--{/if}--></td>
