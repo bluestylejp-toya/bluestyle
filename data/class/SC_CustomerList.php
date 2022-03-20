@@ -69,6 +69,14 @@ class SC_CustomerList extends SC_SelectSql_Ex
             $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchName);
         }
 
+        // ニックネーム
+        if (!isset($this->arrSql['search_nickname'])) $this->arrSql['search_nickname'] = '';
+        if (strlen($this->arrSql['search_nickname']) > 0) {
+            $this->setWhere('nickname LIKE ?');
+            $searchName = $this->addSearchStr($this->arrSql['search_nickname']);
+            $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchName);
+        }
+
         // 名前(フリガナ)
         if (!isset($this->arrSql['search_kana'])) $this->arrSql['search_kana'] = '';
         if (strlen($this->arrSql['search_kana']) > 0) {
