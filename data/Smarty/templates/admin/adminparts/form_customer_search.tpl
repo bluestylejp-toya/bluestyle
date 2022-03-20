@@ -29,6 +29,14 @@
     </td>
 </tr>
 <tr>
+    <th>ニックネーム</th>
+    <td colspan="2">
+        <!--{assign var=key value="search_nickname"}-->
+        <!--{if $arrErr[$key]}--><span class="attention"><!--{$arrErr[$key]}--></span><!--{/if}-->
+        <input type="text" name="<!--{$key}-->" maxlength="<!--{$arrForm[$key].length}-->" value="<!--{$arrForm[$key].value|h}-->" size="30" class="box30" <!--{if $arrErr[$key]}--><!--{sfSetErrorStyle}--><!--{/if}--> />
+    </td>
+</tr>
+<tr>
     <th>誕生月</th>
     <td>
         <!--{assign var=key value="search_birth_month"}-->
