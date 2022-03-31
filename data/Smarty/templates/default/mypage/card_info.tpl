@@ -338,19 +338,6 @@ $(function() {
             <!--{if $dataHash.HolderName != ''}--><dt>カード名義</dt>
             <dd><!--{$dataHash.HolderName}--></dd><!--{/if}-->
         </dl>
-        <div class="btn_area">
-            <ul>
-                <li>
-                    <form name="form1" id="form1" method="post" action="?">
-                        <input type="hidden"
-                            name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->"
-                            value="<!--{$transactionid}-->" /> <input type="hidden"
-                            name="mode" value="inval" /> <input type="submit"
-                            value="カード情報を削除する" class="c-btn--primary"/>
-                    </form>
-                </li>
-            </ul>
-        </div>
     <!--{/if}-->
     <!--{if !$success}-->
         <h3 class="c-heading--sm">カード情報を<!--{if !$dataHash}-->新規<!--{else}-->更新<!--{/if}-->登録</h3>

@@ -87,7 +87,7 @@ class GC_Utils
             // 実質的に何も返さない(空配列を返す)意図。
             if (strlen($arrLine['file']) === 0
                 && ($arrLine['class'] === 'SC_Helper_HandleError' || $arrLine['class'] === 'SC_Helper_HandleError_Ex')
-                && ($arrLine['function'] === 'handle_error' || $arrLine['function'] === 'handle_warning')
+                && ($arrLine['function'] === 'handle_error' || $arrLine['function'] === 'handle_warning' || $arrLine['function'] === 'handle_exception')
             ) {
                 break 1;
             }
@@ -99,7 +99,7 @@ class GC_Utils
                 break 1;
             }
             if (($arrLine['class'] === 'SC_Helper_HandleError' || $arrLine['class'] === 'SC_Helper_HandleError_Ex')
-                && ($arrLine['function'] === 'handle_error' || $arrLine['function'] === 'handle_warning')
+                && ($arrLine['function'] === 'handle_error' || $arrLine['function'] === 'handle_warning' || $arrLine['function'] === 'handle_exception')
             ) {
                 break 1;
             }

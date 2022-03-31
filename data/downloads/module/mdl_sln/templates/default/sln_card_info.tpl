@@ -350,20 +350,6 @@ $(function() {
 				<!--{/if}-->
 			</tr>
 		</table>
-
-		<div class="btn_area">
-			<ul>
-				<li>
-					<form name="form1" id="form1" method="post" action="?">
-						<input type="hidden"
-							name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->"
-							value="<!--{$transactionid}-->" /> <input type="hidden"
-							name="mode" value="inval" /> <input type="submit"
-							value="カード情報を削除する" />
-					</form>
-				</li>
-			</ul>
-		</div>
 		<!--{/if}-->
 
 		<!--{if !$success}-->

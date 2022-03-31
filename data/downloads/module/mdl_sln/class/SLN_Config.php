@@ -772,11 +772,6 @@ class SLN_Config extends LC_Page_Admin_Ex {
 
 		$arrExists = $objectLayout->getPageProperties($device_type_id, null, 'device_type_id = ? and filename = ?', array($device_type_id, $filename));
 
-		$exists_file = $tpl_dir . $arrExists[0]['filename'] . '.tpl';
-		if (file_exists($exists_file)) {
-			unlink($exists_file);
-		}
-
 		$table = 'dtb_pagelayout';
 		$valueHash = array(
 				'device_type_id' => $device_type_id,
@@ -803,9 +798,11 @@ class SLN_Config extends LC_Page_Admin_Ex {
 
 		$tpl_path = $tpl_dir . $filename . '.tpl';
 
-		if (!SC_Helper_FileManager::sfWriteFile($tpl_path, $tpl_data)) {
-			$objectQuery->rollback();
-			return false;
+		if (!file_exists($tpl_path)) {
+			if (!SC_Helper_FileManager::sfWriteFile($tpl_path, $tpl_data)) {
+				$objectQuery->rollback();
+				return false;
+			}
 		}
 		$objectQuery->commit();
 		return $page_id;
@@ -829,10 +826,6 @@ class SLN_Config extends LC_Page_Admin_Ex {
 		}
 
 		$arrExists = $objectLayout->getBlocs($device_type_id, $where, $arrval);
-		$exists_file = $bloc_dir . $arrExists[0]['filename'] . '.tpl';
-		if (file_exists($exists_file)) {
-			unlink($exists_file);
-		}
 
 		$sqlHash = array(
 				'device_type_id' => $device_type_id,
@@ -860,9 +853,11 @@ class SLN_Config extends LC_Page_Admin_Ex {
 		}
 
 		$bloc_path = $bloc_dir . $tpl_path;
-		if (!SC_Helper_FileManager::sfWriteFile($bloc_path, $bloc_data)) {
-			$objectQuery->rollback();
-			return false;
+		if (!file_exists($bloc_path)) {
+			if (!SC_Helper_FileManager::sfWriteFile($bloc_path, $bloc_data)) {
+				$objectQuery->rollback();
+				return false;
+			}
 		}
 
 		$objectQuery->commit();

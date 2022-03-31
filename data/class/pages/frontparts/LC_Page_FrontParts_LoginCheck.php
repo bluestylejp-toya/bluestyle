@@ -118,9 +118,23 @@ class LC_Page_FrontParts_LoginCheck extends LC_Page_Ex
                     // ログイン処理
                     if ($objCustomer->doLogin($arrForm['login_email'], $arrForm['login_pass'])) {
                         // --- ログインに成功した場合
+                        unset($_SESSION['unregistered_card']);
+                        $objectCustomer = new SC_Customer();
+                        // 会員情報の「デフォルトの支払い方法」が「クレジットカード」の場合
+                        if ($objectCustomer->getValue('default_payment_id') == 6) {
+                            // 会員カード有効性の確認
+                            $objectClient = new SLN_C_Member();
+
+                            $arrCustomer = SC_Helper_Customer::sfGetCustomerData($objectCustomer->getValue('customer_id'));
+                            $_SESSION['unregistered_card'] = !$objectClient->checkCard($arrCustomer);
+                        }
                         if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
                             echo SC_Utils_Ex::jsonEncode(array('success' => $url));
                         } else {
+                            if (isset($_SESSION['unregistered_card']) && $_SESSION['unregistered_card']) {
+                                SC_Response_Ex::sendRedirect(HTTPS_URL . 'mypage/card_info.php');
+                                SC_Response_Ex::actionExit();
+                            }
                             SC_Response_Ex::sendRedirect($url);
                         }
                         SC_Response_Ex::actionExit();

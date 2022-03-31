@@ -22,7 +22,7 @@ class Batch {
         try {
             $this->process($chain_id);
         }
-        catch (Exception $e) {
+        catch (Throwable $e) {
             $this->mailShop($e, '例外を補足');
             throw $e;
         }
@@ -89,7 +89,7 @@ class Batch {
 
             $arrOrder = SC_Helper_Purchase_Ex::getOrderByChain($chain_id, $customer_id, $product_class_id);
             if (empty($arrOrder)) {
-                echo "createOrder\n";
+                echo "createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct)\n";
                 $order_id = $this->createOrder($chain_id, $customer_id, $product_class_id, $arrSourceProduct);
                 $arrOrder = SC_Helper_Purchase_Ex::getOrder($order_id);
             }

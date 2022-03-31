@@ -70,46 +70,6 @@ class SLN_ChangeCard extends LC_Page_AbstractMypage_Ex {
 		    }
 		}
 		switch ($this->getMode()) {
-			case 'inval':
-			    // 無効化処理はGETでも処理が通ってしまうため、POSTメソッド以外の場合は、無効化処理を行わない
-				if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-					$ret = $objectClient->invalCard($arrCustomer); // 無効化
-					if ($ret) {
-						$this->success = true;
-						
-						if (SLN::getInstance()->getSubData('add_card_mem_table')) {
-							$isEx = SC_Query_Ex::getSingletonInstance()->get('customer_id', 'sln_dtb_mem_card_id', 'customer_id = ?', array($customer_id));
-							if ($isEx) {
-								SC_Query_Ex::getSingletonInstance()->exec('UPDATE sln_dtb_mem_card_id SET mem_id = mem_id + 1 , update_date = NOW() WHERE customer_id = ?', 
-									array($customer_id));
-							} else {
-								SC_Query_Ex::getSingletonInstance()->insert('sln_dtb_mem_card_id', 
-									array('customer_id' => $customer_id, 'mem_id' => 1, 'update_date' => 'CURRENT_TIMESTAMP'));
-							}   
-						}
-						
-					} else {
-						$arrErr = $objectClient->getError();
-						$this->arrErr['error'] = '※ 登録クレジットカード無効化でエラーが発生しました。<br />' . implode('<br />', $arrErr);
-					}
-					$objectFormParam = new SC_FormParam();
-					$this->registParam($objectFormParam);
-					$this->arrForm = $objectFormParam->getFormParamList();
-				}
-				break;
-			case 'uninval':
-				$arrForm  = $objectFormParam->getHashArray();
-				$ret = $objectClient->unInvalCard($arrCustomer); // 無効化解除
-				if ($ret) {
-					$this->success = true;
-				} else {
-					$arrErr = $objectClient->getError();
-					$this->arrErr['error'] = '※ 登録クレジットカード無効化解除でエラーが発生しました。<br />' . implode('<br />', $arrErr);
-				}
-				$objectFormParam = new SC_FormParam();
-				$this->registParam($objectFormParam);
-				$this->arrForm = $objectFormParam->getFormParamList();
-				break;
 			case 'regist'://カード登録
 				$this->registParam($objectFormParam);
 				$objectFormParam->setParam($_POST);
@@ -128,6 +88,7 @@ class SLN_ChangeCard extends LC_Page_AbstractMypage_Ex {
 					$ret = $objectClient->saveCard($arrCustomer, $arrForm);
 					if ($ret) {
 						$this->success = true;
+						$_SESSION['unregistered_card'] = false;
 					} else {
 						$msg = 'カード登録エラー: ' . $objectClient->request_error;
 						trigger_error($msg, E_USER_WARNING);
@@ -160,6 +121,7 @@ class SLN_ChangeCard extends LC_Page_AbstractMypage_Ex {
 					$ret = $objectClient->changeCard($arrCustomer, $arrForm);
 					if ($ret) {
 						$this->success = true;
+						$_SESSION['unregistered_card'] = false;
 					} else {
 						$arrErr = $objectClient->getError();
 						$this->arrErr['error2'] = '※ クレジットカード更新でエラーが発生しました。<br />' . implode('<br />', $arrErr);
