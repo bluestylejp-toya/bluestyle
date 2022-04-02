@@ -140,8 +140,37 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
             }
             if (self::DISPNUM <= $cnt) break;
         }
+
+        // お気に入り件数、更新日降順にソート
+        if (count($arrCheckItemList) > 0){
+            $arrCheckItemList = $this->sortArrCheckItemList($arrCheckItemList);
+        }
+
         return $arrCheckItemList;
 
+    }
+
+    /**
+     * お気に入り件数、更新日降順にソート
+     * @param  array $arrCheckItemList 閲覧商品一覧
+     * @return array $arrCheckItemList ソート後の閲覧商品一覧
+     */
+    private function sortArrCheckItemList($arrCheckItemList)
+    {
+        $arrSortFavoriteProductsCount = array();
+        $arrSortUpdateDate = array();
+
+        foreach ( $arrCheckItemList as $checkItem ){
+            $arrSortFavoriteProductsCount[] = $checkItem['favorite_products_count'];
+            $arrSortUpdateDate[] = $checkItem['update_date'];
+        }
+
+        array_multisort(
+            $arrSortFavoriteProductsCount, SORT_DESC, SORT_NUMERIC,
+            $arrSortUpdateDate, SORT_DESC, SORT_NUMERIC,
+            $arrCheckItemList);
+
+        return $arrCheckItemList;
     }
 
     /**
