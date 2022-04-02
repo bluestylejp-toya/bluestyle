@@ -61,7 +61,7 @@
   </div>
 </section>
 <div class="u-mb--4">
-    <button type="button" class="c-btn--default c-onboarding__show-btn">Chainとは？</button>
+    <button type="button" class="c-hero__foot__btn c-btn--default c-onboarding__show-btn">Chainとは？</button>
     <div class="c-onboarding">
         <ol>
             <li class="--active">
@@ -98,6 +98,7 @@
         </div>
     </div>
     <div class="c-onboarding__bg"></div>
+    <a target="_blank" href="https://daisy-supply-c7e.notion.site/Chain-7933936254d840a1a0ee89e0bf83e61a" class="c-btn--default">ご利用ガイド</a>
 </div>
 <script>
 $('.c-onboarding__show-btn').on('click', function(){
