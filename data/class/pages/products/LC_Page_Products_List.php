@@ -248,6 +248,11 @@ class LC_Page_Products_List extends LC_Page_Ex
                 $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
                 break;
 
+            // ほしい順
+            case 'count_of_favorite':
+                $objProduct->setProductsOrder('count_of_favorite', 'dtb_products', 'DESC');
+                break;
+
             default:
                 if (strlen($searchCondition['where_category']) >= 1) {
                     $dtb_product_categories = '(SELECT * FROM dtb_product_categories WHERE '.$searchCondition['where_category'].')';

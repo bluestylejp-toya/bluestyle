@@ -78,14 +78,18 @@ class SC_Product
         $table = 'dtb_products AS alldtl';
 
         if (is_array($this->arrOrderData) and $objQuery->order == '') {
-            $o_col = $this->arrOrderData['col'];
-            $o_table = $this->arrOrderData['table'];
-            $o_order = $this->arrOrderData['order'];
-            $objQuery->setOrder("T2.$o_col $o_order");
-            $sub_sql = $objQuery->getSql($o_col, "$o_table AS T2", 'T2.product_id = alldtl.product_id AND T2.del_flg = 0');
-            $sub_sql = $objQuery->dbFactory->addLimitOffset($sub_sql, 1);
-
-            $objQuery->setOrder("($sub_sql) $o_order, product_id");
+            // ほしい順にソート
+            if ($this->arrOrderData['col'] == 'count_of_favorite'){
+                $objQuery->setOrder("(SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = alldtl.product_id AND dtb_customer.del_flg = 0) DESC, update_date DESC, product_id DESC");
+            } else {
+                $o_col = $this->arrOrderData['col'];
+                $o_table = $this->arrOrderData['table'];
+                $o_order = $this->arrOrderData['order'];
+                $objQuery->setOrder("T2.$o_col $o_order");
+                $sub_sql = $objQuery->getSql($o_col, "$o_table AS T2", 'T2.product_id = alldtl.product_id AND T2.del_flg = 0');
+                $sub_sql = $objQuery->dbFactory->addLimitOffset($sub_sql, 1);
+                $objQuery->setOrder("($sub_sql) $o_order, product_id");
+            }
         }
         $arrReturn = $objQuery->getCol('alldtl.product_id', $table, $objQuery->where ? '' : 'alldtl.del_flg = 0', $arrVal);
 

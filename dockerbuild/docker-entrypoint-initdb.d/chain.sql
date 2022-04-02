@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: chain
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -481,7 +481,6 @@ INSERT INTO `dtb_blocposition` VALUES (10,2,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,2,3,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,1,3,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,2,4,1,0);
-INSERT INTO `dtb_blocposition` VALUES (10,2,4,11,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,2,4,14,1,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,1,2,0);
 INSERT INTO `dtb_blocposition` VALUES (10,3,1,2,3,0);
@@ -5189,4 +5188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-18  5:24:57
+-- Dump completed on 2022-04-02 17:23:11
