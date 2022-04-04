@@ -2506,6 +2506,8 @@ INSERT INTO `dtb_pagelayout` VALUES (10,52,'MYページ/送付状QR','mypage/myi
 INSERT INTO `dtb_pagelayout` VALUES (10,53,'MYページ/マイアイテム詳細','mypage/myitem/myitem_detail.php','mypage/myitem/myitem_detail',1,1,2,NULL,NULL,NULL,NULL,'2021-08-15 00:00:00','2021-08-15 00:00:00','noindex');
 INSERT INTO `dtb_pagelayout` VALUES (10,54,'マイアイテム一覧','user_data/myitem_list.php','user_data/myitem_list',2,1,1,NULL,NULL,NULL,'http://localhost:8080/chainadmin/design/main_edit.php?device_type_id=10','2021-10-04 02:53:32','2021-10-04 02:53:32',NULL);
 INSERT INTO `dtb_pagelayout` VALUES (10,55,'パスワードの再設定','forgot/reset.php','forgot/reset',1,1,2,NULL,NULL,NULL,NULL,'2021-11-20 00:00:00','2021-11-20 00:00:00',NULL);
+INSERT INTO `dtb_pagelayout` VALUES (10,56,'出品者情報','shopping/seller.php','shopping/seller',1,1,2,NULL,NULL,NULL,NULL,'2021-11-20 00:00:00','2021-11-20 00:00:00',NULL);
+
 /*!40000 ALTER TABLE `dtb_pagelayout` ENABLE KEYS */;
 UNLOCK TABLES;
 
