@@ -345,39 +345,18 @@ $(function(){
         let $wrap = $closest.parents('.l-wrapper');
         let $checked = $mode;
         let $checkList = $('.c-card__checkbox input');
-        let $sendRequestBtn = $('.send-request_btn')
+        let $sendRequestBtn = $('.send-request_btn');
+
+        // 交換可能なアイテムにチェックを入れる
+        $("input[type=checkbox][name=my_product]").prop('checked', true);
 
         // リクエスト取り消し
         if ($mode === true) {
             init_favorite($mode, $closest, $this);
         } else {
-            slideUp($close, $slideUp, $main, $wrap);
-
-            //選ぶのをやめる
-            $close.on('click', function () {
-                slideDown($close, $slideUp, $main, $wrap);
-                $this.removeAttr('disabled');
-            });
-
-            //チェックを入ったらリクエストボタンをクリックできるようになる
-            $checkList.on('change', function(){
-                if(  $('.c-card__checkbox input:checked').length > 0) {
-                    // 出品アイテムを配列に格納する
-                    $target = [];
-                    $checkList.each(function() {
-                        if( $(this).prop('checked') == true) {
-                            $target.push($(this).val());
-                        }
-                    })
-                    $('.send-request_btn').attr('data-target_id', $target);
-                    $sendRequestBtn.removeAttr('disabled');
-
-                    return false;
-                } else {
-                    $sendRequestBtn.attr('disabled', true);
-                }
-            })
-
+            $sendRequestBtn.removeAttr('disabled');
+            $sendRequestBtn.trigger('click');
+            return false;
         }
     })
 
@@ -444,7 +423,7 @@ $(function(){
             let $request = $closest.find('#request')
 
             $closest.find(".count_of_favorite .num").text(data.count_of_favorite);
-            $request.children('span').text( $request.children('span').text() == 'ほしい' ? '済' : 'ほしい' );
+            $request.children('span').text( $mode ? 'ほしい' : '済' );
             $closest.find(".notification").text($mode ? 'リクエストを取り消しました' : 'リクエストを送信しました' );
 
             $closest.find(".notification").fadeIn(300,
