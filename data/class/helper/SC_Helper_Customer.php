@@ -97,6 +97,9 @@ class SC_Helper_Customer
             if (is_null($arrData['create_date'])) {
                 $arrData['create_date'] = 'CURRENT_TIMESTAMP';
             }
+            if (!isset($arrData['default_payment_id'])) {
+                $arrData['default_payment_id'] = 6; // クレジットカード
+            }
             $objQuery->insert('dtb_customer', $arrData);
         }
 
@@ -412,7 +415,6 @@ class SC_Helper_Customer
             $objFormParam->addParam('年', $prefix . 'year', 4, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
             $objFormParam->addParam('月', $prefix . 'month', 2, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
             $objFormParam->addParam('日', $prefix . 'day', 2, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
-            $objFormParam->addParam('お支払い方法', $prefix . 'default_payment_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         }
     }
 
@@ -729,7 +731,6 @@ class SC_Helper_Customer
         if (strlen($arrData['tel02']) == 0) return false;
         if (strlen($arrData['tel03']) == 0) return false;
         if (strlen($arrData['birth']) == 0) return false;
-        if (strlen($arrData['default_payment_id']) == 0) return false;
 
         return true;
     }
