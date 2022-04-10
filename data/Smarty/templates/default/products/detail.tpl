@@ -316,7 +316,7 @@ $(function(){
         let $wrap = $closest.parents('.l-wrapper');
 
         if ($('input[name=my_product]:checked').length == 0) {
-            alert('交換商品を選択してください')
+            alert('交換商品を出品してください')
             return false;
         }
         $('input[name=my_product]:checked').map(function(){
