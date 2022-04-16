@@ -99,14 +99,6 @@
         <dt>パスワード</dt>
         <dd><!--{$passlen}--></dd>
     <!--{/if}-->
-    <!--{if $flgFields == 3}-->
-        <dt>お支払い方法</dt>
-        <dd>
-            <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
-            <!--{assign var="default_payment_id" value=$arrForm[$key1].value}-->
-            <!--{$arrPayment[$default_payment_id]|h}-->
-        </dd>
-    <!--{/if}-->
     <!--{if $flgFields == 93}-->
         <!--{assign var=key1 value="nickname"}-->
         <dt><!--{$arrForm[$key1].disp_name|h}--></dt>
