@@ -171,6 +171,12 @@ function lfnDispChange(){
                 <!--{html_checkboxes name="$key" options=$arrSTATUS selected=$arrForm[$key].value}-->
                 </td>
             </tr>
+            <tr>
+                <th>アイテムサイズ</th>
+                <td colspan="3" style="<!--{if $arrErr.search_size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
+                    <!--{html_checkboxes name="search_size_id" options=$arrSize selected=$arrForm.search_size_id.value}-->
+                </td>
+            </tr>
         </table>
         <div class="btn">
             <p class="page_rows">検索結果表示件数
@@ -233,13 +239,14 @@ function lfnDispChange(){
                         <th rowspan="2">商品ID</th>
                         <th rowspan="2">商品画像</th>
                         <th>商品名</th>
-                        <th rowspan="2">種別</th>
+                        <th>種別</th>
                         <th rowspan="2">編集</th>
                         <th rowspan="2">確認</th>
                         <th rowspan="2">削除</th>
                     </tr>
                     <tr>
                         <th nowrap="nowrap"><a href="#" onclick="lfnDispChange(); return false;">カテゴリ ⇔ URL</a></th>
+                        <th>アイテムサイズ</th>
                     </tr>
 
                     <!--{section name=cnt loop=$arrProducts}-->
@@ -256,7 +263,7 @@ function lfnDispChange(){
                             <td><!--{$arrProducts[cnt].name|h}--></td>
                             <!--{* 表示 *}-->
                             <!--{assign var=key value=$arrProducts[cnt].status}-->
-                            <td class="menu" rowspan="2"><!--{$arrDISP[$key]}--></td>
+                            <td class="menu"><!--{$arrDISP[$key]}--></td>
                             <td class="menu" rowspan="2"><span class="icon_edit"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >編集</a></span></td>
                             <td class="menu" rowspan="2"><span class="icon_confirm"><a href="<!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->&amp;admin=on" target="_blank">確認</a></span></td>
                             <td class="menu" rowspan="2"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
@@ -275,6 +282,9 @@ function lfnDispChange(){
                                 <div id="disp_url<!--{$smarty.section.cnt.iteration}-->" style="display:none">
                                     <!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->
                                 </div>
+                            </td>
+                            <td>
+                                <!--{$arrSize[$arrProducts[cnt].size_id]|h}-->
                             </td>
                         </tr>
                         <!--▲商品<!--{$smarty.section.cnt.iteration}-->-->

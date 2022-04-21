@@ -113,6 +113,15 @@
                     <div  class="c-form-parts--select --underline" ><!--{html_options name="product_status" options=$arrSTATUS selected=$arrForm.product_status.value}--></div>
                 </dd>
 
+                <!--{assign var=key value="size_id"}-->
+                <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dd>
+                    <select name="size_id" style="<!--{if $arrErr.size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
+                        <option value="">選択してください</option>
+                        <!--{html_options options=$arrSize selected=$arrForm.size_id.value}-->
+                    </select>
+                </dd>
+
             </dl>
                         <!--{if !$tpl_lock_because_on_loop}-->
                 <button onclick="document.form1.submit(); return false;" class="c-btn--primary">確認ページへ</button>
