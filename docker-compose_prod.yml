@@ -3,25 +3,29 @@ version: '3'
 services:
 
   https-portal:
-      image: steveltn/https-portal:1
-      container_name: https_portal
-      ports:
-        - "443:443"
-      tty: true
-      restart: always
-      volumes:
-        - ./certs/:/var/lib/https-portal/
-      environment:
-        DOMAINS: 'chain-market.net -> http://133.125.52.152:80'
-        STAGE: "production"
-        CLIENT_MAX_BODY_SIZE: 100M
-      links:
-        - web
+    image: steveltn/https-portal:1
+    container_name: https_portal
+    ports:
+      - "443:443"
+      - "80:80"
+    tty: true
+    restart: always
+    volumes:
+      - ./certs/:/var/lib/https-portal/
+    environment:
+      DOMAINS: >-
+        chain-market.net -> http://web
+      STAGE: "production"
+      CLIENT_MAX_BODY_SIZE: 100M
+      # FORCE_RENEW: 'true'
+    links:
+      - web
   web:
     container_name: web
     build: ./dockerbuild
     ports:
-      - 80:80
+      # - 8080:80
       - "25:25"
     volumes:
       - .:/var/www
+    restart: always
