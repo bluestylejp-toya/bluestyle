@@ -170,8 +170,9 @@
 							<!--{* 以下にアイテム説明が入ります*}-->
 							<p class="c-list-item__description"><!--{$arrProduct.product_id|u}--><!--{$arrProduct.description|mb_substr:0:20|h|nl2br}--><!--{if $arrProduct.description|mb_strlen > 16}-->...<!--{/if}--></p>
 							<!--{* 以下に出品者情報が入ります*}-->
-							<p  class="c-list-item__seller">出品者:<!--{$arrProduct.arrCustomer.nickname|h}--></p>
+							<p  class="c-list-item__seller">出品者:<!--{$arrProduct.nickname|h}--></p>
 						</div>
+                        <!--{$arrProduct.sub_comment1|h}-->
                     </a>
                 </li>
             <!--▲商品-->

@@ -285,7 +285,8 @@ class SC_DB_DBFactory
                     ,T4.point_rate
                     ,T4.deliv_fee
                     ,dtb_maker.name AS maker_name
-                    ,(SELECT pref FROM dtb_customer WHERE customer_id = dtb_products.customer_id) AS pref
+                    ,dtb_customer.pref
+                    ,dtb_customer.nickname
                     ,(SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = dtb_products.product_id AND dtb_customer.del_flg = 0) AS count_of_favorite
                 FROM $dtb_products_table
                     INNER JOIN (
@@ -296,6 +297,8 @@ class SC_DB_DBFactory
                         ON dtb_products.product_id = T4.product_id
                     LEFT JOIN dtb_maker
                         ON dtb_products.maker_id = dtb_maker.maker_id
+                    LEFT JOIN dtb_customer
+                        ON dtb_products.customer_id = dtb_customer.customer_id
             ) AS alldtl
 __EOS__;
 
