@@ -171,6 +171,7 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $this->tpl_rnd = SC_Utils_Ex::sfGetRandomString(3);
 
+
         // 交換選択待ち商品が存在するか
         $this->hasUnselectdProductFlg = false;
         if ($this->tpl_login) {
@@ -283,12 +284,12 @@ class LC_Page_Products_List extends LC_Page_Ex
             $customer_id = $this->objCustomer->getValue('customer_id');
             $addCols[] = "
             (
-                CASE WHEN EXISTS 
+                CASE WHEN EXISTS
                 (
-                    SELECT * FROM dtb_customer_favorite_products 
-                        JOIN dtb_products ON dtb_customer_favorite_products.target_id = dtb_products.product_id AND dtb_products.status = 1 
+                    SELECT * FROM dtb_customer_favorite_products
+                        JOIN dtb_products ON dtb_customer_favorite_products.target_id = dtb_products.product_id AND dtb_products.status = 1
                         JOIN dtb_products_class ON dtb_customer_favorite_products.target_id = dtb_products_class.product_id
-                    WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . " 
+                    WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . "
                         AND dtb_products.status = 1 AND dtb_products.del_flg = 0
                         AND dtb_products_class.classcategory_id1 = 0 AND dtb_products_class.classcategory_id2 = 0 AND dtb_products_class.del_flg = 0
                         AND (dtb_products_class.stock > 0 OR dtb_products_class.stock_unlimited = 1)
