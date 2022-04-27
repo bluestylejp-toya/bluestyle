@@ -1709,7 +1709,7 @@ LOCK TABLES `dtb_mailtemplate` WRITE;
 /*!40000 ALTER TABLE `dtb_mailtemplate` DISABLE KEYS */;
 INSERT INTO `dtb_mailtemplate` VALUES (1,'ご注文ありがとうございます','この度はご注文いただき誠にありがとうございます。\n下記ご注文内容にお間違えがないかご確認下さい。\n\n','\n============================================\n\n\nこのメッセージはお客様へのお知らせ専用ですので、\nこのメッセージへの返信としてご質問をお送りいただいても回答できません。\nご了承ください。\n\nご質問やご不明な点がございましたら、こちらからお願いいたします。\n\n',0,0,'2021-01-13 01:40:22','2021-01-13 01:40:22');
 INSERT INTO `dtb_mailtemplate` VALUES (5,'お問い合わせを受け付けました',NULL,NULL,0,0,'2021-01-13 01:40:22','2021-01-13 01:40:22');
-INSERT INTO `dtb_mailtemplate` VALUES (101,'もうすぐ Chain が成立します',NULL,'\r\n---\r\n物々交換プラットフォーム Chain\r\nhttps://chain-market.net/lp/',0,0,'2021-11-04 00:00:00','2021-11-04 08:35:34');
+INSERT INTO `dtb_mailtemplate` VALUES (101,'もうすぐ Chain が成立します',NULL,'\r\n---\r\n物々交換プラットフォーム Chain\r\nhttps://chain.gives/lp/',0,0,'2021-11-04 00:00:00','2021-11-04 08:35:34');
 /*!40000 ALTER TABLE `dtb_mailtemplate` ENABLE KEYS */;
 UNLOCK TABLES;
 

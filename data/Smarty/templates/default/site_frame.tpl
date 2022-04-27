@@ -54,10 +54,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:title" content="<!--{$arrSiteInfo.shop_name|h}-->">
 <meta property="og:description" content="<!--{$arrPageLayout.description|h}-->">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://chain-market.net/lp/assets/img/lp/ogp.png">
+<meta property="og:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
 <meta property="twitter:card" content="summary_large_image">
-<meta name="thumbnail" content="https://chain-market.net/lp/assets/img/lp/ogp.png">
-<meta name="twitter:image" content="https://chain-market.net/lp/assets/img/lp/ogp.png">
+<meta name="thumbnail" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
+<meta name="twitter:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
 <meta name="twitter:title" content="<!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
 <meta name="twitter:description" content="<!--{$arrPageLayout.description|h}-->">
 
@@ -66,14 +66,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {"@context":"http://schema.org",
     "@type":"WebSite",
     "inLanguage":"ja",
-    "url":"https://chain-market.net/",
+    "url":"<!--{$smarty.const.HTTPS_URL}-->",
     "name":"<!--{$arrSiteInfo.shop_name|h}-->",
     "author":[
       {
         "@type":"Organization",
         "name":"<!--{$arrSiteInfo.shop_name|h}-->",
         "description":"<!--{$arrPageLayout.description|h}-->",
-        "url":"https://chain-market.net/",
+        "url":"<!--{$smarty.const.HTTPS_URL}-->",
         "sameAs":[
           {
             "twitter":"chain_marketnet",
@@ -89,12 +89,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "description":"<!--{$arrPageLayout.description|h}-->",
       "logo":{
         "@type":"ImageObject",
-        "url":"https://chain-market.net/user_data/packages/default/img/common/android-chrome-192x192.png",
+        "url":"<!--{$smarty.const.HTTPS_URL}-->user_data/packages/default/img/common/android-chrome-192x192.png",
         "width":192,
         "height":192
         }
       },
-      "image":"https://chain-market.net/lp/assets/img/lp/ogp.png",
+      "image":"<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png",
       "description":"<!--{$arrPageLayout.description|h}-->"
     }
   ]</script>
