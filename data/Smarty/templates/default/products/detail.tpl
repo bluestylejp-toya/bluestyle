@@ -51,7 +51,6 @@
             <!--★画像★-->
             <div data-img_id="0" class="p-item-detail__head__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
             <!--★お気に入り登録★-->
-			<!--{$smarty.session.unregistered_card|@var_dump}-->
             <!--{if $smarty.session.unregistered_card}-->
                 <p class="unregistered_card_message">
                     <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php">カード情報を入力してください</a>
