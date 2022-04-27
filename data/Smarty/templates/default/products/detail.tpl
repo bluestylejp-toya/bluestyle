@@ -85,7 +85,7 @@
                 <!--{/if}-->
 
             <!--{/if}-->
-            <div class="slideup_bg"></div>
+            <div class="slideup_bg<!--{if $smarty.get.open == true}--> --active<!--{/if}-->"></div>
         </div>
         <!--/key visual-->
         <div class="p-item-detail__body">
@@ -194,32 +194,11 @@
             </div>
             <!--/.p-item-detail__body__main-->
 
-            <div class="p-item-detail__body__slideup --hidden">
-                <span class="c-btn--request p-item-detail__request-btn">
-                    <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
-                    <g class="particleLayer">
-                        <circle fill="#2A7DA7" cx="130" cy="126.5" r="12.5"></circle>
-                        <circle fill="#009FCF" cx="411" cy="313.5" r="12.5"></circle>
-                        <circle fill="#FD0000" cx="279" cy="86.5" r="12.5"></circle>
-                        <circle fill="#79A52B" cx="155" cy="390.5" r="12.5"></circle>
-                        <circle fill="#FFDD00" cx="89" cy="292.5" r="10.5"></circle>
-                        <circle fill="#34B1E2" cx="414" cy="282.5" r="10.5"></circle>
-                        <circle fill="#34B1E2" cx="115" cy="149.5" r="10.5"></circle>
-                        <circle fill="#FF7878" cx="250" cy="80.5" r="10.5"></circle>
-                        <circle fill="#FFAF33" cx="78" cy="261.5" r="10.5"></circle>
-                        <circle fill="#96D8E9" cx="182" cy="402.5" r="10.5"></circle>
-                        <circle fill="#FFDD00" cx="401.5" cy="166" r="13"></circle>
-                        <circle fill="#FFAF33" cx="379" cy="141.5" r="10.5"></circle>
-                        <circle fill="#FD0000" cx="327" cy="397.5" r="10.5"></circle>
-                        <circle fill="#FF7878" cx="296" cy="392.5" r="10.5"></circle>
-                    </g>
-                    <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"></path>
-                    </svg>
-                    <span class="label">ほしい</span>
-                </span>
+			<!--{if $tpl_linemax > 0}-->
+            <div class="p-item-detail__body__slideup<!--{if !$smarty.get.open == true}--> --hidden<!--{/if}-->">
                 <div>
-                    <h2 class="c-heading--sm u-text--center">交換に出すアイテムを選んでください</h2>
-                    <p>チェックしたアイテムの中から1対1の交換です。数が多いほど、Chainが成立する確率が高くなります。</p>
+                    <h2 class="c-heading--sm u-text--center">交換するアイテムを変更しますか？</h2>
+                    <p>すべてチェックを外すとこのアイテムのほしいを取り消すことができます。</p>
                     <svg width="52" height="46" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg" class="select_status">
                         <path d="M9.99219 21.3182V40.4266H1.20508L21.9961 59.7303L42.7871 40.4266H34V20.3037H25.2129L46.0039 1L66.7949 20.3037H58.0078V39.4121" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <defs>
@@ -234,13 +213,11 @@
                 </div>
                 <!--/自分のアイテムをfor文で出力-->
 
-                <!-- 交換するアイテム一覧 -->
-                <!--{if $tpl_linemax > 0}-->
                     <ul class="u-mb--4">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
                                 <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->" class="">
-                                    <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->">
+                                    <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->" checked>
                                     <div class="c-card__main">
 
                                         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
@@ -253,15 +230,13 @@
                             </li>
                         <!--{/foreach}-->
                     </ul>
-                <!--{else}-->
-                <p>アイテムが登録されておりません。</p>
-                <!--{/if}-->
                 <div class="l-floating-btn">
-                    <button class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">キャンセル</button>
-                    <button class="c-btn--primary send-request_btn" disabled data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">決定</button>
+                    <a href="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->" class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">キャンセル</a>
+                    <button class="c-btn--primary send-request_btn" data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">決定</button>
                 </div>
             </div>
             <!--/.p-item-detail__body__slideup-->
+			<!--{/if}-->
         </div>
         <!--/.p-item-detail__body-->
     </div>
@@ -305,6 +280,7 @@
 <script>
 $(function(){
     $(".history_list").appendTo(".history");
+	<!--{if $smarty.get.open == true}-->
 
     // 交換商品クリック時
     $('#decision-button').on('click', function () {
@@ -315,24 +291,16 @@ $(function(){
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $wrap = $closest.parents('.l-wrapper');
 
-        if ($('input[name=my_product]:checked').length == 0) {
-            alert('交換商品を出品してください')
-            return false;
-        }
-        $('input[name=my_product]:checked').map(function(){
+        $('input[name=my_product]').map(function(){
             let $this = $(this)
+			console.log($this);
             let $mode = $closest.hasClass("registered_favorite");
-            init_favorite($mode, $closest, $this)
+            init_favorite($mode, $closest, $this);
         });
 
-        setTimeout(function () {
-            slideDown($close, $slideUp, $main, $wrap);
-            $('.favorite_area #request').addClass('--active');
-        }, 300)
-        $("input[type=checkbox][name=my_product]").removeAttr('checked');
-        $(this).attr('disabled', true);
-
-    })
+        slideDown($close, $slideUp, $main, $wrap);
+	})
+	<!--{/if}-->
 
     // ほしいボタンクリック時
     $('.favorite_area #request').on('click', function () {

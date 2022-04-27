@@ -48,6 +48,7 @@
                     お届け先追加・変更</a></li>-->
                 <!--<li><a href="refusal.php" class="<!--{if $tpl_mypageno == 'refusal'}--> selected<!--{/if}-->">
                     退会手続き</a></li>-->
+                    <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/favorite.php">ほしいアイテム</a></li>
                     <li><a href="https://lin.ee/NGSPD7f">LINE連携</a></li>
 
             <!--{* 退会状態 *}-->

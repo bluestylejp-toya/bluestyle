@@ -27,7 +27,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!--{$GLOBAL_ERR}-->
-    <div class="l-wrapper">
+    <div class="l-wrapper<!--{if $smarty.get.open == true}--> --list-show<!--{/if}-->">
     <!--{if $smarty.server.PHP_SELF == "/index.php"}-->
             <!--{if $tpl_login != true}-->
             <!--{/if}-->
