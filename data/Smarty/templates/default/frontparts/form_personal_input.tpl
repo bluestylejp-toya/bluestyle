@@ -167,18 +167,6 @@ $flgFields について
             <!--{/if}-->
         </dd>
     <!--{/if}-->
-    <!--{if $flgFields == 3}-->
-        <dt>お支払い方法<span class="attention">※必須</span></dt>
-        <dd>
-            <!--{assign var=key1 value="`$prefix`default_payment_id"}-->
-            <div class="c-form-parts--select">
-                <select name="<!--{$key1|h}-->" <!--{if $arrErr[$key1]}--><!--{sfSetErrorStyle}--><!--{/if}-->>
-                    <option value="" selected="selected">選択してください</option>
-                    <!--{html_options options=$arrPayment selected=$arrForm[$key1].value}-->
-                </select>
-            </div>
-        </dd>
-    <!--{/if}-->
     <!--{if $flgFields == 93}-->
         <!--{assign var=key1 value="nickname"}-->
         <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><span class="attention">※必須</span><!--{/if}--></dt>
