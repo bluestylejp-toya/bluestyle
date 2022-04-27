@@ -43,6 +43,16 @@
         text-decoration: none;
     }
 
+    &--add {
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        width: 44px;
+        margin: 24px auto;
+    }
+
     &--gradient {
         @extend %c-btn;
 
