@@ -147,26 +147,33 @@
                     </div>
 
                 <!--{/if}-->
-                <ul class="l-item-list">
+                <ul>
             <!--{/if}-->
 
             <!--{assign var=id value=$arrProduct.product_id}-->
             <!--{assign var=arrErr value=$arrProduct.arrErr}-->
             <!--▼商品-->
 
-                <li class="c-item--default">
-                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"  class="c-item--default__img">
-                        <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" /></span>
-
-                    <!--{if $arrProduct.customer_id == $customer_id}-->
-                        <span class="c-item--default__my-item">出品中</span>
-                    <!--{/if}-->
-
-                        <span class="favorite_area"><span class="c-item--default__request<!--{if $arrProduct.registered_favorite}--> --active<!--{/if}-->" data-product_id="<!--{$arrProduct.product_id|h}-->"><!--{$arrProduct.count_of_favorite|h}--></span></span>
+                <li>
+                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"  class="c-list-item">
+						<figure class="c-list-item__img">
+							<img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" />
+							<!--{if $arrProduct.customer_id == $customer_id}-->
+								<figcaption class="c-list-item__my-item">出品中</figcaption>
+							<!--{/if}-->
+						</figure>
+						<div class="c-list-item__main">
+							<!--{$tpl_my_product}-->
+							<h3 class="c-list-item__title"><span data-product_id="<!--{$arrProduct.product_id|h}-->" class="c-list-item__id"><!--{$arrProduct.count_of_favorite|h}--></span><!--{$arrProduct.product_id|u}--><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></h3>
+							<span class="c-list-item__request<!--{if $arrProduct.registered_favorite}--> --active<!--{/if}-->" data-product_id="<!--{$arrProduct.product_id|h}-->"><svg class="icon" width="24px" height="24px" viewBox="0 0 500 500">
+							<path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="<!--{if $arrProduct.registered_favorite}-->#ffffff<!--{else}-->#72c8e2<!--{/if}-->"></path></svg><!--{$arrProduct.count_of_favorite|h}--></span>
+							<!--{* 以下にアイテム説明が入ります*}-->
+							<p class="c-list-item__description"><!--{if $arrProduct.sub_title1}--><!--{$arrProduct.sub_title1|mb_substr:0:40|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 16}-->...<!--{/if}--><!--{/if}--></p>
+							<!--{* 以下に出品者情報が入ります*}-->
+							<p  class="c-list-item__seller">出品者:<!--{$arrProduct.nickname|h}--></p>
+						</div>
+                        <!--{$arrProduct.sub_comment1|h}-->
                     </a>
-
-                    <!--{$tpl_my_product}-->
-                    <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></a></p>
                 </li>
             <!--▲商品-->
 

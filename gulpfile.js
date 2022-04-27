@@ -105,7 +105,7 @@ gulp.task("sass", function (done) {
     .pipe($.if(!isProduction, $.sourcemaps.write("./_map")))
     .pipe(gulp.dest(dest.css))
     .pipe(bs.stream())
-    .pipe($.notify({ message: "SASS -> CSS Completed", onLast: true }));
+    // .pipe($.notify({ message: "SASS -> CSS Completed", onLast: true }));
   done();
 });
 gulp.task("lpSass", function (done) {
@@ -124,7 +124,7 @@ gulp.task("lpSass", function (done) {
     .pipe($.if(!isProduction, $.sourcemaps.write("./_map")))
     .pipe(gulp.dest(dest.lpCss))
     .pipe(bs.stream())
-    .pipe($.notify({ message: "SASS -> CSS Completed", onLast: true }));
+    // .pipe($.notify({ message: "SASS -> CSS Completed", onLast: true }));
   done();
 });
 
@@ -178,7 +178,7 @@ gulp.task("imgmin", function (done) {
     )
     .pipe(gulp.dest(dest.img))
     .pipe(bs.stream({ once: true }))
-    .pipe($.notify({ message: "Images minified", onLast: true }));
+    // .pipe($.notify({ message: "Images minified", onLast: true }));
   done();
 });
 
@@ -208,7 +208,7 @@ gulp.task("ejs", function (done) {
     .pipe(rename({ extname: ".html" }))
     .pipe(gulp.dest("./html/lp"))
     .pipe(bs.stream())
-    .pipe($.notify({ message: "HTML compiled", onLast: true }));
+    // .pipe($.notify({ message: "HTML compiled", onLast: true }));
   done();
 });
 
