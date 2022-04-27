@@ -296,7 +296,7 @@ class LC_Page_Products_List extends LC_Page_Ex
                 ) THEN 1 ELSE 0 END
             ) AS registered_favorite";
         }
-        $addCols[] = 'sub_comment1';
+        $addCols[] = 'sub_title1';
         $addCols[] = 'nickname';
 
         $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId, $addCols);
