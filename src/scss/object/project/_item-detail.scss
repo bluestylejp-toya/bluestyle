@@ -53,6 +53,10 @@
         left: calc(50% - 40px);
         bottom: -40px;
     }
+    &__description {
+        margin-top: -16px;
+        margin-bottom: 40px;
+    }
     &__body {
         position: relative;
         z-index: -1;

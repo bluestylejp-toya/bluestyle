@@ -45,19 +45,18 @@
             </div>
             <!--{/if}-->
 
-            <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
+            <!--{if $smarty.session.unregistered_card}-->
+			<div class="c-alert--wrapper">
+				<a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php" class="c-alert--yellow">カード情報を入力してください</a>
+			</div>
+            <!--{else if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div>
+            <!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
             <div class="c-notification--secondary notification">リクエストを送信しました</div>
             <!--★画像★-->
             <div data-img_id="0" class="p-item-detail__head__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
             <!--★お気に入り登録★-->
-			<!--{$smarty.session.unregistered_card|@var_dump}-->
-            <!--{if $smarty.session.unregistered_card}-->
-                <p class="unregistered_card_message">
-                    <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php">カード情報を入力してください</a>
-                </p>
-            <!--{elseif $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
-
+            <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
                 <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
                 <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
                 <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
@@ -98,6 +97,7 @@
                     </svg>
                     <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span>
                 </p>
+				<!--{if $arrProduct['sub_title1']}--><p class="p-item-detail__description"><!--{$arrProduct['sub_title1']}--></p><!--{/if}-->
                 <!--▼サブコメント-->
                 <div class="u-mb--4">
                     <ul class="p-item-detail__photo l-item-list">
@@ -267,6 +267,7 @@
         <!--/.p-item-detail__body-->
     </div>
     <!-- 決定ボタン -->
+
 
     <!--/.c-item-detail-->
     <div class="c-modal" data-modal_mode="false">
