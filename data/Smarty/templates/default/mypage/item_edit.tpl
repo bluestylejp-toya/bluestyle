@@ -38,9 +38,10 @@
                             <div class="attention"><!--{$arrErr[$key]}--></div>
                         <!--{/if}-->
 
-						<button class="c-item-edit__sort-btn" type="button"<!--{if $smarty.section.cnt.iteration == 1 && $arrFile['sub_large_image2'].filepath == ''}--> disabled<!--{/if}-->></button>
+						<button class="c-item-edit__sort-btn" type="button"<!--{if $smarty.section.cnt.iteration == 1}--> disabled<!--{/if}-->></button>
 
 						<div class="c-item-edit__img">
+							<span class="loading-item"></span>
 							<img src="<!--{if count($arrFile[$key]) > 1}--><!--{$arrFile[$key].filepath|h}--><!--{/if}-->" alt=""/>
 						</div>
 
@@ -142,6 +143,10 @@
 
 //画像が登録された時の処理
 $(function(){
+	// 画像が2個以上あったら一番上のdisabled削除
+	if( $('li[data-item_id].--hidden').length < 9){
+		$('li[data-item_id]	').eq(0).find('.c-item-edit__sort-btn').removeAttr('disabled');
+	}
 
 	//右端コントロールボタンの制御
 	$('.c-item-edit__controll-btn').on('click', function(){
@@ -378,14 +383,6 @@ function postSwapImage(key_base, id1, id2) {
     $cap2.attr('name', 'sub_title' + id1);
 }
 
-// ボタンの表示のコントロール
-function addimageBtnStatus($add = 0){
-    if($('.c-item__img[src=""]').length <= 7 && $('.c-item__img[src=""]').length > 0) {
-        $('.c-item__add-image-btn').removeClass('--hidden')
-    }else {
-        $('.c-item__add-image-btn').addClass('--hidden')
-    }
-}
 
 function renumberImgNum() {
     const attr_name = 'data-item_id';
