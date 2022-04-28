@@ -17,6 +17,8 @@ $border-color-light: #{map-get($gray-set, 2)};
 $font-color: #{map-get($gray-set, 6)};
 $black: #{map-get($gray-set, 6)};
 $gray: #{map-get($gray-set, 5)};
+$black: #{map-get($gray-set, 6)};
+$gray-m: #{map-get($gray-set, 3)};
 $blue: #{map-get(map-get($brand-colors, primary), default)};
 $blue-dark: #{map-get(map-get($brand-colors, primary), dark)};
 $red: #{map-get(map-get($brand-colors, red), default)};

@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  https-portal:
 
+  https-portal:
     image: steveltn/https-portal:1
     container_name: https_portal
     ports:
@@ -14,8 +14,8 @@ services:
       - ./certs/:/var/lib/https-portal/
     environment:
       DOMAINS: >-
-        bluestyle:eeRHZrx7@staging.chain.gives -> http://web,
-        bluestyle:eeRHZrx7@staging.chain-market.net -> http://web
+        chain-market.net -> http://web,
+        chain.gives -> http://web
       STAGE: "production"
       CLIENT_MAX_BODY_SIZE: 100M
       # FORCE_RENEW: 'true'
@@ -25,8 +25,8 @@ services:
     container_name: web
     build: ./dockerbuild
     ports:
-      - "8081:80"
-      - "26:25"
+      # - 8080:80
+      - "25:25"
     volumes:
       - .:/var/www
     restart: always

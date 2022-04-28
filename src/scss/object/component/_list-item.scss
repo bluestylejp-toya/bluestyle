@@ -1,0 +1,64 @@
+.c-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+    padding-top: 8px;
+
+    &__img {
+        width: 150px;
+
+        img {
+            border-radius: 8px;
+        }
+    }
+    &__main {
+        position: relative;
+        width: calc(100% - 150px);
+        padding-left: 16px;
+        padding-bottom: 30px;
+    }
+    &__title {
+        font-size: 22px;
+        font-weight: 800;
+    }
+    &__id {
+        border-radius: 30px;
+        margin-right: 10px;
+        background: $blue;
+        font-size: 14px;
+        color: #fff;
+        padding: 4px 16px;
+        line-height: 1;
+        display: inline-block;
+    }
+    &__request {
+        background: #fff;
+        border: 1px solid $blue;
+        font-size: 1em;
+        padding: 0 12px 0 4px;
+        display: inline-flex;
+        color: $blue;
+        line-height: 1;
+        font-weight: bold;
+        align-items: center;
+        border-radius: 30px;
+
+        &.--active {
+            background: $blue;
+            color: #fff;
+        }
+
+    }
+    &__seller {
+        text-align: right;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &__description {
+        margin-bottom: 5px;
+    }
+}
