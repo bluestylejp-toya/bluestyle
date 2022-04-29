@@ -45,7 +45,12 @@
             </div>
             <!--{/if}-->
 
-            <!--{if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div><!--{/if}-->
+            <!--{if $smarty.session.unregistered_card}-->
+			<div class="c-alert--wrapper">
+				<a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php" class="c-alert--yellow">カード情報を入力してください</a>
+			</div>
+            <!--{else if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div>
+            <!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
             <div class="c-notification--secondary notification">リクエストを送信しました</div>
             <!--★画像★-->
@@ -97,6 +102,7 @@
                     </svg>
                     <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span>
                 </p>
+				<!--{if $arrProduct['sub_title1']}--><p class="p-item-detail__description"><!--{$arrProduct['sub_title1']}--></p><!--{/if}-->
                 <!--▼サブコメント-->
                 <div class="u-mb--4">
                     <ul class="p-item-detail__photo l-item-list">
@@ -266,6 +272,7 @@
         <!--/.p-item-detail__body-->
     </div>
     <!-- 決定ボタン -->
+
 
     <!--/.c-item-detail-->
     <div class="c-modal" data-modal_mode="false">

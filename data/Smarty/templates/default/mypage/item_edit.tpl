@@ -369,6 +369,11 @@ $('[data-item_id] .c-item-edit__sort-btn').each( function(index){
     })
 });
 
+$('.c-form-parts--toggle-btn__hidden').on('change', function(){
+	$('[name=status]').val($('[name=status]').val() == 1 ? 2 :1);
+	$('.c-message--alert').toggleClass('--hidden');
+})
+
 // 画像の入れ替えに伴うフォームオブジェクトの name 属性の書き換えを行う
 function postSwapImage(key_base, id1, id2) {
     [key_base, 'temp_' + key_base, 'save_' + key_base].forEach(key => {
