@@ -11,6 +11,29 @@
         margin-top: 16px;
         background: $yellow;
     }
+    &--wrapper {
+        width: 100%;
+        a {
+            margin-top: 0;
+            border-radius: 0;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            background: url('data:image/svg+xml;utf8,<svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.99984 0.210449L0.589844 1.62045L5.16984 6.21045L0.589844 10.8004L1.99984 12.2104L7.99984 6.21045L1.99984 0.210449Z" fill="%23fff"/></svg>') center right 12px/10px auto no-repeat $yellow;
+            &::before {
+                margin-right: 10px;
+                color: $yellow;
+                content: '!';
+                border-radius: 30px;
+                background: #fff;
+                height: 1.6em;
+                width: 1.6em;
+                display: inline-block;
+            }
+        }
+    }
 
     &--gray {
         border-radius: $unit;

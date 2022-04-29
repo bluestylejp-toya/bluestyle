@@ -43,7 +43,7 @@
 					<span class="c-list-item__request"><svg class="icon" width="24px" height="24px" viewBox="0 0 500 500">
 					<path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="<!--{if $arrProduct.registered_favorite}-->#ffffff<!--{else}-->#72c8e2<!--{/if}-->"></path></svg><!--{$item['count_of_favorite']}--></span>
 					<!--{* 以下にアイテム説明が入ります*}-->
-					<p class="c-list-item__description"><!--{if $item['sub_title1']}--><!--{$item['sub_title1']|mb_substr:0:40|h|nl2br}--><!--{if $item['sub_title1']|mb_strlen > 16}-->...<!--{/if}--><!--{/if}--></p>
+					<p class="c-list-item__description"><!--{if $item['sub_title1']}--><!--{$item['sub_title1']|mb_substr:0:40|h|nl2br}--><!--{if $item['sub_title1']|mb_strlen > 40}-->...<!--{/if}--><!--{/if}--></p>
 				</div>
 			</a>
 		</li>

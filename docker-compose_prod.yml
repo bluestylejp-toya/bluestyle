@@ -14,7 +14,8 @@ services:
       - ./certs/:/var/lib/https-portal/
     environment:
       DOMAINS: >-
-        chain-market.net -> http://web
+        chain-market.net -> http://web,
+        chain.gives -> http://web
       STAGE: "production"
       CLIENT_MAX_BODY_SIZE: 100M
       # FORCE_RENEW: 'true'

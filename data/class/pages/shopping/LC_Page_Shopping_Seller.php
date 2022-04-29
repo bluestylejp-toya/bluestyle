@@ -123,6 +123,7 @@ class LC_Page_Shopping_Seller extends LC_Page_Ex
         $addCols = ['count_of_favorite'];
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
             $addCols[] = 'sub_large_image' . $cnt;
+            $addCols[] = 'sub_title' . $cnt;
         }
         $arrProducts = $objProduct->lists($objQuery, [], $addCols);
 
