@@ -56,7 +56,12 @@
             <!--★画像★-->
             <div data-img_id="0" class="p-item-detail__head__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
             <!--★お気に入り登録★-->
-            <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
+            <!--{if $smarty.session.unregistered_card}-->
+                <p class="unregistered_card_message">
+                    <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php">カード情報を入力してください</a>
+                </p>
+            <!--{elseif $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
+
                 <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
                 <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
                 <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
@@ -148,7 +153,7 @@
                     <!--{/section}-->
                 </dl>
                 <h2 class="c-heading--lg">出品者の情報</h2>
-                <div class="c-profile-header u-mb--2"><!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}--><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->" class="c-profile-header__img"><!--{/if}--><span class="c-profile-header__name"><!--{$arrProduct.arrCustomer.nickname|h}--></span></div>
+                <div class="c-profile-header u-mb--2"><!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}--><a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.arrCustomer.customer_id}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->" class="c-profile-header__img"></a><!--{/if}--><span class="c-profile-header__name"><a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.arrCustomer.customer_id}-->"><!--{$arrProduct.arrCustomer.nickname|h}--></a></span></div>
                 <dl class="p-item-detail__info u-mb--2">
                     <dt>紹介文</dt>
                     <dd><!--{$arrProduct.arrCustomer.self_introduction|h|nl2br}--></dd>

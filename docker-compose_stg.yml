@@ -1,29 +1,32 @@
 version: '3'
 
 services:
-  stg-https-portal:
+  https-portal:
+
     image: steveltn/https-portal:1
-    container_name: stg-https_portal
+    container_name: https_portal
     ports:
       - "443:443"
       - "80:80"
     tty: true
     restart: always
     volumes:
-      - certs:/var/lib/https-portal
+      - ./certs/:/var/lib/https-portal/
     environment:
-      DOMAINS: "bluestyle:eeRHZrx7@staging.chain.gives -> http://stg"
-      STAGE: 'production'
+      DOMAINS: >-
+        bluestyle:eeRHZrx7@staging.chain.gives -> http://web,
+        bluestyle:eeRHZrx7@staging.chain-market.net -> http://web
+      STAGE: "production"
       CLIENT_MAX_BODY_SIZE: 100M
+      # FORCE_RENEW: 'true'
     links:
-      - stg
-  stg:
-    container_name: stg
+      - web
+  web:
+    container_name: web
     build: ./dockerbuild
     ports:
       - "8081:80"
       - "26:25"
     volumes:
       - .:/var/www
-volumes:
-  certs:
+    restart: always
