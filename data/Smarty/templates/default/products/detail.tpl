@@ -217,15 +217,15 @@
                         </defs>
                     </svg>
                 </div>
-                <!--/自分のアイテムをfor文で出力-->
-
-                    <ul class="u-mb--4">
+                <!--{* 自分のアイテムをfor文で出力 *}-->
+                    <ul class="u-mb--4" data-targets="<!--{$tpl_product_id|h}-->">
                         <!--{foreach from=$arrTargetProducts item=$arrProduct}-->
                             <li class="c-card">
                                 <label class="c-card__checkbox" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->" class="">
+									<!--{* 自分の出品アイテムのステータスを調整お願いします *}-->
+									<!--{* 具体的にはこのcheckedの部分 *}-->
                                     <input type="checkbox" name="my_product" value="<!--{$arrProduct.product_id|h}-->" data-product_id="<!--{$tpl_product_id|h}-->" data-target_id="<!--{$arrProduct.product_id|h}-->" checked>
                                     <div class="c-card__main">
-
                                         <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" class="c-card__img"/>
 
                                         <p><!--{$arrProduct.name|h}--></p>
@@ -238,7 +238,7 @@
                     </ul>
                 <div class="l-floating-btn">
                     <a href="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->" class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">キャンセル</a>
-                    <button class="c-btn--primary send-request_btn" data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">決定</button>
+                    <button class="c-btn--primary send-request_btn" data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">変更</button>
                 </div>
             </div>
             <!--/.p-item-detail__body__slideup-->
@@ -287,6 +287,7 @@
 <script>
 $(function(){
     $(".history_list").appendTo(".history");
+	<!--{* パラメーターopenを受け取った場合 *}-->
 	<!--{if $smarty.get.open == true}-->
 
     // 交換商品クリック時
@@ -298,44 +299,35 @@ $(function(){
         let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
         let $wrap = $closest.parents('.l-wrapper');
 
-        $('input[name=my_product]').map(function(){
-            let $this = $(this)
-			console.log($this);
-            let $mode = $closest.hasClass("registered_favorite");
-            init_favorite($mode, $closest, $this);
-        });
+		$('[data-targets]').find('input[name=my_product]').each(function( index ) {
+			let $mode = $(this).attr('checked');
+			init_favorite($mode, $closest, $(this));
+		})
+
 
         slideDown($close, $slideUp, $main, $wrap);
+		// パラメーター削除
+		const url = new URL(window.location.href);
+		url.searchParams.delete('open');
+		console.log(url.href);
+		window.location.href = url.href;
+
 	})
 	<!--{/if}-->
 
     // ほしいボタンクリック時
     $('.favorite_area #request').on('click', function () {
-        let $this = $(this);
-        let $closest = $(this).closest(".favorite_area");
-        let $mode = $closest.hasClass("registered_favorite");
-        let $close = $('.slideup_bg, .slide-close_btn');
-        let $slideUp = $('.p-item-detail__body .p-item-detail__body__slideup');
-        let $main = $('.p-item-detail__body .p-item-detail__body__main');
-        let $wrap = $closest.parents('.l-wrapper');
-        let $checked = $mode;
-        let $checkList = $('.c-card__checkbox input');
-        let $sendRequestBtn = $('.send-request_btn');
-
-        // 交換可能なアイテムにチェックを入れる
-        $("input[type=checkbox][name=my_product]").prop('checked', true);
-
-        // リクエスト取り消し
-        if ($mode === true) {
-            init_favorite($mode, $closest, $this);
-        } else {
-            $sendRequestBtn.removeAttr('disabled');
-            $sendRequestBtn.trigger('click');
-            return false;
-        }
+		$this = $(this);
+        $('[data-targets]').find('input[name=my_product]:checked').each(function( index ) {
+			let $closest = $this.closest(".favorite_area");
+			let $mode = $closest.hasClass("registered_favorite");
+			let $sendRequestBtn = $('.send-request_btn');
+			init_favorite($mode, $closest, $(this));
+		})
     })
 
     function init_favorite($mode, $closest, $this){
+
         let postData = {
             mode: $mode
                 ? "del_favorite_ajax"
@@ -353,6 +345,7 @@ $(function(){
             dataType: "json",
         }).done(function (data, textStatus, jqXHR) {
             // リクエスト送信
+
             if (data.registered === true) {
                 let postData = {
                     mode : "api_add_favorite_ajax",
@@ -360,7 +353,7 @@ $(function(){
                     favorite_product_id:  $this.data("product_id"),
                     target_id: $this.data("target_id"),
                 };
-                console.log(postData)
+
                 postData[<!--{$smarty.const.TRANSACTION_ID_NAME|@json_encode}-->] = <!--{$transactionid|@json_encode}-->;
 
                 $.ajax({
@@ -376,7 +369,7 @@ $(function(){
                 });
 
             // リクエスト取り消し
-            } else if (data.registered === false) {
+            if ($('[data-targets]').find('input[name=my_product]:checked').length === 0) {
                 let postData = {
                     mode : "api_remove_favorite_ajax",
                     product_id: $this.data("product_id"),
