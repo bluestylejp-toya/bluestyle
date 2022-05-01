@@ -22,13 +22,11 @@
  */
 *}-->
 
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <!--{if $tpl_navi != ""}-->
-        <!--{include file=$tpl_navi}-->
-    <!--{else}-->
-        <!--{include file="`$smarty.const.TEMPLATE_REALDIR`mypage/navi.tpl"}-->
-    <!--{/if}-->
+<section>
+    <div class="l-header__inner u-mb--4">
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
+        <h1 class="c-header-title">ほしいアイテム</h1>
+    </div>
     <div id="mycontents_area">
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
@@ -36,59 +34,32 @@
             <input type="hidden" name="pageno" value="<!--{$tpl_pageno}-->" />
             <input type="hidden" name="mode" value="" />
             <input type="hidden" name="product_id" value="" />
-            <h3><!--{$tpl_subtitle|h}--></h3>
 
             <!--{if $tpl_linemax > 0}-->
 
-                <p><span class="attention"><!--{$tpl_linemax}-->件</span>のお気に入りがあります。</p>
-                <div class="paging">
-                    <!--▼ページナビ-->
-                    <!--{$tpl_strnavi}-->
-                    <!--▲ページナビ-->
-                </div>
+                <p><!--{$tpl_linemax}-->件のほしいアイテムがあります。</p>
 
-                <table summary="お気に入り">
-                    <col width="15%" />
-                    <col width="20%" />
-                    <col width="45%" />
-                    <col width="20%" />
-                    <tr>
-                        <th class="alignC">削除</th>
-                        <th class="alignC">商品画像</th>
-                        <th class="alignC">商品名 / お気に入り総数</th>
-                        <th class="alignC"><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)</th>
-                    </tr>
+                <ul>
+					<!--{assign var=id value=''}-->
                     <!--{section name=cnt loop=$arrFavorite}-->
                         <!--{assign var=product_id value="`$arrFavorite[cnt].product_id`"}-->
-                        <tr>
-                            <td class="alignC">
-                                <a href="javascript:eccube.setModeAndSubmit('delete_favorite','product_id','<!--{$product_id|h}-->');">
-                                    削除</a>
-                            </td>
-                            <td class="alignC">
-                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrFavorite[cnt].name|h}-->" />
-                            </td>
-                            <td>
-                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->">
-                                    <!--{$arrFavorite[cnt].name|h}--></a>
-                                <div><!--{$arrFavorite[cnt].count_of_favorite|n2s|h}--> 件</div>
-                            </td>
-                            <td class="alignR sale_price">
-                                <span class="price">
-                                    <!--{if $arrFavorite[cnt].price02_min_inctax == $arrFavorite[cnt].price02_max_inctax}-->
-                                        <!--{$arrFavorite[cnt].price02_min_inctax|n2s}-->
-                                    <!--{else}-->
-                                        <!--{$arrFavorite[cnt].price02_min_inctax|n2s}-->～<!--{$arrFavorite[cnt].price02_max_inctax|n2s}-->
-                                    <!--{/if}-->円</span>
-                            </td>
-                        </tr>
+						<!--{if $id != $product_id}-->
+						<!--{assign var=id value=`$product_id`}-->
+                        <li >
+							<a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item">
+								<figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img"/></figure>
+								<div class="c-item__main">
+									<p class="c-item__title"><!--{$arrFavorite[cnt].name|h}--></p>
+									<span class="c-item__request"><!--{$arrFavorite[cnt].count_of_favorite|n2s|h}--></span>
+								</div>
+							</a>
+                        </li>
+                    <!--{/if}-->
                     <!--{/section}-->
-                </table>
-                <br />
+                </ul>
 
             <!--{else}-->
-                <p>お気に入りが登録されておりません。</p>
+                <p>まだほしいアイテムはありません。</p>
             <!--{/if}-->
         </form>
     </div>
