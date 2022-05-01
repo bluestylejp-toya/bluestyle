@@ -7,9 +7,14 @@
     padding-top: 8px;
 
     &__img {
-        width: 150px;
+        width: 130px;
+        position: relative;
+        height: 13  0px;
 
         img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
             border-radius: 8px;
         }
     }
@@ -60,5 +65,17 @@
     }
     &__description {
         margin-bottom: 5px;
+    }
+    &__my-item {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        color: $blue;
+        background: #fff;
+        border-radius: 20px;
+        border: 1px solid  $blue;
+        font-size: 12px;
+        padding: 6px 8px;
+        line-height: 1;
     }
 }
