@@ -2,7 +2,7 @@
     <section>
         <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
         <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
-            <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+            <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_list.php" aria-label="戻る" class="c-btn--header-nav"></a>
             <p class="c-header-title">アイテム編集</p>
         </header>
 		<div class="c-item-edit__bg"></div>
