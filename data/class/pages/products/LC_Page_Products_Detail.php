@@ -254,7 +254,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 $objHelperApi->setUrl(API_URL . 'chain/edges/remove');
                 $objHelperApi->setMethod('POST');
                 $data = [
-                    "id" => $this->objFormParam->getValue('product_id'),
+                    "id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
                 $objHelperApi->setPostParam($data);
@@ -393,6 +393,12 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             if ( $objHelperCustomer->getCustomerUnselectedProductId($customer_id) > 0){
                 if (in_array($product_id, $objHelperCustomer->getCustomerUnselectedProductId($customer_id))){
                     $this->hasUnselectdProductFlg = true;
+                }
+            }
+            $this->arrProduct['arrTargetProductId'] = array();
+            foreach ($objProduct->getRequestingFavoriteByCustomerId($customer_id) as $val){
+                if ($val['product_id'] == $product_id){
+                    $this->arrProduct['arrTargetProductId'][] = $val['target_id'];
                 }
             }
         }
@@ -693,7 +699,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         }
 
             $objQuery = SC_Query_Ex::getSingletonInstance();
-            $exists = $objQuery->exists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id));
+            $exists = $objQuery->exists('dtb_customer_favorite_products', 'target_id = ? AND customer_id = ?', array($target_id, $customer_id));
 
             if (!$exists) {
                 $sqlval['customer_id'] = $customer_id;
@@ -720,7 +726,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ?', [$product_id, $customer_id]);
+        $objQuery->delete('dtb_customer_favorite_products', 'target_id = ? AND customer_id = ?', [$product_id, $customer_id]);
     }
 
     /**
@@ -771,7 +777,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
                 // 削除
                 else {
-                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'));
+                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('target_id'), $objCustomer->getValue('customer_id'));
                 }
             }
         }
@@ -972,7 +978,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
     /**
      * ループが成立したときの処理
-     * 
+     *
      * @param string $chain_id 仮成立チェインネットワークの一意のキー
      */
     function loop($chain_id)
