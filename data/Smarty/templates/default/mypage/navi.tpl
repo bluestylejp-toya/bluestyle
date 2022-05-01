@@ -41,7 +41,7 @@
                 <!--<li><a href="item_edit.php" class="<!--{if $tpl_mypageno == 'item_edit'}--> selected<!--{/if}-->">
                     アイテム登録</a></li>-->
                 <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_list.php" class="<!--{if $tpl_mypageno == 'item-list'}--> selected<!--{/if}-->">
-                    マイアイテム<span class="c-batch--num"><!--{$arrListingProducts|@count}--></span></a></li>
+                    出品アイテム<span class="c-batch--num"><!--{$arrListingProducts|@count}--></span></a></li>
                 <!--<li><a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/request_list.php" class="<!--{if $tpl_mypageno == 'item-list'}--> selected<!--{/if}-->">
                     Chain の状況<span class="c-batch--num"><!--{$arrListingProducts|@count}--></span></a></li>-->
                 <!--<li><a href="delivery.php" class="<!--{if $tpl_mypageno == 'delivery'}--> selected<!--{/if}-->">
