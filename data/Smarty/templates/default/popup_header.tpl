@@ -26,7 +26,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<!--{$smarty.const.CHAR_CODE}-->" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/import.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/main.css" media="all" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script type="text/javascript" src="<!--{$smarty.const.ROOT_URLPATH}-->js/eccube.js"></script>
 <title><!--{$arrSiteInfo.shop_name}-->/<!--{$subtitle|h}--></title>
 <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />

@@ -50,7 +50,60 @@ class LC_Page_Mypage_ItemList extends LC_Page_AbstractMypage_Ex
         if (isset($_POST['pageno'])) {
             $this->tpl_pageno = intval($_POST['pageno']);
         }
-        $this->arrProducts = $this->getProducts($customer_id, $this);
+        $this->arrProducts = $this->getChainProductStatus($customer_id, $this);
+
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getChainProductStatus($customer_id)
+    {
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $objHelperApi->setMethod('GET');
+
+        $arrChainProductStatus = array();
+        $arrProducts = $this->getProducts($customer_id, $this);
+        $objProduct = new SC_Product_Ex();
+
+        $index = 0;
+        foreach ($arrProducts as $key => $arrProduct) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $arrProduct['product_id']);
+            $result = json_decode($objHelperApi->exec(), true);
+            if (count($result) > 0) {
+                $chainId = $result[0]['id'];
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                $arrTargetId = array();
+                $arrSourceId = array();
+                foreach ($result['selection_edge_list'] as $selection_edge_list) {
+                    $arrTargetId[] = $selection_edge_list['target_id'];
+                    $arrSourceId[] = $selection_edge_list['source_id'];
+                }
+                // source_id、target_idに出品商品が含まれているか確認する
+                // https://bluestyle.backlog.jp/view/CHAIN-182#comment-123642696
+                if (count(array_unique($arrTargetId)) == 1 and array_search($arrProduct['product_id'], $arrTargetId) !== false) {
+                    foreach ($arrSourceId as $sourceID) {
+                        $arrChainProductStatus[$key]['selection_edge_detail'][] = $objProduct->getDetail($sourceID);
+                    }
+                    $arrChainProductStatus[$key]['selection_edge_mode'] = 'target';
+                }
+                if (count(array_unique($arrSourceId)) == 1 and array_search($arrProduct['product_id'], $arrSourceId) !== false) {
+                    foreach ($arrTargetId as $targetId) {
+                        $arrChainProductStatus[$key]['selection_edge_detail'][] = $objProduct->getDetail($targetId);
+                    }
+                    $arrChainProductStatus[$key]['selection_edge_mode'] = 'source';
+                }
+                $arrChainProductStatus[$key]['chain_id'] = $chainId;
+                $arrChainProductStatus[$key]['progress_percent'] = $result['progress_percent'];
+                $arrChainProductStatus[$key]['selected_edge_list'] = $result['selected_edge_list'];
+            }
+            $arrChainProductStatus[$key]['product'] = $arrProduct;
+        }
+
+        return $arrChainProductStatus;
     }
 
     /**
