@@ -139,6 +139,7 @@
                     <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
                 </form>
                 <!--▲ページナビ(上部)-->
+
                 <ul>
             <!--{/if}-->
 
@@ -187,7 +188,7 @@
 
     </div>
 
+
 <!--{strip}-->
 
 </div>
-
