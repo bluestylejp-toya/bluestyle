@@ -91,7 +91,7 @@ class LC_Page_Shopping_Seller extends LC_Page_Ex
                 $this->arrPref      = $masterData->getMasterData('mtb_pref');
             } catch (Exception $e){
                 // エラー画面を表示
-                SC_Utils_Ex::sfDispSiteError(null, '', true);
+                SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
             }
         } else {
             // エラー画面を表示
