@@ -2,6 +2,11 @@
 その他、トップページ
 */-->
 
+<!--{if $tpl_login }-->
+<!--{assign var=is_login value=true}-->
+<!--{else}-->
+<!--{assign var=is_login value=false}-->
+<!--{/if}-->
 <form name="login_form" id="login_form" method="post" action="<!--{$smarty.const.HTTPS_URL}-->frontparts/login_check.php"<!--{if $tpl_login}--> onsubmit="return eccube.checkLoginFormInputted('login_form')"<!--{/if}-->>
     <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
     <input type="hidden" name="mode" value="login" />
@@ -25,6 +30,7 @@
             <li><a href="<!--{$smarty.const.TOP_URL}-->order/">特定商取引に関する法律に基づく表記</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->terms/kiyaku.php">ご利用規約</a></li>
         </ul>
+        <!--{if $is_login}-->
         <ul class="c-nav-list">
             <li><button class="c-btn--logout" type="button">ログアウト</button></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/refusal.php">アカウント削除</a></li>
@@ -37,6 +43,7 @@
             </div>
             <div class="l-popup__close"></div>
         </div>
+        <!--{/if}-->
     </section>
 </form>
 <script>
