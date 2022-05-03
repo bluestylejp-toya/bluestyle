@@ -49,7 +49,7 @@
             <div class="c-alert--wrapper">
                 <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php" class="c-alert--yellow">カード情報を入力してください</a>
             </div>
-            <!--{else if $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div>
+            <!--{elseif $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div>
             <!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
             <div class="c-notification--secondary notification">リクエストを送信しました</div>
@@ -302,21 +302,28 @@
             })
 
             slideDown($close, $slideUp, $main, $wrap);
-            // パラメーター削除
+
+            // ほしいアイテムから交換対象選択時のみパラメータ削除
             const url = new URL(window.location.href);
-            url.searchParams.delete('open');
-            window.location.href = url.href;
-            exit();
+            if (url.searchParams.has('open')) {
+                url.searchParams.delete('open');
+                window.location.href = url.href;
+            }
+            return false;
 
         })
 
         // ほしいボタンクリック時
         $('.favorite_area #request').on('click', function () {
+            if ($('input[type=checkbox][name=my_product]').length == 0) {
+                alert('交換商品を出品してください')
+                return false;
+            }
+
             let $this = $(this);
             let $closest = $(this).closest(".favorite_area");
             let $mode = $closest.hasClass("registered_favorite");
             let $sendRequestBtn = $('.send-request_btn');
-
             // 交換可能なアイテムにチェックを入れる
             $("input[type=checkbox][name=my_product]").prop('checked', true);
 
