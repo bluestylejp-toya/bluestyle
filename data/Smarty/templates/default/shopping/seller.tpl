@@ -50,4 +50,8 @@
 		<!--{/foreach}-->
 		<!--▲商品-->
 	</ul>
+	<!--{* ページナビ *}-->
+	<div class="pagenumber_area clearfix">
+		<div class="c-pagination"><!--{$tpl_strnavi}--></div>
+	</div>
 </section>
