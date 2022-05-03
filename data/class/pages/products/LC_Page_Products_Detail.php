@@ -698,25 +698,25 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             return false;
         }
 
-            $objQuery = SC_Query_Ex::getSingletonInstance();
-            $exists = $objQuery->exists('dtb_customer_favorite_products', 'target_id = ? AND customer_id = ?', array($target_id, $customer_id));
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $exists = $objQuery->exists('dtb_customer_favorite_products', 'product_id = ? AND target_id = ? AND customer_id = ?', array($favorite_product_id, $target_id, $customer_id));
 
-            if (!$exists) {
-                $sqlval['customer_id'] = $customer_id;
-                $sqlval['product_id'] = $favorite_product_id;
-                $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
-                $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
-                $sqlval['target_id'] = $target_id;
+        if (!$exists) {
+            $sqlval['customer_id'] = $customer_id;
+            $sqlval['product_id'] = $favorite_product_id;
+            $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
+            $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
+            $sqlval['target_id'] = $target_id;
 
-                $objQuery->begin();
-                $objQuery->insert('dtb_customer_favorite_products', $sqlval);
-                $objQuery->commit();
-            }
-            // お気に入りに登録したことを示すフラグ
-            $this->just_added_favorite = true;
-
-            return true;
+            $objQuery->begin();
+            $objQuery->insert('dtb_customer_favorite_products', $sqlval);
+            $objQuery->commit();
         }
+        // お気に入りに登録したことを示すフラグ
+        $this->just_added_favorite = true;
+
+        return true;
+    }
 
     /*
      * お気に入り商品解除
