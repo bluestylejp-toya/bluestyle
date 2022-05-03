@@ -54,6 +54,7 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrMaker = SC_Helper_Maker_Ex::getIDValueList();
         $this->arrAllowedTag = $masterData->getMasterData('mtb_allowed_tag');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
     }
 
     /**
@@ -315,6 +316,7 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
         $objFormParam->addParam('商品カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('公開・非公開', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), DEFAULT_PRODUCT_DISP);
         $objFormParam->addParam('状態ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('アイテムサイズ', 'size_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
 
         if (OPTION_PRODUCT_TAX_RULE) {
             $objFormParam->addParam('消費税率', 'tax_rate', PERCENTAGE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
@@ -1000,6 +1002,7 @@ __EOF__;
                             'deliv_fee', 'comment1', 'comment2', 'comment3',
                             'comment4', 'comment5', 'comment6',
                             'sale_limit', 'deliv_date_id', 'maker_id', 'note');
+        $checkArray[] = 'size_id';
         $arrList = SC_Utils_Ex::arrayDefineIndexes($arrList, $checkArray);
 
         // INSERTする値を作成する。
@@ -1016,6 +1019,7 @@ __EOF__;
         $sqlval['deliv_date_id'] = $arrList['deliv_date_id'];
         $sqlval['maker_id'] = $arrList['maker_id'];
         $sqlval['note'] = $arrList['note'];
+        $sqlval['size_id'] = $arrList['size_id'];
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
         $sqlval['creator_id'] = $_SESSION['member_id'];
         $arrRet = $objUpFile->getDBFileList();

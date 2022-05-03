@@ -52,6 +52,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $this->arrDISP = $masterData->getMasterData('mtb_disp');
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
         $this->arrPRODUCTSTATUS_COLOR = $masterData->getMasterData('mtb_product_status_color');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
 
         $objDate = new SC_Date_Ex();
         // 登録・更新検索開始年
@@ -200,6 +201,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $objFormParam->addParam('商品名', 'search_name', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('カテゴリ', 'search_category_id', STEXT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('種別', 'search_status', INT_LEN, 'n', array('MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('アイテムサイズ', 'search_size_id', INT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         // 登録・更新日
         $objFormParam->addParam('開始年', 'search_startyear', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('開始月', 'search_startmonth', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
@@ -359,6 +361,25 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
                     $arrValues = array_merge($arrValues, $arrPartVal);
                 }
                 break;
+            // アイテムサイズ
+            case 'search_size_id':
+                $tmp_where = '';
+                foreach ($objFormParam->getValue($key) as $element) {
+                    if ($element != '') {
+                        if (SC_Utils_Ex::isBlank($tmp_where)) {
+                            $tmp_where .= ' AND (size_id = ?';
+                        } else {
+                            $tmp_where .= ' OR size_id = ?';
+                        }
+                        $arrValues[] = $element;
+                    }
+                }
+
+                if (!SC_Utils_Ex::isBlank($tmp_where)) {
+                    $tmp_where .= ')';
+                    $where .= " $tmp_where ";
+                }
+                break;
             default:
                 break;
         }
@@ -395,6 +416,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
 
         // 読み込む列とテーブルの指定
         $col = 'product_id, name, main_list_image, sub_large_image1, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date, customer_id';
+        $col .= ',size_id';
         $from = $objProduct->alldtlSQL();
 
         $objQuery->setLimitOffset($limit, $offset);

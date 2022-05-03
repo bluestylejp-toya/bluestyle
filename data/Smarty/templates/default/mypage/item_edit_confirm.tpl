@@ -37,6 +37,11 @@
                                 <!--{$arrSTATUS[$status]|h}-->
                             <!--{/foreach}-->
                         </dd>
+                        <!--{assign var=key value="size_id"}-->
+                        <dt><!--{$arrForm[$key].disp_name|h}--></dt>
+                        <dd>
+                            <!--{$arrSize[$arrForm.size_id.value]|sfTrim}-->
+                        </dd>
                     </dl>
                     <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
                     <ul class="u-mb--4">

@@ -173,6 +173,16 @@
                     <!--{html_checkboxes name="product_status" options=$arrSTATUS selected=$arrForm.product_status separator='&nbsp;&nbsp;'}-->
                 </td>
             </tr>
+            <tr>
+                <th>アイテムサイズ<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.size_id}--></span>
+                    <select name="size_id" style="<!--{if $arrErr.size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
+                        <option value="">選択してください</option>
+                        <!--{html_options options=$arrSize selected=$arrForm.size_id}-->
+                    </select>
+                </td>
+            </tr>
             <!--{if $arrForm.has_product_class == false}-->
             <!--{* 商品種別：通常商品のみ *}-->
             <input type="hidden" name="product_type_id" value="1">
