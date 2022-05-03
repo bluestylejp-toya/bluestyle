@@ -306,8 +306,10 @@
             // ほしいアイテムから交換対象選択時のみパラメータ削除
             const url = new URL(window.location.href);
             if (url.searchParams.has('open')) {
-                url.searchParams.delete('open');
-                window.location.href = url.href;
+                setTimeout(function(){
+                    url.searchParams.delete('open');
+                    window.location.href = url.href;
+                }, 1000);
             }
             return false;
 
