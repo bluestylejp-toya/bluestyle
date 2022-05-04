@@ -103,6 +103,7 @@
                         <option value="">選択してください</option>
                         <!--{html_options options=$arrSize selected=$arrForm.size_id.value}-->
                     </select>
+                    <p style="margin-top:10px;background: #eaecee;border-radius: 8px;padding: 5px;font-size:1.3rem;">サイズは3辺の合計したcmを足した数字です（例、25cm x 15cm x 15cmの箱なら55cmなので、60サイズになります。</p>
                 </dd>
 
             </dl>
