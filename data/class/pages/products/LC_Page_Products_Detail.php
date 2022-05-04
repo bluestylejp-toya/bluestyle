@@ -418,7 +418,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $arrFavoriteCustomer = array();
         foreach (explode(',', $arrFavoriteCustomerList) as $customerId){
             // 自身がいいねしている場合は対象外に
-            if ($myCustomerId != $customerId){
+            if ($myCustomerId != $customerId and strlen($customerId) > 0){
                 $arrFavoriteCustomer[] = SC_Helper_Customer_Ex::sfGetCustomerData($customerId);
             }
         }
