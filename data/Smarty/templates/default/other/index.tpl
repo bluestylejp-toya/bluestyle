@@ -15,7 +15,7 @@
         <h2 class="c-heading--md u-text--left">サポート</h2>
         <ul class="c-nav-list u-mb--4">
             <!--{*<li><a href="<!--{$smarty.const.TOP_URL}-->news/">お知らせ<span class="c-batch--num">2</span></a></li>*}-->
-            <li><a href="<!--{$smarty.const.TOP_URL}-->news/">お知らせ</a></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->news/">みなさんにお知らせ</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
             <!--{*
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用方法</a></li>
