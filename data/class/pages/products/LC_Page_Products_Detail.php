@@ -381,6 +381,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
         if ($this->tpl_login) {
             $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
+
+            // 自身を除くほしいしている人情報を取得
+            $this->arrProduct['arrFavoriteCustomer'] = self::lfGetFavoriteCustomer($this->arrProduct['favorite_customer_list'], $customer_id);
         }
 
         $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
@@ -402,6 +405,24 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
             }
         }
+    }
+
+    /**
+     * 自身を除くほしいしている人情報を取得
+     * @param array $arrFavoriteCustomerList
+     * @param int $myCustomerId
+     * @return array $arrFavoriteCustomer
+     */
+    private static function lfGetFavoriteCustomer($arrFavoriteCustomerList = array(), $myCustomerId)
+    {
+        $arrFavoriteCustomer = array();
+        foreach (explode(',', $arrFavoriteCustomerList) as $customerId){
+            // 自身がいいねしている場合は対象外に
+            if ($myCustomerId != $customerId){
+                $arrFavoriteCustomer[] = SC_Helper_Customer_Ex::sfGetCustomerData($customerId);
+            }
+        }
+        return $arrFavoriteCustomer;
     }
 
     /**
