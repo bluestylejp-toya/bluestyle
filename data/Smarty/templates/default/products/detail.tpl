@@ -132,10 +132,6 @@
                     <dd>
                         <!--{$arrSize[$arrProduct.size_id]|h}-->
                     </dd>
-                    <dt>送料</dt>
-                    <dd>
-                        <!--{$arrProduct.deliv_fee|default:'-'|h}-->円
-                    </dd>
                     <!--▼商品ステータス-->
                     <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
                     <!--{if !empty($ps)}-->
@@ -147,7 +143,6 @@
                     <!--▲商品ステータス-->
 
                     <!--★関連カテゴリ★-->
-
                     <dt>カテゴリー</dt>
                     <!--{section name=r loop=$arrRelativeCat}-->
                     <dd>
@@ -157,6 +152,10 @@
                         <!--{/section}-->
                     </dd>
                     <!--{/section}-->
+                    <dt style="font-size: 90%;">交換成立してかかる送料</dt>
+                    <dd style="font-size: 120%;padding-top: 22px">
+                        <!--{$arrProduct.deliv_fee|default:'-'|h}-->円
+                    </dd>
                 </dl>
                 <h2 class="c-heading--lg">出品者の情報</h2>
                 <div class="c-profile-header u-mb--2"><!--{if strlen($arrProduct.arrCustomer.profile_image) >= 1}--><a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.arrCustomer.customer_id}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}-->../save_profile_image/<!--{$arrProduct.arrCustomer.profile_image|h}-->" class="c-profile-header__img"></a><!--{/if}--><span class="c-profile-header__name"><a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.arrCustomer.customer_id}-->"><!--{$arrProduct.arrCustomer.nickname|h}--></a></span></div>
@@ -575,3 +574,8 @@
 		})
     });
 </script>
+<style>
+    .p-item-detail__info dd {
+        padding-left: 16px;
+    }
+</style>
