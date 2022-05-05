@@ -6,6 +6,24 @@
     position: relative;
     padding-left: 23px;
     color: $blue-dark;
+    &[data-customer=true] {
+        padding: 16px;
+        background: $blue-dark;
+        display: inline-flex;
+        padding: 8px 20px 8px 40px;
+        border-radius: 20px;
+        margin-top: 10px;
+        color: #fff;
+        &:hover {
+            cursor: pointer;
+        }
+        .icon {
+            left: 4px;
+        }
+         .icon .heart {
+            fill: #fff;
+        }
+    }
 
     .icon {
         position: absolute;
@@ -35,12 +53,5 @@
         //         }
         //     }
         // }
-    }
-}
-
-.favorite_area.registered_favorite .c-item-request{
-     color: $blue-dark;
-    .heart {
-        fill: $blue-dark;
     }
 }
