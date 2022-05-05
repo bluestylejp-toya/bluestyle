@@ -29,7 +29,9 @@
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/privacy.php">プライバシーポリシー</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->order/">特定商取引に関する法律に基づく表記</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->terms/kiyaku.php">ご利用規約</a></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/packages/default/pdf/postage.pdf" target="_blank">送料（pdfファイル）</a></li>
         </ul>
+        <p style="text-align: center;font-weight: bold;margin-bottom: 30px;color: red;">ご利用料金は現在は無料</p>
         <!--{if $is_login}-->
         <ul class="c-nav-list">
             <li><button class="c-btn--logout" type="button">ログアウト</button></li>
