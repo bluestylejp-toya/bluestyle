@@ -138,6 +138,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
         $this->arrPref = $masterData->getMasterData('mtb_pref');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
 
         // POST に限定する mode
         $this->arrLimitPostMode[] = 'cart';

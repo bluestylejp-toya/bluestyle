@@ -127,6 +127,10 @@
                     <dd>
                         <!--{$arrPref[$arrProduct.pref]|h}-->
                     </dd>
+                    <dt>アイテムサイズ</dt>
+                    <dd>
+                        <!--{$arrSize[$arrProduct.size_id]|h}-->
+                    </dd>
                     <!--▼商品ステータス-->
                     <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
                     <!--{if !empty($ps)}-->
