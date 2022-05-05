@@ -152,6 +152,7 @@ class SC_Product
             ,del_flg
             ,update_date
             ,pref
+            ,size_id
             ,customer_id
 __EOS__;
 
