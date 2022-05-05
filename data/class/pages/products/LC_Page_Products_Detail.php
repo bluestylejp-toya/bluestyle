@@ -125,6 +125,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     // 自分が出品した商品か
     public $tpl_my_product = false;
 
+    // 匿名配送ID（3）
+    const ANONYMOUS_DELIVERY_ID = 3;
+
     /**
      * Page を初期化する.
      *
@@ -385,6 +388,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
             // 自身を除くほしいしている人情報を取得
             $this->arrProduct['arrFavoriteCustomer'] = self::lfGetFavoriteCustomer($this->arrProduct['favorite_customer_list'], $customer_id);
+
+            // アクセス中のアイテムを発送する際の送料計算
+            $this->arrProduct['deliv_fee'] = self::lfGetDelivFee($this->arrProduct, $objCustomer);
         }
 
         $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
@@ -406,6 +412,23 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
             }
         }
+    }
+
+    /**
+     * アクセス中のアイテムを発送する際の送料計算
+     * @param array $arrProduct アクセス中のアイテム情報
+     * @param object $objCustomer アクセス中の顧客情報
+     * @return int|string $deliv_fee 送料
+     */
+    private static function lfGetDelivFee($arrProduct, $objCustomer)
+    {
+        $deliv_fee = 0;
+        if (!isset($arrProduct['size_id'])){
+            $arrProduct['size_id'] = 1;
+        }
+        $deliv_fee = SC_Helper_Delivery_Ex::getDelivFee($objCustomer->getValue('pref'), self::ANONYMOUS_DELIVERY_ID);
+        $deliv_fee += SC_Helper_Delivery_Ex::getDelivFee2(self::ANONYMOUS_DELIVERY_ID, $arrProduct['pref'], $objCustomer->getValue('pref'), $arrProduct['size_id']);
+        return $deliv_fee;
     }
 
     /**

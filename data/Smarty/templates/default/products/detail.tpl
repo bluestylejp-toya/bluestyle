@@ -132,6 +132,10 @@
                     <dd>
                         <!--{$arrSize[$arrProduct.size_id]|h}-->
                     </dd>
+                    <dt>送料</dt>
+                    <dd>
+                        <!--{$arrProduct.deliv_fee|default:'-'|h}-->円
+                    </dd>
                     <!--▼商品ステータス-->
                     <!--{assign var=ps value=$productStatus[$tpl_product_id]}-->
                     <!--{if !empty($ps)}-->
