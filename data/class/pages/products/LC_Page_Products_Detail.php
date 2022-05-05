@@ -255,10 +255,11 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
 
                 $objHelperApi = new SC_Helper_Api_Ex();
-                $objHelperApi->setUrl(API_URL . 'chain/edges/remove');
+                $objHelperApi->setUrl(API_URL . 'chain/edges/remove_edge_specify');
                 $objHelperApi->setMethod('POST');
                 $data = [
-                    "id" => $this->objFormParam->getValue('target_id'),
+                    "source_id" => $this->objFormParam->getValue('favorite_product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
                 $objHelperApi->setPostParam($data);
