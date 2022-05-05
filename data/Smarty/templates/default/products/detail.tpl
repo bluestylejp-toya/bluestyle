@@ -184,7 +184,6 @@
                 <button class="u-mb--4 report_btn c-btn--default--sm" type="button">その他</button>
                 <div class="l-popup" data-item_mode="false">
                     <div class="l-popup__inner u-text--left">
-                        <p class="u-mb--2 report_message u-weight--bold">その他</p>
                         <!--{if !$tpl_my_product}--><!--通報するボタン-->
                         <button type="button" class="report_submit">通報する</button>
                         <!--/下のJSの「通報の処理」に送信処理を追加願います-->
