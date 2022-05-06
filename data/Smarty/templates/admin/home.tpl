@@ -41,6 +41,49 @@
         <form name="form1" id="form1" method="post" action="#">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
 
+
+            <!--{* ショップの状況ここから *}-->
+            <h2>ショップの状況</h2>
+            <table summary="ショップの状況" class="shop-info">
+                <tr>
+                    <th>現在の会員数</th>
+                    <td><!--{$customer_cnt|default:"0"|n2s}-->名</td>
+                </tr>
+                <tr>
+                    <th>現在の退会者数</th>
+                    <td><!--{$refusalcustomer_cnt|default:"0"|n2s}-->名</td>
+                </tr>
+                <tr>
+                    <th>ほしい総数</th>
+                    <td><!--{$favorite_cnt|default:"0"|n2s}-->個</td>
+                </tr>
+                <tr>
+                    <th>昨日のほしい総数</th>
+                    <td><!--{$favorite_yesterday_cnt|default:"0"|n2s}-->個</td>
+                </tr>
+                <tr>
+                    <th>今月のほしい総数</th>
+                    <td><!--{$favorite_month_cnt|default:"0"|n2s}-->個</td>
+                </tr>
+                <tr>
+                    <th>昨日の売上高</th>
+                    <td><!--{$order_yesterday_amount|default:"0"|n2s}-->円</td>
+                </tr>
+                <tr>
+                    <th>昨日のChain成立アイテム数</th>
+                    <td><!--{$order_yesterday_cnt|default:"0"|n2s}-->件</td>
+                </tr>
+                <tr>
+                    <th><span>今月の売上高</span><span>(昨日まで) </span></th>
+                    <td><!--{$order_month_amount|default:"0"|n2s}-->円</td>
+                </tr>
+                <tr>
+                    <th><span>今月のChain成立アイテム数 </span><span>(昨日まで) </span></th>
+                    <td><!--{$order_month_cnt|default:"0"|n2s}-->件</td>
+                </tr>
+            </table>
+            <!--{* ショップの状況ここまで *}-->
+
             <!--{* システム情報ここから *}-->
             <h2>システム情報</h2>
             <table summary="システム情報" class="shop-info">
@@ -62,52 +105,6 @@
                 </tr>
             </table>
             <!--{* システム情報ここまで *}-->
-
-            <!--{* ショップの状況ここから *}-->
-            <h2>ショップの状況</h2>
-            <table summary="ショップの状況" class="shop-info">
-                <tr>
-                    <th>現在の会員数</th>
-                    <td><!--{$customer_cnt|default:"0"|n2s}-->名</td>
-                </tr>
-                <tr>
-                    <th>昨日の売上高</th>
-                    <td><!--{$order_yesterday_amount|default:"0"|n2s}-->円</td>
-                </tr>
-                <tr>
-                    <th>昨日の売上件数</th>
-                    <td><!--{$order_yesterday_cnt|default:"0"|n2s}-->件</td>
-                </tr>
-                <tr>
-                    <th><span>今月の売上高</span><span>(昨日まで) </span></th>
-                    <td><!--{$order_month_amount|default:"0"|n2s}-->円</td>
-                </tr>
-                <tr>
-                    <th><span>今月の売上件数 </span><span>(昨日まで) </span></th>
-                    <td><!--{$order_month_cnt|default:"0"|n2s}-->件</td>
-                </tr>
-                <tr>
-                    <th>昨日のレビュー書き込み数</th>
-                    <td><!--{$review_yesterday_cnt|default:"0"}-->件</th>
-                </tr>
-                <tr>
-                    <th>会員の保持ポイント合計</th>
-                    <td><!--{$customer_point|default:"0"}-->pt</td>
-                </tr>
-                <tr>
-                    <th>レビュー書き込み非表示数</th>
-                    <td><!--{$review_nondisp_cnt|default:"0"}-->件</td>
-                </tr>
-                <tr>
-                    <th>品切れ商品</th>
-                    <td>
-                    <!--{section name=i loop=$arrSoldout}-->
-                    <!--{$arrSoldout[i].product_id}-->:<!--{$arrSoldout[i].name|h}--><br />
-                    <!--{/section}-->
-                    </td>
-                </tr>
-            </table>
-            <!--{* ショップの状況ここまで *}-->
 
             <!--{* 新規受付一覧ここから *}-->
             <h2>新規受付一覧</h2>
