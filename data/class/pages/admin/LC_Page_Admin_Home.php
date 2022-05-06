@@ -72,6 +72,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         // 現在の会員数
         $this->customer_cnt = $this->lfGetCustomerCnt();
 
+        // 現在の退会者数
+        $this->refusalcustomer_cnt = $this->lfGetRefusalCustomerCnt();
+
         // 昨日の売上高
         $this->order_yesterday_amount = $this->lfGetOrderYesterday('SUM');
 
@@ -86,6 +89,15 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
 
         // 会員の累計ポイント
         $this->customer_point = $this->lfGetTotalCustomerPoint();
+
+        //ほしいの数
+        $this->favorite_cnt = $this->lfGetFavorite();
+
+        //昨日のほしいの数
+        $this->favorite_yesterday_cnt = $this->lfGetFavoriteYesterday();
+
+        //今月のほしいの数
+        $this->favorite_month_cnt = $this->lfGetFavoriteMonth();
 
         //昨日のレビュー書き込み数
         $this->review_yesterday_cnt = $this->lfGetReviewYesterday();
@@ -141,6 +153,21 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     }
 
     /**
+     * 現在の退会者数の取得
+     *
+     * @return integer 会員数
+     */
+    public function lfGetRefusalCustomerCnt()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $col = 'COUNT(customer_id)';
+        $table = 'dtb_customer';
+        $where = 'del_flg = 1 AND status = 2';
+
+        return $objQuery->get($col, $table, $where);
+    }
+
+    /**
      * 昨日の売上データの取得
      *
      * @param  string  $method 取得タイプ 件数:'COUNT' or 金額:'SUM'
@@ -189,6 +216,51 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         $from = 'dtb_customer';
 
         return $objQuery->get($col, $from, $where);
+    }
+
+    /**
+     * ほしいの数の取得
+     *
+     * @return integer ほしいの数
+     */
+    public function lfGetFavorite()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $table = 'dtb_customer_favorite_products';
+        $where = '';
+
+        return $objQuery->count($table, $where);
+    }
+
+    /**
+     * 昨日のほしいの数の取得
+     *
+     * @return integer 昨日のほしいの数
+     */
+    public function lfGetFavoriteYesterday()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $dbFactory = SC_DB_DBFactory_Ex::getInstance();
+        $sql = $dbFactory->getFavoriteYesterdaySql();
+
+        return $objQuery->getOne($sql);
+    }
+
+    /**
+     * 今月のほしいの数の取得
+     *
+     * @return integer 今月のほしいの数
+     */
+    public function lfGetFavoriteMonth()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $dbFactory = SC_DB_DBFactory_Ex::getInstance();
+        $sql = $dbFactory->getFavoriteMonthSql();
+
+        return $objQuery->getOne($sql);
     }
 
     /**
