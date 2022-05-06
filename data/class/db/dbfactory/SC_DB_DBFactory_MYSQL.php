@@ -144,10 +144,11 @@ class SC_DB_DBFactory_MYSQL extends SC_DB_DBFactory
      *
      * @return string 今月のほしい数を算出する SQL
      */
-    public function getFavoriteMonthSql()
+    public function getFavoriteMonthSql($method)
     {
-        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products '
-            . "WHERE date_format(create_date, '%Y/%m/%d') <> date_format(CURRENT_TIMESTAMP, '%Y/%m/%d') ";
+        return 'SELECT ' . $method . '(customer_id) FROM dtb_customer_favorite_products '
+            . "WHERE date_format(create_date, '%Y/%m') = ? "
+            . "AND date_format(create_date, '%Y/%m/%d') <> date_format(CURRENT_TIMESTAMP, '%Y/%m/%d') ";
     }
 
     /**

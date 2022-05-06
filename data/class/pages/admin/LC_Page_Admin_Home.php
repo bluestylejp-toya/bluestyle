@@ -97,7 +97,7 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         $this->favorite_yesterday_cnt = $this->lfGetFavoriteYesterday();
 
         //今月のほしいの数
-        $this->favorite_month_cnt = $this->lfGetFavoriteMonth();
+        $this->favorite_month_cnt = $this->lfGetFavoriteMonth('COUNT');
 
         //昨日のレビュー書き込み数
         $this->review_yesterday_cnt = $this->lfGetReviewYesterday();
@@ -107,6 +107,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
 
         // 品切れ商品
         $this->arrSoldout = $this->lfGetSoldOut();
+
+        // 退会理由
+        $this->arrRefusalComment = $this->lfGetRefusalComment();
 
         // 新規受付一覧
         $this->arrNewOrder = $this->lfGetNewOrder();
@@ -253,14 +256,16 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
      *
      * @return integer 今月のほしいの数
      */
-    public function lfGetFavoriteMonth()
+    public function lfGetFavoriteMonth($method)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
+        $month = date('Y/m', mktime());
 
+        // TODO: DBFactory使わないでも共通化できそうな気もしますが
         $dbFactory = SC_DB_DBFactory_Ex::getInstance();
-        $sql = $dbFactory->getFavoriteMonthSql();
+        $sql = $dbFactory->getFavoriteMonthSql($method);
 
-        return $objQuery->getOne($sql);
+        return $objQuery->getOne($sql, array($month));
     }
 
     /**
@@ -306,11 +311,28 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         $cols = 'product_id, name';
         $table = 'dtb_products';
         $where = 'product_id IN ('
-               . 'SELECT product_id FROM dtb_products_class '
-               . 'WHERE del_flg = 0 AND stock_unlimited = ? AND stock <= 0)'
-               . ' AND del_flg = 0';
+            . 'SELECT product_id FROM dtb_products_class '
+            . 'WHERE del_flg = 0 AND stock_unlimited = ? AND stock <= 0)'
+            . ' AND del_flg = 0';
 
         return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
+    }
+
+    /**
+     * 退会理由の取得
+     *
+     * @return array 退会理由一覧
+     */
+    public function lfGetRefusalComment()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $cols = 'customer_id, refusal_reason, name01, name02, create_date, update_date';
+        $table = 'dtb_customer';
+        $where = "refusal_reason != ''"
+               . ' AND del_flg = 1';
+
+        return $objQuery->select($cols, $table, $where);
     }
 
     /**
