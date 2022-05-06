@@ -254,7 +254,7 @@
 
 	<!--{if $arrProduct.arrFavoriteCustomer != null}-->
 		<div class="c-customer-list__wrapper">
-		<h2 class="c-customer-list__title">「ほしい」してくれたユーザー</h2>
+		<h2 class="c-customer-list__title">「ほしい」しているユーザー</h2>
 		<ul class="c-customer-list">
 		<!--{foreach from=$arrProduct.arrFavoriteCustomer item=customer}-->
 			<li>
