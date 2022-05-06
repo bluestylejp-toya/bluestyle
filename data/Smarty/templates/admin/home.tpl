@@ -106,6 +106,36 @@
             </table>
             <!--{* システム情報ここまで *}-->
 
+            <!--{* 退会者一覧ここから *}-->
+            <table summary="退会者コメント" id="home-order">
+                <col width="5%" />
+                <col width="10%" />
+                <col width="10%" />
+                <col width="15%" />
+                <col width="15%" />
+                <col width="45%" />
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">登録日</th>
+                    <th class="center">退会日</th>
+                    <th class="center">退会者ニックネーム</th>
+                    <th class="center">退会者名</th>
+                    <th class="center">退会理由</th>
+                </tr>
+            <!--{section name=r loop=$arrRefusalComment}-->
+
+                <tr>
+                    <td><!--{$arrRefusalComment[r].customer_id}--></td>
+                    <td><!--{$arrRefusalComment[r].create_date}--></td>
+                    <td><!--{$arrRefusalComment[r].update_date}--></td>
+                    <td><!--{$arrRefusalComment[r].name01|h}--></td>
+                    <td><!--{$arrRefusalComment[r].name02|h}--></td>
+                    <td><!--{$arrRefusalComment[r].refusal_reason|h}--></td>
+                </tr>
+            <!--{/section}-->
+            </table>
+            <!--{* 退会者一覧ここまで *}-->
+
             <!--{* 新規受付一覧ここから *}-->
             <h2>新規受付一覧</h2>
             <table summary="新規受付一覧" id="home-order">
