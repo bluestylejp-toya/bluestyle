@@ -134,9 +134,9 @@ class LC_Page_Shopping_Seller extends LC_Page_Ex
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objProduct = new SC_Product_Ex();
 
-        // [仕様] 非公開商品も表示する。
         $objQuery->setWhere('alldtl.customer_id = ?', [$sellerId]);
         $objQuery->andWhere('alldtl.del_flg = 0');
+        $objQuery->andWhere('alldtl.status = 1');
         $objQuery->setOrder('alldtl.product_id DESC');
 
         $addCols = ['count_of_favorite'];
