@@ -69,6 +69,14 @@ class LC_Page_Shopping_Seller extends LC_Page_Ex
         $objFormParam->setParam($_GET);
         $objFormParam->convParam();
         $this->arrErr = $objFormParam->checkError();
+        $objCustomer = new SC_Customer_Ex();
+
+        // ログイン判定
+        $login = $objCustomer->isLoginSuccess() === true;
+        $this->customer_id = null;
+        if ($login){
+            $this->customer_id = $objCustomer->getValue('customer_id');
+        }
 
         // エラーチェック
         if(count($this->arrErr) == 0){
@@ -80,13 +88,13 @@ class LC_Page_Shopping_Seller extends LC_Page_Ex
 
                 // ページナビ
                 $this->tpl_pageno   = $objFormParam->getValue('pageno');
-                $this->tpl_linemax  = $this->getMyProducts($sellerId, false);
+                $this->tpl_linemax  = $this->getProducts($sellerId, false);
                 $url_param           = "seller_id={$sellerId}&pageno=#page#";
                 $this->objNavi      = new SC_PageNavi_Ex($this->tpl_pageno, $this->tpl_linemax, $this->disp_number, 'return true; void', NAVI_PMAX, $url_param, SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE);
                 $this->tpl_strnavi  = $this->objNavi->strnavi;
 
                 // 出品アイテム情報
-                $this->arrMyProducts = $this->getMyProducts($sellerId, $this->objNavi->start_row);
+                $this->arrProducts = $this->getProducts($sellerId, $this->objNavi->start_row);
                 $masterData         = new SC_DB_MasterData_Ex();
                 $this->arrPref      = $masterData->getMasterData('mtb_pref');
             } catch (Exception $e){
@@ -121,7 +129,7 @@ class LC_Page_Shopping_Seller extends LC_Page_Ex
      * @param string|bool $startno false=一致件数を返す
      * @return mixed
      */
-    public function getMyProducts($sellerId, $startno)
+    public function getProducts($sellerId, $startno)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objProduct = new SC_Product_Ex();
