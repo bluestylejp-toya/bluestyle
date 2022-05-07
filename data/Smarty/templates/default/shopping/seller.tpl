@@ -23,7 +23,7 @@
 		<dt>都道府県</dt>
 		<dd><!--{$arrPref[$arrSeller['pref']]}--></dd>
 	</dl>
-	<h2 class="c-heading--lg">出品アイテム(<!--{$arrProducts|@count}-->)</h2>
+	<h2 class="c-heading--lg">出品アイテム(<!--{$tpl_linemax|h}-->)</h2>
 	<ul>
 		<!--{foreach from=$arrProducts key=key item=item}-->
 		<li>
