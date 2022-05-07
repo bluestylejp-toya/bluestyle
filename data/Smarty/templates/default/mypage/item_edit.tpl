@@ -97,7 +97,7 @@
                 </dd>
 
                 <!--{assign var=key value="size_id"}-->
-                <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dt>発送のために<span style="color: red;">梱包後の<!--{$arrForm[$key].disp_name|h}--></span><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
                 <dd>
 					<div  class="c-form-parts--select --underline u-mb--3" >
 						<select name="size_id" style="<!--{if $arrErr.size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
