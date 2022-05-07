@@ -93,19 +93,53 @@ class SC_DB_DBFactory_PGSQL extends SC_DB_DBFactory
     }
 
     /**
-     * 昨日のレビュー書き込み件数を算出する SQL を返す.
+     * ほしいの数を算出する SQL を返す.
      *
-     * @return string 昨日のレビュー書き込み件数を算出する SQL
+     * @return string ほしい数を算出する SQL
+     */
+    public function getFavoriteSql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products'
+               . 'WHERE del_flg = 0 ';
+    }
+
+    /**
+     * 昨日のほしいの数を算出する SQL を返す.
+     *
+     * @return string 昨日のほしい数を算出する SQL
+     */
+    public function getFavoriteYesterdaySql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products'
+            . 'WHERE '
+            . "AND to_char(create_date,'YYYY/MM/DD') = to_char(CURRENT_TIMESTAMP - interval '1 days','YYYY/MM/DD') ";
+    }
+
+    /**
+     * 今月のほしいの数を算出する SQL を返す.
+     *
+     * @return string 今月のほしい数を算出する SQL
+     */
+    public function getFavoriteMonthSql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products'
+            . 'WHERE '
+            . "AND to_char(create_date,'YYYY/MM') = ? "
+            . "AND to_char(create_date,'YYYY/MM/DD') <> to_char(CURRENT_TIMESTAMP,'YYYY/MM/DD') ";
+    }
+
+    /**
+     * レビューの数を算出する SQL を返す.
+     *
+     * @return string レビューの数を算出する SQL
      */
     public function getReviewYesterdaySql()
     {
         return 'SELECT COUNT(*) FROM dtb_review AS A '
-               . 'LEFT JOIN dtb_products AS B '
-               . 'ON A.product_id = B.product_id '
-               . 'WHERE A.del_flg=0 '
-               . 'AND B.del_flg = 0 '
-               . "AND to_char(A.create_date, 'YYYY/MM/DD') = to_char(CURRENT_TIMESTAMP - interval '1 days','YYYY/MM/DD') "
-               . "AND to_char(A.create_date,'YYYY/MM/DD') != to_char(CURRENT_TIMESTAMP,'YYYY/MM/DD')";
+            . 'LEFT JOIN dtb_products AS B '
+            . 'ON A.product_id = B.product_id '
+            . 'WHERE A.del_flg=0 '
+            . 'AND B.del_flg = 0 ';
     }
 
     /**

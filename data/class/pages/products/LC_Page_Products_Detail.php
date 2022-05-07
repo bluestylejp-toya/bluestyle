@@ -125,6 +125,9 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     // 自分が出品した商品か
     public $tpl_my_product = false;
 
+    // 匿名配送ID（3）
+    const ANONYMOUS_DELIVERY_ID = 3;
+
     /**
      * Page を初期化する.
      *
@@ -138,6 +141,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
         $this->arrPref = $masterData->getMasterData('mtb_pref');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
 
         // POST に限定する mode
         $this->arrLimitPostMode[] = 'cart';
@@ -251,10 +255,11 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
 
                 $objHelperApi = new SC_Helper_Api_Ex();
-                $objHelperApi->setUrl(API_URL . 'chain/edges/remove');
+                $objHelperApi->setUrl(API_URL . 'chain/edges/remove_edge_specify');
                 $objHelperApi->setMethod('POST');
                 $data = [
-                    "id" => $this->objFormParam->getValue('target_id'),
+                    "source_id" => $this->objFormParam->getValue('favorite_product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
                     "date" => str_replace('+00:00', 'Z', gmdate('c')),
                 ];
                 $objHelperApi->setPostParam($data);
@@ -381,6 +386,12 @@ class LC_Page_Products_Detail extends LC_Page_Ex
 
         if ($this->tpl_login) {
             $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
+
+            // 自身を除くほしいしている人情報を取得
+            $this->arrProduct['arrFavoriteCustomer'] = self::lfGetFavoriteCustomer($this->arrProduct['favorite_customer_list'], $customer_id);
+
+            // アクセス中のアイテムを発送する際の送料計算
+            $this->arrProduct['deliv_fee'] = self::lfGetDelivFee($this->arrProduct, $objCustomer);
         }
 
         $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
@@ -402,6 +413,41 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
             }
         }
+    }
+
+    /**
+     * アクセス中のアイテムを発送する際の送料計算
+     * @param array $arrProduct アクセス中のアイテム情報
+     * @param object $objCustomer アクセス中の顧客情報
+     * @return int|string $deliv_fee 送料
+     */
+    private static function lfGetDelivFee($arrProduct, $objCustomer)
+    {
+        $deliv_fee = 0;
+        if (!isset($arrProduct['size_id'])){
+            $arrProduct['size_id'] = 1;
+        }
+        $deliv_fee = SC_Helper_Delivery_Ex::getDelivFee($objCustomer->getValue('pref'), self::ANONYMOUS_DELIVERY_ID);
+        $deliv_fee += SC_Helper_Delivery_Ex::getDelivFee2(self::ANONYMOUS_DELIVERY_ID, $arrProduct['pref'], $objCustomer->getValue('pref'), $arrProduct['size_id']);
+        return $deliv_fee;
+    }
+
+    /**
+     * 自身を除くほしいしている人情報を取得
+     * @param array $arrFavoriteCustomerList
+     * @param int $myCustomerId
+     * @return array $arrFavoriteCustomer
+     */
+    private static function lfGetFavoriteCustomer($arrFavoriteCustomerList = array(), $myCustomerId)
+    {
+        $arrFavoriteCustomer = array();
+        foreach (explode(',', $arrFavoriteCustomerList) as $customerId){
+            // 自身がいいねしている場合は対象外に
+            if ($myCustomerId != $customerId and strlen($customerId) > 0){
+                $arrFavoriteCustomer[] = SC_Helper_Customer_Ex::sfGetCustomerData($customerId);
+            }
+        }
+        return $arrFavoriteCustomer;
     }
 
     /**
@@ -722,11 +768,11 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      * お気に入り商品解除
      * @return void
      */
-    public function unregisterFavoriteProduct($product_id, $customer_id)
+    public function unregisterFavoriteProduct($source_id, $customer_id, $target_id)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $objQuery->delete('dtb_customer_favorite_products', 'target_id = ? AND customer_id = ?', [$product_id, $customer_id]);
+        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ? AND target_id = ?', [$source_id, $customer_id, $target_id]);
     }
 
     /**
@@ -777,7 +823,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 }
                 // 削除
                 else {
-                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('target_id'), $objCustomer->getValue('customer_id'));
+                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'), $this->objFormParam->getValue('target_id'));
                 }
             }
         }
