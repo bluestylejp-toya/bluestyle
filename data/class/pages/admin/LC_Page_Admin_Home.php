@@ -97,7 +97,7 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         $this->favorite_yesterday_cnt = $this->lfGetFavoriteYesterday();
 
         //今月のほしいの数
-        $this->favorite_month_cnt = $this->lfGetFavoriteMonth('COUNT');
+        $this->favorite_month_cnt = $this->lfGetFavoriteMonth();
 
         //昨日のレビュー書き込み数
         $this->review_yesterday_cnt = $this->lfGetReviewYesterday();
@@ -256,14 +256,14 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
      *
      * @return integer 今月のほしいの数
      */
-    public function lfGetFavoriteMonth($method)
+    public function lfGetFavoriteMonth()
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $month = date('Y/m', mktime());
 
         // TODO: DBFactory使わないでも共通化できそうな気もしますが
         $dbFactory = SC_DB_DBFactory_Ex::getInstance();
-        $sql = $dbFactory->getFavoriteMonthSql($method);
+        $sql = $dbFactory->getFavoriteMonthSql();
 
         return $objQuery->getOne($sql, array($month));
     }
