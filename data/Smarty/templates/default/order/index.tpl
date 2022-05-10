@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <th>商品以外の必要代金</th>
-                <td><!--{$arrOrder.law_term01|h|nl2br}--></td>
+                <td><!--{$arrOrder.law_term01|nl2br}--></td>
             </tr>
             <tr>
                 <th>注文方法</th>
