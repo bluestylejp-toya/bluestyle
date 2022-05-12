@@ -176,7 +176,7 @@
         <form name="page_navi_bottom" id="page_navi_bottom" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <!--{if $tpl_subtitle !== '検索結果'}-->
-                <!--{if $tpl_linemax >  15}--><!--{$smarty.capture.page_navi_body nofilter}--><!--{/if}-->
+                <!--{if $tpl_linemax >  $disp_number}--><!--{$smarty.capture.page_navi_body nofilter}--><!--{/if}-->
             <!--{/if}-->
         </form>
         <!--▲ページナビ(下部)-->

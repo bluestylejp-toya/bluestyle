@@ -93,6 +93,7 @@
         <div class="p-item-detail__body">
             <div class="p-item-detail__body__main">
                 <h1 class="c-heading--detail"><!--{$arrProduct.name|mb_substr:0:30|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 30}-->...<!--{/if}--></h1>
+                <p>もらうときにかかる送料：<!--{$arrProduct.deliv_fee|default:'-'|h}-->円（税込）</p>
                 <p class="c-item-request count_of_favorite u-mb--4"<!--{if $arrProduct.count_of_favorite|h > 0}--> data-customer="true"<!--{/if}-->>
                     <svg class="icon" width="150px" height="150px" viewBox="0 0 500 500">
                         <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#2A7DA7"/>
@@ -143,7 +144,6 @@
                     <!--▲商品ステータス-->
 
                     <!--★関連カテゴリ★-->
-
                     <dt>カテゴリー</dt>
                     <!--{section name=r loop=$arrRelativeCat}-->
                     <dd>
@@ -251,7 +251,7 @@
 
 	<!--{if $arrProduct.arrFavoriteCustomer != null}-->
 		<div class="c-customer-list__wrapper">
-		<h2 class="c-customer-list__title">「ほしい」してくれたユーザー</h2>
+		<h2 class="c-customer-list__title">「ほしい」しているユーザー</h2>
 		<ul class="c-customer-list">
 		<!--{foreach from=$arrProduct.arrFavoriteCustomer item=customer}-->
 			<li>

@@ -786,11 +786,11 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
      * お気に入り商品解除
      * @return void
      */
-    public function unregisterFavoriteProduct($product_id, $customer_id)
+    public function unregisterFavoriteProduct($source_id, $customer_id, $target_id)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ?', [$product_id, $customer_id]);
+        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ? AND target_id = ?', [$source_id, $customer_id, $target_id]);
     }
 
     /**
@@ -841,7 +841,7 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
                 }
                 // 削除
                 else {
-                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'));
+                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'), $this->objFormParam->getValue('target_id'));
                 }
             }
         }
