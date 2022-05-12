@@ -99,11 +99,13 @@
                 <!--{assign var=key value="size_id"}-->
                 <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
                 <dd>
-                    <select name="size_id" style="<!--{if $arrErr.size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
-                        <option value="">選択してください</option>
-                        <!--{html_options options=$arrSize selected=$arrForm.size_id.value}-->
-                    </select>
-                    <p style="margin-top:10px;background: #eaecee;border-radius: 8px;padding: 5px;font-size:1.3rem;">サイズは3辺の合計したcmを足した数字です（例、25cm x 15cm x 15cmの箱なら55cmなので、60サイズになります。</p>
+					<div  class="c-form-parts--select --underline u-mb--3" >
+						<select name="size_id" style="<!--{if $arrErr.size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
+							<option value="">選択してください</option>
+							<!--{html_options options=$arrSize selected=$arrForm.size_id.value}-->
+						</select>
+					</div>
+                    <p class="c-alert--gray">サイズは3辺の合計したcmを足した数字です（例、25cm x 15cm x 15cmの箱なら55cmなので、60サイズになります。</p>
                 </dd>
 
             </dl>
