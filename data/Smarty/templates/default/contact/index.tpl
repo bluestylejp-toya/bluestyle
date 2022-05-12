@@ -25,6 +25,8 @@
         <a href="<!--{$smarty.const.TOP_URL}--><!--{if $tpl_login}-->other/<!--{else}-->mypage/login.php<!--{/if}-->" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title">お問い合わせ</h1>
     </header>
+    <p>お問い合わせフォームより、LINEでお問い合わせいただくことで、早めに回答させていただいております。</p>
+        <p style="text-align: center;margin: 30px auto;"><a href="https://lin.ee/npYW8Kp"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a></p>
 
     <p class="u-mb--4">内容によっては回答をさしあげるのにお時間をいただくこともございます。<br />
     また、休業日は翌営業日以降の対応となりますのでご了承ください。</p>
