@@ -488,7 +488,9 @@
     &__lead {
         font-size: 18px;
         display: inline-block;
-        background: linear-gradient(to top, #FFF000 12%, rgba(#FFF000, 0) 12%);
+        span {
+            background: linear-gradient(to top, #FFF000 30%, rgba(#FFF000, 0) 30%);
+        }
 
         @include mq($breakpoint: md) {
             font-size: 22px;
