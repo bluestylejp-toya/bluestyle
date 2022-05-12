@@ -6,14 +6,13 @@
     margin-top: $unit*4;
 
     & > *{
-        font-size: 1.6rem;
-        font-weight: 500;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: $unit*7;
-        width: $unit*7;
-        padding: $unit;
+        font-size:1.6rem;
+        font-weight:500;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:56px;
+        padding:8px 16px;
     }
     span {
         opacity: 0.5;
