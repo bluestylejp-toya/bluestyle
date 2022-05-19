@@ -287,8 +287,8 @@ class SC_DB_DBFactory
                     ,dtb_maker.name AS maker_name
                     ,dtb_customer.pref
                     ,dtb_customer.nickname
-                    ,(SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = dtb_products.product_id AND dtb_customer.del_flg = 0) AS count_of_favorite
-                    ,(SELECT GROUP_CONCAT(customer_id) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = dtb_products.product_id AND dtb_customer.del_flg = 0) AS favorite_customer_list
+                    ,(SELECT COUNT(distinct customer_id) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = dtb_products.product_id AND dtb_customer.del_flg = 0) AS count_of_favorite
+                    ,(SELECT GROUP_CONCAT(distinct customer_id) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = dtb_products.product_id AND dtb_customer.del_flg = 0) AS favorite_customer_list
                 FROM $dtb_products_table
                     INNER JOIN (
                         SELECT *
