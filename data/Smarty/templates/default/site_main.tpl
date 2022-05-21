@@ -108,10 +108,10 @@
                                     <a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('date');">新着</a>
                                 </li>
                                 <li id="fast-chain" class="c-item-tab__item" data-tab_nav="1">
-                                    <a href="javascript:void(0)">ファスト<br>Chain</a>
+                                    <a href="javascript:void(0)">交換確定</a>
                                 </li>
                                 <li class="c-item-tab__item <!--{if $orderby == 'count_of_favorite'}-->--active<!--{/if}-->" data-tab_nav="2">
-                                    <a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('count_of_favorite');">ほしい順</a>
+                                    <a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('count_of_favorite');">人気順</a>
                                 </li>
                             </ul>
                         </div>
