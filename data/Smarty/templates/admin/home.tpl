@@ -54,16 +54,16 @@
                     <td><!--{$refusalcustomer_cnt|default:"0"|n2s}-->名</td>
                 </tr>
                 <tr>
-                    <th>ほしい総数</th>
-                    <td><!--{$favorite_cnt|default:"0"|n2s}-->個</td>
+                    <th>ほしい総人数</th>
+                    <td><!--{$favorite_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
-                    <th>昨日のほしい総数</th>
-                    <td><!--{$favorite_yesterday_cnt|default:"0"|n2s}-->個</td>
+                    <th>昨日のほしい総人数</th>
+                    <td><!--{$favorite_yesterday_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
-                    <th>今月のほしい総数</th>
-                    <td><!--{$favorite_month_cnt|default:"0"|n2s}-->個</td>
+                    <th>今月のほしい総人数</th>
+                    <td><!--{$favorite_month_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
                     <th>昨日の売上高</th>
