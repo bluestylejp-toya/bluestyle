@@ -124,8 +124,8 @@ class SC_DB_DBFactory_MYSQL extends SC_DB_DBFactory
      */
     public function getFavoriteSql()
     {
-        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products '
-            . 'WHERE del_flg = 0 ';
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id '
+            . 'WHERE dtb_customer_favorite_products.del_flg = 0 ';
     }
 
     /**
@@ -135,8 +135,8 @@ class SC_DB_DBFactory_MYSQL extends SC_DB_DBFactory
      */
     public function getFavoriteYesterdaySql()
     {
-        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products '
-            . 'WHERE cast(create_date as date) = DATE_ADD(current_date, interval -1 day) ';
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id '
+            . 'WHERE cast(dtb_customer_favorite_products.create_date as date) = DATE_ADD(current_date, interval -1 day) ';
     }
 
     /**
@@ -146,8 +146,8 @@ class SC_DB_DBFactory_MYSQL extends SC_DB_DBFactory
      */
     public function getFavoriteMonthSql()
     {
-        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products '
-            . "WHERE date_format(create_date, '%Y/%m') = ? ";
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id '
+            . "WHERE date_format(dtb_customer_favorite_products.create_date, '%Y/%m') = ? ";
     }
 
     /**

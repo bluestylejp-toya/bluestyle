@@ -329,8 +329,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
 
         $cols = 'customer_id, refusal_reason, name01, name02, create_date, update_date';
         $table = 'dtb_customer';
-        $where = "refusal_reason != ''"
-               . ' AND del_flg = 1';
+        $where = "refusal_reason != '' "
+               . ' AND del_flg = 1 '
+               . 'ORDER BY update_date DESC';
 
         return $objQuery->select($cols, $table, $where);
     }
