@@ -87,7 +87,6 @@ class LC_Page
 
 	public $tpl_login;
 
-
     /**
      * Page を初期化する.
      *
@@ -124,6 +123,9 @@ class LC_Page
         // ローカルフックポイントを実行.
         $this->doLocalHookpointBefore($objPlugin);
 
+        // 商品詳細を取得
+        $objProduct = new SC_Product_Ex();
+        $this->arrProduct = $objProduct->getDetail($product_id);
     }
 
     /**

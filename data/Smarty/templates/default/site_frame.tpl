@@ -51,15 +51,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" href="<!--{$TPL_URLPATH}-->img/common/android-chrome-192x192.png" sizes="192x192">
 <link rel="icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
 
-<meta property="og:title" content="<!--{$arrSiteInfo.shop_name|h}-->">
-<meta property="og:description" content="<!--{$arrPageLayout.description|h}-->">
+    <!--{assign var=detail value="`$smarty.const.ROOT_URLPATH`products/detail.php"}-->
+    <!--{if $smarty.server.PHP_SELF==$detail}-->
+<meta property="og:title" content="<!--{$arrProduct.name|h|nl2br}--> - <!--{$arrSiteInfo.shop_name|h}-->">
+<meta property="og:description" content="<!--{$arrProduct['sub_title1']}-->">
 <meta property="og:type" content="website">
-<meta property="og:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
+<meta property="og:image" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
 <meta property="twitter:card" content="summary_large_image">
-<meta name="thumbnail" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
-<meta name="twitter:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
-<meta name="twitter:title" content="<!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
-<meta name="twitter:description" content="<!--{$arrPageLayout.description|h}-->">
+<meta name="thumbnail" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
+<meta name="twitter:image" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
+<meta name="twitter:title" content="<!--{$arrProduct.name|h|nl2br}--> - <!--{$arrSiteInfo.shop_name|h}-->">
+<meta name="twitter:description" content="<!--{$arrProduct['sub_title1']}-->">
+    <!--{else}-->
+    <meta property="og:title" content="<!--{$arrSiteInfo.shop_name|h}-->">
+    <meta property="og:description" content="<!--{$arrPageLayout.description|h}-->">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta name="thumbnail" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
+    <meta name="twitter:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
+    <meta name="twitter:title" content="<!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
+    <meta name="twitter:description" content="<!--{$arrPageLayout.description|h}-->">
+    <!--{/if}-->
 
   <script type="application/ld+json">
   [
