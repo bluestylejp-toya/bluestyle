@@ -38,6 +38,10 @@
     }
     &__content {
         padding-left: 8px;
+        width: calc(100% - 40px);
+        .c-item__title {
+            padding-right: 0;
+        }
     }
 
 }

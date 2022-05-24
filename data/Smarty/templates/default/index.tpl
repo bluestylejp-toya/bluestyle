@@ -38,9 +38,7 @@
     </svg>
   </h1>
   <div class="c-hero__main">
-    <h2 class="c-hero__main__heading">
-      欲しい人もあげたい人も！<br>みんなでつくる交換の輪
-    </h2>
+    <h2 class="c-hero__main__heading">みんなで連鎖！複数人で行う<br>楽しい物々交換 Chain</h2>
     <p class="u-color--gray">
       Chainは新しい物々交換サービスです。<br>「貰う相手」と「渡す相手」が違うから、複数人の交換も成立しやすく、利害関係もなし。もちろん物々交換だから、面倒な値付けや値引き交渉もありません！
     </p>
