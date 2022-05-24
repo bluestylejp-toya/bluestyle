@@ -46,7 +46,7 @@
 						</div>
 
 						<!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
-						<textarea name="<!--{$key|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" placeholder="（キャプションがありません）" class="c-item-edit__caption"  maxlength="<!--{$arrForm[$key].length|h}-->"><!--{$arrForm[$key].value|h}--></textarea>
+						<textarea name="<!--{$key|h}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" placeholder="（コメントを書いてください）" class="c-item-edit__caption"  maxlength="<!--{$arrForm[$key].length|h}-->"><!--{$arrForm[$key].value|h}--></textarea>
 						<button class="c-item-edit__controll-btn" type="button"></button>
 						<!--{assign var=key value="sub_large_image`$smarty.section.cnt.iteration`"}-->
 						<ul class="c-item-edit__popup">
