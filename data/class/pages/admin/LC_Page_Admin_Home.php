@@ -72,6 +72,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         // 現在の会員数
         $this->customer_cnt = $this->lfGetCustomerCnt();
 
+        // 現在の退会者数
+        $this->refusalcustomer_cnt = $this->lfGetRefusalCustomerCnt();
+
         // 昨日の売上高
         $this->order_yesterday_amount = $this->lfGetOrderYesterday('SUM');
 
@@ -87,6 +90,15 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         // 会員の累計ポイント
         $this->customer_point = $this->lfGetTotalCustomerPoint();
 
+        //ほしいの数
+        $this->favorite_cnt = $this->lfGetFavorite();
+
+        //昨日のほしいの数
+        $this->favorite_yesterday_cnt = $this->lfGetFavoriteYesterday();
+
+        //今月のほしいの数
+        $this->favorite_month_cnt = $this->lfGetFavoriteMonth();
+
         //昨日のレビュー書き込み数
         $this->review_yesterday_cnt = $this->lfGetReviewYesterday();
 
@@ -95,6 +107,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
 
         // 品切れ商品
         $this->arrSoldout = $this->lfGetSoldOut();
+
+        // 退会理由
+        $this->arrRefusalComment = $this->lfGetRefusalComment();
 
         // 新規受付一覧
         $this->arrNewOrder = $this->lfGetNewOrder();
@@ -136,6 +151,21 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         $col = 'COUNT(customer_id)';
         $table = 'dtb_customer';
         $where = 'del_flg = 0 AND status = 2';
+
+        return $objQuery->get($col, $table, $where);
+    }
+
+    /**
+     * 現在の退会者数の取得
+     *
+     * @return integer 会員数
+     */
+    public function lfGetRefusalCustomerCnt()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $col = 'COUNT(customer_id)';
+        $table = 'dtb_customer';
+        $where = 'del_flg = 1 AND status = 2';
 
         return $objQuery->get($col, $table, $where);
     }
@@ -192,6 +222,53 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     }
 
     /**
+     * ほしいの数の取得
+     *
+     * @return integer ほしいの数
+     */
+    public function lfGetFavorite()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $table = 'dtb_customer_favorite_products';
+        $where = '';
+
+        return $objQuery->count($table, $where);
+    }
+
+    /**
+     * 昨日のほしいの数の取得
+     *
+     * @return integer 昨日のほしいの数
+     */
+    public function lfGetFavoriteYesterday()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $dbFactory = SC_DB_DBFactory_Ex::getInstance();
+        $sql = $dbFactory->getFavoriteYesterdaySql();
+
+        return $objQuery->getOne($sql);
+    }
+
+    /**
+     * 今月のほしいの数の取得
+     *
+     * @return integer 今月のほしいの数
+     */
+    public function lfGetFavoriteMonth()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $month = date('Y/m', mktime());
+
+        // TODO: DBFactory使わないでも共通化できそうな気もしますが
+        $dbFactory = SC_DB_DBFactory_Ex::getInstance();
+        $sql = $dbFactory->getFavoriteMonthSql();
+
+        return $objQuery->getOne($sql, array($month));
+    }
+
+    /**
      * 昨日のレビュー書き込み数の取得
      *
      * @return integer 昨日のレビュー書き込み数
@@ -234,11 +311,29 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         $cols = 'product_id, name';
         $table = 'dtb_products';
         $where = 'product_id IN ('
-               . 'SELECT product_id FROM dtb_products_class '
-               . 'WHERE del_flg = 0 AND stock_unlimited = ? AND stock <= 0)'
-               . ' AND del_flg = 0';
+            . 'SELECT product_id FROM dtb_products_class '
+            . 'WHERE del_flg = 0 AND stock_unlimited = ? AND stock <= 0)'
+            . ' AND del_flg = 0';
 
         return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
+    }
+
+    /**
+     * 退会理由の取得
+     *
+     * @return array 退会理由一覧
+     */
+    public function lfGetRefusalComment()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $cols = 'customer_id, refusal_reason, name01, name02, create_date, update_date';
+        $table = 'dtb_customer';
+        $where = "refusal_reason != '' "
+               . ' AND del_flg = 1 '
+               . 'ORDER BY update_date DESC';
+
+        return $objQuery->select($cols, $table, $where);
     }
 
     /**

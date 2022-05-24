@@ -94,6 +94,12 @@
             </td>
         </tr>
         <tr>
+            <th>アイテムサイズ<span class="attention"> *</span></th>
+            <td>
+                <!--{$arrSize[$arrForm.size_id]|h}-->
+            </td>
+        </tr>
+        <tr>
             <th>在庫数</th>
             <td>
                 <!--{if $arrForm.stock_unlimited == 1}-->

@@ -1,0 +1,39 @@
+.c-myitem {
+    display: flex;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #EAECEE;
+
+    &__edit {
+        width: 32px;
+        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            width: 24px;
+        }
+    }
+    &__main {
+        display: flex;
+        align-items: center;
+        width: calc(100% - 40px);
+    }
+    &__img {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__content {
+        padding-left: 8px;
+    }
+
+}

@@ -43,6 +43,7 @@ input:-webkit-autofill {
 }
 
 button, input {
+
     &:disabled {
         opacity: 0.5;
     }

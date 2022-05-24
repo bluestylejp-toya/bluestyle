@@ -179,6 +179,11 @@ class Batch {
             throw new Exception();
         }
 
+        $arrSourceProductCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($arrSourceProduct['customer_id']);
+        if (empty($arrSourceProductCustomer)) {
+            throw new Exception();
+        }
+
         // 在庫の減少処理
         $reduce_stock_normality = $objProduct->reduceStock($product_class_id, 1);
 
@@ -215,7 +220,7 @@ class Batch {
             'order_sex' => $arrCustomer['sex'],
             'order_job' => $arrCustomer['job'],
             'order_birth' => $arrCustomer['birth'],
-            'deliv_id' => 1, // ネコポス
+            'deliv_id' => 3, // 匿名配送
             'deliv_fee' => 0,
             'payment_id' => $arrPayment['payment_id'],
             'charge' => $arrPayment['charge'],
@@ -232,6 +237,7 @@ class Batch {
             && !SC_Utils_Ex::isBlank($arrOrder['deliv_id'])
         ) {
             $arrOrder['deliv_fee'] += SC_Helper_Delivery_Ex::getDelivFee($arrCustomer['pref'], $arrOrder['deliv_id']);
+            $arrOrder['deliv_fee'] += SC_Helper_Delivery_Ex::getDelivFee2($arrOrder['deliv_id'], $arrSourceProductCustomer['pref'], $arrCustomer['pref'], $arrSourceProduct['size_id']);
         }
 
         $arrOrder['total'] = $arrOrder['subtotal'] - $arrOrder['discount'] + $arrOrder['deliv_fee'] + $arrOrder['charge'];

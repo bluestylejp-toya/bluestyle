@@ -24,7 +24,7 @@
 require_once CLASS_REALDIR . 'pages/shopping/LC_Page_Shopping_Seller.php';
 
 /**
- * 出品者情報ののページクラス(拡張).
+ * 出品者情報のページクラス(拡張).
  *
  * LC_Page_Shopping_Seller をカスタマイズする場合はこのクラスを編集する.
  *

@@ -2,7 +2,7 @@
     <section>
         <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
         <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
-            <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+            <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_list.php" aria-label="戻る" class="c-btn--header-nav"></a>
             <p class="c-header-title">アイテム編集</p>
         </header>
 		<div class="c-item-edit__bg"></div>
@@ -94,6 +94,18 @@
                 <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
                 <dd>
                     <div  class="c-form-parts--select --underline" ><!--{html_options name="product_status" options=$arrSTATUS selected=$arrForm.product_status.value}--></div>
+                </dd>
+
+                <!--{assign var=key value="size_id"}-->
+                <dt>発送のために<span style="color: red;">梱包後の<!--{$arrForm[$key].disp_name|h}--></span><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dd>
+					<div  class="c-form-parts--select --underline u-mb--3" >
+						<select name="size_id" style="<!--{if $arrErr.size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
+							<option value="">選択してください</option>
+							<!--{html_options options=$arrSize selected=$arrForm.size_id.value}-->
+						</select>
+					</div>
+                    <p class="c-alert--gray">サイズは3辺の合計したcmを足した数字です（例、25cm x 15cm x 15cmの箱なら55cmなので、60サイズになります。</p>
                 </dd>
 
             </dl>
@@ -368,6 +380,11 @@ $('[data-item_id] .c-item-edit__sort-btn').each( function(index){
         }
     })
 });
+
+$('.c-form-parts--toggle-btn__hidden').on('change', function(){
+	$('[name=status]').val($('[name=status]').val() == 1 ? 2 :1);
+	$('.c-message--alert').toggleClass('--hidden');
+})
 
 // 画像の入れ替えに伴うフォームオブジェクトの name 属性の書き換えを行う
 function postSwapImage(key_base, id1, id2) {

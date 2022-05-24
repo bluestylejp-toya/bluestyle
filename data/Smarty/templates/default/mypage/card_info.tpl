@@ -338,9 +338,17 @@ $(function() {
             <!--{if $dataHash.HolderName != ''}--><dt>カード名義</dt>
             <dd><!--{$dataHash.HolderName}--></dd><!--{/if}-->
         </dl>
+    <div class="btn_area">
+        <ul>
+            <li>
+                <a href="<!--{$smarty.const.TOP_URL}-->" class="c-btn--primary">アイテム一覧へ</a>
+            </li>
+        </ul>
+    </div>
     <!--{/if}-->
     <!--{if !$success}-->
-        <h3 class="c-heading--sm">カード情報を<!--{if !$dataHash}-->新規<!--{else}-->更新<!--{/if}-->登録</h3>
+    <hr class="u-mb--4" style="margin-top: 30px;">
+        <h3 class="c-header-title" style="margin: 20px auto 30px;text-align: center">カード情報を<!--{if !$dataHash}-->新規<!--{else}-->更新<!--{/if}-->登録</h3>
         <p class="u-mb--4">クレジットカード情報を入力してください。</p>
         <p class="u-mb--4 u-text--center"><img src="<!--{$TPL_URLPATH}-->img/common/payment.png" width="250"></p>
         <form name="form2" id="form2" method="post" action="?" autocomplete="off">
@@ -485,3 +493,8 @@ $(function() {
         <!--{/if}-->
     <!--{/if}-->
 </section>
+<style>
+    .c-btn--primary {
+        text-align: center;
+    }
+</style>

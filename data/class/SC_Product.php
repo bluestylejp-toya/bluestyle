@@ -152,6 +152,7 @@ class SC_Product
             ,del_flg
             ,update_date
             ,pref
+            ,size_id
             ,customer_id
 __EOS__;
 
@@ -768,7 +769,7 @@ __EOS__;
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        return $objQuery->count('dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
+        return $objQuery->get('count(distinct customer_id)', 'dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
     }
 
     /**

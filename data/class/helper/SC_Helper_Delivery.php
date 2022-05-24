@@ -340,6 +340,28 @@ __EOS__;
     }
 
     /**
+     * 都道府県から配送料金を取得する.
+     *
+     * @return string        配送料金
+     */
+    public static function getDelivFee2($deliv_id, $source_pref, $target_pref, $size_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $where = <<< __EOS__
+            deliv_id = ?
+            AND source_pref = ?
+            AND target_pref = ?
+            AND size_id = ?
+        __EOS__;
+        $arrWhereValue = [$deliv_id, $source_pref, $target_pref, $size_id];
+
+        $return = $objQuery->get('fee', 'dtb_delivfee2', $where, $arrWhereValue);
+
+        return $return;
+    }
+
+    /**
      * 配送業者ID から, 配送料金の一覧を取得する.
      *
      * @param  integer $deliv_id 配送業者ID

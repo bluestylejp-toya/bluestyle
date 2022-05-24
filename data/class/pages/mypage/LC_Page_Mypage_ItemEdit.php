@@ -25,6 +25,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $masterData = new SC_DB_MasterData_Ex();
         $this->arrDISP = $masterData->getMasterData('mtb_disp');
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
 
         $this->httpCacheControl('nocache');
 
@@ -213,6 +214,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
         $objFormParam->addParam('カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('公開ステータス', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), DEFAULT_PRODUCT_DISP);
         $objFormParam->addParam('状態ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('アイテムサイズ', 'size_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('タグ', 'comment3', LTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
 
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {
@@ -554,6 +556,7 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             'name' => $arrList['name'],
             'status' => $arrList['status'],
             'comment3' => $arrList['comment3'],
+            'size_id' => $arrList['size_id'],
         ];
 
         for ($cnt = 1; $cnt <= PRODUCTSUB_MAX; $cnt++) {

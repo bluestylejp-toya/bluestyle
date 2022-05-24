@@ -9,7 +9,6 @@ composer.phar
 /data/config/config.php
 /data/cache/*
 /data/Smarty/templates_c/*
-/html/plugin/*
 /html/install/temp/*
 /html/upload/save_image/*
 /html/upload/save_profile_image/*
