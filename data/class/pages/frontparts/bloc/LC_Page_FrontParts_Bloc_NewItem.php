@@ -53,8 +53,8 @@ class LC_Page_FrontParts_Bloc_NewItem extends LC_Page_FrontParts_Bloc_Ex
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objProduct = new SC_Product_Ex();
 
-        $objQuery->setWhere('alldtl.create_date >= DATE_ADD(CURRENT_TIMESTAMP, interval -14 day)');
-        $objQuery->andWhere('alldtl.del_flg = 0');
+//        $objQuery->setWhere('alldtl.create_date >= DATE_ADD(CURRENT_TIMESTAMP, interval -14 day)');
+        $objQuery->setWhere('alldtl.del_flg = 0');
         $objQuery->andWhere('alldtl.status = 1');
         $objQuery->setOrder('alldtl.product_id DESC');
         $objQuery->setLimit(15);
