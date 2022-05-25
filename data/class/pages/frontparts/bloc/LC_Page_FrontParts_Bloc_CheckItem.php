@@ -21,6 +21,11 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
     public $arrCheckItems;
 
     /**
+     * @var リクエスト商品ID
+     */
+    public $arrRequestProductId = [];
+
+    /**
      * LC_Page_FrontParts_Bloc_CheckItem constructor.
      */
     public function __construct()
@@ -35,6 +40,7 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
     public function init()
     {
         parent::init();
+        $this->httpCacheControl('nocache');
     }
 
     /**
@@ -55,9 +61,6 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
      */
     public function action()
     {
-        // 閲覧商品取得
-        $this->arrCheckItems = $this->getCheckItem();
-
         // 商品詳細ページアクセス時には閲覧商品に追加
         if (isset($_GET['product_id'])) {
             // 商品IDフォーマットチェック
@@ -69,6 +72,25 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
                 trigger_error('商品IDが不正です', E_USER_ERROR);
             }
             self::setCookie($objFormParam_PreEdit->getValue('product_id'));
+        }
+
+        // 閲覧商品取得
+        $this->arrCheckItems = $this->getCheckItem();
+
+        // リクエスト商品IDを取得
+        $objCustomer = new SC_Customer_Ex();
+        if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
+            $this->arrRequestProductId = $this->getRequestProductId($objCustomer->getValue('customer_id'));
+        }
+
+        // 会員クラス
+        $this->objCustomer = new SC_Customer_Ex();
+
+        // ログイン判定
+        $this->tpl_login = $this->objCustomer->isLoginSuccess() === true;
+        $this->customer_id = null;
+        if ($this->tpl_login){
+            $this->customer_id = $this->objCustomer->getValue('customer_id');
         }
     }
 
@@ -110,9 +132,7 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
                 if ($arrRet['del_flg'] == 0 and $arrRet['status'] == 1) {
                     if ($arrRet['stock_unlimited_min'] == 1 or $arrRet['stock_min'] > 0) {
                         // お気に入り件数取得
-                        $arrData = $objQuery->getRow('count(1) as favorite_products_count', 'dtb_customer_favorite_products', 'product_id = ?', array($arrRet['product_id']));
-                        $arrRet['favorite_products_count'] = $arrData['favorite_products_count'];
-
+                        $arrRet['favorite_products_count'] = SC_Product_Ex::countFavoriteByProductId($arrRet['product_id']);
                         $arrCheckItemList[$cnt] = $arrRet;
                         ++$cnt;
                     }
@@ -165,12 +185,46 @@ class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
             $strParam = $product_id;
         }
 
-        setcookie(self::COOKIENAME, $strParam, [
-            'httponly' => true,
-            'expires' => time() + 60 * 60 * 24 * self::EXPIRESDAY,
-            'path' => ROOT_URLPATH,
-            'samesite' => 'None',
-            'secure' => true,
-        ]);
+        // クッキー管理クラス
+        $objCookie = new SC_Cookie_Ex(self::EXPIRESDAY);
+        $objCookie->setCookie(self::COOKIENAME, $strParam);
+        $_COOKIE[self::COOKIENAME] = $strParam;
+    }
+
+    /**
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    private function getRequestProductId($customer_id)
+    {
+        $arrRequestProductId = array();
+
+        $objQuery = new SC_Query_Ex();
+        $objProduct = new SC_Product_Ex();
+        foreach ($this->arrCheckItems as $key => $checkItems) {
+            $addCols = ['count_of_favorite'];
+            $addCols[] = "
+            (
+                CASE WHEN EXISTS
+                (
+                    SELECT * FROM dtb_customer_favorite_products
+                        JOIN dtb_products ON dtb_customer_favorite_products.target_id = dtb_products.product_id AND dtb_products.status = 1
+                        JOIN dtb_products_class ON dtb_customer_favorite_products.target_id = dtb_products_class.product_id
+                    WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . "
+                        AND dtb_products.status = 1 AND dtb_products.del_flg = 0
+                        AND dtb_products_class.classcategory_id1 = 0 AND dtb_products_class.classcategory_id2 = 0 AND dtb_products_class.del_flg = 0
+                        AND (dtb_products_class.stock > 0 OR dtb_products_class.stock_unlimited = 1)
+                ) THEN 1 ELSE 0 END
+            ) AS registered_favorite";
+            $arrProducts = $objProduct->getListByProductIds($objQuery, array($checkItems['product_id']), $addCols);
+
+            foreach ($arrProducts as $product){
+                if ($product['registered_favorite'] > 0){
+                    $arrRequestProductId[] = $product['product_id'];
+                }
+            }
+        }
+        return $arrRequestProductId;
     }
 }

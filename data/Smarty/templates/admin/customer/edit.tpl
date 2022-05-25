@@ -89,7 +89,7 @@
                 <td>
                     <span class="attention"><!--{$arrErr.name01}--><!--{$arrErr.name02}--></span>
                     <input type="text" name="name01" value="<!--{$arrForm.name01|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.name01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />&nbsp;&nbsp;<input type="text" name="name02" value="<!--{$arrForm.name02|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.name02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
-                </td>
+                    </td>
             </tr>
             <tr>
                 <th>お名前(フリガナ)<!--{if !$smarty.const.FORM_COUNTRY_ENABLE}--><span class="attention"> *</span><!--{/if}--></th>
@@ -97,6 +97,23 @@
                     <span class="attention"><!--{$arrErr.kana01}--><!--{$arrErr.kana02}--></span>
                     <input type="text" name="kana01" value="<!--{$arrForm.kana01|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.kana01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />&nbsp;&nbsp;<input type="text" name="kana02" value="<!--{$arrForm.kana02|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" size="30" class="box30" <!--{if $arrErr.kana02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> />
                 </td>
+            </tr>
+            <tr>
+                <th>ニックネーム<span class="attention"> *</span></th>
+                <td>
+                    <!--{$arrForm.nickname|h}-->
+                </td>
+            <tr><!--{*
+            <th>プロフィール画像</th>
+                <td>
+                    <!--{$arrForm.profile_image|h}-->
+                </td>
+            </tr>*}-->
+            <tr>
+            <th>プロフィール文章</th>
+            <td>
+                <!--{$arrForm.self_introduction|h}-->
+            </td>
             </tr>
             <!--{if !$smarty.const.FORM_COUNTRY_ENABLE}-->
             <input type="hidden" name="country_id" value="<!--{$smarty.const.DEFAULT_COUNTRY_ID}-->" />
@@ -129,7 +146,7 @@
             <tr>
                 <th>住所<span class="attention"> *</span></th>
                 <td>
-                    <span class="attention"><!--{$arrErr.pref}--><!--{$arrErr.addr01}--><!--{$arrErr.addr02}--></span>
+                    <span class="attention"><!--{$arrErr.pref}--><!--{$arrErr.addr01}--><!--{$arrErr.addr02}--><!--{$arrErr.addr03}--></span>
                     <select class="top" name="pref" <!--{if $arrErr.pref != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
                         <option class="top" value="" selected="selected">都道府県を選択</option>
                         <!--{html_options options=$arrPref selected=$arrForm.pref}-->
@@ -137,7 +154,9 @@
                     <input type="text" name="addr01" value="<!--{$arrForm.addr01|h}-->" size="60" class="box60" <!--{if $arrErr.addr01 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /><br />
                     <!--{$smarty.const.SAMPLE_ADDRESS1}--><br />
                     <input type="text" name="addr02" value="<!--{$arrForm.addr02|h}-->" size="60" class="box60" <!--{if $arrErr.addr02 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /><br />
-                    <!--{$smarty.const.SAMPLE_ADDRESS2}-->
+                    <!--{$smarty.const.SAMPLE_ADDRESS2}--><br />
+                    <input type="text" name="addr03" value="<!--{$arrForm.addr03|h}-->" size="60" class="box60" <!--{if $arrErr.addr03 != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /><br />
+                    <!--{$smarty.const.SAMPLE_ADDRESS3}-->
                 </td>
             </tr>
             <tr>
@@ -180,6 +199,16 @@
                 </td>
             </tr>
             <tr>
+                <th>お支払い方法<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.default_payment_id}--></span>
+                    <select name="default_payment_id" <!--{if $arrErr.default_payment_id != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> >
+                    <option value="" selected="selected">----</option>
+                    <!--{html_options options=$arrPayment selected=$arrForm.default_payment_id}-->
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <th>SHOP用メモ</th>
                 <td>
                     <span class="attention"><!--{$arrErr.note}--></span>
@@ -216,6 +245,7 @@
             <table class="list">
                 <tr>
                     <th>日付</th>
+                    <th>ChainID</th>
                     <th>注文番号</th>
                     <th>購入金額</th>
                     <th>発送日</th>
@@ -224,6 +254,7 @@
                 <!--{section name=cnt loop=$arrPurchaseHistory}-->
                     <tr>
                         <td><!--{$arrPurchaseHistory[cnt].create_date|sfDispDBDate}--></td>
+                        <td><!--{$arrPurchaseHistory[cnt].chain_id|h}--></td>
                         <td class="center"><a href="../order/edit.php?order_id=<!--{$arrPurchaseHistory[cnt].order_id}-->" ><!--{$arrPurchaseHistory[cnt].order_id}--></a></td>
                         <td class="center"><!--{$arrPurchaseHistory[cnt].payment_total|n2s}-->円</td>
                         <td class="center"><!--{if $arrPurchaseHistory[cnt].status eq 5}--><!--{$arrPurchaseHistory[cnt].commit_date|sfDispDBDate}--><!--{else}-->未発送<!--{/if}--></td>

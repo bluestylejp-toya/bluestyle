@@ -139,6 +139,15 @@ class SC_Utils
     /* サイトエラーページの表示 */
     public static function sfDispSiteError($type, $objSiteSess = '', $return_top = false, $err_msg = '')
     {
+        // CLI で、SC_Utils::sfDispSiteError() 呼んだ場合、例外をスローする。結果的に、SC_Helper_HandleError::displaySystemError() でテキスト形式のエラーを吐く (または、途中で catch される)。
+        if (PHP_SAPI === 'cli') {
+            $cli_msg = 'サイトエラーページの表示:'
+                . ' $type=' . var_export($type, true)
+                . ' $err_msg=' . var_export($err_msg, true)
+            ;
+            throw new ErrorException($cli_msg);
+        }
+
         require_once CLASS_EX_REALDIR . 'page_extends/error/LC_Page_Error_Ex.php';
 
         $objPage = new LC_Page_Error_Ex();
@@ -1445,7 +1454,7 @@ class SC_Utils
     public function sfNoImageMainList($filename = '')
     {
         if (strlen($filename) == 0 || substr($filename, -1, 1) == '/') {
-            $filename .= 'noimage_main_list.jpg';
+            $filename .= 'noimage_main_list.png';
         }
 
         return $filename;

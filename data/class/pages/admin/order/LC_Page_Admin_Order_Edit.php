@@ -48,6 +48,7 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         'shipping_zip02',
         'shipping_addr01',
         'shipping_addr02',
+        'shipping_addr03',
         'shipping_date_year',
         'shipping_date_month',
         'shipping_date_day',
@@ -71,6 +72,8 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         'point_rate',
         'product_code',
         'product_name',
+        'add_customer_id',
+        'sub_large_image1',
         'classcategory_name1',
         'classcategory_name2',
         'quantity',
@@ -320,6 +323,38 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         }
         if ($arrValuesBefore['payment_id'])
             $this->arrPayment[$arrValuesBefore['payment_id']] = $arrValuesBefore['payment_method'];
+
+        // 出荷情報
+        $this->arrYamatoDelivStatus = $this->getYamatoDelivInfo($order_id);
+    }
+
+    /**
+     * ヤマトAPI等々から出荷情報を取得する
+     * https://bluestyle.backlog.jp/view/CHAIN-358
+     */
+    function getYamatoDelivInfo($orderId)
+    {
+        $arrYamatoDelivStatus = array();
+        if (strlen($orderId) > 0){
+            try {
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setMethod('GET');
+                $objHelperApi->setUrl(API_URL . 'yamato/shipping_status/' . 'o' . $orderId);
+                $result = json_decode($objHelperApi->exec(), true);
+                $arrYamatoDelivStatus = $result;
+
+                $objQuery = SC_Query_Ex::getSingletonInstance();
+                $arrRet = $objQuery->select('yamato_deliv_info', 'dtb_order', 'order_id = ?', array($orderId));
+                if (strlen($arrRet[0]['yamato_deliv_info']) > 0){
+                    foreach (unserialize($arrRet[0]['yamato_deliv_info']) as $Key => $yamatoDelivInfo){
+                        $arrYamatoDelivStatus[$Key] = $yamatoDelivInfo;
+                    }
+                }
+            } catch (Exception $e) {
+            }
+        }
+
+        return $arrYamatoDelivStatus;
     }
 
     /**
@@ -344,8 +379,9 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         $objFormParam->addParam('郵便番号1', 'order_zip01', ZIP01_LEN, 'n', array('NUM_CHECK', 'NUM_COUNT_CHECK'));
         $objFormParam->addParam('郵便番号2', 'order_zip02', ZIP02_LEN, 'n', array('NUM_CHECK', 'NUM_COUNT_CHECK'));
         $objFormParam->addParam('都道府県', 'order_pref', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
-        $objFormParam->addParam('住所1', 'order_addr01', MTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('住所2', 'order_addr02', MTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所1', 'order_addr01', ADDR_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所2', 'order_addr02', ADDR_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所3', 'order_addr03', ADDR_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('電話番号1', 'order_tel01', TEL_ITEM_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('電話番号2', 'order_tel02', TEL_ITEM_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('電話番号3', 'order_tel03', TEL_ITEM_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
@@ -374,6 +410,9 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         $objFormParam->addParam('単価', 'price', INT_LEN, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK', 'NUM_CHECK'), '0');
         $objFormParam->addParam('数量', 'quantity', INT_LEN, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK', 'NUM_CHECK'), '0');
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK', 'NUM_CHECK'), '0');
+        $objFormParam->addParam('出品者ID', 'add_customer_id');
+        $objFormParam->addParam('ChainID', 'chain_id');
+        $objFormParam->addParam('アイテム画像', 'sub_large_image1');
         $objFormParam->addParam('商品規格ID', 'product_class_id', INT_LEN, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK', 'NUM_CHECK'), '0');
         $objFormParam->addParam('ポイント付与率', 'point_rate');
         $objFormParam->addParam('商品コード', 'product_code');
@@ -417,8 +456,9 @@ class LC_Page_Admin_Order_Edit extends LC_Page_Admin_Order_Ex
         $objFormParam->addParam('郵便番号1', 'shipping_zip01', ZIP01_LEN, 'n', array('NUM_CHECK', 'NUM_COUNT_CHECK'));
         $objFormParam->addParam('郵便番号2', 'shipping_zip02', ZIP02_LEN, 'n', array('NUM_CHECK', 'NUM_COUNT_CHECK'));
         $objFormParam->addParam('都道府県', 'shipping_pref', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
-        $objFormParam->addParam('住所1', 'shipping_addr01', MTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('住所2', 'shipping_addr02', MTEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所1', 'shipping_addr01', ADDR_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所2', 'shipping_addr02', ADDR_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所3', 'shipping_addr03', ADDR_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('電話番号1', 'shipping_tel01', TEL_ITEM_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('電話番号2', 'shipping_tel02', TEL_ITEM_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('電話番号3', 'shipping_tel03', TEL_ITEM_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));

@@ -1,0 +1,10 @@
+.c-batch {
+    &--num {
+        margin-left: $unit;
+        padding: 0 12px;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        color: $white;
+        background: $blue;
+    }
+}

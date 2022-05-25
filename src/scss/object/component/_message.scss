@@ -1,0 +1,40 @@
+%message {
+    margin: 0 -#{$unit*3} $unit*3;
+    text-align: center;
+    padding: $unit $unit*3;
+    &.--hidden {
+        display: none;
+    }
+}
+.c-message {
+    &--alert{
+        background: $yellow;
+        @extend %message;
+    }
+
+    &--secondary {
+        background: $green;
+        color: $white;
+        @extend %message;
+    }
+
+    &--primary {
+        background: $blue;
+        @extend %message;
+        color: $white;
+    }
+
+    &--gradient {
+        @extend %message;
+        color: $white;
+        background:  $gradient-color;
+    }
+    &--gray {
+        @extend %message;
+        color: $white;
+        background: #9da4b0;
+        &.--hidden {
+            display: none;
+        }
+    }
+}

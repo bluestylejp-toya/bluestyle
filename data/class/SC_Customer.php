@@ -196,6 +196,8 @@ class SC_Customer
         $_SESSION['customer'] = $this->customer_data;
         // セッション情報の保存
         GC_Utils_Ex::gfPrintLog('access : user='.$this->customer_data['customer_id'] ."\t".'ip='. $this->getRemoteHost(), CUSTOMER_LOG_REALFILE, false);
+
+        $this->checkUnregisteredCard($this->customer_data);
     }
 
     /**
@@ -400,6 +402,31 @@ __EOS__;
                     return true;
                 }
                 break;
+        }
+    }
+
+    /**
+     * 全パラメーターの取得
+     *
+     * ポイントを含めキャッシュ値を返す。
+     *
+     * @return array
+     */
+    public function getAllValues()
+    {
+        return $_SESSION['customer'];
+    }
+
+    public function checkUnregisteredCard($arrCustomerData)
+    {
+        unset($_SESSION['unregistered_card']);
+
+        // 会員情報の「デフォルトの支払い方法」が「クレジットカード」の場合
+        if ($arrCustomerData['default_payment_id'] == 6) {
+            // 会員カード有効性の確認
+            $objectClient = new SLN_C_Member();
+
+            $_SESSION['unregistered_card'] = !$objectClient->checkCard($arrCustomerData);
         }
     }
 }

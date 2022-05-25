@@ -22,14 +22,57 @@
 
 <!--▼FOOTER-->
 <!--{strip}-->
-    <div id="footer_wrap">
-        <div id="footer" class="clearfix">
-            <div id="pagetop"><a href="#top">このページの先頭へ</a></div>
-            <div id="copyright">Copyright ©
-                &nbsp;<!--{if $smarty.const.RELEASE_YEAR != $smarty.now|date_format:"%Y"}--><!--{$smarty.const.RELEASE_YEAR}-->-<!--{/if}--><!--{$smarty.now|date_format:"%Y"}-->
-                &nbsp;<!--{$arrSiteInfo.shop_name_eng|default:$arrSiteInfo.shop_name|h}--> All rights reserved.
-            </div>
-        </div>
-    </div>
+
+<nav class="l-footer-nav">
+    <!--{if $tpl_login }-->
+        <!--{assign var=is_login value=true}-->
+    <!--{else}-->
+        <!--{assign var=is_login value=false}-->
+    <!--{/if}-->
+    <!--{assign var=current value="other"}-->
+    <!--{if $tpl_page_class_name ==="LC_Page_Products_Detail" or $tpl_page_class_name === "LC_Page_Products_List"}-->
+        <!--{assign var=current value="search"}-->
+    <!--{else if $tpl_page_class_name == "LC_Page_AbstractMypage"}-->
+        <!--{if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/item-list.php" or  $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/item_edit.php"}-->
+            <!--{assign var=current value="display"}-->
+        <!--{else if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/index.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/profile.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/login.php"}-->
+            <!--{assign var=current value="mypage"}-->
+        <!--{else if $smarty.server.PHP_SELF|mb_strpos:'myitem' !== false}-->
+            <!--{assign var=current value="mypage"}-->
+        <!--{/if}-->
+    <!--{/if}-->
+
+    <!--{if $is_login}-->
+        <ul class="l-footer-nav__inner --login">
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">見つける</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php" class="c-footer-nav-item--listing<!--{if $current == 'display'}--> is-current<!--{/if}-->">出品</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}-->">マイページ</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->other/" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
+            </li>
+        </ul>
+    <!--{else}-->
+        <ul class="l-footer-nav__inner --login">
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">見つける</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--listing">出品</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}-->">ログイン</a>
+            </li>
+            <li class="l-footer-nav__item">
+                <a href="<!--{$smarty.const.HTTPS_URL}-->other/" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
+            </li>
+        </ul>
+    <!--{/if}-->
+</nav>
 <!--{/strip}-->
 <!--▲FOOTER-->

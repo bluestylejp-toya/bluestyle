@@ -1,0 +1,20 @@
+{
+    "site-info": {
+        "title": "Chain",
+        "description": "Chain",
+        "sns": {
+            "line": "",
+            "twitter": "",
+            "instagram": ""
+        }
+    },
+    "page": {
+        "lp":{
+
+            "dir": "/lp",
+            "title": "みんなで連鎖！複数人で行う楽しい物々交換でリサイクル Chain",
+            "description": "Chain は楽しく複数人で物々交換するサービスです。複数人で行うから物々交換も成立しやすく、物々交換だから、面倒なやりとりもありません。値付けや値引き交渉がないので簡単に物々交換することができます。",
+            "thumbnail": "lp-ogp.png"
+        }
+    }
+}

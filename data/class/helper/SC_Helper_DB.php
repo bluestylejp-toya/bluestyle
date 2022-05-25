@@ -42,6 +42,7 @@ class SC_Helper_DB
     /** 選択中カテゴリID */
     public $g_category_id;
 
+    const FILTER_CATEGORY_LEVEL1 = 1;
     /**
      * カラムの存在チェックと作成を行う.
      *
@@ -538,6 +539,10 @@ class SC_Helper_DB
 
         $col = 'category_id, parent_category_id, category_name, level';
         $where = 'del_flg = 0';
+        if ($parent_zero === self::FILTER_CATEGORY_LEVEL1) {
+            $where .= ' AND level = 1';
+            $parent_zero = false;
+        }
         $objQuery->setOption('ORDER BY rank DESC');
         $arrRet = $objQuery->select($col, 'dtb_category', $where);
         $max = count($arrRet);
@@ -1043,8 +1048,8 @@ __EOS__;
         $count = count($arrList);
         $arrRet = array();
         for ($cnt = 0; $cnt < $count; $cnt++) {
-            $key = $arrList[$cnt][$keyname];
-            $val = $arrList[$cnt][$valname];
+            $key = reset($arrList[$cnt]);
+            $val = next($arrList[$cnt]);
             $arrRet[$key] = $val;
         }
 

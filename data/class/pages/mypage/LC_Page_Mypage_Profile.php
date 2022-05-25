@@ -88,8 +88,8 @@ class LC_Page_Mypage_Profile extends LC_Page_AbstractMypage_Ex
                     //セッション情報を最新の状態に更新する
                     $objCustomer->updateSession();
 
-                    // 入力ページに戻す (PRG)
-                    SC_Response_Ex::reload(['completeed' => 1], true);
+                    // プロフィール画面に戻す (PRG)
+                    SC_Response_Ex::sendRedirectFromUrlPath('profile.php', ['customer_id' => $customer_id]);
                 }
                 break;
             // 確認ページからの戻り
@@ -109,7 +109,7 @@ class LC_Page_Mypage_Profile extends LC_Page_AbstractMypage_Ex
                     $error = $objUpFile->makeTempFile($image_key, IMAGE_RENAME);
                     if (strlen($error) >= 1) {
                         SC_Response_Ex::json([
-                            'error' => $error,
+                            'error' => strip_tags($error),
                         ]);
                     }
                 }

@@ -96,6 +96,56 @@ class SC_UploadFile
         return basename($ret[1]);
     }
 
+    /**
+     * 画像を回転させる
+     * @param resource $image
+     * @param array $exif
+     * @return resource
+     */
+    private function rotate($image, array $exif)
+    {
+        $orientation = $exif['Orientation'] ? $exif['Orientation'] : 1;
+
+        switch ($orientation) {
+            case imagick::ORIENTATION_UNDEFINED:
+                break;
+            case imagick::ORIENTATION_TOPLEFT:
+                break;
+            case imagick::ORIENTATION_TOPRIGHT:
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_BOTTOMRIGHT:
+                $image->rotateImage(new ImagickPixel(), 180);
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_BOTTOMLEFT:
+                $image->rotateImage(new ImagickPixel(), 180);
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_LEFTTOP:
+                $image->rotateImage(new ImagickPixel(), 90);
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_RIGHTTOP:
+                $image->rotateImage(new ImagickPixel(), 90);
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_RIGHTBOTTOM:
+                $image->rotateImage(new ImagickPixel(), 270);
+                $image->flopImage();
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+            case imagick::ORIENTATION_LEFTBOTTOM:
+                $image->rotateImage(new ImagickPixel(), 270);
+                $image->setimageorientation(imagick::ORIENTATION_TOPLEFT);
+                break;
+        }
+        return $image;
+    }
+
     // アップロードされたファイルを保存する。
 
     /**
@@ -110,10 +160,70 @@ class SC_UploadFile
             foreach ($this->keyname as $val) {
                 // 一致したキーのファイルに情報を保存する。
                 if ($val == $keyname) {
-                    // 拡張子チェック
-                    $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->arrExt[$cnt]), array('FILE_EXT_CHECK'));
                     // ファイルサイズチェック
                     $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->size[$cnt]), array('FILE_SIZE_CHECK'));
+                    // HEIF 対応 (JPEG 変換)
+                    if (in_array('jpg', $this->arrExt[$cnt])
+                        && class_exists('Imagick')
+                        && preg_match('/^(.*)(\.(heic|heif))$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+                        $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
+                        $im = new Imagick();
+                        try {
+                            $success = $im->readImage($_FILES[$keyname]['tmp_name']);
+
+                            if (!$success) {
+                                throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
+                            }
+
+                            if (!in_array($im->getImageOrientation(), [imagick::ORIENTATION_UNDEFINED, imagick::ORIENTATION_TOPLEFT])) {
+                                $im->autoOrient();
+                            }
+
+                            $im->setImageFormat('jpeg');
+                            $success = $im->writeImage($_FILES[$keyname]['tmp_name']);
+                            if (!$success) {
+                                throw new Exception("Imagick::writeImage: {$_FILES[$keyname]['tmp_name']}");
+                            }
+                        }
+                        catch (Exception $e) {
+                            throw $e;
+                        }
+                        finally {
+                            $im->clear();
+                            $im->destroy();
+                        }
+                    }
+                    elseif (class_exists('Imagick')
+                        && preg_match('/\.(jpg|jpeg)$/i', $_FILES[$keyname]['name'])) {
+                        // 回転
+                        $im = new Imagick();
+                        try {
+                            $success = $im->readImage($_FILES[$keyname]['tmp_name']);
+                            if (!$success) {
+                                throw new Exception("Imagick::readImage: {$_FILES[$keyname]['tmp_name']}");
+                            }
+
+                            if (!in_array($im->getImageOrientation(), [imagick::ORIENTATION_UNDEFINED, imagick::ORIENTATION_TOPLEFT])) {
+                                $im->autoOrient();
+                                $success = $im->writeImage($_FILES[$keyname]['tmp_name']);
+                                if (!$success) {
+                                    throw new Exception("Imagick::writeImage: {$_FILES[$keyname]['tmp_name']}");
+                                }
+                            }
+                        } catch (Exception $e) {
+                            throw $e;
+                        } finally {
+                            $im->clear();
+                            $im->destroy();
+                        }
+                    }
+                    // Safari on iOS の拡張子が .jpeg なので .jpg に書き換える
+                    if (in_array('jpg', $this->arrExt[$cnt])
+                        && preg_match('/^(.*)(\.jpeg)$/i', $_FILES[$keyname]['name'], $arrMatche)) {
+                        $_FILES[$keyname]['name'] = $arrMatche[1] . '.jpg';
+                    }
+                    // 拡張子チェック
+                    $objErr->doFunc(array($this->disp_name[$cnt], $keyname, $this->arrExt[$cnt]), array('FILE_EXT_CHECK'));
                     // エラーがない場合
                     if (!isset($objErr->arrErr[$keyname])) {
                         // 画像ファイルの場合
@@ -121,7 +231,7 @@ class SC_UploadFile
                             // 保存用の画像名を取得する
                             $dst_file = $this->lfGetTmpImageName($rename, $keyname);
                             $this->temp_file[$cnt] = $this->makeThumb($_FILES[$keyname]['tmp_name'], $this->width[$cnt], $this->height[$cnt], $dst_file);
-                        // 画像ファイル以外の場合
+                            // 画像ファイル以外の場合
                         } else {
                             // 一意なファイル名を作成する。
                             if ($rename) {

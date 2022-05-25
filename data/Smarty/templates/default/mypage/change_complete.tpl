@@ -22,17 +22,11 @@
  */
 *}-->
 
-<div id="mypagecolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <!--{include file=$tpl_navi}-->
-    <div id="mycontents_area">
-        <h3><!--{$tpl_subtitle|h}--></h3>
-
-        <div id="complete_area">
-            <div class="message">
-                会員登録内容の変更が完了いたしました。<br />
-            </div>
-            <p>今後ともご愛顧賜りますようよろしくお願い申し上げます。</p>
-        </div>
-    </div>
+<section>
+    <header class="l-header__inner u-mb--0">
+        <a  href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
+        <p class="c-header-title">アカウント情報を更新しました</p>
+    </header>
+    <p class="u-mb--4">アカウント情報を更新しました。<br>引き続き、Chainをお楽しみください。</p>
+    <p><a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary">新着アイテムを見る</a></p>
 </div>

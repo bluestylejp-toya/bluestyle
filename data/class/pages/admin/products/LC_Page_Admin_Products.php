@@ -52,6 +52,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $this->arrDISP = $masterData->getMasterData('mtb_disp');
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
         $this->arrPRODUCTSTATUS_COLOR = $masterData->getMasterData('mtb_product_status_color');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
 
         $objDate = new SC_Date_Ex();
         // 登録・更新検索開始年
@@ -187,16 +188,20 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
     {
         // POSTされる値
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('会員ID', 'customer_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('会員名', 'customer_name01', INT_LEN, 'n', array('MAX_LENGTH_CHECK'));
         $objFormParam->addParam('カテゴリID', 'category_id', STEXT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('ページ送り番号', 'search_pageno', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('表示件数', 'search_page_max', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
 
         // 検索条件
         $objFormParam->addParam('商品ID', 'search_product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('会員ID', 'search_customer_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品コード', 'search_product_code', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品名', 'search_name', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('カテゴリ', 'search_category_id', STEXT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('種別', 'search_status', INT_LEN, 'n', array('MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('アイテムサイズ', 'search_size_id', INT_LEN, 'n', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         // 登録・更新日
         $objFormParam->addParam('開始年', 'search_startyear', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam('開始月', 'search_startmonth', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
@@ -286,6 +291,11 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
                 $where .= ' AND product_id = ?';
                 $arrValues[] = sprintf('%d', $objFormParam->getValue($key));
                 break;
+            // 会員ID
+            case 'search_customer_id':
+                $where .= ' AND customer_id = ?';
+                $arrValues[] = sprintf('%d', $objFormParam->getValue($key));
+                break;
             // 商品コード
             case 'search_product_code':
                 $where .= ' AND product_id IN (SELECT product_id FROM dtb_products_class WHERE product_code ILIKE ? AND del_flg = 0)';
@@ -351,6 +361,25 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
                     $arrValues = array_merge($arrValues, $arrPartVal);
                 }
                 break;
+            // アイテムサイズ
+            case 'search_size_id':
+                $tmp_where = '';
+                foreach ($objFormParam->getValue($key) as $element) {
+                    if ($element != '') {
+                        if (SC_Utils_Ex::isBlank($tmp_where)) {
+                            $tmp_where .= ' AND (size_id = ?';
+                        } else {
+                            $tmp_where .= ' OR size_id = ?';
+                        }
+                        $arrValues[] = $element;
+                    }
+                }
+
+                if (!SC_Utils_Ex::isBlank($tmp_where)) {
+                    $tmp_where .= ')';
+                    $where .= " $tmp_where ";
+                }
+                break;
             default:
                 break;
         }
@@ -386,7 +415,8 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
         // 読み込む列とテーブルの指定
-        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date';
+        $col = 'product_id, name, main_list_image, sub_large_image1, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date, customer_id';
+        $col .= ',size_id';
         $from = $objProduct->alldtlSQL();
 
         $objQuery->setLimitOffset($limit, $offset);

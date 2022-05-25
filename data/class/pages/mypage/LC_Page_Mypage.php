@@ -78,6 +78,8 @@ class LC_Page_Mypage extends LC_Page_AbstractMypage_Ex
 
         $objCustomer = new SC_Customer_Ex();
         $customer_id = $objCustomer->getValue('customer_id');
+        $this->tpl_nickname = $objCustomer->getValue('nickname');
+        $this->tpl_profile_image = $objCustomer->getValue('profile_image');
 
         //ページ送り用
         $this->objNavi = new SC_PageNavi_Ex($_REQUEST['pageno'],
@@ -105,6 +107,9 @@ class LC_Page_Mypage extends LC_Page_AbstractMypage_Ex
 
         $this->json_payment = SC_Utils::jsonEncode($this->arrPayment);
         $this->json_customer_order_status = SC_Utils::jsonEncode($this->arrCustomerOrderStatus);
+
+        // 出品中の商品一覧
+        $this->arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
     }
 
     /**

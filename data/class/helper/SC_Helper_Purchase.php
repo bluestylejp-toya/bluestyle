@@ -36,7 +36,7 @@ class SC_Helper_Purchase
 
     public $arrShippingKey = array(
         'name01', 'name02', 'kana01', 'kana02',
-        'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
+        'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02', 'addr03',
         'tel01', 'tel02', 'tel03',
     );
 
@@ -485,7 +485,7 @@ class SC_Helper_Purchase
      */
     public function copyFromCustomer(&$dest, &$objCustomer, $prefix = 'order',
         $keys = array('name01', 'name02', 'kana01', 'kana02',
-            'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02',
+            'zip01', 'zip02', 'country_id', 'zipcode', 'pref', 'addr01', 'addr02', 'addr03',
             'tel01', 'tel02', 'tel03',
             'birth', 'email',
         )
@@ -785,6 +785,8 @@ class SC_Helper_Purchase
             $arrDetail[$i]['product_id'] = $p['product_id'];
             $arrDetail[$i]['product_class_id'] = $p['product_class_id'];
             $arrDetail[$i]['product_name'] = $p['name'];
+            $arrDetail[$i]['add_customer_id'] = $p['customer_id'];
+            $arrDetail[$i]['sub_large_image1'] = $p['sub_large_image1'];
             $arrDetail[$i]['product_code'] = $p['product_code'];
             $arrDetail[$i]['classcategory_name1'] = $p['classcategory_name1'];
             $arrDetail[$i]['classcategory_name2'] = $p['classcategory_name2'];
@@ -922,41 +924,46 @@ class SC_Helper_Purchase
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $dbFactory  = SC_DB_DBFactory_Ex::getInstance();
         $col = <<< __EOS__
-            T3.product_id,
-            T3.product_class_id as product_class_id,
-            T3.product_type_id AS product_type_id,
-            T2.product_code,
-            T2.product_name,
-            T2.classcategory_name1 AS classcategory_name1,
-            T2.classcategory_name2 AS classcategory_name2,
-            T2.price,
-            T2.quantity,
-            T2.point_rate,
-            T2.tax_rate,
-            T2.tax_rule,
+T3.product_id,
+T3.product_class_id as product_class_id,
+T3.product_type_id AS product_type_id,
+dtb_products.customer_id AS add_customer_id,
+T2.product_code,
+T2.product_name,
+T2.classcategory_name1 AS classcategory_name1,
+T2.classcategory_name2 AS classcategory_name2,
+T2.price,
+T2.quantity,
+T2.point_rate,
+T2.tax_rate,
+T2.tax_rule,
+dtb_products.chain_id,
+dtb_products.sub_large_image1,
 __EOS__;
         if ($has_order_status) {
             $col .= 'T1.status AS status, T1.payment_date AS payment_date,';
         }
         $col .= <<< __EOS__
-            CASE WHEN
-                EXISTS(
-                    SELECT * FROM dtb_products
-                    WHERE product_id = T3.product_id
-                        AND del_flg = 0
-                        AND status = 1
-                )
-                THEN '1'
-                ELSE '0'
-            END AS enable,
+CASE WHEN
+    EXISTS(
+        SELECT * FROM dtb_products
+        WHERE product_id = T3.product_id
+            AND del_flg = 0
+            AND status = 1
+    )
+    THEN '1'
+    ELSE '0'
+END AS enable,
 __EOS__;
         $col .= $dbFactory->getDownloadableDaysWhereSql('T1') . ' AS effective';
         $from = <<< __EOS__
-            dtb_order T1
-            JOIN dtb_order_detail T2
-                ON T1.order_id = T2.order_id
-            LEFT JOIN dtb_products_class T3
-                ON T2.product_class_id = T3.product_class_id
+dtb_order T1
+JOIN dtb_order_detail T2
+    ON T1.order_id = T2.order_id
+LEFT JOIN dtb_products_class T3
+    USING (product_id, product_class_id)
+LEFT JOIN dtb_products
+    USING (product_id)
 __EOS__;
         $objQuery->setOrder('T2.order_detail_id');
 
@@ -1369,86 +1376,83 @@ __EOS__;
      */
     public function checkDbAllPendingOrder()
     {
-        $term = PENDING_ORDER_CANCEL_TIME;
-        if (!SC_Utils_Ex::isBlank($term) && preg_match("/^[0-9]+$/", $term)) {
-            $target_time = strtotime('-' . $term . ' sec');
-            $objQuery = SC_Query_Ex::getSingletonInstance();
-            $arrVal = array(date('Y/m/d H:i:s', $target_time), ORDER_PENDING);
-            $objQuery->begin();
-            $arrOrders = $objQuery->select('order_id', 'dtb_order', 'create_date <= ? and status = ? and del_flg = 0', $arrVal);
-            if (!SC_Utils_Ex::isBlank($arrOrders)) {
-                foreach ($arrOrders as $arrOrder) {
-                    $order_id = $arrOrder['order_id'];
-                    SC_Helper_Purchase_Ex::cancelOrder($order_id, ORDER_CANCEL, true);
-                    GC_Utils_Ex::gfPrintLog('order cancel.(time expire) order_id=' . $order_id);
-                }
-            }
-            $objQuery->commit();
-        }
     }
 
     public function checkDbMyPendignOrder()
     {
-        $objCustomer = new SC_Customer_Ex();
-        if ($objCustomer->isLoginSuccess(true)) {
-            $customer_id = $objCustomer->getValue('customer_id');
-            $objQuery = SC_Query_Ex::getSingletonInstance();
-            $arrVal = array($customer_id, ORDER_PENDING);
-            $objQuery->setOrder('create_date desc');
-            $objQuery->begin();
-            $arrOrders = $objQuery->select('order_id,create_date', 'dtb_order', 'customer_id = ? and status = ? and del_flg = 0', $arrVal);
-            if (!SC_Utils_Ex::isBlank($arrOrders)) {
-                foreach ($arrOrders as $key => $arrOrder) {
-                    $order_id = $arrOrder['order_id'];
-                    if ($key == 0) {
-                        $objCartSess = new SC_CartSession_Ex();
-                        $cartKeys = $objCartSess->getKeys();
-                        $term = PENDING_ORDER_CANCEL_TIME;
-                        if (preg_match("/^[0-9]+$/", $term)) {
-                            $target_time = strtotime('-' . $term . ' sec');
-                            $create_time = strtotime($arrOrder['create_date']);
-                            if (SC_Utils_Ex::isBlank($cartKeys) && $target_time < $create_time) {
-                                SC_Helper_Purchase_Ex::rollbackOrder($order_id, ORDER_CANCEL, true);
-                                GC_Utils_Ex::gfPrintLog('order rollback.(my pending) order_id=' . $order_id);
-                            } else {
-                                SC_Helper_Purchase_Ex::cancelOrder($order_id, ORDER_CANCEL, true);
-                                if ($target_time > $create_time) {
-                                    GC_Utils_Ex::gfPrintLog('order cancel.(my pending and time expire) order_id=' . $order_id);
-                                } else {
-                                    GC_Utils_Ex::gfPrintLog('order cancel.(my pending and set cart) order_id=' . $order_id);
-                                }
-                            }
-                        }
-                    } else {
-                        SC_Helper_Purchase_Ex::cancelOrder($order_id, ORDER_CANCEL, true);
-                        GC_Utils_Ex::gfPrintLog('order cancel.(my old pending) order_id=' . $order_id);
-                    }
-                }
-            }
-            $objQuery->commit();
-        }
     }
 
     public function checkSessionPendingOrder()
     {
-        if (!SC_Utils_Ex::isBlank($_SESSION['order_id'])) {
-            $order_id = $_SESSION['order_id'];
-            unset($_SESSION['order_id']);
-            $objQuery = SC_Query_Ex::getSingletonInstance();
-            $objQuery->begin();
-            $arrOrder =  SC_Helper_Purchase_Ex::getOrder($order_id);
-            if ($arrOrder['status'] == ORDER_PENDING) {
-                $objCartSess = new SC_CartSession_Ex();
-                $cartKeys = $objCartSess->getKeys();
-                if (SC_Utils_Ex::isBlank($cartKeys)) {
-                    SC_Helper_Purchase_Ex::rollbackOrder($order_id, ORDER_CANCEL, true);
-                    GC_Utils_Ex::gfPrintLog('order rollback.(session pending) order_id=' . $order_id);
-                } else {
-                    SC_Helper_Purchase_Ex::cancelOrder($order_id, ORDER_CANCEL, true);
-                    GC_Utils_Ex::gfPrintLog('order rollback.(session pending and set card) order_id=' . $order_id);
-                }
-            }
-            $objQuery->commit();
-        }
+    }
+
+    /**
+     * 受注情報を取得する.
+     *
+     * @param  integer $customer_id 会員ID
+     * @param  integer $product_class_id 商品規格ID
+     * @return array   受注情報の配列
+     */
+    public function getOrderByChain($chain_id, $customer_id, $product_class_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $where = 'del_flg = 0';
+        $arrValues = [];
+
+        $where .= ' AND chain_id = ?';
+        $arrValues[] = $chain_id;
+
+        $where .= ' AND customer_id = ?';
+        $arrValues[] = $customer_id;
+
+        $where .= ' AND EXISTS(SELECT * FROM dtb_order_detail WHERE order_id = dtb_order.order_id AND product_class_id = ?)';
+        $arrValues[] = $product_class_id;
+
+        // 最新の受注を優先する。良くないアイディアかも。複数一致したら例外が妥当か。
+        $objQuery->setOrder('order_id DESC');
+
+        // 戻り値は getOrder() と同じくする必要がある。本来、getOrder() を呼ぶのが確実かも。
+        return $objQuery->getRow('*', 'dtb_order', $where, $arrValues);
+    }
+
+    public function payment($order_id) {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objPurchase = new SC_Helper_Purchase();
+
+        // 各種スーパーグローバル変数を退避する。
+        $bak_SERVER     = $_SERVER;
+        $bak_POST       = $_POST;
+        $bak_REQUEST    = $_REQUEST;
+        $bak_GET        = $_GET;
+        $bak_SESSION    = $_SESSION;
+
+        // 決済モジュール内部では、セッション変数から注文番号を識別するため、セッション変数をセットする。
+        $_SESSION['order_id'] = $order_id;
+
+        // 決済モジュール「e-SCOTT Smart light for EC-CUBE(2.17系)」用
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        $_POST['mode'] = 'next';
+        $_POST[TRANSACTION_ID_NAME] = SC_Helper_Session_Ex::getToken();
+        $_POST['PayType'] = '01';
+
+        // $_REQUEST を再生成
+        SC_Initial_Ex::resetSuperglobalsRequest();
+
+        // 対応状況を変更
+        $objQuery->begin();
+        $objPurchase->sfUpdateOrderStatus($order_id, ORDER_PENDING);
+        $objQuery->commit();
+
+        // 決済モジュール
+        $objLC_Page_Shopping_LoadPaymentModule = new LC_Page_Shopping_LoadPaymentModule;
+        $objLC_Page_Shopping_LoadPaymentModule->process();
+
+        // 各種スーパーグローバル変数を戻す。
+        $SERVER     = $bak_SERVER;
+        $POST       = $bak_POST;
+        $REQUEST    = $bak_REQUEST;
+        $GET        = $bak_GET;
+        $SESSION    = $bak_SESSION;
     }
 }

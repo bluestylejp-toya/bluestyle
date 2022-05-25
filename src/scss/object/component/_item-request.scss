@@ -1,0 +1,57 @@
+.c-item-request {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    position: relative;
+    padding-left: 23px;
+    color: $blue-dark;
+    &[data-customer=true] {
+        padding: 16px;
+        background: $blue-dark;
+        display: inline-flex;
+        padding: 8px 20px 8px 40px;
+        border-radius: 20px;
+        margin-top: 10px;
+        color: #fff;
+        &:hover {
+            cursor: pointer;
+        }
+        .icon {
+            left: 4px;
+        }
+         .icon .heart {
+            fill: #fff;
+        }
+    }
+
+    .icon {
+        position: absolute;
+        width: 40px;
+        left: -10px;
+
+        .heart{
+            fill: $blue-dark;
+            transform-origin: 250px 250px;
+        }
+
+        .particleLayer {
+            opacity: 0;
+        }
+    }
+
+    &.--active {
+        .heart {
+            animation: heartAnime .5s;
+        }
+        // .particleLayer {
+        //     animation: particleLayerAnime .8s;
+
+        //     @for $index from 1 through 14 {
+        //         circle:nth-child(#{$index}) {
+        //             animation: particleAnimate#{$index} .8s;
+        //         }
+        //     }
+        // }
+    }
+}

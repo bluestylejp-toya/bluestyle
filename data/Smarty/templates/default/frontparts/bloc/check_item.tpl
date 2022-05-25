@@ -1,24 +1,23 @@
 <!--{if $arrCheckItems}-->
-<div id="arrCheckItems">
-    <h2>最近チェックした商品</h2>
-    <ul class="clearfix">
+<!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
+<!--{if $smarty.server.PHP_SELF==$list}-->
+<div class="c-item-tab__content" data-tab_item="2">
+    <!--{/if}-->
+    <ul class="l-item-list history_list">
         <!--{section name=cnt loop=$arrCheckItems}-->
-            <li>
-                <p class="item_image">
-                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrCheckItems[cnt].product_id|u}-->">
-                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_image1|sfNoImageMainList|h}-->" style="max-width: 80px;max-height: 80px;" alt="<!--{$arrCheckItems[cnt].name|h}-->"/>
-{*                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_image2|sfNoImageMainList|h}-->" style="max-width: 80px;max-height: 80px;" alt="<!--{$arrCheckItems[cnt].name|h}-->"/>*}
-                    </a>
-                </p>
-                <p><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrCheckItems[cnt].product_id|u}-->">
-                        <!--{$arrCheckItems[cnt].name|h}--></a></p>
-                <p class="sale_price">
-                    <!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)： <span
-                            class="price"><!--{$arrCheckItems[cnt].price02_min_inctax|n2s}--> 円</span>
-                </p>
-                <p>お気に入りを押されている数:<!--{$arrCheckItems[cnt].favorite_products_count|u}--></p>
-            </li>
+        <li class="c-item-default">
+            <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrCheckItems[cnt].product_id|u}-->" class="c-item-default__img">
+                <span class="c-square"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrCheckItems[cnt].sub_large_image1|sfNoImageMainList|h}-->"  alt="<!--{$arrCheckItems[cnt].name|h}-->"/></span>
+                <!--{if $arrCheckItems[cnt].customer_id|u == $customer_id}-->
+                <span class="c-item-default__my-item">出品中</span>
+                <!--{/if}-->
+                <span class="favorite_area"><span class="c-item-default__request<!--{if in_array($arrCheckItems[cnt].product_id|u, $arrRequestProductId)}--> --active<!--{/if}-->" data-product_id="<!--{$arrCheckItems[cnt].product_id|u}-->"><!--{$arrCheckItems[cnt].favorite_products_count|h}--></span></span>
+            </a>
+            <p class="c-item-default__title"><!--{$arrCheckItems[cnt].name|mb_substr:0:16|h|nl2br}--><!--{if $arrCheckItems[cnt].name|mb_strlen > 16}-->...<!--{/if}--></p>
+        </li>
         <!--{/section}-->
     </ul>
+    <!--{if $smarty.server.PHP_SELF==$list}-->
 </div>
+<!--{/if}-->
 <!--{/if}-->

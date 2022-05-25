@@ -288,6 +288,14 @@
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="6" class="box30" />
                 </td>
             </tr>
+            <tr>
+                <th>ChainID</th>
+                <td colspan="3">
+                    <!--{assign var=key value="search_chain_id"}-->
+                    <!--{if $arrErr[$key]}--><span class="attention"><!--{$arrErr[$key]}--></span><!--{/if}-->
+                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="6" class="box30" />
+                </td>
+            </tr>
         </table>
 
         <div class="btn">
@@ -356,6 +364,7 @@
                         <!--{include file=$path}-->
                     <!--{else}-->
                         <tr>
+                            <th>ChainID</th>
                             <th>受注日</th>
                             <th>注文番号</th>
                             <th>お名前</th>
@@ -372,6 +381,7 @@
                         <!--{section name=cnt loop=$arrResults}-->
                             <!--{assign var=status value="`$arrResults[cnt].status`"}-->
                             <tr style="background:<!--{$arrORDERSTATUS_COLOR[$status]}-->;">
+                                <td><!--{$arrResults[cnt].chain_id|h}--></td>
                                 <td class="center"><!--{$arrResults[cnt].create_date|sfDispDBDate}--></td>
                                 <td class="center"><!--{$arrResults[cnt].order_id}--></td>
                                 <td class="center"><!--{$arrResults[cnt].order_name01|h}--> <!--{$arrResults[cnt].order_name02|h}--></td>

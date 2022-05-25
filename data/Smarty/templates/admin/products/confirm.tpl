@@ -51,7 +51,19 @@
 
     <table>
         <tr>
-            <th>商品名</th>
+            <th>会員ID</th>
+            <td>
+                <!--{$arrForm.customer_id|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>商品ID</th>
+            <td>
+                <!--{$arrForm.product_id|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>アイテム名</th>
             <td>
                 <!--{$arrForm.name|h}-->
             </td>
@@ -72,7 +84,7 @@
             </td>
         </tr>
         <tr>
-            <th>商品ステータス</th>
+            <th>状態ステータス</th>
             <td>
                 <!--{foreach from=$arrForm.product_status item=status}-->
                     <!--{if $status != ""}-->
@@ -81,59 +93,23 @@
                 <!--{/foreach}-->
             </td>
         </tr>
+        <tr>
+            <th>アイテムサイズ<span class="attention"> *</span></th>
+            <td>
+                <!--{$arrSize[$arrForm.size_id]|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>在庫数</th>
+            <td>
+                <!--{if $arrForm.stock_unlimited == 1}-->
+                無制限
+                <!--{else}-->
+                <!--{$arrForm.stock|h}-->
+                <!--{/if}-->
+            </td>
+        </tr>
 
-        <!--{if $arrForm.has_product_class != true}-->
-            <tr>
-                <th>商品種別</th>
-                <td>
-                    <!--{$arrProductType[$arrForm.product_type_id]}-->
-                </td>
-            </tr>
-            <!--{if $arrForm.product_type_id == PRODUCT_TYPE_DOWNLOAD}-->
-            <tr>
-                <th>ダウンロード商品ファイル名</th>
-                <td>
-                    <!--{$arrForm.down_filename|h}-->
-                </td>
-            </tr>
-            <tr>
-                <th>ダウンロード商品用<br />ファイル</th>
-                <td>
-                    <!--{if $arrForm.down_realfilename != ""}-->
-                        <!--{$arrForm.down_realfilename|h}-->
-                    <!--{/if}-->
-                </td>
-            </tr>
-            <!--{/if}-->
-            <tr>
-                <th>商品コード</th>
-                <td>
-                    <!--{$arrForm.product_code|h}-->
-                </td>
-            </tr>
-            <tr>
-                <th><!--{$smarty.const.NORMAL_PRICE_TITLE}--></th>
-                <td>
-                    <!--{if strlen($arrForm.price01) >= 1}--><!--{$arrForm.price01|h}--> 円<!--{/if}-->
-                </td>
-            </tr>
-            <tr>
-                <th><!--{$smarty.const.SALE_PRICE_TITLE}--></th>
-                <td>
-                    <!--{if strlen($arrForm.price02) >= 1}--><!--{$arrForm.price02|h}--> 円<!--{/if}-->
-                </td>
-            </tr>
-            <tr>
-                <th>在庫数</th>
-                <td>
-                    <!--{if $arrForm.stock_unlimited == 1}-->
-                        無制限
-                    <!--{else}-->
-                        <!--{$arrForm.stock|h}-->
-                    <!--{/if}-->
-                </td>
-            </tr>
-        <!--{/if}-->
         <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->
             <tr>
                 <th>消費税率</th>
@@ -143,94 +119,6 @@
             </tr>
         <!--{/if}-->
 
-        <tr>
-            <th>商品送料</th>
-            <td>
-                <!--{if strlen($arrForm.deliv_fee) >= 1}--><!--{$arrForm.deliv_fee|h}--> 円<!--{/if}-->
-            </td>
-        </tr>
-        <tr>
-            <th>ポイント付与率</th>
-            <td>
-                <!--{if strlen($arrForm.point_rate) >= 1}--><!--{$arrForm.point_rate|h}--> ％<!--{/if}-->
-            </td>
-        </tr>
-        <tr>
-            <th>発送日目安</th>
-            <td>
-                <!--{$arrDELIVERYDATE[$arrForm.deliv_date_id]|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>販売制限数</th>
-            <td>
-                <!--{$arrForm.sale_limit|default:'無制限'|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>メーカー</th>
-            <td>
-                <!--{$arrMaker[$arrForm.maker_id]|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>メーカーURL</th>
-            <td style="word-break: break-all;">
-                <!--{$arrForm.comment1|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>検索ワード</th>
-            <td>
-                <!--{$arrForm.comment3|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>備考欄(SHOP専用)</th>
-            <td>
-                <!--{$arrForm.note|h|nl2br}-->
-            </td>
-        </tr>
-        <tr>
-            <th>一覧-メインコメント</th>
-            <td>
-                <!--{$arrForm.main_list_comment|h|nl2br}-->
-            </td>
-        </tr>
-        <tr>
-            <th>詳細-メインコメント</th>
-            <td>
-                <!--{$arrForm.main_comment|nl2br_html}-->
-            </td>
-        </tr>
-        <tr>
-            <th>一覧-メイン画像</th>
-            <td>
-                <!--{assign var=key value="main_list_image"}-->
-                <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                    <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" /><br />
-                <!--{/if}-->
-            </td>
-        </tr>
-        <tr>
-            <th>詳細-メイン画像</th>
-            <td>
-                <!--{assign var=key value="main_image"}-->
-                <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                    <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" /><br />
-                <!--{/if}-->
-            </td>
-        </tr>
-        <tr>
-            <th>詳細-メイン拡大画像</th>
-            <td>
-                <!--{assign var=key value="main_large_image"}-->
-                <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                    <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" /><br />
-                <!--{/if}-->
-            </td>
-        </tr>
-
         <!--{* オペビルダー用 *}-->
         <!--{if "sfViewAdminOpe"|function_exists === TRUE}-->
             <!--{include file="`$smarty.const.MODULE_REALDIR`mdl_opebuilder/admin_ope_view.tpl"}-->
@@ -239,26 +127,10 @@
         <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->
             <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
             <tr>
-                <th>詳細-サブタイトル（<!--{$smarty.section.cnt.iteration}-->）</th>
-                <td>
-                    <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
-                    <!--{$arrForm[$key]|h}-->
-                </td>
-            </tr>
-            <tr>
                 <th>詳細-サブコメント（<!--{$smarty.section.cnt.iteration}-->）</th>
                 <td>
                     <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
                     <!--{$arrForm[$key]|nl2br_html}-->
-                </td>
-            </tr>
-            <tr>
-                <th>詳細-サブ画像（<!--{$smarty.section.cnt.iteration}-->）</th>
-                <td>
-                    <!--{assign var=key value="sub_image`$smarty.section.cnt.iteration`"}-->
-                    <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                        <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" /><br />
-                    <!--{/if}-->
                 </td>
             </tr>
             <tr>

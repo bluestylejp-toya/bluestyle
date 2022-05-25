@@ -122,6 +122,12 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     /** @var array エラー情報 */
     public $arrErr;
 
+    // 自分が出品した商品か
+    public $tpl_my_product = false;
+
+    // 匿名配送ID（3）
+    const ANONYMOUS_DELIVERY_ID = 3;
+
     /**
      * Page を初期化する.
      *
@@ -134,11 +140,13 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $this->arrSTATUS = $masterData->getMasterData('mtb_status');
         $this->arrDELIVERYDATE = $masterData->getMasterData('mtb_delivery_date');
         $this->arrRECOMMEND = $masterData->getMasterData('mtb_recommend');
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
+        $this->arrSize = $masterData->getMasterData('mtb_size');
 
         // POST に限定する mode
         $this->arrLimitPostMode[] = 'cart';
-        $this->arrLimitPostMode[] = 'add_favorite';
-        $this->arrLimitPostMode[] = 'add_favorite_sphone';
+        $this->arrLimitPostMode[] = 'add_favorite_ajax';
+        $this->arrLimitPostMode[] = 'del_favorite_ajax';
         $this->arrLimitPostMode[] = 'select';
         $this->arrLimitPostMode[] = 'select2';
         $this->arrLimitPostMode[] = 'selectItem';
@@ -224,16 +232,78 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         // 商品IDをFORM内に保持する
         $this->tpl_product_id = $product_id;
 
+        // 商品詳細を取得
+        $this->arrProduct = $objProduct->getDetail($product_id);
+
+        $customer_id = null;
+        // ログイン判定
+        if ($this->tpl_login = $objCustomer->isLoginSuccess() === true) {
+            $customer_id = $objCustomer->getValue('customer_id');
+            if ($this->arrProduct['customer_id'] == $customer_id) {
+                $this->tpl_my_product = true;
+            }
+        }
+
         switch ($this->mode) {
             case 'cart':
                 $this->doCart();
                 break;
 
-            case 'add_favorite':
-                $this->doAddFavorite($objCustomer);
+            case 'api_remove_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
+
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setUrl(API_URL . 'chain/edges/remove_edge_specify');
+                $objHelperApi->setMethod('POST');
+                $data = [
+                    "source_id" => $this->objFormParam->getValue('favorite_product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
+                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
+                ];
+                $objHelperApi->setPostParam($data);
+                $result = $objHelperApi->exec();
+                SC_Response_Ex::json([
+                    'registered' => false,
+                ]);
+                break;
+
+
+            case 'api_add_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
+
+                $objHelperApi = new SC_Helper_Api_Ex();
+                $objHelperApi->setUrl(API_URL . 'chain/edges/add');
+                $objHelperApi->setMethod('POST');
+                $data = [
+                    "source_id" => $this->objFormParam->getValue('favorite_product_id'),
+                    "target_id" => $this->objFormParam->getValue('target_id'),
+//                    "date" => str_replace('+00:00', 'Z', gmdate('c')),
+                ];
+                if (defined('OMIT_API_DATE') && OMIT_API_DATE) {
+                    unset($data['date']);
+                }
+                $objHelperApi->setPostParam($data);
+                $result_raw = $objHelperApi->exec();
+                $result = json_decode($result_raw, null, 512, JSON_THROW_ON_ERROR);
+
+                // ループが成立した場合
+                if (strlen($result->id) >= 1) {
+                    $this->loop($result->id);
+                }
+
+                SC_Response_Ex::json([
+                    'registered' => true,
+                ]);
                 break;
 
             case 'add_favorite_ajax':
+                if ($this->tpl_my_product) {
+                    throw new Exception('自分の商品はお気に入りに登録できない。');
+                }
                 $this->doAddFavorite($objCustomer);
                 SC_Response_Ex::json([
                     'registered' => true,
@@ -249,10 +319,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                 ]);
                 break;
 
-            case 'add_favorite_sphone':
-                $this->doAddFavoriteSphone($objCustomer);
-                break;
-
             case 'select':
             case 'select2':
             case 'selectItem':
@@ -263,8 +329,17 @@ class LC_Page_Products_Detail extends LC_Page_Ex
                  */
                 break;
 
+            case 'report':
+                $this->doReport($product_id);
+                break;
+
             default:
                 $this->doDefault();
+
+                // 交換対象商品一覧を取得する
+                if ($objCustomer->isLoginSuccess() === true) {
+                    $this->arrTargetProducts = $this->getTargetProducts($objCustomer->getValue('customer_id'));
+                }
                 break;
         }
 
@@ -293,9 +368,6 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             }
         }
 
-        // 商品詳細を取得
-        $this->arrProduct = $objProduct->getDetail($product_id);
-
         // サブタイトルを取得
         $this->tpl_subtitle = $this->arrProduct['name'];
 
@@ -312,12 +384,70 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         //関連商品情報表示
         $this->arrRecommend = $this->lfPreGetRecommendProducts($product_id);
 
-        // ログイン判定
-        if ($objCustomer->isLoginSuccess() === true) {
-            //お気に入りボタン表示
-            $this->tpl_login = true;
-            $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($objCustomer->getValue('customer_id'), $product_id));
+        if ($this->tpl_login) {
+            $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $product_id));
+
+            // 自身を除くほしいしている人情報を取得
+            $this->arrProduct['arrFavoriteCustomer'] = self::lfGetFavoriteCustomer($this->arrProduct['favorite_customer_list'], $customer_id);
+
+            // アクセス中のアイテムを発送する際の送料計算
+            $this->arrProduct['deliv_fee'] = self::lfGetDelivFee($this->arrProduct, $objCustomer);
         }
+
+        $this->arrProduct['arrCustomer'] = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($this->arrProduct['customer_id']);
+        $this->arrProduct['arrCustomerProducts'] = SC_Helper_Customer_Ex::getCustomerProducts($this->arrProduct['customer_id']);
+
+        // 交換選択待ち商品が存在するか
+        $this->hasUnselectdProductFlg = false;
+        if ($this->tpl_login) {
+            $objHelperCustomer = new SC_Helper_Customer_Ex();
+            if ( $objHelperCustomer->getCustomerUnselectedProductId($customer_id) > 0){
+                if (in_array($product_id, $objHelperCustomer->getCustomerUnselectedProductId($customer_id))){
+                    $this->hasUnselectdProductFlg = true;
+                }
+            }
+            $this->arrProduct['arrTargetProductId'] = array();
+            foreach ($objProduct->getRequestingFavoriteByCustomerId($customer_id) as $val){
+                if ($val['product_id'] == $product_id){
+                    $this->arrProduct['arrTargetProductId'][] = $val['target_id'];
+                }
+            }
+        }
+    }
+
+    /**
+     * アクセス中のアイテムを発送する際の送料計算
+     * @param array $arrProduct アクセス中のアイテム情報
+     * @param object $objCustomer アクセス中の顧客情報
+     * @return int|string $deliv_fee 送料
+     */
+    private static function lfGetDelivFee($arrProduct, $objCustomer)
+    {
+        $deliv_fee = 0;
+        if (!isset($arrProduct['size_id'])){
+            $arrProduct['size_id'] = 1;
+        }
+        $deliv_fee = SC_Helper_Delivery_Ex::getDelivFee($objCustomer->getValue('pref'), self::ANONYMOUS_DELIVERY_ID);
+        $deliv_fee += SC_Helper_Delivery_Ex::getDelivFee2(self::ANONYMOUS_DELIVERY_ID, $arrProduct['pref'], $objCustomer->getValue('pref'), $arrProduct['size_id']);
+        return $deliv_fee;
+    }
+
+    /**
+     * 自身を除くほしいしている人情報を取得
+     * @param array $arrFavoriteCustomerList
+     * @param int $myCustomerId
+     * @return array $arrFavoriteCustomer
+     */
+    private static function lfGetFavoriteCustomer($arrFavoriteCustomerList = array(), $myCustomerId)
+    {
+        $arrFavoriteCustomer = array();
+        foreach (explode(',', $arrFavoriteCustomerList) as $customerId){
+            // 自身がいいねしている場合は対象外に
+            if ($myCustomerId != $customerId and strlen($customerId) > 0){
+                $arrFavoriteCustomer[] = SC_Helper_Customer_Ex::sfGetCustomerData($customerId);
+            }
+        }
+        return $arrFavoriteCustomer;
     }
 
     /**
@@ -452,6 +582,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('EXIST_CHECK', 'ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お気に入り商品ID', 'favorite_product_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品規格ID', 'product_class_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('交換対象商品', 'target_id', INT_LEN, 'n', array('ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         // 値の取得
         $objFormParam->setParam($_REQUEST);
         // 入力値の変換
@@ -599,43 +730,49 @@ class LC_Page_Products_Detail extends LC_Page_Ex
      * お気に入り商品登録
      * @return void
      */
-    public function lfRegistFavoriteProduct($favorite_product_id, $customer_id)
+    public function lfRegistFavoriteProduct($favorite_product_id, $customer_id, $target_id)
     {
-        // ログイン中のユーザが商品をお気に入りにいれる処理
         if (!SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', $favorite_product_id, 'del_flg = 0 AND status = 1')) {
             SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
 
             return false;
-        } else {
-            $objQuery = SC_Query_Ex::getSingletonInstance();
-            $exists = $objQuery->exists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($customer_id, $favorite_product_id));
-
-            if (!$exists) {
-                $sqlval['customer_id'] = $customer_id;
-                $sqlval['product_id'] = $favorite_product_id;
-                $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
-                $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
-
-                $objQuery->begin();
-                $objQuery->insert('dtb_customer_favorite_products', $sqlval);
-                $objQuery->commit();
-            }
-            // お気に入りに登録したことを示すフラグ
-            $this->just_added_favorite = true;
-
-            return true;
         }
+
+        if (!SC_Helper_DB_Ex::sfIsRecord('dtb_products', 'product_id', $target_id, 'del_flg = 0 AND status = 1')) {
+            SC_Utils_Ex::sfDispSiteError(PRODUCT_NOT_FOUND);
+
+            return false;
+        }
+
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $exists = $objQuery->exists('dtb_customer_favorite_products', 'product_id = ? AND target_id = ? AND customer_id = ?', array($favorite_product_id, $target_id, $customer_id));
+
+        if (!$exists) {
+            $sqlval['customer_id'] = $customer_id;
+            $sqlval['product_id'] = $favorite_product_id;
+            $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
+            $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
+            $sqlval['target_id'] = $target_id;
+
+            $objQuery->begin();
+            $objQuery->insert('dtb_customer_favorite_products', $sqlval);
+            $objQuery->commit();
+        }
+        // お気に入りに登録したことを示すフラグ
+        $this->just_added_favorite = true;
+
+        return true;
     }
 
     /*
      * お気に入り商品解除
      * @return void
      */
-    public function unregisterFavoriteProduct($product_id, $customer_id)
+    public function unregisterFavoriteProduct($source_id, $customer_id, $target_id)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ?', [$product_id, $customer_id]);
+        $objQuery->delete('dtb_customer_favorite_products', 'product_id = ? AND customer_id = ? AND target_id = ?', [$source_id, $customer_id, $target_id]);
     }
 
     /**
@@ -678,41 +815,17 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             if (count($this->arrErr) == 0) {
                 // 登録
                 if ($register) {
-                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
-                        SC_Response_Ex::actionExit(); 
+                    if (!$this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'), $this->objFormParam->getValue('target_id'))) {
+                        SC_Response_Ex::actionExit();
                     }
                     $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
                     $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite', array($this));
                 }
                 // 削除
                 else {
-                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'));
+                    $this->unregisterFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'), $this->objFormParam->getValue('target_id'));
                 }
             }
-        }
-    }
-
-    /**
-     * Add product to authenticated user's favorites. (for Smart phone)
-     *
-     * @param  SC_Customer $objCustomer
-     * @return void
-     */
-    public function doAddFavoriteSphone(SC_Customer $objCustomer)
-    {
-        // ログイン中のユーザが商品をお気に入りにいれる処理(スマートフォン用)
-        if ($objCustomer->isLoginSuccess() === true && $this->objFormParam->getValue('favorite_product_id') > 0) {
-            $this->arrErr = $this->lfCheckError($this->mode, $this->objFormParam);
-            if (count($this->arrErr) == 0) {
-                if ($this->lfRegistFavoriteProduct($this->objFormParam->getValue('favorite_product_id'), $objCustomer->getValue('customer_id'))) {
-                    $objPlugin = SC_Helper_Plugin_Ex::getSingletonInstance();
-                    $objPlugin->doAction('LC_Page_Products_Detail_action_add_favorite_sphone', array($this));
-                    print 'true';
-                    SC_Response_Ex::actionExit();
-                }
-            }
-            print 'error';
-            SC_Response_Ex::actionExit();
         }
     }
 
@@ -838,5 +951,161 @@ class LC_Page_Products_Detail extends LC_Page_Ex
     public function doMobileDefault()
     {
         $this->tpl_mainpage = 'products/detail.tpl';
+    }
+
+    /**
+     * 出品中アイテムを取得する
+     *
+     * @param mixed $customer_id
+     * @access private
+     * @return array 出品中アイテム商品一覧
+     */
+    public function getTargetProducts($customer_id)
+    {
+        // 出品中アイテム商品ID取得
+        $arrProductId = array();
+        $arrListingProducts  = SC_Product_Ex::getListingProducts($customer_id);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
+        $objProduct     = new SC_Product_Ex();
+        $linemax        = $objProduct->findProductCount($objQuery);
+
+        $this->tpl_linemax = $linemax;   // 何件が該当しました。表示用
+
+        // ページ送りの取得
+        $objNavi        = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
+        $this->tpl_strnavi = $objNavi->strnavi; // 表示文字列
+        $startno        = $objNavi->start_row;
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        //$objQuery->setLimitOffset($this->dispNumber, $startno);
+        // 取得範囲の指定(開始行番号、行数のセット)
+        $arrProductId  = array_slice($arrProductId, $startno, $this->dispNumber);
+
+        $where = $this->lfMakeWhere('', $arrProductId);
+        $where .= ' AND del_flg = 0';
+        $objQuery->setWhere($where, $arrProductId);
+        $addCols = ['count_of_favorite'];
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        //取得している並び順で並び替え
+        $arrProducts2 = array();
+        foreach ($arrProducts as $item) {
+            $arrProducts2[$item['product_id']] = $item;
+        }
+        $arrProductsList = array();
+        foreach ($arrProductId as $product_id) {
+            $arrProductsList[] = $arrProducts2[$product_id];
+        }
+
+        return $arrProductsList;
+    }
+
+    /**
+     * @param string $tablename
+     */
+    public function lfMakeWhere($tablename, $arrProductId)
+    {
+        // 取得した表示すべきIDだけを指定して情報を取得。
+        $where = '';
+        if (is_array($arrProductId) && !empty($arrProductId)) {
+            $where = $tablename . 'product_id IN (' . implode(',', $arrProductId) . ')';
+        } else {
+            // 一致させない
+            $where = '0<>0';
+        }
+
+        return $where;
+    }
+
+    /**
+     * ループが成立したときの処理
+     *
+     * @param string $chain_id 仮成立チェインネットワークの一意のキー
+     */
+    function loop($chain_id)
+    {
+        // 商品非公開
+        SC_Helper_Chain_Ex::lockProductsByChainId($chain_id);
+
+        // バッチ起動
+        SC_Helper_Chain_Ex::execBatchPostLoopUpdate($chain_id);
+    }
+
+    /**
+     * 通報
+     *
+     * @return void
+     */
+    public function doReport($product_id)
+    {
+        $this->mailReportToShop($product_id);
+        $this->mailThanksForReport();
+
+        SC_Response_Ex::json([
+            'success' => true,
+        ]);
+        SC_Response_Ex::actionExit();
+    }
+
+    /**
+     * 店舗宛通報メール送信
+     *
+     * @return void
+     */
+    public function mailReportToShop($product_id)
+    {
+        $objHelperMail = new SC_Helper_Mail_Ex();
+        $objProduct = new SC_Product_Ex();
+
+        $arrProduct = $objProduct->getDetail($product_id);
+
+        $from = null;
+        if (strlen($arrProduct['customer_id']) >= 1) {
+            $arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($arrProduct['customer_id']);
+            $from = $arrCustomer['email'];
+        }
+
+        $subject = '不適切アイテムの報告';
+        $url = SC_Utils_Ex::sfTrimURL(HTTP_URL) . P_DETAIL_URLPATH . $product_id;
+        $body = <<< __EOS__
+不適切アイテムの報告がありました。
+{$url}
+出品者ID：{$arrProduct['customer_id']}
+__EOS__;
+
+        $objHelperMail->sfSendMail('', $subject, $body, $from);
+    }
+
+    /**
+     * 会員宛サンクスメール送信
+     *
+     * @return void
+     */
+    public function mailThanksForReport()
+    {
+        $objCustomer = new SC_Customer_Ex();
+        $objHelperMail = new SC_Helper_Mail_Ex();
+
+        // 非ログイン時は、何もしない。
+        if (!$objCustomer->isLoginSuccess()) {
+            return;
+        }
+
+        $to = [$objCustomer->getValue('email'), $objCustomer->getValue('name01') . '様'];
+        $subject = '通報を承りました';
+        $body = <<< __EOS__
+いつも Chain をご利用いただき誠にありがとうございます。
+この度は、不適切なアイテムに対しての通報ありがとうございました。
+通報を受けたアイテムの掲載について、対応を検討いたします。
+
+引き続き Chain をよろしくお願いいたします。
+__EOS__;
+
+        $objHelperMail->sfSendMail($to, $subject, $body);
     }
 }

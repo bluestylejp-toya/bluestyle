@@ -1,52 +1,39 @@
-<!--{*
- * This file is part of EC-CUBE
- *
- * Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
- *
- * http://www.ec-cube.co.jp/
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- *}-->
+    <!--{*
+    * This file is part of EC-CUBE
+    *
+    * Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+    *
+    * http://www.ec-cube.co.jp/
+    *
+    * This program is free software; you can redistribute it and/or
+    * modify it under the terms of the GNU General Public License
+    * as published by the Free Software Foundation; either version 2
+    * of the License, or (at your option) any later version.
+    *
+    * This program is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    * GNU General Public License for more details.
+    *
+    * You should have received a copy of the GNU General Public License
+    * along with this program; if not, write to the Free Software
+    * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+    *}-->
 
-<div id="undercolumn">
-    <div id="undercolumn_entry">
-        <h2 class="title"><!--{$tpl_title|h}--></h2>
-        <div id="complete_area">
-            <p class="message">本登録が完了いたしました。<br />
-                それではショッピングをお楽しみください。</p>
-
-            <p>今後ともご愛顧賜りますようよろしくお願い申し上げます。</p>
-
-            <!-- LINE友達追加ボタン -->
-            <div class="btn_area">
-                <a href="https://lin.ee/NGSPD7f"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
-            </div>
-
-            <div class="shop_information">
-                <p class="name"><!--{$arrSiteInfo.company_name|h}--></p>
-                <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}--> <!--{if $arrSiteInfo.business_hour != ""}-->（受付時間/<!--{$arrSiteInfo.business_hour}-->）<!--{/if}--><br />
-                    E-mall：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></p>
-            </div>
-
-            <div class="btn_area">
-                <ul>
-                    <li>
-                        <a href="<!--{$smarty.const.TOP_URL}-->"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_toppage.jpg" alt="トップページへ" /></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<section>
+    <div class="l-header__inner u-mb--0">
+        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
     </div>
-</div>
+    <div class="c-entry-kv">
+        <img src="<!--{$TPL_URLPATH}-->img/entry/zoom-bg.png" width="100%" height="100%"  class="c-entry-kv__bg"/>
+        <img src="<!--{$TPL_URLPATH}-->img/entry/illust__balloon.png" width="164" class="c-entry-kv__object baloon">
+    </div>
+    <h1 class="c-heading--md u-color--gray u-mb--4">おめでとうございます！<br />登録完了しました</h1>
+    <p class="u-mb--2">
+        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary">ホームへ</a>
+    </p>
+    <p>
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-btn--primary--outline">マイページへ</a>
+    </p>
+</section>

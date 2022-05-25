@@ -61,14 +61,30 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
      */
     public function action()
     {
-        switch ($this->getMode()) {
-            case 'confirm':
-                // トークンを設定
-                $this->refusal_transactionid = $this->getRefusalToken();
+        $this->tpl_mainpage = 'mypage/refusal_confirm.tpl';
+        $this->tpl_subtitle = '退会手続き(確認ページ)';
 
-                $this->tpl_mainpage     = 'mypage/refusal_confirm.tpl';
-                $this->tpl_subtitle     = '退会手続き(確認ページ)';
+        // トークンを設定
+        $this->refusal_transactionid = $this->getRefusalToken();
+
+        switch ($this->getMode()) {
+            case 'entry':
                 break;
+
+            case 'confirm':
+                // パラメーター管理クラス,パラメーター情報の初期化
+                $objFormParam = new SC_FormParam_Ex();
+                $this->lfInitParam($objFormParam);
+                $objFormParam->setParam($_POST);
+
+                // エラーメッセージ表示
+                $arrErr = $objFormParam->checkError();
+                if (!SC_Utils_Ex::isBlank($arrErr)) {
+                    $this->arrErr = $arrErr;
+                    break;
+                } else {
+                    $this->refusal_reason = $objFormParam->getValue('refusal_reason');
+                }
 
             case 'complete':
                 // トークン入力チェック
@@ -79,6 +95,8 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
                 }
 
                 $objCustomer = new SC_Customer_Ex();
+                SC_Helper_Customer_Ex::sfEditCustomerData(array('refusal_reason' => $this->refusal_reason), $objCustomer->getValue('customer_id'));
+                // XXXX: 仮会員は物理削除となっていたが論理削除に変更。
                 $this->lfSendRefusalMail($objCustomer->getValue('customer_id'));
                 $this->lfDeleteCustomer($objCustomer->getValue('customer_id'));
                 $objCustomer->EndSession();
@@ -100,7 +118,8 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
      *
      * @return string
      */
-    function getRefusalToken() {
+    function getRefusalToken()
+    {
         if (empty($_SESSION['refusal_transactionid'])) {
             $_SESSION['refusal_transactionid'] = SC_Helper_Session_Ex::createToken();
         }
@@ -110,7 +129,8 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
     /**
      * トランザクショントークンのチェックを行う
      */
-    function isValidRefusalToken() {
+    function isValidRefusalToken()
+    {
         if (empty($_POST['refusal_transactionid'])) {
             $ret = false;
         } else {
@@ -123,7 +143,8 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
     /**
      * トランザクショントークを破棄する
      */
-    function destroyRefusalToken() {
+    function destroyRefusalToken()
+    {
         unset($_SESSION['refusal_transactionid']);
     }
 
@@ -165,10 +186,10 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
         $objMailText->assign('nickname', $arrCustomerData['nickname']);
         $objMailText->assignobj($this);
 
-        $objHelperMail  = new SC_Helper_Mail_Ex();
+        $objHelperMail = new SC_Helper_Mail_Ex();
         $objHelperMail->setPage($this);
 
-        $subject        = $objHelperMail->sfMakeSubject('退会手続きのご完了', $objMailText);
+        $subject = $objHelperMail->sfMakeSubject('退会手続きのご完了', $objMailText);
         $toCustomerMail = $objMailText->fetch('mail_templates/customer_refusal_mail.tpl');
 
         $objMail = new SC_SendMail_Ex();
@@ -183,9 +204,20 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
             $CONF['email04'],       // Errors_to
             $CONF['email01']        // Bcc
         );
-        $objMail->setTo($arrCustomerData['email'], $arrCustomerData['nickname'] .' 様');
+        $objMail->setTo($arrCustomerData['email'], $arrCustomerData['nickname'] . ' 様');
 
         $objMail->sendMail();
+    }
+
+    /*
+    * フォームパラメータの初期化
+    *
+    * @param SC_FormParam_Ex $objFormParam
+    * @return SC_FormParam
+    */
+    public function lfInitParam(&$objFormParam)
+    {
+        $objFormParam->addParam('退会理由', 'refusal_reason', MLTEXT_LEN, '', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'));
     }
 
 }

@@ -1,0 +1,30 @@
+.l-footer-nav {
+    position: fixed;
+    z-index: 500;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $white;
+    width: 100%;
+    border-top: 1px rgba(#000,
+.12) solid;
+
+    &__inner {
+        flex-wrap: wrap;
+        &.--login {
+            justify-content: space-between;
+            .l-footer-nav__item {
+                width: inherit;
+            }
+        }
+        display: flex;
+        padding: $unit $unit+$horizontal-gap;
+        height:$footer-nav-height;
+    }
+
+    &__item {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+}

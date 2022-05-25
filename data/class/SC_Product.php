@@ -78,14 +78,18 @@ class SC_Product
         $table = 'dtb_products AS alldtl';
 
         if (is_array($this->arrOrderData) and $objQuery->order == '') {
-            $o_col = $this->arrOrderData['col'];
-            $o_table = $this->arrOrderData['table'];
-            $o_order = $this->arrOrderData['order'];
-            $objQuery->setOrder("T2.$o_col $o_order");
-            $sub_sql = $objQuery->getSql($o_col, "$o_table AS T2", 'T2.product_id = alldtl.product_id AND T2.del_flg = 0');
-            $sub_sql = $objQuery->dbFactory->addLimitOffset($sub_sql, 1);
-
-            $objQuery->setOrder("($sub_sql) $o_order, product_id");
+            // ほしい順にソート
+            if ($this->arrOrderData['col'] == 'count_of_favorite'){
+                $objQuery->setOrder("(SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE product_id = alldtl.product_id AND dtb_customer.del_flg = 0) DESC, update_date DESC, product_id DESC");
+            } else {
+                $o_col = $this->arrOrderData['col'];
+                $o_table = $this->arrOrderData['table'];
+                $o_order = $this->arrOrderData['order'];
+                $objQuery->setOrder("T2.$o_col $o_order");
+                $sub_sql = $objQuery->getSql($o_col, "$o_table AS T2", 'T2.product_id = alldtl.product_id AND T2.del_flg = 0');
+                $sub_sql = $objQuery->dbFactory->addLimitOffset($sub_sql, 1);
+                $objQuery->setOrder("($sub_sql) $o_order, product_id");
+            }
         }
         $arrReturn = $objQuery->getCol('alldtl.product_id', $table, $objQuery->where ? '' : 'alldtl.del_flg = 0', $arrVal);
 
@@ -148,6 +152,8 @@ class SC_Product
             ,del_flg
             ,update_date
             ,pref
+            ,size_id
+            ,customer_id
 __EOS__;
 
         if (!empty($addCols)) {
@@ -763,6 +769,59 @@ __EOS__;
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        return $objQuery->count('dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
+        return $objQuery->get('count(distinct customer_id)', 'dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id)', 'product_id = ? AND dtb_customer.del_flg = 0', [$product_id]);
+    }
+
+    /**
+     * リクエストされている商品情報
+     * @param int $customer_id
+     * @return array|null
+     */
+    public static function getRequestedFavoriteByCustomerId($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $sql = 'select * from dtb_customer_favorite_products where product_id IN (
+            select product_id from dtb_products where customer_id = ? and del_flg = 0
+        )';
+
+        return $objQuery->getAll($sql, [$customer_id]);
+    }
+
+    /**
+     * リクエストしている商品情報
+     * @param int $customer_id
+     * @return array|null
+     */
+    public static function getRequestingFavoriteByCustomerId($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $sql = 'select * from dtb_customer_favorite_products where customer_id = ?';
+
+        return $objQuery->getAll($sql, [$customer_id]);
+    }
+
+    /**
+     * 出品中の商品情報一覧を取得する
+     *
+     * @param int $customer_id 会員ID
+     * @param bool $dispPrivateFlg 非公開商品を表示するかどうか
+     * @return array|null 出品中の商品情報一覧
+     */
+    public static function getListingProducts($customer_id, $dispPrivateFlg = false)
+    {
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $where = 'dtb_products.customer_id = ? AND dtb_products.del_flg = 0';
+        if (!$dispPrivateFlg){
+            $where .= ' AND dtb_products.status = 1';
+        }
+        if (NOSTOCK_HIDDEN) {
+            $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        }
+
+        $objQuery->setOrder('dtb_products.product_id DESC');
+
+        return $objQuery->select('*', 'dtb_products', $where, [$customer_id]);
     }
 }

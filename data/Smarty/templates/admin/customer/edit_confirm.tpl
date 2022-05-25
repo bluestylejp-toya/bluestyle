@@ -91,7 +91,7 @@ function func_return(){
             </tr>
             <tr>
                 <th>住所</th>
-                <td><!--{$arrPref[$arrForm.pref]|h}--><!--{$arrForm.addr01|h}--><!--{$arrForm.addr02|h}--></td>
+                <td><!--{$arrPref[$arrForm.pref]|h}--><!--{$arrForm.addr01|h}--><!--{$arrForm.addr02|h}--><!--{$arrForm.addr03|h}--></td>
             </tr>
             <tr>
                 <th>メールアドレス</th>
@@ -108,6 +108,10 @@ function func_return(){
             <tr>
                 <th>パスワード</th>
                 <td><!--{$smarty.const.DEFAULT_PASSWORD}--></td>
+            </tr>
+            <tr>
+                <th>お支払い方法</th>
+                <td><!--{$arrPayment[$arrForm.default_payment_id]|h}--></td>
             </tr>
             <tr>
                 <th>SHOP用メモ</th>

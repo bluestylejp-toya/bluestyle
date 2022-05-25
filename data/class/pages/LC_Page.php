@@ -85,6 +85,8 @@ class LC_Page
     public $arrForm;
     public $arrErr;
 
+	public $tpl_login;
+
     /**
      * Page を初期化する.
      *
@@ -120,6 +122,10 @@ class LC_Page
 
         // ローカルフックポイントを実行.
         $this->doLocalHookpointBefore($objPlugin);
+
+        // 商品詳細を取得
+        $objProduct = new SC_Product_Ex();
+        $this->arrProduct = $objProduct->getDetail($product_id);
     }
 
     /**
@@ -155,10 +161,13 @@ class LC_Page
         if (strlen($this->tpl_page_class_name) === 0) {
             $this->tpl_page_class_name = preg_replace('/_Ex$/', '', $arrBacktrace[1]['class']);
         }
+		$objCustomer = new SC_Customer_Ex();
+        $this->tpl_login = $objCustomer->isLoginSuccess() === true;
 
         $this->objDisplay->prepare($this);
         $this->objDisplay->addHeader('Vary', 'User-Agent');
         $this->objDisplay->response->write();
+
     }
 
     /**

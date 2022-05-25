@@ -58,7 +58,6 @@ class LC_Page_Products_List extends LC_Page_Ex
 
     /** @var bool ログイン状態かどうか */
     public $tpl_login;
-
     /**
      * Page を初期化する.
      *
@@ -73,6 +72,8 @@ class LC_Page_Products_List extends LC_Page_Ex
         $this->arrDELIVERYDATE      = $masterData->getMasterData('mtb_delivery_date');
         $this->arrPRODUCTLISTMAX    = $masterData->getMasterData('mtb_product_list_max');
         $this->arrPref = $masterData->getMasterData('mtb_pref');
+
+        $this->httpCacheControl('nocache');
     }
 
     /**
@@ -103,7 +104,10 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         // ログイン判定
         $this->tpl_login = $this->objCustomer->isLoginSuccess() === true;
-
+        $this->customer_id = null;
+        if ($this->tpl_login){
+            $this->customer_id = $this->objCustomer->getValue('customer_id');
+        }
         $objProduct = new SC_Product_Ex();
         // パラメーター管理クラス
         $objFormParam = new SC_FormParam_Ex();
@@ -127,7 +131,9 @@ class LC_Page_Products_List extends LC_Page_Ex
         $this->arrSearchData = array(
             'category_id'   => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
             'maker_id'      => intval($this->arrForm['maker_id']),
-            'name'          => $this->arrForm['name']
+            'name'          => $this->arrForm['name'],
+            'pref_id'       => $this->normalizePrefId($_REQUEST['pref_id']),
+            'product_status'    => $this->normalizeProductStatus($_REQUEST['product_status']),
         );
         $this->orderby = $this->arrForm['orderby'];
 
@@ -164,6 +170,16 @@ class LC_Page_Products_List extends LC_Page_Ex
         }
 
         $this->tpl_rnd = SC_Utils_Ex::sfGetRandomString(3);
+
+
+        // 交換選択待ち商品が存在するか
+        $this->hasUnselectdProductFlg = false;
+        if ($this->tpl_login) {
+            $objHelperCustomer = new SC_Helper_Customer_Ex();
+            if ( count($objHelperCustomer->getCustomerUnselectedProductId($this->objCustomer->getValue('customer_id'))) > 0){
+                $this->hasUnselectdProductFlg = true;
+            }
+        }
     }
 
     /**
@@ -233,6 +249,11 @@ class LC_Page_Products_List extends LC_Page_Ex
                 $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
                 break;
 
+            // ほしい順
+            case 'count_of_favorite':
+                $objProduct->setProductsOrder('count_of_favorite', 'dtb_products', 'DESC');
+                break;
+
             default:
                 if (strlen($searchCondition['where_category']) >= 1) {
                     $dtb_product_categories = '(SELECT * FROM dtb_product_categories WHERE '.$searchCondition['where_category'].')';
@@ -257,11 +278,26 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
+
         $addCols = ['count_of_favorite'];
         if ($this->tpl_login) {
             $customer_id = $this->objCustomer->getValue('customer_id');
-            $addCols[] = "(CASE WHEN EXISTS (SELECT * FROM dtb_customer_favorite_products WHERE product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . ") THEN 1 ELSE 0 END) AS registered_favorite";
+            $addCols[] = "
+            (
+                CASE WHEN EXISTS
+                (
+                    SELECT * FROM dtb_customer_favorite_products
+                        JOIN dtb_products ON dtb_customer_favorite_products.target_id = dtb_products.product_id AND dtb_products.status = 1
+                        JOIN dtb_products_class ON dtb_customer_favorite_products.target_id = dtb_products_class.product_id
+                    WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . "
+                        AND dtb_products.status = 1 AND dtb_products.del_flg = 0
+                        AND dtb_products_class.classcategory_id1 = 0 AND dtb_products_class.classcategory_id2 = 0 AND dtb_products_class.del_flg = 0
+                        AND (dtb_products_class.stock > 0 OR dtb_products_class.stock_unlimited = 1)
+                ) THEN 1 ELSE 0 END
+            ) AS registered_favorite";
         }
+        $addCols[] = 'sub_title1';
+        $addCols[] = 'nickname';
 
         $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId, $addCols);
 
@@ -337,6 +373,9 @@ class LC_Page_Products_List extends LC_Page_Ex
     {
         $objQuery   = SC_Query_Ex::getSingletonInstance();
         $arrSearch  = array('category' => '指定なし', 'maker' => '指定なし', 'name' => '指定なし');
+        $arrSearch['pref'] = '指定なし';
+        $arrSearch['product_status'] = '指定なし';
+
         // カテゴリ検索条件
         if ($arrSearchData['category_id'] > 0) {
             $arrSearch['category']  = $objQuery->get('category_name', 'dtb_category', 'category_id = ?', array($arrSearchData['category_id']));
@@ -352,6 +391,24 @@ class LC_Page_Products_List extends LC_Page_Ex
         // 商品名検索条件
         if (strlen($arrSearchData['name']) > 0) {
             $arrSearch['name']      = $arrSearchData['name'];
+        }
+
+        // 出品者の都道府県
+        if (!empty($arrSearchData['pref_id'])) {
+            $arrSelectedName = [];
+            foreach ($arrSearchData['pref_id'] as $id) {
+                $arrSelectedName[] = $this->arrPref[$id];
+            }
+            $arrSearch['pref'] = implode('、', $arrSelectedName);
+        }
+
+        // 商品の状態
+        if (!empty($arrSearchData['product_status'])) {
+            $arrSelectedName = [];
+            foreach ($arrSearchData['product_status'] as $id) {
+                $arrSelectedName[] = $this->arrSTATUS[$id];
+            }
+            $arrSearch['product_status'] = implode('、', $arrSelectedName);
         }
 
         return $arrSearch;
@@ -409,9 +466,30 @@ class LC_Page_Products_List extends LC_Page_Ex
         // 分割したキーワードを一つずつwhere文に追加
         foreach ($names as $val) {
             if (strlen($val) > 0) {
-                $searchCondition['where']    .= ' AND ( alldtl.name ILIKE ? OR alldtl.comment3 ILIKE ?) ';
+                $searchCondition['where']    .= ' AND ( alldtl.name ILIKE ? OR alldtl.comment3 ILIKE ?';
                 $searchCondition['arrval'][]  = "%$val%";
                 $searchCondition['arrval'][]  = "%$val%";
+                // カテゴリー
+                $searchCondition['where'] .= <<< __EOS__
+ OR EXISTS(
+    SELECT *
+    FROM dtb_product_categories
+    WHERE product_id = alldtl.product_id
+        AND EXISTS(
+            SELECT *
+            FROM dtb_category
+            WHERE category_id = dtb_product_categories.category_id
+                AND category_name LIKE ?
+        )
+)
+__EOS__;
+                $searchCondition['arrval'][] = "%$val%";
+                // キャプション
+                for ($i = 1; $i <= PRODUCTSUB_MAX; $i++) {
+                    $searchCondition['where'] .= " OR alldtl.sub_title{$i} ILIKE ?";
+                    $searchCondition['arrval'][] = "%$val%";
+                }
+                $searchCondition['where'] .= ')';
             }
         }
 
@@ -419,6 +497,18 @@ class LC_Page_Products_List extends LC_Page_Ex
         if ($arrSearchData['maker_id']) {
             $searchCondition['where']   .= ' AND alldtl.maker_id = ? ';
             $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+        }
+
+        // 出品者の都道府県
+        if (!empty($arrSearchData['pref_id'])) {
+            $searchCondition['where'] .= ' AND EXISTS(SELECT * FROM dtb_customer WHERE customer_id = alldtl.customer_id AND pref IN (' . SC_Utils_Ex::repeatStrWithSeparator('?', count($arrSearchData['pref_id'])) . '))';
+            $searchCondition['arrval'] = array_merge($searchCondition['arrval'], $arrSearchData['pref_id']);
+        }
+
+        // 商品の状態
+        if (!empty($arrSearchData['product_status'])) {
+            $searchCondition['where'] .= ' AND EXISTS(SELECT * FROM dtb_product_status WHERE product_id = alldtl.product_id AND product_status_id IN (' . SC_Utils_Ex::repeatStrWithSeparator('?', count($arrSearchData['product_status'])) . '))';
+            $searchCondition['arrval'] = array_merge($searchCondition['arrval'], $arrSearchData['product_status']);
         }
 
         // 在庫無し商品の非表示
@@ -553,6 +643,7 @@ class LC_Page_Products_List extends LC_Page_Ex
         $this->tpl_product_class_id = $objProduct->product_class_id;
         $this->tpl_product_type     = $objProduct->product_type;
 
+
         // 商品ステータスを取得
         $this->productStatus = $this->arrProducts['productStatus'];
         unset($this->arrProducts['productStatus']);
@@ -598,5 +689,45 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         $this->tpl_javascript   .= 'function fnOnLoad() {' . $js_fnOnLoad . '}';
         $this->tpl_onload       .= 'fnOnLoad(); ';
+    }
+
+    /**
+     * 選択されている都道府県IDを正規化する
+     *
+     * @param mixed $input
+     * @return array
+     */
+    public function normalizePrefId($input)
+    {
+        if (is_array($input)) {
+            return array_intersect($input, array_keys($this->arrPref));
+        }
+        elseif (is_scalar($input)) {
+            if (in_array($input, $this->arrPref)) {
+                return [$input];
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * 選択されている商品ステータスIDを正規化する
+     *
+     * @param mixed $input
+     * @return array
+     */
+    public function normalizeProductStatus($input)
+    {
+        if (is_array($input)) {
+            return array_intersect($input, array_keys($this->arrSTATUS));
+        }
+        elseif (is_scalar($input)) {
+            if (in_array($input, $this->arrSTATUS)) {
+                return [$input];
+            }
+        }
+
+        return [];
     }
 }

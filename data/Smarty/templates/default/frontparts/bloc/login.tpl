@@ -48,13 +48,16 @@
                                 <input type="text" name="login_email" class="box140" value="<!--{$tpl_login_email|h}-->" style="ime-mode: disabled;" />
                             </dd>
                             <dd class="mini">
-                                <input type="checkbox" name="login_memory" id="login_memory" value="1" <!--{$tpl_login_memory|sfGetChecked:1}--> />
-                                <label for="login_memory"><span>コンピューターに記憶する</span></label>
+                                <label for="login_memory"><input type="checkbox" name="login_memory" id="login_memory" value="1" <!--{$tpl_login_memory|sfGetChecked:1}--> />
+                                <span>コンピューターに記憶する</span></label>
                             </dd>
                         </dl>
                         <dl class="formlist">
                             <dt class="password">パスワード</dt>
                             <dd><input type="password" name="login_pass" class="box140" /></dd>
+                            <dd class="mini">
+                                <a href="<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->" onclick="eccube.openWindow('<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->','forget','600','400',{scrollbars:'no',resizable:'no'}); return false;" target="_blank">パスワードを忘れた方はこちら</a>
+                            </dd>
                         </dl>
                         <p class="btn">
                             <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_bloc_login.jpg" alt="ログイン" />

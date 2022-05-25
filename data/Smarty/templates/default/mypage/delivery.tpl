@@ -66,7 +66,7 @@
                                 <!--{$arrCountry[$OtherCountry]|h}--><br/>
                                 <!--{/if}-->
                                 〒<!--{$arrOtherDeliv[cnt].zip01}-->-<!--{$arrOtherDeliv[cnt].zip02}--><br />
-                                <!--{$arrPref[$OtherPref]|h}--><!--{$arrOtherDeliv[cnt].addr01|h}--><!--{$arrOtherDeliv[cnt].addr02|h}--><br />
+                                <!--{$arrPref[$OtherPref]|h}--><!--{$arrOtherDeliv[cnt].addr01|h}--><!--{$arrOtherDeliv[cnt].addr02|h}--><!--{$arrOtherDeliv[cnt].addr03|h}--><br />
                                 <!--{$arrOtherDeliv[cnt].name01|h}-->&nbsp;<!--{$arrOtherDeliv[cnt].name02|h}-->
                             </td>
                             <td class="alignC">

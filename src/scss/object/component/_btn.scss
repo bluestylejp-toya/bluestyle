@@ -1,0 +1,334 @@
+%c-btn {
+    height: $button-height;
+    border-radius: $unit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include font('button');
+    border: 1px solid transparent;
+    text-decoration: none;
+    width: 100%;
+    transition: $btn-animation;
+
+    &:disabled,
+    &[disabled=disabled] {
+        opacity: 0.5;
+    }
+    &.--hidden {
+        display: none;
+    }
+}
+
+%c-btn--small {
+    height: $button-height*.8;
+    border-radius: $unit;
+    display: flex;
+    padding: 0 $unit*2;
+    justify-content: center;
+    align-items: center;
+    @include font('button');
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: $btn-animation;
+
+    &:disabled,
+    &[disabled=disabled] {
+        opacity: 0.5;
+    }
+}
+
+.c-btn {
+    &:hover {
+        transition: $btn-animation;
+        text-decoration: none;
+    }
+
+    &--add {
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        width: 44px;
+        margin: 24px auto;
+    }
+
+    &--gradient {
+        @extend %c-btn;
+
+        background: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
+        color: $white;
+
+        &:hover {
+            opacity: .75;
+        }
+
+    }
+    &--default {
+        @extend %c-btn;
+        border-color: $border-color;
+        background: $white;
+        color: $black;
+
+        &:hover {
+            background:  map-get($gray-set, 3);
+        }
+
+        &--sm {
+            @extend %c-btn;
+            border-color: $border-color;
+            background: $white;
+            color: $black;
+            padding: 0 $unit*3;
+            width: inherit;
+            display: inline-flex;
+        }
+    }
+    &--danger {
+        @extend %c-btn;
+        border-color: $red;
+        background: $red;
+        color: $white;
+
+        &:hover {
+            background: $white;
+            color: $red;
+        }
+    }
+    &--tertiary {
+        $tertiary: map-get($brand-colors, 'tertiary');
+        background: map-get($tertiary, 'default');
+        @extend %c-btn;
+        color: $black;
+
+
+        &:hover {
+            background: map-get($tertiary, 'dark');
+        }
+    }
+
+    &--primary {
+        @extend %c-btn;
+        $primary: map-get($brand-colors, 'primary');
+        background:  map-get($primary, 'default');
+        border-color:  map-get($primary, 'default');
+        color: $white;
+
+        &:hover {
+            border-color:  map-get($primary, 'dark');
+            background:  map-get($primary, 'dark');
+        }
+
+        &--outline {
+            @extend %c-btn;
+            background: $white;
+            color:  map-get( $primary, 'default');
+            border-color: map-get( $primary, 'default');
+
+            &:hover {
+                background:  map-get($primary, 'dark');
+                border-color:  map-get($primary, 'dark');
+                color: $white;
+            }
+        }
+    }
+
+    &--report {
+        @extend %c-btn--small;
+        $tertiary: map-get($brand-colors, 'tertiary');
+        background: map-get($tertiary, 'default');
+        color: $black;
+
+        &:hover {
+            background: map-get($tertiary, 'dark');
+        }
+    }
+
+    &--line {
+        @extend %c-btn;
+        background: $line-color;
+        color: $white;
+        border-color: $line-color;
+        font-size: 1.6rem;
+
+        &::before {
+            margin-right: $unit;
+            content: '';
+            width: 25px;
+            height: 23px;
+            display: inline-block;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22.84"><path class="cls-1" d="M12,0C5.41,0,0,4.36,0,9.72c0,4.81,4.26,8.84,10,9.6.38.09.92.25,1.05.59a2.46,2.46,0,0,1,0,1.08L11,22c0,.3-.24,1.19,1,.64a39,39,0,0,0,9.42-6.95,8.77,8.77,0,0,0,2.58-6h0C24,4.36,18.62,0,12,0ZM7.75,12.58a.23.23,0,0,1-.07.17.23.23,0,0,1-.16.06H4.16A.23.23,0,0,1,4,12.75a.25.25,0,0,1-.06-.16V7.37A.27.27,0,0,1,4,7.2a.28.28,0,0,1,.17-.07H5a.24.24,0,0,1,.16.07.28.28,0,0,1,.07.17v4.14H7.52a.21.21,0,0,1,.16.08.2.2,0,0,1,.07.16Zm2,0a.24.24,0,0,1-.07.16.22.22,0,0,1-.17.07H8.71a.23.23,0,0,1-.17-.07.23.23,0,0,1-.06-.16V7.38a.27.27,0,0,1,.06-.17.28.28,0,0,1,.17-.07h.84a.24.24,0,0,1,.17.07.28.28,0,0,1,.07.17Zm5.78.06a.24.24,0,0,1-.06.17.28.28,0,0,1-.17.07h-1l-.06-.06-2.4-3.23v3.11a.19.19,0,0,1,0,.08.22.22,0,0,1-.05.08l-.07,0-.09,0h-.84a.28.28,0,0,1-.17-.07.24.24,0,0,1-.07-.16V7.5a.24.24,0,0,1,.07-.17.28.28,0,0,1,.17-.07h1l2.39,3.22V7.38a.28.28,0,0,1,.07-.17.26.26,0,0,1,.17-.07h.84v.07a.22.22,0,0,1,.23.24ZM20.21,8.2a.24.24,0,0,1-.23.23H17.69V9.3H20l.09,0,.08,0a.22.22,0,0,1,.05.08.24.24,0,0,1,0,.09v.83a.24.24,0,0,1-.07.17.21.21,0,0,1-.17.07H17.69v.89H20a.25.25,0,0,1,.17.06.28.28,0,0,1,.07.17v.84a.24.24,0,0,1-.07.16.22.22,0,0,1-.17.07H16.61a.2.2,0,0,1-.15-.06.28.28,0,0,1-.07-.17V7.35a.26.26,0,0,1,.07-.16.24.24,0,0,1,.16-.07H20a.28.28,0,0,1,.17.07.27.27,0,0,1,.06.17Z" fill="%23ffffff"/></svg>') center / 24px auto  no-repeat;
+;
+        }
+
+        &:hover {
+            background: $white;
+            color: $line-color;
+            &::before {
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22.84"><path class="cls-1" d="M12,0C5.41,0,0,4.36,0,9.72c0,4.81,4.26,8.84,10,9.6.38.09.92.25,1.05.59a2.46,2.46,0,0,1,0,1.08L11,22c0,.3-.24,1.19,1,.64a39,39,0,0,0,9.42-6.95,8.77,8.77,0,0,0,2.58-6h0C24,4.36,18.62,0,12,0ZM7.75,12.58a.23.23,0,0,1-.07.17.23.23,0,0,1-.16.06H4.16A.23.23,0,0,1,4,12.75a.25.25,0,0,1-.06-.16V7.37A.27.27,0,0,1,4,7.2a.28.28,0,0,1,.17-.07H5a.24.24,0,0,1,.16.07.28.28,0,0,1,.07.17v4.14H7.52a.21.21,0,0,1,.16.08.2.2,0,0,1,.07.16Zm2,0a.24.24,0,0,1-.07.16.22.22,0,0,1-.17.07H8.71a.23.23,0,0,1-.17-.07.23.23,0,0,1-.06-.16V7.38a.27.27,0,0,1,.06-.17.28.28,0,0,1,.17-.07h.84a.24.24,0,0,1,.17.07.28.28,0,0,1,.07.17Zm5.78.06a.24.24,0,0,1-.06.17.28.28,0,0,1-.17.07h-1l-.06-.06-2.4-3.23v3.11a.19.19,0,0,1,0,.08.22.22,0,0,1-.05.08l-.07,0-.09,0h-.84a.28.28,0,0,1-.17-.07.24.24,0,0,1-.07-.16V7.5a.24.24,0,0,1,.07-.17.28.28,0,0,1,.17-.07h1l2.39,3.22V7.38a.28.28,0,0,1,.07-.17.26.26,0,0,1,.17-.07h.84v.07a.22.22,0,0,1,.23.24ZM20.21,8.2a.24.24,0,0,1-.23.23H17.69V9.3H20l.09,0,.08,0a.22.22,0,0,1,.05.08.24.24,0,0,1,0,.09v.83a.24.24,0,0,1-.07.17.21.21,0,0,1-.17.07H17.69v.89H20a.25.25,0,0,1,.17.06.28.28,0,0,1,.07.17v.84a.24.24,0,0,1-.07.16.22.22,0,0,1-.17.07H16.61a.2.2,0,0,1-.15-.06.28.28,0,0,1-.07-.17V7.35a.26.26,0,0,1,.07-.16.24.24,0,0,1,.16-.07H20a.28.28,0,0,1,.17.07.27.27,0,0,1,.06.17Z" fill="%233AAE36"/></svg>');
+            }
+        }
+    }
+
+    &--header-nav {
+        position: absolute;
+        left: $unit*2;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.54;
+        display: block;
+        width: $unit*3;
+        height: $unit*3;
+        background: url('data:image/svg+xml;utf8,<svg width="13" height="20" viewBox="0 0 13 20" xmlns="http://www.w3.org/2000/svg"><path d="M12.51 1.8701L10.73 0.100098L0.839966 10.0001L10.74 19.9001L12.51 18.1301L4.37997 10.0001L12.51 1.8701Z" fill="%239DA4B0"/></svg>') center / 10px auto  no-repeat;
+    }
+
+    &--request {
+        padding-top: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        color: $blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        justify-content: center;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 10px;
+        font-weight: 700;
+        position: relative;
+        top: calc(100% - 40px);
+        background: $white;
+        z-index: 1;
+        transition: box-shadow .3s;
+
+        &:disabled {
+            opacity: 1;
+            box-shadow: none;
+        }
+
+        &::before {
+            border: 2px solid $blue;
+            transition: .1s .1s;
+            border-radius: 50%;
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            display: block;
+        }
+
+        &::after {
+            transition: .4s;
+            border-radius: 50%;
+            opacity: 0;
+            content: '';
+            background: linear-gradient(89.55deg, #33CCFF 0%, #67CC9D 45%, #8FCC51 83%, #9FCC33 100%);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            display: block;
+        }
+
+
+        svg {
+            width: 70px;
+            top: calc(50% - 5px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+
+            .heart{
+                stroke: $blue;
+                fill: $white;
+                stroke-width: 16;
+                stroke-linejoin: round;
+                transform-origin: 250px 250px;
+            }
+
+            .particleLayer {
+                opacity: 0;
+            }
+        }
+
+        &.--active {
+            color: $white;
+            animation: press .3s forwards;
+
+
+            .heart {
+                animation: heartAnime .5s;
+            }
+            .particleLayer {
+                animation: particleLayerAnime .8s;
+
+                @for $index from 1 through 14 {
+                    circle:nth-child(#{$index}) {
+                        animation: particleAnimate#{$index} .8s;
+                    }
+                }
+            }
+        }
+    }
+
+    &--text {
+        color: $black;
+        text-decoration: none;
+    }
+}
+
+@keyframes press {
+    50% {
+        transform: scale(.9) translateY(-2px);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+.favorite_area.registered_favorite {
+    .p-item-detail__request-btn {
+        color: $white;
+
+        &::after {
+            opacity: 1;
+        }
+
+        .heart {
+            stroke: none;
+        }
+    }
+}
+
+.c-btn--mypage {
+    &__wrapper {
+        padding: $unit $unit $unit*2;
+    }
+    &--unselected {
+        background: $green;
+        color: $white;
+        height: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+    }
+    &--unshipped {
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        background: #FFAF33;
+        color: $white;
+        height: 64px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+    }
+}

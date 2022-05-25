@@ -1,0 +1,85 @@
+.c-pagination {
+    display: flex;
+    justify-content: space-between;
+    border-radius: $unit;
+    box-shadow: 2px 2px 4px rgba(#000,.15);
+    margin-top: $unit*4;
+
+    & > *{
+        font-size:1.6rem;
+        font-weight:500;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:56px;
+        padding:8px 16px;
+    }
+    span {
+        opacity: 0.5;
+    }
+
+    a {
+        &:hover {
+            background: #C0DB7E;
+        }
+    }
+    &__newer {
+        &::after {
+            width: 12px;
+            transform: rotate(-45deg);
+            height: 12px;
+            content: '';
+            border-left: 3px solid rgba(#000,.54);
+            border-top: 3px solid rgba(#000,.54);
+        }
+    }
+    &__first {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        &::before {
+            width: 3px;
+            height: 16px;
+            content: '';
+            background: rgba(#000,.54);
+            margin-right: 5px;
+        }
+        &::after {
+            width: 12px;
+            transform: rotate(-45deg);
+            height: 12px;
+            content: '';
+            border-left: 3px solid rgba(#000,.54);
+            border-top: 3px solid rgba(#000,.54);
+        }
+    }
+    &__last {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        &::after {
+            width: 3px;
+            height: 16px;
+            content: '';
+            background: rgba(#000,.54);
+            margin-left: 5px;
+        }
+        &::before {
+            width: 12px;
+            transform: rotate(45deg);
+            height: 12px;
+            content: '';
+            border-right: 3px solid rgba(#000,.54);
+            border-top: 3px solid rgba(#000,.54);
+        }
+    }
+    &__older {
+
+        &::after {
+            width: 12px;
+            transform: rotate(45deg);
+            height: 12px;
+            content: '';
+            border-right: 3px solid rgba(#000,.54);
+            border-top: 3px solid rgba(#000,.54);
+        }
+    }
+}

@@ -116,6 +116,7 @@ class SC_Helper_Mail
         $arrTplVar->arrInfo = $arrInfo;
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objPurchase = new SC_Helper_Purchase_Ex();
 
         if ($subject == '' && $header == '' && $footer == '') {
             // メールテンプレート情報の取得
@@ -140,7 +141,10 @@ class SC_Helper_Mail
 
         $where = 'order_id = ?';
         $objQuery->setOrder('order_detail_id');
-        $arrTplVar->arrOrderDetail = $objQuery->select('*', 'dtb_order_detail', $where, array($order_id));
+        $arrTplVar->arrOrderDetail = $objPurchase->getOrderDetail($order_id);
+
+        // テールアイテムの商品ID
+        $arrTplVar->tpl_target_id = $this->getTargetId($arrTplVar->arrOrderDetail);
 
         // 配送情報の取得
         $arrTplVar->arrShipping = $this->sfGetShippingData($order_id);
@@ -258,15 +262,21 @@ class SC_Helper_Mail
     }
 
     // 通常のメール送信
-    public function sfSendMail($to, $tmp_subject, $body)
+    public function sfSendMail($to, $tmp_subject, $body, $from = null)
     {
         $arrInfo = SC_Helper_DB_Ex::sfGetBasisData();
         // メール送信処理
         $objSendMail = new SC_SendMail_Ex();
         $bcc = $arrInfo['email01'];
-        $from = $arrInfo['email03'];
+        if (strlen($from) == 0) {
+            $from = $arrInfo['email03'];
+        }
         $error = $arrInfo['email04'];
         $tosubject = $this->sfMakeSubject($tmp_subject);
+        // $to が空文字の場合、店舗宛とする。
+        if (!is_array($to) && strlen($to) == 0) {
+            $to = $arrInfo['email01'];
+        }
 
         $objSendMail->setItem($to, $tosubject, $body, $from, $arrInfo['shop_name'], $from, $error, $error, $bcc);
         $objSendMail->sendMail();
@@ -557,5 +567,48 @@ class SC_Helper_Mail
         }
 
         return;
+    }
+
+    /**
+     * 受注メール送信履歴の有無
+     *
+     * @param  integer  $order_id 注文番号
+     * @return bool     有無
+     */
+    public static function existsOrderMailHistory($order_id, $template_id = null)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $where = 'order_id = ?';
+        $arrWhereValue = [$order_id];
+        if (strlen($template_id) >= 1) {
+            $where .= ' AND template_id = ?';
+            $arrWhereValue[] = $template_id;
+        }
+
+        $exists = $objQuery->exists('dtb_mail_history', $where, $arrWhereValue);
+
+        return $exists;
+    }
+
+    function getTargetId($arrOrderDetailList)
+    {
+        if (!is_array($arrOrderDetailList) || count($arrOrderDetailList) != 1) {
+            return;
+        }
+        $arrOrderDetail = reset($arrOrderDetailList);
+        $source_id = $arrOrderDetail['product_id'];
+        $chain_id = $arrOrderDetail['chain_id'];
+
+        $objChain = SC_Helper_Api_Ex::getChain($chain_id);
+        if (!is_array($objChain->chain_list) || count($objChain->chain_list) != 1) {
+            return;
+        }
+        $arrChain = reset($objChain->chain_list);
+        foreach ($arrChain as $arrEdge) {
+            if ($arrEdge->source_id == $source_id) {
+                return $arrEdge->target_id;
+            }
+        }
     }
 }

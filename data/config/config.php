@@ -20,3 +20,4 @@ define('SMTP_HOST', '');
 define('SMTP_PORT', '');
 define('SMTP_USER', '');
 define('SMTP_PASSWORD', '');
+define('API_URL', 'http://daemon_api:8081/');

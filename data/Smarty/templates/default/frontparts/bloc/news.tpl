@@ -21,28 +21,31 @@
  *}-->
 
 <!--{strip}-->
-    <div class="block_outer">
+    <section>
         <div id="news_area">
-            <h2><img src="<!--{$TPL_URLPATH}-->img/title/tit_bloc_news.png" alt="新着情報" /><span class="rss"><a href="<!--{$smarty.const.ROOT_URLPATH}-->rss/<!--{$smarty.const.DIR_INDEX_PATH}-->" target="_blank"><img src="<!--{$TPL_URLPATH}-->img/button/btn_rss.jpg" alt="RSS" /></a></span></h2>
-            <div class="block_body">
-                <div class="news_contents">
-                <!--{section name=data loop=$arrNews}-->
-                <!--{assign var="date_array" value="-"|explode:$arrNews[data].cast_news_date}-->
-                <dl class="newslist">
-                    <dt><!--{$date_array[0]}-->年<!--{$date_array[1]}-->月<!--{$date_array[2]}-->日</dt>
-                    <dt>
-                        <a
-                            <!--{if $arrNews[data].news_url}--> href="<!--{$arrNews[data].news_url}-->" <!--{if $arrNews[data].link_method eq "2"}--> target="_blank"
-                                <!--{/if}-->
-                            <!--{/if}-->
-                        >
-                            <!--{$arrNews[data].news_title|h|nl2br}--></a>
-                    </dt>
-                    <dd class="mini"><!--{$arrNews[data].news_comment|h|nl2br}--></dd>
-                </dl>
-                <!--{/section}-->
-                </div>
-            </div>
-        </div>
-    </div>
+            <header class="l-header__inner">
+            <a href="<!--{$smarty.const.TOP_URL}-->other/" aria-label="戻る" class="c-btn--header-nav"></a>
+            <h1 class="c-header-title">みなさんにお知らせ</h1>
+        </header>
+        <ul class="c-list--news">
+            <!--{section name=data loop=$arrNews}-->
+            <!--{assign var="date_array" value="-"|explode:$arrNews[data].cast_news_date}-->
+                <li>
+
+                    <time class="c-list--news__date"><!--{$date_array[0]}-->年<!--{$date_array[1]}-->月<!--{$date_array[2]}-->日</time>
+                    <h3 class="c-list--news__title">
+                        <!--{if $arrNews[data].news_url}--><a href="<!--{$arrNews[data].news_url}-->" <!--{if $arrNews[data].link_method eq "2"}--> target="_blank"<!--{/if}-->><!--{/if}-->
+                            <!--{$arrNews[data].news_title|h|nl2br}--><!--{if $arrNews[data].news_url}--></a><!--{/if}-->
+                    </h3>
+                    <p class="c-list--news__body"><!--{$arrNews[data].news_comment|h|nl2br}--></p>
+                </li>
+            <!--{/section}-->
+        </ul>
+    </section>
 <!--{/strip}-->
+<script>
+$('.c-list--news li').on('click', function(){
+    $(this).find('p').slideToggle(200);
+    $(this).toggleClass('--open');
+})
+</script>

@@ -118,6 +118,39 @@ class SC_DB_DBFactory_MYSQL extends SC_DB_DBFactory
     }
 
     /**
+     * ほしいの数を算出する SQL を返す.
+     *
+     * @return string ほしい数を算出する SQL
+     */
+    public function getFavoriteSql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id '
+            . 'WHERE dtb_customer_favorite_products.del_flg = 0 ';
+    }
+
+    /**
+     * 昨日のほしいの数を算出する SQL を返す.
+     *
+     * @return string 昨日のほしい数を算出する SQL
+     */
+    public function getFavoriteYesterdaySql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id '
+            . 'WHERE cast(dtb_customer_favorite_products.create_date as date) = DATE_ADD(current_date, interval -1 day) ';
+    }
+
+    /**
+     * 今月のほしいの数を算出する SQL を返す.
+     *
+     * @return string 今月のほしい数を算出する SQL
+     */
+    public function getFavoriteMonthSql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id '
+            . "WHERE date_format(dtb_customer_favorite_products.create_date, '%Y/%m') = ? ";
+    }
+
+    /**
      * 昨日のレビュー書き込み件数を算出する SQL を返す.
      *
      * @return string 昨日のレビュー書き込み件数を算出する SQL

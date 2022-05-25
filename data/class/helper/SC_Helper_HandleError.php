@@ -51,21 +51,16 @@ class SC_Helper_HandleError
         // 開発時は -1 (全て) を推奨
         error_reporting(E_ALL & ~E_NOTICE & ~E_USER_NOTICE & ~E_DEPRECATED & ~E_STRICT);
 
+        ini_set('log_errors_max_len', 1024 * 50);
+
         if (!(defined('SAFE') && SAFE === true) && !(defined('INSTALL_FUNCTION') && INSTALL_FUNCTION === true)) {
             // E_USER_ERROR または警告を捕捉した場合のエラーハンドラ
             set_error_handler(array(__CLASS__, 'handle_warning'), E_USER_ERROR | E_WARNING | E_USER_WARNING | E_CORE_WARNING | E_COMPILE_WARNING);
 
-            // 実質的に PHP 5.2 以降かで処理が分かれる
-            if (function_exists('error_get_last')) {
-                // E_USER_ERROR 以外のエラーを捕捉した場合の処理用
-                register_shutdown_function(array(__CLASS__, 'handle_error'));
-                // 以降の処理では画面へのエラー表示は行なわない
-                ini_set('display_errors', 0);
-            } else {
-                // エラー捕捉用の出力バッファリング
-                ob_start(array(__CLASS__, '_fatal_error_handler'));
-                ini_set('display_errors', 1);
-            }
+            // E_USER_ERROR 以外のエラーを捕捉した場合の処理用
+            set_exception_handler(array(__CLASS__, 'handle_exception'));
+            // 以降の処理では画面へのエラー表示は行なわない
+            ini_set('display_errors', 0);
         }
     }
 
@@ -96,11 +91,7 @@ class SC_Helper_HandleError
 
         switch ($errno) {
             case E_USER_ERROR:
-                $message = "Fatal error($error_type_name): $errstr on [$errfile($errline)]";
-                GC_Utils_Ex::gfPrintLog($message, ERROR_LOG_REALFILE, true);
-
-                SC_Helper_HandleError_Ex::displaySystemError($message);
-                exit(1);
+                throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
                 break;
 
             case E_WARNING:
@@ -117,72 +108,12 @@ class SC_Helper_HandleError
         }
     }
 
-    /**
-     * エラーを捕捉するための関数. (for PHP < 5.2.0)
-     *
-     * PHP4 では, try/catch が使用できず, かつ set_error_handler で Fatal Error は
-     * 捕捉できないため, ob_start にこの関数を定義し, Fatal Error が発生した場合
-     * に出力される HTML 出力を捕捉する.
-     * この関数が実行され, エラーが捕捉されると, DEBUG_MODE が無効な場合,
-     * エラーページへリダイレクトする.
-     *
-     * @param  string      $buffer 出力バッファリングの内容
-     * @return string|void エラーが捕捉された場合は, エラーページへリダイレクトする;
-     *                     エラーが捕捉されない場合は, 出力バッファリングの内容を返す
-     */
-    static function &_fatal_error_handler(&$buffer)
+    public static function handle_exception(Throwable $e)
     {
-        if (preg_match('/<b>(Fatal error)<\/b>: +(.+) in <b>(.+)<\/b> on line <b>(\d+)<\/b><br \/>/i', $buffer, $matches)) {
-            $message = "$matches[1]: $matches[2] on [$matches[3]($matches[4])]";
-            GC_Utils_Ex::gfPrintLog($message, ERROR_LOG_REALFILE, true);
-            if (DEBUG_MODE !== true) {
-                $url = HTTP_URL . 'error.php';
-                if (defined('ADMIN_FUNCTION') && ADMIN_FUNCTION === true) {
-                    $url .= '?admin';
-                }
-                header("Location: $url");
-                exit;
-            }
-        }
+        $errstr = (string)$e;
 
-        return $buffer;
-    }
-
-    /**
-     * エラー捕捉時のエラーハンドラ関数 (for PHP >= 5.2.0)
-     *
-     * この関数は, register_shutdown_function() 関数に登録するための関数である。
-     * PHP 5.1 対応処理との互換運用ため E_USER_ERROR は handle_warning で捕捉する。
-     *
-     * @return void
-     */
-    public static function handle_error()
-    {
-        // 最後のエラーを確実に捉えるため、先頭で呼び出す。
-        $arrError = error_get_last();
-
-        $is_error = false;
-        if (isset($arrError)) {
-            switch ($arrError['type']) {
-                case E_ERROR:
-                case E_PARSE:
-                case E_CORE_ERROR:
-                case E_COMPILE_ERROR:
-                    $is_error = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        if (!$is_error) {
-            return;
-        }
-
-        $error_type_name = GC_Utils_Ex::getErrorTypeName($arrError['type']);
-        $errstr = "Fatal error($error_type_name): {$arrError['message']} on [{$arrError['file']}({$arrError['line']})]";
-
-        GC_Utils_Ex::gfPrintLog($errstr, ERROR_LOG_REALFILE, true);
+        // 例外メッセージにバックトレースを含むため、第3引数 ($verbose) は無効 (false) としている。厳密には、ログイン情報が出力されない欠点がある。
+        GC_Utils_Ex::gfPrintLog($errstr, ERROR_LOG_REALFILE, false);
 
         // エラー画面を表示する
         SC_Helper_HandleError_Ex::displaySystemError($errstr);
@@ -199,6 +130,11 @@ class SC_Helper_HandleError
         SC_Helper_HandleError_Ex::$under_error_handling = true;
 
         ob_clean();
+
+        if (PHP_SAPI === 'cli') {
+            fwrite(STDERR, $errstr . "\n");
+            exit(1);
+        }
 
         require_once CLASS_EX_REALDIR . 'page_extends/error/LC_Page_Error_SystemError_Ex.php';
         $objPage = new LC_Page_Error_SystemError_Ex();

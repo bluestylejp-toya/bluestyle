@@ -42,7 +42,10 @@ class SC_Helper_Customer
     public function sfEditCustomerData($arrData, $customer_id = null)
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
-        $objQuery->begin();
+
+        if ($is_out_trans = !$objQuery->inTransaction()) {
+            $objQuery->begin();
+        }
 
         $old_version_flag = false;
 
@@ -94,10 +97,15 @@ class SC_Helper_Customer
             if (is_null($arrData['create_date'])) {
                 $arrData['create_date'] = 'CURRENT_TIMESTAMP';
             }
+            if (!isset($arrData['default_payment_id'])) {
+                $arrData['default_payment_id'] = 6; // クレジットカード
+            }
             $objQuery->insert('dtb_customer', $arrData);
         }
 
-        $objQuery->commit();
+        if ($is_out_trans) {
+            $objQuery->commit();
+        }
 
         return $customer_id;
     }
@@ -377,8 +385,9 @@ class SC_Helper_Customer
             $objFormParam->addParam('ZIPCODE', $prefix . 'zipcode', STEXT_LEN, 'n', array('NO_SPTAB', 'SPTAB_CHECK', 'GRAPH_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('都道府県', $prefix . 'pref', INT_LEN, 'n', array('NUM_CHECK'));
         }
-        $objFormParam->addParam('住所1', $prefix . 'addr01', MTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('住所2', $prefix . 'addr02', MTEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所1', $prefix . 'addr01', ADDR_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所2', $prefix . 'addr02', ADDR_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所3', $prefix . 'addr03', ADDR_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お電話番号1', $prefix . 'tel01', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お電話番号2', $prefix . 'tel02', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お電話番号3', $prefix . 'tel03', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
@@ -406,7 +415,6 @@ class SC_Helper_Customer
             $objFormParam->addParam('年', $prefix . 'year', 4, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
             $objFormParam->addParam('月', $prefix . 'month', 2, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
             $objFormParam->addParam('日', $prefix . 'day', 2, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'), '', false);
-            $objFormParam->addParam('お支払い方法', $prefix . 'default_payment_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         }
     }
 
@@ -515,6 +523,7 @@ class SC_Helper_Customer
         $objFormParam->addParam('会員ID', 'search_customer_id', ID_MAX_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お名前', 'search_name', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('お名前(フリガナ)', 'search_kana', STEXT_LEN, 'CKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANABLANK_CHECK'));
+        $objFormParam->addParam('ニックネーム', 'search_nickname', STEXT_LEN, 'KVa', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('都道府県', 'search_pref', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('誕生日(開始年)', 'search_b_start_year', 4, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('誕生日(開始月)', 'search_b_start_month', 2, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
@@ -659,16 +668,34 @@ class SC_Helper_Customer
      */
     public static function delete($customer_id)
     {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objDb = new SC_Helper_DB_Ex();
+
         $arrData = SC_Helper_Customer_Ex::sfGetCustomerDataFromId($customer_id, 'del_flg = 0');
         if (SC_Utils_Ex::isBlank($arrData)) {
             //対象となるデータが見つからない。
             return false;
         }
+
+        $objQuery->begin();
+
         // XXXX: 仮会員は物理削除となっていたが論理削除に変更。
         $arrVal = array(
             'del_flg' => '1',
         );
         SC_Helper_Customer_Ex::sfEditCustomerData($arrVal, $customer_id);
+
+        $arrData = [
+            'del_flg' => 1,
+            'withdrawal_flg' => 1,
+        ];
+        $objQuery->update('dtb_products', $arrData, 'customer_id = ? ', array($customer_id));
+
+        $objQuery->commit();
+
+        // 件数カウントバッチ実行
+        $objDb->sfCountCategory($objQuery);
+        $objDb->sfCountMaker($objQuery);
 
         return true;
     }
@@ -704,8 +731,79 @@ class SC_Helper_Customer
         if (strlen($arrData['tel02']) == 0) return false;
         if (strlen($arrData['tel03']) == 0) return false;
         if (strlen($arrData['birth']) == 0) return false;
-        if (strlen($arrData['default_payment_id']) == 0) return false;
-        
+
         return true;
+    }
+
+    /**
+     * 指定された会員の商品を取得する
+     *
+     * @return array
+     */
+    public static function getCustomerProducts($customer_id)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $objProduct = new SC_Product_Ex();
+
+        $objQuery->setWhere('alldtl.customer_id = ?', [$customer_id]);
+        $objQuery->andWhere('alldtl.del_flg = 0');
+        $objQuery->andWhere('alldtl.status = 1');
+        $objQuery->setOrder('alldtl.product_id DESC');
+        $objQuery->setLimit(10);
+
+        $addCols = ['count_of_favorite'];
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        return $arrProducts;
+    }
+
+    /**
+     * 交換選択待ち商品IDを取得する
+     * @param $customer_id
+     * @return array
+     * @throws Exception
+     */
+    public function getCustomerUnselectedProductId($customer_id)
+    {
+        $arrUnselectedProductId = array();
+
+        $objHelperApi = new SC_Helper_Api_Ex();
+        $arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        foreach ($arrListingProducts as $arrListingProduct) {
+            $arrProductId[] = $arrListingProduct['product_id'];
+        }
+
+        foreach ($arrProductId as $product_id) {
+            $objHelperApi->setUrl(API_URL . 'chain/find?' . 'id=' . $product_id);
+            $result = json_decode($objHelperApi->exec(), true);
+            if (count($result) > 0) {
+                $chainId = $result[0]['id'];
+                $objHelperApi->setUrl(API_URL . 'chain/' . $result[0]['id']);
+                $result = json_decode($objHelperApi->exec(), true);
+                if (count($result["selection_edge_list"]) > 0){
+                    foreach ($result["selection_edge_list"] as $selection_edge_list) {
+                        $arrUnselectedProductId[] = $selection_edge_list['source_id'];
+                    }
+                }
+            }
+        }
+
+        return array_unique($arrUnselectedProductId);
+    }
+
+    /**
+     * パスワードリセットコードを更新する。
+     */
+    public static function updatePasswordResetCode($customer_id)
+    {
+        // パスワードリセットコードを生成
+        $password_reset_code = date('mdHi') . '_' . str_replace('.', '_', uniqid('', true));
+
+        $arrData = [
+            'password_reset_code' => $password_reset_code,
+        ];
+        self::sfEditCustomerData($arrData, $customer_id);
+
+        return $password_reset_code;
     }
 }

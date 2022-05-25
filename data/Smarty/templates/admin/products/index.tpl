@@ -55,6 +55,19 @@ function lfnDispChange(){
 
 </script>
 
+<script type="text/javascript">
+    <!--
+    function fnEdit(customer_id) {
+        document.form1.action = '../customer/edit.php';
+        document.form1.mode.value = "edit_search"
+        document.form1['edit_customer_id'].value = customer_id;
+        document.form1.search_pageno.value = 1;
+        document.form1.submit();
+        return false;
+    }
+    //-->
+</script>
+
 
 <div id="products" class="contents-main">
     <form name="search_form" id="search_form" method="post" action="?">
@@ -66,10 +79,18 @@ function lfnDispChange(){
         <table>
             <tr>
                 <th>商品ID</th>
-                <td colspan="3">
+                <td>
                     <!--{assign var=key value="search_product_id"}-->
                     <!--{if $arrErr[$key]}-->
                         <span class="attention"><!--{$arrErr[$key]}--></span>
+                    <!--{/if}-->
+                    <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30"/>
+                </td>
+                <th>会員ID</th>
+                <td>
+                    <!--{assign var=key value="search_customer_id"}-->
+                    <!--{if $arrErr[$key]}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
                     <!--{/if}-->
                     <input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30"/>
                 </td>
@@ -150,6 +171,12 @@ function lfnDispChange(){
                 <!--{html_checkboxes name="$key" options=$arrSTATUS selected=$arrForm[$key].value}-->
                 </td>
             </tr>
+            <tr>
+                <th>アイテムサイズ</th>
+                <td colspan="3" style="<!--{if $arrErr.search_size_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->">
+                    <!--{html_checkboxes name="search_size_id" options=$arrSize selected=$arrForm.search_size_id.value}-->
+                </td>
+            </tr>
         </table>
         <div class="btn">
             <p class="page_rows">検索結果表示件数
@@ -179,7 +206,9 @@ function lfnDispChange(){
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
             <input type="hidden" name="mode" value="search" />
             <input type="hidden" name="product_id" value="" />
+            <input type="hidden" name="customer_id" value="" />
             <input type="hidden" name="category_id" value="" />
+            <input type="hidden" name="edit_customer_id" value="" />
             <!--{foreach key=key item=item from=$arrHidden}-->
                 <!--{if is_array($item)}-->
                     <!--{foreach item=c_item from=$item}-->
@@ -205,75 +234,39 @@ function lfnDispChange(){
 
                 <!--検索結果表示テーブル-->
                 <table class="list" id="products-search-result">
-                    <col width="8%" />
-                    <col width="9%" />
-                    <col width="9%" />
-                    <col width="8%" />
-                    <col width="25%" />
-                    <col width="8%" />
-                    <col width="8%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
                     <tr>
+                        <th rowspan="2">会員ID</th>
                         <th rowspan="2">商品ID</th>
                         <th rowspan="2">商品画像</th>
-                        <th rowspan="2">商品コード</th>
-                        <th rowspan="2">価格(円)</th>
                         <th>商品名</th>
-                        <th rowspan="2">在庫</th>
-                        <th rowspan="2">種別</th>
+                        <th>種別</th>
                         <th rowspan="2">編集</th>
                         <th rowspan="2">確認</th>
-                        <!--{if $smarty.const.OPTION_CLASS_REGIST == 1}-->
-                        <th rowspan="2">規格</th>
-                        <!--{/if}-->
                         <th rowspan="2">削除</th>
-                        <th rowspan="2">複製</th>
                     </tr>
                     <tr>
                         <th nowrap="nowrap"><a href="#" onclick="lfnDispChange(); return false;">カテゴリ ⇔ URL</a></th>
+                        <th>アイテムサイズ</th>
                     </tr>
 
                     <!--{section name=cnt loop=$arrProducts}-->
                         <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
                         <!--{assign var=status value="`$arrProducts[cnt].status`"}-->
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
+                            <td class="id" rowspan="2">
+                                <a href="#" onclick="return fnEdit('<!--{$arrProducts[cnt].customer_id}-->');"><!--{$arrProducts[cnt].customer_id|h}--></a>
+                            <!--{* $arrProducts[cnt]|@var_dump *}--></td>
                             <td class="id" rowspan="2"><!--{$arrProducts[cnt].product_id}--></td>
                             <td class="thumbnail" rowspan="2">
-                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProducts[cnt].main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProducts[cnt].sub_large_image1|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
                             </td>
-                            <td rowspan="2"><!--{$arrProducts[cnt].product_code_min|h}-->
-                                <!--{if $arrProducts[cnt].product_code_min != $arrProducts[cnt].product_code_max}-->
-                                    <br />～ <!--{$arrProducts[cnt].product_code_max|h}-->
-                                <!--{/if}-->
-                            </td>
-                            <!--{* 価格 *}-->
-                            <td rowspan="2" class="right">
-                                <!--{$arrProducts[cnt].price02_min|n2s}-->
-                                <!--{if $arrProducts[cnt].price02_min != $arrProducts[cnt].price02_max}-->
-                                    <br />～ <!--{$arrProducts[cnt].price02_max|n2s}-->
-                                <!--{/if}-->            </td>
                             <td><!--{$arrProducts[cnt].name|h}--></td>
-                            <!--{* 在庫 *}-->
-                            <!--{* XXX 複数規格でかつ、全ての在庫数量が等しい場合は先頭に「各」と入れたれたら良いと思う。 *}-->
-                            <td class="menu" rowspan="2">
-                                <!--{if $arrProducts[cnt].stock_unlimited_min}-->無制限<!--{else}--><!--{$arrProducts[cnt].stock_min|n2s}--><!--{/if}-->
-                                <!--{if $arrProducts[cnt].stock_unlimited_min != $arrProducts[cnt].stock_unlimited_max || $arrProducts[cnt].stock_min != $arrProducts[cnt].stock_max}-->
-                                    <br />～ <!--{if $arrProducts[cnt].stock_unlimited_max}-->無制限<!--{else}--><!--{$arrProducts[cnt].stock_max|n2s}--><!--{/if}-->
-                                <!--{/if}-->            </td>
                             <!--{* 表示 *}-->
                             <!--{assign var=key value=$arrProducts[cnt].status}-->
-                            <td class="menu" rowspan="2"><!--{$arrDISP[$key]}--></td>
+                            <td class="menu"><!--{$arrDISP[$key]}--></td>
                             <td class="menu" rowspan="2"><span class="icon_edit"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >編集</a></span></td>
                             <td class="menu" rowspan="2"><span class="icon_confirm"><a href="<!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->&amp;admin=on" target="_blank">確認</a></span></td>
-                            <!--{if $smarty.const.OPTION_CLASS_REGIST == 1}-->
-                            <td class="menu" rowspan="2"><span class="icon_class"><a href="javascript:;" onclick="eccube.changeAction('./product_class.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >規格</a></span></td>
-                            <!--{/if}-->
                             <td class="menu" rowspan="2"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
-                            <td class="menu" rowspan="2"><span class="icon_copy"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('copy', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >複製</a></span></td>
                         </tr>
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
                             <td>
@@ -289,6 +282,9 @@ function lfnDispChange(){
                                 <div id="disp_url<!--{$smarty.section.cnt.iteration}-->" style="display:none">
                                     <!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->
                                 </div>
+                            </td>
+                            <td>
+                                <!--{$arrSize[$arrProducts[cnt].size_id]|h}-->
                             </td>
                         </tr>
                         <!--▲商品<!--{$smarty.section.cnt.iteration}-->-->

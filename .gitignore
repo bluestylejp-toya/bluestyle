@@ -9,7 +9,6 @@ composer.phar
 /data/config/config.php
 /data/cache/*
 /data/Smarty/templates_c/*
-/html/plugin/*
 /html/install/temp/*
 /html/upload/save_image/*
 /html/upload/save_profile_image/*
@@ -24,5 +23,8 @@ composer.phar
 /tests/tmp/*
 /ctests/_output/*
 /reports/*
+*.css.map
 .idea
 !.gitkeep
+
+chain-for-camille.sql

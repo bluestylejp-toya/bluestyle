@@ -68,6 +68,9 @@
                             <li class="btn">
                                 <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/common/btn_header_login.jpg" />
                             </li>
+                            <li class="forgot">
+                                <a href="<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->" onclick="eccube.openWindow('<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->','forget','600','400',{scrollbars:'no',resizable:'no'}); return false;" target="_blank">パスワードを忘れた方</a>
+                            </li>
                         </ul>
                     <!--{/if}-->
                 </div>

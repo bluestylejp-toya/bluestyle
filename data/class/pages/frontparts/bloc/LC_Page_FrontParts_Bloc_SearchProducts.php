@@ -40,6 +40,10 @@ class LC_Page_FrontParts_Bloc_SearchProducts extends LC_Page_FrontParts_Bloc_Ex
     public function init()
     {
         parent::init();
+
+        $masterData = new SC_DB_MasterData_Ex();
+        $this->arrPref = $masterData->getMasterData('mtb_pref');
+        $this->arrStatus = $masterData->getMasterData('mtb_status');
     }
 
     /**
@@ -74,6 +78,11 @@ class LC_Page_FrontParts_Bloc_SearchProducts extends LC_Page_FrontParts_Bloc_Ex
         $this->maker_id = $this->lfGetSelectedMakerId($product_id, $maker_id);
         // メーカー検索用選択リスト
         $this->arrMakerList = $this->lfGetMakerList();
+
+        // 商品一覧画面の場合、選択内容を取得
+        if (is_a($GLOBALS['objPage'], 'LC_Page_Products_List')) {
+            $this->arrSearchData = $GLOBALS['objPage']->arrSearchData;
+        }
     }
 
     /**
@@ -162,7 +171,7 @@ class LC_Page_FrontParts_Bloc_SearchProducts extends LC_Page_FrontParts_Bloc_Ex
     {
         $objDb = new SC_Helper_DB_Ex();
         // カテゴリ検索用選択リスト
-        $arrCategoryList = $objDb->sfGetCategoryList('', true, '　');
+        $arrCategoryList = $this->sfGetCategoryList('', true, '　');
         if (is_array($arrCategoryList)) {
             // 文字サイズを制限する
             foreach ($arrCategoryList as $key => $val) {
@@ -172,6 +181,46 @@ class LC_Page_FrontParts_Bloc_SearchProducts extends LC_Page_FrontParts_Bloc_Ex
         }
 
         return $arrCategoryList;
+    }
+
+    /**
+     * カテゴリツリーの取得を行う.
+     *
+     * $products_check:true商品登録済みのものだけ取得する
+     *
+     * SC_Helper_DB::sfGetCategoryList() を移植した。
+     * @param  string $addwhere       追加する WHERE 句
+     * @param  bool   $products_check 商品の存在するカテゴリのみ取得する場合 true
+     * @param  string $head           カテゴリ名のプレフィックス文字列
+     * @return array  カテゴリツリーの配列
+     */
+    public function sfGetCategoryList($addwhere = '', $products_check = false, $head = CATEGORY_HEAD)
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+        $where = 'del_flg = 0';
+
+        if ($addwhere != '') {
+            $where.= " AND $addwhere";
+        }
+
+        $objQuery->setOption('ORDER BY rank DESC');
+
+        if ($products_check) {
+            $col = 'T1.category_id, category_name, level';
+            $from = 'dtb_category AS T1 LEFT JOIN dtb_category_total_count AS T2 ON T1.category_id = T2.category_id';
+            $where .= ' AND product_count > 0';
+        } else {
+            $col = 'category_id, category_name, level';
+            $from = 'dtb_category';
+        }
+
+        $arrRet = $objQuery->select($col, $from, $where);
+
+        foreach ($arrRet as &$row) {
+            $row['category_name'] = str_repeat($head, $row['level']) . $row['category_name'];
+        }
+
+        return $arrRet;
     }
 
     /**

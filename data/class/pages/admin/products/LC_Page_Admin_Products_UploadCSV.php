@@ -356,6 +356,9 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
                     $item['rw_flg'] != CSV_COLUMN_RW_FLG_READ_ONLY
                     );
         }
+        if (!in_array('product_class_id', $objFormParam->getKeyList())) {
+            $objFormParam->addParam('product_class_id', 'product_class_id');
+        }
     }
 
     /**
@@ -503,6 +506,11 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
             // UPDATEの実行
             // 必須入力では無い項目だが、空文字では問題のある特殊なカラム値の初期値設定
             $sqlval = $this->lfSetProductClassDefaultData($sqlval, true);
+
+            // キー情報は更新しない。(不整合を検出して例外スローが理想だが。)
+            unset($sqlval['product_class_id']);
+            unset($sqlval['product_id']);
+
             $where = 'product_class_id = ?';
             $objQuery->update('dtb_products_class', $sqlval, $where, array($product_class_id));
         }
@@ -673,6 +681,14 @@ class LC_Page_Admin_Products_UploadCSV extends LC_Page_Admin_Ex
         if (!$this->lfIsDbRecord('dtb_products_class', 'product_class_id', $item)) {
             $arrErr['product_class_id'] = '※ 指定の商品規格IDは、登録されていません。';
         }
+
+        // 会員IDの存在チェック
+        if (!$this->objDb->sfIsRecord('dtb_customer', 'customer_id',
+            array($item['customer_id']))
+        ) {
+            $arrErr['customer_id'] = "※ 存在しない会員(".$item['customer_id'].")です。";
+        }
+
         // 商品ID、規格IDの組合せチェック
         if (array_search('product_class_id', $this->arrFormKeyList) !== FALSE
             && $item['product_class_id'] != ''

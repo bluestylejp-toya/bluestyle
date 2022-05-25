@@ -69,6 +69,14 @@ class SC_CustomerList extends SC_SelectSql_Ex
             $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchName);
         }
 
+        // ニックネーム
+        if (!isset($this->arrSql['search_nickname'])) $this->arrSql['search_nickname'] = '';
+        if (strlen($this->arrSql['search_nickname']) > 0) {
+            $this->setWhere('nickname LIKE ?');
+            $searchName = $this->addSearchStr($this->arrSql['search_nickname']);
+            $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchName);
+        }
+
         // 名前(フリガナ)
         if (!isset($this->arrSql['search_kana'])) $this->arrSql['search_kana'] = '';
         if (strlen($this->arrSql['search_kana']) > 0) {
@@ -242,7 +250,7 @@ class SC_CustomerList extends SC_SelectSql_Ex
      */
     public function getList()
     {
-        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date FROM dtb_customer ';
+        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date,nickname FROM dtb_customer ';
 
         return $this->getSql(2);
     }

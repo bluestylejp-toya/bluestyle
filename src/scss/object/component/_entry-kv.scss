@@ -1,0 +1,54 @@
+.c-entry-kv {
+    margin: 0 #{-$unit*3} $unit*4;
+    display: block;
+    mask-image: url(/user_data/packages/default/img/entry/mask.svg);
+    height: 100%;
+    mask-size: 100% 100%;
+    overflow: hidden;
+    position: relative;
+
+    &__bg {
+        width: 100%;
+    }
+
+    &__object {
+        position: absolute;
+
+        &.baloon {
+            bottom: 0;
+            transform: translateY(100%);
+            left: calc(50% - 83px);
+            animation: totop 1.2s forwards;
+        }
+
+        &.paperPlane {
+            bottom: 0;
+            left: 0;
+            transform: translate(-100%, 100%);
+            animation: toright 1.2s forwards;
+        }
+    }
+}
+
+@keyframes totop {
+    10% {
+        bottom: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        bottom: 50%;
+        transform: translateY(50%);
+    }
+}
+@keyframes toright {
+    10% {
+        left: 0;
+        bottom: 0;
+        transform: translate(-100%, 100%);
+    }
+    100% {
+        left:50%;
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+    }
+}

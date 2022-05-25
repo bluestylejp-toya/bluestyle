@@ -207,30 +207,26 @@ class SC_Initial
             . CACHE_REALDIR
             . ' にユーザ書込み権限(777等)を付与して下さい。</div>';
 
-        // 定数を設定
-        if (is_file(CACHE_REALDIR . 'mtb_constants.php')) {
-            require_once CACHE_REALDIR . 'mtb_constants.php';
+        if (!is_file(CACHE_REALDIR . 'mtb_constants.php')) {
+            // 滞りなく mtb_constants.php を生成するため、mtb_constants_init.php を読み込む。
+            require_once CACHE_REALDIR . '../mtb_constants_init.php';
 
-            // キャッシュが無ければ, 初期データからコピー
-        } elseif (is_file(CACHE_REALDIR . '../mtb_constants_init.php')) {
-            $mtb_constants = file_get_contents(CACHE_REALDIR . '../mtb_constants_init.php');
-            if (is_writable(CACHE_REALDIR)) {
-                $handle = fopen(CACHE_REALDIR . 'mtb_constants.php', 'w');
-                if (!$handle) {
-                    die($errorMessage);
-                }
-                if (fwrite($handle, $mtb_constants) === false) {
-                    die($errorMessage);
-                }
-                fclose($handle);
+            $masterData = new SC_DB_MasterData_Ex();
+            // キャッシュを生成
+            $masterData->createCache('mtb_constants', array(), true, array('id', 'remarks'));
 
-                require_once CACHE_REALDIR . 'mtb_constants.php';
-            } else {
+            // 失敗
+            if (!is_file(CACHE_REALDIR . 'mtb_constants.php')) {
                 die($errorMessage);
             }
-        } else {
-            die(CACHE_REALDIR . '../mtb_constants_init.php が存在しません');
+
+            // mtb_constants_init.php を忘れるため、リロードする。
+            header('Location: ' . $_SERVER['PHP_SELF'], true, 307);
+            exit;
         }
+
+        // 定数を設定
+        require_once CACHE_REALDIR . 'mtb_constants.php';
     }
 
     /**
@@ -451,6 +447,11 @@ class SC_Initial
         define('UNLIMITED_FLG_UNLIMITED', '1');
         /** 無制限フラグ： 制限有り */
         define('UNLIMITED_FLG_LIMITED', '0');
+
+        /** 対応状況: 中断 */
+        define('ORDER_SUSPEND', 101);
+        /** 対応状況: Chain 成立 */
+        define('ORDER_CHAIN', 102);
     }
 
     /**

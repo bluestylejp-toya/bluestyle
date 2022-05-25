@@ -72,8 +72,15 @@ class SC_SendMail
     }
 
     // 宛先の設定
-    public function setTo($to, $to_name = '')
+    public function setTo($to, $to_name = null)
     {
+        if (is_array($to)) {
+            // 第2引数 $to_name が指定されていない場合
+            if (is_null($to_name)) {
+                $to_name = $to[1];
+            }
+            $to = $to[0];
+        }
         if ($to != '') {
             $this->to = $this->getNameAddress($to_name, $to);
             $this->setRecip('To', $to);

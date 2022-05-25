@@ -1,0 +1,56 @@
+// 全てのコンポーネント
+// コンポーネントの定義は2階層以下にならない
+// モディファーは別
+@import 'btn',
+        'hero',
+        'logo',
+        'form-parts',
+        'table',
+        'footer-nav-item',
+        'entry-kv',
+        'list',
+        'square',
+        'pagination',
+        'bach',
+        'item',
+        'card',
+        'message',
+        'modal',
+        'nav-list',
+        'achievement',
+        'profile-header',
+        'item-photo',
+        'profile-img',
+        'notification',
+        'onboarding',
+        'item-request',
+        'alert',
+        'item-tab',
+        'heading',
+        'list-item',
+        'item-edit',
+        'item-default',
+        'myitem',
+        'customer-list',
+        'prohibited';
+
+
+        .c-box {
+            &__qr {
+                padding: 32px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+                img {
+                    width: 100%;
+                    display: block;
+                }
+            }
+            &__gray {
+                border: 1px solid map-get($gray-set, 4);
+                color: map-get($gray-set, 4);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 48px;
+            }
+        }
