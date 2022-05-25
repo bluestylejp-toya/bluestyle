@@ -68,3 +68,11 @@
         }
     }
 }
+.is-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.is-relative {
+    position: relative;
+}

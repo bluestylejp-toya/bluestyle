@@ -1,5 +1,5 @@
 <!--{strip}-->
-    <section>
+    <section class="is-relative">
         <!--{capture assign='require_mark'}--><span class="attention">※</span><!--{/capture}-->
         <header class="l-header__inner<!--{if $arrForm.status.value == 2}--> u-mb--0<!--{/if}-->">
             <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_list.php" aria-label="戻る" class="c-btn--header-nav"></a>
@@ -8,7 +8,7 @@
 		<div class="c-item-edit__bg"></div>
 
         <!--{assign var=key value="status"}-->
-        <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}-->">このアイテムは公開されていません</p>
+        <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}--> is-sticky">このアイテムは公開されていません</p>
         <!--{if $tpl_lock_because_on_loop}-->
             <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
             <div class="disabled">
