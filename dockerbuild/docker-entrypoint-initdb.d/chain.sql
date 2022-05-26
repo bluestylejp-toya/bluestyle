@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: chain
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -17247,6 +17247,7 @@ LOCK TABLES `dtb_mailtemplate` WRITE;
 INSERT INTO `dtb_mailtemplate` VALUES (1,'ご注文ありがとうございます','この度はご注文いただき誠にありがとうございます。\n下記ご注文内容にお間違えがないかご確認下さい。\n\n','\n============================================\n\n\nこのメッセージはお客様へのお知らせ専用ですので、\nこのメッセージへの返信としてご質問をお送りいただいても回答できません。\nご了承ください。\n\nご質問やご不明な点がございましたら、こちらからお願いいたします。\n\n',0,0,'2021-01-13 01:40:22','2021-01-13 01:40:22');
 INSERT INTO `dtb_mailtemplate` VALUES (5,'お問い合わせを受け付けました',NULL,NULL,0,0,'2021-01-13 01:40:22','2021-01-13 01:40:22');
 INSERT INTO `dtb_mailtemplate` VALUES (101,'もうすぐ Chain が成立します',NULL,'\r\n---\r\n物々交換プラットフォーム Chain\r\nhttps://chain.gives/lp/',0,0,'2021-11-04 00:00:00','2021-11-04 08:35:34');
+INSERT INTO `dtb_mailtemplate` VALUES (102,'【Chain】「ほしい」のお知らせ',NULL,'ご確認いただき、引き続きChainをお楽しみください。\r\n\r\n---\r\nChain\r\nhttps://chain.gives/',0,0,'2021-11-04 00:00:00','2022-05-26 04:57:43');
 /*!40000 ALTER TABLE `dtb_mailtemplate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -19935,6 +19936,7 @@ INSERT INTO `mtb_mail_template` VALUES (4,'取り寄せ確認メール',3);
 INSERT INTO `mtb_mail_template` VALUES (5,'お問い合わせ受付メール',4);
 INSERT INTO `mtb_mail_template` VALUES (6,'フリーメール',5);
 INSERT INTO `mtb_mail_template` VALUES (101,'アイテムを選択してください',6);
+INSERT INTO `mtb_mail_template` VALUES (102,'【Chain】「ほしい」のお知らせ',7);
 /*!40000 ALTER TABLE `mtb_mail_template` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -19966,6 +19968,7 @@ INSERT INTO `mtb_mail_tpl_path` VALUES (4,'mail_templates/order_mail.tpl',3);
 INSERT INTO `mtb_mail_tpl_path` VALUES (5,'mail_templates/contact_mail.tpl',4);
 INSERT INTO `mtb_mail_tpl_path` VALUES (6,'mail_templates/free_mail.tpl',5);
 INSERT INTO `mtb_mail_tpl_path` VALUES (101,'mail_templates/select_item_mail.tpl',6);
+INSERT INTO `mtb_mail_tpl_path` VALUES (102,'mail_templates/send_notification_request_info.tpl',7);
 /*!40000 ALTER TABLE `mtb_mail_tpl_path` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -20759,4 +20762,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-10 13:44:31
+-- Dump completed on 2022-05-26  5:04:08
