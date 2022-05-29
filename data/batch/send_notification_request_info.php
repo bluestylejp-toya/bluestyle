@@ -11,7 +11,7 @@ echo "START\n";
 
 // 2022-05-22 07:44:49
 $objDateTime = new DateTime();
-$start = $objDateTime->modify('- day')->format('Y-m-d') . ' 20:00:00';
+$start = $objDateTime->modify('-1 day')->format('Y-m-d') . ' 20:00:00';
 $objDateTime = new DateTime();
 $end = $objDateTime->format('Y-m-d') . ' 20:00:00';
 
