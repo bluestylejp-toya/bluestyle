@@ -11,7 +11,7 @@ echo "START\n";
 
 // 2022-05-22 07:44:49
 $objDateTime = new DateTime();
-$start = $objDateTime->modify('-10 day')->format('Y-m-d') . ' 20:00:00';
+$start = $objDateTime->modify('-1 day')->format('Y-m-d') . ' 20:00:00';
 $objDateTime = new DateTime();
 $end = $objDateTime->format('Y-m-d') . ' 20:00:00';
 
@@ -42,7 +42,7 @@ class SendNotificationRequestInfo
 
         // メールテンプレート情報の取得
         $objPage = new LC_Page_Ex();
-        $objPage->disp_mypage_link_count = 2;
+        $objPage->disp_mypage_link_count = 10;
         $objMailtemplate = new SC_Helper_Mailtemplate_Ex();
         $mailtemplate = $objMailtemplate->get(102);
         $objPage->tpl_header = $mailtemplate['header'];
