@@ -167,6 +167,17 @@ class SC_DB_DBFactory_MYSQL extends SC_DB_DBFactory
     }
 
     /**
+     * アイテム数を算出する SQL を返す.
+     *
+     * @return string アイテム数を算出する SQL
+     */
+    public function getProductSql()
+    {
+        return 'SELECT COUNT(*) FROM dtb_products '
+            . 'WHERE del_flg = 0 ';
+    }
+
+    /**
      * メール送信履歴の start_date の検索条件の SQL を返す.
      *
      * @return string 検索条件の SQL
