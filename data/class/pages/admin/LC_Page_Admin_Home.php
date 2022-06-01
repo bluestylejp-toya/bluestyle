@@ -90,6 +90,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         // 会員の累計ポイント
         $this->customer_point = $this->lfGetTotalCustomerPoint();
 
+        //アイテム数
+        $this->Product_cnt = $this->lfGetProductValue();
+
         //ほしいの数
         $this->favorite_cnt = $this->lfGetFavorite();
 
@@ -247,6 +250,22 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
 
         $dbFactory = SC_DB_DBFactory_Ex::getInstance();
         $sql = $dbFactory->getFavoriteYesterdaySql();
+
+        return $objQuery->getOne($sql);
+    }
+
+    /**
+     * アイテム数の取得
+     *
+     * @return integer アイテム数
+     */
+    public function lfGetProductValue()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        // TODO: DBFactory使わないでも共通化できそうな気もしますが
+        $dbFactory = SC_DB_DBFactory_Ex::getInstance();
+        $sql = $dbFactory->getProductSql();
 
         return $objQuery->getOne($sql);
     }

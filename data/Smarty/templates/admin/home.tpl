@@ -66,16 +66,20 @@
                     <td><!--{$favorite_month_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
+                    <th>出品アイテム総数</th>
+                    <td><!--{$Product_cnt|default:"0"|n2s}-->個</td>
+                </tr>
+                <tr>
                     <th>昨日の売上高</th>
                     <td><!--{$order_yesterday_amount|default:"0"|n2s}-->円</td>
                 </tr>
                 <tr>
-                    <th>昨日のChain成立アイテム数</th>
-                    <td><!--{$order_yesterday_cnt|default:"0"|n2s}-->件</td>
-                </tr>
-                <tr>
                     <th><span>今月の売上高</span><span>(昨日まで) </span></th>
                     <td><!--{$order_month_amount|default:"0"|n2s}-->円</td>
+                </tr>
+                <tr>
+                    <th>昨日のChain成立アイテム数</th>
+                    <td><!--{$order_yesterday_cnt|default:"0"|n2s}-->件</td>
                 </tr>
                 <tr>
                     <th><span>今月のChain成立アイテム数 </span><span>(昨日まで) </span></th>
