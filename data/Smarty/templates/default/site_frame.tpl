@@ -25,7 +25,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=<!--{$smarty.const.CHAR_CODE}-->" />
-<title>複数人で行う物々交換サービス <!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}--></title>
+<title>みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}--></title>
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <!--{if $arrPageLayout.author|strlen >= 1}-->
@@ -53,24 +53,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <!--{assign var=detail value="`$smarty.const.ROOT_URLPATH`products/detail.php"}-->
     <!--{if $smarty.server.PHP_SELF==$detail}-->
-<meta property="og:title" content="<!--{$arrProduct.name|h|nl2br}--> - <!--{$arrSiteInfo.shop_name|h}-->">
+<meta property="og:title" content="<!--{$arrProduct.name|h|nl2br}--> - みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}-->">
 <meta property="og:description" content="<!--{$arrProduct['sub_title1']}-->">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
 <meta property="twitter:card" content="summary_large_image">
 <meta name="thumbnail" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
 <meta name="twitter:image" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
-<meta name="twitter:title" content="<!--{$arrProduct.name|h|nl2br}--> - <!--{$arrSiteInfo.shop_name|h}-->">
+<meta name="twitter:title" content="みんなで気持ちよく、連鎖で交換 <!--{$arrProduct.name|h|nl2br}--> - <!--{$arrSiteInfo.shop_name|h}-->">
 <meta name="twitter:description" content="<!--{$arrProduct['sub_title1']}-->">
     <!--{else}-->
-    <meta property="og:title" content="<!--{$arrSiteInfo.shop_name|h}-->">
+    <meta property="og:title" content="みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}-->">
     <meta property="og:description" content="<!--{$arrPageLayout.description|h}-->">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
     <meta property="twitter:card" content="summary_large_image">
     <meta name="thumbnail" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
     <meta name="twitter:image" content="<!--{$smarty.const.HTTPS_URL}-->lp/assets/img/lp/ogp.png">
-    <meta name="twitter:title" content="<!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
+    <meta name="twitter:title" content="みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}-->">
     <meta name="twitter:description" content="<!--{$arrPageLayout.description|h}-->">
     <!--{/if}-->
 
@@ -117,6 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/main.css" media="all" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/chain_style.css" media="all" />
 <!--<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->js/main.js" differ/>-->
 
 

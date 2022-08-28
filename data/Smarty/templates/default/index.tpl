@@ -38,24 +38,39 @@
     </svg>
   </h1>
   <div class="c-hero__main">
-    <h2 class="c-hero__main__heading">みんなで連鎖！複数人で行う<br>楽しい物々交換 Chain</h2>
-    <p class="u-color--gray">
-      Chainは新しい物々交換サービスです。<br>「貰う相手」と「渡す相手」が違うから、複数人の交換も成立しやすく、利害関係もなし。もちろん物々交換だから、面倒な値付けや値引き交渉もありません！
+    <h2 class="c-hero__main__heading">みんなで気持ちよく<br>連鎖で交換 Chain
+    </h2>
+    <p class="u-color--gray c-hero__main__text">
+      Chainは誰かにモノを「あげる」ことで、欲しいモノを「もらう」ことができます。
     </p>
+      <div class="c-hero__foot">
+      <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
+      </div>
+      <h3 class="c-how_to__main__heading">Chainのやり方</h3>
+      <dl class="c-how_to__main__list">
+          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to1.png"></dt>
+          <dd>まず、手元にあるモノを出品します</dd>
+      </dl>
+      <dl class="c-how_to__main__list">
+          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to2.png"></dt>
+          <dd>次に欲しいモノを選んで「ほしい」を押します</dd>
+      </dl>
+      <dl class="c-how_to__main__list">
+          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to3.png"></dt>
+          <dd>みんなの「ほしい」が輪になると・・・</dd>
+      </dl>
+      <dl class="c-how_to__main__list">
+          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to5.png"></dt>
+          <dd>「ほしい」してくれた人にあげれて</dd>
+      </dl>
+      <dl class="c-how_to__main__list">
+          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to4.png"></dt>
+          <dd>「ほしい」したモノがもらえます！</dd>
+      </dl>
   </div>
   <div class="c-hero__foot">
-    <a
-      href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php"
-      class="c-btn c-btn--primary c-hero__foot__btn"
-      ontouchstart=""
-      >新規会員登録</a
-    >
-    <a
-      href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php"
-      class="c-btn c-btn--primary--outline c-hero__foot__btn"
-      ontouchstart=""
-      >ログインする</a
-    >
+      <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
+    <a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn c-btn--primary c-hero__foot__btn" ontouchstart="">新規会員登録</a>
   </div>
 </section>
 <div class="u-mb--4">
