@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.c-list-item__main {
+	width: calc(100% - 130px);
+}
+.c-hero__main__text {
+	margin-bottom: 40px;
+}
+.c-how_to__main__heading {
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: 800;
+	margin: 40px auto 20px;
+}
+.c-how_to__main__list {
+	margin-bottom: 40px;
+	text-align: center;
+}
