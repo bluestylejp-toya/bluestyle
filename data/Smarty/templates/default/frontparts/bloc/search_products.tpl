@@ -47,12 +47,10 @@
                 </header>
                 <ul id="category" class="c-nav-list">
                     <!--{foreach from=$arrCatList item=cate key=key}-->
-                        <!--{if $cate.level === '1'}-->
                         <li class="level<!--{$cate.level|h}-->"><label>
                             <input type="radio" name="category_id" value="<!--{$cate['category_id']}-->" <!--{if $category_id[0] == $cate['category_id']}--> checked<!--{/if}-->>
                             <span><!--{$cate.category_name}--></span>
                         </label></li>
-                        <!--{/if}-->
                     <!--{/foreach}-->
                 </ul>
                 <!--{*<ul id="maker" class="c-nav-list">
