@@ -540,7 +540,7 @@ class SC_Helper_DB
         $col = 'category_id, parent_category_id, category_name, level';
         $where = 'del_flg = 0';
         if ($parent_zero === self::FILTER_CATEGORY_LEVEL1) {
-            $where .= ' AND level >= 1';
+            $where .= ' AND level > 0';
             $parent_zero = false;
         }
         $objQuery->setOption('ORDER BY rank DESC');
