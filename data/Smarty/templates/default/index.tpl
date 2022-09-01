@@ -46,6 +46,7 @@
       <div class="c-hero__foot">
       <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
       </div>
+      <p class="c-top__deliv_free">現在利用料無料！<br>かかる費用はもらう時の送料のみです。</p>
       <h3 class="c-how_to__main__heading">Chainのやり方</h3>
       <dl class="c-how_to__main__list">
           <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to1.png"></dt>
