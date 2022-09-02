@@ -21,3 +21,22 @@
 	font-weight: 800;
 	color: #FD0000;;
 }
+.c-top__ux_campaign p {
+	text-align: center;
+	background: #00CD84;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	margin: 20px auto;
+	padding: 5px;
+}
+.c-top__ux_campaign {
+	color: #fff;
+	font-weight: 600;
+}
+.c-top__ux_campaign span {
+	margin-top: 5px;
+	display: block;
+}
