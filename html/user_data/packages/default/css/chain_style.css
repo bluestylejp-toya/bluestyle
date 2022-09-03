@@ -12,7 +12,7 @@
 	margin: 40px auto 20px;
 }
 .c-how_to__main__list {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	text-align: center;
 }
 .c-top__deliv_free {
@@ -39,4 +39,12 @@
 .c-top__ux_campaign span {
 	margin-top: 5px;
 	display: block;
+}
+.c-ex {
+	border-top: 1px #ccc solid;
+	text-align: center;
+	margin-bottom: 40px;
+}
+.c-ex li {
+	margin-bottom: 20px;
 }

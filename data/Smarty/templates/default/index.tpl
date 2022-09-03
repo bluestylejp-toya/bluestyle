@@ -38,13 +38,14 @@
     </svg>
   </h1>
   <div class="c-hero__main">
-    <h2 class="c-hero__main__heading">みんなで気持ちよく<br>連鎖で交換 Chain
-    </h2>
-    <p class="u-color--gray c-hero__main__text">
+      <h2 class="c-hero__main__heading">
+        みんなで気持ちよく<br>連鎖で交換 Chain
+      </h2>
+      <p class="u-color--gray c-hero__main__text">
       Chainは誰かにモノを「あげる」ことで、欲しいモノを「もらう」ことができます。
-    </p>
+      </p>
       <div class="c-hero__foot">
-      <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
+          <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
       </div>
       <p class="c-top__deliv_free">現在利用料無料！<br>かかる費用はもらう時の送料のみです。</p>
       <a class="c-top__ux_campaign" href="https://note.com/chain_market/n/n71322678810f" target="_blank">
@@ -74,9 +75,16 @@
           <dd>「ほしい」したモノがもらえます！</dd>
       </dl>
   </div>
+    <div class="c-ex">
+        <h3 class="c-how_to__main__heading">実際に起きた交換</h3>
+        <ul>
+            <li><a href="<!--{$TPL_URLPATH}-->img/ex/10181742.png"><img src="<!--{$TPL_URLPATH}-->img/ex/10181742.png"><br>タップして拡大</a></li>
+            <li><a href="<!--{$TPL_URLPATH}-->img/ex/c99a9e7d.png"><img src="<!--{$TPL_URLPATH}-->img/ex/c99a9e7d.png"><br>タップして拡大</a></li>
+        </ul>
+    </div>
   <div class="c-hero__foot">
       <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
-    <a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn c-btn--primary c-hero__foot__btn" ontouchstart="">新規会員登録</a>
+      <a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn c-btn--primary c-hero__foot__btn" ontouchstart="">新規会員登録</a>
   </div>
 </section>
 <div class="u-mb--4">
