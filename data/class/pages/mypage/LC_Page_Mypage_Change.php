@@ -56,6 +56,8 @@ class LC_Page_Mypage_Change extends LC_Page_AbstractMypage_Ex
         $this->arrYear      = $objDate->getYear('', START_BIRTH_YEAR, '');
         $this->arrMonth     = $objDate->getMonth(true);
         $this->arrDay       = $objDate->getDay(true);
+        $this->arrMAILMAGATYPE = $masterData->getMasterData('mtb_mail_magazine_type');
+
     }
 
     /**

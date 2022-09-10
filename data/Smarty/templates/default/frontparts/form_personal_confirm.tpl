@@ -94,6 +94,13 @@
             未登録
             <!--{/if}-->
         </dd>
+<dt>メールマガジン送付について</dt>
+    <dd>
+        <!--{assign var=key1 value="`$prefix`mailmaga_flg"}-->
+        <!--{assign var="mailmaga_flg_id" value=$arrForm[$key1].value}-->
+        <!--{$arrMAILMAGATYPE[$mailmaga_flg_id]|h}-->
+    </dd>
+
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
         <dt>パスワード</dt>
