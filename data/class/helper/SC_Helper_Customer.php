@@ -328,7 +328,7 @@ class SC_Helper_Customer
     {
         SC_Helper_Customer_Ex::sfCustomerRegisterParam($objFormParam, $isAdmin);
         if ($isAdmin) {
-            SC_Helper_Customer_Ex::sfCustomerCommonParam($objFormParam);
+            SC_Helper_Customer_Ex::sfCustomerCommonParamAdmin($objFormParam);
             $objFormParam->addParam('会員ID', 'customer_id', INT_LEN, 'n', array('NUM_CHECK'));
             $objFormParam->addParam('会員状態', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('SHOP用メモ', 'note', LTEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
@@ -365,17 +365,17 @@ class SC_Helper_Customer
      * @access public
      * @return void
      */
-    public function sfCustomerCommonParam(&$objFormParam, $prefix = '')
+    public function sfCustomerCommonParamAdmin(&$objFormParam, $prefix = '')
     {
-        $objFormParam->addParam('お名前(姓)', $prefix . 'name01', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('お名前(名)', $prefix . 'name02', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('お名前(姓)', $prefix . 'name01', STEXT_LEN, 'aKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('お名前(名)', $prefix . 'name02', STEXT_LEN, 'aKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         if (FORM_COUNTRY_ENABLE === false) {
-            $objFormParam->addParam('お名前(フリガナ・姓)', $prefix . 'kana01', STEXT_LEN, 'CKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
-            $objFormParam->addParam('お名前(フリガナ・名)', $prefix . 'kana02', STEXT_LEN, 'CKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
-            $objFormParam->addParam('郵便番号1', $prefix . 'zip01', ZIP01_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
-            $objFormParam->addParam('郵便番号2', $prefix . 'zip02', ZIP02_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
+            $objFormParam->addParam('お名前(フリガナ・姓)', $prefix . 'kana01', STEXT_LEN, 'CKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
+            $objFormParam->addParam('お名前(フリガナ・名)', $prefix . 'kana02', STEXT_LEN, 'CKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
+            $objFormParam->addParam('郵便番号1', $prefix . 'zip01', ZIP01_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
+            $objFormParam->addParam('郵便番号2', $prefix . 'zip02', ZIP02_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
             $objFormParam->addParam('国', $prefix . 'country_id', INT_LEN, 'n', array('NUM_CHECK'));
-            $objFormParam->addParam('都道府県', $prefix . 'pref', INT_LEN, 'n', array('PREF_CHECK', 'EXIST_CHECK', 'NUM_CHECK'));
+            $objFormParam->addParam('都道府県', $prefix . 'pref', INT_LEN, 'n', array('PREF_CHECK', 'NUM_CHECK'));
         } else {
             $objFormParam->addParam('お名前(フリガナ・姓)', $prefix . 'kana01', STEXT_LEN, 'CKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
             $objFormParam->addParam('お名前(フリガナ・名)', $prefix . 'kana02', STEXT_LEN, 'CKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
@@ -385,13 +385,42 @@ class SC_Helper_Customer
             $objFormParam->addParam('ZIPCODE', $prefix . 'zipcode', STEXT_LEN, 'n', array('NO_SPTAB', 'SPTAB_CHECK', 'GRAPH_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam('都道府県', $prefix . 'pref', INT_LEN, 'n', array('NUM_CHECK'));
         }
-        $objFormParam->addParam('住所1', $prefix . 'addr01', ADDR_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('住所2', $prefix . 'addr02', ADDR_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所1', $prefix . 'addr01', ADDR_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('住所2', $prefix . 'addr02', ADDR_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('住所3', $prefix . 'addr03', ADDR_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('お電話番号1', $prefix . 'tel01', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('お電話番号2', $prefix . 'tel02', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('お電話番号3', $prefix . 'tel03', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('メールマガジン', $prefix . 'mailmaga_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('お電話番号1', $prefix . 'tel01', TEL_ITEM_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('お電話番号2', $prefix . 'tel02', TEL_ITEM_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('お電話番号3', $prefix . 'tel03', TEL_ITEM_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('メールマガジン', $prefix . 'mailmaga_flg', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+    }
+    public function sfCustomerCommonParam(&$objFormParam, $prefix = '')
+    {
+            $objFormParam->addParam('お名前(姓)', $prefix . 'name01', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('お名前(名)', $prefix . 'name02', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+            if (FORM_COUNTRY_ENABLE === false) {
+                $objFormParam->addParam('お名前(フリガナ・姓)', $prefix . 'kana01', STEXT_LEN, 'CKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
+                $objFormParam->addParam('お名前(フリガナ・名)', $prefix . 'kana02', STEXT_LEN, 'CKV', array('EXIST_CHECK', 'NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
+                $objFormParam->addParam('郵便番号1', $prefix . 'zip01', ZIP01_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
+                $objFormParam->addParam('郵便番号2', $prefix . 'zip02', ZIP02_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
+                $objFormParam->addParam('国', $prefix . 'country_id', INT_LEN, 'n', array('NUM_CHECK'));
+                $objFormParam->addParam('都道府県', $prefix . 'pref', INT_LEN, 'n', array('PREF_CHECK', 'EXIST_CHECK', 'NUM_CHECK'));
+            } else {
+                $objFormParam->addParam('お名前(フリガナ・姓)', $prefix . 'kana01', STEXT_LEN, 'CKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
+                $objFormParam->addParam('お名前(フリガナ・名)', $prefix . 'kana02', STEXT_LEN, 'CKV', array('NO_SPTAB', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'KANA_CHECK'));
+                $objFormParam->addParam('郵便番号1', $prefix . 'zip01', ZIP01_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
+                $objFormParam->addParam('郵便番号2', $prefix . 'zip02', ZIP02_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'NUM_COUNT_CHECK'));
+                $objFormParam->addParam('国', $prefix . 'country_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK'));
+                $objFormParam->addParam('ZIPCODE', $prefix . 'zipcode', STEXT_LEN, 'n', array('NO_SPTAB', 'SPTAB_CHECK', 'GRAPH_CHECK', 'MAX_LENGTH_CHECK'));
+                $objFormParam->addParam('都道府県', $prefix . 'pref', INT_LEN, 'n', array('NUM_CHECK'));
+            }
+            $objFormParam->addParam('住所1', $prefix . 'addr01', ADDR_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('住所2', $prefix . 'addr02', ADDR_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('住所3', $prefix . 'addr03', ADDR_LEN, 'aKV', array('SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('お電話番号1', $prefix . 'tel01', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('お電話番号2', $prefix . 'tel02', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('お電話番号3', $prefix . 'tel03', TEL_ITEM_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+            $objFormParam->addParam('メールマガジン', $prefix . 'mailmaga_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+
     }
 
     /**

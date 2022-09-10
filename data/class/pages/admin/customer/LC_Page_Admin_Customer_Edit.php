@@ -51,6 +51,7 @@ class LC_Page_Admin_Customer_Edit extends LC_Page_Admin_Ex
         $this->arrPref = $masterData->getMasterData('mtb_pref');
         $this->arrCountry = $masterData->getMasterData('mtb_country');
         $this->arrStatus = $masterData->getMasterData('mtb_customer_status');
+        $this->arrMailMagazineType = $masterData->getMasterData('mtb_mail_magazine_type');
 
         // 日付プルダウン設定
         $objDate = new SC_Date_Ex(BIRTH_YEAR);

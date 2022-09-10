@@ -222,6 +222,15 @@
                     <input type="text" name="point" value="<!--{$arrForm.point|h}-->" maxlength="<!--{$smarty.const.TEL_LEN}-->" size="6" class="box6" <!--{if $arrErr.point != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> /> pt
                 </td>
             </tr>
+            <tr>
+                <th>メールマガジン<span class="attention"> *</span></th>
+                <td>
+                    <span class="attention"><!--{$arrErr.mailmaga_flg}--></span>
+                    <span <!--{if $arrErr.mailmaga_flg != ""}--><!--{sfSetErrorStyle}--><!--{/if}-->>
+                    <!--{html_radios name="mailmaga_flg" options=$arrMailMagazineType separator=" " selected=$arrForm.mailmaga_flg}-->
+                    </span>
+                </td>
+            </tr>
         </table>
 
         <div class="btn-area">
