@@ -156,6 +156,17 @@ $flgFields について
         <!--{if $errBirth}-->
             <p><small class="attention"><!--{$errBirth}--></small></p>
         <!--{/if}-->
+
+                <dt class="border_right_none">メールマガジン送付<span class="attention">※必須</span></dt>
+                <dd>
+                    <!--{assign var=key1 value="`$prefix`mailmaga_flg"}-->
+                    <!--{if $arrErr[$key1]}-->
+                    <div class="attention"><!--{$arrErr[$key1]}--></div>
+                    <!--{/if}-->
+                    <span style="<!--{$arrErr[$key1]|sfGetErrorColor}-->">
+                        <!--{html_radios name=$key1 options=$arrMAILMAGATYPE selected=$arrForm[$key1].value separator='<br>'}-->
+                    </span>
+                </dd>
     <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
         <dt>パスワード<span class="attention">※必須</span></dt>
