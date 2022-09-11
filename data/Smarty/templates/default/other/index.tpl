@@ -16,10 +16,11 @@
         <ul class="c-nav-list u-mb--4">
             <!--{*<li><a href="<!--{$smarty.const.TOP_URL}-->news/">お知らせ<span class="c-batch--num">2</span></a></li>*}-->
             <li><a href="<!--{$smarty.const.TOP_URL}-->news/">みなさんにお知らせ</a></li>
+            <li><a href="https://www.notion.so/Chain-9a6e5958a8d749cd89f8fefd985d7707" target="_blank">発送の流れ</a></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/packages/default/pdf/postage.pdf" target="_blank">送料（pdfファイル）</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
             <!--{*
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用方法</a></li>
-            <li><a href="<!--{$smarty.const.TOP_URL}-->guide/flow.php">発送の流れ</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/payment.php">支払い方法</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/help.php">ヘルプ</a></li>
             *}-->
@@ -29,7 +30,6 @@
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/privacy.php">プライバシーポリシー</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->order/">特定商取引に関する法律に基づく表記</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->terms/kiyaku.php">ご利用規約</a></li>
-            <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/packages/default/pdf/postage.pdf" target="_blank">送料（pdfファイル）</a></li>
         </ul>
         <p style="text-align: center;font-weight: bold;margin-bottom: 30px;color: red;">ご利用料金は現在は無料</p>
         <!--{if $is_login}-->
