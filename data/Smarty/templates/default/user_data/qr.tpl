@@ -8,5 +8,5 @@
     <div class="c-box__qr u-mb--2">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6AQAAAACgl2eQAAABtElEQVR4Xu2XUYrDMAxEBT5AjuSr+0g5gEHVzDg0DUv3twMWaavI70doJKuR323EM/KwDcg2INuAjMCIsmPMI2f0GdHOmAjpzAaozzxGnr2wlilYcSOgkipA3wDoFGYIlIMEC8jTGTihtziylWMIpCSXPAoI729N/jaAVkfw9iCkMxdABrEprqMV9QEoOQwxPKjRCM5kKwCv1fIM9sDD9vmQnAGAqRW9ioUJRqsOakjZCaiuaUgzGoSHrBvGMkgngKMYkbPe0fvlNPhOAH3EC1MHLccKSK5YjCColD81+ftAUmmIN627x9q1vACWJq/2wUAuR6PACGBdULLExrvGMpvICcAv1pKOqmHjXYlbAatleNqn9EbheQFxLbpKk71/l5wHMPFnnBpjvHhWangB9ZncsgSjTEzWDkBpcK3glWUa8R7FHkCVRtmhUhXHEMOBFbBcNc6V4D1NC2AgKwps6k7HNB5UoBOAI9wgIq80WS8jQNk1DrHEHOPp+3J3AhSZ158pRAyBqQlGvcVjRXEAkpLDG/olMMrWzegElMDQ/rxQeD9WptqEjYBvtgHZBmQbkP0PvAAw0tT+b+rA2gAAAABJRU5ErkJggg==">
     </div>
-    <p><a href="<!--{$smarty.const.TOP_URL}-->guide/flow.php" class="c-btn--primary--outline">発送の流れ</a></p>
+    <p><a href="https://www.notion.so/Chain-9a6e5958a8d749cd89f8fefd985d7707" class="c-btn--primary--outline" target="_blank">発送の流れ</a></p>
 </section>
