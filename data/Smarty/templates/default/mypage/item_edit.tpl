@@ -25,7 +25,7 @@
             <!--{foreach key=key item=item from=$arrHidden}-->
                 <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item|h}-->" />
             <!--{/foreach}-->
-            <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とキャプション</h2>
+            <h2 class="c-heading-subtitle u-text--left u-color--gray">詳細写真とコメント</h2>
 
             <ul class="sub_large_images u-mb--4">
                 <!--{section name=cnt loop=$smarty.const.PRODUCTSUB_MAX}-->

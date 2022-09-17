@@ -128,6 +128,24 @@ class SC_CustomerList extends SC_SelectSql_Ex
             $this->setWhere($sql_where);
         }
 
+        // メールマガジンの場合
+        if ($mode == 'customer') {
+            // メルマガ受け取りの選択項目がフォームに存在する場合
+            if (isset($this->arrSql['search_htmlmail'])) {
+                $this->setWhere('status = 2');
+                if (SC_Utils_Ex::sfIsInt($this->arrSql['search_htmlmail'])) {
+                    // メルマガ拒否している会員も含む場合は、条件を付加しない
+                    if ($this->arrSql['search_htmlmail'] != 99) {
+                        $this->setWhere('mailmaga_flg = ?');
+                        $this->arrVal[] = $this->arrSql['search_htmlmail'];
+                    }
+                } else {
+                    //　メルマガ購読拒否は省く
+                    $this->setWhere('mailmaga_flg <> 3');
+                }
+            }
+        }
+
         // 購入金額指定
         if (!isset($this->arrSql['search_buy_total_from'])) $this->arrSql['search_buy_total_from'] = '';
         if (!isset($this->arrSql['search_buy_total_to'])) $this->arrSql['search_buy_total_to'] = '';
@@ -250,7 +268,7 @@ class SC_CustomerList extends SC_SelectSql_Ex
      */
     public function getList()
     {
-        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date,nickname FROM dtb_customer ';
+        $this->select = 'SELECT customer_id,name01,name02,kana01,kana02,email,tel01,tel02,tel03,pref,status,update_date,nickname,mailmaga_flg FROM dtb_customer ';
 
         return $this->getSql(2);
     }
