@@ -20,6 +20,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
+<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/colorbox.css" media="all" />
+<script src="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery.colorbox-min.js"></script>
+<script>
+    $(function() {
+        $(".gallery").colorbox({
+            rel:'slideshow',
+            slideshow:false,
+            maxWidth:"90%",
+            maxHeight:"90%",
+            opacity: 0.9
+        });
+    });
+</script>
 <!--{strip}-->
 <section class="c-hero">
   <h1 class="c-hero__head c-logo">
@@ -78,9 +91,18 @@
     <div class="c-ex">
         <h3 class="c-how_to__main__heading">実際に起きた交換</h3>
         <ul>
-            <li><a href="<!--{$TPL_URLPATH}-->img/ex/10181742.png"><img src="<!--{$TPL_URLPATH}-->img/ex/10181742.png"><br>タップして拡大</a></li>
-            <li><a href="<!--{$TPL_URLPATH}-->img/ex/c99a9e7d.png"><img src="<!--{$TPL_URLPATH}-->img/ex/c99a9e7d.png"><br>タップして拡大</a></li>
+            <li class="gallery-cell">
+                <a href="<!--{$TPL_URLPATH}-->img/ex/10181742.png" itemprop="url" target="_blank" class="gallery">
+                    <img itemprop="image" class="picture" src="<!--{$TPL_URLPATH}-->img/ex/10181742.png">
+                </a>
+            </li>
+            <li class="gallery-cell">
+                <a href="<!--{$TPL_URLPATH}-->img/ex/c99a9e7d.png" itemprop="url" target="_blank" class="gallery">
+                    <img itemprop="image" class="picture" src="<!--{$TPL_URLPATH}-->img/ex/c99a9e7d.png">
+                </a>
+            </li>
         </ul>
+    </div>
     </div>
   <div class="c-hero__foot">
       <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
@@ -179,3 +201,4 @@ $('.c-onboarding__show-btn').on('click', function(){
 })
 </script>
 <!--{/strip}-->
+
