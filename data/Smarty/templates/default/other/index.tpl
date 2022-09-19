@@ -16,6 +16,8 @@
         <ul class="c-nav-list u-mb--4">
             <!--{*<li><a href="<!--{$smarty.const.TOP_URL}-->news/">お知らせ<span class="c-batch--num">2</span></a></li>*}-->
             <li><a href="<!--{$smarty.const.TOP_URL}-->news/">みなさんにお知らせ</a></li>
+            <li style="font-weight: 600;line-height: 60px;">交換利用料<span style="margin-left:20px;color: red;">無料</span></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->guide/help.php">よくある質問</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/flow.php">発送の流れ</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/packages/default/pdf/postage.pdf" target="_blank">送料（pdfファイル）</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
@@ -31,11 +33,13 @@
             <li><a href="<!--{$smarty.const.TOP_URL}-->order/">特定商取引に関する法律に基づく表記</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->terms/kiyaku.php">ご利用規約</a></li>
         </ul>
-        <p style="text-align: center;font-weight: bold;margin-bottom: 30px;color: red;">ご利用料金は現在は無料</p>
         <!--{if $is_login}-->
         <ul class="c-nav-list">
             <li><button class="c-btn--logout" type="button">ログアウト</button></li>
+            <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">退会　<p style="margin-top: 5px" class="attention">*お問い合わせから退会の連絡をお願いします。</p></a></li>
+            <!--{*
             <li><a href="<!--{$smarty.const.TOP_URL}-->mypage/refusal.php">アカウント削除</a></li>
+        *}-->
         </ul>
         <div class="l-popup" data-item_mode="false">
             <div class="l-popup__inner">

@@ -93,3 +93,28 @@
 .houwto_end_text {
 	margin-top: 30px;
 }
+.chain-help dl {
+	margin-bottom: 20px;
+}
+.chain-help dt {
+	cursor: pointer;
+	font-weight: 200;
+	margin-left: 5%;
+	margin-bottom: 10px;
+	list-style: disc;
+	display: list-item;
+}
+.chain-help dd {
+	display: none;
+	padding: 10px;
+	margin-left: 5%;
+	background: #F4FBFE;;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+}
+.chain-help dd a {
+	font-weight: 600;
+}
