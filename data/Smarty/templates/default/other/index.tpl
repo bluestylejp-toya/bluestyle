@@ -19,7 +19,9 @@
             <li style="font-weight: 600;line-height: 60px;">交換利用料<span style="margin-left:20px;color: red;">無料</span></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/help.php">よくある質問</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/flow.php">発送の流れ</a></li>
-            <li><a href="<!--{$smarty.const.TOP_URL}-->user_data/packages/default/pdf/postage.pdf" target="_blank">送料（pdfファイル）</a></li>
+            <!--{if $tpl_login }-->
+            <li><a href="<!--{$smarty.const.TOP_URL}-->guide/postage.php">送料について</a></li>
+            <!--{/if}-->
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
             <!--{*
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用方法</a></li>
