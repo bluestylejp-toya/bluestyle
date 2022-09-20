@@ -4,9 +4,9 @@
         <h1 class="c-header-title">Chain成立後の発送の流れ</h1>
     </header>
     <div class="chain-yamato-howto">
-    <p>Chainが成立したアイテムのページから、QRコードを表示できるので、スマートフォンと梱包したChain成立アイテムを持って<span>ファミリーマート</span>に行って発送をお願いします。</p>
-    <p>発送はChain成立後7日以内にお願いします。</p>
-    <p>コピー機から<span>ファミリーマート</span>の端末で発送用のバーコードをプリントする手順になります。<br>
+    <p>Chainが成立したアイテムのページから、QRコードを表示できるので、スマートフォンと梱包したChain成立アイテムを<span class="houwto_touch">ファミリーマート</span>に持ち込んで発送をお願いします。</p>
+        <p>発送は<span class="houwto_touch">Chain成立後7日以内</span>にお願いします。</p>
+    <p>コピー機から<span class="houwto_touch">ファミリーマート</span>の端末で発送用のバーコードをプリントする手順になります。<br>
         プリントしたら30分以内にレジで発送の手続きをお願いします。</p>
     <dl>
         <dt><span class="houwto_no">1.</span><p class="houwto_text">コピー機の左側にあるタッチパネルで、<span class="houwto_touch">2次元バーコードを持っている</span>をタップします。</p></dt>

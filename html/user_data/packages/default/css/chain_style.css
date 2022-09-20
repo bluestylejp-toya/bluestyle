@@ -85,7 +85,7 @@
 	width: 90%;
 	margin-top: 5px;
 }
-.chain-yamato-howto dl dt .houwto_touch {
+.chain-yamato-howto .houwto_touch {
 	font-size: 120%;
 	margin: 0 5px;
 	font-weight: 600;
@@ -117,4 +117,35 @@
 }
 .chain-help dd a {
 	font-weight: 600;
+}
+.c-postage_table {
+	max-width: 100%;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+}
+.c-postage_table ul {
+	max-width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+}
+.c-postage_table li {
+	text-align: center;
+	width: 14.24%;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	font-size: 100%;
+	padding: 5px 0;
+}
+.c-postage_table_title_pref,
+.c-postage_table_title {
+	background: #efefef;
+}
+.c-postage_table_small {
+	font-size: 80%;
+	text-align: right;
 }
