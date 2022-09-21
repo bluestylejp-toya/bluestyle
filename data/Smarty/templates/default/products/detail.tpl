@@ -99,6 +99,7 @@
                         <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#2A7DA7"/>
                     </svg>
                     <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span>
+                <!--{if $arrProduct.count_of_favorite|h > 0}--><span class="count_of_favorite_text">ほしい人をチェック</span><!--{/if}-->
                 </p>
 
                 <!--{if $arrProduct['sub_title1']}--><p class="p-item-detail__description"><!--{$arrProduct['sub_title1']}--></p><!--{/if}-->
@@ -204,9 +205,9 @@
             <!--{if $tpl_linemax > 0}-->
             <div class="p-item-detail__body__slideup<!--{if !$smarty.get.open == true}--> --hidden<!--{/if}-->">
                 <div>
-                    <h2 class="c-heading--sm u-text--center">交換するアイテムを変更しますか？</h2>
-                    <p>すべてチェックを外すとこのアイテムのほしいを取り消すことができます。</p>
-                    <svg width="52" height="46" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg" class="select_status">
+                    <h2 class="c-heading--sm u-text--center">交換対象の出品アイテムを変更できます。</h2>
+                    <p class="u-text--center">チェックを外すと交換対象から外れます。</p>
+                    <svg width="34" height="30" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg" class="select_status">
                         <path d="M9.99219 21.3182V40.4266H1.20508L21.9961 59.7303L42.7871 40.4266H34V20.3037H25.2129L46.0039 1L66.7949 20.3037H58.0078V39.4121" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <defs>
                             <linearGradient id="paint0_linear" x1="1.20508" y1="59.7303" x2="67.308" y2="59.147" gradientUnits="userSpaceOnUse">
@@ -238,7 +239,7 @@
                     <!--{/foreach}-->
                 </ul>
                 <div class="l-floating-btn">
-                    <a href="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->" class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">キャンセル</a>
+                    <a href="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->" class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">変更しない</a>
                     <button class="c-btn--primary send-request_btn" data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">変更</button>
                 </div>
             </div>
