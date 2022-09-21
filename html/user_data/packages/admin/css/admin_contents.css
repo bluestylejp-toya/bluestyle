@@ -1608,3 +1608,34 @@ body#popup {
 }
 
 /*以上インストールページと共通■触るべからず*/
+
+.c-item--default_admin {
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+}
+.history_list_admin {
+    border-left: 1px #ccc solid;
+    border-top: 1px #ccc solid;
+}
+.c-item--default_admin p {
+    padding: 10px;
+    border-right: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
+}
+.c-item--default__no {
+    width: 10%;
+    text-align: center;
+}
+
+.c-item--default__title {
+    width: 50%;
+}
+
+.c-item--default__update_date {
+    width: 20%;
+}
