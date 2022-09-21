@@ -78,6 +78,7 @@
             <!--{elseif $arrChainProductStatus.progress_percent|h == 100}-->
             <div class="c-btn--mypage__wrapper">
                 <p>このアイテムはChain成立しています<br>発送してください</p>
+                <p class="attention">発送しないとペナルティが課せられます。</p>
                 <a href="/mypage/myitem/qr.php?product_id=<!--{$tpl_product_id|h}-->" class="c-btn--mypage--unshipped">発送用QRコードを表示する</a>
             </div>
             <!--{/if}-->
@@ -122,11 +123,12 @@
         <div class="p-item-detail__body">
             <div class="p-item-detail__body__main">
                 <h1 class="c-heading--detail"><!--{$arrProduct.name|mb_substr:0:30|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 30}-->...<!--{/if}--></h1>
-                <p class="c-item-request count_of_favorite u-mb--4">
+                <p class="c-item-request count_of_favorite u-mb--4"<!--{if $arrProduct.count_of_favorite|h > 0}--> data-customer="true"<!--{/if}-->>
                     <svg class="icon" width="150px" height="150px" viewBox="0 0 500 500">
                         <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#2A7DA7"/>
                     </svg>
                     <span class="num"><!--{$arrProduct.count_of_favorite|h}--></span>
+                <!--{if $arrProduct.count_of_favorite|h > 0}--><span class="count_of_favorite_text">ほしい人をチェック</span><!--{/if}-->
                 </p>
                 <!--▼サブコメント-->
                 <div class="u-mb--4">
@@ -225,6 +227,27 @@
         <!--/.p-item-detail__body-->
     </div>
     <!--/.c-item-detail-->
+
+
+    <!--{if $arrProduct.arrFavoriteCustomer != null}-->
+    <div class="c-customer-list__wrapper">
+        <h2 class="c-customer-list__title">「ほしい」しているユーザー</h2>
+        <ul class="c-customer-list">
+            <!--{foreach from=$arrProduct.arrFavoriteCustomer item=customer}-->
+            <li>
+                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$customer.customer_id}-->" class="c-customer-list__item">
+                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH|h}--><!--{if strlen($customer.profile_image) >= 1}-->../save_profile_image/<!--{$customer.profile_image|h}--><!--{else}--><!--{$tpl_profile_image|sfNoImageMainList|h}--><!--{/if}-->" class="c-customer-list__img">
+                    <p class="c-customer-list__name"><!--{$customer.nickname|h}--></p>
+                </a>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <p><button type="button" class="c-btn--default">閉じる</button></p>
+    </div>
+    <div class="c-customer-list__bg"></div>
+    <!--{/if}-->
+    <!--{* ほしいしてくれたユーザー *}-->
+
     <div class="c-modal" data-modal_mode="false">
         <button class="c-modal__close-btn" type="button">close</button>
         <!-- スライダーのメインコンテナの div 要素 -->
@@ -439,6 +462,17 @@
                 params.delete('mode');
                 history.replaceState('', '', location.href.replace('&mode=select_product_success', ''));
             }
+        })
+        /* ほしいをしてくれた人一覧 */
+        $('[data-customer]').on('click', function(){
+            $('.c-customer-list__bg').fadeIn();
+            $('.c-customer-list__wrapper').fadeIn();
+            $('body').addClass('--overflow-hidden');
+            $('.c-customer-list__bg, .c-customer-list__wrapper button').on('click', function(){
+                $('.c-customer-list__bg').fadeOut();
+                $('.c-customer-list__wrapper').fadeOut();
+                $('body').removeClass('--overflow-hidden');
+            })
         })
     });
 </script>

@@ -396,6 +396,9 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
         //レビュー情報の取得
         $this->arrReview = $this->lfGetReviewData($product_id);
 
+        // 自身を除くほしいしている人情報を取得
+        $this->arrProduct['arrFavoriteCustomer'] = self::lfGetFavoriteCustomer($this->arrProduct['favorite_customer_list'], $customer_id);
+
         //関連商品情報表示
         $this->arrRecommend = $this->lfPreGetRecommendProducts($product_id);
 
@@ -1039,4 +1042,23 @@ class LC_Page_Mypage_Myitem_MyitemDetail extends LC_Page_AbstractMypage_Ex
 
         return $where;
     }
+
+    /**
+     * 自身を除くほしいしている人情報を取得
+     * @param array $arrFavoriteCustomerList
+     * @param int $myCustomerId
+     * @return array $arrFavoriteCustomer
+     */
+    private static function lfGetFavoriteCustomer($arrFavoriteCustomerList = array(), $myCustomerId)
+    {
+        $arrFavoriteCustomer = array();
+        foreach (explode(',', $arrFavoriteCustomerList) as $customerId){
+            // 自身がいいねしている場合は対象外に
+            if ($myCustomerId != $customerId and strlen($customerId) > 0){
+                $arrFavoriteCustomer[] = SC_Helper_Customer_Ex::sfGetCustomerData($customerId);
+            }
+        }
+        return $arrFavoriteCustomer;
+    }
+
 }
