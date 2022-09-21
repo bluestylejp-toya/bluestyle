@@ -1448,5 +1448,9 @@
             <li>2,068</li>
         </ul>
     </div>
+    <!--{else}-->
+    <div class="chain-yamato-howto">
+        <p>送料を表示するには住所を入力してください。</p>
+    </div>
     <!--{/if}-->
 </section>

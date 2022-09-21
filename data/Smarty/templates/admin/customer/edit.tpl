@@ -248,6 +248,28 @@
         <!--{if $tpl_linemax > 0}-->
         <p><span class="attention"><!--購入履歴一覧--><!--{$tpl_linemax}-->件</span>&nbsp;が該当しました。</p>
 
+
+        <!--{if count($arrFastChainProduct) > 0}-->
+        <ul class="l-item-list history_list_admin">
+            <li class="c-item--default_admin">
+            <p class="c-item--default__no">商品ID</p>
+            <p class="c-item--default__title">アイテム名</p>
+            <p class="c-item--default__update_date">「ほしい」された日</p>
+            </li>
+            <!--{section name=cnt loop=$arrFastChainProduct}-->
+            <li class="c-item--default_admin">
+                <p class="c-item--default__no"><!--{$arrFastChainProduct[cnt].product_id|h|nl2br}--></p>
+                <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" target="_blank"><!--{$arrFastChainProduct[cnt].name|h|nl2br}--></a></p>
+                <p class="c-item--default__update_date"><!--{$arrFastChainProduct[cnt].update_date|h|nl2br}--></p>
+            </li>
+            <!--{/section}-->
+        </ul>
+        <!--{else}-->
+        <div class="message">
+            「ほしい」されているアイテムはありません
+        </div>
+        <!--{/if}-->
+
         <!--{include file=$tpl_pager}-->
 
             <!--{* 購入履歴一覧表示テーブル *}-->
@@ -274,7 +296,7 @@
             </table>
             <!--{* 購入履歴一覧表示テーブル *}-->
         <!--{else}-->
-            <div class="message">購入履歴はありません。</div>
+            <div class="message">Chain成立履歴はありません。</div>
         <!--{/if}-->
 
     </div>
