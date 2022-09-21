@@ -110,6 +110,13 @@
             </table>
             <!--{* システム情報ここまで *}-->
 
+                    <p>「ほしい」されたアイテム</p>
+                    <ul>
+                        <!--{section name=i loop=$arrNewFavoriteProducts}-->
+                        <li><!--{$arrNewFavoriteProducts[i].product_id}-->:<a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].product_id}-->" target="_blank"><!--{$arrNewFavoriteProducts[i].name|h}--></a>:<!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}--><span class="attention"><!--{/if}--><!--{$arrNewFavoriteProducts[i].update_date|date_format:"%Y-%m-%d"}--><!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}--></span><!--{/if}--></li>
+                        <!--{/section}-->
+                    </ul>
+
             <!--{* 退会者一覧ここから *}-->
             <table summary="退会者コメント" id="home-order">
                 <col width="5%" />

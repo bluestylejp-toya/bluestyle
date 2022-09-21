@@ -139,6 +139,8 @@ class SC_Product
             ,comment3
             ,main_list_comment
             ,sub_large_image1
+            ,sub_title1
+            ,sub_comment1
             ,price01_min
             ,price01_max
             ,price02_min

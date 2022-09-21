@@ -147,6 +147,7 @@ class LC_Page_FrontParts_Bloc_FastChain extends LC_Page_FrontParts_Bloc_Ex
         $where .= ' AND del_flg = 0';
         $objQuery->setWhere($where, $arrProductId);
         $addCols = ['count_of_favorite'];
+        $addCols[] = 'nickname';
         $arrProducts = $objProduct->lists($objQuery, [], $addCols);
 
         //取得している並び順で並び替え

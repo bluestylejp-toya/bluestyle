@@ -117,6 +117,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         // 新規受付一覧
         $this->arrNewOrder = $this->lfGetNewOrder();
 
+        // 新規「ほしい」一覧
+        $this->arrNewFavoriteProducts = $this->lfGetFavoriteProducts();
+
         // お知らせ一覧の取得
         $this->arrInfo = $this->lfGetInfo();
     }
@@ -333,6 +336,25 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
             . 'SELECT product_id FROM dtb_products_class '
             . 'WHERE del_flg = 0 AND stock_unlimited = ? AND stock <= 0)'
             . ' AND del_flg = 0';
+
+        return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
+    }
+
+    /**
+     * 「ほしい」商品の取得
+     *
+     * @return array 品切れ商品一覧
+     */
+    public function lfGetFavoriteProducts()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $cols = 'dtb_products.product_id, dtb_products.name, dtb_customer_favorite_products.update_date';
+        $table = 'dtb_products LEFT JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.product_id';
+        $where = 'dtb_products.product_id IN ('
+            . 'SELECT product_id FROM dtb_products_class '
+            . 'WHERE del_flg = 0 AND stock_unlimited = ?)'
+            . ' AND del_flg = 0 ORDER BY dtb_customer_favorite_products.update_date DESC';
 
         return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
     }
