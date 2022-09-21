@@ -148,9 +148,9 @@
             <!--▼商品-->
 
 			<li>
-				<a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"  class="c-list-item">
+				<a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->" class="c-list-item">
 					<figure class="c-list-item__img">
-						<img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->" decoding="async" loading="lazy" />
+						<img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->の写真" decoding="async" loading="lazy" />
 						<!--{if $arrProduct.customer_id == $customer_id}-->
 							<figcaption class="c-list-item__my-item">出品中</figcaption>
 						<!--{/if}-->
