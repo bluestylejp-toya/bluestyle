@@ -244,23 +244,90 @@
         <input type="hidden" name="search_pageno" value="<!--{$tpl_pageno}-->" />
         <input type="hidden" name="edit_customer_id" value="<!--{$edit_customer_id}-->" />
 
-        <h2>購入履歴一覧</h2>
-        <!--{if $tpl_linemax > 0}-->
-        <p><span class="attention"><!--購入履歴一覧--><!--{$tpl_linemax}-->件</span>&nbsp;が該当しました。</p>
+        <h2>「ほしい」したアイテム一覧</h2>
+        <!--{if count($arrFavorite) > 0}-->
+        <ul class="l-item-list history_list_admin">
+            <li class="c-item--default_admin">
+                <p class="c-item--default__no">商品ID</p>
+                <p class="c-item--default__img">アイテム画像</p>
+                <p class="c-item--default__title">アイテム名</p>
+                <p class="c-item--default__value">「ほしい」されている数</p>
+                <p class="c-item--default__update_date">「ほしい」した日</p>
+            </li>
+            <!--{assign var=id value=''}-->
+            <!--{section name=cnt loop=$arrFavorite}-->
+            <!--{assign var=product_id value="`$arrFavorite[cnt].product_id`"}-->
+            <!--{if $id != $product_id}-->
+            <!--{assign var=id value=`$product_id`}-->
+            <li class="c-item--default_admin">
+                <p class="c-item--default__no">
+                    <a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item" target="_blank">
+                        <!--{$arrFavorite[cnt].product_id|h|nl2br}-->
+                    </a>
+                </p>
+                <div class="c-item--default__img">
+                    <a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item" target="_blank">
+                        <figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->">
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img" width="80px" />
+                        </figure>
+                    </a>
+                </div>
+                <p class="c-item--default__title">
+                    <a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item" target="_blank">
+                        <!--{$arrFavorite[cnt].name|h}-->
+                    </a>
+                </p>
+                <p class="c-item--default__value">
+                    <!--{$arrFavorite[cnt].count_of_favorite|n2s|h}-->
+                </p>
+                <p class="c-item--default__update_date">
+                    <!--{$arrFavorite[cnt].update_date|date_format:"%Y年%m月%d日%k時%M分"}-->
+                </p>
+            </li>
+            <!--{/if}-->
+            <!--{/section}-->
+        </ul>
+        <!--{else}-->
+        <div class="message">
+            「ほしい」しているアイテムはありません
+        </div>
+        <!--{/if}-->
 
-
+        <h2>「ほしい」されたアイテム一覧</h2>
         <!--{if count($arrFastChainProduct) > 0}-->
         <ul class="l-item-list history_list_admin">
             <li class="c-item--default_admin">
-            <p class="c-item--default__no">商品ID</p>
-            <p class="c-item--default__title">アイテム名</p>
-            <p class="c-item--default__update_date">「ほしい」された日</p>
+                <p class="c-item--default__no">商品ID</p>
+                <p class="c-item--default__img">アイテム画像</p>
+                <p class="c-item--default__title">アイテム名</p>
+                <p class="c-item--default__value">「ほしい」されている数</p>
+                <p class="c-item--default__update_date">「ほしい」された日</p>
             </li>
             <!--{section name=cnt loop=$arrFastChainProduct}-->
             <li class="c-item--default_admin">
-                <p class="c-item--default__no"><!--{$arrFastChainProduct[cnt].product_id|h|nl2br}--></p>
-                <p class="c-item--default__title"><a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" target="_blank"><!--{$arrFastChainProduct[cnt].name|h|nl2br}--></a></p>
-                <p class="c-item--default__update_date"><!--{$arrFastChainProduct[cnt].update_date|h|nl2br}--></p>
+                <p class="c-item--default__no">
+                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" target="_blank">
+                        <!--{$arrFastChainProduct[cnt].product_id|h|nl2br}-->
+                    </a>
+                </p>
+                <div class="c-item--default__img">
+                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" target="_blank">
+                        <figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->">
+                            <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFastChainProduct[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFastChainProduct[cnt].name|h}-->" class="c-item__img" width="80px" />
+                        </figure>
+                    </a>
+                </div>
+                <p class="c-item--default__title">
+                    <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" target="_blank">
+                        <!--{$arrFastChainProduct[cnt].name|h|nl2br}-->
+                    </a>
+                </p>
+                <p class="c-item--default__value">
+                    <!--{$arrFastChainProduct[cnt].count_of_favorite|n2s|h}-->
+                </p>
+                <p class="c-item--default__update_date">
+                    <!--{$arrFastChainProduct[cnt].update_date|date_format:"%Y年%m月%d日%k時%M分"}-->
+                </p>
             </li>
             <!--{/section}-->
         </ul>
@@ -270,6 +337,9 @@
         </div>
         <!--{/if}-->
 
+        <h2>Chain履歴一覧</h2>
+        <!--{if $tpl_linemax > 0}-->
+        <p><span class="attention"><!--購入履歴一覧--><!--{$tpl_linemax}-->件</span>&nbsp;が該当しました。</p>
         <!--{include file=$tpl_pager}-->
 
             <!--{* 購入履歴一覧表示テーブル *}-->
