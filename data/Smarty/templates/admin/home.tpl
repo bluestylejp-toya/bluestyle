@@ -110,7 +110,7 @@
                                 </a>
                             </p>
                             <p class="c-item--default__value">
-                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProducts[i].customer_id}-->" target="_blank">
+                                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProducts[i].customer_id}-->" target="_blank">
                                     <!--{$arrNewFavoriteProducts[i].name01|h}-->
                                     <!--{$arrNewFavoriteProducts[i].name02|h}-->
                                 </a>
