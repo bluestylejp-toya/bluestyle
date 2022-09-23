@@ -3,7 +3,7 @@
         <!--{if $smarty.server.PHP_SELF==$list}-->
             <div class="c-item-tab__content" data-tab_item="1">
         <!--{/if}-->
-        <ul>
+        <ul class="c-list-item__main_ul">
             <!--{section name=cnt loop=$arrFastChainProduct}-->
                 <li>
                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" class="c-list-item">
@@ -17,10 +17,12 @@
                             <!--{* 以下にアイテム説明が入ります*}-->
                             <p class="c-list-item__description"><!--{if $arrFastChainProduct[cnt].sub_title1}--><!--{$arrFastChainProduct[cnt].sub_title1|mb_substr:0:40|h|nl2br}--><!--{if $arrFastChainProduct[cnt].sub_title1|mb_strlen > 16}-->...<!--{/if}--><!--{/if}--></p>
                             <!--{* 以下に出品者情報が入ります*}-->
-                            <p  class="c-list-item__seller">出品者:<!--{$arrFastChainProduct[cnt].nickname|h}--></p>
+                        </div>
+                    </a>
+                        <div  class="c-list-item__seller">
+                            出品者:<a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrFastChainProduct[cnt].customer_id|h}-->"> <!--{$arrFastChainProduct[cnt].nickname|h}--></a>
                         </div>
                         <!--{$arrFastChainProduct[cnt].sub_comment1|h}-->
-                    </a>
                 </li>
             <!--{/section}-->
         </ul>
