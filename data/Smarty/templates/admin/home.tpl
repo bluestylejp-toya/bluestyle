@@ -88,32 +88,48 @@
             </table>
             <!--{* ショップの状況ここまで *}-->
 
-            <!--{* システム情報ここから *}-->
-            <h2>システム情報</h2>
-            <table summary="システム情報" class="shop-info">
-                <tr>
-                    <th>EC-CUBEバージョン</th>
-                    <td><!--{$smarty.const.ECCUBE_VERSION}--></td>
-                </tr>
-                <tr>
-                    <th>PHPバージョン</th>
-                    <td><!--{$php_version}--></td>
-                </tr>
-                <tr>
-                    <th>DBバージョン</th>
-                    <td><!--{$db_version}--></td>
-                </tr>
-                <tr>
-                    <th>詳細</th>
-                    <td><a href="<!--{$smarty.const.ROOT_URLPATH}--><!--{$smarty.const.ADMIN_DIR}-->system/system.php">システム設定＞システム情報</a></td>
-                </tr>
-            </table>
-            <!--{* システム情報ここまで *}-->
-
-                    <p>「ほしい」されたアイテム</p>
-                    <ul>
+            <h2>「ほしい」されたアイテム</h2>
+            <ul class="l-item-list history_list_admin_home">
+                        <li class="c-item--default_admin">
+                            <p class="c-item--default__img">アイテム画像</p>
+                            <p class="c-item--default__title">アイテム名</p>
+                            <p class="c-item--default__value">出品者</p>
+                            <p class="c-item--default__no">対象アイテムID</p>
+                            <p class="c-item--default__update_date">「ほしい」された日</p>
+                        </li>
                         <!--{section name=i loop=$arrNewFavoriteProducts}-->
-                        <li><!--{$arrNewFavoriteProducts[i].product_id}-->:<a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].product_id}-->" target="_blank"><!--{$arrNewFavoriteProducts[i].name|h}--></a>:<!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}--><span class="attention"><!--{/if}--><!--{$arrNewFavoriteProducts[i].update_date|date_format:"%Y-%m-%d"}--><!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}--></span><!--{/if}--></li>
+                        <li class="c-item--default_admin">
+                            <div class="c-item--default__img">
+                                <figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->">
+                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrNewFavoriteProducts[i].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrNewFavoriteProducts[i].name|h}-->" class="c-item__img" width="40px" />
+                                </figure>
+                            </div>
+                            <p class="c-item--default__title">
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].product_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProducts[i].name|h}-->
+                                </a>
+                            </p>
+                            <p class="c-item--default__value">
+                                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProducts[i].customer_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProducts[i].name01|h}-->
+                                    <!--{$arrNewFavoriteProducts[i].name02|h}-->
+                                </a>
+                            </p>
+                            <p class="c-item--default__no">
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].target_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProducts[i].target_id}-->
+                                </a>
+                            </p>
+                            <p class="c-item--default__update_date">
+                            <!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}-->
+                                <span class="attention">
+                            <!--{/if}-->
+                                     <!--{$arrNewFavoriteProducts[i].update_date|date_format:"%Y年%m月%d日%k時%M分"}-->
+                            <!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}-->
+                                </span>
+                            <!--{/if}-->
+                            </p>
+                        </li>
                         <!--{/section}-->
                     </ul>
 
@@ -170,6 +186,27 @@
             <!--{* 新規受付一覧ここまで *}-->
 
         </form>
+        <!--{* システム情報ここから *}-->
+        <h2>システム情報</h2>
+        <table summary="システム情報" class="shop-info">
+            <tr>
+                <th>EC-CUBEバージョン</th>
+                <td><!--{$smarty.const.ECCUBE_VERSION}--></td>
+            </tr>
+            <tr>
+                <th>PHPバージョン</th>
+                <td><!--{$php_version}--></td>
+            </tr>
+            <tr>
+                <th>DBバージョン</th>
+                <td><!--{$db_version}--></td>
+            </tr>
+            <tr>
+                <th>詳細</th>
+                <td><a href="<!--{$smarty.const.ROOT_URLPATH}--><!--{$smarty.const.ADMIN_DIR}-->system/system.php">システム設定＞システム情報</a></td>
+            </tr>
+        </table>
+        <!--{* システム情報ここまで *}-->
     </div>
     <!--{* メインエリア *}-->
 

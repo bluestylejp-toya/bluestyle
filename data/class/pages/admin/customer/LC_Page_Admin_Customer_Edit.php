@@ -130,6 +130,10 @@ class LC_Page_Admin_Customer_Edit extends LC_Page_Admin_Ex
                 // ファストChain商品を取得
                 $this->arrFastChainProduct = $this->getProducts($objFormSearchParam->getValue('edit_customer_id'));
 
+                // ほしいした商品を取得
+                $this->arrFavorite = $this->lfGetFavoriteProduct($objFormSearchParam->getValue('edit_customer_id'), $this);
+                SC_Product_Ex::setPriceTaxTo($this->arrFavorite);
+
                 $this->arrPagenavi = $this->objNavi->arrPagenavi;
                 $this->arrPagenavi['mode'] = 'return';
                 $this->tpl_pageno = '0';
@@ -419,14 +423,6 @@ class LC_Page_Admin_Customer_Edit extends LC_Page_Admin_Ex
         $objQuery = SC_Query_Ex::getSingletonInstance();
         $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
         $objProduct = new SC_Product_Ex();
-        $linemax = $objProduct->findProductCount($objQuery);
-
-        $this->tpl_linemax = $linemax;   // 何件が該当しました。表示用
-
-        // ページ送りの取得
-        $objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $linemax, $this->dispNumber, 'eccube.movePage', NAVI_PMAX);
-        $this->tpl_strnavi = $objNavi->strnavi; // 表示文字列
-        $startno = $objNavi->start_row;
 
         $objQuery = SC_Query_Ex::getSingletonInstance();
         //$objQuery->setLimitOffset($this->dispNumber, $startno);
@@ -448,6 +444,51 @@ class LC_Page_Admin_Customer_Edit extends LC_Page_Admin_Ex
         foreach ($arrProductId as $product_id) {
             $arrProductsList[] = $arrProducts2[$product_id];
         }
+
+        return $arrProductsList;
+    }
+
+    /**
+     * お気に入りを取得する
+     *
+     * @param mixed $customer_id
+     * @param LC_Page_Mypage_Favorite $objPage
+     * @access private
+     * @return array お気に入り商品一覧
+     */
+    public function lfGetFavoriteProduct($customer_id, &$objPage)
+    {
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objProduct     = new SC_Product_Ex();
+
+        $objQuery->setOrder('f.create_date DESC');
+        $where = 'f.customer_id = ? and p.status = 1 and targetProduct.status = 1';
+        if (NOSTOCK_HIDDEN) {
+            $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        }
+        $arrProductId  = $objQuery->getCol('f.product_id', 'dtb_customer_favorite_products f inner join dtb_products p using (product_id) inner join dtb_products targetProduct ON f.target_id = targetProduct.product_id', $where, array($customer_id));
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
+
+        $where = $this->lfMakeWhere('', $arrProductId);
+        $where .= ' AND del_flg = 0';
+        $objQuery->setWhere($where, $arrProductId);
+        $addCols = ['count_of_favorite'];
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        //取得している並び順で並び替え
+        $arrProducts2 = array();
+        foreach ($arrProducts as $item) {
+            $arrProducts2[$item['product_id']] = $item;
+        }
+        $arrProductsList = array();
+        foreach ($arrProductId as $product_id) {
+            $arrProductsList[] = $arrProducts2[$product_id];
+        }
+
+        // 税込金額を設定する
+        SC_Product_Ex::setIncTaxToProducts($arrProductsList);
 
         return $arrProductsList;
     }

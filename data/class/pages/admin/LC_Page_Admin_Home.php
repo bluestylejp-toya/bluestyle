@@ -349,12 +349,12 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $cols = 'dtb_products.product_id, dtb_products.name, dtb_customer_favorite_products.update_date';
-        $table = 'dtb_products LEFT JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.product_id';
+        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_customer.name01, dtb_customer.name02, dtb_customer.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
+        $table = 'dtb_products LEFT JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.product_id LEFT JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id';
         $where = 'dtb_products.product_id IN ('
             . 'SELECT product_id FROM dtb_products_class '
-            . 'WHERE del_flg = 0 AND stock_unlimited = ?)'
-            . ' AND del_flg = 0 ORDER BY dtb_customer_favorite_products.update_date DESC';
+            . 'WHERE dtb_products.del_flg = 0 AND stock_unlimited = ?)'
+            . ' AND dtb_products.del_flg = 0 ORDER BY dtb_customer_favorite_products.update_date DESC';
 
         return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
     }

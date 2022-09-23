@@ -45,7 +45,7 @@
                         <!--{assign var=product_id value="`$arrFavorite[cnt].product_id`"}-->
 						<!--{if $id != $product_id}-->
 						<!--{assign var=id value=`$product_id`}-->
-                        <li >
+                        <li>
 							<a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item">
 								<figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img"/></figure>
 								<div class="c-item__main">
