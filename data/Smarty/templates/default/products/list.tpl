@@ -140,7 +140,7 @@
                 </form>
                 <!--▲ページナビ(上部)-->
 
-                <ul>
+                <ul class="c-list-item__main_ul">
             <!--{/if}-->
 
             <!--{assign var=id value=$arrProduct.product_id}-->
@@ -163,10 +163,12 @@
 						<!--{* 以下にアイテム説明が入ります*}-->
 						<p class="c-list-item__description"><!--{if $arrProduct.sub_title1}--><!--{$arrProduct.sub_title1|mb_substr:0:40|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 16}-->...<!--{/if}--><!--{/if}--></p>
 						<!--{* 以下に出品者情報が入ります*}-->
-						<p  class="c-list-item__seller">出品者:<!--{$arrProduct.nickname|h}--></p>
+                    </div>
+                </a>
+                    <div class="c-list-item__seller">
+                        出品者:<a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.customer_id|h}-->"> <!--{$arrProduct.nickname|h}--></a>
 					</div>
 					<!--{$arrProduct.sub_comment1|h}-->
-				</a>
 			</li>
 		<!--▲商品-->
 
