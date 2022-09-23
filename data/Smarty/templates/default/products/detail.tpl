@@ -57,7 +57,7 @@
             <div data-img_id="0" class="p-item-detail__head__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
             <!--★お気に入り登録★-->
             <!--{if $smarty.session.unregistered_card}-->
-            <!--{elseif $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product}-->
+            <!--{elseif $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product && $arrProduct.stock_max > 0}-->
 
             <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
             <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
@@ -89,6 +89,9 @@
             <!--{/if}-->
             <div class="slideup_bg<!--{if $smarty.get.open == true}--> --active<!--{/if}-->"></div>
         </div>
+        <!--{if $arrProduct.stock_max < 1}-->
+        <p class="u-text--center"><b>Chain成立済みのアイテムです。</b></p>
+        <!--{/if}-->
         <!--/key visual-->
         <div class="p-item-detail__body">
             <div class="p-item-detail__body__main">

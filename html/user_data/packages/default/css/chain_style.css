@@ -190,3 +190,15 @@
 	bottom: 10px;
 	width: 40%;
 }
+.c-list-item__soldout {
+	position: absolute;
+	color: red;
+	top: 0;
+	padding: 5px;
+	font-size: 130%;
+	background:rgba(255,255,255,0.5);
+	/*
+	max-height: 100%;
+	max-width: 100%;
+	*/
+}
