@@ -148,7 +148,7 @@
             <!--▼商品-->
 
 			<li>
-				<a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->" class="c-list-item">
+                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->" class="c-list-item">
 					<figure class="c-list-item__img">
 						<img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->の写真" decoding="async" loading="lazy" />
 						<!--{if $arrProduct.customer_id == $customer_id}-->
@@ -164,6 +164,7 @@
 						<p class="c-list-item__description"><!--{if $arrProduct.sub_title1}--><!--{$arrProduct.sub_title1|mb_substr:0:40|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 16}-->...<!--{/if}--><!--{/if}--></p>
 						<!--{* 以下に出品者情報が入ります*}-->
                     </div>
+                    <!--{if $arrProduct.stock_max < 1}--><div class="c-list-item__soldout">Chain成立済み</div><!--{/if}-->
                 </a>
                     <div class="c-list-item__seller">
                         出品者:<a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.customer_id|h}-->"> <!--{$arrProduct.nickname|h}--></a>

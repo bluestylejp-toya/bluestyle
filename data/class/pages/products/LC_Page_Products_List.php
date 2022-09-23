@@ -292,7 +292,7 @@ class LC_Page_Products_List extends LC_Page_Ex
                     WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer_favorite_products.customer_id = " . $objQuery->conn->escape($customer_id) . "
                         AND dtb_products.status = 1 AND dtb_products.del_flg = 0
                         AND dtb_products_class.classcategory_id1 = 0 AND dtb_products_class.classcategory_id2 = 0 AND dtb_products_class.del_flg = 0
-                        AND (dtb_products_class.stock > 0 OR dtb_products_class.stock_unlimited = 1)
+                        AND (dtb_products_class.stock_unlimited = 1)
                 ) THEN 1 ELSE 0 END
             ) AS registered_favorite";
         }
