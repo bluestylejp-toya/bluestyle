@@ -117,10 +117,6 @@ class LC_Page_FrontParts_LoginCheck extends LC_Page_Ex
                 if (count($arrErr) == 0) {
                     // ログイン処理
                     if ($objCustomer->doLogin($arrForm['login_email'], $arrForm['login_pass'])) {
-                        // --- ログインに成功した場合
-                        if (isset($_SESSION['unregistered_card']) && $_SESSION['unregistered_card']) {
-                            $url = HTTPS_URL . 'mypage/card_info.php';
-                        }
                         if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_SMARTPHONE) {
                             echo SC_Utils_Ex::jsonEncode(array('success' => $url));
                         } else {
