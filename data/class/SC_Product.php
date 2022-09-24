@@ -708,13 +708,14 @@ __EOS__;
     }
 
     /**
+     * 商品一覧の表示処理
      * @param string $tablename
      */
     public function getProductDispConditions($tablename = null)
     {
         $tablename = ($tablename) ? $tablename . '.' : null;
 
-        return $tablename . 'del_flg = 0 AND ' . $tablename . 'status ';
+        return $tablename . 'del_flg = 0 AND ' . $tablename . 'status = 1 OR ' . $tablename . "chain_id != '' ";
     }
 
     /**
