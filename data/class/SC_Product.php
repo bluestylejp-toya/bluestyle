@@ -714,7 +714,7 @@ __EOS__;
     {
         $tablename = ($tablename) ? $tablename . '.' : null;
 
-        return $tablename . 'del_flg = 0 AND ' . $tablename . 'status = 1 ';
+        return $tablename . 'del_flg = 0 AND ' . $tablename . 'status ';
     }
 
     /**
