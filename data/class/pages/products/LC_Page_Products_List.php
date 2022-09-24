@@ -246,7 +246,7 @@ class LC_Page_Products_List extends LC_Page_Ex
 
             // 新着順
             case 'date':
-                $objProduct->setProductsOrder('create_date', 'dtb_products', 'ASC');
+                $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
                 //$objProduct->setProductsOrder('status', 'dtb_products', 'ASC');
                 break;
 
