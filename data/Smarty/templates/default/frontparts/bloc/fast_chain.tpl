@@ -5,6 +5,7 @@
         <!--{/if}-->
         <ul class="c-list-item__main_ul">
             <!--{section name=cnt loop=$arrFastChainProduct}-->
+            <!--{if $arrFastChainProduct[cnt].product_id > 0}-->
                 <li>
                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrFastChainProduct[cnt].product_id|u}-->" class="c-list-item">
                         <figure class="c-list-item__img">
@@ -24,6 +25,7 @@
                         </div>
                         <!--{$arrFastChainProduct[cnt].sub_comment1|h}-->
                 </li>
+            <!--{/if}-->
             <!--{/section}-->
         </ul>
     <!--{if $smarty.server.PHP_SELF==$list}-->
