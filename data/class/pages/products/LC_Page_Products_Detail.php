@@ -464,7 +464,7 @@ class LC_Page_Products_Detail extends LC_Page_Ex
         if (isset($admin_mode) && $admin_mode == 'on' && SC_Utils_Ex::sfIsSuccess(new SC_Session_Ex(), false)) {
             $include_hidden = true;
         } else {
-            $include_hidden = false;
+            $include_hidden = true;
         }
 
         if (!$objProduct->isValidProductId($product_id, $include_hidden)) {

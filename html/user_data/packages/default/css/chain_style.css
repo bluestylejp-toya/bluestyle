@@ -192,13 +192,16 @@
 }
 .c-list-item__soldout {
 	position: absolute;
-	color: red;
-	top: 0;
+	color: #fff;
+	top: 8px;
 	padding: 5px;
 	font-size: 130%;
-	background:rgba(255,255,255,0.5);
-	/*
-	max-height: 100%;
-	max-width: 100%;
-	*/
+	background:rgba(0,0,0,0.35);
+	height: 130px;
+	padding-top: 48px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
 }
