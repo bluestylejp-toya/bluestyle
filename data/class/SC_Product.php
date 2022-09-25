@@ -817,7 +817,7 @@ __EOS__;
         $objQuery       = SC_Query_Ex::getSingletonInstance();
         $where = 'dtb_products.customer_id = ? AND dtb_products.del_flg = 0';
         if (!$dispPrivateFlg){
-            $where .= ' AND dtb_products.status = 1';
+            $where .= ' AND dtb_products.status = 1 ';
         }
         if (NOSTOCK_HIDDEN) {
             $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';

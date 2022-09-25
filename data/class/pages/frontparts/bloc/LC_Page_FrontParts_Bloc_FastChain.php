@@ -144,7 +144,7 @@ class LC_Page_FrontParts_Bloc_FastChain extends LC_Page_FrontParts_Bloc_Ex
         $arrProductId = array_slice($arrProductId, $startno, $this->dispNumber);
 
         $where = $this->lfMakeWhere('', $arrProductId);
-        $where .= ' AND del_flg = 0';
+        $where .= ' AND del_flg = 0 AND status = 1 ';
         $objQuery->setWhere($where, $arrProductId);
         $addCols = ['count_of_favorite'];
         $addCols[] = 'nickname';
