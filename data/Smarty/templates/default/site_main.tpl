@@ -129,7 +129,7 @@
                     <!--{foreach key=MainFootKey item=MainFootItem from=$arrPageLayout.MainFoot}-->
                         <!--{if $smarty.server.PHP_SELF==$list}--><div class="c-item-tab__content" data-tab_item="<!--{$MainFootKey+1}-->"><!--{/if}-->
                         <!--{if $MainFootKey+1 === 1 && $tpl_page_class_name === 'LC_Page_Products_List'}-->
-                            <div class="c-alert--gray --show u-mb--4">このアイテムはすぐにもらえます<button type="button"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.9888C0 5.45877 4.47 0.98877 10 0.98877C15.53 0.98877 20 5.45877 20 10.9888C20 16.5188 15.53 20.9888 10 20.9888C4.47 20.9888 0 16.5188 0 10.9888ZM13.59 15.9888L15 14.5788L11.41 10.9888L15 7.39877L13.59 5.98877L10 9.57877L6.41 5.98877L5 7.39877L8.59 10.9888L5 14.5788L6.41 15.9888L10 12.3988L13.59 15.9888Z" fill="#9DA4B0"/></svg></button></div>
+                            <div class="c-alert--gray --show u-mb--4" style="padding-left: 20px;">このアイテムはすぐにもらえます<button type="button"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.9888C0 5.45877 4.47 0.98877 10 0.98877C15.53 0.98877 20 5.45877 20 10.9888C20 16.5188 15.53 20.9888 10 20.9888C4.47 20.9888 0 16.5188 0 10.9888ZM13.59 15.9888L15 14.5788L11.41 10.9888L15 7.39877L13.59 5.98877L10 9.57877L6.41 5.98877L5 7.39877L8.59 10.9888L5 14.5788L6.41 15.9888L10 12.3988L13.59 15.9888Z" fill="#9DA4B0"/></svg></button></div>
                         <!--{/if}-->
                         <!-- ▼<!--{$MainFootItem.bloc_name}--> -->
                         <!--{if $MainFootItem.php_path != ""}-->

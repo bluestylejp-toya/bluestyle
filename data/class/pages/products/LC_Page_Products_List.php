@@ -247,12 +247,19 @@ class LC_Page_Products_List extends LC_Page_Ex
             // 新着順
             case 'date':
                 $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
-                //$objProduct->setProductsOrder('status', 'dtb_products', 'ASC');
                 break;
 
             // ほしい順
             case 'count_of_favorite':
                 $objProduct->setProductsOrder('count_of_favorite', 'dtb_products', 'DESC');
+
+                $col = 'COUNT(product_id)';
+                $from = "dtb_products";
+                $where = 'del_flg = 0';
+                $sub_sql = $objQuery->getSql($col, $from, $where);
+
+                $objQuery->setOrder("($sub_sql) DESC ,status ASC");
+
                 break;
 
             default:

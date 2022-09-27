@@ -47,7 +47,7 @@
             <li class="l-footer-nav__item">
                 <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">見つける</a>
             </li>
-            <li class="l-footer-nav__item">
+            <li class="l-footer-nav__item c-item-icon<!--{if $current == 'display'}--> is-current_bg<!--{/if}-->">
                 <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php" class="c-footer-nav-item--listing<!--{if $current == 'display'}--> is-current<!--{/if}-->">出品</a>
             </li>
             <li class="l-footer-nav__item">
