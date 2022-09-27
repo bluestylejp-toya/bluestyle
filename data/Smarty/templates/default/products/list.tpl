@@ -148,7 +148,7 @@
             <!--▼商品-->
 
 			<li>
-                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->" class="c-list-item">
+                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->" class="c-list-item<!--{if $arrProduct.stock_max < 1}--> c-list-item__soldout_bg<!--{/if}-->">
 					<figure class="c-list-item__img">
 						<img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProduct.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrProduct.name|h}-->の写真" decoding="async" loading="lazy" />
 						<!--{if $arrProduct.customer_id == $customer_id}-->
@@ -157,17 +157,24 @@
 					</figure>
 					<div class="c-list-item__main">
 						<!--{$tpl_my_product}-->
-						<h3 class="c-list-item__title"><!--{$arrProduct.name|mb_substr:0:16|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 16}-->...<!--{/if}--></h3>
+						<h3 class="c-list-item__title"><!--{$arrProduct.name|mb_substr:0:19|h|nl2br}--><!--{if $arrProduct.name|mb_strlen > 19}-->...<!--{/if}--></h3>
 						<span class="c-list-item__request<!--{if $arrProduct.registered_favorite}--> --active<!--{/if}-->" data-product_id="<!--{$arrProduct.product_id|h}-->"><svg class="icon" width="24px" height="24px" viewBox="0 0 500 500">
 						<path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="<!--{if $arrProduct.registered_favorite}-->#ffffff<!--{else}-->#72c8e2<!--{/if}-->"></path></svg><!--{$arrProduct.count_of_favorite|h}--></span>
 						<!--{* 以下にアイテム説明が入ります*}-->
-						<p class="c-list-item__description"><!--{if $arrProduct.sub_title1}--><!--{$arrProduct.sub_title1|mb_substr:0:40|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 16}-->...<!--{/if}--><!--{/if}--></p>
+						<p class="c-list-item__description"><!--{if $arrProduct.sub_title1}--><!--{$arrProduct.sub_title1|mb_substr:0:36|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 36}-->...<!--{/if}--><!--{/if}--></p>
 						<!--{* 以下に出品者情報が入ります*}-->
                     </div>
                     <!--{if $arrProduct.stock_max < 1}--><div class="c-list-item__soldout">Chain成立済み</div><!--{/if}-->
                 </a>
                     <div class="c-list-item__seller">
-                        出品者:<a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.customer_id|h}-->"> <!--{$arrProduct.nickname|h}--></a>
+                        <dl>
+                            <dt>出品者:</dt>
+                            <dd>
+                                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrProduct.customer_id|h}-->">
+                                    <!--{$arrProduct.nickname|mb_substr:0:8|h|nl2br}--><!--{if $arrProduct.nickname|mb_strlen > 8}-->...<!--{/if}-->
+                                </a>
+                            </dd>
+                        </dl>
 					</div>
 					<!--{$arrProduct.sub_comment1|h}-->
 			</li>
