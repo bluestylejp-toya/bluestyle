@@ -1617,6 +1617,11 @@ body#popup {
     -ms-flex-pack: justify;
     justify-content: flex-start;
     -webkit-justify-content: flex-start;
+    height: 40px;
+}
+.c-item--default_admin img {
+    max-height: 36px;
+    max-width: 36px;
 }
 .history_list_admin {
     border-left: 1px #ccc solid;
@@ -1648,7 +1653,6 @@ body#popup {
     padding: 5px 10px;
     border-right: 1px #ccc solid;
     border-bottom: 1px #ccc solid;
-    font-size: 120%;
 }
 .c-item--default_admin figure {
     margin: 0;
@@ -1674,13 +1678,14 @@ body#popup {
 }
 .history_list_admin_home p,
 .history_list_admin_home div {
-    padding: 5px 10px;
+    padding: 0 10px;
     border-right: 1px #ccc solid;
     border-bottom: 1px #ccc solid;
     font-size: 120%;
 }
 
 .history_list_admin_home .c-item--default__img {
+    font-size: 90%;
     width: 26.66%;
     text-align: center;
 }
@@ -1688,21 +1693,33 @@ body#popup {
     margin: 0;
 }
 .history_list_admin_home .c-item--default__title {
+    padding: 5px 10px;
+    font-size: 90%;
     width: 46.66%;
 }
 .history_list_admin_home .c-item--default__value {
+    padding: 5px 10px;
+    font-size: 90%;
     width: 26.66%;
+    text-align: left;
 }
 .history_list_admin_home .c-item--default__img2 {
+    font-size: 90%;
     width: 22%;
     text-align: center;
 }
 .history_list_admin_home .c-item--default__title2 {
+    padding: 5px 10px;
+    font-size: 90%;
     width: 30%;
 }
 .history_list_admin_home .c-item--default__value2 {
+    padding: 5px 10px;
+    font-size: 90%;
     width: 22%;
 }
 .history_list_admin_home .c-item--default__update_date {
+    padding: 0 10px;
+    font-size: 80%;
     width: 26%;
 }
