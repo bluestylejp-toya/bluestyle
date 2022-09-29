@@ -203,7 +203,7 @@
 }
 
 .c-list-item__seller dl dt {
-	width: 28%;
+	max-width: 28%;
 }
 .c-list-item__seller dl dd {
 	max-width: 72%;

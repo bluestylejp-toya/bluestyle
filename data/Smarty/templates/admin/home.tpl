@@ -54,15 +54,15 @@
                     <td><!--{$refusalcustomer_cnt|default:"0"|n2s}-->名</td>
                 </tr>
                 <tr>
-                    <th>ほしい総人数</th>
+                    <th>ほしい総アイテム数</th>
                     <td><!--{$favorite_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
-                    <th>昨日のほしい総人数</th>
+                    <th>昨日のほしい総アイテム数</th>
                     <td><!--{$favorite_yesterday_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
-                    <th>今月のほしい総人数</th>
+                    <th>今月のほしい総アイテム数</th>
                     <td><!--{$favorite_month_cnt|default:"0"|n2s}-->人</td>
                 </tr>
                 <tr>
@@ -89,49 +89,80 @@
             <!--{* ショップの状況ここまで *}-->
 
             <h2>「ほしい」されたアイテム</h2>
-            <ul class="l-item-list history_list_admin_home">
+            <dev class="l-item-list history_list_admin_home">
+                <div class="seller_favo_frame">
+                    <ul class="seller">
                         <li class="c-item--default_admin">
                             <p class="c-item--default__img">アイテム画像</p>
                             <p class="c-item--default__title">アイテム名</p>
                             <p class="c-item--default__value">出品者</p>
-                            <p class="c-item--default__no">対象アイテムID</p>
+                        </li>
+                    </ul>
+                    <ul class="favo">
+                        <li class="c-item--default_admin">
+                            <p class="c-item--default__img2">アイテム画像</p>
+                            <p class="c-item--default__title2">アイテム名</p>
+                            <p class="c-item--default__value2">ほしい人</p>
                             <p class="c-item--default__update_date">「ほしい」された日</p>
                         </li>
-                        <!--{section name=i loop=$arrNewFavoriteProducts}-->
+                    </ul>
+                </div>
+                <div class="seller_favo_frame">
+                    <ul class="seller">
+                        <!--{section name=j loop=$arrNewFavoriteProductsFavo}-->
                         <li class="c-item--default_admin">
                             <div class="c-item--default__img">
                                 <figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->">
-                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrNewFavoriteProducts[i].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrNewFavoriteProducts[i].name|h}-->" class="c-item__img" width="40px" />
+                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrNewFavoriteProductsFavo[j].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrNewFavoriteProductsFavo[j].name|h}-->" class="c-item__img" width="40px" />
                                 </figure>
                             </div>
                             <p class="c-item--default__title">
-                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].product_id}-->" target="_blank">
-                                    <!--{$arrNewFavoriteProducts[i].name|h}-->
-                                </a>
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProductsFavo[j].product_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProductsFavo[j].name|mb_substr:0:12|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 12}-->...<!--{/if}-->
+                                </a><!--{if $arrNewFavoriteProductsFavo[j].chain_id|h}--><span>済</span><!--{/if}-->
                             </p>
                             <p class="c-item--default__value">
-                                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProducts[i].customer_id}-->" target="_blank">
-                                    <!--{$arrNewFavoriteProducts[i].name01|h}-->
-                                    <!--{$arrNewFavoriteProducts[i].name02|h}-->
+                                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProductsFavo[j].customer_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProductsFavo[j].name01|mb_substr:0:4|h|nl2br}-->
+                                    <!--{$arrNewFavoriteProductsFavo[j].name02|mb_substr:0:4|h|nl2br}-->
                                 </a>
-                            </p>
-                            <p class="c-item--default__no">
-                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].target_id}-->" target="_blank">
-                                    <!--{$arrNewFavoriteProducts[i].target_id}-->
-                                </a>
-                            </p>
-                            <p class="c-item--default__update_date">
-                            <!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}-->
-                                <span class="attention">
-                            <!--{/if}-->
-                                     <!--{$arrNewFavoriteProducts[i].update_date|date_format:"%Y年%m月%d日%k時%M分"}-->
-                            <!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}-->
-                                </span>
-                            <!--{/if}-->
                             </p>
                         </li>
                         <!--{/section}-->
                     </ul>
+                <ul class="favo">
+                        <!--{section name=i loop=$arrNewFavoriteProducts}-->
+                        <li class="c-item--default_admin">
+                            <div class="c-item--default__img2">
+                                <figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->">
+                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrNewFavoriteProducts[i].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrNewFavoriteProducts[i].name|h}-->" class="c-item__img" width="40px" />
+                                </figure>
+                            </div>
+                            <p class="c-item--default__title2">
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].product_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProducts[i].name|mb_substr:0:12|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 12}-->...<!--{/if}-->
+                                </a><!--{if $arrNewFavoriteProducts[i].chain_id|h}--><span>済</span><!--{/if}-->
+                            </p>
+                            <p class="c-item--default__value2">
+                                <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProducts[i].customer_id}-->" target="_blank">
+                                    <!--{$arrNewFavoriteProducts[i].name01|mb_substr:0:4|h|nl2br}-->
+                                    <!--{$arrNewFavoriteProducts[i].name02|mb_substr:0:4|h|nl2br}-->
+                                </a>
+                            </p>
+                            <p class="c-item--default__update_date">
+                                <!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}-->
+                                <span class="attention">
+                            <!--{/if}-->
+                                    <!--{$arrNewFavoriteProducts[i].update_date|date_format:"%Y年%m月%d日%k時%M分"}-->
+                                    <!--{if $smarty.now|date_format:"%Y%m%d" - $arrNewFavoriteProducts[i].update_date|date_format:"%Y%m%d" < 2}-->
+                                </span>
+                                <!--{/if}-->
+                            </p>
+                        </li>
+                        <!--{/section}-->
+                </ul>
+                </div>
+                    </dev>
 
             <!--{* 退会者一覧ここから *}-->
             <table summary="退会者コメント" id="home-order">
