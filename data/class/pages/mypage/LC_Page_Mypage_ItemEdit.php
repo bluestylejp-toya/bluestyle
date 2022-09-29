@@ -46,11 +46,6 @@ class LC_Page_Mypage_ItemEdit extends LC_Page_AbstractMypage_Ex
             SC_Response_Ex::sendRedirect('./change.php', ['message' => '会員登録内容が不足しているため、会員登録内容変更ページへ移動します']);
         }
 
-        if (isset($_SESSION['unregistered_card']) && $_SESSION['unregistered_card']) {
-            SC_Response_Ex::sendRedirect(HTTPS_URL . 'mypage/card_info.php');
-            SC_Response_Ex::actionExit();
-        }
-
         // アップロードファイル情報の初期化
         $objUpFile = new SC_UploadFile_Ex(IMAGE_TEMP_REALDIR, IMAGE_SAVE_REALDIR);
         $this->lfInitFile($objUpFile);

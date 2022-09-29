@@ -45,46 +45,42 @@
             </div>
             <!--{/if}-->
 
-            <!--{if $smarty.session.unregistered_card}-->
-            <div class="c-alert--wrapper">
-                <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php" class="c-alert--yellow">カード情報を入力してください</a>
-            </div>
-            <!--{elseif $tpl_my_product}--><div class="c-message--primary u-mb--0">出品中のアイテムです</div>
+            <!--{if $tpl_my_product}-->
+                <div class="c-message--primary u-mb--0">出品中のアイテムです</div>
             <!--{/if}-->
             <!--{assign var=key value="sub_large_image1"}-->
             <div class="c-notification--secondary notification">リクエストを送信しました</div>
             <!--★画像★-->
             <div data-img_id="0" class="p-item-detail__head__inner"><img src="<!--{$arrFile[$key].filepath|h}-->" width="<!--{$arrFile[$key].width}-->" height="<!--{$arrFile[$key].height}-->" alt="<!--{$arrProduct.name|h}-->" class="p-item-detail__head__img" /></div>
             <!--★お気に入り登録★-->
-            <!--{if $smarty.session.unregistered_card}-->
-            <!--{elseif $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product && $arrProduct.stock_max > 0}-->
+            <!--{if $smarty.const.OPTION_FAVORITE_PRODUCT == 1 && $tpl_login === true && !$tpl_my_product && $arrProduct.stock_max > 0 && !$smarty.session.unregistered_card}-->
 
-            <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
-            <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
-                <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
-                    <g class="particleLayer">
-                        <circle fill="#2A7DA7" cx="130" cy="126.5" r="12.5"/>
-                        <circle fill="#009FCF" cx="411" cy="313.5" r="12.5"/>
-                        <circle fill="#FD0000" cx="279" cy="86.5" r="12.5"/>
-                        <circle fill="#79A52B" cx="155" cy="390.5" r="12.5"/>
-                        <circle fill="#FFDD00" cx="89" cy="292.5" r="10.5"/>
-                        <circle fill="#34B1E2" cx="414" cy="282.5" r="10.5"/>
-                        <circle fill="#34B1E2" cx="115" cy="149.5" r="10.5"/>
-                        <circle fill="#FF7878" cx="250" cy="80.5" r="10.5"/>
-                        <circle fill="#FFAF33" cx="78" cy="261.5" r="10.5"/>
-                        <circle fill="#96D8E9" cx="182" cy="402.5" r="10.5"/>
-                        <circle fill="#FFDD00" cx="401.5" cy="166" r="13"/>
-                        <circle fill="#FFAF33" cx="379" cy="141.5" r="10.5"/>
-                        <circle fill="#FD0000" cx="327" cy="397.5" r="10.5"/>
-                        <circle fill="#FF7878" cx="296" cy="392.5" r="10.5"/>
-                    </g>
-                    <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"/>
-                </svg>
-                <span class="label"><!--{if $is_favorite}-->済<!--{else}-->ほしい<!--{/if}--></span>
-            </button>
-            <!--{if $arrErr[$add_favorite]}-->
-            <div class="attention"><!--{$arrErr[$add_favorite]}--></div>
-            <!--{/if}-->
+                <!--{assign var=add_favorite value="add_favorite`$product_id`"}-->
+                <button type="button" id="request" class="c-btn--request p-item-detail__request-btn" data-product_id="<!--{$arrProduct.product_id|h}-->">
+                    <svg class="likeButton" width="150px" height="150px" viewBox="0 0 500 500">
+                        <g class="particleLayer">
+                            <circle fill="#2A7DA7" cx="130" cy="126.5" r="12.5"/>
+                            <circle fill="#009FCF" cx="411" cy="313.5" r="12.5"/>
+                            <circle fill="#FD0000" cx="279" cy="86.5" r="12.5"/>
+                            <circle fill="#79A52B" cx="155" cy="390.5" r="12.5"/>
+                            <circle fill="#FFDD00" cx="89" cy="292.5" r="10.5"/>
+                            <circle fill="#34B1E2" cx="414" cy="282.5" r="10.5"/>
+                            <circle fill="#34B1E2" cx="115" cy="149.5" r="10.5"/>
+                            <circle fill="#FF7878" cx="250" cy="80.5" r="10.5"/>
+                            <circle fill="#FFAF33" cx="78" cy="261.5" r="10.5"/>
+                            <circle fill="#96D8E9" cx="182" cy="402.5" r="10.5"/>
+                            <circle fill="#FFDD00" cx="401.5" cy="166" r="13"/>
+                            <circle fill="#FFAF33" cx="379" cy="141.5" r="10.5"/>
+                            <circle fill="#FD0000" cx="327" cy="397.5" r="10.5"/>
+                            <circle fill="#FF7878" cx="296" cy="392.5" r="10.5"/>
+                        </g>
+                        <path class="heart" d="M250,187.4c-31.8-47.8-95.5-19.8-95.5,32.2c0,35.2,31.8,60.3,55.7,79.2c24.9,19.7,31.8,23.9,39.8,31.8 c7.9-7.9,14.6-12.6,39.8-31.8c24.3-18.5,55.7-44.4,55.7-79.6C345.5,167.6,281.8,139.7,250,187.4z" fill="#fff"/>
+                    </svg>
+                    <span class="label"><!--{if $is_favorite}-->済<!--{else}-->ほしい<!--{/if}--></span>
+                </button>
+                <!--{if $arrErr[$add_favorite]}-->
+                    <div class="attention"><!--{$arrErr[$add_favorite]}--></div>
+                <!--{/if}-->
 
             <!--{/if}-->
             <div class="slideup_bg<!--{if $smarty.get.open == true}--> --active<!--{/if}-->"></div>

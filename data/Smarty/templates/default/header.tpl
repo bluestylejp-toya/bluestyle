@@ -42,6 +42,11 @@
 		<button type="button" class="l-header__btn c-prohibited__btn">禁止アイテム</button>
 	</div>
 </header>
+<!--{if $tpl_login && $smarty.session.unregistered_card}-->
+    <div class="c-alert--wrapper">
+        <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php" class="c-alert--yellow">カード情報を入力してください</a>
+    </div>
+<!--{/if}-->
 <div class="c-prohibited__content">
     <p>Chain では以下のアイテムの出品を禁止しています。</p>
     <ul>

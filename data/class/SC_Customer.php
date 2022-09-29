@@ -210,6 +210,7 @@ class SC_Customer
 
         // $_SESSION['customer']の解放
         unset($_SESSION['customer']);
+        unset($_SESSION['unregistered_card']);
         // セッションの配送情報を全て破棄する
         SC_Helper_Purchase_Ex::unsetAllShippingTemp(true);
         // トランザクショントークンの破棄
