@@ -120,6 +120,9 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
         // 新規「ほしい」一覧
         $this->arrNewFavoriteProducts = $this->lfGetFavoriteProducts();
 
+        // 新規「ほしい」一覧
+        $this->arrNewFavoriteProductsFavo = $this->lfGetFavoriteProductsFavo();
+
         // お知らせ一覧の取得
         $this->arrInfo = $this->lfGetInfo();
     }
@@ -341,7 +344,7 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     }
 
     /**
-     * 「ほしい」商品の取得
+     * 「ほしい」された商品の取得
      *
      * @return array 品切れ商品一覧
      */
@@ -349,12 +352,31 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_customer.name01, dtb_customer.name02, dtb_customer.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
-        $table = 'dtb_products LEFT JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.product_id LEFT JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id';
+        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_products.chain_id, dtb_customer.name01, dtb_customer.name02, dtb_customer.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
+        $table = 'dtb_products LEFT JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.target_id LEFT JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id';
         $where = 'dtb_products.product_id IN ('
             . 'SELECT product_id FROM dtb_products_class '
             . 'WHERE dtb_products.del_flg = 0 AND stock_unlimited = ?)'
-            . ' AND dtb_products.del_flg = 0 ORDER BY dtb_customer_favorite_products.update_date DESC';
+            . ' AND dtb_products.del_flg = 0 AND dtb_customer_favorite_products.create_date ORDER BY dtb_customer_favorite_products.update_date DESC, dtb_customer_favorite_products.product_id DESC';
+
+        return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
+    }
+
+    /**
+     * 「ほしい」商品の取得
+     *
+     * @return array 品切れ商品一覧
+     */
+    public function lfGetFavoriteProductsFavo()
+    {
+        $objQuery = SC_Query_Ex::getSingletonInstance();
+
+        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_products.chain_id, dtb_customer.name01, dtb_customer.name02, dtb_products.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
+        $table = 'dtb_products INNER JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.product_id INNER JOIN dtb_customer ON dtb_products.customer_id = dtb_customer.customer_id';
+        $where = 'dtb_products.product_id IN ('
+            . 'SELECT product_id FROM dtb_products_class '
+            . 'WHERE dtb_products.del_flg = 0 AND stock_unlimited = ?)'
+            . ' AND dtb_products.del_flg = 0 AND dtb_customer_favorite_products.create_date ORDER BY dtb_customer_favorite_products.update_date DESC, dtb_customer_favorite_products.product_id DESC';
 
         return $objQuery->select($cols, $table, $where, array(UNLIMITED_FLG_LIMITED));
     }
