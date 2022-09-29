@@ -118,7 +118,7 @@
                             </div>
                             <p class="c-item--default__title">
                                 <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProductsFavo[j].product_id}-->" target="_blank">
-                                    <!--{$arrNewFavoriteProductsFavo[j].name|mb_substr:0:12|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 12}-->...<!--{/if}-->
+                                    <!--{$arrNewFavoriteProductsFavo[j].name|mb_substr:0:24|h|nl2br}--><!--{if $arrNewFavoriteProductsFavo[j].name|mb_strlen > 24}-->...<!--{/if}-->
                                 </a><!--{if $arrNewFavoriteProductsFavo[j].chain_id|h}--><span>済</span><!--{/if}-->
                             </p>
                             <p class="c-item--default__value">
@@ -140,7 +140,7 @@
                             </div>
                             <p class="c-item--default__title2">
                                 <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrNewFavoriteProducts[i].product_id}-->" target="_blank">
-                                    <!--{$arrNewFavoriteProducts[i].name|mb_substr:0:12|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 12}-->...<!--{/if}-->
+                                    <!--{$arrNewFavoriteProducts[i].name|mb_substr:0:24|h|nl2br}--><!--{if $arrNewFavoriteProducts[i].name|mb_strlen > 24}-->...<!--{/if}-->
                                 </a><!--{if $arrNewFavoriteProducts[i].chain_id|h}--><span>済</span><!--{/if}-->
                             </p>
                             <p class="c-item--default__value2">
