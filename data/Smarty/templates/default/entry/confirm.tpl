@@ -49,9 +49,7 @@
         <dl class="c-list--dl u-mb--4">
             <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=93 emailMobile=false prefix=""}-->
         </dl>
-        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default u-mb--1">戻る</a>
-
         <button name="send" id="send" class="c-btn--primary">アカウントを登録する</button>
-
+        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default u-mb--1">戻る</a>
     </form>
 </section>

@@ -189,14 +189,14 @@
                 <div class="l-popup" data-item_mode="false">
                     <div class="l-popup__inner u-text--left">
                         <!--{if !$tpl_my_product}--><!--通報するボタン-->
-                        <button type="button" class="report_submit">通報する</button>
+                        <button type="button" class="report_submit u-text--center">不適切なアイテムとして報告する</button>
                         <!--/下のJSの「通報の処理」に送信処理を追加願います-->
                         <!--{else}-->
                         <a href="<!--{$smarty.const.TOP_URL}-->mypage/item_edit.php?mode=pre_edit&product_id=<!--{$arrProduct.product_id|h}-->" class="c--btn--text">編集する</a>
                         <!--{/if}-->
                     </div>
                     <div class="l-popup__close"></div>
-                    <p class="c-notification--secondary notification">このアイテムを通報しました</p>
+                    <p class="c-notification--secondary notification">このアイテムを報告しました</p>
                 </div>
                 <div class="history">
                     <h2 class="c-heading--lg history_title">閲覧履歴</h2>
@@ -242,7 +242,7 @@
                 </ul>
                 <div class="l-floating-btn">
                     <a href="./detail.php?product_id=<!--{$arrProduct.product_id|h}-->" class="c-btn--primary--outline u-mb--1 slide-close_btn" id="cancel-button">変更しない</a>
-                    <button class="c-btn--primary send-request_btn" data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">変更</button>
+                    <button class="c-btn--primary send-request_btn u-mb--1" data-product_id="<!--{$tpl_product_id|h}-->" id="decision-button">変更</button>
                 </div>
             </div>
             <!--/.p-item-detail__body__slideup-->
