@@ -42,7 +42,9 @@
 		<button type="button" class="l-header__btn c-prohibited__btn">禁止アイテム</button>
 	</div>
 </header>
-<!--{if $tpl_login && $smarty.session.unregistered_card}-->
+
+<!--{assign var=card_info value="`$smarty.const.ROOT_URLPATH`mypage/card_info.php"}-->
+<!--{if $tpl_login && $smarty.session.unregistered_card && $smarty.server.PHP_SELF!=$card_info}-->
     <div class="c-alert--wrapper">
         <a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php" class="c-alert--yellow">カード情報を入力してください</a>
     </div>
