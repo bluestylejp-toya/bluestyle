@@ -66,9 +66,8 @@
             <dt>お問い合わせ内容</dt>
             <dd><!--{$arrForm.contents.value|h|nl2br}--></dd>
         </dl>
-        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;"  class="c-btn--default u-mb--2">戻る</a>
-
         <button  class="c-btn--primary" name="send" id="send"  class="c-btn--primary">送信する</button>
+        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;"  class="c-btn--default u-mb--2">戻る</a>
 
     </form>
 </section>

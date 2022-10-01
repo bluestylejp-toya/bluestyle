@@ -32,11 +32,8 @@
             <dt>都道府県</dt>
             <dd><!--{$arrPref[$tpl_pref_id]|h}--></dd>
         </dl>
-
-
-        <p class="u-mb--1"><a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default">戻る</a></p>
-
         <p class="u-mb--1"><button class="c-btn--primary" name="complete" id="complete">登録する</button>
+        <p class="u-mb--1"><a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default">戻る</a></p>
         </p>
     </form>
 </section>

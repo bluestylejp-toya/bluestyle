@@ -40,8 +40,8 @@
             <dl class="c-list--dl u-mb--4">
                 <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=true prefix=""}-->
             </dl>
-            <p class="u-mb--1"><a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default">戻る</a></p>
             <p><button name="complete" id="complete" class="c-btn--primary">完了</button></p>
+            <p class="u-mb--1"><a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="c-btn--default">戻る</a></p>
         </form>
 
 </section>

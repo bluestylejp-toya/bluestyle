@@ -54,16 +54,16 @@
                     <td><!--{$refusalcustomer_cnt|default:"0"|n2s}-->名</td>
                 </tr>
                 <tr>
-                    <th>ほしい総アイテム数</th>
-                    <td><!--{$favorite_cnt|default:"0"|n2s}-->人</td>
+                    <th>総ベクトル数</th>
+                    <td><!--{$favorite_cnt|default:"0"|n2s}-->個</td>
                 </tr>
                 <tr>
-                    <th>昨日のほしい総アイテム数</th>
-                    <td><!--{$favorite_yesterday_cnt|default:"0"|n2s}-->人</td>
+                    <th>昨日の総ベクトル数</th>
+                    <td><!--{$favorite_yesterday_cnt|default:"0"|n2s}-->個</td>
                 </tr>
                 <tr>
-                    <th>今月のほしい総アイテム数</th>
-                    <td><!--{$favorite_month_cnt|default:"0"|n2s}-->人</td>
+                    <th>今月の総ベクトル数</th>
+                    <td><!--{$favorite_month_cnt|default:"0"|n2s}-->個</td>
                 </tr>
                 <tr>
                     <th>出品アイテム総数</th>

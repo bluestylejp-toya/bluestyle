@@ -37,7 +37,7 @@
 
             <!--{if $tpl_linemax > 0}-->
 
-                <p><!--{$tpl_linemax}-->件のほしいアイテムがあります。</p>
+                <p><!--{$tpl_linemax}-->個のほしいアイテムがあります。</p>
 
                 <ul>
 					<!--{assign var=id value=''}-->

@@ -12,18 +12,22 @@
 			<!--{/if}-->
 		</figure>
 	</div>
-	 <dl class="u-mb--4 c-list--dl">
+	 <dl class="u-mb--4 c-list--dl prof_comform">
 		<!--{assign var=key1 value="nickname"}-->
 		<dt>ニックネーム</dt>
 		<dd><!--{$arrSeller['nickname']}--></dd>
+		 <!--{if $arrSeller['self_introduction']}-->
 		<dt>紹介文</dt>
 		<dd><!--{$arrSeller['self_introduction']}--></dd>
+		 <!--{/if}-->
+		 <!--{if $arrSeller['hobbies']}-->
 		<dt>趣味</dt>
 		<dd><!--{$arrSeller['hobbies']}--></dd>
+		 <!--{/if}-->
 		<dt>都道府県</dt>
-		<dd><!--{$arrPref[$arrSeller['pref']]}--></dd>
+		<dd><!--{if $arrPref[$arrSeller['pref']]}--><!--{$arrPref[$arrSeller['pref']]}--><!--{else}-->登録されていません<!--{/if}--></dd>
 	</dl>
-	<h2 class="c-heading--lg">出品アイテム(<!--{$tpl_linemax|h}-->)</h2>
+	<h2 class="c-heading--lg"><!--{$tpl_linemax|h}-->個の出品アイテム</h2>
 	<ul>
 		<!--{foreach from=$arrProducts key=key item=item}-->
 		<li>

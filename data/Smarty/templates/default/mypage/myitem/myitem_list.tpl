@@ -3,6 +3,7 @@
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">出品アイテム</p>
     </header>
+    <p><!--{$tpl_linemax}-->個の登録アイテムがあります</p>
     <ul>
         <!--{foreach from=$arrProducts item=item}-->
         <li class="c-myitem">

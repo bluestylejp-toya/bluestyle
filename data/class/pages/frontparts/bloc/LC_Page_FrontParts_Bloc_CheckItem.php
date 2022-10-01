@@ -7,7 +7,7 @@ require_once CLASS_EX_REALDIR . 'page_extends/frontparts/bloc/LC_Page_FrontParts
 class LC_Page_FrontParts_Bloc_CheckItem extends LC_Page_FrontParts_Bloc_Ex
 {
     // 表示件数
-    const DISPNUM = 10;
+    const DISPNUM = 6;
 
     // cookie保持期限
     const EXPIRESDAY = 30;

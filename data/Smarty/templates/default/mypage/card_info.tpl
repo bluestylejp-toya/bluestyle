@@ -308,14 +308,13 @@ $(function() {
 });
 
 </script>
-<section>
+<section style="margin-bottom: 40px">
+    <!--{if !$dataHash || $dataHash.KaiinStatus != 0}-->
+    <!--{else}-->
     <header class="l-header__inner">
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
-        <p class="c-header-title">お支払い情報登録</p>
+        <p class="c-header-title">登録しているクレジットカード</p>
     </header>
-    <!--{if !$dataHash || $dataHash.KaiinStatus != 0}-->
-        <p class="u-mb--4">登録されているクレジットカード情報はありません。</p>
-    <!--{else}-->
         <!--{if $arrErr}-->
             <div class="information">
                 <!--{assign var=key value="CardSeq"}-->
@@ -329,28 +328,30 @@ $(function() {
                 <p class="attention">更新が完了しました。</p>
             </div>
         <!--{/if}-->
-        <dl class="c-list--dl u-mb--4">
+        <dl class="c-list--dl u-mb--4 card_comform">
             <!--{assign var=key1 value="CardSeq"}-->
             <dt>カード番号</dt>
             <dd><!--{$dataHash.CardNo|substr:0:4}-->*********<!--{$dataHash.CardNo|substr:-3}--></dd>
             <dt>有効期限</dt>
-            <dd><!--{$dataHash.CardExp|substr:0:2|h}-->年<!--{$dataHash.CardExp|substr:2:2|h}-->月</dd>
+            <dd>20<!--{$dataHash.CardExp|substr:0:2|h}-->年/<!--{$dataHash.CardExp|substr:2:2|h}-->月</dd>
             <!--{if $dataHash.HolderName != ''}--><dt>カード名義</dt>
             <dd><!--{$dataHash.HolderName}--></dd><!--{/if}-->
         </dl>
-    <div class="btn_area">
-        <ul>
-            <li>
-                <a href="<!--{$smarty.const.TOP_URL}-->" class="c-btn--primary">アイテム一覧へ</a>
-            </li>
-        </ul>
-    </div>
     <!--{/if}-->
+</section>
     <!--{if !$success}-->
-    <hr class="u-mb--4" style="margin-top: 30px;">
-        <h3 class="c-header-title" style="margin: 20px auto 30px;text-align: center">カード情報を<!--{if !$dataHash}-->新規<!--{else}-->更新<!--{/if}-->登録</h3>
-        <p class="u-mb--4">クレジットカード情報を入力してください。</p>
-        <p class="u-mb--4 u-text--center"><img src="<!--{$TPL_URLPATH}-->img/common/payment.png" width="250"></p>
+<section>
+    <header class="l-header__inner">
+        <!--{if !$dataHash || $dataHash.KaiinStatus != 0}-->
+        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
+        <!--{/if}-->
+        <h3 class="c-header-title">カード情報を<!--{if !$dataHash}-->新規登録<!--{else}-->更新<!--{/if}--></h3>
+    </header>
+    <p class="u-mb--4 u-text--center">クレジットカード情報を入力してください。</p>
+    <div class="card_info">
+        <p class="u-text--center">利用できるクレジットカード会社</p>
+        <p class="u-text--center"><img src="<!--{$TPL_URLPATH}-->img/common/payment.png"></p>
+    </div>
         <form name="form2" id="form2" method="post" action="?" autocomplete="off">
             <input type="hidden"
                 name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->"
@@ -388,15 +389,18 @@ $(function() {
                         <span id="card_exp_year_error" class="attention"></span>
                     <!--{/if}-->
                     <div class="c-form-parts--card">
-                        <div class="c-form-parts--card__item"><select data-key="card_exp_month" name="<!--{$key_exp_m}-->"
-                        style="<!--{$arrErr[$key_exp_m]|sfGetErrorColor}-->">
-                        <option value="">&minus;&minus;</option>
-                        <!--{html_options options=$arrMonth}-->
-                        </select></div>月 <div class="c-form-parts--card__item"><span>20</span><select data-key="card_exp_year" name="<!--{$key_exp_y}-->"
-                    style="<!--{$arrErr[$key_exp_y]|sfGetErrorColor}-->">
-                        <option value="">&minus;&minus;</option>
-                        <!--{html_options options=$arrYear}-->
-                        </select>
+                        <div class="c-form-parts--card__item">
+                            <select data-key="card_exp_month" name="<!--{$key_exp_m}-->" style="<!--{$arrErr[$key_exp_m]|sfGetErrorColor}-->" class="styled-select">
+                                <option value="">&minus;&minus;</option>
+                                <!--{html_options options=$arrMonth}-->
+                            </select>
+                        </div>月/
+                        <div class="c-form-parts--card__item">
+                            <span>20</span>
+                            <select data-key="card_exp_year" name="<!--{$key_exp_y}-->" style="<!--{$arrErr[$key_exp_y]|sfGetErrorColor}-->" class="styled-select">
+                                <option value="">&minus;&minus;</option>
+                                <!--{html_options options=$arrYear}-->
+                            </select>
                         </div>年
                     </div>
                 </dd>
@@ -480,7 +484,7 @@ $(function() {
             </form>
             <div class="btn_area">
                 <ul>
-                    <li><input type="submit" onclick="$('#form2').submit();" value="カード情報を登録" class="c-btn--primary"/></li>
+                    <li><input type="submit" onclick="$('#form2').submit();" value="カード情報を<!--{if !$dataHash}-->新規登録<!--{else}-->更新<!--{/if}-->" class="c-btn--primary"/></li>
                 </ul>
             </div>
         <!--{else}-->
@@ -491,8 +495,8 @@ $(function() {
                 </div>
             </form>
         <!--{/if}-->
-    <!--{/if}-->
 </section>
+    <!--{/if}-->
 <style>
     .c-btn--primary {
         text-align: center;
