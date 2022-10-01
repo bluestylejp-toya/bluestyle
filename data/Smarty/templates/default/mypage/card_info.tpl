@@ -306,12 +306,11 @@ $(function() {
 		return false;
 	});
 });
-
 </script>
-<section style="margin-bottom: 40px">
     <!--{if !$dataHash || $dataHash.KaiinStatus != 0}-->
     <!--{else}-->
-    <header class="l-header__inner">
+<section style="margin-bottom: 40px">
+    <header class="l-header__inner" style="margin-bottom: 40px">
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
         <p class="c-header-title">登録しているクレジットカード</p>
     </header>
@@ -325,7 +324,7 @@ $(function() {
         <!--{/if}-->
         <!--{if $success}-->
             <div class="information">
-                <p class="attention">更新が完了しました。</p>
+                <p class="attention u-text--center">更新が完了しました。</p>
             </div>
         <!--{/if}-->
         <dl class="c-list--dl u-mb--4 card_comform">
@@ -337,10 +336,11 @@ $(function() {
             <!--{if $dataHash.HolderName != ''}--><dt>カード名義</dt>
             <dd><!--{$dataHash.HolderName}--></dd><!--{/if}-->
         </dl>
-    <!--{/if}-->
 </section>
+    <!--{/if}-->
     <!--{if !$success}-->
 <section>
+    <form name="form2" id="form2" method="post" action="?" autocomplete="off">
     <header class="l-header__inner">
         <!--{if !$dataHash || $dataHash.KaiinStatus != 0}-->
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
@@ -352,7 +352,6 @@ $(function() {
         <p class="u-text--center">利用できるクレジットカード会社</p>
         <p class="u-text--center"><img src="<!--{$TPL_URLPATH}-->img/common/payment.png"></p>
     </div>
-        <form name="form2" id="form2" method="post" action="?" autocomplete="off">
             <input type="hidden"
                 name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->"
                 value="<!--{$transactionid}-->" /> <input type="hidden" name="mode"
@@ -482,15 +481,15 @@ $(function() {
 
          <!--{if $isToke}-->
             </form>
-            <div class="btn_area">
+            <div class="btn_area" id="btn_area">
                 <ul>
-                    <li><input type="submit" onclick="$('#form2').submit();" value="カード情報を<!--{if !$dataHash}-->新規登録<!--{else}-->更新<!--{/if}-->" class="c-btn--primary"/></li>
+                    <li><input id="button" type="submit" onclick="$('#form2').submit();" value="カード情報を<!--{if !$dataHash}-->新規登録<!--{else}-->更新<!--{/if}-->" class="c-btn--primary"/></li>
                 </ul>
             </div>
         <!--{else}-->
-                <div class="btn_area">
+                <div class="btn_area" id="btn_area">
                     <ul>
-                        <li><input type="submit" value="カード情報を登録"  class="c-btn--primary"/></li>
+                        <li><input id="button" type="submit" value="カード情報を登録"  class="c-btn--primary"/></li>
                     </ul>
                 </div>
             </form>
@@ -502,3 +501,84 @@ $(function() {
         text-align: center;
     }
 </style>
+<script>
+    document.addEventListener("DOMContentLoaded",function () {
+        // イベントリスナーを設定した要素を指定する
+        let btn = document.getElementById('button')
+
+
+        let insertHtml=`
+    <!-- loading -->
+        <div id="loading" class="is-hide">
+        <div class="cv-spinner">
+        <span class="spinner"></span>
+        </div>
+        </div>
+            <!-- loading -->
+        `
+    let insertCSS=`
+        <style>
+        #loading{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        width: 100%;
+        height:100%;
+        background: rgba(0,0,0,0.6);
+        }
+        #loading .cv-spinner {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+        #loading .spinner {
+        width: 80px;
+        height: 80px;
+        border: 4px #ddd solid;
+        border-top: 4px #999 solid;
+        border-radius: 50%;
+        animation: sp-anime 0.8s infinite linear;
+        }
+        @keyframes sp-anime {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(359deg); }
+        }
+        #loading.is-hide{
+        display:none;
+        }
+        </style>
+        `
+
+
+    document.getElementsByTagName('head')[0]
+        .insertAdjacentHTML('beforeend', insertCSS);
+    document.getElementsByTagName('body')[0]
+        .insertAdjacentHTML('afterbegin', insertHtml);
+
+    let loading = document.getElementById('loading')
+        loading.addEventListener("click",function(){
+        hideLoading()
+    })
+
+    btn.addEventListener("click",function(){
+        showLoading()
+    })
+});
+
+function showLoading(){
+    document.getElementById('loading').classList.remove('is-hide')
+}
+
+function hideLoading(){
+    document.getElementById('loading').classList.add('is-hide')
+}
+
+function set_display() {
+    if (document.getElementById('button').checked){
+        document.getElementById('btn_area').style.display = 'none'
+    }
+}
+</script>
+
