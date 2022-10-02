@@ -102,13 +102,13 @@
     </dd>
 
     <!--{/if}-->
+<!--{if $flgFields == 93}-->
+<!--{assign var=key1 value="nickname"}-->
+<dt><!--{$arrForm[$key1].disp_name|h}--></dt>
+<dd><!--{$arrForm[$key1].value|h}--></dd>
+<!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
         <dt>パスワード</dt>
         <dd><!--{$passlen}--></dd>
-    <!--{/if}-->
-    <!--{if $flgFields == 93}-->
-        <!--{assign var=key1 value="nickname"}-->
-        <dt><!--{$arrForm[$key1].disp_name|h}--></dt>
-        <dd><!--{$arrForm[$key1].value|h}--></dd>
     <!--{/if}-->
 <!--{/strip}-->

@@ -168,6 +168,16 @@ $flgFields について
                     </span>
                 </dd>
     <!--{/if}-->
+                <!--{if $flgFields == 93}-->
+                <!--{assign var=key1 value="nickname"}-->
+                <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><span class="attention">※必須</span><!--{/if}--></dt>
+                <dd>
+                    <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="Chain内のユーザ名"/>
+                    <!--{if $arrErr[$key1]}-->
+                    <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
+                    <!--{/if}-->
+                </dd>
+                <!--{/if}-->
     <!--{if $flgFields == 3 || $flgFields == 93}-->
         <dt>パスワード<span class="attention">※必須</span></dt>
         <dd>
@@ -179,14 +189,7 @@ $flgFields について
         </dd>
     <!--{/if}-->
     <!--{if $flgFields == 93}-->
-        <!--{assign var=key1 value="nickname"}-->
-        <dt><!--{$arrForm[$key1].disp_name|h}--><!--{if $arrForm[$key1].require}--><span class="attention">※必須</span><!--{/if}--></dt>
-        <dd>
-            <input type="text" name="<!--{$key1|h}-->" value="<!--{$arrForm[$key1].value|h}-->" maxlength="<!--{$arrForm[$key1].length}-->" style="ime-mode: active" class="c-form-parts<!--{if $arrErr[$key1]}--> --error<!--{/if}-->" placeholder="Chain内のユーザ名"/>
-            <!--{if $arrErr[$key1]}-->
-                <p><small class="attention"><!--{$arrErr[$key1]}--></small></p>
-            <!--{/if}-->
-        </dd>
-
+        <!--{assign var=key1 value="mailmaga_flg"}-->
+                <input type="hidden" name="<!--{$key1}-->" value="1" />
     <!--{/if}-->
 <!--{/strip}-->
