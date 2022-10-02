@@ -439,6 +439,7 @@ class SC_Helper_Customer
         // 新規登録
         if (!$isAdmin && !$is_mypage) {
             $objFormParam->addParam('ニックネーム', 'nickname', STEXT_LEN, 'aKV', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'NGWORD_CHECK'));
+            $objFormParam->addParam('メールマガジン', $prefix . 'mailmaga_flg', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         }
         // 管理画面、MYページ
         if ($isAdmin) {
