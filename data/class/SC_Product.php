@@ -80,7 +80,7 @@ class SC_Product
         if (is_array($this->arrOrderData) and $objQuery->order == '') {
             // ほしい順にソート
             if ($this->arrOrderData['col'] == 'count_of_favorite'){
-                $objQuery->setOrder(" alldtl.status ASC, (SELECT COUNT(*) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer.del_flg = 0) DESC");
+                $objQuery->setOrder(" (SELECT COUNT(DISTINCT customer_id) FROM dtb_customer_favorite_products INNER JOIN dtb_customer USING (customer_id) WHERE dtb_customer_favorite_products.product_id = alldtl.product_id AND dtb_customer.del_flg = 0) DESC, product_id DESC");
             } else {
                 $o_col = $this->arrOrderData['col'];
                 $o_table = $this->arrOrderData['table'];
