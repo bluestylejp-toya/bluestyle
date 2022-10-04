@@ -22,6 +22,7 @@
  */
 
 require_once CLASS_EX_REALDIR . 'page_extends/LC_Page_Ex.php';
+require_once MODULE_REALDIR . 'mdl_line/LineEvent.php';
 
 /**
  * 会員登録のページクラス.
@@ -147,6 +148,11 @@ class LC_Page_Entry extends LC_Page_Ex
 
                     // 完了ページに移動させる。
                     $_SESSION['registered_customer_id'] = SC_Helper_Customer_Ex::sfGetCustomerId($uniqid);
+
+                    // LINE連携用テーブルに格納
+                    $objLineLogin = new LineEvent();
+                    $objLineLogin->onCompleteEntry($_SESSION['registered_customer_id']);
+
                     SC_Response_Ex::sendRedirect('complete.php');
                 }
                 break;

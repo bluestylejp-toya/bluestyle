@@ -210,6 +210,16 @@ class SC_Helper_Mail
             }
         }
 
+        // 送信するメッセージの下準備
+        $postValues = array(
+            [
+                "type" => "text",
+                "text" => $body
+            ],
+        );
+        $objLineEvent = new LineEvent();
+        $objLineEvent->sendMessage($postValues, $customer_id);
+
         return $objSendMail;
     }
 

@@ -22,6 +22,7 @@
  */
 
 require_once CLASS_EX_REALDIR . 'page_extends/mypage/LC_Page_AbstractMypage_Ex.php';
+require_once MODULE_REALDIR . 'mdl_line/LineEvent.php';
 
 /**
  * 退会手続き のページクラス.
@@ -99,6 +100,11 @@ class LC_Page_Mypage_Refusal extends LC_Page_AbstractMypage_Ex
                 // XXXX: 仮会員は物理削除となっていたが論理削除に変更。
                 $this->lfSendRefusalMail($objCustomer->getValue('customer_id'));
                 $this->lfDeleteCustomer($objCustomer->getValue('customer_id'));
+
+                // LINE連携解除
+                $objLineLogin = new LineEvent();
+                $objLineLogin->lineIdUnassociate();
+
                 $objCustomer->EndSession();
 
                 SC_Response_Ex::sendRedirect('refusal_complete.php');
