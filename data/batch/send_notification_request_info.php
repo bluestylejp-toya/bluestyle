@@ -70,6 +70,29 @@ class SendNotificationRequestInfo
             $objSendMail->setTo($to, $to_name);
             $objSendMail->sendMail();
         }
+
+        // lineメッセージ送信処理
+        $objLineEvent = new LineEvent();
+        foreach ($arrRequestItemByCustomer as $requestItemByCustomer){
+            $objPage->request_sum_uu = 0;
+            foreach ($requestItemByCustomer as $requestItem){
+                $objPage->request_sum_uu += $requestItem['request_uu'];
+            }
+            $objPage->requestItemByCustomer = $requestItemByCustomer;
+            $objPage->name = $requestItemByCustomer[0]['source_name01'] .' '. $requestItemByCustomer[0]['source_name02'];
+            $objPage->requestItemCount = count($requestItemByCustomer);
+            $objMailView->assignobj($objPage);
+            $body = $objMailView->fetch($this->arrMAILTPLPATH[102]);
+
+            // 送信するメッセージの下準備
+            $postValues = array(
+                [
+                    "type" => "text",
+                    "text" => $body
+                ],
+            );
+            $objLineEvent->sendMessage($postValues, $requestItemByCustomer['source_customer_id']);
+        }
     }
 
     private function searchRequestItemInfo($start, $end)

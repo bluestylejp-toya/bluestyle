@@ -99,6 +99,15 @@ class SC_Session
         return ACCESS_ERROR;
     }
 
+    /* セッションの破棄 */
+    /**
+     * @param string $key
+     */
+    public function UnsetSession($key)
+    {
+        unset($_SESSION[$key]);
+    }
+
     /* セッションの書き込み */
 
     /**
