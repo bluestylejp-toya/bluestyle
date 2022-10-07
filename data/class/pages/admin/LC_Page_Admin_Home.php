@@ -352,7 +352,7 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_products.chain_id, dtb_customer.name01, dtb_customer.name02, dtb_customer.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
+        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_products.chain_id, dtb_customer.name01, dtb_customer.name02, dtb_customer.nickname, dtb_customer.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
         $table = 'dtb_products LEFT JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.target_id LEFT JOIN dtb_customer ON dtb_customer_favorite_products.customer_id = dtb_customer.customer_id';
         $where = 'dtb_products.product_id IN ('
             . 'SELECT product_id FROM dtb_products_class '
@@ -371,7 +371,7 @@ class LC_Page_Admin_Home extends LC_Page_Admin_Ex
     {
         $objQuery = SC_Query_Ex::getSingletonInstance();
 
-        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_products.chain_id, dtb_customer.name01, dtb_customer.name02, dtb_products.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
+        $cols = 'dtb_products.product_id, dtb_products.name, dtb_products.sub_large_image1, dtb_products.chain_id, dtb_customer.name01, dtb_customer.name02, dtb_customer.nickname, dtb_products.customer_id, dtb_customer_favorite_products.target_id, dtb_customer_favorite_products.update_date';
         $table = 'dtb_products INNER JOIN dtb_customer_favorite_products ON dtb_products.product_id = dtb_customer_favorite_products.product_id INNER JOIN dtb_customer ON dtb_products.customer_id = dtb_customer.customer_id';
         $where = 'dtb_products.product_id IN ('
             . 'SELECT product_id FROM dtb_products_class '
