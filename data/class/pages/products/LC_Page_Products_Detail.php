@@ -1069,13 +1069,20 @@ class LC_Page_Products_Detail extends LC_Page_Ex
             $arrCustomer = SC_Helper_Customer_Ex::sfGetCustomerData($arrProduct['customer_id']);
             $from = $arrCustomer['email'];
         }
+        $objCustomer = new SC_Customer_Ex();
+        $customer_id = $objCustomer->getValue('customer_id');
 
         $subject = '不適切アイテムの報告';
         $url = SC_Utils_Ex::sfTrimURL(HTTP_URL) . P_DETAIL_URLPATH . $product_id;
         $body = <<< __EOS__
 不適切アイテムの報告がありました。
 {$url}
+
 出品者ID：{$arrProduct['customer_id']}
+出品者ページ：https://chain.gives/shopping/seller.php?seller_id={$arrProduct['customer_id']}
+
+通報者ID：{$customer_id}
+通報者ページ：https://chain.gives/shopping/seller.php?seller_id={$customer_id}
 __EOS__;
 
         $objHelperMail->sfSendMail('', $subject, $body, $from);

@@ -184,8 +184,9 @@
                     </ul>
                     </dd>-->
                 </dl>
-
+                <!--{if $tpl_login === true}-->
                 <button class="u-mb--4 report_btn c-btn--default--sm" type="button">その他</button>
+                <!--{/if}-->
                 <div class="l-popup" data-item_mode="false">
                     <div class="l-popup__inner u-text--left">
                         <!--{if !$tpl_my_product}--><!--通報するボタン-->

@@ -125,6 +125,7 @@
                                 <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProductsFavo[j].customer_id}-->" target="_blank">
                                     <!--{$arrNewFavoriteProductsFavo[j].name01|mb_substr:0:4|h|nl2br}-->
                                     <!--{$arrNewFavoriteProductsFavo[j].name02|mb_substr:0:4|h|nl2br}-->
+                                    (<!--{$arrNewFavoriteProductsFavo[j].nickname|mb_substr:0:4|h|nl2br}-->)
                                 </a>
                             </p>
                         </li>
@@ -147,6 +148,7 @@
                                 <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrNewFavoriteProducts[i].customer_id}-->" target="_blank">
                                     <!--{$arrNewFavoriteProducts[i].name01|mb_substr:0:4|h|nl2br}-->
                                     <!--{$arrNewFavoriteProducts[i].name02|mb_substr:0:4|h|nl2br}-->
+                                    (<!--{$arrNewFavoriteProducts[i].nickname|mb_substr:0:4|h|nl2br}-->)
                                 </a>
                             </p>
                             <p class="c-item--default__update_date">
