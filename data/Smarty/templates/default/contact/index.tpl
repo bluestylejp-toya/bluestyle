@@ -78,15 +78,15 @@
                     <input type="text" class="c-form-parts" name="addr01" value="<!--{$arrForm.addr01.value|default:$arrData.addr01|h}-->" style="<!--{$arrErr.addr01|sfGetErrorColor}-->; ime-mode: active;" placeholder="<!--{$smarty.const.SAMPLE_ADDRESS1}-->">
                 </p>
 
-                <p>
+                <p class="u-mb--1">
                     <input type="text" class="c-form-parts" name="addr02" value="<!--{$arrForm.addr02.value|default:$arrData.addr02|h}-->" style="<!--{$arrErr.addr02|sfGetErrorColor}-->; ime-mode: active;" placeholder="<!--{$smarty.const.SAMPLE_ADDRESS2}-->">
                 </p>
-                <p>
+                <p class="u-mb--1">
                     <input type="text" class="c-form-parts" name="addr03" value="<!--{$arrForm.addr03.value|default:$arrData.addr03|h}-->" style="<!--{$arrErr.addr03|sfGetErrorColor}-->; ime-mode: active;" placeholder="<!--{$smarty.const.SAMPLE_ADDRESS3}-->">
                 </p>
                 <span class="attention"><!--{$arrErr.pref}--><!--{$arrErr.addr01}--><!--{$arrErr.addr02}--><!--{$arrErr.addr03}--></span>
 
-                <p class="mini"><span class="attention">住所は2つに分けてご記入ください。マンション名は必ず記入してください。</span></p>
+                <p class="mini"><span class="attention">住所は3つに分けてご記入ください。マンション名は必ず記入してください。</span></p>
             </dd>
 
             <dt>電話番号<span class="attention">※必須</span></dt>

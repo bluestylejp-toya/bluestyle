@@ -414,3 +414,30 @@
 	-webkit-border-bottom-right-radius: 8px;
 	border-bottom: solid 1px #72c8e2;
 }
+.l-header__inner.chain-trial_logo {
+	height: auto;
+	margin-top: 40px;
+}
+.chain-trial_title {
+	font-size: 150%;
+	margin-bottom: 40px;
+}
+.chain-trial p {
+	line-height: 200%;
+}
+.chain-trial li {
+	line-height: 200%;
+	list-style: disc;
+}
+.chain-trial ul {
+	margin-bottom: 40px;
+}
+.chain-trial_cation {
+	margin: 40px auto 20px;
+	font-weight: 600;
+}
+.google_spreadsheets {
+	width: 100%;
+	height: 80vh;
+	margin-bottom: 40px;
+}

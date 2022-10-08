@@ -25,7 +25,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=<!--{$smarty.const.CHAR_CODE}-->" />
-<title>みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}--></title>
+<title><!--{if $tpl_subtitle|strlen >= 1}--><!--{$tpl_subtitle|h}--> / <!--{elseif $tpl_title|strlen >= 1}--><!--{$tpl_title|h}--> / <!--{/if}-->みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}--></title>
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <!--{if $arrPageLayout.author|strlen >= 1}-->
