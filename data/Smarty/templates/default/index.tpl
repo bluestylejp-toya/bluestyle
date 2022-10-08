@@ -61,9 +61,9 @@
           <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
       </div>
       <p class="c-top__deliv_free">現在利用料無料！<br>かかる費用はもらう時の送料のみです。</p>
-      <a class="c-top__ux_campaign" href="https://note.com/chain_market/n/n71322678810f" target="_blank">
+      <a class="c-top__ux_campaign" href="<!--{$smarty.const.HTTPS_URL}-->service/trial.php">
           <p>
-              書籍2冊プレゼント！!<br>交換のお試し体験キャンペーン中<br><span>詳しくはここをタップ</span>
+              書籍プレゼント！!<br>Chainお試し体験キャンペーン中<br><span>詳しくはここをタップ</span>
           </p>
       </a>
       <h3 class="c-how_to__main__heading">Chainのやり方</h3>
