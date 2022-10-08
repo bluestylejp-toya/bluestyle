@@ -23,17 +23,19 @@
 <section>
     <header class="l-header__inner">
         <a href="<!--{$smarty.const.TOP_URL}--><!--{if $tpl_login}-->other/<!--{else}-->mypage/login.php<!--{/if}-->" aria-label="戻る" class="c-btn--header-nav"></a>
-        <h1 class="c-header-title">お問い合わせ（完了）</h1>
+        <h1 class="c-header-title">書籍プレゼント申し込み完了</h1>
     </header>
-    <h2 class="c-heading--subtitle">お問い合わせの送信が完了いたしました。</h2>
+    <h2 class="c-heading--subtitle">プレゼントの申し込みが完了いたしました。</h2>
     <p class="u-mb--4">
-        万一、ご回答メールが届かない場合は、トラブルの可能性もありますので<br />大変お手数ではございますがもう一度お問い合わせいただくか、お電話にてお問い合わせください。<br />
+        万一、ご受付完了メールが届かない場合は、トラブルの可能性もありますので<br />大変お手数ではございますがお問い合わせください。<br />
         今後ともご愛顧賜りますようよろしくお願い申し上げます。
+    </p>
+    <p class="u-mb--4">
+        書籍が届きましたら14日以内にChainへ出品して、欲しいアイテムに「ほしい」をお願いいたします。
     </p>
     <div class="shop_information">
     <h2 class="c-heading--subtitle"><!--{$arrSiteInfo.company_name|h}--></h2>
     <p class="u-mb--4">
         E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></p>
-
     <a href="<!--{$smarty.const.TOP_URL}-->" class="c-btn--primary--outline">トップページへ</a>
 </section>
