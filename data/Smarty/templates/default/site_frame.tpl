@@ -60,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="twitter:card" content="summary_large_image">
 <meta name="thumbnail" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
 <meta name="twitter:image" content="https://chain.gives<!--{$arrFile['sub_large_image1'].filepath|h}-->">
-<meta name="twitter:title" content="みんなで気持ちよく、連鎖で交換 <!--{$arrProduct.name|h|nl2br}--> - <!--{$arrSiteInfo.shop_name|h}-->">
+<meta name="twitter:title" content="<!--{$arrProduct.name|h|nl2br}--> - みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}-->">
 <meta name="twitter:description" content="<!--{$arrProduct['sub_title1']}-->">
     <!--{else}-->
     <meta property="og:title" content="みんなで気持ちよく、連鎖で交換 <!--{$arrSiteInfo.shop_name|h}-->">
