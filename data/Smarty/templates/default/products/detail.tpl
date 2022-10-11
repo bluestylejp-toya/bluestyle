@@ -128,10 +128,10 @@
                 <!--▲サブコメント-->
                 <h2 class="c-heading--lg">商品の情報</h2>
                 <dl class="p-item-detail__info u-mb--4">
-                    <dt>発送元の地域</dt>
+                    <!--{* <dt>発送元の地域</dt>
                     <dd>
                         <!--{$arrPref[$arrProduct.pref]|h}-->
-                    </dd>
+                    </dd> *}-->
                     <dt>アイテムサイズ</dt>
                     <dd>
                         <!--{$arrSize[$arrProduct.size_id]|h}-->
