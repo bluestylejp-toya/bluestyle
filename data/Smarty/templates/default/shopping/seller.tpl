@@ -24,8 +24,8 @@
 		<dt>趣味</dt>
 		<dd><!--{$arrSeller['hobbies']}--></dd>
 		 <!--{/if}-->
-		<dt>都道府県</dt>
-		<dd><!--{if $arrPref[$arrSeller['pref']]}--><!--{$arrPref[$arrSeller['pref']]}--><!--{else}-->登録されていません<!--{/if}--></dd>
+		<!--{* <dt>都道府県</dt>
+		<dd><!--{if $arrPref[$arrSeller['pref']]}--><!--{$arrPref[$arrSeller['pref']]}--><!--{else}-->登録されていません<!--{/if}--></dd> *}-->
 	</dl>
 	<h2 class="c-heading--lg"><!--{$tpl_linemax|h}-->個の出品アイテム</h2>
 	<ul>
