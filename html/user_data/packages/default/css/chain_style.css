@@ -446,3 +446,39 @@
 	font-size: 120%;
 	color: red !important;
 }
+.c-list--dl__left {
+	padding-top: 10px;
+}
+.c-form-parts--toggle-btn::before {
+	width: 24px;
+	height: 24px;
+}
+.c-form-parts--toggle-btn {
+	width: 48px;
+	height: 30px;
+}
+.c-list--dl__right {
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+}
+
+.c-form-parts--toggle-btn:after {
+	content:"非公開";
+	position: absolute;
+	width: 120px;
+	right: -140px;
+	top: 2px;
+	color: #FD0000;
+}
+.c-form-parts--toggle-btn__hidden:checked + :after {
+	content:"公開";
+	position: absolute;
+	width: 120px;
+	right: -140px;
+	top: 2px;
+	color: #475462;
+}
+.c-message--alert {
+	background: #FD0000;
+	color: #fff;
+}

@@ -8,7 +8,7 @@
 		<div class="c-item-edit__bg"></div>
 
         <!--{assign var=key value="status"}-->
-        <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}--> is-sticky">このアイテムは公開されていません</p>
+        <p class="c-message--alert<!--{if $arrForm.status.value != 2}--> --hidden<!--{/if}--> is-sticky">このアイテムは非公開です</p>
         <!--{if $tpl_lock_because_on_loop}-->
             <p class="c-message--alert">このアイテムはChain処理中のため編集することができません</p>
             <div class="disabled">
@@ -69,6 +69,13 @@
                     <span class="attention"><!--{$arrErr.name}--></span>
                 </dd>
 
+                <!--{assign var=key value="status"}-->
+                <dt class="c-list--dl__left">公開状態</dt>
+                <dd class="c-list--dl__right">
+                    <input type="checkbox" class="c-form-parts--toggle-btn__hidden" id="status"<!--{if $arrForm.status.value == 2}--><!--{else}--> checked<!--{/if}-->>
+                    <label for="status" class="c-form-parts--toggle-btn"></label>
+                    <input type="hidden" value="<!--{$arrForm.status.value}-->" name="status">
+                </dd>
 
                 <!--{assign var=key value="category_id"}-->
                 <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
@@ -79,16 +86,6 @@
                         <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id.value}-->
                     </select>
                 </dd>
-
-
-                <!--{assign var=key value="status"}-->
-                <dt class="c-list--dl__left">公開状態</dt>
-                <dd class="c-list--dl__right">
-                    <input type="checkbox" class="c-form-parts--toggle-btn__hidden" id="status"<!--{if $arrForm.status.value == 1}--> checked<!--{/if}-->>
-                    <label for="status" class="c-form-parts--toggle-btn"></label>
-                    <input type="hidden" value="<!--{$arrForm.status.value}-->" name="status">
-                </dd>
-
 
                 <!--{assign var=key value="product_status"}-->
                 <dt><!--{$arrForm[$key].disp_name|h}--><!--{if $arrForm[$key].require}--><span class="attention">※必須</span><!--{/if}--></dt>
@@ -117,29 +114,31 @@
             </div>
         <!--{/if}-->
         <div class="c-prohibited__content">
-        <p>Chain では以下のアイテムの出品を禁止しています。</p>
-        <ul>
-            <li>偽ブランド品、正規品と確証のないもの</li>
-            <li>盗品やそれに類する物品</li>
-            <li>犯罪や違法行為に使用される可能性があるもの</li>
-            <li>殺傷能力があり武器として使用されるもの</li>
-            <li>銃刀法などの法律に違反するおそれのあるもの</li>
-            <li>用途が明確な生活用の刃物</li>
-            <li>児童ポルノやそれに類するとみなされるもの</li>
-            <li>18禁、アダルト関連</li>
-            <li>医薬品、医療機器</li>
-            <li>許可なく製造した化粧品類や小分けした化粧品類</li>
-            <li>法令に抵触するサプリメント類</li>
-            <li>安全面、衛生面に問題のある食品類</li>
-            <li>農薬、肥料</li>
-            <li>受け渡しに伴う手続きが複雑なもの</li>
-            <li>手元にないもの</li>
-            <li>規制薬物・危険ドラッグ類</li>
-            <li>個人情報を含む出品・投稿、個人情報の不正利用</li>
-            <li>外国為替及び外国貿易法（外為法）に抵触する物品について</li>
-            <li>その他、不適切と判断されるもの</li>
-        </ul>
-        <p>管理会社が禁止出品物に当てはまると判断したものは、弊社の判断で掲載を取りやめる、商品情報を削除するものとします。</p>
+            <p>Chain では以下のアイテムの出品を禁止しています。</p>
+            <ul>
+                <li>偽ブランド品、正規品と確証のないもの</li>
+                <li>盗品やそれに類する物品</li>
+                <li>犯罪や違法行為に使用される可能性があるもの</li>
+                <li>殺傷能力があり武器として使用されるもの</li>
+                <li>銃刀法などの法律に違反するおそれのあるもの</li>
+                <li>用途が明確な生活用の刃物</li>
+                <li>児童ポルノやそれに類するとみなされるもの</li>
+                <li>18禁、アダルト関連</li>
+                <li>医薬品、医療機器</li>
+                <li>許可なく製造した化粧品類や小分けした化粧品類</li>
+                <li>法令に抵触するサプリメント類</li>
+                <li>安全面、衛生面に問題のある食品類</li>
+                <li>農薬、肥料</li>
+                <li>受け渡しに伴う手続きが複雑なもの</li>
+                <li>手元にないもの</li>
+                <li>規制薬物・危険ドラッグ類</li>
+                <li>個人情報を含む出品・投稿、個人情報の不正利用</li>
+                <li>外国為替及び外国貿易法（外為法）に抵触する物品について</li>
+                <li>その他、不適切と判断されるもの</li>
+            </ul>
+
+            <p><a href="<!--{$smarty.const.TOP_URL}-->terms/prohibited_items.php" class="c-btn--default">詳しく確認する</a></p>
+            <p>運営事務局で禁止出品物に当てはまると判断したものは、弊社の判断で掲載を取りやめる、商品情報を削除するものとします。</p>
         <button type="button" class="c-prohibited__close-btn c-btn--default">閉じる</button>
     </div>
 
