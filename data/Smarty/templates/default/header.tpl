@@ -75,7 +75,6 @@
 
     <p><a href="<!--{$smarty.const.TOP_URL}-->terms/prohibited_items.php" class="c-btn--default">詳しく確認する</a></p>
     <p>運営事務局で禁止出品物に当てはまると判断したものは、弊社の判断で掲載を取りやめる、商品情報を削除するものとします。</p>
-        <p>運営事務局で禁止出品物に当てはまると判断したものは、弊社の判断で掲載を取りやめる、商品情報を削除するものとします。</p>
         <button type="button" class="c-prohibited__close-btn c-btn--default">閉じる</button>
     </div>
     <div class="c-onboarding__bg"></div>

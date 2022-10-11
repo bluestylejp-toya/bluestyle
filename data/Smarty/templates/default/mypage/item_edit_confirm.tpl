@@ -57,7 +57,7 @@
                         <!--{/if}-->
                     <!--{/section}-->
                     </ul>
-        <button onclick="document.form1.submit(); return false;" class="c-btn--primary">この内容で登録する</button>
+        <button onclick="document.form1.submit(); return false;" class="c-btn--primary u-mb--2">この内容で登録する</button>
         <button onclick="eccube.setModeAndSubmit('confirm_return','',''); return false;" class="c-btn--default u-mb--2">前のページに戻る</button>
 
     <section>
