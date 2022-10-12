@@ -20,6 +20,10 @@
             <!--{assign var=key value="search_name"}-->
             <!--{if $arrErr[$key]}--><span class="attention"><!--{$arrErr[$key]}--></span><!--{/if}-->
             <input type="text" name="<!--{$key}-->" maxlength="<!--{$arrForm[$key].length}-->" value="<!--{$arrForm[$key].value|h}-->" size="30" class="box30" <!--{if $arrErr[$key]}--><!--{sfSetErrorStyle}--><!--{/if}--> />
+        <!--{assign var=key value="search_name_null"}-->
+        <!--{if $arrErr[$key]}--><span class="attention"><!--{$arrErr[$key]}--></span><br /><!--{/if}-->
+        <input type="checkbox" name="<!--{$key}-->"  value="on" <!--{if $arrForm[$key].value eq on}--> checked <!--{/if}-->>
+        <label for="scales">名前登録してないユーザー検索</label>
     </td>
     <th>お名前(フリガナ)</th>
     <td>

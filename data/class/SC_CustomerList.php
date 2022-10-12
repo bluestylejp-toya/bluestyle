@@ -68,13 +68,19 @@ class SC_CustomerList extends SC_SelectSql_Ex
             $searchName = $this->addSearchStr($this->arrSql['search_name']);
             $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchName);
         }
+        if (!isset($this->arrSql['search_name_null'])) $this->arrSql['search_name_null'] = '';
+        if (strlen($this->arrSql['search_name_null']) > 0) {
+            $this->setWhere('(' . $dbFactory->concatColumn(array('name01', 'name02')) . " LIKE '')");
+            $searchNameNull = $this->addSearchStr($this->arrSql['search_name_null']);
+            $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchNameNull);
+        }
 
         // ニックネーム
         if (!isset($this->arrSql['search_nickname'])) $this->arrSql['search_nickname'] = '';
         if (strlen($this->arrSql['search_nickname']) > 0) {
             $this->setWhere('nickname LIKE ?');
-            $searchName = $this->addSearchStr($this->arrSql['search_nickname']);
-            $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchName);
+            $searchNicName = $this->addSearchStr($this->arrSql['search_nickname']);
+            $this->arrVal[] = preg_replace('/[ 　]+/u', '', $searchNicName);
         }
 
         // 名前(フリガナ)
