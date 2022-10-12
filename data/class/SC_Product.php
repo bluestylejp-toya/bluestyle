@@ -1,4 +1,4 @@
-// ほしい順にソート<?php
+<?php
 /*
  * This file is part of EC-CUBE
  *
