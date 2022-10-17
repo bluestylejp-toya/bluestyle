@@ -119,7 +119,7 @@ class ImageConverter
                         break;
 
                     case 'jpg':
-                        $quality = 100;
+                        $quality = 75;
                         // 表示可能なファイルサイズ以下になるまで、10%ずつクオリティを調整する
                         do {
                             @unlink($outputImagePathTemp);
