@@ -238,7 +238,7 @@ class gdthumb {
                             throw new Exception;
                         }
                     } else {
-                        $success = imageJpeg($dst_im, $dst_file);
+                        $success = imageJpeg($dst_im, $dst_file, 100);
                         if (!$success) {
                             throw new Exception;
                         }
