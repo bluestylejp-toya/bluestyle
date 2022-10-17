@@ -482,3 +482,31 @@
 	background: #FD0000;
 	color: #fff;
 }
+.p-search__list {
+	display: contents;
+}
+.p-search {
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: center;
+	-webkit-justify-content: center;
+}
+.c-nav-list li > .c-nav-list_cat {
+	padding: 5px;
+	background: none;
+	width: 32px;
+	height: 32px;
+	margin-right: 32px;
+	border: 2px #ccc solid;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+}
+.c-nav-list li > .c-nav-list_cat img {
+	max-height: 100%;
+}

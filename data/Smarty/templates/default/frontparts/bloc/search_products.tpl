@@ -27,13 +27,16 @@
         <input type="hidden" name="mode" value="search" />
         <div class="p-search">
             <div class="c-form-parts--search p-search__box">
-                <input type="text" name="name" class="c-form-parts--search__box" maxlength="50" value="<!--{$smarty.get.name|h}-->" placeholder="キーワードから探す"/><button class="c-form-parts--search__btn" type="button"></button>
+                <input type="text" name="name" class="c-form-parts--search__box" maxlength="50" value="<!--{$smarty.get.name|h}-->" placeholder="キーワードから探す"/>
+                <button class="c-form-parts--search__btn" name="search" type="button"></button>
             </div>
 
             <div class="p-search__list">
                 <ul class="c-nav-list">
                     <li>
-                        <button type="button" data-menu_id="category">カテゴリーから探す</button>
+                        <button type="button" data-menu_id="category" class="c-nav-list_cat">
+                            <img src="!--{$TPL_URLPATH}-->img/icon/c-nav-list_cat.png">
+                        </button>
                     </li>
                     <!--{*<li>
                         <button type="button" data-menu_id="maker">出品者の都道府県から探す</button>
