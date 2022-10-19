@@ -155,6 +155,7 @@ class SC_Product
             ,update_date
             ,pref
             ,size_id
+            ,chain_id
             ,customer_id
 __EOS__;
 
@@ -715,7 +716,7 @@ __EOS__;
     {
         $tablename = ($tablename) ? $tablename . '.' : null;
 
-        return $tablename . "chain_id != '' AND " . $tablename . 'del_flg = 0 OR ( ' . $tablename . 'status = 1 AND ' . $tablename . 'del_flg = 0 ) ';
+        return $tablename . 'status = 1 AND ' . $tablename . 'del_flg = 0 ';
     }
 
     /**
