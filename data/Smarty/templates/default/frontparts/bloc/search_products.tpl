@@ -35,7 +35,7 @@
                 <ul class="c-nav-list">
                     <li>
                         <button type="button" data-menu_id="category" class="c-nav-list_cat">
-                            <img src="!--{$TPL_URLPATH}-->img/icon/c-nav-list_cat.png">
+                            <img src="!--{$TPL_URLPATH}-->img/icon/c-nav-list_cat.svg">
                         </button>
                     </li>
                     <!--{*<li>
