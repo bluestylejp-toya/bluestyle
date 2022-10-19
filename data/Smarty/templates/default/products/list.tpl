@@ -125,10 +125,13 @@
                     <dl class="u-mb--4 c-list--search">
                         <dt>アイテム数：</dt><dd><!--{$tpl_linemax}-->件</dd>
                         <!--{if $arrSearch.category != '指定なし' && $arrSearch.category != null}-->
-                            <dt>カテゴリー：</dt><dd><!--{$arrSearch.category|h}--></dt>
+                            <dt>カテゴリー：</dt><dd><!--{$arrSearch.category|h}--></dd>
                         <!--{/if}-->
                         <!--{if $arrSearch.maker != '指定なし' && $arrSearch.maker != null}-->
-                            <dt>出費者の地域：</dt><dd><!--{$arrSearch.maker|h}--></dt>
+                            <dt>出費者の地域：</dt><dd><!--{$arrSearch.maker|h}--></dd>
+                        <!--{/if}-->
+                        <!--{if $arrSearch.name != '指定なし' && $arrSearch.name != null}-->
+                        <dt>検索ワード：</dt><dd><!--{$arrSearch.name|h}--></dd>
                         <!--{/if}-->
                     </dl>
                     <!--▲件数-->
