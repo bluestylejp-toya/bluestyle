@@ -167,7 +167,7 @@
 						<p class="c-list-item__description"><!--{if $arrProduct.sub_title1}--><!--{$arrProduct.sub_title1|mb_substr:0:36|h|nl2br}--><!--{if $arrProduct.sub_title1|mb_strlen > 36}-->...<!--{/if}--><!--{/if}--></p>
 						<!--{* 以下に出品者情報が入ります*}-->
                     </div>
-                    <!--{if $arrProduct.stock_max < 1}--><div class="c-list-item__soldout">Chain成立済み</div><!--{/if}-->
+                    <!--{if $arrProduct.chain_id != ""}--><div class="c-list-item__soldout">Chain成立済み</div><!--{/if}-->
                 </a>
                     <div class="c-list-item__seller">
                         <dl>

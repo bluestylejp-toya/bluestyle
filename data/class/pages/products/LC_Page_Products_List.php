@@ -490,6 +490,8 @@ __EOS__;
                     $searchCondition['arrval'][] = "%$val%";
                 }
                 $searchCondition['where'] .= ')';
+            } else {
+                $searchCondition['where'] .= " OR ( alldtl.chain_id != '' AND alldtl.del_flg = 0 ) ";
             }
         }
 
