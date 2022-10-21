@@ -490,7 +490,7 @@ __EOS__;
                     $searchCondition['arrval'][] = "%$val%";
                 }
                 $searchCondition['where'] .= ')';
-            } else {
+            } elseif (strlen($val) < 1 AND strlen($searchCondition['where_category']) < 1) {
                 $searchCondition['where'] .= " OR ( alldtl.chain_id != '' AND alldtl.del_flg = 0 ) ";
             }
         }
