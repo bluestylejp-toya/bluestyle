@@ -37,12 +37,57 @@
             <!--{assign var=current value="display"}-->
         <!--{else if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/index.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/profile.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/login.php"}-->
             <!--{assign var=current value="mypage"}-->
+    <!--{else if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/profile.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/login.php"}-->
+    <!--{assign var=current value="change"}-->
+    <!--{else if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change_complete.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/profile.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/change.php" or $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`mypage/login.php"}-->
+    <!--{assign var=current value="complete"}-->
         <!--{else if $smarty.server.PHP_SELF|mb_strpos:'myitem' !== false}-->
             <!--{assign var=current value="mypage"}-->
         <!--{/if}-->
     <!--{/if}-->
 
-    <!--{if $is_login}-->
+    <!--{if !$ok}-->
+    <!--{if $current != 'change' OR $current != 'complete'}-->
+    <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/">
+    <div class="login_member_text">
+        <p>
+            住所とカード情報を<br>入力してください
+        </p>
+    </div>
+    </a>
+    <!--{/if}-->
+    <!--{elseif $arrListingProducts|@count == 0 AND $is_login}-->
+    <!--{if $current == 'search'}-->
+    <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php">
+    <div class="upload_text">
+        <p>
+            出品しましょう
+        </p>
+    </div>
+    </a>
+    <!--{/if}-->
+    <!--{/if}-->
+    <!--{if $current == 'search'}-->
+    <!--{if $arrListingProducts|@count > 0 AND $tpl_linemax2 < 1}-->
+    <div class="favorite_text">
+        <p>「ほしい」を押して参加しよう</p>
+    </div>
+    <!--{/if}-->
+    <!--{/if}-->
+    <!--{if !$is_login}-->
+    <!--{if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`products/list.php"}-->
+    <!--{assign var=current value="search"}-->
+    <!--{/if}-->
+    <!--{if $current == 'search'}-->
+    <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/">
+    <div class="login_member_text">
+        <p>
+            ログインしてください
+        </p>
+    </div>
+    </a>
+    <!--{/if}-->
+    <!--{/if}-->
         <ul class="l-footer-nav__inner --login">
             <li class="l-footer-nav__item">
                 <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">見つける</a>
@@ -51,28 +96,12 @@
                 <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php" class="c-footer-nav-item--listing<!--{if $current == 'display'}--> is-current<!--{/if}-->">出品</a>
             </li>
             <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}-->">マイページ</a>
+                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}-->"><!--{if $is_login}-->マイページ<!--{else}-->ログイン<!--{/if}--></a>
             </li>
             <li class="l-footer-nav__item">
                 <a href="<!--{$smarty.const.HTTPS_URL}-->other/" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
             </li>
         </ul>
-    <!--{else}-->
-        <ul class="l-footer-nav__inner --login">
-            <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date" class="c-footer-nav-item--search<!--{if $current == 'search'}--> is-current<!--{/if}-->">見つける</a>
-            </li>
-            <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--listing">出品</a>
-            </li>
-            <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-footer-nav-item--mypage<!--{if $current == 'mypage'}--> is-current<!--{/if}-->">ログイン</a>
-            </li>
-            <li class="l-footer-nav__item">
-                <a href="<!--{$smarty.const.HTTPS_URL}-->other/" class="c-footer-nav-item--other<!--{if $current == 'other'}--> is-current<!--{/if}-->">その他</a>
-            </li>
-        </ul>
-    <!--{/if}-->
 </nav>
 <!--{/strip}-->
 <!--▲FOOTER-->
