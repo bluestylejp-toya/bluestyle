@@ -64,6 +64,7 @@
             </div>
         </div>
     </form>
+
     <script>
         const search = $("input[name=name]");
         const category = $("input[name=category_id], input[name=maker_id]");

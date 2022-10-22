@@ -245,7 +245,7 @@
 	padding-bottom: 24px;
 }
 .LC_Page_Products_List .c-pagination {
-	margin-bottom: 33px;
+	margin-bottom: 53px;
 }
 .l-footer-nav__inner.--login .l-footer-nav__item {
 	min-width: 50px;
@@ -521,4 +521,80 @@
 	-ms-border-radius: 10px;
 	padding: 10px;
 	border: 1px solid #ccc;
+}
+.login_member_text,
+.upload_text,
+.address_card_text {
+	position: absolute;
+	bottom: 65px;
+	background: #F19DB5;
+	width: 75%;
+	margin: auto;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	left: 0;
+	right: 0;
+	box-shadow: 0px 0px 10px 0px #a7a7a7;
+}
+
+.login_member_text:before{
+	content: '';
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	right: 29%;
+	bottom: -15px;
+	border-right: 15px solid transparent;
+	border-top: 15px solid #F19DB5;
+	border-left: 15px solid transparent;
+}
+.upload_text:before{
+	content: '';
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	right: 60%;
+	bottom: -15px;
+	border-right: 15px solid transparent;
+	border-top: 15px solid #F19DB5;
+	border-left: 15px solid transparent;
+}
+.favorite_text {
+	position: absolute;
+	bottom: 65px;
+	background: #F19DB5;
+	width: 75%;
+	margin: auto;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	left: 0;
+	right: 0;
+	box-shadow: 0px 0px 10px 0px #a7a7a7;
+}
+.c-item-tab__item {
+	height: 40px;
+}
+.l-header--item {
+	padding: 0;
+}
+.p-search__box {
+	margin-bottom: 0;
+}
+.p-search__list li {
+	height: auto;
+	border-bottom: none;
 }

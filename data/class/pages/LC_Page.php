@@ -126,6 +126,22 @@ class LC_Page
         // 商品詳細を取得
         $objProduct = new SC_Product_Ex();
         $this->arrProduct = $objProduct->getDetail($product_id);
+
+        $objCustomer = new SC_Customer_Ex();
+        $customer_id = $objCustomer->getValue('customer_id');
+
+        // 出品中の商品アイテムカウント用
+        $this->arrListingProducts = SC_Product_Ex::getListingProducts($customer_id);
+        $this->ok = SC_Helper_Customer_Ex::checkCompletedInputCustomerData($customer_id);
+
+        //お気に入りの数を取得
+        // ページ送り用
+        if (isset($_POST['pageno'])) {
+            $this->tpl_pageno = intval($_POST['pageno']);
+        }
+        $this->arrPostFavorite = $this->lfGetFavorite($customer_id, $this);
+        // 1ページあたりの件数
+        $this->dispNumber = SEARCH_PMAX;
     }
 
     /**
@@ -534,5 +550,79 @@ class LC_Page
         header('X-XSS-Protection: 1; mode=block');
         header('X-Content-Type-Options: nosniff');
         header('X-Frame-Options: DENY');
+    }
+
+    /**
+     * ほしいの数を算出する SQL を返す.
+     *
+     * @return string ほしい数を算出する SQL
+     */
+    public function lfGetFavorite($customer_id, &$objPage)
+    {
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objProduct     = new SC_Product_Ex();
+
+        $objQuery->setOrder('f.create_date DESC');
+        $where = 'f.customer_id = ? and p.status = 1 and targetProduct.status = 1';
+        if (NOSTOCK_HIDDEN) {
+            $where .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = f.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        }
+        $arrProductId  = $objQuery->getCol('f.product_id', 'dtb_customer_favorite_products f inner join dtb_products p using (product_id) inner join dtb_products targetProduct ON f.target_id = targetProduct.product_id', $where, array($customer_id));
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        $objQuery->setWhere($this->lfMakeWhere('alldtl.', $arrProductId));
+        $linemax        = $objProduct->findProductCount($objQuery);
+
+        $objPage->tpl_linemax2 = $linemax;   // 何件が該当しました。表示用
+
+        // ページ送りの取得
+        $objNavi        = new SC_PageNavi_Ex($objPage->tpl_pageno, $linemax, SEARCH_PMAX, 'eccube.movePage', NAVI_PMAX);
+        $this->tpl_strnavi = $objNavi->strnavi; // 表示文字列
+        $startno        = $objNavi->start_row;
+
+        $objQuery       = SC_Query_Ex::getSingletonInstance();
+        //$objQuery->setLimitOffset(SEARCH_PMAX, $startno);
+        // 取得範囲の指定(開始行番号、行数のセット)
+        $arrProductId  = array_slice($arrProductId, $startno, SEARCH_PMAX);
+
+        $where = $this->lfMakeWhere('', $arrProductId);
+        $where .= ' AND del_flg = 0';
+        $objQuery->setWhere($where, $arrProductId);
+        $addCols = ['count_of_favorite'];
+        $arrProducts = $objProduct->lists($objQuery, [], $addCols);
+
+        //取得している並び順で並び替え
+        $arrProducts2 = array();
+        foreach ($arrProducts as $item) {
+            $arrProducts2[$item['product_id']] = $item;
+        }
+        $arrProductsList = array();
+        foreach ($arrProductId as $product_id) {
+            $arrProductsList[] = $arrProducts2[$product_id];
+        }
+
+        // 税込金額を設定する
+        SC_Product_Ex::setIncTaxToProducts($arrProductsList);
+
+        return $arrProductsList;
+    }
+
+    /* 仕方がない処理。。 */
+
+    /**
+     * @param string $tablename
+     */
+    public function lfMakeWhere($tablename, $arrProductId)
+    {
+        // 取得した表示すべきIDだけを指定して情報を取得。
+        $where = '';
+        if (is_array($arrProductId) && !empty($arrProductId)) {
+            $where = $tablename . 'product_id IN (' . implode(',', $arrProductId) . ')';
+        } else {
+            // 一致させない
+            $where = '0<>0';
+        }
+
+        return $where;
     }
 }
