@@ -28,6 +28,6 @@
         <p class="c-header-title">アカウント情報を更新しました</p>
     </header>
     <p class="u-mb--4">アカウント情報を更新しました。<br>引き続き、Chainをお楽しみください。</p>
-    <p class="u-mb--4"><a href="<!--{$smarty.const.TOP_URL}-->mypage/item_edit.php" class="c-btn--primary">クレジットカード登録</a></p>
+    <p class="u-mb--4"><a href="<!--{$smarty.const.TOP_URL}-->mypage/card_info.php" class="c-btn--primary">クレジットカード登録</a></p>
     <p><a href="<!--{$smarty.const.TOP_URL}-->mypage/item_edit.php" class="c-btn--primary">アイテムを出品する</a></p>
 </div>

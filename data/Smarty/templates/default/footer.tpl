@@ -46,39 +46,37 @@
         <!--{/if}-->
     <!--{/if}-->
 
-    <!--{if !$ok}-->
-    <!--{if $current != 'change' OR $current != 'complete'}-->
+    <!--{if !$ok AND $current == 'search' AND $is_login}-->
     <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/">
     <div class="login_member_text">
         <p>
-            住所とカード情報を<br>入力してください
+            ①住所を入力してください
         </p>
     </div>
     </a>
-    <!--{/if}-->
-    <!--{elseif $arrListingProducts|@count == 0 AND $is_login}-->
-    <!--{if $current == 'search'}-->
+    <!--{elseif $current == 'search' AND $is_login AND $smarty.session.unregistered_card && $smarty.server.PHP_SELF!=$card_info}-->
+    <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/card_info.php">
+        <div class="login_member_text">
+            <p>
+                ②カード情報を入力してください
+            </p>
+        </div>
+    </a>
+    <!--{elseif $arrListingProducts|@count == 0 AND $is_login AND $current == 'search'}-->
     <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/item_edit.php">
     <div class="upload_text">
         <p>
-            出品しましょう
+            <!--{if $arrListingProducts|@count == $tpl_linemax3}-->③<!--{/if}-->出品しましょう
         </p>
     </div>
     </a>
-    <!--{/if}-->
-    <!--{/if}-->
-    <!--{if $current == 'search'}-->
-    <!--{if $arrListingProducts|@count > 0 AND $tpl_linemax2 < 1}-->
+    <!--{elseif $current == 'search' AND $is_login AND $arrListingProducts|@count > 0 AND $tpl_linemax2 < 1}-->
     <div class="favorite_text">
-        <p>「ほしい」を押して参加しよう</p>
+        <p>
+            <!--{if $arrListingProducts|@count == $tpl_linemax3}-->④<!--{/if}-->「ほしい」を押して参加しよう
+        </p>
     </div>
-    <!--{/if}-->
-    <!--{/if}-->
-    <!--{if !$is_login}-->
-    <!--{if $smarty.server.PHP_SELF == "`$smarty.const.ROOT_URLPATH`products/list.php"}-->
-    <!--{assign var=current value="search"}-->
-    <!--{/if}-->
-    <!--{if $current == 'search'}-->
+    <!--{elseif !$is_login AND $current == 'search'}-->
     <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/">
     <div class="login_member_text">
         <p>
@@ -86,7 +84,6 @@
         </p>
     </div>
     </a>
-    <!--{/if}-->
     <!--{/if}-->
         <ul class="l-footer-nav__inner --login">
             <li class="l-footer-nav__item">

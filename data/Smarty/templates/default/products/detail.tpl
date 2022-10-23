@@ -89,7 +89,7 @@
         <p class="u-text--center"><b>Chain成立済みのアイテムです。</b></p>
         <!--{/if}-->
         <!--{if $smarty.session.unregistered_card}-->
-        <p class="u-text--center"><b><a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php">クレジットカードを登録</a>したら「ほしい」が押せます。</b></p>
+        <p class="u-text--center"><b><a href="<!--{$smarty.const.HTTPS_URL|h}-->mypage/card_info.php">クレジットカードを登録</a>したら<br>「ほしい」が押せます。</b></p>
         <!--{/if}-->
         <!--/key visual-->
         <div class="p-item-detail__body">
