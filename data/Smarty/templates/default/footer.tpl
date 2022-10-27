@@ -22,7 +22,7 @@
 
 <!--▼FOOTER-->
 <!--{strip}-->
-
+<!--{if $tpl_login}-->
 <nav class="l-footer-nav">
     <!--{if $tpl_login }-->
         <!--{assign var=is_login value=true}-->
@@ -100,5 +100,6 @@
             </li>
         </ul>
 </nav>
+<!--{/if}-->
 <!--{/strip}-->
 <!--▲FOOTER-->
