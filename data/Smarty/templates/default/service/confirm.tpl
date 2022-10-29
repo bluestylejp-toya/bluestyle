@@ -23,7 +23,7 @@
 
     <header class="l-header__inner">
         <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" aria-label="戻る" class="c-btn--header-nav"></a>
-        <h1 class="c-header-title">お問い合わせ（確認）</h1>
+        <h1 class="c-header-title">書籍プレゼント（確認）</h1>
     </header>
 
     <p class="u-mb--3">下記入力内容で送信してもよろしいでしょうか？<br />
@@ -63,7 +63,7 @@
             <dt>メールアドレス</dt>
             <dd><a href="mailto:<!--{$arrForm.email.value|escape:'hex'}-->"><!--{$arrForm.email.value|escape:'hexentity'}--></a></dd>
 
-            <dt>お問い合わせ内容</dt>
+            <dt>欲しい書籍のID</dt>
             <dd><!--{$arrForm.contents.value|h|nl2br}--></dd>
         </dl>
         <button  class="c-btn--primary" name="send" id="send"  class="c-btn--primary">送信する</button>
