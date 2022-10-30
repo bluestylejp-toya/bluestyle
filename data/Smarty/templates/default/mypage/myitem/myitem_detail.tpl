@@ -75,7 +75,7 @@
                 })
             </script>
             <!--{* 発送待ち *}-->
-            <!--{elseif $arrChainProductStatus.progress_percent|h == 100}-->
+            <!--{elseif $arrChainProductStatus.progress_percent|h == 100 AND $arrProduct.chain_id != ""}-->
             <div class="c-btn--mypage__wrapper">
                 <p>このアイテムはChain成立しています<br>発送してください</p>
                 <p class="attention">発送しないとペナルティが課せられます。</p>
