@@ -22,7 +22,11 @@
 
 <!--▼FOOTER-->
 <!--{strip}-->
-<!--{if $tpl_login}-->
+<!--{assign var=detail value="`$smarty.const.ROOT_URLPATH`products/detail.php"}-->
+<!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
+<!--{assign var=other value="`$smarty.const.ROOT_URLPATH`other/index.php"}-->
+<!--{assign var=top value="`$smarty.const.ROOT_URLPATH`index.php"}-->
+<!--{if $tpl_login OR $smarty.server.PHP_SELF==$other OR $smarty.server.PHP_SELF==$detail OR $smarty.server.PHP_SELF==$list}-->
 <nav class="l-footer-nav">
     <!--{if $tpl_login }-->
         <!--{assign var=is_login value=true}-->
