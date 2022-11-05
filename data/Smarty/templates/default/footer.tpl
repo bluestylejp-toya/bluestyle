@@ -51,7 +51,7 @@
     <!--{/if}-->
 
     <!--{if !$ok AND $current == 'search' AND $is_login}-->
-    <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/">
+    <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/change.php">
     <div class="login_member_text">
         <p>
             ①住所を入力してください
