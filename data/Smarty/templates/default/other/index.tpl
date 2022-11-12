@@ -25,6 +25,11 @@
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/postage.php">送料について</a></li>
             <!--{/if}-->
             <li><a href="<!--{$smarty.const.TOP_URL}-->contact/">お問い合わせ</a></li>
+            <li class="other_twitter">
+                <a href="https://twitter.com/chain_marketnet" target="_blank">
+                    twitter<img src="<!--{$TPL_URLPATH}-->img/common/icon-twitter.png" alt="twittrのアイコン">
+                </a>
+            </li>
             <!--{*
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用方法</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/payment.php">支払い方法</a></li>
