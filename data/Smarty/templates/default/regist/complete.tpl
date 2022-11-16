@@ -22,7 +22,7 @@
 
 <section>
     <div class="l-header__inner u-mb--0">
-        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" aria-label="戻る" class="c-btn--header-nav"></a>
+        <a href="<!--{$smarty.const.TOP_URL}-->" aria-label="戻る" class="c-btn--header-nav"></a>
         <h1 class="c-header-title"><!--{$tpl_title|h}--></h1>
     </div>
     <div class="c-entry-kv">
@@ -31,7 +31,7 @@
     </div>
     <h1 class="c-heading--md u-color--gray u-mb--4">おめでとうございます！<br />登録完了しました</h1>
     <p class="u-mb--2">
-        <a href="<!--{$smarty.const.TOP_URL}-->products/list.php" class="c-btn--primary">ホームへ</a>
+        <a href="<!--{$smarty.const.TOP_URL}-->" class="c-btn--primary">ホームへ</a>
     </p>
     <p>
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" class="c-btn--primary--outline">マイページへ</a>
