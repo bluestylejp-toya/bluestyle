@@ -518,8 +518,10 @@ class SC_Helper_Mail
         foreach ($arrDestinationList as $arrDestination) {
             // お名前の変換
             $customerName = trim($arrDestination['name']);
+            $customerId = trim($arrDestination['customer_id']);
             $subjectBody = preg_replace('/{name}/', $customerName, $arrMail['subject']);
             $mailBody = preg_replace('/{name}/', $customerName, $arrMail['body']);
+            $mailBody = preg_replace('/{id}/', $customerId, $arrMail['body']);
 
             $objMail->setItem(
                 $arrDestination['email'],
