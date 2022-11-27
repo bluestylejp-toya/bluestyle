@@ -293,7 +293,6 @@ class SLN_Credit {
 				$objectQuery->begin();
 				$objectPurchase->sfUpdateOrderStatus($orderHash['order_id'], $order_status, null, null, $sqlval);
 				$objectQuery->commit();
-				$objectPurchase->sendOrderMail($orderHash['order_id']);
 				if ($orderHash['register_card']) {
 					$this->cardRegist($orderHash, $objectFormParam->getHashArray());
 				}
