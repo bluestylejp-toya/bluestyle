@@ -14,6 +14,7 @@ RUN apt-get update \
 
 RUN /bin/sh -c a2enmod rewrite
 
-RUN (crontab -l; echo "00 20 * * * /usr/local/bin/php /var/www/data/batch/send_notification_request_info.php >> /var/www/data/logs/send_notification_request_info.log 2>&1") | crontab -
+RUN (crontab -l; echo "00 8 * * * /usr/local/bin/php /var/www/data/batch/send_notification_request_info.php 23-8 >> /var/www/data/logs/send_notification_request_info.log 2>&1") | crontab -
+RUN (crontab -l; echo "0,30 8-23 * * * /usr/local/bin/php /var/www/data/batch/send_notification_request_info.php 8-23 >> /var/www/data/logs/send_notification_request_info.log 2>&1") | crontab -
 
 CMD /var/www/data/batch/clear_cache.sh; (cron -f &); apache2-foreground
