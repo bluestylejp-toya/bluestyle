@@ -78,7 +78,6 @@ class SLN_RegistCredit {
 
 		$arrResults = $objectClient->getResults();
 		$this->updateOrderStatusNew($orderHash['order_id'], $objectPurchase, $arrResults);
-		$objectPurchase->sendOrderMail($orderHash['order_id']);
 		$paramHash = SLN_Util::getOrderPayHash($orderHash['order_id']);
 		$this->cardRegist($orderHash, $paramHash);
 		if (defined('BATCH') && BATCH) {
