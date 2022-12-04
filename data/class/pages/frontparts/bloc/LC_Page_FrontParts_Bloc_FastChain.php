@@ -144,7 +144,8 @@ class LC_Page_FrontParts_Bloc_FastChain extends LC_Page_FrontParts_Bloc_Ex
         $arrProductId = array_slice($arrProductId, $startno, $this->dispNumber);
 
         $where = $this->lfMakeWhere('', $arrProductId);
-        $where .= ' AND del_flg = 0 AND status = 1 ';
+        $where .= ' AND del_flg = 0 AND status = 1';
+        $where .= ' ORDER BY product_id DESC ';
         $objQuery->setWhere($where, $arrProductId);
         $addCols = ['count_of_favorite'];
         $addCols[] = 'nickname';
@@ -159,6 +160,10 @@ class LC_Page_FrontParts_Bloc_FastChain extends LC_Page_FrontParts_Bloc_Ex
         foreach ($arrProductId as $product_id) {
             $arrProductsList[] = $arrProducts2[$product_id];
         }
+        array_multisort(
+            $arrProductsList, SORT_DESC,
+            $arrProductsList
+        );
 
         return $arrProductsList;
     }
