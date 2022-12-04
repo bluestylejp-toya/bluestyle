@@ -19187,8 +19187,8 @@ INSERT INTO `mtb_constants` VALUES ('INPUT_ZIP_URLPATH','ROOT_URLPATH . \"input_
 INSERT INTO `mtb_constants` VALUES ('INT_LEN','9',206,'検査数値用桁数(INT)');
 INSERT INTO `mtb_constants` VALUES ('LARGE_IMAGE_HEIGHT','500',111,'拡大画像縦');
 INSERT INTO `mtb_constants` VALUES ('LARGE_IMAGE_WIDTH','500',110,'拡大画像横');
-INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_HEIGHT','500',119,'拡大サブ画像縦');
-INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_WIDTH','500',118,'拡大サブ画像横');
+INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_HEIGHT','768',119,'拡大サブ画像縦');
+INSERT INTO `mtb_constants` VALUES ('LARGE_SUBIMAGE_WIDTH','768',118,'拡大サブ画像横');
 INSERT INTO `mtb_constants` VALUES ('LEVEL_MAX','5',132,'カテゴリの最大階層');
 INSERT INTO `mtb_constants` VALUES ('LLTEXT_LEN','99999',193,'超長文の文字数 (メルマガなど)');
 INSERT INTO `mtb_constants` VALUES ('LOCALE','\"ja_JP.UTF-8\"',40,'ロケール設定');

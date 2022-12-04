@@ -130,9 +130,9 @@ define('NORMAL_SUBIMAGE_WIDTH', 200);
 /** 通常サブ画像縦 */
 define('NORMAL_SUBIMAGE_HEIGHT', 200);
 /** 拡大サブ画像横 */
-define('LARGE_SUBIMAGE_WIDTH', 500);
+define('LARGE_SUBIMAGE_WIDTH', 768);
 /** 拡大サブ画像縦 */
-define('LARGE_SUBIMAGE_HEIGHT', 500);
+define('LARGE_SUBIMAGE_HEIGHT', 768);
 /** 画像サイズ制限(KB) */
 define('IMAGE_SIZE', 102400);
 /** CSVサイズ制限(KB) */
