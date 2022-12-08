@@ -155,6 +155,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!--{/if}-->
     <!--{* ▲Head COLUMN*}-->
 <!--{/strip}-->
+    <!--{* pinterestサイト確認 *}-->
+    <meta name="p:domain_verify" content="8b145e1c45d2979f0e33cca08c0314ec"/>
 </head>
 
 <!-- ▼BODY部 スタート -->
