@@ -8,6 +8,8 @@ composer.phar
 *.tpl.php
 /data/config/config.php
 /data/cache/*
+/data/downloads/KEN_ALL_utf-8.CSV
+/data/downloads/tmp/ken_all.zip
 /data/Smarty/templates_c/*
 /html/install/temp/*
 /html/upload/save_image/*
