@@ -45,8 +45,6 @@ https://www.sonypaymentservices.jp/consider/cv/paymethod/
 
 MESSAGE;
 		$objectPurchase->sfUpdateOrderStatus($orderHash['order_id'], ORDER_NEW, null, null, $sqlval);
-		// 注文完了メールの送信
-		$objectPurchase->sendOrderMail($orderHash['order_id']);
 
 		// 元のメッセージ内容で上書きする
 		$sqlval['message'] = $orderHash['message'];

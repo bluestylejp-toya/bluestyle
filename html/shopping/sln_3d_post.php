@@ -50,13 +50,6 @@ if ($data['MerchantFree1']) {//受注データ
             $objectQuery->begin();
             $objectPurchase->sfUpdateOrderStatus($orderHash['order_id'], $order_status);
             $objectQuery->commit();
-            // メール送信
-            // 二重送信防止のため、すでに購入処理後のステータスになっている受注には処理を行わない
-            if ($statusId != ORDER_NEW &&
-                $statusId != ORDER_PRE_END
-                ) {
-                    $objectPurchase->sendOrderMail($orderHash['order_id']);
-            }
             
             $isError = false;
         }
