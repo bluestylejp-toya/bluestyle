@@ -10,8 +10,21 @@ $objSendNotificationRequestInfo = new SendNotificationRequestInfo();
 echo "START\n";
 echo " MODE=".$argv[1]."\n";
 
-// 8-23時は30分毎に実行する
-if ($argv[1] == '8-23'){
+// 8時は前日の23時～8時までを対象に実行する
+if ($argv[1] == '8:00'){
+    $objDateTime = new DateTime();
+    $start = $objDateTime->modify('-1 day')->format('Y-m-d') . '23:00:00';
+    $objDateTime = new DateTime();
+    $end = $objDateTime->format('Y-m-d') . '08:00:00';
+
+// 23時は22時30分～23時までを対象に実行する
+} else if ($argv[1] == '23:00'){
+    $objDateTime = new DateTime();
+    $start = $objDateTime->modify('-1 Hour')->format('Y-m-d H') . ':30:00';
+    $objDateTime = new DateTime();
+    $end = $objDateTime->format('Y-m-d H') . ':00:00';
+// 8時30分～22時30分までは30分前からを対象に実行する
+} else {
     $objDateTime = new DateTime();
     if ($objDateTime->format('i') == 30){
         $objDateTime = new DateTime();
@@ -24,13 +37,6 @@ if ($argv[1] == '8-23'){
         $objDateTime = new DateTime();
         $end = $objDateTime->format('Y-m-d H') . ':00:00';
     }
-
-// 23-8時は8時のみ実行する
-} else {
-    $objDateTime = new DateTime();
-    $start = $objDateTime->modify('-1 day')->format('Y-m-d') . '23:00:00';
-    $objDateTime = new DateTime();
-    $end = $objDateTime->format('Y-m-d') . '08:00:00';
 }
 
 echo '  $start='.$start."\n";
