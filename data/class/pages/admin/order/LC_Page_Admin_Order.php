@@ -103,7 +103,7 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
             // 削除
             case 'delete':
                 $order_id = $objFormParam->getValue('order_id');
-                $objPurchase->cancelOrder($order_id, ORDER_CANCEL, true);
+                $objPurchase->registerOrder($order_id, ['del_flg' => 1]);
                 // 削除後に検索結果を表示するため breakしない
 
             // 検索パラメーター生成後に処理実行するため breakしない
@@ -146,7 +146,7 @@ class LC_Page_Admin_Order extends LC_Page_Admin_Ex
                             $arrResults = $this->findOrders($where, $arrWhereVal,
                                                            $page_max, 0, $order);
                             foreach ($arrResults as $element) {
-                                $objPurchase->cancelOrder($element['order_id'], ORDER_CANCEL, true);
+                                $objPurchase->registerOrder($element['order_id'], ['del_flg' => 1]);
                             }
                             break;
 
