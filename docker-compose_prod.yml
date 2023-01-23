@@ -21,12 +21,19 @@ services:
       # FORCE_RENEW: 'true'
     links:
       - web
+    networks:
+      -  chain_network
   web:
     container_name: web
     build: ./dockerbuild
-    ports:
-      # - 8080:80
-      - "25:25"
     volumes:
       - .:/var/www
     restart: always
+    networks:
+      -  chain_network
+
+networks:
+  chain_network:
+    ipam:
+      config:
+        - subnet: 172.25.0.0/24
