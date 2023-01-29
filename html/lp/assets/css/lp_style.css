@@ -1,1 +1,50 @@
 @charset "UTF-8";
+.c-voice-frame {
+    padding-top: 40px;
+}
+.c-voice-frame dl {
+    max-width: 90%;
+    position: relative;
+    margin: auto;
+    padding-bottom: 40px;
+}
+.c-voice-frame dt {
+    max-width: 100px;
+    position: absolute;
+    margin: auto;
+    bottom: 235px;
+    left: 0;
+    right: 0;
+}
+.c-voice-frame dd {
+    padding: 10px;
+    background: #fff;
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -o-border-radius: 16px;
+    -ms-border-radius: 16px;
+    border: #fff solid 5px;
+    margin-top: 170px;
+}
+@media screen and (min-width: 768px) {
+    .c-voice-frame {
+        max-width: 1066px;
+        margin: auto;
+    }
+    .c-voice-main{
+        display: flex;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-around;
+        -webkit-justify-content: space-around;;
+    }
+    .c-voice-frame dl {
+        max-width: 30%;
+    }
+    .c-voice-frame dt {
+        bottom: 235px;
+    }
+}
