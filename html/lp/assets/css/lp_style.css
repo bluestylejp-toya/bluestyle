@@ -10,9 +10,7 @@
 }
 .c-voice-frame dt {
     max-width: 100px;
-    position: absolute;
     margin: auto;
-    bottom: 235px;
     left: 0;
     right: 0;
 }
@@ -25,7 +23,6 @@
     -o-border-radius: 16px;
     -ms-border-radius: 16px;
     border: #fff solid 5px;
-    margin-top: 170px;
 }
 @media screen and (min-width: 768px) {
     .c-voice-frame {
@@ -45,6 +42,8 @@
         max-width: 30%;
     }
     .c-voice-frame dt {
-        bottom: 235px;
+        min-height: 153.167px;
+        display: flex;
+        align-items: flex-end;
     }
 }
