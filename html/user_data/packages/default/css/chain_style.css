@@ -239,7 +239,6 @@
 	background: #efefef;
 }
 .l-main .c-item-tab__item {
-	padding-bottom: 0;
 }
 .LC_Page_Products_List .l-wrapper {
 	padding-bottom: 24px;
@@ -602,4 +601,41 @@
 	max-height: 16px;
 	margin-top: 4px;
 	margin-left: 16px;
+}/*
+.l-header--item {
+	height: 40px;
+	overflow-y: hidden;
+}
+.c-item-tab {
+	white-space: nowrap;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	padding-bottom: 20px;
+}
+.c-item-tab__item {
+	padding: 0 8%;
+} */
+.hash-tags {
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.hash-tags li a {
+	padding: 0px 8px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	background: #72c8e2;
+	margin: 1px 4px 6px;
+	color: #fff;
+	text-decoration: none;
+	display: block;
 }
