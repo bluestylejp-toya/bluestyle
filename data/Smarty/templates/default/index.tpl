@@ -102,13 +102,20 @@
                 </a>
             </li>
         </ul>
+        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date" class="c-btn--cv">出品されているアイテム一覧を見る</a></p>
     </div>
     </div>
   <div class="c-hero__foot">
       <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
-      <a href="<!--{$smarty.const.ROOT_URLPATH}-->entry/kiyaku.php" class="c-btn c-btn--primary c-hero__foot__btn" ontouchstart="">新規会員登録</a>
+      <a href="<!--{$smarty.const.HTTPS_URL}-->entry/kiyaku.php" class="c-btn c-btn--primary c-hero__foot__btn" ontouchstart="">新規会員登録</a>
   </div>
-</section>
+    <div class="c-hero__foot">
+    <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->guide/guide.php" class="c-btn--cv">ご利用ガイド</a></p>
+        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->guide/help.php" class="c-btn--cv">よくある質問</a></p>
+        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->guide/flow.php" class="c-btn--cv">発送の流れ</a></p>
+        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->contact/" class="c-btn--cv">お問い合わせ</a></p>
+    </div>
+</section><!--{*
 <div class="u-mb--4">
     <button type="button" class="c-hero__foot__btn c-btn--default c-onboarding__show-btn">Chainとは？</button>
     <div class="c-onboarding">
@@ -148,7 +155,7 @@
     </div>
     <div class="c-onboarding__bg"></div>
     <a target="_blank" href="https://daisy-supply-c7e.notion.site/Chain-7933936254d840a1a0ee89e0bf83e61a" class="c-btn--default">ご利用ガイド</a>
-</div>
+</div> *}-->
 <script>
 $('.c-onboarding__show-btn').on('click', function(){
     $('.c-onboarding').fadeIn();
