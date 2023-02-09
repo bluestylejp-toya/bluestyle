@@ -92,12 +92,12 @@
         <h3 class="c-how_to__main__heading">実際に起きた交換</h3>
         <ul>
             <li class="gallery-cell">
-                <a href="<!--{$TPL_URLPATH}-->img/ex/20230208_howto_01.png" itemprop="url" target="_blank" class="gallery">
+                <a href="<!--{$TPL_URLPATH}-->img/ex/20230208_howto_03.png" itemprop="url" target="_blank" class="gallery">
                     <img itemprop="image" class="picture" src="<!--{$TPL_URLPATH}-->img/ex/20230208_howto_01.png">
                 </a>
             </li>
             <li class="gallery-cell">
-                <a href="<!--{$TPL_URLPATH}-->img/ex/20230208_howto_02.png" itemprop="url" target="_blank" class="gallery">
+                <a href="<!--{$TPL_URLPATH}-->img/ex/20230208_howto_04.png" itemprop="url" target="_blank" class="gallery">
                     <img itemprop="image" class="picture" src="<!--{$TPL_URLPATH}-->img/ex/20230208_howto_02.png">
                 </a>
             </li>
