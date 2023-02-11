@@ -28,7 +28,7 @@
             rel:'slideshow',
             slideshow:false,
             maxWidth:"90%",
-            maxHeight:"90%",
+            maxHeight:"200%",
             opacity: 0.9
         });
     });
@@ -61,11 +61,6 @@
           <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
       </div>
       <p class="c-top__deliv_free">現在利用料無料！<br>かかる費用はもらう時の送料のみです。</p>
-      <a class="c-top__ux_campaign" href="<!--{$smarty.const.HTTPS_URL}-->service/trial.php">
-          <p>
-              書籍プレゼント！!<br>Chainお試し体験キャンペーン中<br><span>詳しくはここをタップ</span>
-          </p>
-      </a>
       <h3 class="c-how_to__main__heading">Chainのやり方</h3>
       <dl class="c-how_to__main__list">
           <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to1.png"></dt>
@@ -102,7 +97,7 @@
                 </a>
             </li>
         </ul>
-        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date" class="c-btn--cv">出品されているアイテム一覧を見る</a></p>
+        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date&notlogged" class="c-btn--cv">出品されているアイテム一覧を見る</a></p>
     </div>
     </div>
   <div class="c-hero__foot">

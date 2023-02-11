@@ -14,8 +14,6 @@
     <section class="u-pt--3">
         <h2 class="c-heading--md u-text--left">サポート</h2>
         <ul class="c-nav-list u-mb--4">
-            <!--{*<li><a href="<!--{$smarty.const.TOP_URL}-->news/">お知らせ<span class="c-batch--num">2</span></a></li>*}-->
-            <li class="trial"><a href="<!--{$smarty.const.HTTPS_URL}-->service/trial.php">書籍プレゼント！</a></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->news/">みなさんにお知らせ</a></li>
             <li style="font-weight: 600;line-height: 60px;">交換利用料<span style="margin-left:20px;color: red;">無料</span></li>
             <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用ガイド</a></li>
@@ -30,11 +28,6 @@
                     twitter<img src="<!--{$TPL_URLPATH}-->img/common/icon-twitter.png" alt="twittrのアイコン">
                 </a>
             </li>
-            <!--{*
-            <li><a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php">ご利用方法</a></li>
-            <li><a href="<!--{$smarty.const.TOP_URL}-->guide/payment.php">支払い方法</a></li>
-            <li><a href="<!--{$smarty.const.TOP_URL}-->guide/help.php">ヘルプ</a></li>
-            *}-->
         </ul>
         <h2 class="c-heading--md u-text--left">サービス情報</h2>
         <ul class="c-nav-list u-mb--4">
