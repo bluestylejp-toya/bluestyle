@@ -588,9 +588,6 @@
 .c-item-tab__item {
 	height: 40px;
 }
-.l-header--item {
-	padding: 0;
-}
 .p-search__box {
 	margin-bottom: 0;
 }
@@ -604,7 +601,8 @@
 	margin-left: 16px;
 }
 .l-header--item {
-	height: 40px;
+	padding: 0;
+	height: 44px;
 	overflow-y: hidden;
 }
 .c-item-tab {
@@ -669,4 +667,22 @@
 }
 .c-item--has-icon.--edit {
 	background-position-y: 90%;
+}
+.c-list-item__editicon {
+	padding: 4px 24px 4px 12px;
+	position: absolute;
+	right: 4px;
+	bottom: 8px;
+	border-radius: 16px;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	-o-border-radius: 16px;
+	-ms-border-radius: 16px;
+	color: #fff;
+
+	background: #72c8e2 url(../img/icon/c-list-item__editicon.svg) no-repeat center right 8px;
+	background-size: 12px;
+}
+.c-item__main {
+	justify-content: normal;
 }

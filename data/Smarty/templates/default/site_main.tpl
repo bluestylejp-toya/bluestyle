@@ -106,8 +106,9 @@
                     <!--{if $tpl_subtitle !== '検索結果'}-->
                         <div class="l-header--item">
                             <ul class="c-item-tab">
-                                <li class="c-item-tab__item <!--{if $orderby == 'date' || $orderby|@strlen == 0}-->--active<!--{/if}-->" data-tab_nav="0">
-                                    <a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('date');">新着順</a>
+                                <li class="c-item-tab__item <!--{if $orderby == 'date'}-->--active<!--{/if}-->" data-tab_nav="0">
+                                    <!--{ *<a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('date');">新着順</a> *}-->
+                                    <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date"" onclick="javascript:fnChangeOrderby('date');">新着順</a>
                                 </li>
                                 <li id="fast-chain" class="c-item-tab__item" data-tab_nav="1">
                                     <a href="javascript:void(0)">もらえる</a>
@@ -117,10 +118,10 @@
                                     <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=count_of_favorite">人気順</a>
                                 </li>
                                 <!--{if $tpl_login}-->
-                                <li class="c-item-tab__item" data-tab_nav="4">
+                                <li class="c-item-tab__item <!--{if $smarty.server.PHP_SELF==$favorite}-->--active<!--{/if}-->" data-tab_nav="4">
                                     <a href="<!--{$smarty.const.TOP_URL}-->mypage/favorite.php">ほしいアイテム</a>
                                 </li>
-                                <li class="c-item-tab__item" data-tab_nav="3">
+                                <li class="c-item-tab__item <!--{if $smarty.server.PHP_SELF==$itemlist}-->--active<!--{/if}-->" data-tab_nav="3">
                                     <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php">出品中アイテム</a>
                                 </li>
                                 <!--{/if}-->

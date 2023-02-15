@@ -10,7 +10,7 @@
                     <!--{foreach from=$arrProducts item="item"}-->
                     <li>
                         <a href="item_edit.php?mode=pre_edit&product_id=<!--{$item.product.product_id|u|h}-->"
-                           class="c-item--has-icon --edit">
+                           class="c-item--has-icon --edit" style="background: none;">
                             <figure class="c-list-item__img <!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img
                                         src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.product.sub_large_image1|sfNoImageMainList|h}-->"
                                         alt="<!--{$item.product.name|h}--> 画像(1)" /></figure>
@@ -29,6 +29,7 @@
                                     <span class="c-item__request"><!--{$item.product.count_of_favorite|n2s|h}--></span>
                                 </div>
                                 <p class="c-list-item__description"><!--{if $item.product.sub_title1}--><!--{$item.product.sub_title1|mb_substr:0:36|h|nl2br}--><!--{if $item.product.sub_title1|mb_strlen > 36}-->...<!--{/if}--><!--{/if}--></p>
+                                <p class="c-list-item__editicon">編集</p>
                             </div>
                         </a>
                     </li>
