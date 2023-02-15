@@ -639,3 +639,21 @@
 	text-decoration: none;
 	display: block;
 }
+.amazon_image p {
+	margin-top: 10px;
+}
+.amazon_image input {
+	text-align: center;
+	width: 100%;
+	padding: 12px;
+	margin: 12px auto;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	border: 1px solid #72c8e2;
+}
+.amazon_image .c-btn--primary {
+	margin: 12px auto;
+}
