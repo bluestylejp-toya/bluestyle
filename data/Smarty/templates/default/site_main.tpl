@@ -100,7 +100,9 @@
                 <!--{/if}-->
                 <!--{* ▲メイン上部 *}-->
             <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
-                <!--{if $smarty.server.PHP_SELF==$list}-->
+            <!--{assign var=itemlist value="`$smarty.const.ROOT_URLPATH`mypage/item-list.php"}-->
+            <!--{assign var=favorite value="`$smarty.const.ROOT_URLPATH`mypage/favorite.php"}-->
+                <!--{if $smarty.server.PHP_SELF==$list or $smarty.server.PHP_SELF==$itemlist or $smarty.server.PHP_SELF==$favorite}-->
                     <!--{if $tpl_subtitle !== '検索結果'}-->
                         <div class="l-header--item">
                             <ul class="c-item-tab">
@@ -111,8 +113,17 @@
                                     <a href="javascript:void(0)">もらえる</a>
                                 </li>
                                 <li class="c-item-tab__item <!--{if $orderby == 'count_of_favorite'}-->--active<!--{/if}-->" data-tab_nav="2">
-                                    <a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('count_of_favorite');">人気順</a>
+                                    <!--{* <a href="javascript:void(0)" onclick="javascript:fnChangeOrderby('count_of_favorite');">人気順</a> *}-->
+                                    <a href="<!--{$smarty.const.TOP_URL}-->products/list.php?orderby=count_of_favorite">人気順</a>
                                 </li>
+                                <!--{if $tpl_login}-->
+                                <li class="c-item-tab__item" data-tab_nav="4">
+                                    <a href="<!--{$smarty.const.TOP_URL}-->mypage/favorite.php">ほしいアイテム</a>
+                                </li>
+                                <li class="c-item-tab__item" data-tab_nav="3">
+                                    <a href="<!--{$smarty.const.TOP_URL}-->mypage/item-list.php">出品中アイテム</a>
+                                </li>
+                                <!--{/if}-->
                             </ul>
                         </div>
                     <!--{/if}-->
