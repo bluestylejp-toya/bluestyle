@@ -56,7 +56,6 @@
 }
 .c-ex li {
 	margin: 20px auto 20px;
-	/* width: 30%; */
 }
 .chain-yamato-howto p {
 	font-weight: 200;
@@ -239,6 +238,8 @@
 	background: #efefef;
 }
 .l-main .c-item-tab__item {
+	padding: 20px 5%;
+	height: 40px;
 }
 .LC_Page_Products_List .l-wrapper {
 	padding-bottom: 24px;
@@ -601,7 +602,7 @@
 	max-height: 16px;
 	margin-top: 4px;
 	margin-left: 16px;
-}/*
+}
 .l-header--item {
 	height: 40px;
 	overflow-y: hidden;
@@ -614,7 +615,7 @@
 }
 .c-item-tab__item {
 	padding: 0 8%;
-} */
+}
 .hash-tags {
 	display: flex;
 	display: -webkit-flex;
@@ -656,4 +657,16 @@
 }
 .amazon_image .c-btn--primary {
 	margin: 12px auto;
+}
+.c-list-item__img img {
+	height: auto;
+}
+.c-item__main {
+	width: 100%;
+}
+.c-item--has-icon {
+	padding: 16px 0;
+}
+.c-item--has-icon.--edit {
+	background-position-y: 90%;
 }

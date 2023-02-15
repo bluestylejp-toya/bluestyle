@@ -179,7 +179,6 @@
                             </dd>
                         </dl>
 					</div>
-					<!--{$arrProduct.sub_comment1|h}-->
 			</li>
 		<!--▲商品-->
 

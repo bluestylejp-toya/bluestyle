@@ -23,10 +23,6 @@
 *}-->
 
 <section>
-    <div class="l-header__inner u-mb--4">
-        <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
-        <h1 class="c-header-title">ほしいアイテム</h1>
-    </div>
     <div id="mycontents_area">
         <form name="form1" id="form1" method="post" action="?">
             <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
@@ -37,9 +33,8 @@
 
             <!--{if $tpl_linemax > 0}-->
 
-                <p><!--{$tpl_linemax}-->個のほしいアイテムがあります。</p>
-
-                <ul>
+            <p><!--{$tpl_linemax}-->個のアイテムにほしいをしています。</p>
+            <ul class="c-list-item__main_ul">
 					<!--{assign var=id value=''}-->
                     <!--{section name=cnt loop=$arrFavorite}-->
                         <!--{assign var=product_id value="`$arrFavorite[cnt].product_id`"}-->
@@ -47,12 +42,23 @@
 						<!--{assign var=id value=`$product_id`}-->
                         <li>
 							<a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item">
-								<figure class="<!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img"/></figure>
+								<figure class="c-list-item__img <!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img" /></figure>
 								<div class="c-item__main">
-									<p class="c-item__title"><!--{$arrFavorite[cnt].name|h}--></p>
+									<h3 class="c-item__title"><!--{$arrFavorite[cnt].name|h}--></h3>
 									<span class="c-item__request"><!--{$arrFavorite[cnt].count_of_favorite|n2s|h}--></span>
+                                    <p class="c-list-item__description"><!--{if $arrFavorite[cnt].sub_title1}--><!--{$arrFavorite[cnt].sub_title1|mb_substr:0:36|h|nl2br}--><!--{if $arrFavorite[cnt].sub_title1|mb_strlen > 36}-->...<!--{/if}--><!--{/if}--></p>
 								</div>
 							</a>
+                            <div class="c-list-item__seller">
+                                <dl>
+                                    <dt>出品者:</dt>
+                                    <dd>
+                                        <a href="<!--{$smarty.const.TOP_URL}-->shopping/seller.php?seller_id=<!--{$arrFavorite[cnt].customer_id|h}-->">
+                                            <!--{$arrFavorite[cnt].nickname|mb_substr:0:8|h|nl2br}--><!--{if $arrFavorite[cnt].nickname|mb_strlen > 8}-->...<!--{/if}-->
+                                        </a>
+                                    </dd>
+                                </dl>
+                            </div>
                         </li>
                     <!--{/if}-->
                     <!--{/section}-->

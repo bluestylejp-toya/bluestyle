@@ -145,7 +145,7 @@ class LC_Page_Mypage_Favorite extends LC_Page_AbstractMypage_Ex
         $where = $this->lfMakeWhere('', $arrProductId);
         $where .= ' AND del_flg = 0';
         $objQuery->setWhere($where, $arrProductId);
-        $addCols = ['count_of_favorite'];
+        $addCols = ['count_of_favorite', 'nickname'];
         $arrProducts = $objProduct->lists($objQuery, [], $addCols);
 
         //取得している並び順で並び替え
