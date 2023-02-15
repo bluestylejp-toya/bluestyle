@@ -27,6 +27,10 @@
 
 ■お問い合わせの内容
 <!--{$arrForm.contents.value}-->
+<!--{if $arrForm.sample_image_urlpath.value}-->
+■Amazonのスクリーンショット
+https://chain.gives<!--{$arrForm.sample_image_urlpath.value}-->
+<!--{/if}-->
 
 ■お問い合わせ者の情報
 お名前　：<!--{$arrForm.name01.value}--> <!--{$arrForm.name02.value}--> (<!--{$arrForm.kana01.value}--> <!--{$arrForm.kana02.value}-->) 様

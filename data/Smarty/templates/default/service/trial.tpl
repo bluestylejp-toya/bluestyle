@@ -126,7 +126,7 @@
                 </dd>
             </dl>
 
-            <button class="c-btn--primary"  name="confirm">確認ページへ</button>
+            <button class="c-btn--primary" name="confirm">確認ページへ</button>
 
     </form>
     <!--{else}-->
