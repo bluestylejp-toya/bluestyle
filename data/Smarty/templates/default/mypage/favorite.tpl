@@ -42,8 +42,10 @@
 						<!--{assign var=id value=`$product_id`}-->
                         <li>
 							<a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item">
-								<figure class="c-list-item__img <!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img" /></figure>
-								<div class="c-item__main">
+								<figure class="c-list-item__img <!--{if $item.progress_percent == 100}-->chained<!--{/if}-->">
+                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$arrFavorite[cnt].name|h}-->" class="c-item__img" />
+                                </figure>
+								<div class="c-list-item__main">
 									<h3 class="c-item__title"><!--{$arrFavorite[cnt].name|h}--></h3>
 									<span class="c-item__request"><!--{$arrFavorite[cnt].count_of_favorite|n2s|h}--></span>
                                     <p class="c-list-item__description"><!--{if $arrFavorite[cnt].sub_title1}--><!--{$arrFavorite[cnt].sub_title1|mb_substr:0:36|h|nl2br}--><!--{if $arrFavorite[cnt].sub_title1|mb_strlen > 36}-->...<!--{/if}--><!--{/if}--></p>
