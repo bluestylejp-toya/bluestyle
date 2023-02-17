@@ -14,7 +14,7 @@
                             <figure class="c-list-item__img <!--{if $item.progress_percent == 100}-->chained<!--{/if}-->"><img
                                         src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.product.sub_large_image1|sfNoImageMainList|h}-->"
                                         alt="<!--{$item.product.name|h}--> 画像(1)" /></figure>
-                            <div class="c-item__main">
+                            <div class="c-list-item__main">
                                 <h3 class="c-item__title"><!--{$item.product.name|h}--></h3>
                                 <div class="c-item__status">
                                     <!--{*<span class="status-unselected">ダミー：選択期限まであと2日</span>*}-->

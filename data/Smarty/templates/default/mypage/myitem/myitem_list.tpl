@@ -9,7 +9,7 @@
         <li class="c-myitem">
             <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_detail.php?product_id=<!--{$item.product.product_id|h}-->" class="c-myitem__main">
                 <figure class="c-myitem__img<!--{if $item.progress_percent == 100}--><!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.product.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$item.product.name|h}--> 画像(1)" /></figure>
-                <div class="c-myitem__content">
+                <div class="c-list-item__main">
                     <p class="c-item__title"><!--{$item.product.name|h}--></p>
                     <div class="c-item__status">
 
