@@ -38,7 +38,7 @@
 					<!--{assign var=id value=''}-->
                     <!--{section name=cnt loop=$arrFavorite}-->
                         <!--{assign var=product_id value="`$arrFavorite[cnt].product_id`"}-->
-						<!--{if $id != $product_id}-->
+						<!--{if $id != $product_id && $arrFavorite[cnt].chain_id == ''}-->
 						<!--{assign var=id value=`$product_id`}-->
                         <li>
 							<a href="<!--{$smarty.const.TOP_URL}-->products/detail.php?product_id=<!--{$product_id|u}-->&open=true" class="c-item">
