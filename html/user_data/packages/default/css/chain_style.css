@@ -238,7 +238,7 @@
 	background: #efefef;
 }
 .l-main .c-item-tab__item {
-	padding: 20px 5%;
+	padding: 20px 4%;
 	height: 40px;
 }
 .LC_Page_Products_List .l-wrapper {
@@ -514,11 +514,11 @@
 	width: 28px;
 	height: 28px;
 	background-color: #fff;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-o-border-radius: 10px;
-	-ms-border-radius: 10px;
+	border-radius: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-o-border-radius: 30px;
+	-ms-border-radius: 30px;
 	padding: 10px;
 	border: 1px solid #ccc;
 }
@@ -627,16 +627,24 @@
 }
 .hash-tags li a {
 	padding: 0px 8px;
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	-o-border-radius: 8px;
-	-ms-border-radius: 8px;
+	border-radius: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-o-border-radius: 30px;
+	-ms-border-radius: 30px;
 	background: #72c8e2;
-	margin: 1px 4px 6px;
 	color: #fff;
 	text-decoration: none;
 	display: block;
+}
+.hash-tags li {
+	margin: 1px 4px 6px;
+}
+.hash-tags li:first-child {
+	margin: 1px 4px 6px 0;
+}
+.hash-tags li:last-child {
+	margin: 1px 0 6px 4px;
 }
 .amazon_image p {
 	margin-top: 10px;
@@ -682,4 +690,20 @@
 }
 .c-item__main {
 	justify-content: normal;
+}
+.l-header__lower {
+	padding-bottom: 0;
+}
+.c-nav-list li.level2 label {
+	padding-left: 32px;
+}
+.c-nav-list li.level2 label span {
+	display: block;
+	background-color: #efefef;
+	padding-right: 14px;
+	border-radius: 16px;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	-o-border-radius: 16px;
+	-ms-border-radius: 16px;
 }
