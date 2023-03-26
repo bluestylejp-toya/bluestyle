@@ -66,10 +66,7 @@
         <div class="hash-tags-frame">
             <ul class="hash-tags">
                 <li class="c-hash-tags">
-                    <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=138">プラモデル</a>
-                </li>
-                <li class="c-hash-tags">
-                    <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=116">テレビゲーム</a>
+                    <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=138">プラモ</a>
                 </li>
                 <li class="c-hash-tags">
                     <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=122">本</a>
@@ -78,16 +75,13 @@
                     <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=119">CD</a>
                 </li>
                 <li class="c-hash-tags">
-                    <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=118">DVD/ブルーレイ</a>
+                    <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=118">メディア</a>
                 </li>
                 <li class="c-hash-tags">
                     <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=13">家電</a>
                 </li>
                 <li class="c-hash-tags">
                     <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=131">トレカ</a>
-                </li>
-                <li class="c-hash-tags">
-                    <a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?mode=search&name=&category_id=14">美容</a>
                 </li>
             </ul>
         </div>
