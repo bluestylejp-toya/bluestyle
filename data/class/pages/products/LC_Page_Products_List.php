@@ -255,6 +255,10 @@ class LC_Page_Products_List extends LC_Page_Ex
                 break;
 
             default:
+
+                $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
+                break;
+                /*
                 if (strlen($searchCondition['where_category']) >= 1) {
                     $dtb_product_categories = '(SELECT * FROM dtb_product_categories WHERE '.$searchCondition['where_category'].')';
                     $arrOrderVal           = $searchCondition['arrvalCategory'];
@@ -267,7 +271,7 @@ class LC_Page_Products_List extends LC_Page_Ex
                 $sub_sql = $objQuery->getSql($col, $from, $where);
 
                 $objQuery->setOrder("($sub_sql) DESC ,product_id DESC");
-                break;
+                break; */
         }
         // 取得範囲の指定(開始行番号、行数のセット)
         $objQuery->setLimitOffset($disp_number, $startno);
