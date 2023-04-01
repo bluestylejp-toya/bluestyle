@@ -52,10 +52,16 @@
   </h1>
   <div class="c-hero__main">
       <h2 class="c-hero__main__heading">
-        みんなで気持ちよく<br>連鎖で交換 Chain
+          お金じゃなくて、<br>持っているモノでお支払い
       </h2>
       <p class="u-color--gray c-hero__main__text">
-      Chainは誰かにモノを「あげる」ことで、欲しいモノを「もらう」ことができます。
+      Chainは欲しいモノを「もらう」ために、誰かにモノを「あげる」だけ。
+      </p>
+      <p class="u-color--gray c-hero__main__text" style="background: #FFFCDB;padding: 8px">
+          Chainはまだまだ会員も少なく、これからのサービスです。<br>
+          まだ、欲しいモノがなくても、積極的に出品してもらえると、どんどんアイテムが増え、ほしいモノが出品されやすくなります。<br>
+          出品が増えると、Chain成立しやすくなります。<br>
+          ご参加をお待ちしています！
       </p>
       <div class="c-hero__foot">
           <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
