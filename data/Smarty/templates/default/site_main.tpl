@@ -213,7 +213,8 @@
     <!--{assign var=list value="`$smarty.const.ROOT_URLPATH`products/list.php"}-->
     <!--{assign var=itemlist value="`$smarty.const.ROOT_URLPATH`mypage/item-list.php"}-->
     <!--{assign var=favorite value="`$smarty.const.ROOT_URLPATH`mypage/favorite.php"}-->
-    <!--{if $smarty.server.PHP_SELF==$list or $smarty.server.PHP_SELF==$itemlist or $smarty.server.PHP_SELF==$favorite}-->
+    <!--{assign var=top value="`$smarty.const.ROOT_URLPATH`index.php"}-->
+    <!--{if $smarty.server.PHP_SELF==$top or $smarty.server.PHP_SELF==$list or $smarty.server.PHP_SELF==$itemlist or $smarty.server.PHP_SELF==$favorite}-->
         <script>
             $(function(){
                 $('[data-tab_nav]').each(function(index){
