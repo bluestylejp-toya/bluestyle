@@ -707,3 +707,13 @@
 	-o-border-radius: 16px;
 	-ms-border-radius: 16px;
 }
+.top-item-tab__content {
+	margin-top: 60px;
+}
+.top-header--item {
+	position: static;
+	overflow-y: inherit;
+}
+.top-header--item a {
+	color: #666;
+}

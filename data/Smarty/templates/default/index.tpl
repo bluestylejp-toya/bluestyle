@@ -67,27 +67,64 @@
           <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
       </div>
       <p class="c-top__deliv_free">現在利用料無料！<br>かかる費用はもらう時の送料のみです。</p>
-      <h3 class="c-how_to__main__heading">Chainのやり方</h3>
+      <div class="l-header--item top-header--item">
+          <ul class="c-item-tab">
+              <li class="c-how_to__main__heading c-item-tab__item --active" data-tab_nav="0">
+                  <a href="javascript:void(0)">自分で成立！
+                  </a>
+              </li>
+              <li class="c-how_to__main__heading c-item-tab__item" data-tab_nav="1">
+                  <a href="javascript:void(0)">成立を待つ
+                  </a>
+              </li>
+          </ul>
+      </div>
+
+      <div class="top-item-tab__content c-item-tab__content --active" data-tab_item="0">
       <dl class="c-how_to__main__list">
           <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to1.png"></dt>
           <dd>まず、手元にあるモノを出品します</dd>
       </dl>
       <dl class="c-how_to__main__list">
+          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to2-1.png"></dt>
+          <dd>誰かに「ほしい」してもらうのを待ちます</dd>
+      </dl>
+      <dl class="c-how_to__main__list">
           <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to2.png"></dt>
-          <dd>次に欲しいモノを選んで「ほしい」を押します</dd>
+          <dd>「もらえる」タブの中から、欲しいモノを選んで<br>「ほしい」を押します</dd>
       </dl>
       <dl class="c-how_to__main__list">
           <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to3.png"></dt>
-          <dd>みんなの「ほしい」が輪になると・・・</dd>
-      </dl>
-      <dl class="c-how_to__main__list">
-          <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to5.png"></dt>
-          <dd>「ほしい」してくれた人にあげれて</dd>
+          <dd>すぐにChainが成立します</dd>
       </dl>
       <dl class="c-how_to__main__list">
           <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to4.png"></dt>
           <dd>「ほしい」したモノがもらえます！</dd>
       </dl>
+      </div>
+
+      <div class="top-item-tab__content c-item-tab__content --active" data-tab_item="1">
+          <dl class="c-how_to__main__list">
+              <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to1.png"></dt>
+              <dd>まず、手元にあるモノを出品します</dd>
+          </dl>
+          <dl class="c-how_to__main__list">
+              <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to2.png"></dt>
+              <dd>次に欲しいモノを選んで「ほしい」を押します</dd>
+          </dl>
+          <dl class="c-how_to__main__list">
+              <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to3.png"></dt>
+              <dd>みんなの「ほしい」が輪になると・・・</dd>
+          </dl>
+          <dl class="c-how_to__main__list">
+              <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to5.png"></dt>
+              <dd>「ほしい」してくれた人にあげれて</dd>
+          </dl>
+          <dl class="c-how_to__main__list">
+              <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to4.png"></dt>
+              <dd>「ほしい」したモノがもらえます！</dd>
+          </dl>
+      </div>
   </div>
     <div class="c-ex">
         <h3 class="c-how_to__main__heading">実際に起きた交換</h3>
