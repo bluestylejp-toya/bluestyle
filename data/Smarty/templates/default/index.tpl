@@ -67,6 +67,8 @@
           <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
       </div>
       <p class="c-top__deliv_free">現在利用料無料！<br>かかる費用はもらう時の送料のみです。</p>
+
+      <!--{assign var=top value="`$smarty.const.ROOT_URLPATH`index.php"}-->
       <div class="l-header--item top-header--item">
           <ul class="c-item-tab">
               <li class="c-how_to__main__heading c-item-tab__item --active" data-tab_nav="0">
@@ -103,7 +105,7 @@
       </dl>
       </div>
 
-      <div class="top-item-tab__content c-item-tab__content --active" data-tab_item="1">
+      <div class="top-item-tab__content c-item-tab__content" data-tab_item="1">
           <dl class="c-how_to__main__list">
               <dt><img src="<!--{$TPL_URLPATH}-->img/howto/chain-how-to1.png"></dt>
               <dd>まず、手元にあるモノを出品します</dd>
