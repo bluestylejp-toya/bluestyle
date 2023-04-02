@@ -1,11 +1,12 @@
 <section>
     <header class="l-header__inner">
         <a href="<!--{$smarty.const.TOP_URL}-->mypage/" aria-label="戻る" class="c-btn--header-nav"></a>
-        <p class="c-header-title">出品アイテム</p>
+        <p class="c-header-title">Chain成立アイテム</p>
     </header>
-    <p><!--{$tpl_linemax}-->個の登録アイテムがあります</p>
+    <!--{* <p><!--{$tpl_linemax}-->個の登録アイテムがあります</p> *}-->
     <ul>
         <!--{foreach from=$arrProducts item=item}-->
+        <!--{if $item.product.chain_id != ""}-->
         <li class="c-myitem">
             <a href="<!--{$smarty.const.TOP_URL}-->mypage/myitem/myitem_detail.php?product_id=<!--{$item.product.product_id|h}-->" class="c-myitem__main">
                 <figure class="c-myitem__img<!--{if $item.progress_percent == 100}--><!--{/if}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$item.product.sub_large_image1|sfNoImageMainList|h}-->" alt="<!--{$item.product.name|h}--> 画像(1)" /></figure>
@@ -29,6 +30,7 @@
 			<!--{/if}-->
 
         </li>
+        <!--{/if}-->
         <!--{/foreach}-->
     </ul>
     <!--▼ページナビ-->
