@@ -58,10 +58,11 @@
       Chainは欲しいモノを「もらう」ために、誰かにモノを「あげる」だけ。
       </p>
       <p class="u-color--gray c-hero__main__text" style="background: #FFFCDB;padding: 8px">
-          Chainはまだまだ出品アイテムも少なく、これからのサービスです。<br>
-          まだ欲しいモノが出品されていなくても、積極的に持っている不要品を出品してもらえると、どんどんアイテムが増え、自分の欲しいと思うモノが出品されやすくなります。<br>
-          出品が増えると、Chain成立しやすくなります。<br>
-          ご参加をお待ちしています！
+          Chainはまだ始まったばかりで、出品されているアイテムが少ない状態です。<br>
+          しかし、あなたが持っている不要品を積極的に出品していただければ、アイテムがどんどん増えて、自分が欲しいと思うモノが出品される可能性が高くなります。<br>
+          <br>
+          出品が増えると、交換が成立しやすくなり、さらに多くの人が参加しやすくなります。<br>
+          ぜひ、あなたもChainに参加して、不要品を出品してみてください。
       </p>
       <div class="c-hero__foot">
           <a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="c-btn c-btn--primary--outline c-hero__foot__btn" ontouchstart="">ログインする</a>
