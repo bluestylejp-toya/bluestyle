@@ -191,7 +191,7 @@
                 </a>
             </li>
         </ul>
-        <p class="c-hero__foot__btn c-btn--default c-onboarding__show-btn"><a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date&notlogged" class="c-btn--cv">出品されているアイテム一覧を見る</a></p>
+        <p class="c-hero__foot__btn c-btn--default"><a href="<!--{$smarty.const.HTTPS_URL}-->products/list.php?orderby=date&notlogged" class="c-btn--cv">出品されているアイテム一覧を見る</a></p>
     </div>
     </div>
   <div class="c-hero__foot">
@@ -245,59 +245,5 @@
     <div class="c-onboarding__bg"></div>
     <a target="_blank" href="https://daisy-supply-c7e.notion.site/Chain-7933936254d840a1a0ee89e0bf83e61a" class="c-btn--default">ご利用ガイド</a>
 </div> *}-->
-<script>
-$('.c-onboarding__show-btn').on('click', function(){
-    $('.c-onboarding').fadeIn();
-    $('.c-onboarding__bg').fadeIn();
-    $('body').addClass('--overflow-hidden');
-    let $lists = $('.c-onboarding ol li');
-    let $num = 0;
-    $('.c-onboarding__next-btn').on('click', function(){
-        if($num < ($lists.length - 1)) {
-            ++$num
-            $('.c-onboarding ol li').removeClass('--active')
-            $('.c-onboarding ol li').eq($num).addClass('--active')
-
-            if($num == 1) {
-                $('.c-onboarding__next-btn').removeClass('--hidden')
-                $('.c-onboarding__next-btn').addClass('--active')
-            }
-            if($num == 1) {
-                $('.c-onboarding__prev-btn').addClass('--hidden')
-                $('.c-onboarding__next-btn').addClass('--hidden')
-                $('.c-onboarding__close-btn').removeClass('--hidden')
-                $('.c-onboarding__close-btn').addClass('--active')
-            }
-        }
-
-    })
-    $('.c-onboarding__prev-btn').on('click', function(){
-        if($num !== 0) {
-            --$num
-            $('.c-onboarding ol li').removeClass('--active')
-            $('.c-onboarding ol li').eq($num).addClass('--active')
-            if($num == 0) {
-                $('.c-onboarding__prev-btn').addClass('--hidden')
-                $('.c-onboarding__next-btn').addClass('--active')
-            }
-            if($num == 1) {
-                $('.c-onboarding__next-btn').removeClass('--hidden')
-                $('.c-onboarding__close-btn').removeClass('--hidden')
-            }
-        }
-    })
-    $('.c-onboarding__bg,.c-onboarding__close-btn').on('click', function(){
-        $num = 0;
-        $('.c-onboarding').fadeOut();
-        $('.c-onboarding__bg').fadeOut();
-        $('.c-onboarding ol li').removeClass('--active')
-        $('.c-onboarding ol li').eq($num).addClass('--active')
-        $('.c-onboarding__prev-btn').addClass('--hidden')
-        $('.c-onboarding__next-btn').removeClass('--hidden')
-        $('.c-onboarding__close-btn').removeClass('--hidden')
-        $('body').removeClass('--overflow-hidden');
-    })
-})
-</script>
 <!--{/strip}-->
 

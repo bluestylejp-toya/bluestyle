@@ -180,4 +180,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!--{include file='./site_main.tpl'}-->
 <!-- ▲BODY部 エンド -->
 
+<script>
+    $('.c-onboarding__show-btn').on('click', function(){
+        $('.c-onboarding').fadeIn();
+        $('.c-onboarding__bg').fadeIn();
+        $('body').addClass('--overflow-hidden');
+        let $lists = $('.c-onboarding ol li');
+        let $num = 0;
+        $('.c-onboarding__next-btn').on('click', function(){
+            if($num < ($lists.length - 1)) {
+                ++$num
+                $('.c-onboarding ol li').removeClass('--active')
+                $('.c-onboarding ol li').eq($num).addClass('--active')
+
+                if($num == 1) {
+                    $('.c-onboarding__next-btn').removeClass('--hidden')
+                    $('.c-onboarding__next-btn').addClass('--active')
+                }
+                if($num == 1) {
+                    $('.c-onboarding__prev-btn').addClass('--hidden')
+                    $('.c-onboarding__next-btn').addClass('--hidden')
+                    $('.c-onboarding__close-btn').removeClass('--hidden')
+                    $('.c-onboarding__close-btn').addClass('--active')
+                }
+            }
+
+        })
+        $('.c-onboarding__prev-btn').on('click', function(){
+            if($num !== 0) {
+                --$num
+                $('.c-onboarding ol li').removeClass('--active')
+                $('.c-onboarding ol li').eq($num).addClass('--active')
+                if($num == 0) {
+                    $('.c-onboarding__prev-btn').addClass('--hidden')
+                    $('.c-onboarding__next-btn').addClass('--active')
+                }
+                if($num == 1) {
+                    $('.c-onboarding__next-btn').removeClass('--hidden')
+                    $('.c-onboarding__close-btn').removeClass('--hidden')
+                }
+            }
+        })
+        $('.c-onboarding__bg,.c-onboarding__close-btn').on('click', function(){
+            $num = 0;
+            $('.c-onboarding').fadeOut();
+            $('.c-onboarding__bg').fadeOut();
+            $('.c-onboarding ol li').removeClass('--active')
+            $('.c-onboarding ol li').eq($num).addClass('--active')
+            $('.c-onboarding__prev-btn').addClass('--hidden')
+            $('.c-onboarding__next-btn').removeClass('--hidden')
+            $('.c-onboarding__close-btn').removeClass('--hidden')
+            $('body').removeClass('--overflow-hidden');
+        })
+    })
+</script>
 </html>

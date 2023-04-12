@@ -792,3 +792,21 @@
 	padding: 0 2.5%;
 	font-weight: 600;
 }
+.l-header__lower .u-mb--4 {
+	margin: auto;
+	width: 60%;
+	margin-left: 6%;
+}
+.l-header__lower .u-mb--4 .gundam_campaign_banner {
+	margin-top: 0;
+}
+.l-header__logo_frame {
+	width: 12%;
+}
+.l-header__right {
+	width: 20%;
+	margin-left: 2%;
+}
+.l-header__usage {
+	margin-right: 0;
+}

@@ -24,7 +24,9 @@
 <!--{strip}-->
 
 <header class="l-header__lower">
-	<a href="<!--{if $tpl_login}--><!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date<!--{else}--><!--{$smarty.const.HTTPS_URL}--><!--{/if}-->" class="l-header__logo"><svg
+    <div class="l-header__logo_frame">
+	<a href="<!--{if $tpl_login}--><!--{$smarty.const.TOP_URL}-->products/list.php?orderby=date<!--{else}--><!--{$smarty.const.HTTPS_URL}--><!--{/if}-->" class="l-header__logo">
+        <svg
       width="110"
       height="53"
       viewBox="0 0 110 53"
@@ -37,9 +39,57 @@
         fill="black"
       />
     </svg></a>
-	<div class="l-header__right">
-		<a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php" class="l-header__usage" rel="noopener">ご利用ガイド</a>
-		<button type="button" class="l-header__btn c-prohibited__btn">禁止アイテム</button>
+    </div>
+
+        <div class="u-mb--4">
+            <input type="image" class="c-onboarding__show-btn gundam_campaign_banner" src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign.png" alt="ガンプラキャンペーンのバナー">
+            <div class="c-onboarding">
+                <ol>
+                    <li class="--active">
+                        <h2><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_title.png" alt="ガンプラ祭り！のタイトル"></h2>
+                        <p class="gundam_campaign_50">先着50名！</p>
+                        <p><span class="gundam_campaign_text">ガンプラを出品して、「ほしい」を押したら、Amazonギフト券500円プレゼント！！</span></p>
+                        <div class="gundam_campaign_howto">
+                            <dl class="gundam_campaign_howto1">
+                                <dt><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_howto1.png" alt="ガンプラを出品するの画像"></dt>
+                                <dd>①HG、MG、RGの<span class="attention_">ガンプラ</span>を出品する</dd>
+                            </dl>
+                            <dl class="gundam_campaign_howto2">
+                                <dt><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_howto2.png" alt="他の人が出品しているアイテムに「ほしい」を押すの画像"></dt>
+                                <dd>②他の人が出品しているアイテムに「ほしい」を押す。</dd>
+                            </dl>
+                            <dl class="gundam_campaign_howto3">
+                                <dt><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_howto3.png" alt="Amazonアカウントをお問い合わせから連絡するの画像"></dt>
+                                <dd>③Amazonアカウントのメールアドレスを<a href="<!--{$smarty.const.HTTPS_URL}-->contact/">お問い合わせ</a>から連絡する。</dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li>
+                        <h2><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_title.png" alt="ガンプラ祭り！のタイトル"></h2>
+                        <p>＼キャンペーン内容／</p>
+                        <dl class="gundam_campaign_cation">
+                            <dt>2023年4月20日からの「ほしい」がキャンペーン対象になります。</dt>
+                            <dt>2023年4月20日以前に出品しているガンプラも対象になります。</dt>
+                            <dt>ガンプラを出品して「ほしい」を押したユーザーが50名になったらキャンペーン終了です。</dt>
+                            <dt>「ほしい」を押してから1ヶ月後にAmazonギフト券500円分を差し上げます。</dt>
+                            <dt>対象者には「ほしい」を押してから1ヶ月経過後Chainからメールでご連絡します。</dt>
+                            <dt>対象の出品アイテムは、HG、MG、RGのガンプラになります。</dt>
+                            <dt>「ほしい」を押して1ヶ月経過前に、アイテムの非表示や「ほしい」の取り消しを行った場合は、キャンペーンの対象になりません。</dt>
+                        </dl>
+                    </li>
+                </ol>
+
+                <div class="c-onboarding__btn">
+                    <button type="button" class="c-onboarding__prev-btn --hidden">前へ</button>
+                    <button type="button" class="c-onboarding__next-btn">次へ</button>
+                    <button type="button" class="c-onboarding__close-btn --hidden">閉じる</button>
+                </div>
+            </div>
+            <div class="c-onboarding__bg"></div>
+        </div>
+    <div class="l-header__right">
+		<a href="<!--{$smarty.const.TOP_URL}-->guide/guide.php" class="l-header__usage" rel="noopener">ガイド</a>
+		<!--{* <button type="button" class="l-header__btn c-prohibited__btn">禁止アイテム</button> *}-->
 	</div>
 </header>
 <!--{ *
