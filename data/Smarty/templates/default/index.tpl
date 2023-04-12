@@ -54,6 +54,48 @@
       <h2 class="c-hero__main__heading">
           お金じゃなくて、<br>持っているモノでお支払い
       </h2>
+
+      <div class="u-mb--4">
+          <input type="image" class="c-onboarding__show-btn gundam_campaign_banner" src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign.png" alt="ガンプラキャンペーンのバナー">
+          <div class="c-onboarding">
+              <ol>
+                  <li class="--active">
+                      <h2><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_title.png" alt="ガンプラ祭り！のタイトル"></h2>
+                      <p class="gundam_campaign_50">先着50名！</p>
+                      <p><span class="gundam_campaign_text">ガンプラを出品して、「ほしい」を押したら、Amazonギフト券500円プレゼント！！</span></p>
+                      <div class="gundam_campaign_howto">
+                          <dl class="gundam_campaign_howto1">
+                              <dt><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_howto1.png" alt="ガンプラを出品するの画像"></dt>
+                              <dd>①HG、MG、RGの<span class="attention_">ガンプラ</span>を出品する</dd>
+                          </dl>
+                          <dl class="gundam_campaign_howto2">
+                              <dt><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_howto2.png" alt="他の人が出品しているアイテムに「ほしい」を押すの画像"></dt>
+                              <dd>②他の人が出品しているアイテムに「ほしい」を押す。</dd>
+                          </dl>
+                          <dl class="gundam_campaign_howto3">
+                              <dt><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_howto3.png" alt="Amazonアカウントをお問い合わせから連絡するの画像"></dt>
+                              <dd>③Amazonアカウントのメールアドレスを<a href="<!--{$smarty.const.HTTPS_URL}-->contact/">お問い合わせ</a>から連絡する。</dd>
+                          </dl>
+                      </div>
+                  </li>
+                  <li>
+                      <dl class="gundam_campaign_cation">
+                          <dt>「ほしい」を押してから1ヶ月後にAmazonギフト券500円分を差し上げます。</dt>
+                          <dt>対象のアイテムは、HG、MG、RGのガンプラになります。</dt>
+                          <dt>「ほしい」を押して1ヶ月経過前に、アイテムの非表示や「ほしい」の取り消しを行った場合は、キャンペーンの対象になりません。</dt>
+                      </dl>
+                  </li>
+              </ol>
+
+              <div class="c-onboarding__btn">
+                  <button type="button" class="c-onboarding__prev-btn --hidden">前へ</button>
+                  <button type="button" class="c-onboarding__next-btn">次へ</button>
+                  <button type="button" class="c-onboarding__close-btn --hidden">閉じる</button>
+              </div>
+          </div>
+          <div class="c-onboarding__bg"></div>
+      </div>
+
       <p class="u-color--gray c-hero__main__text">
       Chainは欲しいモノを「もらう」ために、誰かにモノを「あげる」だけ。
       </p>
@@ -204,7 +246,6 @@ $('.c-onboarding__show-btn').on('click', function(){
     $('body').addClass('--overflow-hidden');
     let $lists = $('.c-onboarding ol li');
     let $num = 0;
-
     $('.c-onboarding__next-btn').on('click', function(){
         if($num < ($lists.length - 1)) {
             ++$num
@@ -212,11 +253,14 @@ $('.c-onboarding__show-btn').on('click', function(){
             $('.c-onboarding ol li').eq($num).addClass('--active')
 
             if($num == 1) {
-                $('.c-onboarding__prev-btn').removeClass('--hidden')
+                $('.c-onboarding__next-btn').removeClass('--hidden')
+                $('.c-onboarding__next-btn').addClass('--active')
             }
-            if($num === 4) {
-                $(this).addClass('--hidden')
+            if($num == 1) {
+                $('.c-onboarding__prev-btn').addClass('--hidden')
+                $('.c-onboarding__next-btn').addClass('--hidden')
                 $('.c-onboarding__close-btn').removeClass('--hidden')
+                $('.c-onboarding__close-btn').addClass('--active')
             }
         }
 
@@ -228,10 +272,11 @@ $('.c-onboarding__show-btn').on('click', function(){
             $('.c-onboarding ol li').eq($num).addClass('--active')
             if($num == 0) {
                 $('.c-onboarding__prev-btn').addClass('--hidden')
+                $('.c-onboarding__next-btn').addClass('--active')
             }
-            if($num < 5) {
+            if($num == 1) {
                 $('.c-onboarding__next-btn').removeClass('--hidden')
-                $('.c-onboarding__close-btn').addClass('--hidden')
+                $('.c-onboarding__close-btn').removeClass('--hidden')
             }
         }
     })
@@ -243,7 +288,7 @@ $('.c-onboarding__show-btn').on('click', function(){
         $('.c-onboarding ol li').eq($num).addClass('--active')
         $('.c-onboarding__prev-btn').addClass('--hidden')
         $('.c-onboarding__next-btn').removeClass('--hidden')
-        $('.c-onboarding__close-btn').addClass('--hidden')
+        $('.c-onboarding__close-btn').removeClass('--hidden')
         $('body').removeClass('--overflow-hidden');
     })
 })

@@ -717,3 +717,79 @@
 .top-header--item a {
 	color: #666;
 }
+.gundam_campaign_banner {
+	margin-top: 16px;
+	max-width: 100%;
+}
+.gundam_campaign_text {
+	display: inline;
+	font-size: 145%;
+	background-position: left -100% center;
+	padding-bottom: 0.6em;
+	font-weight: bold;
+	background-size: 200% 0.6em;
+	background-repeat: repeat-x;
+	background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgb(255, 255, 200) 50%);
+	transition: background-position 2s ease 0.1s;
+}
+.gundam_campaign_cation {
+	margin-top: 20px;
+	padding: 16px;
+	background-color: #efefef;
+	border-radius: 16px;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	-o-border-radius: 16px;
+	-ms-border-radius: 16px;
+}
+.gundam_campaign_cation dt {
+	font-weight: 300;
+	display: list-item;
+	list-style-type: disc;
+	margin-left: 16px;
+	margin-bottom: 8px;
+	line-height: 16px;
+}
+.gundam_campaign_howto {
+	margin-top: 20px;
+}
+.gundam_campaign_howto span {
+	color: #FD0000;
+}
+.gundam_campaign_50 {
+	background: #FD0000;
+	padding: 8px;
+	color: #fff;
+	font-weight: 600;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 8px;
+}
+.gundam_campaign_howto dl {
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-bottom: 8px;
+}
+.gundam_campaign_howto dt {
+	width: 25%;
+}
+.gundam_campaign_howto dt img {
+	border: 1px #ccc solid;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+}
+.gundam_campaign_howto dd {
+	width: 70%;
+	padding: 0 2.5%;
+	font-weight: 600;
+}
