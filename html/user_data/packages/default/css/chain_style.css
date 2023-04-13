@@ -717,9 +717,19 @@
 .top-header--item a {
 	color: #666;
 }
+
+.c-onboarding ol {
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 90%;
+}
 .gundam_campaign_banner {
-	margin-top: 16px;
+	margin: 16px auto 0;
 	max-width: 100%;
+	display: block;
 }
 .gundam_campaign_text {
 	display: inline;
@@ -804,7 +814,7 @@
 	width: 12%;
 }
 .l-header__right {
-	width: 20%;
+	width:  21%;
 	margin-left: 2%;
 }
 .l-header__usage {

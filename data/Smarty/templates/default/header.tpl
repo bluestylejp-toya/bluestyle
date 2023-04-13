@@ -47,7 +47,7 @@
                 <ol>
                     <li class="--active">
                         <h2><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_title.png" alt="ガンプラ祭り！のタイトル"></h2>
-                        <p class="gundam_campaign_50">先着50名！</p>
+                        <p class="gundam_campaign_50">先着50名様！</p>
                         <p><span class="gundam_campaign_text">ガンプラを出品して、「ほしい」を押したら、Amazonギフト券500円プレゼント！！</span></p>
                         <div class="gundam_campaign_howto">
                             <dl class="gundam_campaign_howto1">
@@ -68,11 +68,11 @@
                         <h2><img src="<!--{$TPL_URLPATH}-->img/banner/gundam_campaign_title.png" alt="ガンプラ祭り！のタイトル"></h2>
                         <p>＼キャンペーン内容／</p>
                         <dl class="gundam_campaign_cation">
-                            <dt>2023年4月20日からの「ほしい」がキャンペーン対象になります。</dt>
-                            <dt>2023年4月20日以前に出品しているガンプラも対象になります。</dt>
+                            <dt>2023年4月14日からの「ほしい」がキャンペーン対象になります。</dt>
+                            <dt>2023年4月14日以前に出品しているガンプラも対象になります。</dt>
                             <dt>ガンプラを出品して「ほしい」を押したユーザーが50名になったらキャンペーン終了です。</dt>
                             <dt>「ほしい」を押してから1ヶ月後にChainからメールでご連絡した後、Amazonギフト券500円分を差し上げます。</dt>
-                            <dt>おひとり様一度限りのプレゼントになります。</dt>
+                            <dt>キャンペーンへの参加はお1人様1回のみとなります。</dt>
                             <dt>対象の出品アイテムは、HG、MG、RGのガンプラになります。</dt>
                             <dt>「ほしい」を押して1ヶ月経過前に、アイテムの非表示や「ほしい」の取り消しを行った場合は、キャンペーンの対象になりません。</dt>
                         </dl>
